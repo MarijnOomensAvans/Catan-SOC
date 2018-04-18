@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 @SuppressWarnings("serial")
 public class InlogVenster extends JFrame {
 	 
-	InlogVenster(){
+	public InlogVenster(){
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setPreferredSize(new Dimension(300,300));
 		pack();
