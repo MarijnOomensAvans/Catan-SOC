@@ -1,5 +1,7 @@
 package View;
 
-public class InlogVenster {
+import javax.swing.JFrame;
 
+public class InlogVenster extends JFrame {
+		
 }
