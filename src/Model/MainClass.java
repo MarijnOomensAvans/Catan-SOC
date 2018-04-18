@@ -1,9 +1,11 @@
 package Model;
 
+import View.InlogVenster;
+
 public class MainClass {
 
 	public static void main(String[] args) {
-		// Test
+		InlogVenster inlogvenster = new InlogVenster();
 
 	}
 
