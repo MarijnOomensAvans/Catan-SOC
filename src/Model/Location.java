@@ -1,20 +1,20 @@
 package Model;
 
-public class Locatie {
+public class Location {
 	private int x;
 	private int y;
 	
-	private boolean haven;
+	private boolean harbour;
 	
-	Grondstofsoort grondstofhaven;
+	private Resourcetype resourceofharbour;
 	
-	public Locatie(int x,int y,boolean haven,char grondstofhaven) {
+	public Location(int x,int y,boolean haven,char resourceofharbour) {
 		this.x = x;
 		this.y = x;
-		this.haven = haven;
+		this.harbour = haven;
 		
-		if(grondstofhaven != 0 && haven) {
-			this.grondstofhaven = new Grondstofsoort(grondstofhaven);
+		if(resourceofharbour != 0 && haven) {
+			this.resourceofharbour = new Resourcetype(resourceofharbour);
 		}
 	}
 
@@ -35,11 +35,11 @@ public class Locatie {
 	}
 
 	public boolean isHaven() {
-		return haven;
+		return harbour;
 	}
 
 	public void setHaven(boolean haven) {
-		this.haven = haven;
+		this.harbour = haven;
 	}
 	
 }
