@@ -5,14 +5,25 @@ public class Tegel {
 	
 	private int x;
 	private int y;
-	//private int getalfische;
+	private int getalfische;
 	
-	public Tegel(int x,int y,char grondstof/*,int getalfische??*/) {
+
+
+	public Tegel(int x,int y,char grondstof,int getalfische) {
 		this.x = x;
 		this.y = y;
 		this.grondstofsoort = new Grondstofsoort(grondstof);
+		this.getalfische = getalfische;
 	}
 	
+	public int getGetalfische() {
+		return getalfische;
+	}
+	
+	
+	public void setGetalfische(int getalfische) {
+		this.getalfische = getalfische;
+	}
 
 	public int getX() {
 		return x;
