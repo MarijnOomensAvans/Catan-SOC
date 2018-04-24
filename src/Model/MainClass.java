@@ -1,12 +1,12 @@
 package Model;
 
-import View.InlogVenster;
+import View.GUI_Inlogscherm;
 
 public class MainClass {
 
 	public static void main(String[] args) {
-		InlogVenster inlogvenster = new InlogVenster();
-		//testt
+		new GUI_Inlogscherm();
+
 	}
 
 }
