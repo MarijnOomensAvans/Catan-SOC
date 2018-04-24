@@ -1,6 +1,6 @@
 package Model;
 
-public class Tile {
+public class Tile extends Collection {
 	Resourcetype resourcetype;
 	
 	private int x;

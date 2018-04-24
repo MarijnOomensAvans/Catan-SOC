@@ -1,6 +1,6 @@
 package Model;
 
-public class Location {
+public class Location extends Collection{
 	private int x;
 	private int y;
 	
