@@ -35,14 +35,11 @@ public class MainDAL {
 		{
 			conn = DriverManager
 					.getConnection("jdbc:mysql://databases.aii.avans.nl/bdjong1_db2?user=bdjong1&password=Ab12345");
-			System.out.println("So far, so good...");
+		
 		} catch (SQLException ex)
 		{
 			// handle any errors
-			System.out.println("Houston, we've had a problem...");
-			System.out.println("SQLException: " + ex.getMessage());
-			System.out.println("SQLState: " + ex.getSQLState());
-			System.out.println("VendorError: " + ex.getErrorCode());
+			
 			return false;
 		}
 		return true;
@@ -52,8 +49,9 @@ public class MainDAL {
 		return conn;
 	}
 	
-	public void getName(int id)
+	public String getName(int id)
 	{
+		String result ="";
 		String idstring = Integer.toString(id);
 		Statement stmt = null;
 		String query = "SELECT username FROM speler WHERE idspeler =" + idstring;
@@ -63,13 +61,35 @@ public class MainDAL {
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next())
 			{
-				String name = rs.getString(1);
-				System.out.println(name);
+				result = rs.getString(id);
 			}
 			stmt.close();
 		} catch (SQLException e)
 		{
 			System.out.println(e.getMessage());
 		}
+		return result;
 	}
+
+public String getColor(int id)
+{
+	String result ="";
+	String idstring = Integer.toString(id);
+	Statement stmt = null;
+	String query = "SELECT kleur FROM speler WHERE idspeler =" + idstring;
+	try
+	{
+		stmt = conn.createStatement();
+		ResultSet rs = stmt.executeQuery(query);
+		while (rs.next())
+		{
+			result = rs.getString(id);
+		}
+		stmt.close();
+	} catch (SQLException e)
+	{
+		System.out.println(e.getMessage());
+	}
+	return result;
+}
 }
