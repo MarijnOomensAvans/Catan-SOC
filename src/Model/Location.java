@@ -8,14 +8,9 @@ public class Location extends Collection{
 	
 	private Resourcetype resourceofharbour;
 	
-	public Location(int x,int y,boolean haven,char resourceofharbour) {
+	public Location(int x,int y) {
 		this.x = x;
 		this.y = x;
-		this.harbour = haven;
-		
-		if(resourceofharbour != 0 && haven) {
-			this.resourceofharbour = new Resourcetype(resourceofharbour);
-		}
 	}
 
 	public int getX() {
