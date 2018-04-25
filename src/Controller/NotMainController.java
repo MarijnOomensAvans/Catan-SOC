@@ -1,3 +1,7 @@
+package Controller;
+
+import Model.Dice;
+
 public class NotMainController {
 	Dice d = new Dice();
 	
