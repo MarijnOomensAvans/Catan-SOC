@@ -9,11 +9,9 @@ public class Tile extends Collection {
 	
 
 
-	public Tile(int x,int y,char grondstof,int numberchits) {
+	public Tile(int x,int y) {
 		this.x = x;
 		this.y = y;
-		this.resourcetype = new Resourcetype(grondstof);
-		this.numberchits = numberchits;
 	}
 	
 	public int getGetalfische() {
