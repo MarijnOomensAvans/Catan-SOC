@@ -10,9 +10,7 @@ public class MainClass {
 		//Dice die = new Dice();
 		//NotMainController ctr = new NotMainController();
 		
-		DieGUI die = new DieGUI();
-		die.create();
-		
+		NotMainController con = new NotMainController();
 	}
 
 }

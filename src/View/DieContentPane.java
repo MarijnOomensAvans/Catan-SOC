@@ -12,8 +12,12 @@ import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import Controller.NotMainController;
+
 public class DieContentPane extends JPanel implements ActionListener
 {
+	private NotMainController con;
+	
 	private JButton myButton = new JButton("Dobbel");
 	private File myFile = new File("./images/one.png");
 	private File one;
@@ -25,7 +29,7 @@ public class DieContentPane extends JPanel implements ActionListener
 	private BufferedImage myBufferedImage1 = new BufferedImage(1, 1, BufferedImage.TYPE_INT_RGB);
 	private BufferedImage myBufferedImage2 = new BufferedImage(1, 1, BufferedImage.TYPE_INT_RGB);
 	
-	public DieContentPane() 
+	public DieContentPane(NotMainController controller) 
 	{
 		initFiles();
 		this.setLayout(null);
@@ -35,6 +39,8 @@ public class DieContentPane extends JPanel implements ActionListener
 		myButton.setBounds(150, 75, 100, 100);
 		
 		this.add(myButton);
+		
+		con = controller;
 	}
 
 	public void initFiles()
@@ -51,76 +57,48 @@ public class DieContentPane extends JPanel implements ActionListener
 	public void actionPerformed(ActionEvent e) 
 	{		
 		// TODO Auto-generated method stub
-		int i = (int) (Math.random() * 6) + 1;
-		switch (i)
-		{
-			case 1 :
-				setDie1(one);
-				break;
-			case 2 :
-				setDie1(two);
-				break;
-			case 3 :
-				setDie1(three);
-				break;
-			case 4 :
-				setDie1(four);
-				break;
-			case 5 :
-				setDie1(five);
-				break;
-			case 6 :
-				setDie1(six);
-				break;
-		}
 		
-		i = (int) (Math.random() * 6) + 1;
-		switch (i)
-		{
-			case 1 :
-				setDie2(one);
-				break;
-			case 2 :
-				setDie2(two);
-				break;
-			case 3 :
-				setDie2(three);
-				break;
-			case 4 :
-				setDie2(four);
-				break;
-			case 5 :
-				setDie2(five);
-				break;
-			case 6 :
-				setDie2(six);
-				break;
+		int i[] = con.castDice();
+		
+		for(int itt = 1; itt < 3; itt++) {
+			switch (i[itt - 1])
+			{
+				case 1 :
+					setDie(one, itt);
+					break;
+				case 2 :
+					setDie(two, itt);
+					break;
+				case 3 :
+					setDie(three, itt);
+					break;
+				case 4 :
+					setDie(four, itt);
+					break;
+				case 5 :
+					setDie(five, itt);
+					break;
+				case 6 :
+					setDie(six, itt);
+					break;
+			}
 		}
 		
 	}
 	
-	public void setDie1(File file)
-	{
+	public void setDie(File file, int img) {
 		myFile = file;
 		if(myFile != null)
 		{
 			try {
+				if (img == 1)
+				{
 				myBufferedImage1 = ImageIO.read(myFile);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}	
-		}
-		this.repaint();
-	}
-	
-	public void setDie2(File file)
-	{
-		myFile = file;
-		if(myFile != null)
-		{
-			try {
+				}
+				else if (img == 2)
+				{
 				myBufferedImage2 = ImageIO.read(myFile);
+				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

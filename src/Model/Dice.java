@@ -18,6 +18,10 @@ public class Dice {
 		return storedDice;
 	}
 	
+	public void storeDice() {
+		//TO DO: some db connectivity here
+	}
+	
 	public void rollDice() {
 		dice[0] = rand.nextInt(6)+1;
 		dice[1] = rand.nextInt(6)+1;
