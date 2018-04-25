@@ -71,25 +71,70 @@ public class MainDAL {
 		return result;
 	}
 
-public String getColor(int id)
-{
-	String result ="";
-	String idstring = Integer.toString(id);
-	Statement stmt = null;
-	String query = "SELECT kleur FROM speler WHERE idspeler =" + idstring;
-	try
+	public String getColor(int playerid)
 	{
-		stmt = conn.createStatement();
-		ResultSet rs = stmt.executeQuery(query);
-		while (rs.next())
+		String result ="";
+		String idstring = Integer.toString(playerid);
+		Statement stmt = null;
+		String query = "SELECT kleur FROM speler WHERE idspeler =" + idstring;
+		try
 		{
-			result = rs.getString(id);
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while (rs.next())
+			{
+				result = rs.getString(playerid);
+			}
+			stmt.close();
+		} catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
 		}
-		stmt.close();
-	} catch (SQLException e)
+		return result;
+}
+	public int getgame_id(int playerid)
 	{
-		System.out.println(e.getMessage());
-	}
-	return result;
+		String result ="";
+		String idstring = Integer.toString(playerid);
+		Statement stmt = null;
+		String query = "SELECT idspel FROM speler WHERE idspeler =" + idstring;
+		try
+		{
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while (rs.next())
+			{
+				result = rs.getString(playerid);
+			}
+			stmt.close();
+		} catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		int resultint =Integer.parseInt(result);
+		return resultint;
+}
+	
+	public int getorder_number(int playerid)
+	{
+		String result ="";
+		String idstring = Integer.toString(playerid);
+		Statement stmt = null;
+		String query = "SELECT volgnr FROM speler WHERE idspeler =" + idstring;
+		try
+		{
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while (rs.next())
+			{
+				result = rs.getString(playerid);
+			}
+			stmt.close();
+		} catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		int resultint =Integer.parseInt(result);
+		return resultint;
 }
 }

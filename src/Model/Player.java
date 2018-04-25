@@ -1,6 +1,5 @@
 package Model;
 
-import java.awt.Color;
 
 import DAL.MainDAL;
 
@@ -9,14 +8,15 @@ public class Player {
 	private int player_id;
 	private int game_id;
 	private String username;
-	private String password;
 	private String color;
 	private int order_number;
 	
 	public Player(int id) {
 		player_id = id;
 		setName();
+		setGame_id();
 		setColor();
+		setOrder_number();
 	}
 	
 	public void setName() {
@@ -38,6 +38,30 @@ public class Player {
 		}
 	}
 	}
+	public void setGame_id() {
+		MainDAL db = new MainDAL();{ 
+		if ((db.loadDataBaseDriver("com.mysql.jdbc.Driver"))
+				&& (db.makeConnection()))
+		{
+			game_id = db.getgame_id(player_id);
+		}
+	}
+	}
+
+	public void setOrder_number() {
+		MainDAL db = new MainDAL();{ 
+		if ((db.loadDataBaseDriver("com.mysql.jdbc.Driver"))
+				&& (db.makeConnection()))
+		{
+			order_number = db.getorder_number(player_id);
+		}
+	}
+	}
+	
+
+	public void getGame_id() {
+		System.out.println(game_id);
+	}
 
 	public void getColor() {
 		System.out.println(color);
@@ -45,5 +69,9 @@ public class Player {
 
 	public void getUsername() {
 		System.out.println(username);
+	}
+	
+	public void getOrder_number() {
+		System.out.println(order_number);
 	}
 }
