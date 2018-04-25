@@ -41,6 +41,56 @@ public class Board {
 					}
 					break;
 				case 5:
+					switch (y) {
+					case 4:
+						placetile(x,y);
+						break;
+					case 7:
+						placetile(x,y);
+						break;
+					}
+				case 6:
+					switch (y) {
+					case 3:
+						placetile(x,y);
+						break;
+					case 6:
+						placetile(x,y);
+						break;
+					case 9:
+						placetile(x,y);
+						break;
+					}
+				case 7:
+					switch (y) {
+					case 5:
+						placetile(x,y);
+						break;
+					case 8:
+						placetile(x,y);
+						break;
+					}
+				case 8:
+					switch (y) {
+					case 4:
+						placetile(x,y);
+						break;
+					case 7:
+						placetile(x,y);
+						break;
+					case 10:
+						placetile(x,y);
+						break;
+					}
+				case 9:
+					switch (y) {
+					case 6:
+						placetile(x,y);
+						break;
+					case 9:
+						placetile(x,y);
+						break;
+					}
 				}
 			}
 		}
