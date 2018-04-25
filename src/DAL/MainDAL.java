@@ -2,7 +2,9 @@ package DAL;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class MainDAL {
 	private Connection conn;
@@ -48,5 +50,26 @@ public class MainDAL {
 	
 	public Connection getConnection() {
 		return conn;
+	}
+	
+	public void getName(int id)
+	{
+		String idstring = Integer.toString(id);
+		Statement stmt = null;
+		String query = "SELECT username FROM speler WHERE idspeler =" + idstring;
+		try
+		{
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while (rs.next())
+			{
+				String name = rs.getString(1);
+				System.out.println(name);
+			}
+			stmt.close();
+		} catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
 	}
 }
