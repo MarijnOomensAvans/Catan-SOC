@@ -1,5 +1,6 @@
 package Model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Board {
@@ -98,19 +99,44 @@ public class Board {
 
 	public void placetile(int x, int y) {
 		Tile tile = new Tile(x, y);
+		ArrayList<Location> locationlist = new ArrayList<Location>();
 		axisgrid.put(loopnumb, tile);
 		loopnumb++;
-		axisgrid.put(loopnumb, new Location(x + 1, y + 1));
+		for(Location location : locationlist) {
+			if(!(location.getX() == x + 1 && location.getY() == y + 1)) {
+				axisgrid.put(loopnumb, new Location(x + 1, y + 1));
+			}
+		}
 		loopnumb++;
-		axisgrid.put(loopnumb, new Location(x + 1, y));
+		for(Location location : locationlist) {
+			if(!(location.getX() == x + 1 && location.getY() == y + 1)) {
+				axisgrid.put(loopnumb, new Location(x + 1, y));
+			}
+		}
 		loopnumb++;
-		axisgrid.put(loopnumb, new Location(x, y + 1));
+		for(Location location : locationlist) {
+			if(!(location.getX() == x + 1 && location.getY() == y + 1)) {
+				axisgrid.put(loopnumb, new Location(x, y + 1));
+			}
+		}
 		loopnumb++;
-		axisgrid.put(loopnumb, new Location(x, y - 1));
+		for(Location location : locationlist) {
+			if(!(location.getX() == x + 1 && location.getY() == y + 1)) {
+				axisgrid.put(loopnumb, new Location(x, y - 1));
+			}
+		}
 		loopnumb++;
-		axisgrid.put(loopnumb, new Location(x - 1, y));
+		for(Location location : locationlist) {
+			if(!(location.getX() == x + 1 && location.getY() == y + 1)) {
+				axisgrid.put(loopnumb, new Location(x - 1, y));
+			}
+		}
+		for(Location location : locationlist) {
+			if(!(location.getX() == x + 1 && location.getY() == y + 1)) {
+				axisgrid.put(loopnumb, new Location(x - 1, y - 1));
+			}
+		}
 		loopnumb++;
-		axisgrid.put(loopnumb, new Location(x - 1, y - 1));
 	}
 
 }
