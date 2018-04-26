@@ -2,6 +2,7 @@ package View;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -10,17 +11,20 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 
+@SuppressWarnings("serial")
 public class RegisterVenster extends JPanel{
 	
-	private JTextField username;
-	private JTextField password;
-	private JTextField passwordVerification;
+	private JTextField usernameTextField;
+	private JTextField passwordTextField;
+	private JTextField passwordVerificationTextField;
 	
 	private JLabel usernameLabel;
 	private JLabel passwordLabel;
 	private JLabel passwordLabelVerification;
 
+	@SuppressWarnings("unused")
 	private JButton registerButton;
+	@SuppressWarnings("unused")
 	private JButton cancelButton;
 	
 	
@@ -33,23 +37,26 @@ public class RegisterVenster extends JPanel{
 	private final int BUTTONWIDTH = 90;
 	private final int BUTTONHEIGHT = 30;
 	
+	private final int SIGNINPANELWIDTH = 100;
+	private final int SIGHTINPANELHEIGHT = 100;
+	
 	public RegisterVenster(JButton registerCompleetButton, JButton cancelButton) {
 		
-		username = new JTextField();
-		password = new JTextField();
-		passwordVerification = new JTextField();
+		usernameTextField = new JTextField();
+		passwordTextField = new JTextField();
+		passwordVerificationTextField = new JTextField();
 
-		usernameLabel = new JLabel("Username:");
-		passwordLabel = new JLabel("Password:");
-		passwordLabelVerification = new JLabel("Password:");
+		usernameLabel = new JLabel("Gebruikersnaam:");
+		passwordLabel = new JLabel("Wachtwoord:");
+		passwordLabelVerification = new JLabel("Verifieer wachtwoord:");
 
-		username.setAlignmentX(CENTER_ALIGNMENT);
-		password.setAlignmentX(CENTER_ALIGNMENT);
-		passwordVerification.setAlignmentX(CENTER_ALIGNMENT);
+		usernameTextField.setAlignmentX(CENTER_ALIGNMENT);
+		passwordTextField.setAlignmentX(CENTER_ALIGNMENT);
+		passwordVerificationTextField.setAlignmentX(CENTER_ALIGNMENT);
 
-		username.setPreferredSize(new Dimension(FIELDWIDTH, FIELDHEIGHT));
-		password.setPreferredSize(new Dimension(FIELDWIDTH, FIELDHEIGHT));
-		passwordVerification.setPreferredSize(new Dimension(FIELDWIDTH, FIELDHEIGHT));
+		usernameTextField.setPreferredSize(new Dimension(FIELDWIDTH, FIELDHEIGHT));
+		passwordTextField.setPreferredSize(new Dimension(FIELDWIDTH, FIELDHEIGHT));
+		passwordVerificationTextField.setPreferredSize(new Dimension(FIELDWIDTH, FIELDHEIGHT));
 		
 		
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -62,31 +69,45 @@ public class RegisterVenster extends JPanel{
 		cancelButton.setPreferredSize(new Dimension(BUTTONWIDTH, BUTTONHEIGHT));
 		registerCompleetButton.setPreferredSize(new Dimension(BUTTONWIDTH, BUTTONHEIGHT));
 
-		JPanel buttonPanel = new JPanel();
-		JPanel usernamePanel = new JPanel();
-		JPanel passwordPanel = new JPanel();
-		JPanel passwordVerificationPanel = new  JPanel();
 		JPanel signInPanel = new JPanel();
+		JPanel usernameLabelPanel = new JPanel();
+		JPanel usernamePanel = new JPanel();
+		JPanel passwordLabelPanel = new JPanel();
+		JPanel passwordPanel = new JPanel();
+		JPanel passwordVerificationLabel = new JPanel();
+		JPanel passwordVerificationPanel = new  JPanel();
+		JPanel labelPanel = new JPanel();
+		JPanel textFieldPanel = new JPanel();
+		
+		JPanel buttonPanel = new JPanel();
 		JPanel registerPanel = new JPanel();
 		JPanel buttonsPanel = new JPanel();
 
-		usernamePanel.add(usernameLabel);
-		usernamePanel.add(username);
+		usernameLabelPanel.add(usernameLabel);
+		passwordLabelPanel.add(passwordLabel);
+		passwordVerificationLabel.add(passwordLabelVerification);
 
-		passwordPanel.add(passwordLabel);
-		passwordPanel.add(password);
+		usernamePanel.add(usernameTextField);
+		passwordPanel.add(passwordTextField);
+		passwordVerificationPanel.add(passwordVerificationTextField);
 		
-		passwordVerificationPanel.add(passwordLabelVerification);
-		passwordVerificationPanel.add(passwordVerification);
-
+		labelPanel.setLayout(new GridLayout(3, 1, 10, 10));
+		labelPanel.add(usernameLabelPanel, BorderLayout.NORTH);
+		labelPanel.add(passwordLabelPanel, BorderLayout.CENTER);
+		labelPanel.add(passwordVerificationLabel, BorderLayout.SOUTH);
+		
+		textFieldPanel.add(usernamePanel);
+		textFieldPanel.add(passwordPanel);
+		textFieldPanel.add(passwordVerificationPanel);
+		
 		registerPanel.add(registerCompleetButton);
 
 		buttonPanel.add(cancelButton);
-
-		signInPanel.setLayout(new BoxLayout(signInPanel, 1));
-		signInPanel.add(usernamePanel);
-		signInPanel.add(passwordPanel);
-		signInPanel.add(passwordVerificationPanel);
+		
+		signInPanel.setLayout(new GridLayout(1, 2));
+		signInPanel.setPreferredSize(new Dimension(SIGNINPANELWIDTH, SIGHTINPANELHEIGHT));
+		signInPanel.add(labelPanel);
+		signInPanel.add(textFieldPanel);
 
 		buttonsPanel.setLayout(new BoxLayout(buttonsPanel, 1));
 		buttonsPanel.add(registerPanel);

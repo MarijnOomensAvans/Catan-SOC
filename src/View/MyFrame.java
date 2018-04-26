@@ -2,13 +2,16 @@ package View;
 
 import javax.swing.JFrame;
 
-@SuppressWarnings("serial")
-public class GUI_Inlogscherm extends JFrame{
+import Controller.InlogController;
 
-	private Inlogscherm pane;
+
+@SuppressWarnings("serial")
+public class MyFrame extends JFrame{
+
+	private ContentPane pane;
 	
-	public GUI_Inlogscherm() {
-		pane = new Inlogscherm(this);
+	public MyFrame(InlogController controller) {
+		pane = new ContentPane(this, controller);
 		setTitle("Inlogscherm");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -20,5 +23,10 @@ public class GUI_Inlogscherm extends JFrame{
 	public void validateScreen() {
 		pack();
 		setLocationRelativeTo(null);
+	}
+	
+	public void switchScreenRegister() {
+		pane.switchScreenRegister();
+		pack();
 	}
 }

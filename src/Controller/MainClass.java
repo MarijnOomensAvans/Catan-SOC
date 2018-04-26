@@ -1,11 +1,9 @@
-package Model;
-
-import View.GUI_Inlogscherm;
+package Controller;
 
 public class MainClass {
 
 	public static void main(String[] args) {
-		new GUI_Inlogscherm();
+		new InlogController();
 
 	}
 
