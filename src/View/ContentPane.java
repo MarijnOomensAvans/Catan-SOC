@@ -26,13 +26,13 @@ public class ContentPane extends JPanel {
 		registerVenster = new RegisterVenster(registerCompleetButton, cancelButton);
 
 		registerButton.addActionListener(e -> {
-			switchScreenRegister();
 			controller.buttonPressed();
+			switchScreenRegister();
 		});
 
 		cancelButton.addActionListener(e -> {
-			switchScreenInlog();
 			controller.buttonPressed();
+			switchScreenInlog();
 		});
 
 		add(inlogVenster);
