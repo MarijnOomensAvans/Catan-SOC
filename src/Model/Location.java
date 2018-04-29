@@ -10,7 +10,7 @@ public class Location extends Collection{
 	
 	public Location(int x,int y) {
 		this.x = x;
-		this.y = x;
+		this.y = y;
 	}
 
 	public int getX() {
