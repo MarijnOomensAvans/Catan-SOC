@@ -6,6 +6,11 @@ import java.util.HashMap;
 public class Board {
 	private HashMap<Integer, Collection> axisgrid = new HashMap<Integer, Collection>();
 	private int loopnumb = 0;
+	private Location[] locationlist = new Location[6];
+
+	public Board() {
+		generateBoard();
+	}
 
 	public void generateBoard() {
 		for (int x = 1; x < 12; x++, loopnumb++) {
@@ -105,33 +110,67 @@ public class Board {
 
 	public void placetile(int x, int y) {
 		Tile tile = new Tile(x, y);
-		ArrayList<Location> locationlist = new ArrayList<Location>();
+		Location location;
 		axisgrid.put(loopnumb, tile);
-		loopnumb++;
-		for (Location location : locationlist) {
-			if (!(location.getX() == x + 1 && location.getY() == y + 1)) {
-				axisgrid.put(loopnumb, location = new Location(x + 1, y + 1));
-				locationlist.add(location);
-			}
-			if (!(location.getX() == x + 1 && location.getY() == y)) {
-				axisgrid.put(loopnumb, location = new Location(x + 1, y));
-				locationlist.add(location);
-			}
-			if (!(location.getX() == x && location.getY() == y + 1)) {
-				axisgrid.put(loopnumb, location = new Location(x, y + 1));
-				locationlist.add(location);
-			}
-			if (!(location.getX() == x && location.getY() == y - 1)) {
-				axisgrid.put(loopnumb, location = new Location(x, y - 1));
-				locationlist.add(location);
-			}
-			if (!(location.getX() == x - 1 && location.getY() == y)) {
-				axisgrid.put(loopnumb, location = new Location(x - 1, y));
-				locationlist.add(location);
-			}
-			if (!(location.getX() == x - 1 && location.getY() == y - 1)) {
-				axisgrid.put(loopnumb, location = new Location(x - 1, y - 1));
-				locationlist.add(location);
+		for (int i = 0; i < 6; i++) {
+			loopnumb++;
+			if (locationlist[i] != null) {
+				if (!(locationlist[i].getX() == x + 1 && locationlist[i].getY() == y + 1)) {
+					axisgrid.put(loopnumb, location = new Location(x + 1, y + 1));
+					locationlist[i] = location;
+					i++;
+				} else {
+					i++;
+				}
+				if (!(locationlist[i].getX() == x + 1 && locationlist[i].getY() == y)) {
+					axisgrid.put(loopnumb, location = new Location(x + 1, y));
+					locationlist[i] = location;
+					i++;
+				} else {
+					i++;
+				}
+				if (!(locationlist[i].getX() == x && locationlist[i].getY() == y + 1)) {
+					axisgrid.put(loopnumb, location = new Location(x, y + 1));
+					locationlist[i] = location;
+					i++;
+				} else {
+					i++;
+				}
+				if (!(locationlist[i].getX() == x && locationlist[i].getY() == y - 1)) {
+					axisgrid.put(loopnumb, location = new Location(x, y - 1));
+					locationlist[i] = location;
+					i++;
+				} else {
+					i++;
+				}
+				if (!(locationlist[i].getX() == x - 1 && locationlist[i].getY() == y)) {
+					axisgrid.put(loopnumb, location = new Location(x - 1, y));
+					locationlist[i] = location;
+					i++;
+				} else {
+					i++;
+				}
+				if (!(locationlist[i].getX() == x - 1 && locationlist[i].getY() == y - 1)) {
+					axisgrid.put(loopnumb, location = new Location(x - 1, y - 1));
+					locationlist[i] = location;
+					i++;
+				} else {
+					i++;
+				}
+			} else {
+				axisgrid.put(loopnumb, location = new Location(x + 1, y +1));
+				locationlist[i] = location;
+				axisgrid.put(loopnumb += 1, location = new Location(x + 1, y));
+				locationlist[i+1] = location;
+				axisgrid.put(loopnumb += 1, location = new Location(x, y + 1));
+				locationlist[i+2] = location;
+				axisgrid.put(loopnumb += 1, location = new Location(x - 1, y + 1));
+				locationlist[i+3] = location;
+				axisgrid.put(loopnumb +=1, location = new Location(x + 1, y - 1));
+				locationlist[i+4] = location;
+				axisgrid.put(loopnumb +=1, location = new Location(x - 1, y - 1));
+				locationlist[i+5] = location;
+				break;
 			}
 		}
 	}
