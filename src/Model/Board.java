@@ -33,7 +33,7 @@ public class Board {
 					case 2: 
 						placetile(x, y);
 						break;
-					case 4:
+					case 5:
 						placetile(x, y);
 						break;
 					case 8: 
@@ -92,6 +92,12 @@ public class Board {
 						placetile(x,y);
 						break;
 					}
+				case 10:
+					switch (y) {
+					case 8:
+						placetile(x,y);
+						break;
+					}
 				}
 			}
 		}
@@ -106,37 +112,23 @@ public class Board {
 			if(!(location.getX() == x + 1 && location.getY() == y + 1)) {
 				axisgrid.put(loopnumb, new Location(x + 1, y + 1));
 			}
-		}
-		loopnumb++;
-		for(Location location : locationlist) {
-			if(!(location.getX() == x + 1 && location.getY() == y + 1)) {
+			if(!(location.getX() == x + 1 && location.getY() == y)) {
 				axisgrid.put(loopnumb, new Location(x + 1, y));
 			}
-		}
-		loopnumb++;
-		for(Location location : locationlist) {
-			if(!(location.getX() == x + 1 && location.getY() == y + 1)) {
+			if(!(location.getX() == x && location.getY() == y + 1)) {
 				axisgrid.put(loopnumb, new Location(x, y + 1));
 			}
-		}
-		loopnumb++;
-		for(Location location : locationlist) {
-			if(!(location.getX() == x + 1 && location.getY() == y + 1)) {
+			if(!(location.getX() == x && location.getY() == y - 1)) {
 				axisgrid.put(loopnumb, new Location(x, y - 1));
 			}
-		}
-		loopnumb++;
-		for(Location location : locationlist) {
-			if(!(location.getX() == x + 1 && location.getY() == y + 1)) {
+			if(!(location.getX() == x - 1 && location.getY() == y)) {
 				axisgrid.put(loopnumb, new Location(x - 1, y));
 			}
-		}
-		for(Location location : locationlist) {
-			if(!(location.getX() == x + 1 && location.getY() == y + 1)) {
+			if(!(location.getX() == x - 1 && location.getY() == y - 1)) {
 				axisgrid.put(loopnumb, new Location(x - 1, y - 1));
 			}
 		}
-		loopnumb++;
+		}
 	}
 
 }
