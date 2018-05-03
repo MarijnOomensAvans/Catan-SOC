@@ -54,6 +54,7 @@ public class Board {
 						placetile(x, y);
 						break;
 					}
+					break;
 				case 6:
 					switch (y) {
 					case 3:
@@ -66,6 +67,7 @@ public class Board {
 						placetile(x, y);
 						break;
 					}
+					break;
 				case 7:
 					switch (y) {
 					case 5:
@@ -75,6 +77,7 @@ public class Board {
 						placetile(x, y);
 						break;
 					}
+					break;
 				case 8:
 					switch (y) {
 					case 4:
@@ -87,6 +90,7 @@ public class Board {
 						placetile(x, y);
 						break;
 					}
+					break;
 				case 9:
 					switch (y) {
 					case 6:
@@ -96,15 +100,18 @@ public class Board {
 						placetile(x, y);
 						break;
 					}
+					break;
 				case 10:
 					switch (y) {
 					case 8:
 						placetile(x, y);
 						break;
 					}
+					break;
 				}
 			}
 		}
+		System.out.println("The ends");
 	}
 
 	public void placetile(int x, int y) {
@@ -118,7 +125,7 @@ public class Board {
 		Location location;
 		axisgrid.put(looplet, tile);
 		looplet++;
-		for (int i = 1; i <= axisgrid.size(); i++) {
+		for (int i = 0; i < axisgrid.size(); i++) {
 			location = (Location) axisgrid.get(i);
 			if (axisgrid.get(i) != null) {
 				if (location.getX() == x + 1 && location.getY() == y + 1) {
