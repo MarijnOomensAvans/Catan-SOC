@@ -173,4 +173,8 @@ public class Board {
 			loopnumb++;
 		}
 	}
+	
+	public void placeResource() {
+		
+	}
 }
