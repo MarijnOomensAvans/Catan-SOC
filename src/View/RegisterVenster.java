@@ -34,7 +34,7 @@ public class RegisterVenster extends JPanel{
 	private final int FIELDWIDTH = 90;
 	private final int FIELDHEIGHT = 20;
 
-	private final int BUTTONWIDTH = 90;
+	private final int BUTTONWIDTH = 110;
 	private final int BUTTONHEIGHT = 30;
 	
 	private final int SIGNINPANELWIDTH = 100;
@@ -116,4 +116,18 @@ public class RegisterVenster extends JPanel{
 		add(signInPanel, BorderLayout.NORTH);
 		add(buttonsPanel, BorderLayout.SOUTH);
 	}
+
+	public String getUsername() {
+		return usernameTextField.getText();
+	}
+
+	public String getPassword() {
+		return passwordTextField.getText();
+	}
+
+	public String getPasswordVerification() {
+		return passwordVerificationTextField.getText();
+	}
+	
+	
 }

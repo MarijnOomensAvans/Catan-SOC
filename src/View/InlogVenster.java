@@ -19,6 +19,7 @@ public class InlogVenster extends JPanel {
 	private JLabel usernameLabel;
 	private JLabel passwordLabel;
 
+	@SuppressWarnings("unused")
 	private JButton loginButton;
 	@SuppressWarnings("unused")
 	private JButton registerButton;
@@ -35,7 +36,7 @@ public class InlogVenster extends JPanel {
 	private final int SIGNINPANELWIDTH = 100;
 	private final int SIGHTINPANELHEIGHT = 70;
 
-	public InlogVenster(JButton registerButton) {
+	public InlogVenster(JButton registerButton, JButton loginButton) {
 
 		usernameTextField = new JTextField();
 		passwordTextField = new JTextField();
@@ -56,7 +57,7 @@ public class InlogVenster extends JPanel {
 
 		setLayout(new BorderLayout());
 
-		loginButton = new JButton("Inloggen");
+		this.loginButton = loginButton;
 		this.registerButton = registerButton;
 
 		loginButton.setPreferredSize(new Dimension(BUTTONWIDTH, BUTTONHEIGHT));
@@ -106,4 +107,14 @@ public class InlogVenster extends JPanel {
 
 	}
 
+	public String getUsername() {
+		return usernameTextField.getText();
+	}
+
+	public String getPassword() {
+		return passwordTextField.getText();
+	}
+
+	
+	
 }

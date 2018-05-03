@@ -14,15 +14,21 @@ public class InlogController{
 		inlogModel = new InlogModel();
 	}
 
-	public void buttonPressed() {
-		System.out.println("DEBUG");
+	public void buttonPressedRegister() {
+		
 	}
-	
-	public void setName(String username) {
-		inlogModel.setUsername(username);
+
+	public void buttonPressedRegisterCompleet(String username, String password, String passwordVer) {
+		if(inlogModel.verifyRegisterInput(username, password, passwordVer)) {
+			inlogModel.addAccount(username, password);
+		}
 	}
-	
-	public void setPassword (String password) {
-		inlogModel.setPassword(password);
+
+	public void buttonPressedCancel() {
+		
+	}
+
+	public void buttonPressedLogin(String username, String password) {
+		inlogModel.login(username, password);
 	}
 }
