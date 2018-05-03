@@ -2,6 +2,7 @@ package Model;
 
 
 import DAL.MainDAL;
+import DAL.PersonDal;
 
 public class Player {
 	
@@ -20,40 +21,44 @@ public class Player {
 	}
 	
 	public void setName() {
+	PersonDal pd = new PersonDal();
 	MainDAL db = new MainDAL();{ 
 	if ((db.loadDataBaseDriver("com.mysql.jdbc.Driver"))
 			&& (db.makeConnection()))
 	{
-		username = db.getName(player_id);
+		username = pd.getName(player_id);
 	}
 }
 }
 	
 	public void setColor() {
+		PersonDal pd = new PersonDal();
 		MainDAL db = new MainDAL();{ 
 		if ((db.loadDataBaseDriver("com.mysql.jdbc.Driver"))
 				&& (db.makeConnection()))
 		{
-			color = db.getColor(player_id);
+			color = pd.getColor(player_id);
 		}
 	}
 	}
 	public void setGame_id() {
+		PersonDal pd = new PersonDal();
 		MainDAL db = new MainDAL();{ 
 		if ((db.loadDataBaseDriver("com.mysql.jdbc.Driver"))
 				&& (db.makeConnection()))
 		{
-			game_id = db.getgame_id(player_id);
+			game_id = pd.getgame_id(player_id);
 		}
 	}
 	}
 
 	public void setOrder_number() {
+		PersonDal pd = new PersonDal();
 		MainDAL db = new MainDAL();{ 
 		if ((db.loadDataBaseDriver("com.mysql.jdbc.Driver"))
 				&& (db.makeConnection()))
 		{
-			order_number = db.getorder_number(player_id);
+			order_number = pd.getorder_number(player_id);
 		}
 	}
 	}
