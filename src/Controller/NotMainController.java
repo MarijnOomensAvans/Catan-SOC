@@ -5,6 +5,8 @@ import View.DieGUI;
 
 public class NotMainController {
 	
+	//temporary main controller, the following code needs to be added to the master main controller
+	
 	Dice d = new Dice();
 	
 	public NotMainController(){
