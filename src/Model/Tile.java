@@ -1,7 +1,7 @@
 package Model;
 
 public class Tile extends Collection {
-	Resourcetype resourcetype;
+	char resourcetype;
 	
 	private int x;
 	private int y;
@@ -19,6 +19,14 @@ public class Tile extends Collection {
 	}
 	
 	
+	public char getResourcetype() {
+		return resourcetype;
+	}
+
+	public void setResourcetype(char resourcetype) {
+		this.resourcetype = resourcetype;
+	}
+
 	public void setGetalfische(int numberchits) {
 		this.numberchits = numberchits;
 	}

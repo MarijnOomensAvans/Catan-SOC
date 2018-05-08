@@ -1,15 +1,32 @@
 package Model;
 
 import java.util.HashMap;
+import java.util.Random;
 
 public class Board {
 	private HashMap<Integer, Collection> axisgrid = new HashMap<Integer, Collection>();
 	private int loopnumb = 0;
 	private int looplet = 1000;
+	private int boardType;
 
-	public Board() {
+	public Board(int boardType) {
+		this.boardType = boardType;
 		generateBoard();
+		switch (this.boardType) {
+		case 1:
+			setStandardBoard();
+			break;
+		case 2:
+			setRandomBoard();
+			break;
+		case 3:
+			setCustomBoard();
+			break;
+		}
 	}
+	
+
+
 
 	public void generateBoard() {
 		for (int x = 1; x < 12; x++) {
@@ -173,8 +190,88 @@ public class Board {
 			loopnumb++;
 		}
 	}
-	
-	public void placeResource() {
+	private void setCustomBoard() {
+		// TODO Auto-generated method stub
 		
+	}
+	
+	
+	private void setRandomBoard() {
+		for(int i = 1000;i<=1019;i++) {
+			placeResource(i,randomResource(i));
+		}
+		
+	}
+	
+	
+	private char randomResource(int location) {
+		Random rand = new Random();
+		int number = rand.nextInt(5);
+		int resourcecount = 0;
+		switch(number) {
+		case 1:
+			for(int i = 1000;i<=1019;i++) {
+				if(((Tile) axisgrid.get(i)).getResourcetype() == 'X') {
+					resourcecount += 1;
+				}
+			}
+			if(resourcecount<1) {
+				((Tile) axisgrid.get(location)).setResourcetype('X');
+				break;
+			}
+		case 2:
+			for(int i = 1000;i<=1019;i++) {
+				if(((Tile) axisgrid.get(i)).getResourcetype() == 'W') {
+					resourcecount += 1;
+				}
+			}
+			if(resourcecount<2) {
+				((Tile) axisgrid.get(location)).setResourcetype('W');
+				break;
+			}
+		case 3:
+			for(int i = 1000;i<=1019;i++) {
+				if(((Tile) axisgrid.get(i)).getResourcetype() == 'T') {
+					resourcecount += 1;
+				}
+			}
+			if(resourcecount<2) {
+				((Tile) axisgrid.get(location)).setResourcetype('T');
+				break;
+			}
+		case 4:
+			for(int i = 1000;i<=1019;i++) {
+				if(((Tile) axisgrid.get(i)).getResourcetype() == 'B') {
+					resourcecount += 1;
+				}
+			}
+			if(resourcecount<2) {
+				((Tile) axisgrid.get(location)).setResourcetype('B');
+				break;
+			}
+		case 5:
+			for(int i = 1000;i<=1019;i++) {
+				if(((Tile) axisgrid.get(i)).getResourcetype() == 'O') {
+					resourcecount += 1;
+				}
+			}
+			if(resourcecount<2) {
+				((Tile) axisgrid.get(location)).setResourcetype('O');
+				break;
+			}
+		}
+		return 0;
+	}
+
+
+
+
+	private void setStandardBoard() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public void placeResource(int position,char resource) {
+		((Tile) axisgrid.get(position)).setResourcetype(resource);
 	}
 }
