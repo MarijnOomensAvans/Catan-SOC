@@ -29,4 +29,8 @@ public class MyFrame extends JFrame{
 		pane.switchScreenRegister();
 		pack();
 	}
+	
+	public void setWarning(String warning) {
+		pane.setWarning(warning);
+	}
 }

@@ -2,14 +2,17 @@ package Model;
 
 import java.util.regex.Pattern;
 
+import Controller.InlogController;
 import DAL.LoginDAL;
 
 public class InlogModel {
 
 	private LoginDAL loginDal;
+	private InlogController inlogController;
 
-	public InlogModel() {
+	public InlogModel(InlogController inlogController) {
 		loginDal = new LoginDAL();
+		this.inlogController = inlogController;
 	}
 
 	public void login(String username, String password) {
@@ -18,9 +21,11 @@ public class InlogModel {
 				System.out.println("Logged in!");
 			} else {
 				System.err.println("Wachtwoord klopt niet");
+				inlogController.setWarning("Wachtwoord klopt niet");
 			}
 		} else {
 			System.err.println("Username bestaat niet!");
+			inlogController.setWarning("Username bestaat niet!");
 		}
 	}
 
@@ -41,15 +46,19 @@ public class InlogModel {
 						return true;
 					} else {
 						System.err.println("Wachtwoorden komen niet overeen");
+						inlogController.setWarning("Wachtwoorden komen niet overeen");
 					}
 				} else {
 					System.err.println("Username bestaat al!");
+					inlogController.setWarning("Username bestaat al!");
 				}
 			} else {
-				System.err.println("Username en wachtwoord moeten minimaal 3 karakters lang zijn");
+				System.err.println("Gebruik minimaal 3 karakters");
+				inlogController.setWarning("Gebruik minimaal 3 karakters");
 			}
 		} else {
 			System.err.println("Speciale karakters zijn niet toegestaan.");
+			inlogController.setWarning("Speciale karakters zijn niet toegestaan.");
 		}
 		return false;
 	}

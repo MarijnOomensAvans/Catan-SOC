@@ -11,7 +11,7 @@ public class InlogController{
 	
 	public InlogController(){
 		frame = new MyFrame(this);
-		inlogModel = new InlogModel();
+		inlogModel = new InlogModel(this);
 	}
 
 	public void buttonPressedRegister() {
@@ -30,5 +30,9 @@ public class InlogController{
 
 	public void buttonPressedLogin(String username, String password) {
 		inlogModel.login(username, password);
+	}
+	
+	public void setWarning(String warning) {
+		frame.setWarning(warning);
 	}
 }

@@ -64,5 +64,10 @@ public class ContentPane extends JPanel {
 		add(inlogVenster);
 		GUI.pack();
 	}
+	
+	public void setWarning(String warning) {
+		inlogVenster.setWarning(warning);
+		registerVenster.setWarning(warning);
+	}
 
 }

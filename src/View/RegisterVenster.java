@@ -1,6 +1,7 @@
 package View;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 
@@ -21,6 +22,8 @@ public class RegisterVenster extends JPanel{
 	private JLabel usernameLabel;
 	private JLabel passwordLabel;
 	private JLabel passwordLabelVerification;
+	
+	private JLabel warningLabel;
 
 	@SuppressWarnings("unused")
 	private JButton registerButton;
@@ -29,7 +32,7 @@ public class RegisterVenster extends JPanel{
 	
 	
 	private final int WIDTH = 300;
-	private final int HEIGHT = 200;
+	private final int HEIGHT = 220;
 
 	private final int FIELDWIDTH = 90;
 	private final int FIELDHEIGHT = 20;
@@ -49,6 +52,9 @@ public class RegisterVenster extends JPanel{
 		usernameLabel = new JLabel("Gebruikersnaam:");
 		passwordLabel = new JLabel("Wachtwoord:");
 		passwordLabelVerification = new JLabel("Verifieer wachtwoord:");
+		
+		warningLabel = new JLabel();
+		warningLabel.setForeground(Color.red);
 
 		usernameTextField.setAlignmentX(CENTER_ALIGNMENT);
 		passwordTextField.setAlignmentX(CENTER_ALIGNMENT);
@@ -79,10 +85,14 @@ public class RegisterVenster extends JPanel{
 		JPanel labelPanel = new JPanel();
 		JPanel textFieldPanel = new JPanel();
 		
+		JPanel warningPanel = new JPanel();
+		
 		JPanel buttonPanel = new JPanel();
 		JPanel registerPanel = new JPanel();
 		JPanel buttonsPanel = new JPanel();
 
+		warningPanel.add(warningLabel);
+		
 		usernameLabelPanel.add(usernameLabel);
 		passwordLabelPanel.add(passwordLabel);
 		passwordVerificationLabel.add(passwordLabelVerification);
@@ -113,7 +123,8 @@ public class RegisterVenster extends JPanel{
 		buttonsPanel.add(registerPanel);
 		buttonsPanel.add(buttonPanel);
 
-		add(signInPanel, BorderLayout.NORTH);
+		add(warningPanel, BorderLayout.NORTH);
+		add(signInPanel, BorderLayout.CENTER);
 		add(buttonsPanel, BorderLayout.SOUTH);
 	}
 
@@ -129,5 +140,8 @@ public class RegisterVenster extends JPanel{
 		return passwordVerificationTextField.getText();
 	}
 	
+	public void setWarning(String warning) {
+		warningLabel.setText(warning);
+	}
 	
 }

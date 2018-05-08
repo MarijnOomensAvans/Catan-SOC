@@ -1,6 +1,7 @@
 package View;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import javax.swing.BoxLayout;
@@ -8,16 +9,21 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 
 
 @SuppressWarnings("serial")
 public class InlogVenster extends JPanel {
 
+	private String warning;
+	
 	private JTextField usernameTextField;
 	private JTextField passwordTextField;
 	
 	private JLabel usernameLabel;
 	private JLabel passwordLabel;
+	
+	private JLabel warningLabel;
 
 	@SuppressWarnings("unused")
 	private JButton loginButton;
@@ -25,7 +31,7 @@ public class InlogVenster extends JPanel {
 	private JButton registerButton;
 
 	private final int WIDTH = 300;
-	private final int HEIGHT = 150;
+	private final int HEIGHT = 170;
 
 	private final int FIELDWIDTH = 90;
 	private final int FIELDHEIGHT = 20;
@@ -43,6 +49,9 @@ public class InlogVenster extends JPanel {
 
 		usernameLabel = new JLabel("Gebruikersnaam:");
 		passwordLabel = new JLabel("Wachtwoord:");
+		
+		warningLabel = new JLabel();
+		warningLabel.setForeground(Color.red);
 
 		usernameTextField.setAlignmentX(CENTER_ALIGNMENT);
 		passwordTextField.setAlignmentX(CENTER_ALIGNMENT);
@@ -63,6 +72,8 @@ public class InlogVenster extends JPanel {
 		loginButton.setPreferredSize(new Dimension(BUTTONWIDTH, BUTTONHEIGHT));
 		registerButton.setPreferredSize(new Dimension(BUTTONWIDTH, BUTTONHEIGHT));
 
+		JPanel warningPanel = new JPanel();
+		
 		JPanel signInPanel = new JPanel();
 		JPanel usernameLabelPanel = new JPanel(); 
 		JPanel usernamePanel = new JPanel(); 
@@ -77,6 +88,8 @@ public class InlogVenster extends JPanel {
 		
 		usernameLabelPanel.add(usernameLabel);
 		passwordLabelPanel.add(passwordLabel);
+		
+		warningPanel.add(warningLabel);
 		
 		usernamePanel.add(usernameTextField);
 		passwordPanel.add(passwordTextField);
@@ -102,8 +115,9 @@ public class InlogVenster extends JPanel {
 		buttonsPanel.add(logInPanel);
 		buttonsPanel.add(registerPanel);
 
-		add(signInPanel, BorderLayout.NORTH);
-		add(buttonsPanel, BorderLayout.CENTER);
+		add(warningPanel, BorderLayout.NORTH);
+		add(signInPanel, BorderLayout.CENTER);
+		add(buttonsPanel, BorderLayout.SOUTH);
 
 	}
 
@@ -113,6 +127,10 @@ public class InlogVenster extends JPanel {
 
 	public String getPassword() {
 		return passwordTextField.getText();
+	}
+	
+	public void setWarning(String warning) {
+		warningLabel.setText(warning);
 	}
 
 	
