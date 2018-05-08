@@ -8,6 +8,10 @@ public class MainClass {
 		player1.getGame_id();
 		player1.getColor();
 		player1.getOrder_number();
+		for(int i=1; i<6; i++) {
+			player1.addCard(i);
+		}
+		player1.printCards();
 	}
 }
 

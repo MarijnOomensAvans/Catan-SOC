@@ -9,9 +9,9 @@ public class PersonDal {
 	
 	Connection conn;
 	
-	@SuppressWarnings("unused")
+	
 	public PersonDal() {
-		Connection conn = MainDAL.getConnection();
+		 conn = MainDAL.getConnection();
 	}
 	
 	public String getName(int id)
