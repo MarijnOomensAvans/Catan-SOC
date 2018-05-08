@@ -1,18 +1,20 @@
 package Model;
 
+import java.util.regex.Pattern;
+
 import DAL.LoginDAL;
 
 public class InlogModel {
 
 	private LoginDAL loginDal;
-	
+
 	public InlogModel() {
 		loginDal = new LoginDAL();
 	}
 
 	public void login(String username, String password) {
-		if(loginDal.hasUsername(username)) {
-			if(loginDal.userHasPassword(username, password)) {
+		if (loginDal.hasUsername(username)) {
+			if (loginDal.userHasPassword(username, password)) {
 				System.out.println("Logged in!");
 			} else {
 				System.err.println("Wachtwoord klopt niet");
@@ -31,21 +33,24 @@ public class InlogModel {
 	}
 
 	public boolean verifyRegisterInput(String username, String password, String passwordVer) {
-		
-		if(username.length() >= 3 && password.length() >= 3) {
-			if(!usernameExists(username)) {
-				if(verifyPassword(password, passwordVer)) {
-					return true;
+
+		if (Pattern.matches("[a-zA-z0-9]+", username) && Pattern.matches("[a-zA-z0-9]+", password)) { //Check if string only contains allowed characters
+			if (username.length() >= 3 && password.length() >= 3) { //Check if username and passwords are of at least length 3
+				if (!usernameExists(username)) {
+					if (verifyPassword(password, passwordVer)) {
+						return true;
+					} else {
+						System.err.println("Wachtwoorden komen niet overeen");
+					}
 				} else {
-					System.err.println("Wachtwoorden komen niet overeen");
+					System.err.println("Username bestaat al!");
 				}
 			} else {
-				System.err.println("Username bestaat al!");
+				System.err.println("Username en wachtwoord moeten minimaal 3 karakters lang zijn");
 			}
 		} else {
-			System.err.println("Username en wachtwoord moeten minimaal 3 karakters lang zijn");
+			System.err.println("Speciale karakters zijn niet toegestaan.");
 		}
-		
 		return false;
 	}
 
