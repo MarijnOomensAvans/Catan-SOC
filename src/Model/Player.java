@@ -77,6 +77,15 @@ public class Player {
 		hand.add(card);
 	}
 	
+	public void removeCard(int kind) {
+		for(int i=0; i< hand.size(); i++) {
+			if(hand.get(i).getKindOfMaterial() == kind) {
+				hand.remove(hand.get(i));
+				break;
+			}
+		}
+	}
+	
 
 	public void getGame_id() {
 		System.out.println(game_id);
