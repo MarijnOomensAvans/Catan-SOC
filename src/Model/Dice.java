@@ -3,15 +3,15 @@ package Model;
 import java.util.Random;
 
 public class Dice {
-	int dice[] = {1, 1};
-	Random rand = new Random();
+	private int dice = 1;
+	private Random rand = new Random();
 	
-	public int[] getDice() {
+	public int getDice() {
 		return dice;
 	}
 	
-	public int[] getStoredDice() {
-		int storedDice[] = {1, 1};
+	public int getStoredDice() {
+		int storedDice = 1;
 		
 		//TO DO: some db connectivity here
 		
@@ -23,7 +23,6 @@ public class Dice {
 	}
 	
 	public void rollDice() {
-		dice[0] = rand.nextInt(6)+1;
-		dice[1] = rand.nextInt(6)+1;
+		dice = rand.nextInt(6)+1;
 	}
 }
