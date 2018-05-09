@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 public class Board {
+	Random rand = new Random();
 	private HashMap<Integer, Collection> axisgrid = new HashMap<Integer, Collection>();
 	private int loopnumb = 0;
 	private int looplet = 1000;
@@ -128,7 +129,7 @@ public class Board {
 				}
 			}
 		}
-		System.out.println("The ends");
+		System.out.println("Empty board generated");
 	}
 
 	public void placetile(int x, int y) {
@@ -198,15 +199,14 @@ public class Board {
 	
 	private void setRandomBoard() {
 		for(int i = 1000;i<=1019;i++) {
-			placeResource(i,randomResource(i));
+			randomResource(i);
 		}
 		
 	}
 	
 	
-	private char randomResource(int location) {
-		Random rand = new Random();
-		int number = rand.nextInt(5) + 1;
+	private void randomResource(int location) {
+		int number = rand.nextInt(6) + 1;
 		int resourcecount = 0;
 		switch(number) {
 		case 1:
@@ -218,7 +218,7 @@ public class Board {
 				}
 			}
 			if(resourcecount<1) {
-				((Tile) axisgrid.get(location)).setResourcetype('X');
+				placeResource(location,'X');
 				break;
 			}
 			else {
@@ -234,7 +234,7 @@ public class Board {
 				}
 			}
 			if(resourcecount<4) {
-				((Tile) axisgrid.get(location)).setResourcetype('W');
+				placeResource(location,'W');
 				break;
 			}
 			else {
@@ -250,7 +250,7 @@ public class Board {
 				}
 			}
 			if(resourcecount<4) {
-				((Tile) axisgrid.get(location)).setResourcetype('T');
+				placeResource(location,'T');
 				break;
 			}
 			else {
@@ -266,7 +266,7 @@ public class Board {
 				}
 			}
 			if(resourcecount<3) {
-				((Tile) axisgrid.get(location)).setResourcetype('B');
+				placeResource(location,'B');
 				break;
 			}
 			else {
@@ -298,7 +298,7 @@ public class Board {
 				}
 			}
 			if(resourcecount<4) {
-				((Tile) axisgrid.get(location)).setResourcetype('G');
+				placeResource(location,'G');
 				break;
 			}
 			else {
@@ -306,7 +306,6 @@ public class Board {
 				break;
 			}
 		}
-		return 0;
 	}
 
 
