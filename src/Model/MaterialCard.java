@@ -1,12 +1,12 @@
 package Model;
 
-public class Card {
+public class MaterialCard {
 	
 	
 	private String Material;
 	private int KindOfMaterial;
 
-	public Card(int kind) {
+	public MaterialCard(int kind) {
 		KindOfMaterial = kind;
 		setMaterial();
 	}

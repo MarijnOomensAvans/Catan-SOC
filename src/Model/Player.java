@@ -15,8 +15,9 @@ public class Player {
 	private String color;
 	private int order_number;
 	private int points = 0; 
-	private ArrayList<Card> hand = new ArrayList<Card>();
-	
+	private Bank bank = new Bank();
+	private ArrayList<MaterialCard> hand = new ArrayList<MaterialCard>();
+	private ArrayList<DevelopmentCard> handdev = new ArrayList<DevelopmentCard>();
 
 	public Player(int id) {
 		player_id = id;
@@ -72,9 +73,13 @@ public class Player {
 	}
 	}
 
-	public void addCard(int kind) {
-		Card card = new Card(kind);
+	public void addMaterialCard(int kind) {
+		MaterialCard card = new MaterialCard(kind);
 		hand.add(card);
+	}
+	
+	public void adddevelopmentCard(int kind) {
+		handdev.add(bank.getCard());
 	}
 	
 	public void removeCard(int kind) {
