@@ -312,7 +312,67 @@ public class Board {
 
 
 	private void setStandardBoard() {
-		// TODO Auto-generated method stub
+		for(int i = 1000;i <= 1019;i++) {
+			switch(i) {
+			 case 1000:
+				 placeResource(i,'G');
+				 break;
+			 case 1001:
+				 placeResource(i,'T');
+				 break;
+			 case 1002:
+				 placeResource(i,'G');
+				 break;
+			 case 1003:
+				 placeResource(i,'B');
+				 break;
+			 case 1004:
+				 placeResource(i,'T');
+				 break;
+			 case 1005:
+				 placeResource(i,'O');
+				 break;
+			 case 1006:
+				 placeResource(i,'O');
+				 break;
+			 case 1007:
+				 placeResource(i,'B');
+				 break;
+			 case 1008:
+				 placeResource(i,'W');
+				 break;
+			 case 1009:
+				 placeResource(i,'X');
+				 break;
+			 case 1010:
+				 placeResource(i,'G');
+				 break;
+			 case 1011:
+				 placeResource(i,'G');
+				 break;
+			 case 1012:
+				 placeResource(i,'W');
+				 break;
+			 case 1013:
+				 placeResource(i,'W');
+				 break;
+			 case 1014:
+				 placeResource(i,'T');
+				 break;
+			 case 1015:
+				 placeResource(i,'T');
+				 break;
+			 case 1016:
+				 placeResource(i,'W');
+				 break;
+			 case 1017:
+				 placeResource(i,'B');
+				 break;
+			 case 1018:
+				 placeResource(i,'O');
+				 break;
+			}
+		}
 		
 	}
 	
