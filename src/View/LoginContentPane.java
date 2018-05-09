@@ -3,18 +3,18 @@ package View;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import Controller.InlogController;
+import Controller.LoginController;
 
 @SuppressWarnings("serial")
-public class InlogContentPane extends JPanel {
+public class LoginContentPane extends JPanel {
 
-	private InlogVenster inlogVenster;
-	private RegisterVenster registerVenster;
-	private InlogFrame GUI;
+	private LoginPanel loginPanel;
+	private RegisterPanel registerPanel;
+	private LoginFrame GUI;
 	private JButton registerButton, loginButton;
 	private JButton registerCompleetButton, cancelButton;
 
-	public InlogContentPane(InlogFrame GUI, InlogController controller) {
+	public LoginContentPane(LoginFrame GUI, LoginController controller) {
 		this.GUI = GUI;
 		registerButton = new JButton("Registreer");
 		loginButton = new JButton("Inloggen");
@@ -22,12 +22,12 @@ public class InlogContentPane extends JPanel {
 
 		cancelButton = new JButton("Annuleer");
 
-		inlogVenster = new InlogVenster(registerButton, loginButton);
-		registerVenster = new RegisterVenster(registerCompleetButton, cancelButton);
+		loginPanel = new LoginPanel(registerButton, loginButton);
+		registerPanel = new RegisterPanel(registerCompleetButton, cancelButton);
 
 		loginButton.addActionListener(e -> {
-			String username = inlogVenster.getUsername();
-			String password = inlogVenster.getPassword();
+			String username = loginPanel.getUsername();
+			String password = loginPanel.getPassword();
 			controller.buttonPressedLogin(username, password);
 		});
 		
@@ -42,32 +42,32 @@ public class InlogContentPane extends JPanel {
 		});
 		
 		registerCompleetButton.addActionListener(e -> {
-			String username = registerVenster.getUsername();
-			String password = registerVenster.getPassword();
-			String passwordVer = registerVenster.getPasswordVerification();
+			String username = registerPanel.getUsername();
+			String password = registerPanel.getPassword();
+			String passwordVer = registerPanel.getPasswordVerification();
 			controller.buttonPressedRegisterCompleet(username, password, passwordVer);
 		});
 
-		add(inlogVenster);
+		add(loginPanel);
 	}
 
 	public void switchScreenRegister() {
 		removeAll();
 		repaint();
-		add(registerVenster);
+		add(registerPanel);
 		GUI.pack();
 	}
 
 	public void switchScreenInlog() {
 		removeAll();
 		repaint();
-		add(inlogVenster);
+		add(loginPanel);
 		GUI.pack();
 	}
 	
 	public void setWarning(String warning) {
-		inlogVenster.setWarning(warning);
-		registerVenster.setWarning(warning);
+		loginPanel.setWarning(warning);
+		registerPanel.setWarning(warning);
 	}
 
 }

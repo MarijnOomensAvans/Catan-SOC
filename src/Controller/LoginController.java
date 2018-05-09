@@ -1,17 +1,17 @@
 package Controller;
 
-import Model.InlogModel;
-import View.InlogFrame;
+import Model.LoginModel;
+import View.LoginFrame;
 
-public class InlogController{
+public class LoginController{
 
 	@SuppressWarnings("unused")
-	private InlogFrame frame;
-	private InlogModel inlogModel;
+	private LoginFrame frame;
+	private LoginModel loginModel;
 	
-	public InlogController(){
-		frame = new InlogFrame(this);
-		inlogModel = new InlogModel(this);
+	public LoginController(){
+		frame = new LoginFrame(this);
+		loginModel = new LoginModel(this);
 	}
 
 	public void buttonPressedRegister() {
@@ -19,8 +19,8 @@ public class InlogController{
 	}
 
 	public void buttonPressedRegisterCompleet(String username, String password, String passwordVer) {
-		if(inlogModel.verifyRegisterInput(username, password, passwordVer)) {
-			inlogModel.addAccount(username, password);
+		if(loginModel.verifyRegisterInput(username, password, passwordVer)) {
+			loginModel.addAccount(username, password);
 		}
 	}
 
@@ -29,7 +29,7 @@ public class InlogController{
 	}
 
 	public void buttonPressedLogin(String username, String password) {
-		inlogModel.login(username, password);
+		loginModel.login(username, password);
 	}
 	
 	public void setWarning(String warning) {

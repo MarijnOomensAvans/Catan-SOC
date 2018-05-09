@@ -2,16 +2,16 @@ package View;
 
 import javax.swing.JFrame;
 
-import Controller.InlogController;
+import Controller.LoginController;
 
 
 @SuppressWarnings("serial")
-public class InlogFrame extends JFrame{
+public class LoginFrame extends JFrame{
 
-	private InlogContentPane pane;
+	private LoginContentPane pane;
 	
-	public InlogFrame(InlogController controller) {
-		pane = new InlogContentPane(this, controller);
+	public LoginFrame(LoginController controller) {
+		pane = new LoginContentPane(this, controller);
 		setTitle("Inlogscherm");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
