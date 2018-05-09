@@ -74,22 +74,33 @@ public class Player {
 	}
 
 	public void addMaterialCard(int kind) {
-		MaterialCard card = new MaterialCard(kind);
-		hand.add(card);
+		hand.add(bank.getMaterialCard(kind));
 	}
 	
-	public void adddevelopmentCard(int kind) {
-		handdev.add(bank.getCard());
-	}
-	
-	public void removeCard(int kind) {
+	public void removeMatCard(int kind) {
 		for(int i=0; i< hand.size(); i++) {
 			if(hand.get(i).getKindOfMaterial() == kind) {
+				bank.giveMaterialCardBack(hand.get(i));
 				hand.remove(hand.get(i));
 				break;
 			}
 		}
 	}
+	
+	
+	public void adddevelopmentCard(int kind) {
+		handdev.add(bank.getDevelopmentCard());
+	}
+	
+	public void removeDevCard(int kind) {
+		for(int i=0; i< handdev.size(); i++) {
+			if(handdev.get(i).getKind() == kind) {
+				hand.remove(hand.get(i));
+				break;
+			}
+		}
+	}
+	
 	
 
 	public void getGame_id() {
@@ -116,10 +127,6 @@ public class Player {
 		this.points = points;
 	}
 	
-	public void printCards() {
-		for(int i=0; i< hand.size(); i++) {
-			System.out.println("Kaart "+i +" "+ hand.get(i).getMaterial());
-		}
-	}
+	
 	
 }
