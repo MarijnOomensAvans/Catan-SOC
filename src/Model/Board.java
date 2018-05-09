@@ -206,57 +206,103 @@ public class Board {
 	
 	private char randomResource(int location) {
 		Random rand = new Random();
-		int number = rand.nextInt(5);
+		int number = rand.nextInt(5) + 1;
 		int resourcecount = 0;
 		switch(number) {
 		case 1:
 			for(int i = 1000;i<=1019;i++) {
+				if(axisgrid.get(i) != null) {
 				if(((Tile) axisgrid.get(i)).getResourcetype() == 'X') {
 					resourcecount += 1;
+				}
 				}
 			}
 			if(resourcecount<1) {
 				((Tile) axisgrid.get(location)).setResourcetype('X');
 				break;
 			}
+			else {
+				randomResource(location);
+				break;
+			}
 		case 2:
 			for(int i = 1000;i<=1019;i++) {
+				if(axisgrid.get(i) != null) {
 				if(((Tile) axisgrid.get(i)).getResourcetype() == 'W') {
 					resourcecount += 1;
 				}
+				}
 			}
-			if(resourcecount<2) {
+			if(resourcecount<4) {
 				((Tile) axisgrid.get(location)).setResourcetype('W');
+				break;
+			}
+			else {
+				randomResource(location);
 				break;
 			}
 		case 3:
 			for(int i = 1000;i<=1019;i++) {
+				if(axisgrid.get(i) != null) {
 				if(((Tile) axisgrid.get(i)).getResourcetype() == 'T') {
 					resourcecount += 1;
 				}
+				}
 			}
-			if(resourcecount<2) {
+			if(resourcecount<4) {
 				((Tile) axisgrid.get(location)).setResourcetype('T');
+				break;
+			}
+			else {
+				randomResource(location);
 				break;
 			}
 		case 4:
 			for(int i = 1000;i<=1019;i++) {
+				if(axisgrid.get(i) != null) {
 				if(((Tile) axisgrid.get(i)).getResourcetype() == 'B') {
 					resourcecount += 1;
 				}
+				}
 			}
-			if(resourcecount<2) {
+			if(resourcecount<3) {
 				((Tile) axisgrid.get(location)).setResourcetype('B');
+				break;
+			}
+			else {
+				randomResource(location);
 				break;
 			}
 		case 5:
 			for(int i = 1000;i<=1019;i++) {
+			if(axisgrid.get(i) != null) {
 				if(((Tile) axisgrid.get(i)).getResourcetype() == 'O') {
 					resourcecount += 1;
 				}
 			}
-			if(resourcecount<2) {
+			}
+			if(resourcecount<3) {
 				((Tile) axisgrid.get(location)).setResourcetype('O');
+				break;
+			}
+			else {
+				randomResource(location);
+				break;
+			}
+		case 6:
+			for(int i = 1000;i<=1019;i++) {
+				if(axisgrid.get(i) != null) {
+				if(((Tile) axisgrid.get(i)).getResourcetype() == 'G') {
+					resourcecount += 1;
+				}
+				}
+			}
+			if(resourcecount<4) {
+				((Tile) axisgrid.get(location)).setResourcetype('G');
+				break;
+			}
+			else {
+				randomResource(location);
 				break;
 			}
 		}
