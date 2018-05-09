@@ -3,6 +3,7 @@ package View;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -50,19 +51,29 @@ public class LobbyVenster extends JPanel{
 		ourNamePanel.setPreferredSize(new Dimension(WIDTH, NAMEHEIGHT));
 		
 		topPanel.setBackground(Color.blue);
-		rightPanel.setBackground(Color.red);
-		leftPanel.setBackground(Color.yellow);
+		accountPanel.setBackground(Color.red);
+		challengePanel.setBackground(Color.yellow);
+		gamesPanel.setBackground(Color.pink);
 		ourNamePanel.setBackground(Color.WHITE);
 		
 		setLayout(new BorderLayout());
 		
-		add(rightPanel, BorderLayout.WEST);
-		add(leftPanel, BorderLayout.EAST);
+		
+		add(rightPanel, BorderLayout.EAST);
+		add(leftPanel, BorderLayout.WEST);
 		add(centerPanel, BorderLayout.CENTER);
-		add(topPanel, BorderLayout.NORTH);
+		
+		leftPanel.setLayout(new GridLayout(2,1));
+		leftPanel.add(challengePanel);
+		leftPanel.add(gamesPanel);
+		
+		rightPanel.setLayout(new GridLayout(1, 1));
+		rightPanel.add(accountPanel);
+		
 		
 		ourNamePanel.add(nameLabel);
 		centerPanel.setLayout(new BorderLayout());
+		centerPanel.add(topPanel, BorderLayout.NORTH);
 		centerPanel.add(ourNamePanel, BorderLayout.SOUTH);
 	}
 }
