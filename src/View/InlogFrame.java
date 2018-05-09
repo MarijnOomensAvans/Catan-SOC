@@ -6,12 +6,12 @@ import Controller.InlogController;
 
 
 @SuppressWarnings("serial")
-public class MyFrame extends JFrame{
+public class InlogFrame extends JFrame{
 
-	private ContentPane pane;
+	private InlogContentPane pane;
 	
-	public MyFrame(InlogController controller) {
-		pane = new ContentPane(this, controller);
+	public InlogFrame(InlogController controller) {
+		pane = new InlogContentPane(this, controller);
 		setTitle("Inlogscherm");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

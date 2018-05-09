@@ -1,16 +1,16 @@
 package Controller;
 
 import Model.InlogModel;
-import View.MyFrame;
+import View.InlogFrame;
 
 public class InlogController{
 
 	@SuppressWarnings("unused")
-	private MyFrame frame;
+	private InlogFrame frame;
 	private InlogModel inlogModel;
 	
 	public InlogController(){
-		frame = new MyFrame(this);
+		frame = new InlogFrame(this);
 		inlogModel = new InlogModel(this);
 	}
 

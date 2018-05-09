@@ -6,15 +6,15 @@ import javax.swing.JPanel;
 import Controller.InlogController;
 
 @SuppressWarnings("serial")
-public class ContentPane extends JPanel {
+public class InlogContentPane extends JPanel {
 
 	private InlogVenster inlogVenster;
 	private RegisterVenster registerVenster;
-	private MyFrame GUI;
+	private InlogFrame GUI;
 	private JButton registerButton, loginButton;
 	private JButton registerCompleetButton, cancelButton;
 
-	public ContentPane(MyFrame GUI, InlogController controller) {
+	public InlogContentPane(InlogFrame GUI, InlogController controller) {
 		this.GUI = GUI;
 		registerButton = new JButton("Registreer");
 		loginButton = new JButton("Inloggen");
