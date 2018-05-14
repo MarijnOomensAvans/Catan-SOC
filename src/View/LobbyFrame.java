@@ -2,10 +2,15 @@ package View;
 
 import javax.swing.JFrame;
 
+import DAL.LobbyDAL;
+
 public class LobbyFrame extends JFrame{
-	LobbyContentPane pane = new LobbyContentPane();
+	private LobbyContentPane pane;
+	private LobbyDAL lobbyDAL;
 	
 	public LobbyFrame() {
+		pane = new LobbyContentPane();
+		lobbyDAL = new LobbyDAL();
 		setTitle("Lobby");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);

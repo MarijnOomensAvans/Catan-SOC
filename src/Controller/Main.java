@@ -6,7 +6,7 @@ import View.LobbyFrame;
 public class Main {
 
 	public static void main(String[] args) {
-		new LobbyFrame();
+		new LobbyController();
 		
 		boolean connected = false;
 		MainDAL mainDAL = new MainDAL();
