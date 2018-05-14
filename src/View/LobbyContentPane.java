@@ -1,12 +1,21 @@
 package View;
 
+import java.util.ArrayList;
+
 import javax.swing.JPanel;
 
 public class LobbyContentPane extends JPanel{
 	
-	LobbyVenster lobby = new LobbyVenster();
+	private LobbyVenster lobby;
+	private LobbyFrame frame;
 
-	public LobbyContentPane() {
+	public LobbyContentPane(LobbyFrame frame) {
+		this.frame = frame;
+		this.lobby = new LobbyVenster(this);
 		add(lobby);
+	}
+	
+	public ArrayList<String> getUsernames(){
+		return frame.getUsernames();
 	}
 }

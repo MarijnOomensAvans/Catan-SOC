@@ -1,14 +1,14 @@
 package Model;
 
-public class GameInfo {
+public class LobbyGameInfo {
 	
 	private final int gameid;
 	private String playerTurn;
 	
-	public GameInfo(int gameid, String playerTurn) {
+	public LobbyGameInfo(int gameid, String playerTurn) {
 		this.gameid = gameid;
 		this.playerTurn = playerTurn;
-		//Update mofo
+
 	}
 	
 	public int getID() {

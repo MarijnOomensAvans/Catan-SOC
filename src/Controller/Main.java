@@ -8,8 +8,6 @@ public class Main {
 	public static void main(String[] args) {
 
 		new LobbyController();
-		
-		new LobbyFrame();
 
 		boolean connected = false;
 		MainDAL mainDAL = new MainDAL();

@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import Model.GameInfo;
+import Model.LobbyGameInfo;
 
 public class LobbyDAL {
 
@@ -29,8 +29,8 @@ public class LobbyDAL {
 		return accounts;
 	}
 	
-	public ArrayList<GameInfo> getAllActiveGames(String username) {
-		ArrayList<GameInfo> games = new ArrayList<GameInfo>();
+	public ArrayList<LobbyGameInfo> getAllActiveGames(String username) {
+		ArrayList<LobbyGameInfo> games = new ArrayList<LobbyGameInfo>();
 		try {
 			Connection conn = MainDAL.getConnection();
 			Statement stmt = conn.createStatement();
@@ -45,7 +45,7 @@ public class LobbyDAL {
 			while (rs.next()) {
 				int id = rs.getInt(1);
 				String userTurn = rs.getString(2);
-				games.add(new GameInfo(id, userTurn));
+				games.add(new LobbyGameInfo(id, userTurn));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
