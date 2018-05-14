@@ -11,7 +11,7 @@ import Model.GameInfo;
 public class LobbyDAL {
 
 	public LobbyDAL() {
-
+		System.out.println("LobbyDAL gestart");
 	}
 
 	public ArrayList<String> getAllAccounts() {
