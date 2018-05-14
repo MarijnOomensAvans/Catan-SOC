@@ -1,18 +1,15 @@
 package View;
 
 import java.awt.Color;
-import java.io.File;
-
 import javax.swing.JFrame;
-
-import Controller.NotMainController;
+import Controller.DieController;
 
 public class DieGUI extends JFrame
 {
+	private DieController con;
 	
-	private NotMainController con;
-	
-	public DieGUI(NotMainController controller) {
+	public DieGUI(DieController controller) 
+	{
 		con = controller;
 	}
 	

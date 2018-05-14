@@ -7,16 +7,15 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import Controller.NotMainController;
+import Controller.DieController;
 
 public class DieContentPane extends JPanel implements ActionListener
 {
-	private NotMainController con;
+	private DieController con;
 	
 	private JButton myButton = new JButton("Dobbel");
 	private File myFile = new File("./images/one.png");
@@ -29,7 +28,7 @@ public class DieContentPane extends JPanel implements ActionListener
 	private BufferedImage myBufferedImage1 = new BufferedImage(1, 1, BufferedImage.TYPE_INT_RGB);
 	private BufferedImage myBufferedImage2 = new BufferedImage(1, 1, BufferedImage.TYPE_INT_RGB);
 	
-	public DieContentPane(NotMainController controller) 
+	public DieContentPane(DieController controller) 
 	{
 		initFiles();
 		this.setLayout(null);
@@ -55,10 +54,9 @@ public class DieContentPane extends JPanel implements ActionListener
 	
 	@Override
 	public void actionPerformed(ActionEvent e) 
-	{		
-		// TODO Auto-generated method stub
+	{
 		
-		int i[] = con.castDice();
+		int i[] = con.rollDice();
 		
 		for(int itt = 1; itt < 3; itt++) {
 			switch (i[itt - 1])
@@ -93,16 +91,15 @@ public class DieContentPane extends JPanel implements ActionListener
 			try {
 				if (img == 1)
 				{
-				myBufferedImage1 = ImageIO.read(myFile);
+					myBufferedImage1 = ImageIO.read(myFile);
 				}
 				else if (img == 2)
 				{
-				myBufferedImage2 = ImageIO.read(myFile);
+					myBufferedImage2 = ImageIO.read(myFile);
 				}
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}	
+				}catch (IOException e) {
+				System.out.println(e.getMessage());
+				}	
 		}
 		this.repaint();
 	}

@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class MainDAL {
-	private Connection conn;
+	private static Connection conn;
 
 	public MainDAL()
 	{
@@ -46,7 +46,7 @@ public class MainDAL {
 		return true;
 	}
 	
-	public Connection getConnection() {
+	public static Connection getConnection() {
 		return conn;
 	}
 }
