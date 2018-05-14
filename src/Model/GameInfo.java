@@ -8,6 +8,7 @@ public class GameInfo {
 	public GameInfo(int gameid, String playerTurn) {
 		this.gameid = gameid;
 		this.playerTurn = playerTurn;
+		//Update mofo
 	}
 	
 	public int getID() {
