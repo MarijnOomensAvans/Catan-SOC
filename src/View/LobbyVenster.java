@@ -2,16 +2,19 @@ package View;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.net.URL;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.border.Border;
 
 public class LobbyVenster extends JPanel {
 
@@ -33,7 +36,12 @@ public class LobbyVenster extends JPanel {
 	private JPanel gamesPanel;
 	private JPanel challengePanel;
 	private JPanel ourNamePanel;
+	private JPanel accountLabelPanel;
+	private JLabel accountLabel;
 	private JLabel nameLabel;
+	
+	private Border blackLine;
+	
 	private Font accountFont;
 
 	public LobbyVenster(LobbyContentPane pane) {
@@ -42,6 +50,8 @@ public class LobbyVenster extends JPanel {
 		accountFont = new Font("TimesRoman", 15, 30);
 		this.pane = pane;
 
+		blackLine = BorderFactory.createLineBorder(Color.black, 1);
+		
 		URL iconUrl = this.getClass().getResource("/Images/logoCatan.png");
 		ImageIcon imageIcon = new ImageIcon(iconUrl);
 		JLabel catanLabel = new JLabel(imageIcon);
@@ -55,14 +65,18 @@ public class LobbyVenster extends JPanel {
 		gamesPanel = new JPanel();
 		challengePanel = new JPanel();
 		ourNamePanel = new JPanel();
+		accountLabelPanel = new JPanel();
 
 		nameLabel = new JLabel("SO-C");
+		accountLabel = new JLabel("Accounts");
+		accountLabel.setForeground(Color.BLUE);
+		accountLabel.setFont(accountFont);
 
 		topPanel.setPreferredSize(new Dimension(WIDTH, TOPPANELHEIGHT));
 		leftPanel.setPreferredSize(new Dimension(SIDEPANELWIDTH, HEIGHT));
 		rightPanel.setPreferredSize(new Dimension(SIDEPANELWIDTH, HEIGHT));
 		ourNamePanel.setPreferredSize(new Dimension(WIDTH, NAMEHEIGHT));
-
+		accountLabelPanel.setPreferredSize(new Dimension(SIDEPANELWIDTH, NAMEHEIGHT));
 
 		challengePanel.setBackground(Color.yellow);
 		gamesPanel.setBackground(Color.pink);
@@ -78,8 +92,10 @@ public class LobbyVenster extends JPanel {
 		leftPanel.add(challengePanel);
 		leftPanel.add(gamesPanel);
 
-		rightPanel.setLayout(new GridLayout(1, 1));
-		rightPanel.add(accountPanel);
+		rightPanel.setLayout(new BorderLayout());
+		rightPanel.setBorder(blackLine);
+		rightPanel.add(accountLabel, BorderLayout.NORTH);
+		rightPanel.add(accountPanel, BorderLayout.CENTER);
 
 		ourNamePanel.add(nameLabel);
 		centerPanel.setLayout(new BorderLayout());
@@ -92,14 +108,14 @@ public class LobbyVenster extends JPanel {
 		accountPanel.setLayout(new BoxLayout(accountPanel, 1));
 		drawLabels();
 	}
-	
-	public void drawLabels(){
+
+	public void drawLabels() {
 		usernames = pane.getUsernames();
-		
-		for(int i = 0; i < usernames.size(); i++) {
+
+		for (int i = 0; i < usernames.size(); i++) {
 			JLabel usernameLabel = new JLabel(usernames.get(i));
 			usernameLabel.setFont(accountFont);
-			
+
 			accountPanel.add(usernameLabel);
 		}
 	}
