@@ -12,7 +12,7 @@ public class MainClass {
 		new LoginController();
 		
 		while(connected == false) {
-			if((mainDAL.loadDataBaseDriver("com.mysql.cj.jdbc.Driver")) && (mainDAL.makeConnection())) {
+			if((mainDAL.loadDataBaseDriver("com.mysql.jdbc.Driver")) && (mainDAL.makeConnection())) {
 				connected = true;
 				System.out.println("Connected");
 			} else {
