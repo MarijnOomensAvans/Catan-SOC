@@ -9,7 +9,7 @@ public class MainClass {
 		boolean connected = false;
 		MainDAL mainDAL = new MainDAL();
 
-		new InlogController();
+		new LoginController();
 		
 		while(connected == false) {
 			if((mainDAL.loadDataBaseDriver("com.mysql.cj.jdbc.Driver")) && (mainDAL.makeConnection())) {

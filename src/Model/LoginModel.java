@@ -2,15 +2,15 @@ package Model;
 
 import java.util.regex.Pattern;
 
-import Controller.InlogController;
+import Controller.LoginController;
 import DAL.LoginDAL;
 
-public class InlogModel {
+public class LoginModel {
 
 	private LoginDAL loginDal;
-	private InlogController inlogController;
+	private LoginController inlogController;
 
-	public InlogModel(InlogController inlogController) {
+	public LoginModel(LoginController inlogController) {
 		loginDal = new LoginDAL();
 		this.inlogController = inlogController;
 	}
