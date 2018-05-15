@@ -5,7 +5,7 @@ public class Tile extends Collection {
 	
 	private int x;
 	private int y;
-	private int numberchits;
+	private int chit;
 	
 
 
@@ -14,8 +14,8 @@ public class Tile extends Collection {
 		this.y = y;
 	}
 	
-	public int getGetalfische() {
-		return numberchits;
+	public int getChit() {
+		return chit;
 	}
 	
 	
@@ -27,8 +27,8 @@ public class Tile extends Collection {
 		this.resourcetype = resourcetype;
 	}
 
-	public void setGetalfische(int numberchits) {
-		this.numberchits = numberchits;
+	public void setChit(int numberchits) {
+		this.chit = numberchits;
 	}
 
 	public int getX() {

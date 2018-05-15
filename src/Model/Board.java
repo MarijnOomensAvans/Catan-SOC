@@ -15,7 +15,7 @@ public class Board {
 		generateBoard();
 		switch (this.boardType) {
 		case 1:
-			setStandardBoard();
+			standardResource();
 			break;
 		case 2:
 			setRandomBoard();
@@ -129,7 +129,6 @@ public class Board {
 				}
 			}
 		}
-		System.out.println("Empty board generated");
 	}
 
 	public void placetile(int x, int y) {
@@ -192,7 +191,7 @@ public class Board {
 		}
 	}
 	private void setCustomBoard() {
-		// TODO Auto-generated method stub
+		// TODO Overleggen met de spelstart groep over hoe we de gekozen tiles doorgeven
 		
 	}
 	
@@ -200,9 +199,82 @@ public class Board {
 	private void setRandomBoard() {
 		for(int i = 1000;i<=1019;i++) {
 			randomResource(i);
+			randomChit(i);
 		}
 		
 	}
+	
+	//Chit placement -----------------------------------------------------------------------------------------------------------------------
+	
+	private void randomChit(int location) {
+		//TODO Hetzelde als de randomresource maar dan met chits, en gefixt
+	}
+	
+	private void standardChit() {
+		for(int i = 1000;i <= 1019;i++) {
+			switch(i) {
+			 case 1000:
+				 placeChit(i,9);
+				 break;
+			 case 1001:
+				 placeChit(i,8);
+				 break;
+			 case 1002:
+				 placeChit(i,12);
+				 break;
+			 case 1003:
+				 placeChit(i,5);
+				 break;
+			 case 1004:
+				 placeChit(i,11);
+				 break;
+			 case 1005:
+				 placeChit(i,10);
+				 break;
+			 case 1006:
+				 placeChit(i,3);
+				 break;
+			 case 1007:
+				 placeChit(i,6);
+				 break;
+			 case 1008:
+				 placeChit(i,6);
+				 break;
+			 case 1009:
+				 placeChit(i,0);
+				 break;
+			 case 1010:
+				 placeChit(i,2);
+				 break;
+			 case 1011:
+				 placeChit(i,4);
+				 break;
+			 case 1012:
+				 placeChit(i,4);
+				 break;
+			 case 1013:
+				 placeChit(i,11);
+				 break;
+			 case 1014:
+				 placeChit(i,3);
+				 break;
+			 case 1015:
+				 placeChit(i,9);
+				 break;
+			 case 1016:
+				 placeChit(i,5);
+				 break;
+			 case 1017:
+				 placeChit(i,10);
+				 break;
+			 case 1018:
+				 placeChit(i,8);
+				 break;
+			}
+		}
+	}
+	
+	//Resource placement -------------------------------------------------------------------------------------------------------------------
 	
 	
 	private void randomResource(int location) {
@@ -311,7 +383,8 @@ public class Board {
 
 
 
-	private void setStandardBoard() {
+	private void standardResource() {
+		standardChit();
 		for(int i = 1000;i <= 1019;i++) {
 			switch(i) {
 			 case 1000:
@@ -378,5 +451,9 @@ public class Board {
 	
 	public void placeResource(int position,char resource) {
 		((Tile) axisgrid.get(position)).setResourcetype(resource);
+	}
+	
+	public void placeChit(int position,int chit) {
+		((Tile) axisgrid.get(position)).setChit(chit);;
 	}
 }
