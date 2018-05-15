@@ -37,21 +37,25 @@ public class LobbyVenster extends JPanel {
 	private JPanel challengePanel;
 	private JPanel ourNamePanel;
 	private JPanel accountLabelPanel;
+	
 	private JLabel accountLabel;
 	private JLabel nameLabel;
-	
+
 	private Border blackLine;
-	
+
+	private Font titleFont;
 	private Font accountFont;
 
 	public LobbyVenster(LobbyContentPane pane) {
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
-
+		
+		titleFont = new Font("TimesRoman", 15, 50);
 		accountFont = new Font("TimesRoman", 15, 30);
+
 		this.pane = pane;
 
-		blackLine = BorderFactory.createLineBorder(Color.black, 1);
-		
+		blackLine = BorderFactory.createLineBorder(Color.black, 2, true);
+
 		URL iconUrl = this.getClass().getResource("/Images/logoCatan.png");
 		ImageIcon imageIcon = new ImageIcon(iconUrl);
 		JLabel catanLabel = new JLabel(imageIcon);
@@ -69,8 +73,8 @@ public class LobbyVenster extends JPanel {
 
 		nameLabel = new JLabel("SO-C");
 		accountLabel = new JLabel("Accounts");
-		accountLabel.setForeground(Color.BLUE);
-		accountLabel.setFont(accountFont);
+		accountLabel.setForeground(Color.WHITE);
+		accountLabel.setFont(titleFont);
 
 		topPanel.setPreferredSize(new Dimension(WIDTH, TOPPANELHEIGHT));
 		leftPanel.setPreferredSize(new Dimension(SIDEPANELWIDTH, HEIGHT));
@@ -79,8 +83,11 @@ public class LobbyVenster extends JPanel {
 		accountLabelPanel.setPreferredSize(new Dimension(SIDEPANELWIDTH, NAMEHEIGHT));
 
 		challengePanel.setBackground(Color.yellow);
+		challengePanel.setBorder(blackLine);
 		gamesPanel.setBackground(Color.pink);
+		gamesPanel.setBorder(blackLine);
 		ourNamePanel.setBackground(Color.WHITE);
+		rightPanel.setBackground(Color.DARK_GRAY);
 
 		setLayout(new BorderLayout());
 
