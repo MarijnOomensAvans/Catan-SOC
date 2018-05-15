@@ -40,6 +40,8 @@ public class LobbyVenster extends JPanel {
 	
 	private JLabel accountLabel;
 	private JLabel nameLabel;
+	private JLabel challengeLabel;
+	private JLabel gameLabel;
 
 	private Border blackLine;
 
@@ -56,7 +58,7 @@ public class LobbyVenster extends JPanel {
 
 		blackLine = BorderFactory.createLineBorder(Color.black, 2, true);
 
-		URL iconUrl = this.getClass().getResource("/Images/logoCatan.png");
+		URL iconUrl = this.getClass().getResource("/resources/logoCatan.png");
 		ImageIcon imageIcon = new ImageIcon(iconUrl);
 		JLabel catanLabel = new JLabel(imageIcon);
 
@@ -75,6 +77,14 @@ public class LobbyVenster extends JPanel {
 		accountLabel = new JLabel("Accounts");
 		accountLabel.setForeground(Color.WHITE);
 		accountLabel.setFont(titleFont);
+		
+		gameLabel= new JLabel("Games");
+		gameLabel.setFont(titleFont);
+		gameLabel.setForeground(Color.white);
+		
+		challengeLabel = new JLabel("Challenges");
+		challengeLabel.setFont(titleFont);
+		challengeLabel.setForeground(Color.WHITE);
 
 		topPanel.setPreferredSize(new Dimension(WIDTH, TOPPANELHEIGHT));
 		leftPanel.setPreferredSize(new Dimension(SIDEPANELWIDTH, HEIGHT));
@@ -82,19 +92,24 @@ public class LobbyVenster extends JPanel {
 		ourNamePanel.setPreferredSize(new Dimension(WIDTH, NAMEHEIGHT));
 		accountLabelPanel.setPreferredSize(new Dimension(SIDEPANELWIDTH, NAMEHEIGHT));
 
-		challengePanel.setBackground(Color.yellow);
-		challengePanel.setBorder(blackLine);
-		gamesPanel.setBackground(Color.pink);
-		gamesPanel.setBorder(blackLine);
+		challengePanel.setBackground(Color.DARK_GRAY);
+		gamesPanel.setBackground(Color.DARK_GRAY);
 		ourNamePanel.setBackground(Color.WHITE);
 		rightPanel.setBackground(Color.DARK_GRAY);
+		
+		challengePanel.setBorder(blackLine);
+		gamesPanel.setBorder(blackLine);
 
 		setLayout(new BorderLayout());
 
-		add(rightPanel, BorderLayout.EAST);
-		add(leftPanel, BorderLayout.WEST);
+		add(rightPanel, BorderLayout.WEST);
+		add(leftPanel, BorderLayout.EAST);
 		add(centerPanel, BorderLayout.CENTER);
 
+		challengePanel.add(challengeLabel);
+		
+		gamesPanel.add(gameLabel);
+		
 		leftPanel.setLayout(new GridLayout(2, 1));
 		leftPanel.add(challengePanel);
 		leftPanel.add(gamesPanel);
@@ -108,11 +123,15 @@ public class LobbyVenster extends JPanel {
 		centerPanel.setLayout(new BorderLayout());
 		centerPanel.add(topPanel, BorderLayout.NORTH);
 		centerPanel.add(ourNamePanel, BorderLayout.SOUTH);
+		centerPanel.setBackground(Color.WHITE);
 
 		topPanel.setLayout(new BorderLayout());
+		topPanel.setBackground(Color.white);
 		topPanel.add(catanLabel, BorderLayout.NORTH);
+		
 
 		accountPanel.setLayout(new BoxLayout(accountPanel, 1));
+		accountPanel.setBackground(Color.WHITE);
 		drawLabels();
 	}
 
@@ -122,7 +141,6 @@ public class LobbyVenster extends JPanel {
 		for (int i = 0; i < usernames.size(); i++) {
 			JLabel usernameLabel = new JLabel(usernames.get(i));
 			usernameLabel.setFont(accountFont);
-
 			accountPanel.add(usernameLabel);
 		}
 	}
