@@ -7,8 +7,8 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		new LobbyController();
 
+		
 		boolean connected = false;
 		MainDAL mainDAL = new MainDAL();
 
@@ -20,5 +20,6 @@ public class Main {
 				System.out.println("Connection failed");
 			}
 		}
+		new LobbyController();
 	}
 }

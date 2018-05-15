@@ -14,8 +14,8 @@ public class LobbyContentPane extends JPanel{
 		this.lobby = new LobbyVenster(this);
 		add(lobby);
 	}
-	
 	public ArrayList<String> getUsernames(){
 		return frame.getUsernames();
+		
 	}
 }

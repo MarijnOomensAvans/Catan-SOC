@@ -11,11 +11,13 @@ public class LobbyModel {
 	private LobbyDAL lobbyDAL;
 	private ArrayList<String> usernames;
 	
-	public LobbyModel(LobbyDAL lobbyDAl) {
-		this.lobbyDAL = lobbyDAl;
+	public LobbyModel(LobbyDAL lobbyDAL) {
+		this.lobbyDAL = lobbyDAL;
 	}
 	
 	public ArrayList<String> getUsername() {
-		return usernames = lobbyDAL.getAllAccounts();
+		usernames = lobbyDAL.getAllAccounts();
+		
+		return usernames;
 	}
 }

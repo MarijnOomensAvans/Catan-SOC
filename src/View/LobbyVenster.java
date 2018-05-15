@@ -3,10 +3,12 @@ package View;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.net.URL;
 import java.util.ArrayList;
 
+import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -32,10 +34,12 @@ public class LobbyVenster extends JPanel {
 	private JPanel challengePanel;
 	private JPanel ourNamePanel;
 	private JLabel nameLabel;
+	private Font accountFont;
 
 	public LobbyVenster(LobbyContentPane pane) {
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 
+		accountFont = new Font("TimesRoman", 15, 30);
 		this.pane = pane;
 
 		URL iconUrl = this.getClass().getResource("/Images/logoCatan.png");
@@ -59,7 +63,7 @@ public class LobbyVenster extends JPanel {
 		rightPanel.setPreferredSize(new Dimension(SIDEPANELWIDTH, HEIGHT));
 		ourNamePanel.setPreferredSize(new Dimension(WIDTH, NAMEHEIGHT));
 
-		accountPanel.setBackground(Color.red);
+
 		challengePanel.setBackground(Color.yellow);
 		gamesPanel.setBackground(Color.pink);
 		ourNamePanel.setBackground(Color.WHITE);
@@ -85,14 +89,17 @@ public class LobbyVenster extends JPanel {
 		topPanel.setLayout(new BorderLayout());
 		topPanel.add(catanLabel, BorderLayout.NORTH);
 
-		getUsernamesLabel();
+		accountPanel.setLayout(new BoxLayout(accountPanel, 1));
+		drawLabels();
 	}
-
-	public void getUsernamesLabel() {
+	
+	public void drawLabels(){
 		usernames = pane.getUsernames();
 		
-		for (int i = 0; i < usernames.size(); i++) {
+		for(int i = 0; i < usernames.size(); i++) {
 			JLabel usernameLabel = new JLabel(usernames.get(i));
+			usernameLabel.setFont(accountFont);
+			
 			accountPanel.add(usernameLabel);
 		}
 	}

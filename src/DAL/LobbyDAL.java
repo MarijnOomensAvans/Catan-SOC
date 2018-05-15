@@ -15,11 +15,13 @@ public class LobbyDAL {
 	}
 
 	public ArrayList<String> getAllAccounts() {
+
 		ArrayList<String> accounts = new ArrayList<String>();
 		try {
 			Connection conn = MainDAL.getConnection();
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT username FROM account");
+
 			while (rs.next()) {
 				accounts.add(rs.getString(1));
 			}

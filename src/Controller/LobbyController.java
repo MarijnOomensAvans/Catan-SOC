@@ -12,14 +12,13 @@ public class LobbyController {
 	private LobbyDAL lobbyDAL;
 
 	public LobbyController() {
-		new LobbyFrame(this);
 		lobbyDAL = new LobbyDAL();
 		lobbyModel = new LobbyModel(lobbyDAL);
-		
+		new LobbyFrame(this);
 	}
 	
-	public ArrayList<String> getUsernames(){
+	public ArrayList<String> getUsernames() {
 		return lobbyModel.getUsername();
 	}
-	
+
 }
