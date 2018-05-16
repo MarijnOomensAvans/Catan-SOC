@@ -195,10 +195,8 @@ public class Board {
 
 	private void setRandomBoard() {
 		randomResource();
+		randomChit(i);
 		System.out.println("EzayPezay");
-		for (int i = 1000; i <= 1018; i++) {
-			randomChit(i);
-		}
 
 	}
 
