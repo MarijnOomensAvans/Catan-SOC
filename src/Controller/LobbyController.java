@@ -20,5 +20,9 @@ public class LobbyController {
 	public ArrayList<String> getUsernames() {
 		return lobbyModel.getUsername();
 	}
+	
+	public void startLogin() {
+		new LoginController();
+	}
 
 }

@@ -13,8 +13,15 @@ import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
+
+import com.sun.glass.ui.Menu;
+import com.sun.glass.ui.MenuBar;
+import com.sun.glass.ui.MenuItem;
 
 import Controller.LoginController;
 
@@ -49,6 +56,9 @@ public class LobbyPanel extends JPanel {
 
 	private Font titleFont;
 	private Font accountFont;
+	
+
+	
 
 	public LobbyPanel(LobbyContentPane pane) {
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
@@ -64,6 +74,7 @@ public class LobbyPanel extends JPanel {
 		ImageIcon imageIcon = new ImageIcon(iconUrl);
 		JLabel catanLabel = new JLabel(imageIcon);
 
+		
 		topPanel = new JPanel();
 		rightPanel = new JPanel();
 		leftPanel = new JPanel();
