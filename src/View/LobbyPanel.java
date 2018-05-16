@@ -16,6 +16,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
+import Controller.LoginController;
+
 public class LobbyPanel extends JPanel {
 
 	private LobbyContentPane pane;
@@ -37,7 +39,7 @@ public class LobbyPanel extends JPanel {
 	private JPanel challengePanel;
 	private JPanel ourNamePanel;
 	private JPanel accountLabelPanel;
-	
+
 	private JLabel accountLabel;
 	private JLabel nameLabel;
 	private JLabel challengeLabel;
@@ -50,7 +52,7 @@ public class LobbyPanel extends JPanel {
 
 	public LobbyPanel(LobbyContentPane pane) {
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
-		
+
 		titleFont = new Font("TimesRoman", 15, 50);
 		accountFont = new Font("TimesRoman", 15, 30);
 
@@ -77,11 +79,11 @@ public class LobbyPanel extends JPanel {
 		accountLabel = new JLabel("Accounts");
 		accountLabel.setForeground(Color.WHITE);
 		accountLabel.setFont(titleFont);
-		
-		gameLabel= new JLabel("Spellen");
+
+		gameLabel = new JLabel("Spellen");
 		gameLabel.setFont(titleFont);
 		gameLabel.setForeground(Color.white);
-		
+
 		challengeLabel = new JLabel("Uitdagingen");
 		challengeLabel.setFont(titleFont);
 		challengeLabel.setForeground(Color.WHITE);
@@ -96,7 +98,7 @@ public class LobbyPanel extends JPanel {
 		gamesPanel.setBackground(Color.DARK_GRAY);
 		ourNamePanel.setBackground(Color.WHITE);
 		rightPanel.setBackground(Color.DARK_GRAY);
-		
+
 		challengePanel.setBorder(blackLine);
 		gamesPanel.setBorder(blackLine);
 
@@ -107,9 +109,9 @@ public class LobbyPanel extends JPanel {
 		add(centerPanel, BorderLayout.CENTER);
 
 		challengePanel.add(challengeLabel);
-		
+
 		gamesPanel.add(gameLabel);
-		
+
 		leftPanel.setLayout(new GridLayout(2, 1));
 		leftPanel.add(challengePanel);
 		leftPanel.add(gamesPanel);
@@ -128,7 +130,6 @@ public class LobbyPanel extends JPanel {
 		topPanel.setLayout(new BorderLayout());
 		topPanel.setBackground(Color.white);
 		topPanel.add(catanLabel, BorderLayout.NORTH);
-		
 
 		accountPanel.setLayout(new BoxLayout(accountPanel, 1));
 		accountPanel.setBackground(Color.WHITE);
@@ -139,9 +140,17 @@ public class LobbyPanel extends JPanel {
 		usernames = pane.getUsernames();
 
 		for (int i = 0; i < usernames.size(); i++) {
-			JLabel usernameLabel = new JLabel(usernames.get(i));
-			usernameLabel.setFont(accountFont);
-			accountPanel.add(usernameLabel);
+			if (LoginController.getUsername().equals(usernames.get(i))) {
+				JLabel usernameLabel = new JLabel(usernames.get(i));
+				usernameLabel.setForeground(Color.red);
+				usernameLabel.setFont(accountFont);
+				accountPanel.add(usernameLabel);
+			} else {
+				JLabel usernameLabel = new JLabel(usernames.get(i));
+				usernameLabel.setFont(accountFont);
+				accountPanel.add(usernameLabel);
+			}
+
 		}
 	}
 }

@@ -21,7 +21,7 @@ public class Main {
 			}
 		}
 
-		//new LoginController(); 
-		new LobbyController();
+		new LoginController(); 
+		//new LobbyController();
 	}
 }

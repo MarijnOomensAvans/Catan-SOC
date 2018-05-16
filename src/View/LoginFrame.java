@@ -33,4 +33,8 @@ public class LoginFrame extends JFrame{
 	public void setWarning(String warning) {
 		pane.setWarning(warning);
 	}
+	
+	public void closeScreen() {
+		dispose();
+	}
 }
