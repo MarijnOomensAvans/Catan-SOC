@@ -1,5 +1,12 @@
 package Controller;
 
+import Model.Board;
+
 public class BoardController {
-	//TODO Even kijken hoe we de controller moeten gebruiken en misschien wat methoden uit Board in de controller zetten
+	private Board board = new Board();
+	
+	
+	public void setBoardType() {
+		
+	}
 }
