@@ -16,6 +16,7 @@ public class LobbyController {
 		lobbyDAL = new LobbyDAL();
 		lobbyModel = new LobbyModel(lobbyDAL);
 		new LobbyFrame(this);
+		testDAL();
 	}
 	
 	public ArrayList<String> getUsernames() {
