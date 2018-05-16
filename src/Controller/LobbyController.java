@@ -3,6 +3,7 @@ package Controller;
 import java.util.ArrayList;
 
 import DAL.LobbyDAL;
+import Model.LobbyGameInfo;
 import Model.LobbyModel;
 import View.LobbyFrame;
 
@@ -18,11 +19,22 @@ public class LobbyController {
 	}
 	
 	public ArrayList<String> getUsernames() {
-		return lobbyModel.getUsername();
+		return lobbyModel.getUsernames();
 	}
 	
 	public void startLogin() {
 		new LoginController();
 	}
 
+	//DEBUG FUNCTION
+	private void testDAL() {
+		ArrayList<LobbyGameInfo> games = lobbyDAL.getAllActiveGames();
+		for(int i = 0; i < games.size(); i++) {
+			System.out.println(games.get(i).getID());
+			for(int p = 0; p < games.get(i).getPlayers().size(); p++) {
+				System.out.println(games.get(i).getPlayers().get(p));
+			}
+		}
+	}
+	
 }

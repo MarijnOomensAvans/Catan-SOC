@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import Controller.LoginController;
 import Model.LobbyGameInfo;
 
 public class LobbyDAL {
@@ -25,34 +26,61 @@ public class LobbyDAL {
 			while (rs.next()) {
 				accounts.add(rs.getString(1));
 			}
+			
+			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return accounts;
 	}
 	
-	public ArrayList<LobbyGameInfo> getAllActiveGames(String username) {
+	public ArrayList<LobbyGameInfo> getAllActiveGames() {
 		ArrayList<LobbyGameInfo> games = new ArrayList<LobbyGameInfo>();
 		try {
 			Connection conn = MainDAL.getConnection();
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(
-						"SELECT sp.idspel, sb.username"
-						+ " FROM account AS a"
-						+ " JOIN speler AS s ON a.username = s.username"
-						+ " JOIN spel AS sp ON sp.idspel = s.idspel"
-						+ " JOIN speler AS sb ON sp.beurt_idspeler = sb.idspeler"
-						+ " WHERE s.username = '" + username + "'"
-					);
-			while (rs.next()) {
-				int id = rs.getInt(1);
-				String userTurn = rs.getString(2);
-				games.add(new LobbyGameInfo(id, userTurn));
+					"SELECT s.idspel FROM spel s "
+					+ "JOIN speler sp "
+					+ "ON s.idspel = sp.idspel "
+					+ "WHERE sp.username LIKE '" + LoginController.getUsername() + "'");
+			/*
+			 * Get all users in game
+			 */
+			while(rs.next()) {
+				int gameID = rs.getInt(1);
+				ArrayList<String> players = getUsersInGame(gameID);
+				games.add(new LobbyGameInfo(gameID, players));
 			}
+			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return games;
 	}
+	
+	private ArrayList<String> getUsersInGame(int gameID){
+		ArrayList<String> players = new ArrayList<String>();
+		
+		try {
+			Connection conn = MainDAL.getConnection();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(
+					"SELECT sp.username FROM spel s " + 
+					"JOIN speler sp ON s.idspel = sp.idspel " + 
+					"WHERE (sp.speelstatus LIKE 'geaccepteerd' OR sp.speelstatus LIKE 'uitdager') " + 
+					"AND s.idspel = " + gameID);
+			while(rs.next()) {
+				players.add(rs.getString(1));
+			}
+			stmt.close();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return players;
+	}
+	
+	
 
 }

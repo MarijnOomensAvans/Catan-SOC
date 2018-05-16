@@ -1,26 +1,23 @@
 package Model;
 
+import java.util.ArrayList;
+
 public class LobbyGameInfo {
 	
 	private final int gameid;
-	private String playerTurn;
+	private ArrayList<String> players;
 	
-	public LobbyGameInfo(int gameid, String playerTurn) {
+	public LobbyGameInfo(int gameid, ArrayList<String> players) {
 		this.gameid = gameid;
-		this.playerTurn = playerTurn;
-
+		this.players = players;
 	}
-	
+
 	public int getID() {
 		return gameid;
 	}
 	
-	public String getPlayerTurn() {
-		return playerTurn;
-	}
-	
-	public void setPlayerTurn(String playerTurn) {
-		this.playerTurn = playerTurn;
+	public ArrayList<String> getPlayers() {
+		return players;
 	}
 	
 }

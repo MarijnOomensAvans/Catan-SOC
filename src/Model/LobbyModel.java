@@ -15,7 +15,7 @@ public class LobbyModel {
 		this.lobbyDAL = lobbyDAL;
 	}
 	
-	public ArrayList<String> getUsername() {
+	public ArrayList<String> getUsernames() {
 		usernames = lobbyDAL.getAllAccounts();
 		
 		return usernames;
