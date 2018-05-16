@@ -316,13 +316,13 @@ public class Board {
 		case 3:
 			for(int i = 1000;i<=1019;i++) {
 				if(axisgrid.get(i) != null) {
-				if(((Tile) axisgrid.get(i)).getResourcetype() == 'T') {
+				if(((Tile) axisgrid.get(i)).getResourcetype() == 'H') {
 					resourcecount += 1;
 				}
 				}
 			}
 			if(resourcecount<4) {
-				placeResource(location,'T');
+				placeResource(location,'H');
 				break;
 			}
 			else {
@@ -348,13 +348,13 @@ public class Board {
 		case 5:
 			for(int i = 1000;i<=1019;i++) {
 			if(axisgrid.get(i) != null) {
-				if(((Tile) axisgrid.get(i)).getResourcetype() == 'O') {
+				if(((Tile) axisgrid.get(i)).getResourcetype() == 'E') {
 					resourcecount += 1;
 				}
 			}
 			}
 			if(resourcecount<3) {
-				((Tile) axisgrid.get(location)).setResourcetype('O');
+				((Tile) axisgrid.get(location)).setResourcetype('E');
 				break;
 			}
 			else {
@@ -391,7 +391,7 @@ public class Board {
 				 placeResource(i,'G');
 				 break;
 			 case 1001:
-				 placeResource(i,'T');
+				 placeResource(i,'H');
 				 break;
 			 case 1002:
 				 placeResource(i,'G');
@@ -400,13 +400,13 @@ public class Board {
 				 placeResource(i,'B');
 				 break;
 			 case 1004:
-				 placeResource(i,'T');
+				 placeResource(i,'H');
 				 break;
 			 case 1005:
-				 placeResource(i,'O');
+				 placeResource(i,'E');
 				 break;
 			 case 1006:
-				 placeResource(i,'O');
+				 placeResource(i,'E');
 				 break;
 			 case 1007:
 				 placeResource(i,'B');
@@ -430,10 +430,10 @@ public class Board {
 				 placeResource(i,'W');
 				 break;
 			 case 1014:
-				 placeResource(i,'T');
+				 placeResource(i,'H');
 				 break;
 			 case 1015:
-				 placeResource(i,'T');
+				 placeResource(i,'H');
 				 break;
 			 case 1016:
 				 placeResource(i,'W');
@@ -442,7 +442,7 @@ public class Board {
 				 placeResource(i,'B');
 				 break;
 			 case 1018:
-				 placeResource(i,'O');
+				 placeResource(i,'E');
 				 break;
 			}
 		}
