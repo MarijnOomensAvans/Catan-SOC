@@ -58,7 +58,7 @@ public class LobbyVenster extends JPanel {
 
 		blackLine = BorderFactory.createLineBorder(Color.black, 2, true);
 
-		URL iconUrl = this.getClass().getResource("/resources/logoCatan.png");
+		URL iconUrl = this.getClass().getResource("/images/logoCatan.png");
 		ImageIcon imageIcon = new ImageIcon(iconUrl);
 		JLabel catanLabel = new JLabel(imageIcon);
 
