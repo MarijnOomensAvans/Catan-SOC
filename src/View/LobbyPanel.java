@@ -16,7 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
-public class LobbyVenster extends JPanel {
+public class LobbyPanel extends JPanel {
 
 	private LobbyContentPane pane;
 	private ArrayList<String> usernames;
@@ -48,7 +48,7 @@ public class LobbyVenster extends JPanel {
 	private Font titleFont;
 	private Font accountFont;
 
-	public LobbyVenster(LobbyContentPane pane) {
+	public LobbyPanel(LobbyContentPane pane) {
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		
 		titleFont = new Font("TimesRoman", 15, 50);
@@ -78,11 +78,11 @@ public class LobbyVenster extends JPanel {
 		accountLabel.setForeground(Color.WHITE);
 		accountLabel.setFont(titleFont);
 		
-		gameLabel= new JLabel("Games");
+		gameLabel= new JLabel("Spellen");
 		gameLabel.setFont(titleFont);
 		gameLabel.setForeground(Color.white);
 		
-		challengeLabel = new JLabel("Challenges");
+		challengeLabel = new JLabel("Uitdagingen");
 		challengeLabel.setFont(titleFont);
 		challengeLabel.setForeground(Color.WHITE);
 

@@ -6,12 +6,12 @@ import javax.swing.JPanel;
 
 public class LobbyContentPane extends JPanel{
 	
-	private LobbyVenster lobby;
+	private LobbyPanel lobby;
 	private LobbyFrame frame;
 
 	public LobbyContentPane(LobbyFrame frame) {
 		this.frame = frame;
-		this.lobby = new LobbyVenster(this);
+		this.lobby = new LobbyPanel(this);
 		add(lobby);
 	}
 	public ArrayList<String> getUsernames(){
