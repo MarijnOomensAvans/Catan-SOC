@@ -7,6 +7,15 @@ public class MaterialCard {
 	private char KindOfMaterial;
 
 	public MaterialCard(char c) {
+		if(c == 'A') {
+			c = 'H'; 
+		}
+		else if(c== 'C') {
+			c = 'W';
+		}
+		else if(c== 'D') {
+			c = 'G';
+		}
 		KindOfMaterial = c;
 		setMaterial();
 	}

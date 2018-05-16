@@ -14,7 +14,7 @@ public class Bank {
 	}
 	
 	private void makeMaterialCards() {
-		for(int i=1; i<6; i++) {
+		for(char i='A'; i<'F'; i++) {
 			for(int a=0; a<20; a++) {
 				matbank.add(new MaterialCard(i));
 			}
