@@ -25,9 +25,6 @@ public class Board {
 			break;
 		}
 	}
-	
-
-
 
 	public void generateBoard() {
 		for (int x = 1; x < 12; x++) {
@@ -166,7 +163,7 @@ public class Board {
 			}
 		}
 		if (loc1 == true) {
-			axisgrid.put(loopnumb, location = new Location(x + 1,y + 1));
+			axisgrid.put(loopnumb, location = new Location(x + 1, y + 1));
 			loopnumb++;
 		}
 		if (loc2 == true) {
@@ -190,270 +187,262 @@ public class Board {
 			loopnumb++;
 		}
 	}
+
 	private void setCustomBoard() {
 		// TODO Overleggen met de spelstart groep over hoe we de gekozen tiles doorgeven
-		
+
 	}
-	
-	
+
 	private void setRandomBoard() {
-		for(int i = 1000;i<=1019;i++) {
-			randomResource(i);
+		randomResource();
+		System.out.println("EzayPezay");
+		for (int i = 1000; i <= 1018; i++) {
 			randomChit(i);
 		}
-		
+
 	}
-	
-	//Chit placement -----------------------------------------------------------------------------------------------------------------------
-	
+
+	// Chit placement
+	// -----------------------------------------------------------------------------------------------------------------------
+
 	private void randomChit(int location) {
-		//TODO Hetzelde als de randomresource maar dan met chits, en gefixt
+		// TODO Hetzelde als de randomresource maar dan met chits, en gefixt
 	}
-	
+
 	private void standardChit() {
-		for(int i = 1000;i <= 1019;i++) {
-			switch(i) {
-			 case 1000:
-				 placeChit(i,9);
-				 break;
-			 case 1001:
-				 placeChit(i,8);
-				 break;
-			 case 1002:
-				 placeChit(i,12);
-				 break;
-			 case 1003:
-				 placeChit(i,5);
-				 break;
-			 case 1004:
-				 placeChit(i,11);
-				 break;
-			 case 1005:
-				 placeChit(i,10);
-				 break;
-			 case 1006:
-				 placeChit(i,3);
-				 break;
-			 case 1007:
-				 placeChit(i,6);
-				 break;
-			 case 1008:
-				 placeChit(i,6);
-				 break;
-			 case 1009:
-				 placeChit(i,0);
-				 break;
-			 case 1010:
-				 placeChit(i,2);
-				 break;
-			 case 1011:
-				 placeChit(i,4);
-				 break;
-			 case 1012:
-				 placeChit(i,4);
-				 break;
-			 case 1013:
-				 placeChit(i,11);
-				 break;
-			 case 1014:
-				 placeChit(i,3);
-				 break;
-			 case 1015:
-				 placeChit(i,9);
-				 break;
-			 case 1016:
-				 placeChit(i,5);
-				 break;
-			 case 1017:
-				 placeChit(i,10);
-				 break;
-			 case 1018:
-				 placeChit(i,8);
-				 break;
-			}
-		}
-	}
-	
-	//Resource placement -------------------------------------------------------------------------------------------------------------------
-	
-	
-	private void randomResource(int location) {
-		int number = rand.nextInt(6) + 1;
-		int resourcecount = 0;
-		switch(number) {
-		case 1:
-			for(int i = 1000;i<=1019;i++) {
-				if(axisgrid.get(i) != null) {
-				if(((Tile) axisgrid.get(i)).getResourcetype() == 'X') {
-					resourcecount += 1;
-				}
-				}
-			}
-			if(resourcecount<1) {
-				placeResource(location,'X');
+		for (int i = 1000; i <= 1018; i++) {
+			switch (i) {
+			case 1000:
+				placeChit(i, 9);
 				break;
-			}
-			else {
-				randomResource(location);
+			case 1001:
+				placeChit(i, 8);
 				break;
-			}
-		case 2:
-			for(int i = 1000;i<=1019;i++) {
-				if(axisgrid.get(i) != null) {
-				if(((Tile) axisgrid.get(i)).getResourcetype() == 'W') {
-					resourcecount += 1;
-				}
-				}
-			}
-			if(resourcecount<4) {
-				placeResource(location,'W');
+			case 1002:
+				placeChit(i, 12);
 				break;
-			}
-			else {
-				randomResource(location);
+			case 1003:
+				placeChit(i, 5);
 				break;
-			}
-		case 3:
-			for(int i = 1000;i<=1019;i++) {
-				if(axisgrid.get(i) != null) {
-				if(((Tile) axisgrid.get(i)).getResourcetype() == 'H') {
-					resourcecount += 1;
-				}
-				}
-			}
-			if(resourcecount<4) {
-				placeResource(location,'H');
+			case 1004:
+				placeChit(i, 11);
 				break;
-			}
-			else {
-				randomResource(location);
+			case 1005:
+				placeChit(i, 10);
 				break;
-			}
-		case 4:
-			for(int i = 1000;i<=1019;i++) {
-				if(axisgrid.get(i) != null) {
-				if(((Tile) axisgrid.get(i)).getResourcetype() == 'B') {
-					resourcecount += 1;
-				}
-				}
-			}
-			if(resourcecount<3) {
-				placeResource(location,'B');
+			case 1006:
+				placeChit(i, 3);
 				break;
-			}
-			else {
-				randomResource(location);
+			case 1007:
+				placeChit(i, 6);
 				break;
-			}
-		case 5:
-			for(int i = 1000;i<=1019;i++) {
-			if(axisgrid.get(i) != null) {
-				if(((Tile) axisgrid.get(i)).getResourcetype() == 'E') {
-					resourcecount += 1;
-				}
-			}
-			}
-			if(resourcecount<3) {
-				((Tile) axisgrid.get(location)).setResourcetype('E');
+			case 1008:
+				placeChit(i, 6);
 				break;
-			}
-			else {
-				randomResource(location);
+			case 1009:
+				placeChit(i, 0);
 				break;
-			}
-		case 6:
-			for(int i = 1000;i<=1019;i++) {
-				if(axisgrid.get(i) != null) {
-				if(((Tile) axisgrid.get(i)).getResourcetype() == 'G') {
-					resourcecount += 1;
-				}
-				}
-			}
-			if(resourcecount<4) {
-				placeResource(location,'G');
+			case 1010:
+				placeChit(i, 2);
 				break;
-			}
-			else {
-				randomResource(location);
+			case 1011:
+				placeChit(i, 4);
+				break;
+			case 1012:
+				placeChit(i, 4);
+				break;
+			case 1013:
+				placeChit(i, 11);
+				break;
+			case 1014:
+				placeChit(i, 3);
+				break;
+			case 1015:
+				placeChit(i, 9);
+				break;
+			case 1016:
+				placeChit(i, 5);
+				break;
+			case 1017:
+				placeChit(i, 10);
+				break;
+			case 1018:
+				placeChit(i, 8);
 				break;
 			}
 		}
 	}
 
+	// Resource placement
+	// -------------------------------------------------------------------------------------------------------------------
 
-
+	private void randomResource() {
+		((Tile) axisgrid.get(1009)).setResourcetype('X');
+		int location = 1000;
+		while (true) {
+			int number = rand.nextInt(5) + 1;
+			int resourcecount = 0;
+			if (location != 1009) {
+				switch (number) {
+				case 1:
+					for (int i = 1000; i <= 1018; i++) {
+						if (axisgrid.get(i) != null) {
+							if (((Tile) axisgrid.get(i)).getResourcetype() == 'W') {
+								resourcecount += 1;
+							}
+						}
+					}
+					if (resourcecount < 4) {
+						placeResource(location, 'W');
+						location++;
+						break;
+					} else {
+						break;
+					}
+				case 2:
+					for (int i = 1000; i <= 1018; i++) {
+						if (axisgrid.get(i) != null) {
+							if (((Tile) axisgrid.get(i)).getResourcetype() == 'H') {
+								resourcecount += 1;
+							}
+						}
+					}
+					if (resourcecount < 4) {
+						placeResource(location, 'H');
+						location++;
+						break;
+					} else {
+						break;
+					}
+				case 3:
+					for (int i = 1000; i <= 1018; i++) {
+						if (axisgrid.get(i) != null) {
+							if (((Tile) axisgrid.get(i)).getResourcetype() == 'B') {
+								resourcecount += 1;
+							}
+						}
+					}
+					if (resourcecount < 3) {
+						placeResource(location, 'B');
+						location++;
+						break;
+					} else {
+						break;
+					}
+				case 4:
+					for (int i = 1000; i <= 1018; i++) {
+						if (axisgrid.get(i) != null) {
+							if (((Tile) axisgrid.get(i)).getResourcetype() == 'E') {
+								resourcecount += 1;
+							}
+						}
+					}
+					if (resourcecount < 3) {
+						((Tile) axisgrid.get(location)).setResourcetype('E');
+						location++;
+						break;
+					} else {
+						break;
+					}
+				case 5:
+					for (int i = 1000; i <= 1018; i++) {
+						if (axisgrid.get(i) != null) {
+							if (((Tile) axisgrid.get(i)).getResourcetype() == 'G') {
+								resourcecount += 1;
+							}
+						}
+					}
+					if (resourcecount < 4) {
+						placeResource(location, 'G');
+						location++;
+						break;
+					} else {
+						break;
+					}
+				}
+				if (location == 1019) {
+					break;
+				}
+			}
+			else {
+				location++;
+				continue;
+			}
+		}
+	}
 
 	private void standardResource() {
 		standardChit();
-		for(int i = 1000;i <= 1019;i++) {
-			switch(i) {
-			 case 1000:
-				 placeResource(i,'G');
-				 break;
-			 case 1001:
-				 placeResource(i,'H');
-				 break;
-			 case 1002:
-				 placeResource(i,'G');
-				 break;
-			 case 1003:
-				 placeResource(i,'B');
-				 break;
-			 case 1004:
-				 placeResource(i,'H');
-				 break;
-			 case 1005:
-				 placeResource(i,'E');
-				 break;
-			 case 1006:
-				 placeResource(i,'E');
-				 break;
-			 case 1007:
-				 placeResource(i,'B');
-				 break;
-			 case 1008:
-				 placeResource(i,'W');
-				 break;
-			 case 1009:
-				 placeResource(i,'X');
-				 break;
-			 case 1010:
-				 placeResource(i,'G');
-				 break;
-			 case 1011:
-				 placeResource(i,'G');
-				 break;
-			 case 1012:
-				 placeResource(i,'W');
-				 break;
-			 case 1013:
-				 placeResource(i,'W');
-				 break;
-			 case 1014:
-				 placeResource(i,'H');
-				 break;
-			 case 1015:
-				 placeResource(i,'H');
-				 break;
-			 case 1016:
-				 placeResource(i,'W');
-				 break;
-			 case 1017:
-				 placeResource(i,'B');
-				 break;
-			 case 1018:
-				 placeResource(i,'E');
-				 break;
+		for (int i = 1000; i <= 1018; i++) {
+			switch (i) {
+			case 1000:
+				placeResource(i, 'G');
+				break;
+			case 1001:
+				placeResource(i, 'H');
+				break;
+			case 1002:
+				placeResource(i, 'G');
+				break;
+			case 1003:
+				placeResource(i, 'B');
+				break;
+			case 1004:
+				placeResource(i, 'H');
+				break;
+			case 1005:
+				placeResource(i, 'E');
+				break;
+			case 1006:
+				placeResource(i, 'E');
+				break;
+			case 1007:
+				placeResource(i, 'B');
+				break;
+			case 1008:
+				placeResource(i, 'W');
+				break;
+			case 1009:
+				placeResource(i, 'X');
+				break;
+			case 1010:
+				placeResource(i, 'G');
+				break;
+			case 1011:
+				placeResource(i, 'G');
+				break;
+			case 1012:
+				placeResource(i, 'W');
+				break;
+			case 1013:
+				placeResource(i, 'W');
+				break;
+			case 1014:
+				placeResource(i, 'H');
+				break;
+			case 1015:
+				placeResource(i, 'H');
+				break;
+			case 1016:
+				placeResource(i, 'W');
+				break;
+			case 1017:
+				placeResource(i, 'B');
+				break;
+			case 1018:
+				placeResource(i, 'E');
+				break;
 			}
 		}
-		
+
 	}
-	
-	public void placeResource(int position,char resource) {
+
+	public void placeResource(int position, char resource) {
 		((Tile) axisgrid.get(position)).setResourcetype(resource);
 	}
-	
-	public void placeChit(int position,int chit) {
-		((Tile) axisgrid.get(position)).setChit(chit);;
+
+	public void placeChit(int position, int chit) {
+		((Tile) axisgrid.get(position)).setChit(chit);
+		;
 	}
 }
