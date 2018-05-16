@@ -20,6 +20,8 @@ public class Main {
 				System.out.println("Connection failed");
 			}
 		}
+
+		//new LoginController(); 
 		new LobbyController();
 	}
 }
