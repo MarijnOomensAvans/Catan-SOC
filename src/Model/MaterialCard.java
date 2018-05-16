@@ -4,10 +4,10 @@ public class MaterialCard {
 	
 	
 	private String Material;
-	private int KindOfMaterial;
+	private char KindOfMaterial;
 
-	public MaterialCard(int kind) {
-		KindOfMaterial = kind;
+	public MaterialCard(char c) {
+		KindOfMaterial = c;
 		setMaterial();
 	}
 	
@@ -17,19 +17,19 @@ public class MaterialCard {
 	}
 
 	public void setMaterial() {
-		if(KindOfMaterial == 1) {
+		if(KindOfMaterial == 'H') {
 			Material = "Hout";
 		}
-		else if (KindOfMaterial == 2) {
+		else if (KindOfMaterial == 'E') {
 			Material = "Erts";
 		}
-		else if (KindOfMaterial == 3) {
+		else if (KindOfMaterial == 'W') {
 			Material ="Wol";
 		}
-		else if(KindOfMaterial == 4) {
+		else if(KindOfMaterial == 'B') {
 			Material = "Baksteen";
 		}
-		else if(KindOfMaterial == 5) {
+		else if(KindOfMaterial == 'G') {
 			Material = "Graan";
 		}
 	}
