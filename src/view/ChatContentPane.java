@@ -11,8 +11,8 @@ public class ChatContentPane extends JPanel {
 	public ChatContentPane() {
 		setPreferredSize(new Dimension(500,400));
 		setLayout(new BorderLayout());
-		add(new Chatoutput());
-		add(new Chatinput(1), BorderLayout.PAGE_END);
+		add(new Chatoutputgui(1));
+		add(new Chatinputgui(1), BorderLayout.PAGE_END);
 	}
 
 }

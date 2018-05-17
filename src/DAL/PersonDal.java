@@ -18,9 +18,9 @@ public class PersonDal {
 	public String getName(int id)
 	{
 		String result ="";
-		String idstring = Integer.toString(id);
+		
 		Statement stmt = null;
-		String query = "SELECT username FROM speler WHERE idspeler =" + idstring;
+		String query = "SELECT username FROM speler WHERE idspeler =" + id;
 		try
 		{
 			stmt = conn.createStatement();
@@ -40,9 +40,8 @@ public class PersonDal {
 	public String getColor(int playerid)
 	{
 		String result ="";
-		String idstring = Integer.toString(playerid);
 		Statement stmt = null;
-		String query = "SELECT kleur FROM speler WHERE idspeler =" + idstring;
+		String query = "SELECT kleur FROM speler WHERE idspeler =" + playerid;
 		try
 		{
 			stmt = conn.createStatement();
@@ -61,9 +60,8 @@ public class PersonDal {
 	public int getgame_id(int playerid)
 	{
 		String result ="";
-		String idstring = Integer.toString(playerid);
 		Statement stmt = null;
-		String query = "SELECT idspel FROM speler WHERE idspeler =" + idstring;
+		String query = "SELECT idspel FROM speler WHERE idspeler =" + playerid;
 		try
 		{
 			stmt = conn.createStatement();
@@ -84,9 +82,8 @@ public class PersonDal {
 	public int getorder_number(int playerid)
 	{
 		String result ="";
-		String idstring = Integer.toString(playerid);
 		Statement stmt = null;
-		String query = "SELECT volgnr FROM speler WHERE idspeler =" + idstring;
+		String query = "SELECT volgnr FROM speler WHERE idspeler =" + playerid;
 		try
 		{
 			stmt = conn.createStatement();

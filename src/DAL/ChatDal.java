@@ -19,13 +19,12 @@ public class ChatDal {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 		LocalDateTime now = LocalDateTime.now(); 
 		System.out.println(dtf.format(now));
-		
-		String idstring = Integer.toString(playerid);
 		Statement stmt = null;
-		String query = "INSERT INTO chatregel(tijdstip,idspeler,bericht) VALUES('" + dtf.format(now)+"', '"+idstring+"', '"+ message+"')";
+		String query = "INSERT INTO chatregel(tijdstip,idspeler,bericht) VALUES('" + dtf.format(now)+"', "+playerid+", '"+ message+"')";
 		try
 		{
 			stmt = conn.createStatement();
+			@SuppressWarnings("unused")
 			int i = stmt.executeUpdate(query);
 			
 			stmt.close();
@@ -44,9 +43,11 @@ public class ChatDal {
 			{
 				stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(query);
+				int counter =1;
 				while (rs.next())
 				{
-					result = rs.getString(0);
+					result = rs.getString(counter);
+					counter++;
 				}
 				stmt.close();
 			} catch (SQLException e)
