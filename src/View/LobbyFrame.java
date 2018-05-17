@@ -8,8 +8,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import Controller.LobbyController;
-import Controller.LoginController;
 
+@SuppressWarnings("serial")
 public class LobbyFrame extends JFrame{
 	private LobbyContentPane pane;
 	private LobbyController controller;
@@ -52,6 +52,10 @@ public class LobbyFrame extends JFrame{
 		setJMenuBar(lobbyMenuBar);
 		
 		
+	}
+	
+	public void closeLobby() {
+		controller.closeLobbyScreen();
 	}
 	
 }

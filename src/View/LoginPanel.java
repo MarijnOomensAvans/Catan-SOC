@@ -9,13 +9,10 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.border.Border;
 
 
 @SuppressWarnings("serial")
 public class LoginPanel extends JPanel {
-
-	private String warning;
 	
 	private JTextField usernameTextField;
 	private JTextField passwordTextField;

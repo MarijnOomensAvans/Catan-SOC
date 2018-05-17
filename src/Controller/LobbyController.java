@@ -12,11 +12,12 @@ public class LobbyController {
 	
 	private LobbyModel lobbyModel;
 	private LobbyDAL lobbyDAL;
+	private LobbyFrame frame;
 
 	public LobbyController() {
 		lobbyDAL = new LobbyDAL();
 		lobbyModel = new LobbyModel(lobbyDAL);
-		new LobbyFrame(this);
+		frame = new LobbyFrame(this);
 		testDAL();
 	}
 	
@@ -26,6 +27,10 @@ public class LobbyController {
 	
 	public void startLogin() {
 		new LoginController();
+	}
+	
+	public void closeLobbyScreen() {
+		frame.dispose();
 	}
 
 	//DEBUG FUNCTION
