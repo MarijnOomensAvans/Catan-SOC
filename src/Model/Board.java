@@ -11,8 +11,8 @@ public class Board {
 	private HashMap<Integer, Collection> axisgrid = new HashMap<Integer, Collection>();
 	private int loopnumb = 0;
 	private int looplet = 1000;
-	private int boardType = 2;  // This will normally be initliaised by the lobby
-	
+	private int boardType = 2; // This will normally be initliaised by the lobby
+
 	public void setBoardType(int boardType) {
 		this.boardType = boardType;
 	}
@@ -204,7 +204,8 @@ public class Board {
 		randomChit();
 		for (int i = 1000; i < 1019; i++) {
 			// For now IDspel will be 1 untill lobby integration is completet
-			bdal.setTile(1, i, ((Tile) axisgrid.get(i)).getX(), ((Tile) axisgrid.get(i)).getY(), ((Tile) axisgrid.get(i)).getResourcetype(), ((Tile) axisgrid.get(i)).getChit());
+			bdal.setTile(1, i, ((Tile) axisgrid.get(i)).getX(), ((Tile) axisgrid.get(i)).getY(),
+					((Tile) axisgrid.get(i)).getResourcetype(), ((Tile) axisgrid.get(i)).getChit());
 		}
 	}
 
@@ -222,7 +223,22 @@ public class Board {
 				case 2:
 					for (int i = 1000; i <= 1018; i++) {
 						if (axisgrid.get(i) != null) {
-							if (((Tile) axisgrid.get(i)).getChit() == 2) {
+							if (((Tile) axisgrid.get(i)).getChit() == 1) {
+								resourcecount += 1;
+							}
+						}
+					}
+					if (resourcecount < 1) {
+						placeChit(location, 1);
+						location++;
+						break;
+					} else {
+						break;
+					}
+				case 3:
+					for (int i = 1000; i <= 1018; i++) {
+						if (axisgrid.get(i) != null) {
+							if (((Tile) axisgrid.get(i)).getChit() == 2 || ((Tile) axisgrid.get(i)).getChit() == 3) {
 								resourcecount += 1;
 							}
 						}
@@ -232,138 +248,171 @@ public class Board {
 						location++;
 						break;
 					} else {
-						break;
-					}
-				case 3:
-					for (int i = 1000; i <= 1018; i++) {
-						if (axisgrid.get(i) != null) {
-							if (((Tile) axisgrid.get(i)).getChit() == 3) {
-								resourcecount += 1;
-							}
+						if (resourcecount < 2) {
+							placeChit(location, 3);
+							location++;
+							break;
+						} else {
+							break;
 						}
-					}
-					if (resourcecount < 2) {
-						placeChit(location, 3);
-						location++;
-						break;
-					} else {
-						break;
 					}
 				case 4:
 					for (int i = 1000; i <= 1018; i++) {
 						if (axisgrid.get(i) != null) {
-							if (((Tile) axisgrid.get(i)).getChit() == 4) {
+							if (((Tile) axisgrid.get(i)).getChit() == 4 || ((Tile) axisgrid.get(i)).getChit() == 5) {
 								resourcecount += 1;
 							}
 						}
 					}
-					if (resourcecount < 2) {
+					if (resourcecount < 1) {
 						placeChit(location, 4);
 						location++;
 						break;
 					} else {
-						break;
+						if (resourcecount < 2) {
+							placeChit(location, 5);
+							location++;
+							break;
+						} else {
+							break;
+						}
 					}
 				case 5:
 					for (int i = 1000; i <= 1018; i++) {
 						if (axisgrid.get(i) != null) {
-							if (((Tile) axisgrid.get(i)).getChit() == 5) {
+							if (((Tile) axisgrid.get(i)).getChit() == 6 || ((Tile) axisgrid.get(i)).getChit() == 7) {
 								resourcecount += 1;
 							}
 						}
 					}
-					if (resourcecount < 2) {
-						placeChit(location, 5);
-						location++;
-						break;
-					} else {
-						break;
-					}
-				case 6:
-					for (int i = 1000; i <= 1018; i++) {
-						if (axisgrid.get(i) != null) {
-							if (((Tile) axisgrid.get(i)).getChit() == 6) {
-								resourcecount += 1;
-							}
-						}
-					}
-					if (resourcecount < 2) {
+					if (resourcecount < 1) {
 						placeChit(location, 6);
 						location++;
 						break;
 					} else {
-						break;
+						if (resourcecount < 2) {
+							placeChit(location, 7);
+							location++;
+							break;
+						} else {
+							break;
+						}
 					}
-				case 8:
+				case 6:
 					for (int i = 1000; i <= 1018; i++) {
 						if (axisgrid.get(i) != null) {
-							if (((Tile) axisgrid.get(i)).getChit() == 8) {
+							if (((Tile) axisgrid.get(i)).getChit() == 8 || ((Tile) axisgrid.get(i)).getChit() == 9) {
 								resourcecount += 1;
 							}
 						}
 					}
-					if (resourcecount < 2) {
+					if (resourcecount < 1) {
 						placeChit(location, 8);
 						location++;
 						break;
 					} else {
-						break;
+						if (resourcecount < 2) {
+							placeChit(location, 9);
+							location++;
+							break;
+						} else {
+							break;
+						}
 					}
-				case 9:
+				case 8:
 					for (int i = 1000; i <= 1018; i++) {
 						if (axisgrid.get(i) != null) {
-							if (((Tile) axisgrid.get(i)).getChit() == 9) {
+							if (((Tile) axisgrid.get(i)).getChit() == 10 || ((Tile) axisgrid.get(i)).getChit() == 11) {
 								resourcecount += 1;
 							}
 						}
 					}
-					if (resourcecount < 2) {
-						placeChit(location, 9);
-						location++;
-						break;
-					} else {
-						break;
-					}
-				case 10:
-					for (int i = 1000; i <= 1018; i++) {
-						if (axisgrid.get(i) != null) {
-							if (((Tile) axisgrid.get(i)).getChit() == 10) {
-								resourcecount += 1;
-							}
-						}
-					}
-					if (resourcecount < 2) {
+					if (resourcecount < 1) {
 						placeChit(location, 10);
 						location++;
 						break;
 					} else {
-						break;
-					}
-				case 11:
-					for (int i = 1000; i <= 1018; i++) {
-						if (axisgrid.get(i) != null) {
-							if (((Tile) axisgrid.get(i)).getChit() == 11) {
-								resourcecount += 1;
-							}
+						if (resourcecount < 2) {
+							placeChit(location, 11);
+							location++;
+							break;
+						} else {
+							break;
 						}
 					}
-					if (resourcecount < 2) {
-						placeChit(location, 11);
-						location++;
-						break;
-					} else {
-						break;
-					}
-				case 12:
+				case 9:
 					for (int i = 1000; i <= 1018; i++) {
 						if (axisgrid.get(i) != null) {
-							if (((Tile) axisgrid.get(i)).getChit() == 12) {
+							if (((Tile) axisgrid.get(i)).getChit() == 12 || ((Tile) axisgrid.get(i)).getChit() == 13) {
 								resourcecount += 1;
 							}
 						}
 					}
 					if (resourcecount < 1) {
 						placeChit(location, 12);
+						location++;
+						break;
+					} else {
+						if (resourcecount < 2) {
+							placeChit(location, 13);
+							location++;
+							break;
+						} else {
+							break;
+						}
+					}
+				case 10:
+					for (int i = 1000; i <= 1018; i++) {
+						if (axisgrid.get(i) != null) {
+							if (((Tile) axisgrid.get(i)).getChit() == 14 || ((Tile) axisgrid.get(i)).getChit() == 15) {
+								resourcecount += 1;
+							}
+						}
+					}
+					if (resourcecount < 1) {
+						placeChit(location, 14);
+						location++;
+						break;
+					} else {
+						if (resourcecount < 2) {
+							placeChit(location, 15);
+							location++;
+							break;
+						} else {
+							break;
+						}
+					}
+				case 11:
+					for (int i = 1000; i <= 1018; i++) {
+						if (axisgrid.get(i) != null) {
+							if (((Tile) axisgrid.get(i)).getChit() == 16 || ((Tile) axisgrid.get(i)).getChit() == 17) {
+								resourcecount += 1;
+							}
+						}
+					}
+					if (resourcecount < 1) {
+						placeChit(location, 16);
+						location++;
+						break;
+					} else {
+						if (resourcecount < 2) {
+							placeChit(location, 17);
+							location++;
+							break;
+						} else {
+							break;
+						}
+					}
+				case 12:
+					for (int i = 1000; i <= 1018; i++) {
+						if (axisgrid.get(i) != null) {
+							if (((Tile) axisgrid.get(i)).getChit() == 18) {
+								resourcecount += 1;
+							}
+						}
+					}
+					if (resourcecount < 1) {
+						placeChit(location, 18);
 						location++;
 						break;
 					} else {

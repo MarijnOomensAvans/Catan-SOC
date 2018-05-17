@@ -28,7 +28,7 @@ public class Tile extends Collection {
 	}
 
 	public void setChit(int numberchits) {
-		this.chit = numberchits;
+			this.chit = numberchits;
 	}
 
 	public int getX() {
