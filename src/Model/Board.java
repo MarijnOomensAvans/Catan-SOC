@@ -9,9 +9,12 @@ public class Board {
 	private int loopnumb = 0;
 	private int looplet = 1000;
 	private int boardType;
-
-	public Board(int boardType) {
+	
+	public void setBoardType(int boardType) {
 		this.boardType = boardType;
+	}
+
+	public Board() {
 		generateBoard();
 		switch (this.boardType) {
 		case 1:
