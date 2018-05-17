@@ -2,7 +2,6 @@ package View;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -12,19 +11,14 @@ import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.Border;
 
-import com.sun.glass.ui.Menu;
-import com.sun.glass.ui.MenuBar;
-import com.sun.glass.ui.MenuItem;
-
 import Controller.LoginController;
 
+@SuppressWarnings("serial")
 public class LobbyPanel extends JPanel {
 
 	private LobbyContentPane pane;
@@ -46,34 +40,49 @@ public class LobbyPanel extends JPanel {
 	private JPanel challengePanel;
 	private JPanel ourNamePanel;
 	private JPanel accountLabelPanel;
+	private JPanel buttonPanel;
+	private JPanel blankPanel;
+	private JPanel gameButtonPane;
 
 	private JLabel accountLabel;
 	private JLabel nameLabel;
 	private JLabel challengeLabel;
 	private JLabel gameLabel;
 
+
 	private Border blackLine;
+	private Border buttonBorder;
 
 	private Font titleFont;
 	private Font accountFont;
+	private Font buttonFont;
 	
+	@SuppressWarnings("unused")
+	private JButton playButton;
 
-	
-
-	public LobbyPanel(LobbyContentPane pane) {
+	public LobbyPanel(LobbyContentPane pane, JButton playButton) {
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 
 		titleFont = new Font("TimesRoman", 15, 50);
 		accountFont = new Font("TimesRoman", 15, 30);
+		buttonFont = new Font("TimesRoman", 15, 30);
 
 		this.pane = pane;
 
 		blackLine = BorderFactory.createLineBorder(Color.black, 2, true);
+		buttonBorder = BorderFactory.createLineBorder(Color.black, 3, true);
+
 
 		URL iconUrl = this.getClass().getResource("/images/logoCatan.png");
 		ImageIcon imageIcon = new ImageIcon(iconUrl);
 		JLabel catanLabel = new JLabel(imageIcon);
 
+		this.playButton = playButton;
+		playButton.setFont(buttonFont);
+		playButton.setBorder(buttonBorder);
+		playButton.setFocusPainted(false);
+		playButton.setBackground(Color.ORANGE);
+		playButton.setPreferredSize(new Dimension(150, 75));
 		
 		topPanel = new JPanel();
 		rightPanel = new JPanel();
@@ -85,6 +94,9 @@ public class LobbyPanel extends JPanel {
 		challengePanel = new JPanel();
 		ourNamePanel = new JPanel();
 		accountLabelPanel = new JPanel();
+		buttonPanel = new JPanel();
+		blankPanel = new JPanel();
+		gameButtonPane = new JPanel();
 
 		nameLabel = new JLabel("SO-C");
 		accountLabel = new JLabel("Accounts");
@@ -98,6 +110,17 @@ public class LobbyPanel extends JPanel {
 		challengeLabel = new JLabel("Uitdagingen");
 		challengeLabel.setFont(titleFont);
 		challengeLabel.setForeground(Color.WHITE);
+		
+		blankPanel.setBackground(Color.white);
+		blankPanel.setPreferredSize(new Dimension(WIDTH-(SIDEPANELWIDTH*2), 200));
+		
+		gameButtonPane.setBackground(Color.white);
+		gameButtonPane.add(playButton);
+		
+		buttonPanel.setBackground(Color.red);
+		buttonPanel.setLayout(new BorderLayout());
+		buttonPanel.add(blankPanel, BorderLayout.NORTH);
+		buttonPanel.add(gameButtonPane, BorderLayout.CENTER);
 
 		topPanel.setPreferredSize(new Dimension(WIDTH, TOPPANELHEIGHT));
 		leftPanel.setPreferredSize(new Dimension(SIDEPANELWIDTH, HEIGHT));
@@ -135,6 +158,7 @@ public class LobbyPanel extends JPanel {
 		ourNamePanel.add(nameLabel);
 		centerPanel.setLayout(new BorderLayout());
 		centerPanel.add(topPanel, BorderLayout.NORTH);
+		centerPanel.add(buttonPanel, BorderLayout.CENTER);
 		centerPanel.add(ourNamePanel, BorderLayout.SOUTH);
 		centerPanel.setBackground(Color.WHITE);
 

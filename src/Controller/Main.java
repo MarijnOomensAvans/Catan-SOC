@@ -1,7 +1,6 @@
 package Controller;
 
 import DAL.MainDAL;
-import View.LobbyFrame;
 
 public class Main {
 

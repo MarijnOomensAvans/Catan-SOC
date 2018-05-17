@@ -43,8 +43,7 @@ public class LobbyDAL {
 					"SELECT s.idspel FROM spel s "
 					+ "JOIN speler sp "
 					+ "ON s.idspel = sp.idspel "
-					+ "WHERE sp.username LIKE '" + LoginController.getUsername() + "' "
-					+ "AND sp.speelstatus NOT LIKE UITGE");
+					+ "WHERE sp.username LIKE '" + LoginController.getUsername() + "' ");
 			/*
 			 * Get all users in game
 			 */
