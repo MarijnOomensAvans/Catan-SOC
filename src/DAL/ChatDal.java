@@ -36,6 +36,29 @@ public class ChatDal {
 		
 	}
 
+	public String GetMessage() {
+			String result ="";
+			Statement stmt = null;
+			String query = "SELECT tijdstip,bericht FROM chatregel";
+			try
+			{
+				stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery(query);
+				while (rs.next())
+				{
+					result = rs.getString(0);
+				}
+				stmt.close();
+			} catch (SQLException e)
+			{
+				System.out.println(e.getMessage());
+			}
+			return result;
+			
+		}
+		
 	}
+
+	
 
 

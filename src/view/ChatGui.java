@@ -10,7 +10,7 @@ public class ChatGui extends JFrame {
 	public ChatGui() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setContentPane(new ChatContentPane());
-		setResizable(false);
+		setResizable(true);
 		setVisible(true);
 		pack();
 		setLocationRelativeTo(null);
