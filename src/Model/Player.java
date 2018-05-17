@@ -19,25 +19,15 @@ public class Player {
 	private ArrayList<MaterialCard> hand = new ArrayList<MaterialCard>();
 	private ArrayList<DevelopmentCard> handdev = new ArrayList<DevelopmentCard>();
 
-	public Player(int id) {
-		player_id = id;
-		setName();
-		setGame_id();
-		setColor();
-		setOrder_number();
+	public Player() {
+		
 	}
 	
-	public void setName() {
-	MainDAL db = new MainDAL();
-	{ 
-	if ((db.loadDataBaseDriver("com.mysql.jdbc.Driver"))
-			&& (db.makeConnection()))
-	{
-		PersonDal pd = new PersonDal();
-		username = pd.getName(player_id);
+	public void setName(String username) {
+		this.username = username;
 	}
-}
-}
+
+
 	
 	public void setColor() {
 		MainDAL db = new MainDAL();
