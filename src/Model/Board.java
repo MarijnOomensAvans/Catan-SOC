@@ -3,8 +3,11 @@ package Model;
 import java.util.HashMap;
 import java.util.Random;
 
+import DAL.BoardDal;
+
 public class Board {
 	Random rand = new Random();
+	BoardDal bdal = new BoardDal();
 	private HashMap<Integer, Collection> axisgrid = new HashMap<Integer, Collection>();
 	private int loopnumb = 0;
 	private int looplet = 1000;
@@ -199,8 +202,10 @@ public class Board {
 	private void setRandomBoard() {
 		randomResource();
 		randomChit();
-		System.out.println("EzayPezay");
-
+		for (int i = 1000; i < 1019; i++) {
+			// For now IDspel will be 1 untill lobby integration is completet
+			bdal.setTile(1, i, ((Tile) axisgrid.get(i)).getX(), ((Tile) axisgrid.get(i)).getY(), ((Tile) axisgrid.get(i)).getResourcetype(), ((Tile) axisgrid.get(i)).getChit());
+		}
 	}
 
 	// Chit placement
