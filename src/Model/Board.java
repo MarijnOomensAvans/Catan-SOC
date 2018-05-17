@@ -195,7 +195,7 @@ public class Board {
 
 	private void setRandomBoard() {
 		randomResource();
-		randomChit(i);
+		randomChit();
 		System.out.println("EzayPezay");
 
 	}
@@ -203,8 +203,173 @@ public class Board {
 	// Chit placement
 	// -----------------------------------------------------------------------------------------------------------------------
 
-	private void randomChit(int location) {
-		// TODO Hetzelde als de randomresource maar dan met chits, en gefixt
+	private void randomChit() {
+		((Tile) axisgrid.get(1009)).setChit(0);
+		int location = 1000;
+		while (true) {
+			int number = rand.nextInt(12) + 2;
+			int resourcecount = 0;
+			if (location != 1009) {
+				switch (number) {
+				case 2:
+					for (int i = 1000; i <= 1018; i++) {
+						if (axisgrid.get(i) != null) {
+							if (((Tile) axisgrid.get(i)).getChit() == 2) {
+								resourcecount += 1;
+							}
+						}
+					}
+					if (resourcecount < 1) {
+						placeChit(location, 2);
+						location++;
+						break;
+					} else {
+						break;
+					}
+				case 3:
+					for (int i = 1000; i <= 1018; i++) {
+						if (axisgrid.get(i) != null) {
+							if (((Tile) axisgrid.get(i)).getChit() == 3) {
+								resourcecount += 1;
+							}
+						}
+					}
+					if (resourcecount < 2) {
+						placeChit(location, 3);
+						location++;
+						break;
+					} else {
+						break;
+					}
+				case 4:
+					for (int i = 1000; i <= 1018; i++) {
+						if (axisgrid.get(i) != null) {
+							if (((Tile) axisgrid.get(i)).getChit() == 4) {
+								resourcecount += 1;
+							}
+						}
+					}
+					if (resourcecount < 2) {
+						placeChit(location, 4);
+						location++;
+						break;
+					} else {
+						break;
+					}
+				case 5:
+					for (int i = 1000; i <= 1018; i++) {
+						if (axisgrid.get(i) != null) {
+							if (((Tile) axisgrid.get(i)).getChit() == 5) {
+								resourcecount += 1;
+							}
+						}
+					}
+					if (resourcecount < 2) {
+						placeChit(location, 5);
+						location++;
+						break;
+					} else {
+						break;
+					}
+				case 6:
+					for (int i = 1000; i <= 1018; i++) {
+						if (axisgrid.get(i) != null) {
+							if (((Tile) axisgrid.get(i)).getChit() == 6) {
+								resourcecount += 1;
+							}
+						}
+					}
+					if (resourcecount < 2) {
+						placeChit(location, 6);
+						location++;
+						break;
+					} else {
+						break;
+					}
+				case 8:
+					for (int i = 1000; i <= 1018; i++) {
+						if (axisgrid.get(i) != null) {
+							if (((Tile) axisgrid.get(i)).getChit() == 8) {
+								resourcecount += 1;
+							}
+						}
+					}
+					if (resourcecount < 2) {
+						placeChit(location, 8);
+						location++;
+						break;
+					} else {
+						break;
+					}
+				case 9:
+					for (int i = 1000; i <= 1018; i++) {
+						if (axisgrid.get(i) != null) {
+							if (((Tile) axisgrid.get(i)).getChit() == 9) {
+								resourcecount += 1;
+							}
+						}
+					}
+					if (resourcecount < 2) {
+						placeChit(location, 9);
+						location++;
+						break;
+					} else {
+						break;
+					}
+				case 10:
+					for (int i = 1000; i <= 1018; i++) {
+						if (axisgrid.get(i) != null) {
+							if (((Tile) axisgrid.get(i)).getChit() == 10) {
+								resourcecount += 1;
+							}
+						}
+					}
+					if (resourcecount < 2) {
+						placeChit(location, 10);
+						location++;
+						break;
+					} else {
+						break;
+					}
+				case 11:
+					for (int i = 1000; i <= 1018; i++) {
+						if (axisgrid.get(i) != null) {
+							if (((Tile) axisgrid.get(i)).getChit() == 11) {
+								resourcecount += 1;
+							}
+						}
+					}
+					if (resourcecount < 2) {
+						placeChit(location, 11);
+						location++;
+						break;
+					} else {
+						break;
+					}
+				case 12:
+					for (int i = 1000; i <= 1018; i++) {
+						if (axisgrid.get(i) != null) {
+							if (((Tile) axisgrid.get(i)).getChit() == 12) {
+								resourcecount += 1;
+							}
+						}
+					}
+					if (resourcecount < 1) {
+						placeChit(location, 12);
+						location++;
+						break;
+					} else {
+						break;
+					}
+				}
+				if (location == 1019) {
+					break;
+				}
+			} else {
+				location++;
+				continue;
+			}
+		}
 	}
 
 	private void standardChit() {
@@ -361,8 +526,7 @@ public class Board {
 				if (location == 1019) {
 					break;
 				}
-			}
-			else {
+			} else {
 				location++;
 				continue;
 			}
