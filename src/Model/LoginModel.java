@@ -15,18 +15,21 @@ public class LoginModel {
 		this.inlogController = inlogController;
 	}
 
-	public void login(String username, String password) {
+	public boolean login(String username, String password) {
 		if (loginDal.hasUsername(username)) {
 			if (loginDal.userHasPassword(username, password)) {
 				System.out.println("Logged in!");
+				return true;
 			} else {
 				System.err.println("Wachtwoord klopt niet");
 				inlogController.setWarning("Wachtwoord klopt niet");
+				return false;
 			}
 		} else {
 			System.err.println("Username bestaat niet!");
 			inlogController.setWarning("Username bestaat niet!");
 		}
+		return false;
 	}
 
 	private boolean verifyPassword(String password, String passwordVer) {
