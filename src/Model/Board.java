@@ -8,7 +8,7 @@ public class Board {
 	private HashMap<Integer, Collection> axisgrid = new HashMap<Integer, Collection>();
 	private int loopnumb = 0;
 	private int looplet = 1000;
-	private int boardType;
+	private int boardType = 2;  // This will normally be initliaised by the lobby
 	
 	public void setBoardType(int boardType) {
 		this.boardType = boardType;
