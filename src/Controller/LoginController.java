@@ -5,7 +5,6 @@ import View.LoginFrame;
 
 public class LoginController{
 
-	@SuppressWarnings("unused")
 	private LoginFrame frame;
 	private LoginModel loginModel;
 	
