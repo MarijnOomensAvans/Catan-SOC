@@ -168,10 +168,10 @@ public class LobbyPanel extends JPanel {
 
 		accountPanel.setLayout(new BoxLayout(accountPanel, 1));
 		accountPanel.setBackground(Color.WHITE);
-		drawLabels();
+		drawAccountLabels();
 	}
 
-	public void drawLabels() {
+	public void drawAccountLabels() {
 		usernames = pane.getUsernames();
 
 		for (int i = 0; i < usernames.size(); i++) {

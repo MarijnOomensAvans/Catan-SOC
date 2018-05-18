@@ -6,8 +6,6 @@ public class Main {
 
 	public static void main(String[] args) {
 
-
-		
 		boolean connected = false;
 		MainDAL mainDAL = new MainDAL();
 
