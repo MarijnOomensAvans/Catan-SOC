@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import Model.LobbyInvite;
+
 @SuppressWarnings("serial")
 public class LobbyContentPane extends JPanel{
 	
@@ -23,9 +25,17 @@ public class LobbyContentPane extends JPanel{
 		return frame.getUsernames();	
 	}
 	
+	public ArrayList<LobbyInvite> getInvites(){
+		return frame.getInvites();
+	}
+	
 	public void closeLobbyScreen() {
 		playButton.addActionListener(e -> {
 			frame.closeLobby();
 		});
+	}
+	
+	public void inviteResponse(int gameID, boolean response) {
+		frame.inviteResponse(gameID, response);
 	}
 }
