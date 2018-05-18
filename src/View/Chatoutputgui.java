@@ -1,7 +1,9 @@
 package View;
 
 
-import java.awt.Graphics;
+
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
@@ -11,7 +13,7 @@ import Model.Chat;
 
 
 @SuppressWarnings("serial")
-public class Chatoutputgui extends JPanel {
+public class Chatoutputgui extends JPanel implements Observer {
 	
 	private JTextArea output;;
 	private Chat chat;
@@ -30,6 +32,11 @@ public class Chatoutputgui extends JPanel {
 	public void getLatestMessage()
 	{
 		output.append(chat.getchatText() + "\n");
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		getLatestMessage();		
 	}
 
 }
