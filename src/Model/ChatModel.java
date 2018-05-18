@@ -24,7 +24,7 @@ public class ChatModel extends Observable {
 			
 		}
 		this.setChanged();
-		this.notifyObservers(message);
+		this.notifyObservers(getLatestMessage());
 	}
 }
 	}

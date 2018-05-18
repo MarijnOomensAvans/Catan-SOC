@@ -27,7 +27,7 @@ public class Chatinputgui extends JPanel  {
 		sendbutton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				String message = ": " + chatinput.getText();
+				String message = ": " + chatinput.getText() + "\n";
 				control.SendMessage(playerid, message);
 				chatinput.setText("");
 			}	

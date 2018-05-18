@@ -50,11 +50,9 @@ public class ChatDAL  {
 				stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(query);
 				rs.next();
-				//{
-					result = rs.getString(1);
-					result = result.substring(11, result.length()-2);			//remove the date
-					result += " " + rs.getString(2) + rs.getString(3);
-				//}
+				result = rs.getString(1);
+				result = result.substring(11, result.length()-2);			//remove the date
+				result += " " + rs.getString(2) + rs.getString(3);
 				stmt.close();
 			} catch (SQLException e)
 			{
