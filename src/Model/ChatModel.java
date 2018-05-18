@@ -2,11 +2,13 @@ package Model;
 
 
 
+import java.util.Observable;
+
 import DAL.ChatDAL;
 import DAL.MainDAL;
 
 
-public class ChatModel {
+public class ChatModel extends Observable {
 	
 	public void SendMessage(int playerid, String message) {
 		if(message.length() > 255) {
@@ -21,6 +23,8 @@ public class ChatModel {
 			cd.SendMessage(playerid, message);
 			
 		}
+		this.setChanged();
+		this.notifyObservers(message);
 	}
 }
 	}

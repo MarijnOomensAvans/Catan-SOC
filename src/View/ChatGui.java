@@ -9,9 +9,9 @@ import Controller.ChatController;
 @SuppressWarnings("serial")
 public class ChatGui extends JFrame {
 	
-	public ChatGui(ChatController control,int playerid) {
+	public ChatGui(ChatController control, Chatoutputgui cog, int playerid) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setContentPane(new ChatContentPane(control,playerid));
+		setContentPane(new ChatContentPane(control, cog, playerid));
 		setResizable(true);
 		setVisible(true);
 		pack();

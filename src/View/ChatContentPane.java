@@ -10,10 +10,10 @@ import Controller.ChatController;
 @SuppressWarnings("serial")
 public class ChatContentPane extends JPanel {
 		
-	public ChatContentPane(ChatController control, int playerid) {
+	public ChatContentPane(ChatController control, Chatoutputgui cog, int playerid) {
 		setPreferredSize(new Dimension(500,400));
 		setLayout(new BorderLayout());
-		Chatoutputgui out = new Chatoutputgui(control,playerid);
+		Chatoutputgui out = cog;
 		add(out);
 		add(new Chatinputgui(control,playerid), BorderLayout.PAGE_END);
 	}
