@@ -19,7 +19,6 @@ public class ChatDAL extends Observable {
 	public void SendMessage(int playerid, String message) {
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 		LocalDateTime now = LocalDateTime.now(); 
-		System.out.println(dtf.format(now));
 		Statement stmt = null;
 		String query = "INSERT INTO chatregel(tijdstip,idspeler,bericht) VALUES('" + dtf.format(now)+"', "+playerid+", '"+ message+"')";
 		try
