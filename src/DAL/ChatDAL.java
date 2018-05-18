@@ -6,9 +6,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Observable;
 
-public class ChatDAL extends Observable {
+
+
+public class ChatDAL  {
 	
 	Connection conn;
 	
@@ -28,8 +29,7 @@ public class ChatDAL extends Observable {
 			int i = stmt.executeUpdate(query);
 			
 			stmt.close();
-			this.setChanged();
-			this.notifyObservers();
+			
 		} catch (SQLException e)
 		{
 			System.out.println(e.getMessage());

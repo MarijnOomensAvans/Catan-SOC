@@ -5,17 +5,17 @@ import java.awt.Dimension;
 
 import javax.swing.JPanel;
 
+import Controller.ChatController;
+
 @SuppressWarnings("serial")
 public class ChatContentPane extends JPanel {
-	
-	Chatoutputgui out;
-	
-	public ChatContentPane() {
+		
+	public ChatContentPane(ChatController control, int playerid) {
 		setPreferredSize(new Dimension(500,400));
 		setLayout(new BorderLayout());
-		out = new Chatoutputgui(1);
+		Chatoutputgui out = new Chatoutputgui(control,playerid);
 		add(out);
-		add(new Chatinputgui(1, out), BorderLayout.PAGE_END);
+		add(new Chatinputgui(control,playerid), BorderLayout.PAGE_END);
 	}
 
 }
