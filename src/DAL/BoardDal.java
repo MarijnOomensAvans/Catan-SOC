@@ -40,7 +40,7 @@ public class BoardDal {
 		}
 	}
 
-	public boolean hasHarbour(int x, int y) {
+	private boolean hasHarbour(int x, int y) {
 		try {
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT haven FROM locatie WHERE x = '" + x + "' && y = '" + y + "'");
