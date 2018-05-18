@@ -11,7 +11,7 @@ public class Board {
 	private HashMap<Integer, Collection> axisgrid = new HashMap<Integer, Collection>();
 	private int loopnumb = 0;
 	private int looplet = 1000;
-	private int boardType = 2; // This will normally be initliaised by the lobby
+	private int boardType = 1; // This will normally be initliaised by the lobby
 
 	public void setBoardType(int boardType) {
 		this.boardType = boardType;
@@ -21,7 +21,7 @@ public class Board {
 		generateBoard();
 		switch (this.boardType) {
 		case 1:
-			standardResource();
+			setStandardBoard();
 			break;
 		case 2:
 			setRandomBoard();
@@ -196,14 +196,28 @@ public class Board {
 
 	private void setCustomBoard() {
 		// TODO Overleggen met de spelstart groep over hoe we de gekozen tiles doorgeven
-
+		for (int i = 1000; i < 1019; i++) {
+			// For now IDspel will be 1 until lobby integration is completet
+			bdal.setTile(1, i, ((Tile) axisgrid.get(i)).getX(), ((Tile) axisgrid.get(i)).getY(),
+					((Tile) axisgrid.get(i)).getResourcetype(), ((Tile) axisgrid.get(i)).getChit());
+		}
 	}
 
 	private void setRandomBoard() {
 		randomResource();
 		randomChit();
 		for (int i = 1000; i < 1019; i++) {
-			// For now IDspel will be 1 untill lobby integration is completet
+			// For now IDspel will be 1 until lobby integration is completet
+			bdal.setTile(1, i, ((Tile) axisgrid.get(i)).getX(), ((Tile) axisgrid.get(i)).getY(),
+					((Tile) axisgrid.get(i)).getResourcetype(), ((Tile) axisgrid.get(i)).getChit());
+		}
+	}
+	
+	private void setStandardBoard() {
+		standardResource();
+		standardChit();
+		for (int i = 1000; i < 1019; i++) {
+			// For now IDspel will be 1 until lobby integration is completet
 			bdal.setTile(1, i, ((Tile) axisgrid.get(i)).getX(), ((Tile) axisgrid.get(i)).getY(),
 					((Tile) axisgrid.get(i)).getResourcetype(), ((Tile) axisgrid.get(i)).getChit());
 		}
@@ -433,61 +447,61 @@ public class Board {
 		for (int i = 1000; i <= 1018; i++) {
 			switch (i) {
 			case 1000:
-				placeChit(i, 9);
-				break;
-			case 1001:
-				placeChit(i, 8);
-				break;
-			case 1002:
 				placeChit(i, 12);
 				break;
-			case 1003:
-				placeChit(i, 5);
-				break;
-			case 1004:
-				placeChit(i, 11);
-				break;
-			case 1005:
+			case 1001:
 				placeChit(i, 10);
 				break;
+			case 1002:
+				placeChit(i, 18);
+				break;
+			case 1003:
+				placeChit(i, 6);
+				break;
+			case 1004:
+				placeChit(i, 16);
+				break;
+			case 1005:
+				placeChit(i, 14);
+				break;
 			case 1006:
-				placeChit(i, 3);
+				placeChit(i, 2);
 				break;
 			case 1007:
-				placeChit(i, 6);
+				placeChit(i, 8);
 				break;
 			case 1008:
-				placeChit(i, 6);
+				placeChit(i, 9);
 				break;
 			case 1009:
 				placeChit(i, 0);
 				break;
 			case 1010:
-				placeChit(i, 2);
+				placeChit(i, 1);
 				break;
 			case 1011:
 				placeChit(i, 4);
 				break;
 			case 1012:
-				placeChit(i, 4);
+				placeChit(i, 5);
 				break;
 			case 1013:
-				placeChit(i, 11);
+				placeChit(i, 17);
 				break;
 			case 1014:
 				placeChit(i, 3);
 				break;
 			case 1015:
-				placeChit(i, 9);
+				placeChit(i, 13);
 				break;
 			case 1016:
-				placeChit(i, 5);
+				placeChit(i, 7);
 				break;
 			case 1017:
-				placeChit(i, 10);
+				placeChit(i, 15);
 				break;
 			case 1018:
-				placeChit(i, 8);
+				placeChit(i, 11);
 				break;
 			}
 		}
