@@ -42,5 +42,40 @@ public class BoardDal {
 			}
 		}
 	}
+	
+	public boolean hasHarbour(int x,int y) {
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT haven FROM locatie WHERE x = '" + x + "' && y = '" + y + "'");
+			if(rs.getRow() == 1) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+		
+	}
+	
+	public char getLocationHarbourResource(int x,int y) {
+		if(hasHarbour(x,y)) {
+			try {
+				Statement stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery("SELECT idgrondstofsoort FROM locatie WHERE x = '" + x + "' && y = '" + y + "'");
+				if(rs.getRow() != 0) {
+					return (char) rs.getRow();
+				}
+				else {
+					return 0;
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return 0;
+	}
 
 }

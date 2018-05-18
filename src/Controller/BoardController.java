@@ -9,4 +9,6 @@ public class BoardController {
 	public void setBoardType(int boardType) {
 		board.setBoardType(boardType);
 	}
+	
+	
 }
