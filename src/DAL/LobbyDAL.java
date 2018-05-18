@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import Controller.LoginController;
 import Model.LobbyGameInfo;
+import Model.LobbyInvite;
 
 public class LobbyDAL {
 
@@ -81,7 +82,33 @@ public class LobbyDAL {
 		return players;
 	}
 	
-<<<<<<< HEAD
+	public ArrayList<LobbyInvite> getAllInvites(){
+		ArrayList<LobbyInvite> invites = new ArrayList<LobbyInvite>();
+		
+		try {
+			Connection conn = MainDAL.getConnection();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(
+						"SELECT s.idspel FROM spel s JOIN speler sp ON s.idspel = sp.idspel " + 
+						"WHERE sp.username LIKE '" + LoginController.getUsername() + "' " +
+						"AND sp.speelstatus LIKE 'uitgedaagde'"
+					);
+					
+			while(rs.next()) {
+				int gameID = rs.getInt(1);
+				String host = getHost(gameID);
+				invites.add(new LobbyInvite(gameID, host));
+				
+			}
+			
+			stmt.close();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return invites;
+	}
+	
 	private String getHost(int gameID) {
 		try {
 			Connection conn = MainDAL.getConnection();
@@ -132,8 +159,5 @@ public class LobbyDAL {
 			e.printStackTrace();
 		}
 	}
-=======
-	
->>>>>>> fb78b9837b43f153a324ec71879ca39fe798c7cd
 
 }
