@@ -124,5 +124,35 @@ public class LobbyDAL {
 		}
 		return "dbErr: host not found";
 	}
+	
+	public void acceptInvite(int gameID) {
+		try {
+			Connection conn = MainDAL.getConnection();
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate(
+					"UPDATE `bdjong1_db2`.`speler` SET `speelstatus`='geaccepteerd' "
+					+ "WHERE `idspel`= " + gameID + " "
+					+ "AND username LIKE '" + LoginController.getUsername() + "'"
+					);
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void rejectInvite(int gameID) {
+		try {
+			Connection conn = MainDAL.getConnection();
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate(
+					"UPDATE `bdjong1_db2`.`speler` SET `speelstatus`='geweigerd' "
+					+ "WHERE `idspel`= " + gameID + " "
+					+ "AND username LIKE '" + LoginController.getUsername() + "'"
+					);
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 }
