@@ -4,10 +4,6 @@ public class Location extends Collection{
 	private int x;
 	private int y;
 	
-	private boolean harbour;
-	
-	private Resourcetype resourceofharbour;
-	
 	public Location(int x,int y) {
 		this.x = x;
 		this.y = y;
@@ -27,14 +23,6 @@ public class Location extends Collection{
 
 	public void setY(int y) {
 		this.y = y;
-	}
-
-	public boolean isHaven() {
-		return harbour;
-	}
-
-	public void setHaven(boolean haven) {
-		this.harbour = haven;
 	}
 	
 }
