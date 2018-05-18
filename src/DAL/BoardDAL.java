@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class BoardDal {
 	MainDAL db = new MainDAL();
@@ -77,5 +75,21 @@ public class BoardDal {
 		}
 		return 0;
 	}
+	
+	public char getResourceTile(int idspel,int x,int y) {
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT idgrondstofsoort FROM tegel WHERE idspel = '" + idspel + "' && x = '" + x + "' && y = '" + y + "'");
+			if(rs.getRow() != 0) {
+				return (char) rs.getRow();
+			}
+			else {
+				return 0;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	return 0;
+}
 
 }
