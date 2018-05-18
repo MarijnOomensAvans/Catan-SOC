@@ -1,6 +1,6 @@
 package Model;
 
-import view.ChatGui;
+import View.ChatGui;
 
 public class MainClass {
 

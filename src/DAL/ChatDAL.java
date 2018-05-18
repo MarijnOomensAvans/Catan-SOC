@@ -7,11 +7,11 @@ import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class ChatDal {
+public class ChatDAL {
 	
 	Connection conn;
 	
-	public ChatDal() {
+	public ChatDAL() {
 		conn = MainDAL.getConnection();
 	}
 	
@@ -38,24 +38,27 @@ public class ChatDal {
 	public String GetMessage() {
 			String result ="";
 			Statement stmt = null;
-			String query = "SELECT tijdstip,bericht FROM chatregel";
+			
+			String query = "SELECT c.tijdstip, s.username, c.bericht FROM chatregel AS c "
+					+ "LEFT JOIN speler AS s ON s.idspeler = c.idspeler "
+					+ "ORDER BY tijdstip DESC "
+					+ "LIMIT 1";
 			try
 			{
 				stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(query);
-				int counter =1;
-				while (rs.next())
-				{
-					result = rs.getString(counter);
-					counter++;
-				}
+				rs.next();
+				//{
+					result = rs.getString(1);
+					result = result.substring(11, result.length()-2);			//remove the date
+					result += " " + rs.getString(2) + rs.getString(3);
+				//}
 				stmt.close();
 			} catch (SQLException e)
 			{
 				System.out.println(e.getMessage());
 			}
 			return result;
-			
 		}
 		
 	}

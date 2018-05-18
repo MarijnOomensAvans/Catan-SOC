@@ -1,8 +1,8 @@
 package Model;
 
-import DAL.ChatDal;
+import DAL.ChatDAL;
 import DAL.MainDAL;
-import DAL.PersonDal;
+import DAL.PersonDAL;
 
 public class Chat {
 	
@@ -21,7 +21,7 @@ public class Chat {
 		if ((db.loadDataBaseDriver("com.mysql.jdbc.Driver"))
 				&& (db.makeConnection()))
 		{
-			ChatDal cd = new ChatDal();
+			ChatDAL cd = new ChatDAL();
 			cd.SendMessage(playerid, message);
 		}
 	}
@@ -35,26 +35,25 @@ public class Chat {
 		if ((db.loadDataBaseDriver("com.mysql.jdbc.Driver"))
 				&& (db.makeConnection()))
 		{
-			ChatDal cd = new ChatDal();
-			String messages =cd.GetMessage();
-			String username = getUserName(playerid);
-			result = username + " "+messages;
-			
+			ChatDAL cd = new ChatDAL();
+			String messages = cd.GetMessage();
+			result = messages;
 		}
 	}
 		return result;
 	}
-	private String getUserName(int playerid) {
+	public String getUserName(int playerid) 
+	{
 		String name = "";
 		MainDAL db = new MainDAL();
 		{ 
-		if ((db.loadDataBaseDriver("com.mysql.jdbc.Driver"))
+			if ((db.loadDataBaseDriver("com.mysql.jdbc.Driver"))
 				&& (db.makeConnection()))
-		{
-			PersonDal pd = new PersonDal();
-			 name =pd.getName(playerid);
+			{
+			PersonDAL pd = new PersonDAL();
+			 name = pd.getName(playerid);
 			
-		}
+			}
 		}
 		return name;
 	}

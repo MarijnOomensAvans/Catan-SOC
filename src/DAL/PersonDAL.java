@@ -6,12 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class PersonDal {
+public class PersonDAL {
 	
 	Connection conn;
 	
 	
-	public PersonDal() {
+	public PersonDAL() {
 		 conn = MainDAL.getConnection();
 	}
 	
@@ -27,7 +27,7 @@ public class PersonDal {
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next())
 			{
-				result = rs.getString(id);
+				result = rs.getString(1);
 			}
 			stmt.close();
 		} catch (SQLException e)
