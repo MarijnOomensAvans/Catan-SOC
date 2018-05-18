@@ -7,6 +7,7 @@ public class DevelopmentCard {
 	
 	public DevelopmentCard(int kind) {
 		this.kind = kind;
+		setKindName();
 	}
 	
 	public void setKindName() {
@@ -15,6 +16,8 @@ public class DevelopmentCard {
 		}
 		else if(kind==  2 || kind < 4 ) {
 			kindName = "Monopolie";
+			
+			
 		}
 		else if(kind==  4 || kind < 6 ) {
 			kindName = "Uitvinding";
@@ -24,6 +27,7 @@ public class DevelopmentCard {
 		}
 		else if(kind==  19 ) {
 			kindName = "Kathedraal";
+			
 		}
 		else if(kind== 20 ) {
 			kindName = "Parlement";

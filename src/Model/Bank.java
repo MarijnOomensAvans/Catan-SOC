@@ -37,7 +37,7 @@ public class Bank {
 	}
 
 	private void makeDevCards() {
-		for(int i=0; i<25; i++) {
+		for(int i=0; i<24; i++) {
 			devbank.add(new DevelopmentCard(i));
 		}
 	}
@@ -54,5 +54,11 @@ public class Bank {
 			
 		}
 	}
+	public void printallDevCards() {
+		for(int i=0; i<devbank.size(); i++) {
+			System.out.println("Kaart " + i +" van het soort " + devbank.get(i).getKindName());
+		}
+	}
+	}
 
-}
+
