@@ -2,8 +2,6 @@ package Model;
 
 import java.util.ArrayList;
 
-import javax.swing.JLabel;
-
 import DAL.LobbyDAL;
 
 public class LobbyModel {
