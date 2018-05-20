@@ -1,14 +1,16 @@
 package Model;
 
 import Controller.ChatController;
-import View.ChatGui;
+
 
 
 public class MainClass {
 
 	public static void main(String[] args) {
-		new ChatController();
-
+		
+		ChatController test =new ChatController();
+		Thread t1 = new Thread(test);
+		t1.start();
 	}
 
 }

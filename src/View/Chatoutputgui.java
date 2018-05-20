@@ -1,3 +1,4 @@
+
 package View;
 
 import java.util.Observable;
@@ -18,11 +19,7 @@ public class Chatoutputgui extends JPanel implements Observer {
 	
 	public Chatoutputgui(ChatController control, int playerid) {
 		output = new JTextArea(30,37);
-		//control.SendMessage(playerid, " joined the chatroom");
-		//String message =control.getLatestMessage();
-		//output.append(message);
 		output.setEditable(false);
-		//output.setVisible(true);
 		add(output);
 	}
 	

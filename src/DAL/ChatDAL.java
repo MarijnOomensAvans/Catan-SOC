@@ -12,6 +12,9 @@ import java.time.format.DateTimeFormatter;
 public class ChatDAL  {
 	
 	Connection conn;
+	private int size;
+	private boolean firstMessage = false;
+	private boolean checkFirstTime =false;
 	
 	public ChatDAL() {
 		conn = MainDAL.getConnection();
@@ -25,6 +28,7 @@ public class ChatDAL  {
 		try
 		{
 			stmt = conn.createStatement();
+
 			@SuppressWarnings("unused")
 			int i = stmt.executeUpdate(query);
 			
@@ -34,13 +38,17 @@ public class ChatDAL  {
 		{
 			System.out.println(e.getMessage());
 		}
-		
+		if(firstMessage == false) {
+			firstMessage = true;
+			checkFirstTime = true;
+		}
 	}
 
 	public String GetMessage() {
 			String result ="";
 			Statement stmt = null;
-			
+			int counter =0;
+			String sizequery = "SELECT COUNT(*) FROM CHATREGEL";
 			String query = "SELECT c.tijdstip, s.username, c.bericht FROM chatregel AS c "
 					+ "LEFT JOIN speler AS s ON s.idspeler = c.idspeler "
 					+ "ORDER BY tijdstip DESC "
@@ -48,17 +56,41 @@ public class ChatDAL  {
 			try
 			{
 				stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery(query);
+				ResultSet rs = stmt.executeQuery(sizequery);
 				rs.next();
-				result = rs.getString(1);
+				counter = rs.getInt(1);
+				stmt.close();
+				stmt = conn.createStatement();
+				ResultSet re = stmt.executeQuery(query);
+				re.next();
+				result = re.getString(1);
 				result = result.substring(11, result.length()-2);			//remove the date
-				result += " " + rs.getString(2) + rs.getString(3);
+				result += " " + re.getString(2) + re.getString(3);
 				stmt.close();
 			} catch (SQLException e)
 			{
 				System.out.println(e.getMessage());
 			}
-			return result;
+			if(firstMessage == false) {
+				if(checkFirstTime == false) {
+					size = counter;
+					checkFirstTime = true;
+					return null;
+				}
+				if(counter > size) {
+					size = counter;
+					firstMessage = true;
+					return result;
+				} return null;
+				
+			}
+			if( counter > size) {
+				size = counter;
+				return result;
+			
+			}
+				return null;
+			
 		}
 		
 	}
