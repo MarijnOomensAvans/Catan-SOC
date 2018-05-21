@@ -1,7 +1,6 @@
 
 package View;
 
-import java.awt.Dimension;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -21,8 +20,7 @@ public class Chatoutputgui extends JPanel implements Observer {
 
 	
 	public Chatoutputgui(ChatController control, int playerid) {
-		output = new JTextArea();
-		output.setPreferredSize(new Dimension(400,340));
+		output = new JTextArea(21,37);
 		scroll = new JScrollPane(output,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 	
 		output.setEditable(false);
