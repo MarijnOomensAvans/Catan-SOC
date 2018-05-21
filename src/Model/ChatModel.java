@@ -12,7 +12,7 @@ public class ChatModel extends Observable {
 	
 	private MainDAL md;
 	private ChatDAL cd;
-	private boolean isMessenger = false;
+
 	
 	public ChatModel(MainDAL md, ChatDAL cd) {
 		this.md = md;
@@ -30,9 +30,8 @@ public class ChatModel extends Observable {
 			cd.SendMessage(playerid, message);
 			
 		}
-		isMessenger = true;
-		this.setChanged();
-		this.notifyObservers(getLatestMessage());
+		
+		getLatestMessage();
 	}
 }
 	
@@ -46,12 +45,8 @@ public class ChatModel extends Observable {
 			String messages = cd.GetMessage();
 			result = messages;
 		}
-	
-		if(isMessenger == false) {
-			this.setChanged();
-			this.notifyObservers(result);
-		}
-		isMessenger = false;
+		this.setChanged();
+		this.notifyObservers(result);
 		return result;
 	}
 	
