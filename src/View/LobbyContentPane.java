@@ -38,4 +38,12 @@ public class LobbyContentPane extends JPanel{
 	public void inviteResponse(int gameID, boolean response) {
 		frame.inviteResponse(gameID, response);
 	}
+	
+	public void mouseEnterGameInfo(int gameID) {
+		frame.mouseEnterGameInfo(gameID);
+	}
+	
+	public void mouseExitGameInfo(int gameID) {
+		frame.mouseExitGameInfo(gameID);
+	}
 }

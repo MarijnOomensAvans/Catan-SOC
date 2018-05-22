@@ -67,4 +67,15 @@ public class LobbyFrame extends JFrame{
 		controller.closeLobbyScreen();
 	}
 	
+	public void mouseEnterGameInfo(int gameID) {
+		controller.mouseEnterGameInfo(gameID);
+	}
+	
+	public void mouseExitGameInfo(int gameID) {
+		controller.mouseExitGameInfo(gameID);
+	}
+	
+	public void displayGameInfo() {
+		
+	}
 }

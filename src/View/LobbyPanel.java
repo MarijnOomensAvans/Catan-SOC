@@ -2,14 +2,12 @@ package View;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -46,6 +44,7 @@ public class LobbyPanel extends JPanel {
 	private JPanel rightPanel;
 	private JPanel leftPanel;
 	private JPanel centerPanel;
+	private JPanel overlayPanel;
 
 	private JPanel accountPanel;
 	private JPanel gamesPanel;
@@ -99,6 +98,7 @@ public class LobbyPanel extends JPanel {
 		rightPanel = new JPanel();
 		leftPanel = new JPanel();
 		centerPanel = new JPanel();
+		overlayPanel = new JPanel();
 
 		accountPanel = new JPanel();
 		gamesPanel = new JPanel();
@@ -172,6 +172,9 @@ public class LobbyPanel extends JPanel {
 		centerPanel.add(buttonPanel, BorderLayout.CENTER);
 		centerPanel.add(ourNamePanel, BorderLayout.SOUTH);
 		centerPanel.setBackground(Color.WHITE);
+		centerPanel.add(overlayPanel);
+		overlayPanel.setOpaque(true);
+		overlayPanel.setBackground(Color.black);
 
 		topPanel.setLayout(new BorderLayout());
 		topPanel.setBackground(Color.white);
@@ -182,6 +185,7 @@ public class LobbyPanel extends JPanel {
 		
 		drawAccountLabels();
 		drawInvites();
+		drawGameInfo();
 	}
 
 	public void drawAccountLabels() {
@@ -219,6 +223,7 @@ public class LobbyPanel extends JPanel {
 			info.setFocusable(false);
 			info.setOpaque(false);
 			info.setBorder(null);
+			info.addMouseListener(new Hover(gameID, host));
 			
 			//Create the label holding the hosts name
 			JLabel label = new JLabel(invites.get(i).getHost());
@@ -251,6 +256,33 @@ public class LobbyPanel extends JPanel {
 			row.add(acceptButton, BorderLayout.CENTER);
 			row.add(refuseButton, BorderLayout.LINE_END);
 			challengePanel.add(row);
+			
+		}
+	}
+	
+	public void drawGameInfo() {
+		JPanel panel = new JPanel();
+		panel.setBounds(0, 0, 250, 500);
+		
+		panel.setBackground(Color.black);
+	}
+	
+	public class Hover extends MouseAdapter{
+		
+		private int gameID;
+		
+		public Hover(int gameID, String host) {
+			this.gameID = gameID;
+		}
+		
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			pane.mouseEnterGameInfo(gameID);
+		}
+
+		@Override
+		public void mouseExited(MouseEvent e) {
+			pane.mouseExitGameInfo(gameID);
 		}
 	}
 }
