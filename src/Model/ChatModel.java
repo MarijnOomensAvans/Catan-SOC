@@ -22,8 +22,6 @@ public class ChatModel extends Observable {
 		}else {
 			cd.SendMessage(playerid, message);
 		}
-		
-		getLatestMessage();
 	
 }
 	
