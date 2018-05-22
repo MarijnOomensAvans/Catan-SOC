@@ -47,11 +47,11 @@ public class Player {
 			order_number = pd.getorder_number(player_id);
 	}
 
-	public void addMaterialCard(int kind) {
+	public void addMaterialCard(String kind) {
 		hand.add(conn.getMaterialCard(kind));
 	}
 	
-	public void removeMatCard(int kind) {
+	public void removeMatCard(String kind) {
 		for(int i=0; i< hand.size(); i++) {
 			if(hand.get(i).getKindOfMaterial() == kind) {
 				conn.giveMaterialCardBack(hand.get(i));

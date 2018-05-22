@@ -18,14 +18,14 @@ public class BankDAL {
 		String result ="";
 		Statement stmt = null;
 		int limit  = id-1;
-		String query = "SELECT idgrondstofkaart FROM grondstofkaart LIMIT "+limit+",1" ;
+		String query = "SELECT idgrondstofkaart FROM grondstofkaart LIMIT "+limit+","+id ;
 		try
 		{
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next())
 			{
-				result = rs.getString(id);
+				result = rs.getString(1);
 			}
 			stmt.close();
 		} catch (SQLException e)
@@ -36,7 +36,7 @@ public class BankDAL {
 	}
 
 
-	public char getKindOfMaterial(int id) {
+	public String getKindOfMaterial(int id) {
 		String result ="";
 		Statement stmt = null;
 		int limit  = id-1;
@@ -47,15 +47,15 @@ public class BankDAL {
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next())
 			{
-				result = rs.getString(id);
+				result = rs.getString(1);
 			}
 			stmt.close();
 		} catch (SQLException e)
 		{
 			System.out.println(e.getMessage());
 		}
-		char res =result.charAt(0);
-		return res;
+		
+		return result;
 	
 		
 	}

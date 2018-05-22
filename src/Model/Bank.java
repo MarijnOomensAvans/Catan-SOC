@@ -15,6 +15,7 @@ public class Bank {
 		this.bd = bd;
 		makeMaterialCards();
 		makeDevCards();
+		printallMatCards();
 	}
 	
 	private void makeMaterialCards() {
@@ -24,7 +25,7 @@ public class Bank {
 		
 		
 	}
-	public MaterialCard getMaterialCard(int kind) {
+	public MaterialCard getMaterialCard(String kind) {
 		MaterialCard returncard = null;
 		for(int i=0; i<matbank.size(); i++) {
 			if(matbank.get(i).getKindOfMaterial() == kind) {

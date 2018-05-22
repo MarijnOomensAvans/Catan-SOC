@@ -5,7 +5,7 @@ import DAL.BankDAL;
 public class MaterialCard {
 	
 	private String idCard;
-	private char KindOfMaterial;
+	private String KindOfMaterial;
 	private BankDAL bd;
 
 	public MaterialCard(BankDAL bd, int a) {
@@ -27,7 +27,7 @@ public class MaterialCard {
 
 	
 
-	public char getKindOfMaterial() {
+	public String getKindOfMaterial() {
 		return KindOfMaterial;
 	}
 

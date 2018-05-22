@@ -23,7 +23,7 @@ public class Controller {
 		player = new Player(this, pd);
 	}
 
-	public MaterialCard getMaterialCard(int kind) {
+	public MaterialCard getMaterialCard(String kind) {
 		MaterialCard card = bank.getMaterialCard(kind);
 		return card;
 	}
