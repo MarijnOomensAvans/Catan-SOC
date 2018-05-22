@@ -5,7 +5,6 @@ package Model;
 import java.util.Observable;
 
 import DAL.ChatDAL;
-import DAL.MainDAL;
 
 
 public class ChatModel extends Observable {

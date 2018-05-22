@@ -7,6 +7,7 @@ import java.util.Observer;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.text.DefaultCaret;
 
 import Controller.ChatController;
 
@@ -22,7 +23,9 @@ public class Chatoutputgui extends JPanel implements Observer {
 	public Chatoutputgui(ChatController control, int playerid) {
 		output = new JTextArea(21,37);
 		scroll = new JScrollPane(output,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-	
+		 DefaultCaret caret = (DefaultCaret)output.getCaret();
+		 caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+
 		output.setEditable(false);
 		
 		add(scroll);
