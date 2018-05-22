@@ -8,6 +8,8 @@ import DAL.BoardDal;
 public class Board {
 	Random rand = new Random();
 	BoardDal bdal = new BoardDal();
+	//We made one hashmap with all Tiles and Location in it (under superclass collection). Every Collection objecht has an id which we use
+	//to quickly identify different objects.
 	private HashMap<Integer, Collection> axisgrid = new HashMap<Integer, Collection>();
 	private int loopnumb = 0;
 	private int looplet = 1000;
@@ -32,6 +34,7 @@ public class Board {
 		}
 	}
 
+	//The board is always generated in the same manner, since the positions of tiles and locations are predetermined.
 	public void generateBoard() {
 		for (int x = 1; x < 12; x++) {
 			for (int y = 1; y < 12; y++) {
@@ -134,6 +137,9 @@ public class Board {
 		}
 	}
 
+	
+	//Tiles are placed at a location in the grid (x and y coordinates). After the grid is placed, locations are initialised around the grid.
+	//We check for overlapping locations with the booleans.
 	public void placetile(int x, int y) {
 		Tile tile = new Tile(x, y);
 		boolean loc1 = true;
@@ -224,25 +230,26 @@ public class Board {
 	}
 
 	// Chit placement
-	// -----------------------------------------------------------------------------------------------------------------------
-
+	// ------------------------------------------------------------------------------------------------------------------------
+	//Chits are places randomly in an even manner (there's always a set amount of a specific chitnumber i.e only 2 8's).
+	//Chits are placed with an id, this id corrosponds with the id set in the database (id 2 and 3 are both number 2).
 	private void randomChit() {
 		((Tile) axisgrid.get(1009)).setChit(0);
 		int location = 1000;
 		while (true) {
 			int number = rand.nextInt(12) + 2;
-			int resourcecount = 0;
+			int chitcount = 0;
 			if (location != 1009) {
 				switch (number) {
 				case 2:
 					for (int i = 1000; i <= 1018; i++) {
 						if (axisgrid.get(i) != null) {
 							if (((Tile) axisgrid.get(i)).getChit() == 1) {
-								resourcecount += 1;
+								chitcount += 1;
 							}
 						}
 					}
-					if (resourcecount < 1) {
+					if (chitcount < 1) {
 						placeChit(location, 1);
 						location++;
 						break;
@@ -253,16 +260,16 @@ public class Board {
 					for (int i = 1000; i <= 1018; i++) {
 						if (axisgrid.get(i) != null) {
 							if (((Tile) axisgrid.get(i)).getChit() == 2 || ((Tile) axisgrid.get(i)).getChit() == 3) {
-								resourcecount += 1;
+								chitcount += 1;
 							}
 						}
 					}
-					if (resourcecount < 1) {
+					if (chitcount < 1) {
 						placeChit(location, 2);
 						location++;
 						break;
 					} else {
-						if (resourcecount < 2) {
+						if (chitcount < 2) {
 							placeChit(location, 3);
 							location++;
 							break;
@@ -274,16 +281,16 @@ public class Board {
 					for (int i = 1000; i <= 1018; i++) {
 						if (axisgrid.get(i) != null) {
 							if (((Tile) axisgrid.get(i)).getChit() == 4 || ((Tile) axisgrid.get(i)).getChit() == 5) {
-								resourcecount += 1;
+								chitcount += 1;
 							}
 						}
 					}
-					if (resourcecount < 1) {
+					if (chitcount < 1) {
 						placeChit(location, 4);
 						location++;
 						break;
 					} else {
-						if (resourcecount < 2) {
+						if (chitcount < 2) {
 							placeChit(location, 5);
 							location++;
 							break;
@@ -295,16 +302,16 @@ public class Board {
 					for (int i = 1000; i <= 1018; i++) {
 						if (axisgrid.get(i) != null) {
 							if (((Tile) axisgrid.get(i)).getChit() == 6 || ((Tile) axisgrid.get(i)).getChit() == 7) {
-								resourcecount += 1;
+								chitcount += 1;
 							}
 						}
 					}
-					if (resourcecount < 1) {
+					if (chitcount < 1) {
 						placeChit(location, 6);
 						location++;
 						break;
 					} else {
-						if (resourcecount < 2) {
+						if (chitcount < 2) {
 							placeChit(location, 7);
 							location++;
 							break;
@@ -316,16 +323,16 @@ public class Board {
 					for (int i = 1000; i <= 1018; i++) {
 						if (axisgrid.get(i) != null) {
 							if (((Tile) axisgrid.get(i)).getChit() == 8 || ((Tile) axisgrid.get(i)).getChit() == 9) {
-								resourcecount += 1;
+								chitcount += 1;
 							}
 						}
 					}
-					if (resourcecount < 1) {
+					if (chitcount < 1) {
 						placeChit(location, 8);
 						location++;
 						break;
 					} else {
-						if (resourcecount < 2) {
+						if (chitcount < 2) {
 							placeChit(location, 9);
 							location++;
 							break;
@@ -337,16 +344,16 @@ public class Board {
 					for (int i = 1000; i <= 1018; i++) {
 						if (axisgrid.get(i) != null) {
 							if (((Tile) axisgrid.get(i)).getChit() == 10 || ((Tile) axisgrid.get(i)).getChit() == 11) {
-								resourcecount += 1;
+								chitcount += 1;
 							}
 						}
 					}
-					if (resourcecount < 1) {
+					if (chitcount < 1) {
 						placeChit(location, 10);
 						location++;
 						break;
 					} else {
-						if (resourcecount < 2) {
+						if (chitcount < 2) {
 							placeChit(location, 11);
 							location++;
 							break;
@@ -358,16 +365,16 @@ public class Board {
 					for (int i = 1000; i <= 1018; i++) {
 						if (axisgrid.get(i) != null) {
 							if (((Tile) axisgrid.get(i)).getChit() == 12 || ((Tile) axisgrid.get(i)).getChit() == 13) {
-								resourcecount += 1;
+								chitcount += 1;
 							}
 						}
 					}
-					if (resourcecount < 1) {
+					if (chitcount < 1) {
 						placeChit(location, 12);
 						location++;
 						break;
 					} else {
-						if (resourcecount < 2) {
+						if (chitcount < 2) {
 							placeChit(location, 13);
 							location++;
 							break;
@@ -379,16 +386,16 @@ public class Board {
 					for (int i = 1000; i <= 1018; i++) {
 						if (axisgrid.get(i) != null) {
 							if (((Tile) axisgrid.get(i)).getChit() == 14 || ((Tile) axisgrid.get(i)).getChit() == 15) {
-								resourcecount += 1;
+								chitcount += 1;
 							}
 						}
 					}
-					if (resourcecount < 1) {
+					if (chitcount < 1) {
 						placeChit(location, 14);
 						location++;
 						break;
 					} else {
-						if (resourcecount < 2) {
+						if (chitcount < 2) {
 							placeChit(location, 15);
 							location++;
 							break;
@@ -400,16 +407,16 @@ public class Board {
 					for (int i = 1000; i <= 1018; i++) {
 						if (axisgrid.get(i) != null) {
 							if (((Tile) axisgrid.get(i)).getChit() == 16 || ((Tile) axisgrid.get(i)).getChit() == 17) {
-								resourcecount += 1;
+								chitcount += 1;
 							}
 						}
 					}
-					if (resourcecount < 1) {
+					if (chitcount < 1) {
 						placeChit(location, 16);
 						location++;
 						break;
 					} else {
-						if (resourcecount < 2) {
+						if (chitcount < 2) {
 							placeChit(location, 17);
 							location++;
 							break;
@@ -421,11 +428,11 @@ public class Board {
 					for (int i = 1000; i <= 1018; i++) {
 						if (axisgrid.get(i) != null) {
 							if (((Tile) axisgrid.get(i)).getChit() == 18) {
-								resourcecount += 1;
+								chitcount += 1;
 							}
 						}
 					}
-					if (resourcecount < 1) {
+					if (chitcount < 1) {
 						placeChit(location, 18);
 						location++;
 						break;
@@ -509,7 +516,7 @@ public class Board {
 
 	// Resource placement
 	// -------------------------------------------------------------------------------------------------------------------
-
+	//Resources are placed randomly in an even manner.
 	private void randomResource() {
 		((Tile) axisgrid.get(1009)).setResourcetype('X');
 		int location = 1000;
@@ -669,6 +676,8 @@ public class Board {
 		}
 
 	}
+	
+	//-----------------------------------------------------------------------------------------------------------------------
 
 	public void placeResource(int position, char resource) {
 		((Tile) axisgrid.get(position)).setResourcetype(resource);
@@ -676,6 +685,5 @@ public class Board {
 
 	public void placeChit(int position, int chit) {
 		((Tile) axisgrid.get(position)).setChit(chit);
-		;
 	}
 }
