@@ -11,18 +11,19 @@ import View.LobbyFrame;
 public class LobbyController {
 	
 	private LobbyModel lobbyModel;
-	private LobbyDAL lobbyDAL;
 	private LobbyFrame frame;
 
 	public LobbyController() {
-		lobbyDAL = new LobbyDAL();
-		lobbyModel = new LobbyModel(lobbyDAL);
+		lobbyModel = new LobbyModel();
 		frame = new LobbyFrame(this);
-		testDAL();
 	}
 	
 	public ArrayList<String> getUsernames() {
 		return lobbyModel.getUsernames();
+	}
+	
+	public ArrayList<LobbyInvite> getInvites(){
+		return lobbyModel.getInvites();
 	}
 	
 	public void startLogin() {
@@ -32,6 +33,7 @@ public class LobbyController {
 	public void closeLobbyScreen() {
 		frame.dispose();
 	}
+<<<<<<< HEAD
 
 	//DEBUG FUNCTION
 	private void testDAL() {
@@ -52,6 +54,12 @@ public class LobbyController {
 //			System.out.println(invites.get(i).getGameID());
 //			System.out.println(invites.get(i).getHost());
 //		}
+=======
+	
+	//Response to invite, true = accept, false = refuse
+	public void inviteRespone(int gameID, boolean response) {
+		System.out.println(response);
+>>>>>>> 10dff355637d3d29ba57506960047f8114ce7edc
 	}
 	
 }
