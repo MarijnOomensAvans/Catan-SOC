@@ -10,8 +10,13 @@ public class MainClass {
 		player1.getColor();
 		player1.getOrder_number();
 		System.out.println(player1.getPoints() + "punten");
-		bank.printallMatCards();
-		bank.printallDevCards();
+//		bank.printallMatCards();
+//		bank.printallDevCards();
+		player1.getPoints();
+		player1.adddevelopmentCard(2);
+		player1.printallPlayerDevCards();
+		player1.testpointDevCard();
+		System.out.println(player1.getPoints() + "punten");
 	}
 }
 

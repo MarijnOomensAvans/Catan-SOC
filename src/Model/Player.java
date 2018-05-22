@@ -76,11 +76,20 @@ public class Player {
 			}
 		}
 	}
-	
-	
+
 	public void adddevelopmentCard(int kind) {
 		handdev.add(bank.getDevelopmentCard());
-	}
+	
+		}
+	
+	public void testpointDevCard() {
+		for(int i=0; i< handdev.size(); i++) {
+			if(handdev.get(i).getKind() >= 19) {
+				System.out.println("hey hier krijg je een punt voor");
+				points = points + 1;
+			}
+		}
+}
 	
 	public void removeDevCard(int kind) {
 		for(int i=0; i< handdev.size(); i++) {
@@ -116,7 +125,11 @@ public class Player {
 	public void setPoints(int points) {
 		this.points = points;
 	}
+	public void printallPlayerDevCards() {
+		for(int i=0; i<handdev.size(); i++) {
+			System.out.println("Kaart " + i +" van het soort " + handdev.get(i).getKindName());
+		}
 	
 	
-	
+}
 }
