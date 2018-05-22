@@ -88,15 +88,15 @@ public class Player {
 		for(int i=0; i< handdev.size(); i++) {
 			if(handdev.get(i).getKind() >= 20) {
 				System.out.println("hey hier krijg je een punt voor");
-				points = points + 1;
+				points++;
 			}
 		}
 }
 	public void testKnightmight() {
 		for(int i=0; i< handdev.size(); i++) {
-			if(handdev.get(i).getKind() >= 6 || handdev.get(i).getKind() <=20) {
+			if(handdev.get(i).getKind() >= 6 && handdev.get(i).getKind() <=20) {
 				System.out.println("hey hier krijg je een ridder punt voor");
-				knightmight = knightmight + 1;
+				knightmight++;
 			}
 		}
 	}
