@@ -33,39 +33,6 @@ public class LobbyController {
 	public void closeLobbyScreen() {
 		frame.dispose();
 	}
-<<<<<<< HEAD
-
-	// Response to invite, true = accept, false = refuse
-=======
-<<<<<<< HEAD
-
-	//DEBUG FUNCTION
-	private void testDAL() {
-		System.out.println("---------- GAMES -----------");
-		System.out.println("");
-		ArrayList<LobbyGameInfo> games = lobbyDAL.getAllActiveGames();
-		for(int i = 0; i < games.size(); i++) {
-			System.out.println(games.get(i).getID());
-			for(int p = 0; p < games.get(i).getPlayers().size(); p++) {
-				System.out.println(games.get(i).getPlayers().get(p));
-			}
-		}
-		System.out.println("");
-		System.out.println("---------- INVITES -----------");
-		System.out.println("");
-//		ArrayList<LobbyInvite> invites = lobbyDAL.getAllInvites();
-//		for(int i = 0; i < invites.size(); i++) {
-//			System.out.println(invites.get(i).getGameID());
-//			System.out.println(invites.get(i).getHost());
-//		}
-=======
-	
-	//Response to invite, true = accept, false = refuse
->>>>>>> 000b423c2f22d23b9108232fceb8446619a4f035
-	public void inviteRespone(int gameID, boolean response) {
-		System.out.println(response);
->>>>>>> 10dff355637d3d29ba57506960047f8114ce7edc
-	}
 
 	public void mouseEnterGameInfo(int gameID) {
 		// TODO Auto-generated method stub

@@ -30,14 +30,13 @@ public class LobbyContentPane extends JPanel {
 	public ArrayList<String> getUsernames() {
 		return frame.getUsernames();
 	}
-<<<<<<< HEAD
 
 	public void switchLobbyScreen() {
 		removeAll();
 		repaint();
 		add(setupGame);
 		frame.pack();
-=======
+	}
 	
 	public ArrayList<LobbyInvite> getInvites(){
 		return frame.getInvites();
@@ -47,13 +46,7 @@ public class LobbyContentPane extends JPanel {
 		playButton.addActionListener(e -> {
 			frame.closeLobby();
 		});
->>>>>>> 10dff355637d3d29ba57506960047f8114ce7edc
 	}
-	
-	public void inviteResponse(int gameID, boolean response) {
-		frame.inviteResponse(gameID, response);
-	}
-	
 	public void mouseEnterGameInfo(int gameID) {
 		frame.mouseEnterGameInfo(gameID);
 	}

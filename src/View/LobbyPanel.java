@@ -98,7 +98,6 @@ public class LobbyPanel extends JPanel {
 		rightPanel = new JPanel();
 		leftPanel = new JPanel();
 		centerPanel = new JPanel();
-		overlayPanel = new JPanel();
 
 		accountPanel = new JPanel();
 		gamesPanel = new JPanel();
@@ -172,9 +171,6 @@ public class LobbyPanel extends JPanel {
 		centerPanel.add(buttonPanel, BorderLayout.CENTER);
 		centerPanel.add(ourNamePanel, BorderLayout.SOUTH);
 		centerPanel.setBackground(Color.WHITE);
-		centerPanel.add(overlayPanel);
-		overlayPanel.setOpaque(true);
-		overlayPanel.setBackground(Color.black);
 
 		topPanel.setLayout(new BorderLayout());
 		topPanel.setBackground(Color.white);
@@ -185,7 +181,6 @@ public class LobbyPanel extends JPanel {
 		
 		drawAccountLabels();
 		drawInvites();
-		drawGameInfo();
 	}
 
 	public void drawAccountLabels() {
@@ -238,13 +233,13 @@ public class LobbyPanel extends JPanel {
 			JButton acceptButton = new JButton("\u2713");
 			acceptButton.setPreferredSize(new Dimension(INVITEBUTTONWIDTH, NAMEHEIGHT));
 			acceptButton.addActionListener(e -> {
-				pane.inviteResponse(gameID, true);
+				
 			});
 			
 			JButton refuseButton = new JButton("X");
 			refuseButton.setPreferredSize(new Dimension(INVITEBUTTONWIDTH, NAMEHEIGHT));
 			refuseButton.addActionListener(e -> {
-				pane.inviteResponse(gameID, false);
+				
 			});
 			
 			acceptButton.setBackground(new Color(60, 180, 60, 255));
@@ -258,13 +253,6 @@ public class LobbyPanel extends JPanel {
 			challengePanel.add(row);
 			
 		}
-	}
-	
-	public void drawGameInfo() {
-		JPanel panel = new JPanel();
-		panel.setBounds(0, 0, 250, 500);
-		
-		panel.setBackground(Color.black);
 	}
 	
 	public class Hover extends MouseAdapter{
