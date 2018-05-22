@@ -35,6 +35,7 @@ public class LobbyFrame extends JFrame{
 	public ArrayList<String> getUsernames(){
 		return controller.getUsernames();
 	}
+
 	
 	public ArrayList<LobbyInvite> getInvites() {
 		return controller.getInvites();
@@ -67,6 +68,7 @@ public class LobbyFrame extends JFrame{
 		controller.closeLobbyScreen();
 	}
 	
+<<<<<<< HEAD
 	public void mouseEnterGameInfo(int gameID) {
 		controller.mouseEnterGameInfo(gameID);
 	}
@@ -77,5 +79,10 @@ public class LobbyFrame extends JFrame{
 	
 	public void displayGameInfo() {
 		
+=======
+	public void switchScreen() {
+		pane.switchLobbyScreen();
+		pack();
+>>>>>>> 000b423c2f22d23b9108232fceb8446619a4f035
 	}
 }
