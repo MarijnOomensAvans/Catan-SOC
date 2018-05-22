@@ -13,6 +13,7 @@ public class ChatController implements Runnable {
 	private ChatGui chatview;
 	private ChatModel chatmodel;
 	private Chatoutputgui cog;
+	@SuppressWarnings("unused")
 	private MainDAL md = new MainDAL();
 	private ChatDAL cd = new ChatDAL();
 	
@@ -20,7 +21,7 @@ public class ChatController implements Runnable {
 
 		this.cog = new Chatoutputgui(this, 1);
 
-		this.chatmodel =new ChatModel(md,cd);
+		this.chatmodel =new ChatModel(cd);
 		chatmodel.addObserver(cog);
 		this.chatview = new ChatGui(this, cog, 1);
 		
