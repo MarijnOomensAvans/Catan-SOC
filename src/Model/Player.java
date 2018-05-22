@@ -16,6 +16,8 @@ public class Player {
 	private int points = 0; 
 	private Controller conn;
 	private PersonDal pd;
+	private int points = 0;
+	
 	private ArrayList<MaterialCard> hand = new ArrayList<MaterialCard>();
 	private ArrayList<DevelopmentCard> handdev = new ArrayList<DevelopmentCard>();
 
