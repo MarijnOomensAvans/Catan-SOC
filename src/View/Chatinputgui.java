@@ -23,6 +23,16 @@ public class Chatinputgui extends JPanel  {
 		
 		this.setPreferredSize(new Dimension(500,35));
 		chatinput.setColumns(30);
+		chatinput.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String message = ": " + chatinput.getText() + "\n";
+				control.SendMessage(playerid, message);
+				chatinput.setText("");				
+			}
+			
+		});
 		sendbutton.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
