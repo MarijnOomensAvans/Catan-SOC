@@ -52,7 +52,7 @@ public class Bank {
 	}
 	
 	public void printallMatCards() {
-		for(int i=1; i<matbank.size(); i++) {
+		for(int i=0; i<matbank.size(); i++) {
 				System.out.println("Kaart "+ i +" van het soort " + matbank.get(i).getIdCard());
 				System.out.println(matbank.get(i).getKindOfMaterial());
 			

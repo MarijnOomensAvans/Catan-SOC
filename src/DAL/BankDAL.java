@@ -17,8 +17,13 @@ public class BankDAL {
 	public String getId(int id) {
 		String result ="";
 		Statement stmt = null;
+		String query = "";
+		if( id == 0) {
+			query = "SELECT idgrondstofkaart FROM grondstofkaart LIMIT 1" ;
+		}else {
 		int limit  = id-1;
-		String query = "SELECT idgrondstofkaart FROM grondstofkaart LIMIT "+limit+","+id ;
+		query = "SELECT idgrondstofkaart FROM grondstofkaart LIMIT "+limit+",1" ;
+		}
 		try
 		{
 			stmt = conn.createStatement();
@@ -40,7 +45,7 @@ public class BankDAL {
 		String result ="";
 		Statement stmt = null;
 		int limit  = id-1;
-		String query = "SELECT idgrondstofsoort FROM grondstofkaart LIMIT "+limit+","+id ;
+		String query = "SELECT idgrondstofsoort FROM grondstofkaart LIMIT "+limit+",1" ;
 		try
 		{
 			stmt = conn.createStatement();
