@@ -8,6 +8,7 @@ import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
+import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
@@ -39,9 +40,12 @@ public class DrawingPanel extends JPanel {
 	private int firstRowX = 164;
 	
 	private String [] types = {"Standaard", "Random", "Custom"};
+	
+	private ArrayList<Hexagon> hexagons;
 
 	public DrawingPanel() {
-	
+		hexagons = new ArrayList<>();
+		
 		hexagon6 = new Hexagon(new Point(400, 164), 50);
 		hexagon11 = new Hexagon(new Point(400, 250), 50);
 		hexagon16 = new Hexagon(new Point(400, 336), 50);
@@ -66,6 +70,26 @@ public class DrawingPanel extends JPanel {
 		hexagon9 = new Hexagon(new Point(100, 250), 50);
 		hexagon14 = new Hexagon(new Point(100, 336), 50);
 		
+		hexagons.add(hexagon1);
+		hexagons.add(hexagon2);
+		hexagons.add(hexagon3);
+		hexagons.add(hexagon4);
+		hexagons.add(hexagon5);
+		hexagons.add(hexagon6);
+		hexagons.add(hexagon7);
+		hexagons.add(hexagon8);
+		hexagons.add(hexagon9);
+		hexagons.add(hexagon10);
+		hexagons.add(hexagon11);
+		hexagons.add(hexagon12);
+		hexagons.add(hexagon13);
+		hexagons.add(hexagon14);
+		hexagons.add(hexagon15);
+		hexagons.add(hexagon16);
+		hexagons.add(hexagon17);
+		hexagons.add(hexagon18);
+		hexagons.add(hexagon19);
+		
 		
 		this.setPreferredSize(new Dimension(500, 500));
 		this.addMouseMotionListener(new Hover());
@@ -80,35 +104,21 @@ public class DrawingPanel extends JPanel {
 		int h2 = getHeight() / 2;
 		g2d.rotate(-Math.PI / 2, w2, h2);
 		g2d.setColor(hexagonColor);
-		g2d.drawPolygon(hexagon1.getHexagon());
-		g2d.fillPolygon(hexagon1.getHexagon());
-		g2d.drawPolygon(hexagon2.getHexagon());
-		g2d.drawPolygon(hexagon3.getHexagon());
-		g2d.drawPolygon(hexagon4.getHexagon());
-		g2d.drawPolygon(hexagon5.getHexagon());
-		g2d.drawPolygon(hexagon6.getHexagon());
-		g2d.drawPolygon(hexagon7.getHexagon());
-		g2d.drawPolygon(hexagon8.getHexagon());
-		g2d.drawPolygon(hexagon9.getHexagon());
-		g2d.drawPolygon(hexagon10.getHexagon());
-		g2d.drawPolygon(hexagon11.getHexagon());
-		g2d.drawPolygon(hexagon12.getHexagon());
-		g2d.drawPolygon(hexagon13.getHexagon());
-		g2d.drawPolygon(hexagon14.getHexagon());
-		g2d.drawPolygon(hexagon15.getHexagon());
-		g2d.drawPolygon(hexagon16.getHexagon());
-		g2d.drawPolygon(hexagon17.getHexagon());
-		g2d.drawPolygon(hexagon18.getHexagon());
-		g2d.drawPolygon(hexagon19.getHexagon());
-	}
-	
+		
+		for(int i =0; i < hexagons.size(); i++) {
+			g2d.drawPolygon(hexagons.get(i).getHexagon());;
+		}
 
+	}
     
     public class Hover extends MouseAdapter{
 		
     	@Override
 		public void mouseMoved(MouseEvent e) {
-    		System.out.println(hexagon1.getHexagon().contains(e.getY(), e.getX()));
+    		for(int i =0; i < hexagons.size(); i++) {
+    			System.out.println(hexagons.get(i).getHexagon().contains(e.getY(), e.getX()));
+    			
+    		}
 		}
 
 		@Override
