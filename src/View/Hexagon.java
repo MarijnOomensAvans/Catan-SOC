@@ -1,15 +1,9 @@
 package View;
 
-import java.awt.Color;
 import java.awt.Point;
 import java.awt.Polygon;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-
-public class Hexagon extends JLabel implements MouseListener{
+public class Hexagon {
 	  private final int radius;
 
       private final Point center;
@@ -20,7 +14,7 @@ public class Hexagon extends JLabel implements MouseListener{
           this.center = center;
           this.radius = radius;
           this.hexagon = createHexagon();
-         addMouseListener(this);
+          System.out.println(hexagon.getBounds());
       }
 
       private Polygon createHexagon() {
@@ -35,7 +29,7 @@ public class Hexagon extends JLabel implements MouseListener{
               
               
           }
-
+          
           return polygon;
       }
 
@@ -50,35 +44,4 @@ public class Hexagon extends JLabel implements MouseListener{
       public Polygon getHexagon() {
           return hexagon;
       }
-
-	@Override
-	public void mouseClicked(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mousePressed(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseReleased(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseEntered(MouseEvent e) {
-		System.out.println("Juraj you did it");
-		
-	}
-
-	@Override
-	public void mouseExited(MouseEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
   }

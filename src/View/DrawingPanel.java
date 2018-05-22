@@ -7,13 +7,9 @@ import java.awt.Graphics2D;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 
-import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
-import javax.swing.JLabel;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
 
 public class DrawingPanel extends JPanel {
 
@@ -72,6 +68,7 @@ public class DrawingPanel extends JPanel {
 		
 		
 		this.setPreferredSize(new Dimension(500, 500));
+		this.addMouseMotionListener(new Hover());
 		setBackground(lightBlue);
 	}
 
@@ -103,6 +100,21 @@ public class DrawingPanel extends JPanel {
 		g2d.drawPolygon(hexagon17.getHexagon());
 		g2d.drawPolygon(hexagon18.getHexagon());
 		g2d.drawPolygon(hexagon19.getHexagon());
-		
 	}
+	
+
+    
+    public class Hover extends MouseAdapter{
+		
+    	@Override
+		public void mouseMoved(MouseEvent e) {
+    		System.out.println(hexagon1.getHexagon().contains(e.getY(), e.getX()));
+		}
+
+		@Override
+		public void mouseDragged(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+    }
 }
