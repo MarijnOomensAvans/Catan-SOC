@@ -10,6 +10,8 @@ public class MainDAL {
 	public MainDAL()
 	{
 		conn = null;
+		loadDataBaseDriver("com.mysql.jdbc.Driver");
+		makeConnection();
 	}
 
 	public boolean loadDataBaseDriver(String driverName)

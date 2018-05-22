@@ -3,22 +3,25 @@ package Model;
 import java.util.ArrayList;
 import java.util.Random;
 
+import DAL.BankDAL;
+
 public class Bank {
 	
+	private BankDAL bd;
 	private ArrayList<DevelopmentCard> devbank = new ArrayList <DevelopmentCard>();
 	private ArrayList<MaterialCard> matbank = new ArrayList <MaterialCard>();
 	
-	public Bank() {
+	public Bank(BankDAL bd) {
+		this.bd = bd;
 		makeMaterialCards();
 		makeDevCards();
 	}
 	
 	private void makeMaterialCards() {
-		for(char i='A'; i<'F'; i++) {
-			for(int a=0; a<20; a++) {
-				matbank.add(new MaterialCard(i));
+			for(int a=1; a<96; a++) {
+				matbank.add(new MaterialCard(bd,a));
 			}
-		}
+		
 		
 	}
 	public MaterialCard getMaterialCard(int kind) {
@@ -49,7 +52,8 @@ public class Bank {
 	
 	public void printallMatCards() {
 		for(int i=1; i<matbank.size(); i++) {
-				System.out.println("Kaart "+ i +" van het soort " + matbank.get(i).getMaterial());
+				System.out.println("Kaart "+ i +" van het soort " + matbank.get(i).getIdCard());
+				System.out.println(matbank.get(i).getKindOfMaterial());
 			
 			
 		}

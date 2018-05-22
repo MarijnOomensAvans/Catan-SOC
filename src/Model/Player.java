@@ -3,8 +3,7 @@ package Model;
 
 import java.util.ArrayList;
 
-
-import DAL.MainDAL;
+import Controller.Controller;
 import DAL.PersonDal;
 
 public class Player {
@@ -15,11 +14,14 @@ public class Player {
 	private String color;
 	private int order_number;
 	private int points = 0; 
-	private Bank bank = new Bank();
+	private Controller conn;
+	private PersonDal pd;
 	private ArrayList<MaterialCard> hand = new ArrayList<MaterialCard>();
 	private ArrayList<DevelopmentCard> handdev = new ArrayList<DevelopmentCard>();
 
-	public Player() {
+	public Player(Controller controller, PersonDal pd) {
+		conn = controller;
+		this.pd = pd;
 		
 	}
 	
@@ -30,47 +32,26 @@ public class Player {
 
 	
 	public void setColor() {
-		MainDAL db = new MainDAL();
-		{ 
-		if ((db.loadDataBaseDriver("com.mysql.jdbc.Driver"))
-				&& (db.makeConnection()))
-		{
-			PersonDal pd = new PersonDal();
 			color = pd.getColor(player_id);
-		}
 	}
-	}
+	
+	
 	public void setGame_id() {
-		MainDAL db = new MainDAL();
-		{ 
-		if ((db.loadDataBaseDriver("com.mysql.jdbc.Driver"))
-				&& (db.makeConnection()))
-		{
-			PersonDal pd = new PersonDal();
 			game_id = pd.getgame_id(player_id);
-		}
-	}
 	}
 
 	public void setOrder_number() {
-		MainDAL db = new MainDAL();{ 
-		if ((db.loadDataBaseDriver("com.mysql.jdbc.Driver"))
-				&& (db.makeConnection()))
-		{
-			PersonDal pd = new PersonDal();
 			order_number = pd.getorder_number(player_id);
-		}
-	}
 	}
 
 	public void addMaterialCard(int kind) {
-		hand.add(bank.getMaterialCard(kind));
+		hand.add(conn.getMaterialCard(kind));
 	}
 	
 	public void removeMatCard(int kind) {
 		for(int i=0; i< hand.size(); i++) {
 			if(hand.get(i).getKindOfMaterial() == kind) {
-				bank.giveMaterialCardBack(hand.get(i));
+				conn.giveMaterialCardBack(hand.get(i));
 				hand.remove(hand.get(i));
 				break;
 			}
@@ -78,7 +59,7 @@ public class Player {
 	}
 
 	public void adddevelopmentCard(int kind) {
-		handdev.add(bank.getDevelopmentCard());
+		handdev.add(conn.getDevelopmentCard());
 	
 		}
 	

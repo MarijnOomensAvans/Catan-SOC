@@ -1,50 +1,38 @@
 package Model;
 
+import DAL.BankDAL;
+
 public class MaterialCard {
 	
-	
-	private String Material;
+	private String idCard;
 	private char KindOfMaterial;
+	private BankDAL bd;
 
-	public MaterialCard(char c) {
-		if(c == 'A') {
-			c = 'H'; 
-		}
-		else if(c== 'C') {
-			c = 'W';
-		}
-		else if(c== 'D') {
-			c = 'G';
-		}
-		KindOfMaterial = c;
-		setMaterial();
+	public MaterialCard(BankDAL bd, int a) {
+		this.bd = bd;
+		setId(a);
+		setKindOfMaterial(a);
 	}
 	
+	private void setKindOfMaterial(int a) {
+		KindOfMaterial =bd.getKindOfMaterial(a);
+		
+	}
+
 	
-	public String getMaterial() {
-		return Material;
+	private void setId(int a) {
+		idCard =bd.getId(a);
+		
 	}
 
-	public void setMaterial() {
-		if(KindOfMaterial == 'H') {
-			Material = "Hout";
-		}
-		else if (KindOfMaterial == 'E') {
-			Material = "Erts";
-		}
-		else if (KindOfMaterial == 'W') {
-			Material ="Wol";
-		}
-		else if(KindOfMaterial == 'B') {
-			Material = "Baksteen";
-		}
-		else if(KindOfMaterial == 'G') {
-			Material = "Graan";
-		}
-	}
+	
 
-	public int getKindOfMaterial() {
+	public char getKindOfMaterial() {
 		return KindOfMaterial;
+	}
+
+	public String getIdCard() {
+		return idCard;
 	}
 
 
