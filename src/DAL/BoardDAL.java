@@ -22,7 +22,7 @@ public class BoardDal {
 					+ "' , '" + idgrondstofsoort + "' ,  '" + idgetalfiche + "')";
 			try {
 				stmt = conn.createStatement();
-				int i = stmt.executeUpdate(query);
+				stmt.executeUpdate(query);
 				stmt.close();
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());
@@ -32,7 +32,7 @@ public class BoardDal {
 					+ "' , '" + x + "' , '" + y + "' , '" + idgrondstofsoort + "')";
 			try {
 				stmt = conn.createStatement();
-				int i = stmt.executeUpdate(query);
+				stmt.executeUpdate(query);
 				stmt.close();
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());
