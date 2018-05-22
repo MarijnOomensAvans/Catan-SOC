@@ -34,6 +34,7 @@ public class LobbyFrame extends JFrame{
 	public ArrayList<String> getUsernames(){
 		return controller.getUsernames();
 	}
+
 	
 	public void makeMenuBar() {
 
@@ -58,4 +59,8 @@ public class LobbyFrame extends JFrame{
 		controller.closeLobbyScreen();
 	}
 	
+	public void switchScreen() {
+		pane.switchLobbyScreen();
+		pack();
+	}
 }

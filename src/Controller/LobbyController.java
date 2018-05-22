@@ -47,11 +47,11 @@ public class LobbyController {
 		System.out.println("");
 		System.out.println("---------- INVITES -----------");
 		System.out.println("");
-		ArrayList<LobbyInvite> invites = lobbyDAL.getAllInvites();
-		for(int i = 0; i < invites.size(); i++) {
-			System.out.println(invites.get(i).getGameID());
-			System.out.println(invites.get(i).getHost());
-		}
+//		ArrayList<LobbyInvite> invites = lobbyDAL.getAllInvites();
+//		for(int i = 0; i < invites.size(); i++) {
+//			System.out.println(invites.get(i).getGameID());
+//			System.out.println(invites.get(i).getHost());
+//		}
 	}
 	
 }
