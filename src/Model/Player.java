@@ -13,10 +13,11 @@ public class Player {
 	private String username;
 	private String color;
 	private int order_number;
-	private int points = 0; 
+
 	private Controller conn;
 	private PersonDal pd;
 	private int points = 0;
+	private int knightmight = 0;
 	
 	private ArrayList<MaterialCard> hand = new ArrayList<MaterialCard>();
 	private ArrayList<DevelopmentCard> handdev = new ArrayList<DevelopmentCard>();
@@ -67,13 +68,20 @@ public class Player {
 	
 	public void testpointDevCard() {
 		for(int i=0; i< handdev.size(); i++) {
-			if(handdev.get(i).getKind() >= 19) {
+			if(handdev.get(i).getKind() >= 20) {
 				System.out.println("hey hier krijg je een punt voor");
-				points = points + 1;
+				points++;
 			}
 		}
 }
-	
+	public void testKnightmight() {
+		for(int i=0; i< handdev.size(); i++) {
+			if(handdev.get(i).getKind() >= 6 && handdev.get(i).getKind() <=20) {
+				System.out.println("hey hier krijg je een ridder punt voor");
+				knightmight++;
+			}
+		}
+	}
 	public void removeDevCard(int kind) {
 		for(int i=0; i< handdev.size(); i++) {
 			if(handdev.get(i).getKind() == kind) {
@@ -111,8 +119,10 @@ public class Player {
 	public void printallPlayerDevCards() {
 		for(int i=0; i<handdev.size(); i++) {
 			System.out.println("Kaart " + i +" van het soort " + handdev.get(i).getKindName());
-		}
+	}
+	}
+	public int getKnightmight() {
+			return knightmight;
+	}
 	
-	
-}
 }
