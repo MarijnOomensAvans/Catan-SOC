@@ -22,6 +22,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
 import Controller.LoginController;
+import Model.LobbyGameInfo;
 import Model.LobbyInvite;
 
 @SuppressWarnings("serial")
@@ -30,6 +31,7 @@ public class LobbyPanel extends JPanel {
 	private LobbyContentPane pane;
 	private ArrayList<String> usernames;
 	private ArrayList<LobbyInvite> invites;
+	private ArrayList<LobbyGameInfo> games;
 
 	private final int WIDTH = 1400;
 	private final int HEIGHT = 900;
@@ -204,6 +206,20 @@ public class LobbyPanel extends JPanel {
 				usernameLabel.setFont(accountFont);
 				accountPanel.add(usernameLabel);
 			}
+		}
+	}
+	
+	public void drawGames() {
+		games = pane.getGames();
+		ArrayList<Component> gameLabels = new ArrayList<Component>();
+		
+		for(int i = 0; i < games.size(); i++) {
+			
+			int gameID = games.get(i).getID();
+			ArrayList<String> players = games.get(i).getPlayers();
+			JPanel row = new JPanel(new BorderLayout());
+			row.setPreferredSize(new Dimension(INVITEWIDTH, NAMEHEIGHT));
+			row.setBorder(blackLine);
 		}
 	}
 	
