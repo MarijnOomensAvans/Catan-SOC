@@ -3,7 +3,7 @@ package Controller;
 import Model.Board;
 
 public class BoardController {
-	private Board board = new Board();
+	private Board board = new Board(1);
 	
 	
 	public void setBoardType(int boardType) {
