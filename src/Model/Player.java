@@ -26,19 +26,16 @@ public class Player {
 	public Player(PlayerController controller, PersonDal pd, int playerid, int gameid) {
 		conn = controller;
 		this.pd = pd;
-<<<<<<< HEAD
 		this.player_id = playerid;
 		this.game_id = gameid;
 		setName();
 		setColor();
 		setOrder_number();
-=======
 		adddevelopmentCard();
 		printallPlayerDevCards();
 		testpointDevCard();
 		testKnightmight();
 		
->>>>>>> 4af9c0e1a04329ae88b708a5e0b9ac419209668e
 		
 	}
 	
