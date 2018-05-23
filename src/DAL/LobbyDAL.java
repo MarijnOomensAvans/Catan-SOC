@@ -48,7 +48,8 @@ public class LobbyDAL {
 			while (rs.next()) {
 				int gameID = rs.getInt(1);
 				ArrayList<String> players = getPlayers(gameID);
-				games.add(new LobbyGameInfo(gameID, players));
+				String currentTurn = getPlayerTurn(gameID);
+				games.add(new LobbyGameInfo(gameID, players, currentTurn));
 			}
 			stmt.close();
 		} catch (SQLException e) {
@@ -185,6 +186,24 @@ public class LobbyDAL {
 		} else {
 			return false;
 		}
+	}
+	
+	public String getPlayerTurn(int gameID) {
+		String currentPlayer = "";
+		try {
+			Connection conn = MainDAL.getConnection();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT sp.username FROM spel s " + 
+					"JOIN speler sp " + 
+					"ON s.beurt_idspeler = sp.idspeler " + 
+					"WHERE s.idspel = " + gameID);
+			rs.next();
+			currentPlayer = rs.getString(1);
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return currentPlayer;
 	}
 
 }

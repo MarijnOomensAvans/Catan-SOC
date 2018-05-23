@@ -29,6 +29,10 @@ public class LobbyController {
 	public ArrayList<String> getPlayers(int gameID) {
 		return lobbyModel.getPlayers(gameID);
 	}
+	
+	public ArrayList<LobbyGameInfo> getGames() {
+		return lobbyModel.getGames();
+	}
 
 	public void startLogin() {
 		new LoginController();

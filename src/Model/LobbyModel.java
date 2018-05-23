@@ -22,6 +22,10 @@ public class LobbyModel {
 		return lobbyDAL.getAllInvites();
 	}
 	
+	public ArrayList<LobbyGameInfo> getGames(){
+		return lobbyDAL.getAllActiveGames();
+	}
+	
 	public ArrayList<String> getPlayers(int gameID) {
 		return lobbyDAL.getPlayers(gameID);
 	}

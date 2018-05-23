@@ -8,6 +8,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import Controller.LobbyController;
+import Model.LobbyGameInfo;
 import Model.LobbyInvite;
 
 @SuppressWarnings("serial")
@@ -83,4 +84,9 @@ public class LobbyFrame extends JFrame{
 	public void inviteResponse(boolean response, int gameID) {
 		controller.inviteResponse(response, gameID);
 	}
+	
+	public ArrayList<LobbyGameInfo> getGames() {
+		return controller.getGames();
+	}
+
 }

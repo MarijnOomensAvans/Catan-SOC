@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import Model.LobbyGameInfo;
 import Model.LobbyInvite;
 
 @SuppressWarnings("serial")
@@ -63,4 +64,9 @@ public class LobbyContentPane extends JPanel {
 	public void inviteResponse(boolean response, int gameID) {
 		frame.inviteResponse(response, gameID);
 	}
+	
+	public ArrayList<LobbyGameInfo> getGames() {
+		return frame.getGames();
+	}
+
 }
