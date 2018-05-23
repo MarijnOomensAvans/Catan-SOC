@@ -64,6 +64,7 @@ public class BankDAL {
 	
 		
 	}
+	
 	public String getDevId(int id) {
 		String result ="";
 		Statement stmt = null;
@@ -114,8 +115,7 @@ public class BankDAL {
 		}
 		return result;
 	}
-		
+	
+
+
 }
-
-
-
