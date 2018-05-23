@@ -45,12 +45,6 @@ public class DrawingPanel extends JPanel {
 	
 	private Color color = Color.white;
 	private Color lightBlue = new Color(0, 191, 255);
-	private Color grey = Color.LIGHT_GRAY;
-	private Color lightGreen = new Color(34 , 246, 84);
-	private Color brown = new Color(153, 76 ,0);
-	private Color green = Color.GREEN;
-	private Color yellow = Color.YELLOW;
-	private Color sandColor = new Color(255, 204, 153);
 	
 	private String [] types = {"Standaard", "Random", "Custom"};
 	
@@ -127,25 +121,5 @@ public class DrawingPanel extends JPanel {
 		
 		g2d.setColor(color);
 
-	}
-	
-	public void makeNormalBord(Graphics2D g2d) {
-		
-	}
-	
-	public void getColor(char resourcetype) {
-		if(resourcetype == 'B') {
-			setColor(brown);
-		}else if(resourcetype == 'E') {
-			setColor(grey);
-		}else if(resourcetype == 'H') {
-			setColor(green);
-		}else if(resourcetype == 'G') {
-			setColor(yellow);
-		}else if(resourcetype == 'W') {
-			setColor(lightGreen);
-		}else {
-			setColor(sandColor);
-		}
 	}
 }

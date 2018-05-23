@@ -18,7 +18,6 @@ public class LoginModel {
 	public boolean login(String username, String password) {
 		if (loginDal.hasUsername(username)) {
 			if (loginDal.userHasPassword(username, password)) {
-				System.out.println("Logged in!");
 				return true;
 			} else {
 				System.err.println("Wachtwoord klopt niet");

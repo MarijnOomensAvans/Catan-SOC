@@ -3,12 +3,16 @@ package View;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
-public class SetupChangePanel extends JPanel{
+public class SetupChangePanel extends JPanel implements ActionListener{
+	
+	private BoardController;
 
 	private final int WIDTH = 200;
 	private final int HEIGHT = 500;
@@ -34,5 +38,20 @@ public class SetupChangePanel extends JPanel{
 		add(boardTypes, BorderLayout.NORTH);
 		add(returnButton, BorderLayout.SOUTH);
 		add(runButton, BorderLayout.SOUTH);
+		
+		boardTypes.addActionListener(this);
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		String input = (String) boardTypes.getSelectedItem();
+		if(input == "Standaard") {
+			
+		}
+		else {
+			
+		}
+		
 	}
 }
