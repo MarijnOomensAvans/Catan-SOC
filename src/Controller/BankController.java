@@ -37,5 +37,10 @@ public class BankController {
 		DevelopmentCard devcard =bank.getDevelopmentCard();
 		return devcard;
 	}
+<<<<<<< HEAD:src/Controller/BankController.java
 
+=======
+	
+	
+>>>>>>> 4af9c0e1a04329ae88b708a5e0b9ac419209668e:src/Controller/Controller.java
 }

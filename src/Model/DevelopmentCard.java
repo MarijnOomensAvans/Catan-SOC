@@ -9,7 +9,7 @@ public class DevelopmentCard {
 	private BankDAL bd;
 
 	
-	private int kind;
+//	private int kind;
 	
 	public DevelopmentCard(BankDAL bd, int b) {
 		this.bd = bd;
@@ -25,9 +25,9 @@ public class DevelopmentCard {
 		this.iddevcard = bd.getDevId(b);
 	}
 
-	public int getKind() {
-		return kind;
-	}
+//	public int getKind() {
+//		return kind;
+//	}
 	
 	public String getKindName() {
 		return kindName;
