@@ -83,7 +83,7 @@ public class PersonDal {
 	
 	public void addMaterialCard(int idgame,String idcard, int idplayer) {
 		Statement stmt = null;
-		String query = "INSERT INTO spelergrondstofkaart(idspel,idgronstofkaart,idspeler) VALUES("+ idgame+", '"+idcard+"',"+idplayer+")";
+		String query = "INSERT INTO spelergrondstofkaart(idspel,idgrondstofkaart,idspeler) VALUES("+ idgame+", '"+idcard+"',"+idplayer+")";
 		try
 		{
 			stmt = conn.createStatement();

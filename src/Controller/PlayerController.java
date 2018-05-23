@@ -9,14 +9,16 @@ import Model.Player;
 public class PlayerController {
 	
 	private BankController bc;
+	@SuppressWarnings("unused")
 	private MainDAL md;
 	private PersonDal pd;
 	
 	public PlayerController(MainDAL md, BankController bc,int personid) {
 		this.md = md;
+		this.bc = bc;
 		pd = new PersonDal();
-		new Player(this, pd, personid, 1);
-
+		Player player1 =new Player(this, pd, personid, 1);
+		player1.addMaterialCard("W");
 	}
 
 	public MaterialCard getMaterialCard(String kind) {
