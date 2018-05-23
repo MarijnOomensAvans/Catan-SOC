@@ -25,6 +25,10 @@ public class Player {
 	public Player(Controller controller, PersonDal pd) {
 		conn = controller;
 		this.pd = pd;
+		adddevelopmentCard();
+		printallPlayerDevCards();
+		testpointDevCard();
+		
 		
 	}
 	
@@ -61,30 +65,30 @@ public class Player {
 		}
 	}
 
-	public void adddevelopmentCard(int kind) {
+	public void adddevelopmentCard() {
 		handdev.add(conn.getDevelopmentCard());
 	
 		}
 	
 	public void testpointDevCard() {
 		for(int i=0; i< handdev.size(); i++) {
-			if(handdev.get(i).getKind() >= 20) {
+			if(handdev.get(i).getIddevcard().substring(4) == "g")
 				System.out.println("hey hier krijg je een punt voor");
 				points++;
 			}
 		}
-}
-	public void testKnightmight() {
+
+//	public void testKnightmight() {
+//		for(int i=0; i< handdev.size(); i++) {
+//			if(handdev.get(i).getIddevcard() >= 6 && handdev.get(i).getIddevcard() <=20)s {
+//				System.out.println("hey hier krijg je een ridder punt voor");
+//				knightmight++;
+//			}
+//		}
+//	}
+	public void removeDevCard(String iddevcard) {
 		for(int i=0; i< handdev.size(); i++) {
-			if(handdev.get(i).getKind() >= 6 && handdev.get(i).getKind() <=20) {
-				System.out.println("hey hier krijg je een ridder punt voor");
-				knightmight++;
-			}
-		}
-	}
-	public void removeDevCard(int kind) {
-		for(int i=0; i< handdev.size(); i++) {
-			if(handdev.get(i).getKind() == kind) {
+			if(handdev.get(i).getIddevcard() == iddevcard) {
 				hand.remove(hand.get(i));
 				break;
 			}
