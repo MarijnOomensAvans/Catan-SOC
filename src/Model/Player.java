@@ -28,6 +28,7 @@ public class Player {
 		adddevelopmentCard();
 		printallPlayerDevCards();
 		testpointDevCard();
+		testKnightmight();
 		
 		
 	}
@@ -72,20 +73,20 @@ public class Player {
 	
 	public void testpointDevCard() {
 		for(int i=0; i< handdev.size(); i++) {
-			if(handdev.get(i).getIddevcard().substring(4) == "g")
+			if(handdev.get(i).getIddevcard().substring(3).equals("g")) {
 				System.out.println("hey hier krijg je een punt voor");
 				points++;
 			}
 		}
-
-//	public void testKnightmight() {
-//		for(int i=0; i< handdev.size(); i++) {
-//			if(handdev.get(i).getIddevcard() >= 6 && handdev.get(i).getIddevcard() <=20)s {
-//				System.out.println("hey hier krijg je een ridder punt voor");
-//				knightmight++;
-//			}
-//		}
-//	}
+	}
+	public void testKnightmight() {
+		for(int i=0; i< handdev.size(); i++) {
+			if(handdev.get(i).getIddevcard().substring(3).equals("r")) {
+				System.out.println("hey hier krijg je een ridder punt voor");
+				knightmight++;
+			}
+		}
+	}
 	public void removeDevCard(String iddevcard) {
 		for(int i=0; i< handdev.size(); i++) {
 			if(handdev.get(i).getIddevcard() == iddevcard) {
@@ -123,6 +124,7 @@ public class Player {
 	public void printallPlayerDevCards() {
 		for(int i=0; i<handdev.size(); i++) {
 			System.out.println("Kaart " + i +" van het soort " + handdev.get(i).getKindName());
+			
 	}
 	}
 	public int getKnightmight() {
