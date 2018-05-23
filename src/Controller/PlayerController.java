@@ -18,7 +18,7 @@ public class PlayerController {
 		this.bc = bc;
 		pd = new PersonDal();
 		Player player1 =new Player(this, pd, personid, 1);
-		player1.addMaterialCard("W");
+		
 	}
 
 	public MaterialCard getMaterialCard(String kind) {

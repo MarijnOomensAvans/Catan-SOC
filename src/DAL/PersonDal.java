@@ -26,7 +26,7 @@ public class PersonDal {
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next())
 			{
-				result = rs.getString(id);
+				result = rs.getString(1);
 			}
 			stmt.close();
 		} catch (SQLException e)
@@ -39,16 +39,15 @@ public class PersonDal {
 	public String getColor(int playerid, int gameid)
 	{
 		String result ="";
-		String idstring = Integer.toString(playerid);
 		Statement stmt = null;
-		String query = "SELECT kleur FROM speler WHERE idspeler =" + idstring+ " AND idspel ="+ gameid;
+		String query = "SELECT kleur FROM speler WHERE idspeler =" + playerid+ " AND idspel ="+ gameid;
 		try
 		{
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next())
 			{
-				result = rs.getString(playerid);
+				result = rs.getString(1);
 			}
 			stmt.close();
 		} catch (SQLException e)
@@ -61,16 +60,15 @@ public class PersonDal {
 	public int getorder_number(int playerid, int gameid)
 	{
 		String result ="";
-		String idstring = Integer.toString(playerid);
 		Statement stmt = null;
-		String query = "SELECT volgnr FROM speler WHERE idspeler =" + idstring+ " AND idspel ="+ gameid;
+		String query = "SELECT volgnr FROM speler WHERE idspeler =" + playerid+ " AND idspel ="+ gameid;
 		try
 		{
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next())
 			{
-				result = rs.getString(playerid);
+				result = rs.getString(1);
 			}
 			stmt.close();
 		} catch (SQLException e)
