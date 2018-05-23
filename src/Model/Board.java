@@ -28,14 +28,11 @@ public class Board {
 		case 2:
 			setRandomBoard();
 			break;
-		case 3:
-			setCustomBoard();
-			break;
 		}
 	}
 
 	//The board is always generated in the same manner, since the positions of tiles and locations are predetermined.
-	public void generateBoard() {
+	private void generateBoard() {
 		for (int x = 1; x < 12; x++) {
 			for (int y = 1; y < 12; y++) {
 				switch (x) {
@@ -140,7 +137,7 @@ public class Board {
 	
 	//Tiles are placed at a location in the grid (x and y coordinates). After the grid is placed, locations are initialised around the grid.
 	//We check for overlapping locations with the booleans.
-	public void placetile(int x, int y) {
+	private void placetile(int x, int y) {
 		Tile tile = new Tile(x, y);
 		boolean loc1 = true;
 		boolean loc2 = true;
@@ -679,11 +676,21 @@ public class Board {
 	
 	//-----------------------------------------------------------------------------------------------------------------------
 
-	public void placeResource(int position, char resource) {
+	private void placeResource(int position, char resource) {
 		((Tile) axisgrid.get(position)).setResourcetype(resource);
 	}
 
-	public void placeChit(int position, int chit) {
+	private void placeChit(int position, int chit) {
 		((Tile) axisgrid.get(position)).setChit(chit);
+	}
+	
+	//--------------------------------------------------------------------------------------------------------------------------
+	//Methods for returning resourcetypes from tiles and harbours
+	public char getTileResource(int idspel,int x,int y) {
+		return bdal.getResourceTile(idspel, x, y);
+	}
+	
+	public char getHarbourResource(int x,int y) {
+		return bdal.getLocationHarbourResource(x, y);
 	}
 }

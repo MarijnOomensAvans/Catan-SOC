@@ -10,19 +10,24 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
+import Controller.BoardController;
+
+@SuppressWarnings("serial")
 public class SetupChangePanel extends JPanel implements ActionListener{
 	
-	private BoardController;
+	private BoardController boardcontroller;
 
 	private final int WIDTH = 200;
 	private final int HEIGHT = 500;
 	
-	private String [] types = {"Standaard", "Random", "Custom"};
+	private String [] types = {"Standaard", "Random"};
+	@SuppressWarnings("rawtypes")
 	private JComboBox boardTypes;
 	
 	private JButton returnButton;
 	private JButton runButton;
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public SetupChangePanel() {
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		setBackground(Color.WHITE);
@@ -47,10 +52,10 @@ public class SetupChangePanel extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		String input = (String) boardTypes.getSelectedItem();
 		if(input == "Standaard") {
-			
+			boardcontroller.setBoardType(1);
 		}
-		else {
-			
+		else if (input == "Random"){
+			boardcontroller.setBoardType(2);
 		}
 		
 	}

@@ -10,5 +10,9 @@ public class BoardController {
 		board.setBoardType(boardType);
 	}
 	
+	public char getTileResource(int idspel,int x,int y) {
+		return board.getTileResource(idspel, x, y);
+	}
+	
 	
 }
