@@ -5,12 +5,16 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
 import java.util.ArrayList;
 
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
 
 public class DrawingPanel extends JPanel {
 
@@ -35,9 +39,18 @@ public class DrawingPanel extends JPanel {
 	private Hexagon hexagon19;
 
 	private Color hexagonColor = Color.WHITE;
-	private Color lightBlue = new Color(0, 191, 255);
+	
 	
 	private int firstRowX = 164;
+	
+	private Color color = Color.white;
+	private Color lightBlue = new Color(0, 191, 255);
+	private Color grey = Color.LIGHT_GRAY;
+	private Color lightGreen = new Color(34 , 246, 84);
+	private Color brown = new Color(153, 76 ,0);
+	private Color green = Color.GREEN;
+	private Color yellow = Color.YELLOW;
+	private Color sandColor = new Color(255, 204, 153);
 	
 	private String [] types = {"Standaard", "Random", "Custom"};
 	
@@ -92,8 +105,11 @@ public class DrawingPanel extends JPanel {
 		
 		
 		this.setPreferredSize(new Dimension(500, 500));
-		this.addMouseMotionListener(new Hover());
 		setBackground(lightBlue);
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
 	}
 
 	@Override
@@ -106,25 +122,30 @@ public class DrawingPanel extends JPanel {
 		g2d.setColor(hexagonColor);
 		
 		for(int i =0; i < hexagons.size(); i++) {
-			g2d.drawPolygon(hexagons.get(i).getHexagon());;
+			g2d.drawPolygon(hexagons.get(i).getHexagon());
 		}
+		
+		g2d.setColor(color);
 
 	}
-    
-    public class Hover extends MouseAdapter{
+	
+	public void makeNormalBord(Graphics2D g2d) {
 		
-    	@Override
-		public void mouseMoved(MouseEvent e) {
-    		for(int i =0; i < hexagons.size(); i++) {
-    			System.out.println(hexagons.get(i).getHexagon().contains(e.getY(), e.getX()));
-    			
-    		}
+	}
+	
+	public void getColor(char resourcetype) {
+		if(resourcetype == 'B') {
+			setColor(brown);
+		}else if(resourcetype == 'E') {
+			setColor(grey);
+		}else if(resourcetype == 'H') {
+			setColor(green);
+		}else if(resourcetype == 'G') {
+			setColor(yellow);
+		}else if(resourcetype == 'W') {
+			setColor(lightGreen);
+		}else {
+			setColor(sandColor);
 		}
-
-		@Override
-		public void mouseDragged(MouseEvent e) {
-			// TODO Auto-generated method stub
-			
-		}
-    }
+	}
 }
