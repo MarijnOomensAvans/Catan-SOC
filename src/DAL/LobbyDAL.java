@@ -47,7 +47,7 @@ public class LobbyDAL {
 			 */
 			while (rs.next()) {
 				int gameID = rs.getInt(1);
-				ArrayList<String> players = getUsersInGame(gameID);
+				ArrayList<String> players = getPlayers(gameID);
 				games.add(new LobbyGameInfo(gameID, players));
 			}
 			stmt.close();
@@ -57,7 +57,7 @@ public class LobbyDAL {
 		return games;
 	}
 
-	private ArrayList<String> getUsersInGame(int gameID) {
+	public ArrayList<String> getUsersInGame(int gameID) {
 		ArrayList<String> players = new ArrayList<String>();
 
 		try {
@@ -65,7 +65,7 @@ public class LobbyDAL {
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt
 					.executeQuery("SELECT sp.username FROM spel s " + "JOIN speler sp ON s.idspel = sp.idspel "
-							+ "WHERE (sp.speelstatus LIKE 'geaccepteerd' OR sp.speelstatus LIKE 'uitdager') "
+							+ "WHERE (sp.speelstatus LIKE 'geaccepteerd') "
 							+ "AND s.idspel = " + gameID);
 			while (rs.next()) {
 				players.add(rs.getString(1));
@@ -164,6 +164,27 @@ public class LobbyDAL {
 		}
 
 		return players;
+	}
+
+	public boolean isRandomBoard(int gameID) {
+		int isRandom = 0;
+		try {
+			Connection conn = MainDAL.getConnection();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT israndomboard FROM spel"
+					+ " WHERE spel.idspel = " + gameID);
+			rs.next();
+			isRandom = rs.getInt(1);
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		if(isRandom == 1) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }

@@ -25,4 +25,20 @@ public class LobbyModel {
 	public ArrayList<String> getPlayers(int gameID) {
 		return lobbyDAL.getPlayers(gameID);
 	}
+
+	public boolean isRandomBoard(int gameID) {
+		return lobbyDAL.isRandomBoard(gameID);
+	}
+
+	public ArrayList<String> getUsersInGame(int gameID) {
+		return lobbyDAL.getUsersInGame(gameID);
+	}
+	
+	public void inviteResponse(boolean response, int gameID) {
+		if(response) {
+			lobbyDAL.acceptInvite(gameID);
+		} else {
+			lobbyDAL.rejectInvite(gameID);
+		}
+	}
 }

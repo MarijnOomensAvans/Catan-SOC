@@ -41,6 +41,10 @@ public class LobbyFrame extends JFrame{
 		return controller.getInvites();
 	}
 	
+	public ArrayList<String> getPlayers(int gameID){
+		return controller.getPlayers(gameID);
+	}
+	
 	public void makeMenuBar() {
 
 		lobbyMenuBar = new JMenuBar();
@@ -63,20 +67,20 @@ public class LobbyFrame extends JFrame{
 		controller.closeLobbyScreen();
 	}
 	
-	public void mouseEnterGameInfo(int gameID) {
-		controller.mouseEnterGameInfo(gameID);
-	}
-	
-	public void mouseExitGameInfo(int gameID) {
-		controller.mouseExitGameInfo(gameID);
-	}
-	
-	public void displayGameInfo() {
-		
-	}
-	
 	public void switchScreen() {
 		pane.switchLobbyScreen();
 		pack();
+	}
+
+	public boolean isRandomBoard(int gameID) {
+		return controller.isRandomBoard(gameID);
+	}
+
+	public ArrayList<String> getUsersInGame(int gameID) {
+		return controller.getUsersInGame(gameID);
+	}
+
+	public void inviteResponse(boolean response, int gameID) {
+		controller.inviteResponse(response, gameID);
 	}
 }
