@@ -48,7 +48,8 @@ public class Player {
 	}
 
 	public void addMaterialCard(String kind) {
-		hand.add(conn.getMaterialCard(kind));
+		MaterialCard newCard = conn.getMaterialCard(kind);
+		
 	}
 	
 	public void removeMatCard(String kind) {

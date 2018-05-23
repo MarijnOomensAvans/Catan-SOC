@@ -102,6 +102,10 @@ public class PersonDal {
 		int resultint =Integer.parseInt(result);
 		return resultint;
 }
+	
+	public void addMaterialCard() {
+		
+	}
 
 
 }
