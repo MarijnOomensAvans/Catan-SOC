@@ -64,5 +64,58 @@ public class BankDAL {
 	
 		
 	}
-
+	public String getDevId(int id) {
+		String result ="";
+		Statement stmt = null;
+		String query = "";
+		if( id == 0) {
+			query = "SELECT idontwikkelingskaart FROM ontwikkelingskaart LIMIT 1" ;
+		}else {
+		int limit  = id-1;
+		query = "SELECT idontwikkelingskaart FROM ontwikkelingskaart LIMIT "+limit+",1" ;
+		}
+		try
+		{
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while (rs.next())
+			{
+				result = rs.getString(1);
+			}
+			stmt.close();
+		} catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
+	public String getDevName(int id) {
+		String result ="";
+		Statement stmt = null;
+		String query = "";
+		if( id == 0) {
+			query = "SELECT naam FROM ontwikkelingskaart LIMIT 1" ;
+		}else {
+		int limit  = id-1;
+		query = "SELECT naam FROM ontwikkelingskaart LIMIT "+limit+",1" ;
+		}
+		try
+		{
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while (rs.next())
+			{
+				result = rs.getString(1);
+			}
+			stmt.close();
+		} catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
+		
 }
+
+
+

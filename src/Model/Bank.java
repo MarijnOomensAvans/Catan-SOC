@@ -16,6 +16,7 @@ public class Bank {
 		makeMaterialCards();
 		makeDevCards();
 		printallMatCards();
+		printallDevCards();
 	}
 	
 	private void makeMaterialCards() {
@@ -40,9 +41,9 @@ public class Bank {
 		matbank.add(card);
 	}
 
-	private void makeDevCards() {
-		for(int i=0; i<24; i++) {
-			devbank.add(new DevelopmentCard(i));
+	public void makeDevCards() {
+		for(int b=0; b<25; b++) {
+			devbank.add(new DevelopmentCard(bd, b));
 		}
 	}
 	public DevelopmentCard getDevelopmentCard() {
