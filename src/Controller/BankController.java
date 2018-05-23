@@ -13,14 +13,13 @@ public class BankController {
 	@SuppressWarnings("unused")
 	private MainDAL md = new MainDAL();
 	private BankDAL bd = new BankDAL();
-	private PersonDal pd = new PersonDal();
 	private Bank bank;
 	@SuppressWarnings("unused")
 	private Player player;
 	
-	public BankController() {
+	public BankController(MainDAL md2) {
 		bank = new Bank(bd);
-		player = new Player(this, pd);
+		
 	}
 
 	public MaterialCard getMaterialCard(String kind) {

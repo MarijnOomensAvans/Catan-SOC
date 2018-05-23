@@ -3,7 +3,8 @@ package Model;
 
 import java.util.ArrayList;
 
-import Controller.BankController;
+
+import Controller.PlayerController;
 import DAL.PersonDal;
 
 public class Player {
@@ -14,7 +15,7 @@ public class Player {
 	private String color;
 	private int order_number;
 
-	private BankController conn;
+	private PlayerController conn;
 	private PersonDal pd;
 	private int points = 0;
 	private int knightmight = 0;
@@ -22,34 +23,38 @@ public class Player {
 	private ArrayList<MaterialCard> hand = new ArrayList<MaterialCard>();
 	private ArrayList<DevelopmentCard> handdev = new ArrayList<DevelopmentCard>();
 
-	public Player(BankController controller, PersonDal pd) {
+	public Player(PlayerController controller, PersonDal pd, int playerid, int gameid) {
 		conn = controller;
 		this.pd = pd;
+		this.player_id = playerid;
+		this.game_id = gameid;
+		setName();
+		setColor();
+		setOrder_number();
 		
 	}
 	
-	public void setName(String username) {
-		this.username = username;
+	public void setName() {
+		username = pd.getName(player_id);
 	}
 
 
 	
 	public void setColor() {
-			color = pd.getColor(player_id);
+			color = pd.getColor(player_id, game_id);
 	}
 	
 	
-	public void setGame_id() {
-			game_id = pd.getgame_id(player_id);
-	}
 
 	public void setOrder_number() {
-			order_number = pd.getorder_number(player_id);
+			order_number = pd.getorder_number(player_id,game_id);
 	}
 
 	public void addMaterialCard(String kind) {
 		MaterialCard newCard = conn.getMaterialCard(kind);
-		
+		String cardid = newCard.getIdCard();
+		pd.addMaterialCard(game_id, cardid, player_id);
+		hand.add(newCard);
 	}
 	
 	public void removeMatCard(String kind) {
@@ -92,23 +97,6 @@ public class Player {
 		}
 	}
 	
-	
-
-	public void getGame_id() {
-		System.out.println(game_id);
-	}
-
-	public void getColor() {
-		System.out.println(color);
-	}
-
-	public void getUsername() {
-		System.out.println(username);
-	}
-	
-	public void getOrder_number() {
-		System.out.println(order_number);
-	}
 	
 	public int getPoints() {
 		return points;
