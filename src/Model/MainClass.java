@@ -1,11 +1,13 @@
 package Model;
 
-import Controller.Controller;
+import Controller.BankController;
+import Controller.TradeController;
 
 public class MainClass {
 
 	public static void main(String[] args) {
-		Controller conn = new Controller();
+	
+		new TradeController();
 
 	}
 }

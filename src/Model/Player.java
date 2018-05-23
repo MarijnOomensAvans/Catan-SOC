@@ -3,7 +3,7 @@ package Model;
 
 import java.util.ArrayList;
 
-import Controller.Controller;
+import Controller.BankController;
 import DAL.PersonDal;
 
 public class Player {
@@ -14,7 +14,7 @@ public class Player {
 	private String color;
 	private int order_number;
 
-	private Controller conn;
+	private BankController conn;
 	private PersonDal pd;
 	private int points = 0;
 	private int knightmight = 0;
@@ -22,7 +22,7 @@ public class Player {
 	private ArrayList<MaterialCard> hand = new ArrayList<MaterialCard>();
 	private ArrayList<DevelopmentCard> handdev = new ArrayList<DevelopmentCard>();
 
-	public Player(Controller controller, PersonDal pd) {
+	public Player(BankController controller, PersonDal pd) {
 		conn = controller;
 		this.pd = pd;
 		

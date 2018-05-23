@@ -8,7 +8,7 @@ import Model.DevelopmentCard;
 import Model.MaterialCard;
 import Model.Player;
 
-public class Controller {
+public class BankController {
 	
 	@SuppressWarnings("unused")
 	private MainDAL md = new MainDAL();
@@ -18,7 +18,7 @@ public class Controller {
 	@SuppressWarnings("unused")
 	private Player player;
 	
-	public Controller() {
+	public BankController() {
 		bank = new Bank(bd);
 		player = new Player(this, pd);
 	}
