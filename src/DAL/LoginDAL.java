@@ -6,14 +6,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class LoginDAL {
+	private Connection conn = MainDAL.getConnection();
 	
 	public LoginDAL() {
-		new MainDAL();
+		new MainDAL();	
 	}
 	
 	public boolean hasUsername(String username) {
 		try {
-			Connection conn = MainDAL.getConnection();
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT username FROM account WHERE username = '" + username + "'");
 			rs.next();
@@ -30,7 +30,6 @@ public class LoginDAL {
 	
 	public void addAccount(String username, String password) {
 		try {
-			Connection conn = MainDAL.getConnection();
 			Statement stmt = conn.createStatement();
 			stmt.executeUpdate("INSERT INTO account VALUES ('" + username +"', '" + password + "')");
 			stmt.close();
@@ -41,7 +40,6 @@ public class LoginDAL {
 	
 	public boolean userHasPassword(String username, String password) {
 		try {
-			Connection conn = MainDAL.getConnection();
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT * FROM account WHERE username = '" + username + "' && wachtwoord = '" + password + "'");
 			rs.next();

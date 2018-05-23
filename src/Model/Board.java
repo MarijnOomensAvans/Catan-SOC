@@ -19,7 +19,8 @@ public class Board {
 		this.boardType = boardType;
 	}
 
-	public Board() {
+	public Board(int idspel) {
+		bdal.setBoardType(idspel, boardType);
 		generateBoard();
 		switch (this.boardType) {
 		case 1:

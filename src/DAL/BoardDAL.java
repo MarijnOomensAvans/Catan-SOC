@@ -6,8 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class BoardDal {
-	MainDAL db = new MainDAL();
-	Connection conn;
+	Connection conn = MainDAL.getConnection();
 
 	public void setTile(int idspel, int idtegel, int x, int y, char idgrondstofsoort, int idgetalfiche) {
 		Statement stmt = null;
@@ -86,6 +85,18 @@ public class BoardDal {
 			e.printStackTrace();
 		}
 		return 0;
+	}
+	
+	public void setBoardType(int idspel, int boardType) {
+		Statement stmt = null;
+			String query = "UPDATE spel SET israndomboard = '" + (boardType - 1) + "' WHERE idspel = '" + idspel + "' ";
+			try {
+				stmt = conn.createStatement();
+				stmt.executeUpdate(query);
+				stmt.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
 	}
 
 }

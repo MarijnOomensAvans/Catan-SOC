@@ -53,6 +53,7 @@ public class SetupChangePanel extends JPanel implements ActionListener{
 		String input = (String) boardTypes.getSelectedItem();
 		if(input == "Standaard") {
 			boardcontroller.setBoardType(1);
+			
 		}
 		else if (input == "Random"){
 			boardcontroller.setBoardType(2);
