@@ -5,7 +5,6 @@ import View.LoginFrame;
 
 public class LoginController {
 
-	@SuppressWarnings("unused")
 	private LoginFrame frame;
 	private LoginModel loginModel;
 	private static String username;
@@ -29,6 +28,7 @@ public class LoginController {
 
 	}
 
+	@SuppressWarnings("static-access")
 	public void buttonPressedLogin(String username, String password) {
 		if(loginModel.login(username, password)) {
 			this.username = username;

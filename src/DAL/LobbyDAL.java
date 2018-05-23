@@ -11,11 +11,7 @@ import Model.LobbyGameInfo;
 import Model.LobbyInvite;
 
 public class LobbyDAL {
-
-	public LobbyDAL() {
-		System.out.println("LobbyDAL gestart");
-	}
-
+	
 	public ArrayList<String> getAllAccounts() {
 
 		ArrayList<String> accounts = new ArrayList<String>();

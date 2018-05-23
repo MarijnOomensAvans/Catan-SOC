@@ -9,12 +9,6 @@ public class BoardDal {
 	MainDAL db = new MainDAL();
 	Connection conn;
 
-	public BoardDal() {
-		if ((db.loadDataBaseDriver("com.mysql.jdbc.Driver")) && (db.makeConnection())) {
-			conn = MainDAL.getConnection();
-		}
-	}
-
 	public void setTile(int idspel, int idtegel, int x, int y, char idgrondstofsoort, int idgetalfiche) {
 		Statement stmt = null;
 		if (idtegel != 1009) {

@@ -8,7 +8,7 @@ import java.sql.Statement;
 public class LoginDAL {
 	
 	public LoginDAL() {
-		
+		new MainDAL();
 	}
 	
 	public boolean hasUsername(String username) {
