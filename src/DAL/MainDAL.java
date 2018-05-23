@@ -33,14 +33,9 @@ public class MainDAL {
 		{
 			conn = DriverManager
 					.getConnection("jdbc:mysql://databases.aii.avans.nl/bdjong1_db2?user=bdjong1&password=Ab12345");
-			System.out.println("So far, so good...");
 		} catch (SQLException ex)
 		{
 			// handle any errors
-			System.out.println("Houston, we've had a problem...");
-			System.out.println("SQLException: " + ex.getMessage());
-			System.out.println("SQLState: " + ex.getSQLState());
-			System.out.println("VendorError: " + ex.getErrorCode());
 			return false;
 		}
 		return true;
