@@ -29,17 +29,17 @@ public class TradeContentPane extends JPanel {
 	public TradeContentPane() {
 		setLayout(new FlowLayout());
 		stone = new File("./Images/baksteen.jpg");
-		ore = new File("./Images/erts.jpg");
-		wood = new File("./Images/hout.jpg");
-		wheat = new File("./Images/graan.jpg");
 		wool = new File("./Images/schaap.jpg");
+		ore = new File("./Images/erts.jpg");
+		wheat = new File("./Images/graan.jpg");
+		wood = new File("./Images/hout.jpg");
 			
 		try {
 				myBufferedImage1 = ImageIO.read(stone);
-				myBufferedImage2 = ImageIO.read(ore);
-				myBufferedImage3 = ImageIO.read(wood);
+				myBufferedImage2 = ImageIO.read(wool);
+				myBufferedImage3 = ImageIO.read(ore);
 				myBufferedImage4 = ImageIO.read(wheat);
-				myBufferedImage5 = ImageIO.read(wool);
+				myBufferedImage5 = ImageIO.read(wood);
 			}catch (IOException e) {
 			System.out.println(e.getMessage());
 			}	
