@@ -37,7 +37,6 @@ public class MainDAL {
 		} catch (SQLException ex)
 		{
 			// handle any errors
-			System.out.println("Houston, we've had a problem...");
 			System.out.println("SQLException: " + ex.getMessage());
 			System.out.println("SQLState: " + ex.getSQLState());
 			System.out.println("VendorError: " + ex.getErrorCode());
