@@ -42,7 +42,7 @@ public class Bank {
 	}
 
 	public void makeDevCards() {
-		for(int b=0; b<25; b++) {
+		for(int b=1; b<26; b++) {
 			devbank.add(new DevelopmentCard(bd, b));
 		}
 	}
