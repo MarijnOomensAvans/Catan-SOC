@@ -1,11 +1,16 @@
 package Model;
 
-import Controller.Controller;
+
+import Controller.BankController;
+import DAL.MainDAL;
+
 
 public class MainClass {
 
 	public static void main(String[] args) {
-		Controller conn = new Controller();
+
+		MainDAL md = new MainDAL();
+		BankController conn = new BankController(md);
 
 	}
 }

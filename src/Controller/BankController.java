@@ -2,25 +2,25 @@ package Controller;
 
 import DAL.BankDAL;
 import DAL.MainDAL;
-import DAL.PersonDal;
 import Model.Bank;
 import Model.DevelopmentCard;
 import Model.MaterialCard;
 import Model.Player;
 
-public class Controller {
+public class BankController {
 	
 	@SuppressWarnings("unused")
-	private MainDAL md = new MainDAL();
-	private BankDAL bd = new BankDAL();
-	private PersonDal pd = new PersonDal();
+	private MainDAL md;
+	private BankDAL bd;
 	private Bank bank;
 	@SuppressWarnings("unused")
 	private Player player;
 	
-	public Controller() {
+	public BankController(MainDAL md) {
+		this.md = md;
+		bd = new BankDAL();
 		bank = new Bank(bd);
-		player = new Player(this, pd);
+		
 	}
 
 	public MaterialCard getMaterialCard(String kind) {
@@ -37,6 +37,5 @@ public class Controller {
 		DevelopmentCard devcard =bank.getDevelopmentCard();
 		return devcard;
 	}
-	
 
 }

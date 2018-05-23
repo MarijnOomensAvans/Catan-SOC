@@ -15,8 +15,6 @@ public class Bank {
 		this.bd = bd;
 		makeMaterialCards();
 		makeDevCards();
-		printallMatCards();
-		printallDevCards();
 	}
 	
 	private void makeMaterialCards() {
@@ -29,8 +27,9 @@ public class Bank {
 	public MaterialCard getMaterialCard(String kind) {
 		MaterialCard returncard = null;
 		for(int i=0; i<matbank.size(); i++) {
-			if(matbank.get(i).getKindOfMaterial() == kind) {
+			if(matbank.get(i).getKindOfMaterial().equals(kind)) {
 				returncard = matbank.get(i);
+				matbank.remove(returncard);
 				break;
 			}
 		}
@@ -39,10 +38,11 @@ public class Bank {
 	
 	public void giveMaterialCardBack(MaterialCard card) {
 		matbank.add(card);
+		
 	}
 
-	public void makeDevCards() {
-		for(int b=1; b<26; b++) {
+	private void makeDevCards() {
+		for(int b=0; b<25; b++) {
 			devbank.add(new DevelopmentCard(bd, b));
 		}
 	}
