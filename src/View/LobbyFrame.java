@@ -8,6 +8,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import Controller.LobbyController;
+import Model.LobbyInvite;
 
 @SuppressWarnings("serial")
 public class LobbyFrame extends JFrame{
@@ -34,6 +35,11 @@ public class LobbyFrame extends JFrame{
 	public ArrayList<String> getUsernames(){
 		return controller.getUsernames();
 	}
+
+	
+	public ArrayList<LobbyInvite> getInvites() {
+		return controller.getInvites();
+	}
 	
 	public void makeMenuBar() {
 
@@ -51,11 +57,26 @@ public class LobbyFrame extends JFrame{
 		
 		setJMenuBar(lobbyMenuBar);
 		
-		
 	}
 	
 	public void closeLobby() {
 		controller.closeLobbyScreen();
 	}
 	
+	public void mouseEnterGameInfo(int gameID) {
+		controller.mouseEnterGameInfo(gameID);
+	}
+	
+	public void mouseExitGameInfo(int gameID) {
+		controller.mouseExitGameInfo(gameID);
+	}
+	
+	public void displayGameInfo() {
+		
+	}
+	
+	public void switchScreen() {
+		pane.switchLobbyScreen();
+		pack();
+	}
 }
