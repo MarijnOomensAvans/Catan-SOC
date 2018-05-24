@@ -72,7 +72,7 @@ public class TradeOfferPane extends JPanel {
 	private JButton plusOreDemand;
 	private JButton plusWoodDemand;
 	private JButton plusWheatDemand;
-	private JButton pluswoolDemand;
+	private JButton plusWoolDemand;
 
 	private JButton minusDemandStone;
 	private JButton minusDemandOre;
@@ -316,7 +316,7 @@ public class TradeOfferPane extends JPanel {
 		plusOreDemand = new JButton("+");
 		plusWoodDemand = new JButton("+");
 		plusWheatDemand = new JButton("+");
-		pluswool = new JButton("+");
+		plusWoolDemand = new JButton("+");
 		
 		minusDemandStone = new JButton("-");
 		minusDemandOre = new JButton("-");
@@ -348,8 +348,8 @@ public class TradeOfferPane extends JPanel {
 		add(woolDemand);
 		woolDemand.setBounds(232,410, 25, 30);
 		
-		add(pluswool);
-		pluswool.setBounds(257,410, 45, 30);
+		add(plusWoolDemand);
+		plusWoolDemand.setBounds(257,410, 45, 30);
 		
 		add(minusDemandOre);
 		minusDemandOre.setBounds(330,410, 45, 30);
@@ -422,7 +422,7 @@ public class TradeOfferPane extends JPanel {
 			
 		});
 		
-		pluswool.addActionListener(new ActionListener() {
+		plusWoolDemand.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
