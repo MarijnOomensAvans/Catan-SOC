@@ -161,5 +161,39 @@ public class LobbyDAL {
 
 		return players;
 	}
+	
+	public int makeNewGameID() {
+		int gameid = getHighestGameID() + 1;
+		try {
+			Connection conn = MainDAL.getConnection();
+			Statement stmt = conn.createStatement();
+			
+			stmt.executeUpdate("INSERT INTO spel(idspel) VALUES (" + gameid + ")");
+			stmt.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		System.out.println(gameid);
+		return gameid;
+	}
+	
+	public int getHighestGameID() {
+		int highestGameId = 0;
+		try {
+			Connection conn = MainDAL.getConnection();
+			Statement stmt = conn.createStatement();
+			
+			ResultSet rs = stmt.executeQuery("SELECT MAX(idspel) FROM spel");
+			while (rs.next()) {
+				highestGameId=  rs.getInt(1);
+			}
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		System.out.println(highestGameId);
+		return highestGameId;
+	}
 
 }

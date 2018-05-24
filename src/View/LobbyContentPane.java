@@ -5,11 +5,13 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import Controller.LobbyController;
 import Model.LobbyInvite;
 
 @SuppressWarnings("serial")
 public class LobbyContentPane extends JPanel {
 
+	
 	private LobbyPanel lobby;
 	private SetupGamePane setupGame;
 	private LobbyFrame frame;
@@ -22,7 +24,7 @@ public class LobbyContentPane extends JPanel {
 		this.setupGame = new SetupGamePane();
 		playButton.addActionListener(e -> {
 			
-			switchLobbyScreen();
+		switchLobbyScreen();
 		});
 		add(lobby);
 	}
@@ -32,12 +34,18 @@ public class LobbyContentPane extends JPanel {
 	}
 
 	public void switchLobbyScreen() {
+		frame.makeNewGameID();
 		removeAll();
 		repaint();
 		add(setupGame);
 		frame.pack();
 	}
 	
+	public int getGameID() {
+		return frame.getGameID();
+	}
+	
+
 	public ArrayList<LobbyInvite> getInvites(){
 		return frame.getInvites();
 	}

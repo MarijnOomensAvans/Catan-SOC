@@ -9,6 +9,16 @@ public class LobbyModel {
 	private LobbyDAL lobbyDAL;
 	private ArrayList<String> usernames;
 	
+	private int gameid;
+	
+	public int getGameid() {
+		return gameid;
+	}
+
+	public void setGameid(int gameid) {
+		this.gameid = gameid;
+	}
+
 	public LobbyModel() {
 		lobbyDAL = new LobbyDAL();
 	}
@@ -25,4 +35,10 @@ public class LobbyModel {
 	public ArrayList<String> getPlayers(int gameID) {
 		return lobbyDAL.getPlayers(gameID);
 	}
+	
+	public void makeNewGameID() {
+		int gameid = lobbyDAL.makeNewGameID();
+		this.gameid = gameid;
+	}
+
 }

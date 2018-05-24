@@ -41,6 +41,14 @@ public class LobbyFrame extends JFrame{
 		return controller.getInvites();
 	}
 	
+	public void makeNewGameID() {
+		controller.makeNewGameID();
+	}
+	
+	public int getGameID() {
+		return controller.getGameID();
+	}
+	
 	public void makeMenuBar() {
 
 		lobbyMenuBar = new JMenuBar();

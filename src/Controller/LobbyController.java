@@ -33,6 +33,14 @@ public class LobbyController {
 	public void closeLobbyScreen() {
 		frame.dispose();
 	}
+	
+	public void makeNewGameID() {
+		lobbyModel.makeNewGameID();
+	}
+	
+	public int getGameID() {
+		return lobbyModel.getGameid();
+	}
 
 	public void mouseEnterGameInfo(int gameID) {
 		// TODO Auto-generated method stub

@@ -13,27 +13,27 @@ public class Board {
 	private HashMap<Integer, Collection> axisgrid = new HashMap<Integer, Collection>();
 	private int loopnumb = 0;
 	private int looplet = 1000;
-	private int boardType = 1; // This will normally be initliaised by the lobby
+	private int boardType;
 
-	public void setBoardType(int boardType) {
+	public void setBoardType(int idspel,int boardType) {
 		this.boardType = boardType;
+		bdal.setBoardType(idspel, boardType);
 	}
 
-	public Board(int idspel) {
-		bdal.setBoardType(idspel, boardType);
-		generateBoard();
+	public void finishBoard(int idspel) {
 		switch (this.boardType) {
 		case 1:
-			setStandardBoard();
+			setStandardBoard(idspel);
 			break;
 		case 2:
-			setRandomBoard();
+			setRandomBoard(idspel);
 			break;
 		}
 	}
+	
 
 	//The board is always generated in the same manner, since the positions of tiles and locations are predetermined.
-	private void generateBoard() {
+	public void generateBoard() {
 		for (int x = 1; x < 12; x++) {
 			for (int y = 1; y < 12; y++) {
 				switch (x) {
@@ -198,31 +198,20 @@ public class Board {
 		}
 	}
 
-	private void setCustomBoard() {
-		// TODO Overleggen met de spelstart groep over hoe we de gekozen tiles doorgeven
-		for (int i = 1000; i < 1019; i++) {
-			// For now IDspel will be 1 until lobby integration is completet
-			bdal.setTile(1, i, ((Tile) axisgrid.get(i)).getX(), ((Tile) axisgrid.get(i)).getY(),
-					((Tile) axisgrid.get(i)).getResourcetype(), ((Tile) axisgrid.get(i)).getChit());
-		}
-	}
-
-	private void setRandomBoard() {
+	private void setRandomBoard(int idspel) {
 		randomResource();
 		randomChit();
 		for (int i = 1000; i < 1019; i++) {
-			// For now IDspel will be 1 until lobby integration is completet
-			bdal.setTile(1, i, ((Tile) axisgrid.get(i)).getX(), ((Tile) axisgrid.get(i)).getY(),
+			bdal.setTile(idspel, i, ((Tile) axisgrid.get(i)).getX(), ((Tile) axisgrid.get(i)).getY(),
 					((Tile) axisgrid.get(i)).getResourcetype(), ((Tile) axisgrid.get(i)).getChit());
 		}
 	}
 	
-	private void setStandardBoard() {
+	private void setStandardBoard(int idspel) {
 		standardResource();
 		standardChit();
 		for (int i = 1000; i < 1019; i++) {
-			// For now IDspel will be 1 until lobby integration is completet
-			bdal.setTile(1, i, ((Tile) axisgrid.get(i)).getX(), ((Tile) axisgrid.get(i)).getY(),
+			bdal.setTile(idspel, i, ((Tile) axisgrid.get(i)).getX(), ((Tile) axisgrid.get(i)).getY(),
 					((Tile) axisgrid.get(i)).getResourcetype(), ((Tile) axisgrid.get(i)).getChit());
 		}
 	}
