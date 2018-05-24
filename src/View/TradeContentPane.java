@@ -1,5 +1,6 @@
 package View;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
@@ -66,7 +67,8 @@ public class TradeContentPane extends JPanel {
 				myBufferedImage5 = ImageIO.read(wood);
 			}catch (IOException e) {
 			System.out.println(e.getMessage());
-			}	
+			}
+		add(plusstone,BorderLayout.PAGE_END);
 		this.repaint();
 		
 		setPreferredSize(new Dimension(600,600));
