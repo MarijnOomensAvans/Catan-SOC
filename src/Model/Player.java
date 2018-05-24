@@ -32,10 +32,14 @@ public class Player {
 		setColor();
 		setOrder_number();
 		adddevelopmentCard();
+		adddevelopmentCard();
+		adddevelopmentCard();
+		adddevelopmentCard();
+		adddevelopmentCard();
 		printallPlayerDevCards();
 		testpointDevCard();
 		testKnightmight();
-		
+		testMonopoly();
 		
 	}
 	
@@ -80,7 +84,7 @@ public class Player {
 	public void testpointDevCard() {
 		for(int i=0; i< handdev.size(); i++) {
 			if(handdev.get(i).getIddevcard().substring(3).equals("g")) {
-				System.out.println("hey hier krijg je een punt voor");
+				System.out.println("1 Overwinningspunt");
 				points++;
 			}
 		}
@@ -88,8 +92,22 @@ public class Player {
 	public void testKnightmight() {
 		for(int i=0; i< handdev.size(); i++) {
 			if(handdev.get(i).getIddevcard().substring(3).equals("r")) {
-				System.out.println("hey hier krijg je een ridder punt voor");
+				System.out.println("Bij het spelen van deze kaart moet je de struikrover verzetten en van één van de getroffen spelers een grondstoffenkaart trekken.");
 				knightmight++;
+			}
+		}
+	}
+	public void testMonopoly() {
+		for(int i=0; i< handdev.size(); i++) {
+			if(handdev.get(i).getIddevcard().substring(3).equals("m")) {
+				System.out.println("Bij het kiezen van deze kaart kies je een grondstof. Alle spelers geven je van deze grondstof alle kaarten die ze bezitten.");
+			}
+		}
+	}
+	public void testStratenbouw() {
+		for(int i=0; i< handdev.size(); i++) {
+			if(handdev.get(i).getIddevcard().substring(3).equals("s")) {
+				System.out.println("Bij het spelen van deze kaart mag je direct twee starten bouwen.");
 			}
 		}
 	}

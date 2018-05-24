@@ -12,7 +12,7 @@ public class MainClass {
 
 		MainDAL md = new MainDAL();
 		BankController conn = new BankController(md);
-		PlayerController pc = new PlayerController(md,conn,2);
+		PlayerController pc = new PlayerController(md,conn, 2);
 
 	}
 }

@@ -17,7 +17,9 @@ public class PlayerController {
 		this.md = md;
 		this.bc = bc;
 		pd = new PersonDal();
-		Player player1 =new Player(this, pd, personid, 1);
+		Player player1 =new Player(this, pd, 12, 220);
+
+		Player player2 =new Player(this, pd, 11, 220);
 		
 	}
 
