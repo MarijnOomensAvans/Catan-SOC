@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
@@ -26,6 +26,18 @@ public class TradeContentPane extends JPanel {
 	private File wheat;
 	private File wool;
 	
+	private JButton plusstone;
+	private JButton plusore;
+	private JButton pluswood;
+	private JButton pluswheat;
+	private JButton pluswool;
+	
+	private JButton minusstone;
+	private JButton minusore;
+	private JButton minuswood;
+	private JButton minuswheat;
+	private JButton minuswool;
+	
 	public TradeContentPane() {
 		setLayout(new FlowLayout());
 		stone = new File("./Images/baksteen.jpg");
@@ -33,7 +45,19 @@ public class TradeContentPane extends JPanel {
 		ore = new File("./Images/erts.jpg");
 		wheat = new File("./Images/graan.jpg");
 		wood = new File("./Images/hout.jpg");
-			
+		
+		plusstone = new JButton("+");
+		plusore = new JButton("+");
+		pluswood = new JButton("+");
+		pluswheat = new JButton("+");
+		pluswool = new JButton("+");
+		
+		minusstone = new JButton("-");
+		minusore = new JButton("-");
+		minuswood = new JButton("-");
+		minuswheat = new JButton("-");
+		minuswool = new JButton("-");
+		
 		try {
 				myBufferedImage1 = ImageIO.read(stone);
 				myBufferedImage2 = ImageIO.read(wool);
@@ -51,11 +75,11 @@ public class TradeContentPane extends JPanel {
 	
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		g.drawImage(myBufferedImage1, 100, 200, 100, 100, null);
-		g.drawImage(myBufferedImage2, 200, 200, 100, 100, null);
-		g.drawImage(myBufferedImage3, 300, 200, 100, 100, null);
-		g.drawImage(myBufferedImage4, 400, 200, 100, 100, null);
-		g.drawImage(myBufferedImage5, 500, 200, 100, 100, null);
+		g.drawImage(myBufferedImage1, 50, 200, 100, 100, null);
+		g.drawImage(myBufferedImage2, 155, 200, 100, 100, null);
+		g.drawImage(myBufferedImage3, 260, 200, 100, 100, null);
+		g.drawImage(myBufferedImage4, 365, 200, 100, 100, null);
+		g.drawImage(myBufferedImage5, 470, 200, 100, 100, null);
 	}
 
 }
