@@ -2,6 +2,7 @@ package View;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 
 import java.awt.GridLayout;
@@ -14,6 +15,7 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -82,6 +84,9 @@ public class TradeContentPane extends JPanel {
 	private JTextField wheatDemand;
 	private JTextField woolDemand;
 	
+	private JLabel offer;
+	private JLabel demand;
+	
 	public TradeContentPane() {
 		this.setLayout(null);
 		stone = new File("./Images/baksteen.jpg");
@@ -89,6 +94,17 @@ public class TradeContentPane extends JPanel {
 		ore = new File("./Images/erts.jpg");
 		wheat = new File("./Images/graan.jpg");
 		wood = new File("./Images/hout.jpg");
+		
+		offer = new JLabel("Geeft");
+		offer.setBounds(355,10,100,100);
+		offer.setFont(new Font("Serif", Font.BOLD, 40));
+		add(offer);
+		
+		demand = new JLabel("Vraagt");
+		demand.setBounds(345, 215, 150,100);
+		demand.setFont(new Font("Serif", Font.BOLD, 40));
+		add(demand);
+		
 		
 		plusstone = new JButton("+");
 		plusore = new JButton("+");
