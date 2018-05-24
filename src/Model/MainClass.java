@@ -11,7 +11,7 @@ public class MainClass {
 		MainDAL md = new MainDAL();
 //		BankController bc = new BankController(md);
 //		new PlayerController(md,bc,1);
-		new TradeController();
+		new TradeController(1);
 
 	}
 }

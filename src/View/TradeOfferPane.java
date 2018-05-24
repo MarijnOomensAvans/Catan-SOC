@@ -19,8 +19,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import Controller.TradeController;
+
 @SuppressWarnings("serial")
-public class TradeContentPane extends JPanel {
+public class TradeOfferPane extends JPanel {
 	
 
 	private int stoneOfferCounter =0;
@@ -77,6 +79,8 @@ public class TradeContentPane extends JPanel {
 	private JButton minusDemandWood;
 	private JButton minusDemandWheat;
 	private JButton minusDemandWool;
+	
+	private JButton sendButton;
 
 	private JTextField stoneDemand;
 	private JTextField oreDemand;
@@ -87,7 +91,7 @@ public class TradeContentPane extends JPanel {
 	private JLabel offer;
 	private JLabel demand;
 	
-	public TradeContentPane() {
+	public TradeOfferPane(TradeController td, int playerid) {
 		this.setLayout(null);
 		stone = new File("./Images/baksteen.jpg");
 		wool = new File("./Images/schaap.jpg");
@@ -500,6 +504,22 @@ public class TradeContentPane extends JPanel {
 				}
 			}
 		});
+		
+		
+		sendButton = new JButton("Versturen");
+		
+		sendButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				td.createOffer(playerid, stoneOfferCounter, woolOfferCounter, oreOfferCounter, wheatOfferCounter, woodOfferCounter, stoneDemandCounter, woolDemandCounter, oreDemandCounter, wheatOfferCounter, woodDemandCounter);
+				
+			}
+			
+		});
+		
+		sendButton.setBounds(340,475,100,80);
+		add(sendButton);
 		
 		setPreferredSize(new Dimension(800,600));
 		setVisible(true);

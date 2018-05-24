@@ -4,12 +4,14 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
+import Controller.TradeController;
+
 @SuppressWarnings("serial")
 public class TradeGui extends JFrame {
 	
-	public TradeGui(){
+	public TradeGui(TradeController tradeController, int playerid){
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setContentPane(new TradeContentPane());
+		setContentPane(new TradeOfferPane(tradeController,playerid));
 		setResizable(false);
 		setVisible(true);
 		this.pack();
