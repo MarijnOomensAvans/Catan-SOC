@@ -5,11 +5,8 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-<<<<<<< HEAD
 import Controller.LobbyController;
-=======
 import Model.LobbyGameInfo;
->>>>>>> Lobby
 import Model.LobbyInvite;
 
 @SuppressWarnings("serial")
@@ -45,18 +42,15 @@ public class LobbyContentPane extends JPanel {
 		frame.pack();
 	}
 	
-<<<<<<< HEAD
 	public int getGameID() {
 		return frame.getGameID();
 	}
 	
 
-=======
 	public ArrayList<String> getPlayers(int gameID){
 		return frame.getPlayers(gameID);
 	}
 	
->>>>>>> Lobby
 	public ArrayList<LobbyInvite> getInvites(){
 		return frame.getInvites();
 	}

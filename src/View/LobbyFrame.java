@@ -42,17 +42,17 @@ public class LobbyFrame extends JFrame{
 		return controller.getInvites();
 	}
 	
-<<<<<<< HEAD
+
 	public void makeNewGameID() {
 		controller.makeNewGameID();
 	}
 	
 	public int getGameID() {
 		return controller.getGameID();
-=======
+	}
 	public ArrayList<String> getPlayers(int gameID){
 		return controller.getPlayers(gameID);
->>>>>>> Lobby
+
 	}
 	
 	public void makeMenuBar() {

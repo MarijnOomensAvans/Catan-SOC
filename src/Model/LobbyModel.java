@@ -39,14 +39,14 @@ public class LobbyModel {
 	public ArrayList<String> getPlayers(int gameID) {
 		return lobbyDAL.getPlayers(gameID);
 	}
-<<<<<<< HEAD
+
 	
 	public void makeNewGameID() {
 		int gameid = lobbyDAL.makeNewGameID();
 		this.gameid = gameid;
 	}
 
-=======
+
 
 	public boolean isRandomBoard(int gameID) {
 		return lobbyDAL.isRandomBoard(gameID);
@@ -63,5 +63,5 @@ public class LobbyModel {
 			lobbyDAL.rejectInvite(gameID);
 		}
 	}
->>>>>>> Lobby
+
 }
