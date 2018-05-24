@@ -499,6 +499,11 @@ public class TradeContentPane extends JPanel {
 		g.drawImage(myBufferedImage3, 340, 100, 100, 100, null);
 		g.drawImage(myBufferedImage4, 485, 100, 100, 100, null);
 		g.drawImage(myBufferedImage5, 630, 100, 100, 100, null);
+		g.drawImage(myBufferedImage1, 50,  300, 100, 100, null);
+		g.drawImage(myBufferedImage2, 195, 300, 100, 100, null);
+		g.drawImage(myBufferedImage3, 340, 300, 100, 100, null);
+		g.drawImage(myBufferedImage4, 485, 300, 100, 100, null);
+		g.drawImage(myBufferedImage5, 630, 300, 100, 100, null);
 	}
 
 }
