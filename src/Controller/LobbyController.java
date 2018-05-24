@@ -25,6 +25,14 @@ public class LobbyController {
 	public ArrayList<LobbyInvite> getInvites() {
 		return lobbyModel.getInvites();
 	}
+	
+	public ArrayList<String> getPlayers(int gameID) {
+		return lobbyModel.getPlayers(gameID);
+	}
+	
+	public ArrayList<LobbyGameInfo> getGames() {
+		return lobbyModel.getGames();
+	}
 
 	public void startLogin() {
 		new LoginController();
@@ -42,14 +50,16 @@ public class LobbyController {
 		return lobbyModel.getGameid();
 	}
 
-	public void mouseEnterGameInfo(int gameID) {
-		// TODO Auto-generated method stub
-
+	public boolean isRandomBoard(int gameID) {
+		return lobbyModel.isRandomBoard(gameID);
 	}
 
-	public void mouseExitGameInfo(int gameID) {
-		// TODO Auto-generated method stub
-
+	public ArrayList<String> getUsersInGame(int gameID) {
+		return lobbyModel.getUsersInGame(gameID);
+	}
+	
+	public void inviteResponse(boolean response, int gameID) {
+		lobbyModel.inviteResponse(response, gameID);
 	}
 
 }

@@ -8,6 +8,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import Controller.LobbyController;
+import Model.LobbyGameInfo;
 import Model.LobbyInvite;
 
 @SuppressWarnings("serial")
@@ -41,12 +42,17 @@ public class LobbyFrame extends JFrame{
 		return controller.getInvites();
 	}
 	
+<<<<<<< HEAD
 	public void makeNewGameID() {
 		controller.makeNewGameID();
 	}
 	
 	public int getGameID() {
 		return controller.getGameID();
+=======
+	public ArrayList<String> getPlayers(int gameID){
+		return controller.getPlayers(gameID);
+>>>>>>> Lobby
 	}
 	
 	public void makeMenuBar() {
@@ -71,20 +77,25 @@ public class LobbyFrame extends JFrame{
 		controller.closeLobbyScreen();
 	}
 	
-	public void mouseEnterGameInfo(int gameID) {
-		controller.mouseEnterGameInfo(gameID);
-	}
-	
-	public void mouseExitGameInfo(int gameID) {
-		controller.mouseExitGameInfo(gameID);
-	}
-	
-	public void displayGameInfo() {
-		
-	}
-	
 	public void switchScreen() {
 		pane.switchLobbyScreen();
 		pack();
 	}
+
+	public boolean isRandomBoard(int gameID) {
+		return controller.isRandomBoard(gameID);
+	}
+
+	public ArrayList<String> getUsersInGame(int gameID) {
+		return controller.getUsersInGame(gameID);
+	}
+
+	public void inviteResponse(boolean response, int gameID) {
+		controller.inviteResponse(response, gameID);
+	}
+	
+	public ArrayList<LobbyGameInfo> getGames() {
+		return controller.getGames();
+	}
+
 }

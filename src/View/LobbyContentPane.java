@@ -5,7 +5,11 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+<<<<<<< HEAD
 import Controller.LobbyController;
+=======
+import Model.LobbyGameInfo;
+>>>>>>> Lobby
 import Model.LobbyInvite;
 
 @SuppressWarnings("serial")
@@ -41,11 +45,18 @@ public class LobbyContentPane extends JPanel {
 		frame.pack();
 	}
 	
+<<<<<<< HEAD
 	public int getGameID() {
 		return frame.getGameID();
 	}
 	
 
+=======
+	public ArrayList<String> getPlayers(int gameID){
+		return frame.getPlayers(gameID);
+	}
+	
+>>>>>>> Lobby
 	public ArrayList<LobbyInvite> getInvites(){
 		return frame.getInvites();
 	}
@@ -55,11 +66,21 @@ public class LobbyContentPane extends JPanel {
 			frame.closeLobby();
 		});
 	}
-	public void mouseEnterGameInfo(int gameID) {
-		frame.mouseEnterGameInfo(gameID);
+
+	public boolean isRandomBoard(int gameID) {
+		return frame.isRandomBoard(gameID);
+	}
+
+	public ArrayList<String> getUsersInGame(int gameID) {
+		return frame.getUsersInGame(gameID);
 	}
 	
-	public void mouseExitGameInfo(int gameID) {
-		frame.mouseExitGameInfo(gameID);
+	public void inviteResponse(boolean response, int gameID) {
+		frame.inviteResponse(response, gameID);
 	}
+	
+	public ArrayList<LobbyGameInfo> getGames() {
+		return frame.getGames();
+	}
+
 }

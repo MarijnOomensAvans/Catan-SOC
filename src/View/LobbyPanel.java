@@ -2,6 +2,7 @@ package View;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -21,6 +22,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
 import Controller.LoginController;
+import Model.LobbyGameInfo;
 import Model.LobbyInvite;
 
 @SuppressWarnings("serial")
@@ -29,6 +31,7 @@ public class LobbyPanel extends JPanel {
 	private LobbyContentPane pane;
 	private ArrayList<String> usernames;
 	private ArrayList<LobbyInvite> invites;
+	private ArrayList<LobbyGameInfo> games;
 
 	private final int WIDTH = 1400;
 	private final int HEIGHT = 900;
@@ -44,7 +47,6 @@ public class LobbyPanel extends JPanel {
 	private JPanel rightPanel;
 	private JPanel leftPanel;
 	private JPanel centerPanel;
-	private JPanel overlayPanel;
 
 	private JPanel accountPanel;
 	private JPanel gamesPanel;
@@ -54,20 +56,22 @@ public class LobbyPanel extends JPanel {
 	private JPanel buttonPanel;
 	private JPanel blankPanel;
 	private JPanel gameButtonPane;
+	private LobbyGameInfoPanel infoPanel;
 
 	private JLabel accountLabel;
 	private JLabel nameLabel;
 	private JLabel challengeLabel;
 	private JLabel gameLabel;
 
-
 	private Border blackLine;
 	private Border buttonBorder;
 
 	private Font titleFont;
+	private Font gameInfoFont;
+	private Font gameInfoNameFont;
 	private Font accountFont;
 	private Font buttonFont;
-	
+
 	@SuppressWarnings("unused")
 	private JButton playButton;
 
@@ -75,8 +79,10 @@ public class LobbyPanel extends JPanel {
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 
 		titleFont = new Font("TimesRoman", 15, 50);
+		gameInfoFont = new Font("TimesRoman", 15, 40);
 		accountFont = new Font("TimesRoman", 15, 30);
 		buttonFont = new Font("TimesRoman", 15, 30);
+		gameInfoNameFont = new Font("TimesRoman", 15, 20);
 
 		this.pane = pane;
 
@@ -93,7 +99,7 @@ public class LobbyPanel extends JPanel {
 		playButton.setFocusPainted(false);
 		playButton.setBackground(Color.ORANGE);
 		playButton.setPreferredSize(new Dimension(150, 75));
-		
+
 		topPanel = new JPanel();
 		rightPanel = new JPanel();
 		leftPanel = new JPanel();
@@ -107,6 +113,7 @@ public class LobbyPanel extends JPanel {
 		buttonPanel = new JPanel();
 		blankPanel = new JPanel();
 		gameButtonPane = new JPanel();
+		infoPanel = new LobbyGameInfoPanel(gameInfoFont);
 
 		nameLabel = new JLabel("SO-C");
 		accountLabel = new JLabel("Accounts");
@@ -120,13 +127,13 @@ public class LobbyPanel extends JPanel {
 		challengeLabel = new JLabel("Uitdagingen");
 		challengeLabel.setFont(titleFont);
 		challengeLabel.setForeground(Color.WHITE);
-		
+
 		blankPanel.setBackground(Color.white);
-		blankPanel.setPreferredSize(new Dimension(WIDTH-(SIDEPANELWIDTH*2), 200));
-		
+		blankPanel.setPreferredSize(new Dimension(WIDTH - (SIDEPANELWIDTH * 2), 200));
+
 		gameButtonPane.setBackground(Color.white);
 		gameButtonPane.add(playButton);
-		
+
 		buttonPanel.setBackground(Color.red);
 		buttonPanel.setLayout(new BorderLayout());
 		buttonPanel.add(blankPanel, BorderLayout.NORTH);
@@ -142,9 +149,11 @@ public class LobbyPanel extends JPanel {
 		gamesPanel.setBackground(Color.DARK_GRAY);
 		ourNamePanel.setBackground(Color.WHITE);
 		rightPanel.setBackground(Color.DARK_GRAY);
+		infoPanel.setBackground(Color.DARK_GRAY);
 
 		challengePanel.setBorder(blackLine);
 		gamesPanel.setBorder(blackLine);
+		infoPanel.setBorder(blackLine);
 
 		setLayout(new BorderLayout());
 
@@ -156,9 +165,12 @@ public class LobbyPanel extends JPanel {
 
 		gamesPanel.add(gameLabel);
 
-		leftPanel.setLayout(new GridLayout(2, 1));
-		leftPanel.add(challengePanel);
-		leftPanel.add(gamesPanel);
+		leftPanel.setLayout(new BorderLayout());
+		leftPanel.add(challengePanel, BorderLayout.NORTH);
+		leftPanel.add(gamesPanel, BorderLayout.CENTER);
+		
+		challengePanel.setPreferredSize(new Dimension(SIDEPANELWIDTH, 400));
+		gamesPanel.setPreferredSize(new Dimension(SIDEPANELWIDTH, 500));
 
 		rightPanel.setLayout(new BorderLayout());
 		rightPanel.setBorder(blackLine);
@@ -178,9 +190,10 @@ public class LobbyPanel extends JPanel {
 
 		accountPanel.setLayout(new BoxLayout(accountPanel, 1));
 		accountPanel.setBackground(new Color(200, 200, 200, 255));
-		
+
 		drawAccountLabels();
 		drawInvites();
+		drawGames();
 	}
 
 	public void drawAccountLabels() {
@@ -199,17 +212,52 @@ public class LobbyPanel extends JPanel {
 			}
 		}
 	}
-	
+
+	public void drawGames() {
+		games = pane.getGames();
+		ArrayList<Component> gameLabels = new ArrayList<Component>();
+
+		for (int i = 0; i < games.size(); i++) {
+
+			int gameID = games.get(i).getID();
+			ArrayList<String> players = games.get(i).getPlayers();
+			JPanel row = new JPanel(new BorderLayout());
+			JPanel namePanel = new JPanel();
+			JPanel infoPanel = new JPanel();
+			JLabel label = new JLabel("GameID:" + games.get(i).getID() + " (" + games.get(i).currentTurn() + ")");
+			label.setFont(buttonFont);
+			row.setPreferredSize(new Dimension(INVITEWIDTH, NAMEHEIGHT * 4));
+			namePanel.add(label);
+			namePanel.setBorder(blackLine);
+			namePanel.setBackground(Color.orange);
+			infoPanel.setLayout(new GridLayout(2, 2));
+
+			for (int n = 0; n < players.size(); n++) {
+				JLabel nameLabel = new JLabel((players.get(n)));
+				nameLabel.setFont(gameInfoNameFont);
+				nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+				nameLabel.setBorder(blackLine);
+				infoPanel.add(nameLabel);
+
+			}
+			row.add(namePanel, BorderLayout.NORTH);
+			row.add(infoPanel, BorderLayout.CENTER);
+			row.setBorder(blackLine);
+			gamesPanel.add(row);
+		}
+	}
+
 	public void drawInvites() {
 		invites = pane.getInvites();
-		
-		for(int i = 0; i < invites.size(); i++) {
+		ArrayList<Component> inviteLabels = new ArrayList<Component>();
+
+		for (int i = 0; i < invites.size(); i++) {
 			int gameID = invites.get(i).getGameID();
 			String host = invites.get(i).getHost();
 			JPanel row = new JPanel(new BorderLayout());
 			row.setPreferredSize(new Dimension(INVITEWIDTH, NAMEHEIGHT));
-			
-			//Create the padding for the label
+
+			// Create the padding for the label
 			JButton info = new JButton("(?)");
 			info.setPreferredSize(new Dimension(PADDINGWIDTH, NAMEHEIGHT));
 			info.setMargin(new Insets(0, 0, 0, 0));
@@ -219,58 +267,83 @@ public class LobbyPanel extends JPanel {
 			info.setOpaque(false);
 			info.setBorder(null);
 			info.addMouseListener(new Hover(gameID, host));
-			
-			//Create the label holding the hosts name
+
+			// Create the label holding the hosts name
 			JLabel label = new JLabel(invites.get(i).getHost());
 			label.setHorizontalAlignment(SwingConstants.LEFT);
 			label.setPreferredSize(new Dimension(INVITELABELWIDTH, NAMEHEIGHT));
-			
+
 			JPanel namePanel = new JPanel(new BorderLayout());
 			namePanel.add(info, BorderLayout.LINE_START);
 			namePanel.add(label, BorderLayout.CENTER);
-			
-			//Create yes no buttons
+
+			// Create yes no buttons
 			JButton acceptButton = new JButton("\u2713");
 			acceptButton.setPreferredSize(new Dimension(INVITEBUTTONWIDTH, NAMEHEIGHT));
 			acceptButton.addActionListener(e -> {
-				
+				pane.inviteResponse(true, gameID);
+				for (int n = 0; n < inviteLabels.size(); n++) {
+					challengePanel.remove(inviteLabels.get(n));
+				}
+				drawInvites();
+				challengePanel.repaint();
+				challengePanel.validate();
 			});
-			
+
 			JButton refuseButton = new JButton("X");
 			refuseButton.setPreferredSize(new Dimension(INVITEBUTTONWIDTH, NAMEHEIGHT));
 			refuseButton.addActionListener(e -> {
-				
+				pane.inviteResponse(false, gameID);
+				for (int n = 0; n < inviteLabels.size(); n++) {
+					challengePanel.remove(inviteLabels.get(n));
+				}
+				drawInvites();
+				challengePanel.repaint();
+				challengePanel.validate();
 			});
-			
+
 			acceptButton.setBackground(new Color(60, 180, 60, 255));
 			refuseButton.setBackground(new Color(180, 60, 60, 255));
 			refuseButton.setForeground(Color.orange);
-			
-			//Add all components
+
+			// Add all components
 			row.add(namePanel, BorderLayout.LINE_START);
 			row.add(acceptButton, BorderLayout.CENTER);
 			row.add(refuseButton, BorderLayout.LINE_END);
 			challengePanel.add(row);
-			
+			inviteLabels.add(row);
+
 		}
 	}
-	
-	public class Hover extends MouseAdapter{
-		
+
+	public class Hover extends MouseAdapter {
+
 		private int gameID;
-		
+		private String host;
+
 		public Hover(int gameID, String host) {
 			this.gameID = gameID;
+			this.host = host;
 		}
-		
+
 		@Override
 		public void mouseEntered(MouseEvent e) {
-			pane.mouseEnterGameInfo(gameID);
+			ArrayList<String> players = pane.getUsersInGame(gameID);
+			boolean isRandom = pane.isRandomBoard(gameID);
+
+			leftPanel.remove(gamesPanel);
+			infoPanel.updateInfo(gameID, isRandom, host, players);
+			leftPanel.add(infoPanel);
+			leftPanel.repaint();
+			leftPanel.validate();
 		}
 
 		@Override
 		public void mouseExited(MouseEvent e) {
-			pane.mouseExitGameInfo(gameID);
+			leftPanel.remove(infoPanel);
+			leftPanel.add(gamesPanel);
+			leftPanel.repaint();
+			leftPanel.validate();
 		}
 	}
 }
