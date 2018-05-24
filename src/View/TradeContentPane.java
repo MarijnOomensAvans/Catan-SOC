@@ -6,6 +6,8 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -17,6 +19,12 @@ import javax.swing.JTextField;
 
 @SuppressWarnings("serial")
 public class TradeContentPane extends JPanel {
+	
+	private int stoneOfferCounter = 0;
+	private int oreOfferCounter = 0;
+	private int woodOfferCounter = 0;
+	private int wheatOfferCounter = 0;
+	private int woolOfferCounter = 0;
 	
 	private BufferedImage myBufferedImage1;
 	private BufferedImage myBufferedImage2;
@@ -72,7 +80,7 @@ public class TradeContentPane extends JPanel {
 		oreoffer = new JTextField("0");
 		woodoffer = new JTextField("0");
 		wheatoffer = new JTextField("0");
-		wooloffer = new JTextField("10");
+		wooloffer = new JTextField("0");
 		
 		try {
 				myBufferedImage1 = ImageIO.read(stone);
@@ -141,6 +149,67 @@ public class TradeContentPane extends JPanel {
 		woodoffer.setBackground(Color.WHITE);
 		wooloffer.setBackground(Color.WHITE);
 		wheatoffer.setBackground(Color.WHITE);
+		
+		minusstone.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (stoneOfferCounter > 0)
+				{
+					stoneOfferCounter--;
+					stoneoffer.setText("" + stoneOfferCounter);
+				}
+			}
+		});
+		
+		minusore.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (oreOfferCounter > 0)
+				{
+					oreOfferCounter--;
+					oreoffer.setText("" + oreOfferCounter);
+				}
+			}
+		});
+		
+		minuswood.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (woodOfferCounter > 0)
+				{
+					woodOfferCounter--;
+					woodoffer.setText("" + woodOfferCounter);
+				}
+			}
+		});		
+		
+		minuswool.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (woolOfferCounter > 0)
+				{
+					woolOfferCounter--;
+					wooloffer.setText("" + woolOfferCounter);
+				}
+			}
+		});
+		
+		minuswheat.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (wheatOfferCounter > 0)
+				{
+					wheatOfferCounter--;
+					wheatoffer.setText("" + wheatOfferCounter);
+				}
+			}
+		});
+		
 		
 		setPreferredSize(new Dimension(800,600));
 		setVisible(true);
