@@ -174,7 +174,6 @@ public class LobbyDAL {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println(gameid);
 		return gameid;
 	}
 	
@@ -192,7 +191,6 @@ public class LobbyDAL {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		System.out.println(highestGameId);
 		return highestGameId;
 	}
 

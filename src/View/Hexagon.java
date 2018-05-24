@@ -14,7 +14,7 @@ public class Hexagon {
           this.center = center;
           this.radius = radius;
           this.hexagon = createHexagon();
-          System.out.println(hexagon.getBounds());
+
       }
 
       private Polygon createHexagon() {

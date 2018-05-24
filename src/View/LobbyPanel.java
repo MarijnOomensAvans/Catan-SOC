@@ -181,7 +181,6 @@ public class LobbyPanel extends JPanel {
 		
 		drawAccountLabels();
 		drawInvites();
-		System.out.println(pane.getGameID());
 	}
 
 	public void drawAccountLabels() {
