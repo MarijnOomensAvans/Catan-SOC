@@ -1,11 +1,12 @@
 package View;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.Graphics;
+<<<<<<< HEAD
 import java.awt.GridLayout;
+=======
+>>>>>>> 40c2519f1b305da703bd1eaffa2e954238157f11
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
@@ -20,11 +21,19 @@ import javax.swing.JTextField;
 @SuppressWarnings("serial")
 public class TradeContentPane extends JPanel {
 	
+<<<<<<< HEAD
 	private int stoneOfferCounter = 0;
 	private int oreOfferCounter = 0;
 	private int woodOfferCounter = 0;
 	private int wheatOfferCounter = 0;
 	private int woolOfferCounter = 0;
+=======
+	private int stoneOfferCounter =0;
+	private int oreOfferCounter =0;
+	private int woodOfferCounter =0;
+	private int wheatOfferCounter =0;
+	private int woolOfferCounter =0;
+>>>>>>> 40c2519f1b305da703bd1eaffa2e954238157f11
 	
 	private BufferedImage myBufferedImage1;
 	private BufferedImage myBufferedImage2;
@@ -76,11 +85,19 @@ public class TradeContentPane extends JPanel {
 		minuswheat = new JButton("-");
 		minuswool = new JButton("-");
 		
+<<<<<<< HEAD
 		stoneoffer = new JTextField("0");
 		oreoffer = new JTextField("0");
 		woodoffer = new JTextField("0");
 		wheatoffer = new JTextField("0");
 		wooloffer = new JTextField("0");
+=======
+		stoneoffer = new JTextField(""+stoneOfferCounter);
+		oreoffer = new JTextField(""+oreOfferCounter);
+		woodoffer = new JTextField(woodOfferCounter);
+		wheatoffer = new JTextField(wheatOfferCounter);
+		wooloffer = new JTextField(woolOfferCounter);
+>>>>>>> 40c2519f1b305da703bd1eaffa2e954238157f11
 		
 		try {
 				myBufferedImage1 = ImageIO.read(stone);
@@ -137,6 +154,61 @@ public class TradeContentPane extends JPanel {
 		
 		add(pluswood);
 		pluswood.setBounds(692,210, 45, 30);
+		
+		plusstone.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				stoneOfferCounter++;
+				stoneoffer.setText(""+stoneOfferCounter);
+			}
+			
+		});
+		
+		
+		plusore.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				oreOfferCounter++;
+				oreoffer.setText(""+oreOfferCounter);
+				
+			}
+			
+		});
+		
+		pluswood.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				woodOfferCounter++;
+				woodoffer.setText(""+ woodOfferCounter);
+				
+			}
+			
+		});
+		
+		pluswheat.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				wheatOfferCounter++;
+				wooloffer.setText("" + wheatOfferCounter);
+				
+			}
+			
+		});
+		
+		pluswool.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				woolOfferCounter++;
+					wooloffer.setText("" + woolOfferCounter);
+				
+			}
+			
+		});
 		
 		stoneoffer.setEditable(false);
 		oreoffer.setEditable(false);
