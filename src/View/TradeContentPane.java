@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
+import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -40,7 +41,7 @@ public class TradeContentPane extends JPanel {
 	private JButton minuswool;
 	
 	public TradeContentPane() {
-		setLayout(new FlowLayout());
+		this.setLayout(new GridLayout());
 		stone = new File("./Images/baksteen.jpg");
 		wool = new File("./Images/schaap.jpg");
 		ore = new File("./Images/erts.jpg");
@@ -68,8 +69,11 @@ public class TradeContentPane extends JPanel {
 			}catch (IOException e) {
 			System.out.println(e.getMessage());
 			}
-		add(plusstone,BorderLayout.PAGE_END);
 		this.repaint();
+		
+		add(plusstone);
+		plusstone.setBounds(50,210, 45, 30);
+		
 		
 		setPreferredSize(new Dimension(600,600));
 		setVisible(true);
@@ -77,11 +81,11 @@ public class TradeContentPane extends JPanel {
 	
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
-		g.drawImage(myBufferedImage1, 50, 200, 100, 100, null);
-		g.drawImage(myBufferedImage2, 155, 200, 100, 100, null);
-		g.drawImage(myBufferedImage3, 260, 200, 100, 100, null);
-		g.drawImage(myBufferedImage4, 365, 200, 100, 100, null);
-		g.drawImage(myBufferedImage5, 470, 200, 100, 100, null);
+		g.drawImage(myBufferedImage1, 50, 100, 100, 100, null);
+		g.drawImage(myBufferedImage2, 155, 100, 100, 100, null);
+		g.drawImage(myBufferedImage3, 260, 100, 100, 100, null);
+		g.drawImage(myBufferedImage4, 365, 100, 100, 100, null);
+		g.drawImage(myBufferedImage5, 470, 100, 100, 100, null);
 	}
 
 }
