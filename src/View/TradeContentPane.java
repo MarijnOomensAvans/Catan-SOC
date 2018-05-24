@@ -57,6 +57,31 @@ public class TradeContentPane extends JPanel {
 	private JTextField wheatoffer;
 	private JTextField wooloffer;
 	
+	private int stoneDemandCounter =0;
+	private int oreDemandCounter =0;
+	private int woodDemandCounter =0;
+	private int wheatDemandCounter =0;
+	private int woolDemandCounter =0;
+
+
+	private JButton plusStoneDemand;
+	private JButton plusOreDemand;
+	private JButton plusWoodDemand;
+	private JButton plusWheatDemand;
+	private JButton pluswoolDemand;
+
+	private JButton minusDemandStone;
+	private JButton minusDemandOre;
+	private JButton minusDemandWood;
+	private JButton minusDemandWheat;
+	private JButton minusDemandWool;
+
+	private JTextField stoneDemand;
+	private JTextField oreDemand;
+	private JTextField woodDemand;
+	private JTextField wheatDemand;
+	private JTextField woolDemand;
+	
 	public TradeContentPane() {
 		this.setLayout(null);
 		stone = new File("./Images/baksteen.jpg");
@@ -80,9 +105,9 @@ public class TradeContentPane extends JPanel {
 
 		stoneoffer = new JTextField(""+stoneOfferCounter);
 		oreoffer = new JTextField(""+oreOfferCounter);
-		woodoffer = new JTextField(woodOfferCounter);
-		wheatoffer = new JTextField(wheatOfferCounter);
-		wooloffer = new JTextField(woolOfferCounter);
+		woodoffer = new JTextField(""+woodOfferCounter);
+		wooloffer = new JTextField(""+woolOfferCounter);
+		wheatoffer = new JTextField(""+wheatOfferCounter);
 		
 		try {
 				myBufferedImage1 = ImageIO.read(stone);
@@ -267,10 +292,205 @@ public class TradeContentPane extends JPanel {
 			}
 		});
 		
+		plusStoneDemand = new JButton("+");
+		plusOreDemand = new JButton("+");
+		plusWoodDemand = new JButton("+");
+		plusWheatDemand = new JButton("+");
+		pluswool = new JButton("+");
+		
+		minusDemandStone = new JButton("-");
+		minusDemandOre = new JButton("-");
+		minusDemandWood = new JButton("-");
+		minusDemandWheat = new JButton("-");
+		minusDemandWool = new JButton("-");
+		
+
+		stoneDemand = new JTextField(""+stoneOfferCounter);
+		oreDemand = new JTextField(""+oreDemandCounter);
+		woodDemand = new JTextField(""+woodDemandCounter);
+		woolDemand = new JTextField(""+woolDemandCounter);
+		wheatDemand = new JTextField(""+wheatDemandCounter);
+		
+
+		
+		add(minusDemandStone);
+		minusDemandStone.setBounds(40,410, 45, 30);
+		
+		add(stoneDemand);
+		stoneDemand.setBounds(86,410, 25, 30);
+		
+		add(plusStoneDemand);
+		plusStoneDemand.setBounds(111,410, 45, 30);
+		
+		add(minusDemandWool);
+		minusDemandWool.setBounds(186,410, 45, 30);
+		
+		add(woolDemand);
+		woolDemand.setBounds(232,410, 25, 30);
+		
+		add(pluswool);
+		pluswool.setBounds(257,410, 45, 30);
+		
+		add(minusDemandOre);
+		minusDemandOre.setBounds(330,410, 45, 30);
+		
+		add(oreDemand);
+		oreDemand.setBounds(376,410, 25, 30);
+		
+		add(plusOreDemand);
+		plusOreDemand.setBounds(402,410, 45, 30);
+		
+		add(minusDemandWheat);
+		minusDemandWheat.setBounds(475,410, 45, 30);
+		
+		add(wheatDemand);
+		wheatDemand.setBounds(521,410, 25, 30);
+		
+		add(plusWheatDemand);
+		plusWheatDemand.setBounds(547,410, 45, 30);
+		
+		add(minusDemandWood);
+		minusDemandWood.setBounds(620,410, 45, 30);
+		
+		add(woodDemand);
+		woodDemand.setBounds(666,410, 25, 30);
+		
+		add(plusWoodDemand);
+		plusWoodDemand.setBounds(692,410, 45, 30);
+		
+		plusStoneDemand.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				stoneOfferCounter++;
+				stoneDemand.setText(""+stoneOfferCounter);
+			}
+			
+		});
+		
+		
+		plusOreDemand.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				oreDemandCounter++;
+				oreDemand.setText(""+oreDemandCounter);
+				
+			}
+			
+		});
+		
+		plusWoodDemand.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				woodDemandCounter++;
+				woodDemand.setText(""+ woodDemandCounter);
+				
+			}
+			
+		});
+		
+		plusWheatDemand.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				wheatDemandCounter++;
+				wheatDemand.setText("" + wheatDemandCounter);
+				
+			}
+			
+		});
+		
+		pluswool.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				woolDemandCounter++;
+					woolDemand.setText("" + woolDemandCounter);
+				
+			}
+			
+		});
+		
+		stoneDemand.setEditable(false);
+		oreDemand.setEditable(false);
+		woodDemand.setEditable(false);
+		woolDemand.setEditable(false);
+		wheatDemand.setEditable(false);
+		
+		stoneDemand.setBackground(Color.WHITE);
+		oreDemand.setBackground(Color.WHITE);
+		woodDemand.setBackground(Color.WHITE);
+		woolDemand.setBackground(Color.WHITE);
+		wheatDemand.setBackground(Color.WHITE);
+		
+		minusDemandStone.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (stoneOfferCounter > 0)
+				{
+					stoneOfferCounter--;
+					stoneDemand.setText("" + stoneOfferCounter);
+				}
+			}
+		});
+		
+		minusDemandOre.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (oreDemandCounter > 0)
+				{
+					oreDemandCounter--;
+					oreDemand.setText("" + oreDemandCounter);
+				}
+			}
+		});
+		
+		minusDemandWood.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (woodDemandCounter > 0)
+				{
+					woodDemandCounter--;
+					woodDemand.setText("" + woodDemandCounter);
+				}
+			}
+		});		
+		
+		minusDemandWool.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (woolDemandCounter > 0)
+				{
+					woolDemandCounter--;
+					woolDemand.setText("" + woolDemandCounter);
+				}
+			}
+		});
+		
+		minusDemandWheat.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if (wheatDemandCounter > 0)
+				{
+					wheatDemandCounter--;
+					wheatDemand.setText("" + wheatDemandCounter);
+				}
+			}
+		});
 		
 		setPreferredSize(new Dimension(800,600));
 		setVisible(true);
 	}
+		
+		
+	
 	
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);
