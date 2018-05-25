@@ -27,16 +27,16 @@ public class SetupChangePanel extends JPanel implements ActionListener{
 	private JComboBox boardTypes;
 	
 	private JButton returnButton;
-	private JButton runButton;
+	private JButton InviteButton;
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public SetupChangePanel() {
+	public SetupChangePanel(JButton inviteButton) {
+		this.InviteButton = inviteButton;
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		setBackground(Color.WHITE);
 		setLayout(new BorderLayout());
-		
-		runButton = new JButton("Start");
-		runButton.setBackground(Color.YELLOW);
+	
+		InviteButton.setBackground(Color.YELLOW);
 		
 		returnButton = new JButton("Return");
 		
@@ -44,7 +44,7 @@ public class SetupChangePanel extends JPanel implements ActionListener{
 		
 		add(boardTypes, BorderLayout.NORTH);
 		add(returnButton, BorderLayout.SOUTH);
-		add(runButton, BorderLayout.SOUTH);
+		add(InviteButton, BorderLayout.SOUTH);
 		
 		boardTypes.addActionListener(this);
 		

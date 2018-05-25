@@ -17,19 +17,27 @@ public class LobbyContentPane extends JPanel {
 	private LobbyPanel lobby;
 	private SetupGamePane setupGame;
 	private LobbyController lc;
+	private InvitePanel invitePanel;
 	private JButton playButton;
+	private JButton inviteButton;
 
 	public LobbyContentPane(LobbyController controller, BoardController bc) {
 		this.bc = bc;
+		inviteButton = new JButton("Invite");
 		playButton = new JButton("Start");
 		this.lc = controller;
+		this.invitePanel = new InvitePanel(this);
 		this.lobby = new LobbyPanel(this, playButton);
-		this.setupGame = new SetupGamePane(bc);
+		this.setupGame = new SetupGamePane(bc, inviteButton);
 		playButton.addActionListener(e -> {
 		switchLobbyScreen();
 		});
+		inviteButton.addActionListener(e -> {
+		switchInviteScreen();
+		});
 		add(lobby);
 	}
+		
 
 	public ArrayList<String> getUsernames() {
 		return lc.getUsernames();
@@ -45,6 +53,13 @@ public class LobbyContentPane extends JPanel {
 		revalidate();
 		repaint();
 		
+	}
+	
+	public void switchInviteScreen() {
+		removeAll();
+		add(invitePanel);
+		revalidate();
+		repaint();
 	}
 	
 	public int getGameID() {
