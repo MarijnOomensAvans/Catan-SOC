@@ -629,13 +629,13 @@ public class Board {
 				placeResource(i, 'B');
 				break;
 			case 1008:
-				placeResource(i, 'W');
+				placeResource(i, 'G');
 				break;
 			case 1009:
 				placeResource(i, 'X');
 				break;
 			case 1010:
-				placeResource(i, 'G');
+				placeResource(i, 'W');
 				break;
 			case 1011:
 				placeResource(i, 'G');
