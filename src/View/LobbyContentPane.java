@@ -15,11 +15,13 @@ public class LobbyContentPane extends JPanel {
 	private SetupGamePane setupGame;
 	private LobbyFrame frame;
 	private JButton playButton;
+	private InvitePanel invitePanel;
 
 	public LobbyContentPane(LobbyFrame frame) {
 		playButton = new JButton("Start");
 		this.frame = frame;
 		this.lobby = new LobbyPanel(this, playButton);
+		this.invitePanel = new InvitePanel(this);
 		this.setupGame = new SetupGamePane();
 		playButton.addActionListener(e -> {
 			
@@ -35,7 +37,7 @@ public class LobbyContentPane extends JPanel {
 	public void switchLobbyScreen() {
 		removeAll();
 		repaint();
-		add(setupGame);
+		add(invitePanel);
 		frame.pack();
 	}
 	
