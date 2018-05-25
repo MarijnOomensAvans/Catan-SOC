@@ -13,10 +13,10 @@ public class SetupGamePane extends JPanel {
 	private DrawingPanel hexagonPanel;
 	private SetupChangePanel changePanel;
 	
-	public SetupGamePane(BoardController bc) {
+	public SetupGamePane(BoardController bc, int idspel) {
 		setPreferredSize(new Dimension(WIDTH,HEIGHT));
 		changePanel = new SetupChangePanel();
-		hexagonPanel = new DrawingPanel(bc);
+		hexagonPanel = new DrawingPanel(bc, idspel);
 
 		hexagonPanel.setBounds(0, 0, 500, 500);
 		

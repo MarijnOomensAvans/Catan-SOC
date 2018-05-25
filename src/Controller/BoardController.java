@@ -28,8 +28,8 @@ public class BoardController {
 		board.finishBoard(idspel);
 	}
 	
-	public Color getColour(int i) {
-		return board.getColour(i);
+	public Color getColour(int i, int idspel) {
+		return board.getColour(i, idspel);
 	}
 	
 }

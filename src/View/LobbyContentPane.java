@@ -24,7 +24,6 @@ public class LobbyContentPane extends JPanel {
 		playButton = new JButton("Start");
 		this.lc = controller;
 		this.lobby = new LobbyPanel(this, playButton);
-		this.setupGame = new SetupGamePane(bc);
 		playButton.addActionListener(e -> {
 		switchLobbyScreen();
 		});
@@ -37,6 +36,7 @@ public class LobbyContentPane extends JPanel {
 
 	public void switchLobbyScreen() {
 		lc.makeNewGameID();
+		this.setupGame = new SetupGamePane(bc, lc.getGameID());
 		bc.generateBoard();
 		bc.setBoardType(lc.getGameID(), 1);
 		bc.finishBoard(lc.getGameID());
