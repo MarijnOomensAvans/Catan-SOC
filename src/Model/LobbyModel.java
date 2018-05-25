@@ -17,7 +17,6 @@ public class LobbyModel {
 
 	public LobbyModel() {
 		lobbyDAL = new LobbyDAL();
-		System.out.println(lobbyDAL.getFreePlayerid());
 	}
 
 	public ArrayList<String> getUsernames() {
