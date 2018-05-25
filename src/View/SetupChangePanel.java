@@ -16,8 +16,8 @@ import Controller.LobbyController;
 @SuppressWarnings("serial")
 public class SetupChangePanel extends JPanel implements ActionListener{
 	
-	private LobbyController lobby;
-	private BoardController boardcontroller;
+	private LobbyController lc;
+	private BoardController bc;
 
 	private final int WIDTH = 200;
 	private final int HEIGHT = 500;
@@ -29,8 +29,13 @@ public class SetupChangePanel extends JPanel implements ActionListener{
 	private JButton returnButton;
 	private JButton InviteButton;
 	
+	private int idspel;
+	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public SetupChangePanel(JButton inviteButton) {
+	public SetupChangePanel(LobbyController lc, BoardController bc, JButton inviteButton, int idspel) {
+		this.lc = lc;
+		this.idspel = idspel;
+		this.bc = bc;
 		this.InviteButton = inviteButton;
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		setBackground(Color.WHITE);
@@ -54,11 +59,14 @@ public class SetupChangePanel extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		String input = (String) boardTypes.getSelectedItem();
 		if(input == "Standaard") {
-			boardcontroller.setBoardType(lobby.getGameID(), 1);
-			
+			bc.removeResource();
+			bc.setBoardType(lc.getGameID(), 1);
+			bc.finishBoard(idspel);
 		}
 		else if (input == "Random"){
-			boardcontroller.setBoardType(lobby.getGameID(), 1);
+			bc.removeResource();
+			bc.setBoardType(lc.getGameID(), 2);
+			bc.finishBoard(idspel);
 		}
 		
 	}

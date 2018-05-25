@@ -707,4 +707,16 @@ public class Board {
 		}
 		return null;
 	}
+	
+	//------------------------------------------------------------------------------------------------------------------------
+	// Method to remove tile resources with change.
+	
+	public void removeResource() {
+		for (int i = 1000; i < 1019; i++) {
+			((Tile) axisgrid.get(i)).setResourcetype('N');
+			((Tile) axisgrid.get(i)).setChit(0);
+		}
+	}
+	
+	
 }
