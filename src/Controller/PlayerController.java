@@ -13,11 +13,9 @@ public class PlayerController {
 	private MainDAL md;
 	private PersonDal pd;
 	
-<<<<<<< HEAD
-	public PlayerController(MainDAL md, BankController bc, int personid) {
-=======
+
 	public PlayerController(MainDAL md,PersonDal pd, BankController bc,int personid) {
->>>>>>> e2420f1ab03af08306872bf1fc96d6cd570a0a6b
+
 		this.md = md;
 		this.bc = bc;
 		this.pd = pd;

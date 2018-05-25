@@ -13,11 +13,8 @@ public class MainClass {
 		PersonDal pd = new PersonDal();
 //		BankController bc = new BankController(md);
 //		new PlayerController(md,bc,1);
-<<<<<<< HEAD
-		new TradeController(md, 1);
-=======
-		new TradeController(9,220,pd);
->>>>>>> e2420f1ab03af08306872bf1fc96d6cd570a0a6b
+
+		new TradeController(md, 9, 220, pd);
 
 	}
 }

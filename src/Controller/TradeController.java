@@ -1,14 +1,13 @@
 package Controller;
 
-<<<<<<< HEAD
+
 import DAL.MainDAL;
 import DAL.PersonDal;
 import DAL.TradeDAL;
-=======
+
 import java.util.ArrayList;
 
 import DAL.PersonDal;
->>>>>>> e2420f1ab03af08306872bf1fc96d6cd570a0a6b
 import Model.TradeOffer;
 import Model.TradeOtherPlayers;
 import View.TradeAcceptPane;
@@ -16,26 +15,22 @@ import View.TradeGui;
 
 public class TradeController {
 	
-<<<<<<< HEAD
+
 	private MainDAL md;
 	private TradeDAL td;
 	
-	public TradeController(MainDAL md, int playerid) {
-		this.md = md;
-		this.td = new TradeDAL();
-		new TradeGui(this, playerid);
-=======
 	TradeOtherPlayers otherPlayers;
 	private int playerid;
 	private int gameid;
 	private TradeGui gui;
 	
-	public TradeController(int playerid,int gameid, PersonDal pd) {
+	public TradeController(MainDAL md, int playerid, int gameid, PersonDal pd) {
+		this.md = md;
+		this.td = new TradeDAL();
 		this.playerid= playerid;
 		this.gameid = gameid;
-		gui = new TradeGui(this,playerid);
+		gui = new TradeGui(this, playerid);
 		otherPlayers =new TradeOtherPlayers(pd);
->>>>>>> e2420f1ab03af08306872bf1fc96d6cd570a0a6b
 	}
 	
 	public void createOffer(int idPlayer, int givesStone, int givesWool, int givesOre, int givesWheat,
