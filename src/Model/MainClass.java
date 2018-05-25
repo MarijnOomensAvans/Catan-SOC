@@ -14,7 +14,7 @@ public class MainClass {
 //		BankController bc = new BankController(md);
 //		new PlayerController(md,bc,1);
 
-		new TradeController(md, 9, 220, pd);
+		new TradeController(9, 220, pd);
 
 	}
 }

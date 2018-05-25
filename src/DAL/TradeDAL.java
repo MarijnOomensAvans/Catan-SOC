@@ -6,7 +6,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import Model.TradeOffer;
 
 public class TradeDAL {
 	
@@ -81,6 +80,28 @@ public class TradeDAL {
 					results.add(rs.getInt(i));
 				}		
 				results.add(rs.getInt(12));
+			}
+			
+			stmt.close();
+		} catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		return results;
+	}
+
+	public ArrayList<Boolean> getResponses(int playerid) {
+		ArrayList<Boolean> results = new ArrayList<Boolean>();
+		
+		Statement stmt = null;
+		String query = "SELECT geaccepteerd FROM ruilaanbod WHERE idspeler NOT IN("+ playerid+")";
+		try
+		{
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while (rs.next())
+			{	
+				results.add(rs.getBoolean(1));
 			}
 			
 			stmt.close();

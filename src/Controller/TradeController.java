@@ -1,13 +1,12 @@
 package Controller;
 
 
-import DAL.MainDAL;
+
 import DAL.PersonDal;
 import DAL.TradeDAL;
 
 import java.util.ArrayList;
 
-import DAL.PersonDal;
 import Model.TradeOffer;
 import Model.TradeOtherPlayers;
 import View.TradeAcceptPane;
@@ -16,7 +15,7 @@ import View.TradeGui;
 public class TradeController {
 	
 
-	private MainDAL md;
+
 	private TradeDAL td;
 	
 	TradeOtherPlayers otherPlayers;
@@ -24,13 +23,12 @@ public class TradeController {
 	private int gameid;
 	private TradeGui gui;
 	
-	public TradeController(MainDAL md, int playerid, int gameid, PersonDal pd) {
-		this.md = md;
+	public TradeController(int playerid, int gameid, PersonDal pd) {
 		this.td = new TradeDAL();
 		this.playerid= playerid;
 		this.gameid = gameid;
 		gui = new TradeGui(this, playerid);
-		otherPlayers =new TradeOtherPlayers(pd);
+		otherPlayers =new TradeOtherPlayers(pd,td);
 	}
 	
 	public void createOffer(int idPlayer, int givesStone, int givesWool, int givesOre, int givesWheat,
@@ -62,5 +60,10 @@ public class TradeController {
 
 	public void getOffer(){
 		td.getTradeOffer(1);
+	}
+
+	public ArrayList<Boolean> getResponses() {
+		ArrayList<Boolean> responses=otherPlayers.getResponses(playerid);
+		return responses;
 	}
 }
