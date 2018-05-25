@@ -13,7 +13,7 @@ public class PlayerController {
 	private MainDAL md;
 	private PersonDal pd;
 	
-	public PlayerController(MainDAL md, BankController bc,int personid) {
+	public PlayerController(MainDAL md, BankController bc, int personid) {
 		this.md = md;
 		this.bc = bc;
 		pd = new PersonDal();

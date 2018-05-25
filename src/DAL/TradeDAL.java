@@ -1,8 +1,12 @@
 package DAL;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+
+import Model.TradeOffer;
 
 public class TradeDAL {
 	
@@ -49,7 +53,6 @@ public class TradeDAL {
 		try
 		{
 			stmt = conn.createStatement();
-			System.out.println("no bool");
 			@SuppressWarnings("unused")
 			int i = stmt.executeUpdate(query);
 			
@@ -59,6 +62,33 @@ public class TradeDAL {
 		{
 			System.out.println(e.getMessage());
 		}
+	}
+	
+	public ArrayList<Integer> getTradeOffer(int playerid)
+	{
+		ArrayList<Integer> results = new ArrayList<Integer>();
+		
+		Statement stmt = null;
+		String query = "SELECT * FROM ruilaanbod WHERE idspeler =" + playerid;
+		try
+		{
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while (rs.next())
+			{
+				for(int i=1; i<=11; i++)
+				{
+					results.add(rs.getInt(i));
+				}		
+				results.add(rs.getInt(12));
+			}
+			
+			stmt.close();
+		} catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		return results;
 	}
 	
 	

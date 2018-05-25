@@ -19,11 +19,11 @@ public class TradeOffer {
 	private int asksWood;
 	private boolean accepted;
 	
-	public TradeOffer(int idPlayer, int givesStone, int givesWool, int givesOre, int givesWheat,
+	public TradeOffer(TradeDAL td, int idPlayer, int givesStone, int givesWool, int givesOre, int givesWheat,
 			int givesWood, int asksStone, int asksWool, int asksOre, int asksWheat, int asksWood, 
 			boolean accepted)
 	{
-		td = new TradeDAL();
+		this.td = td;
 		td.setTradeOffer(idPlayer, givesStone, givesWool, givesOre, givesWheat, givesWood, 
 				asksStone, asksWool, asksOre, asksWheat, asksWood, accepted);
 		
@@ -41,10 +41,10 @@ public class TradeOffer {
 //		this.accepted = accepted;
 	}
 	
-	public TradeOffer(int idPlayer, int givesStone, int givesWool, int givesOre, int givesWheat,
+	public TradeOffer(TradeDAL td, int idPlayer, int givesStone, int givesWool, int givesOre, int givesWheat,
 			int givesWood, int asksStone, int asksWool, int asksOre, int asksWheat, int asksWood)
 	{
-		td = new TradeDAL();
+		this.td = td;
 		td.setTradeOffer(idPlayer, givesStone, givesWool, givesOre, givesWheat, givesWood, 
 				asksStone, asksWool, asksOre, asksWheat, asksWood);
 	}
