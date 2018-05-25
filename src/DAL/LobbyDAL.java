@@ -236,7 +236,6 @@ public class LobbyDAL {
 			Connection conn = MainDAL.getConnection();
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT idspeler FROM speler");
-			stmt.close();
 			while (rs.next()) {
 				if (rs.getInt(1) != playerid) {
 					return playerid;
@@ -244,6 +243,7 @@ public class LobbyDAL {
 					playerid++;
 				}
 			}
+			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
