@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 
-import java.awt.GridLayout;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -513,7 +512,7 @@ public class TradeOfferPane extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				td.createOffer(playerid, stoneOfferCounter, woolOfferCounter, oreOfferCounter, wheatOfferCounter, woodOfferCounter, stoneDemandCounter, woolDemandCounter, oreDemandCounter, wheatOfferCounter, woodDemandCounter);
-				
+				td.switchPane();
 			}
 			
 		});

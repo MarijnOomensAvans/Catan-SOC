@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class PersonDal {
 	
@@ -97,6 +98,28 @@ public class PersonDal {
 		{
 			System.out.println(e.getMessage());
 		}
+	}
+
+	public ArrayList<String> getOtherPlayerName(int gameid, int playerid) {
+		ArrayList<String> result = new ArrayList<String>();
+		Statement stmt = null;
+		String query = "SELECT username FROM speler WHERE idspel =" + gameid+ " AND idspeler NOT IN("+ playerid+")";
+		try
+		{
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while (rs.next())
+			{
+				result.add(rs.getString(1));
+				
+			}
+			stmt.close();
+		} catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		return result;
+		
 	}
 
 

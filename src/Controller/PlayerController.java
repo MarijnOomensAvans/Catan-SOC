@@ -13,10 +13,10 @@ public class PlayerController {
 	private MainDAL md;
 	private PersonDal pd;
 	
-	public PlayerController(MainDAL md, BankController bc,int personid) {
+	public PlayerController(MainDAL md,PersonDal pd, BankController bc,int personid) {
 		this.md = md;
 		this.bc = bc;
-		pd = new PersonDal();
+		this.pd = pd;
 		Player player1 =new Player(this, pd, personid, 1);
 		player1.addMaterialCard("W");
 	}
