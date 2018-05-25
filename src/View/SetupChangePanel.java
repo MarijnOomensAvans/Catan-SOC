@@ -11,10 +11,12 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
 import Controller.BoardController;
+import Controller.LobbyController;
 
 @SuppressWarnings("serial")
 public class SetupChangePanel extends JPanel implements ActionListener{
 	
+	private LobbyController lobby;
 	private BoardController boardcontroller;
 
 	private final int WIDTH = 200;
@@ -52,11 +54,11 @@ public class SetupChangePanel extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		String input = (String) boardTypes.getSelectedItem();
 		if(input == "Standaard") {
-			//boardcontroller.setBoardType(1);
+			boardcontroller.setBoardType(lobby.getGameID(), 1);
 			
 		}
 		else if (input == "Random"){
-			//boardcontroller.setBoardType(2);
+			boardcontroller.setBoardType(lobby.getGameID(), 1);
 		}
 		
 	}

@@ -16,6 +16,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 
+import Controller.BoardController;
+
 @SuppressWarnings("serial")
 public class DrawingPanel extends JPanel {
 
@@ -91,7 +93,6 @@ public class DrawingPanel extends JPanel {
 		
 		this.setPreferredSize(new Dimension(500, 500));
 		setBackground(BoardColours.SEA.getRGB());
-		
 	}
 
 
@@ -101,11 +102,13 @@ public class DrawingPanel extends JPanel {
 		Graphics2D g2d = (Graphics2D) g;
 		int w2 = getWidth() / 2;
 		int h2 = getHeight() / 2;
-		g2d.rotate(-Math.PI / 2, w2, h2);
 		g2d.setColor(Color.BLACK);
-		
+		g2d.rotate(-Math.PI / 2, w2, h2);
 		for(int i =0; i < hexagons.size(); i++) {
 			g2d.drawPolygon(hexagons.get(i).getHexagon());
+			Color color = bcontroller.getColour(i);
+			g2d.setColor(color);
+			g2d.fillPolygon(hexagons.get(i).getHexagon());
 		}
 
 	}
