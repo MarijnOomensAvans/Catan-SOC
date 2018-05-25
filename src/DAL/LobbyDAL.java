@@ -178,7 +178,7 @@ public class LobbyDAL {
 		return gameid;
 	}
 	
-	public int getHighestGameID() {
+	private int getHighestGameID() {
 		int highestGameId = 0;
 		try {
 			Connection conn = MainDAL.getConnection();

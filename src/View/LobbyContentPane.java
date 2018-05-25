@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import Controller.LobbyController;
 import Model.LobbyGameInfo;
 import Model.LobbyInvite;
 
