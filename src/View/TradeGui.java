@@ -18,6 +18,7 @@ public class TradeGui extends JFrame {
 		setContentPane(new TradeOfferPane(tradeController,playerid));
 		setResizable(false);
 		setVisible(true);
+		setTitle("Handelsscherm");
 		this.pack();
 		setLocationRelativeTo(null);
 	}
