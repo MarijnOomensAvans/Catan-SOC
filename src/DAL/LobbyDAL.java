@@ -11,7 +11,7 @@ import Model.LobbyGameInfo;
 import Model.LobbyInvite;
 
 public class LobbyDAL {
-	
+
 	public ArrayList<String> getAllAccounts() {
 
 		ArrayList<String> accounts = new ArrayList<String>();
@@ -62,8 +62,7 @@ public class LobbyDAL {
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt
 					.executeQuery("SELECT sp.username FROM spel s " + "JOIN speler sp ON s.idspel = sp.idspel "
-							+ "WHERE (sp.speelstatus LIKE 'geaccepteerd') "
-							+ "AND s.idspel = " + gameID);
+							+ "WHERE (sp.speelstatus LIKE 'geaccepteerd') " + "AND s.idspel = " + gameID);
 			while (rs.next()) {
 				players.add(rs.getString(1));
 			}
@@ -162,31 +161,31 @@ public class LobbyDAL {
 
 		return players;
 	}
-	
+
 	public int makeNewGameID() {
 		int gameid = getHighestGameID() + 1;
 		try {
 			Connection conn = MainDAL.getConnection();
 			Statement stmt = conn.createStatement();
-			
+
 			stmt.executeUpdate("INSERT INTO spel(idspel) VALUES (" + gameid + ")");
 			stmt.close();
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return gameid;
 	}
-	
+
 	private int getHighestGameID() {
 		int highestGameId = 0;
 		try {
 			Connection conn = MainDAL.getConnection();
 			Statement stmt = conn.createStatement();
-			
+
 			ResultSet rs = stmt.executeQuery("SELECT MAX(idspel) FROM spel");
 			while (rs.next()) {
-				highestGameId=  rs.getInt(1);
+				highestGameId = rs.getInt(1);
 			}
 			stmt.close();
 		} catch (SQLException e) {
@@ -200,31 +199,28 @@ public class LobbyDAL {
 		try {
 			Connection conn = MainDAL.getConnection();
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT israndomboard FROM spel"
-					+ " WHERE spel.idspel = " + gameID);
+			ResultSet rs = stmt.executeQuery("SELECT israndomboard FROM spel" + " WHERE spel.idspel = " + gameID);
 			rs.next();
 			isRandom = rs.getInt(1);
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-		if(isRandom == 1) {
+
+		if (isRandom == 1) {
 			return true;
 		} else {
 			return false;
 		}
 	}
-	
+
 	public String getPlayerTurn(int gameID) {
 		String currentPlayer = "";
 		try {
 			Connection conn = MainDAL.getConnection();
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT sp.username FROM spel s " + 
-					"JOIN speler sp " + 
-					"ON s.beurt_idspeler = sp.idspeler " + 
-					"WHERE s.idspel = " + gameID);
+			ResultSet rs = stmt.executeQuery("SELECT sp.username FROM spel s " + "JOIN speler sp "
+					+ "ON s.beurt_idspeler = sp.idspeler " + "WHERE s.idspel = " + gameID);
 			rs.next();
 			currentPlayer = rs.getString(1);
 			stmt.close();
@@ -232,6 +228,78 @@ public class LobbyDAL {
 			e.printStackTrace();
 		}
 		return currentPlayer;
+	}
+
+	public int getFreePlayerid() {
+		int playerid = 1;
+		try {
+			Connection conn = MainDAL.getConnection();
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT idspeler FROM speler");
+			stmt.close();
+			while (rs.next()) {
+				if (rs.getInt(1) != playerid) {
+					return playerid;
+				} else {
+					playerid++;
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return 0;
+	}
+
+	public void createInvitation(String username, int gameid, int volgnr, String kleur, String speelstatus) {
+		try {
+			Connection conn = MainDAL.getConnection();
+			Statement stmt = conn.createStatement();
+			int playerid = getFreePlayerid();
+
+			stmt.executeUpdate("INSERT INTO speler (`idspeler`, `idspel`, `username`, `kleur`, `speelstatus`, `shouldrefresh`, `volgnr`) "
+					+ "VALUES ( " + playerid + ", " + gameid + ", '" + username + "' , '" + kleur + "' , '" + speelstatus + "', '0', '" + volgnr + "');");
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void updateInvitation(String username, int gameid, int volgnr) {
+		try {
+			Connection conn = MainDAL.getConnection();
+			Statement stmt = conn.createStatement();
+
+			stmt.executeUpdate("UPDATE speler "
+					+ "SET `username`= '" + username + "', `speelstatus`='uitgedaagde' WHERE idspel = " + gameid + "AND volgnr = " + volgnr);
+			
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void initializeGame(int gameid) {
+		try {
+			Connection conn = MainDAL.getConnection();
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate("INSERT INTO spel (`idspel`, `israndomboard`, `eersteronde`) VALUES (" + gameid + ", '0', '1')");
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void setBoardTypeRandom(int gameid) {
+
+		try {
+			Connection conn = MainDAL.getConnection();
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate("UPDATE spel SET israndomboard = " + 1 + " WHERE idspel = " + gameid);
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
