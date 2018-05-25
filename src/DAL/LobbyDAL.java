@@ -7,7 +7,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import Controller.LoginController;
-import Controller.Main;
 import Model.LobbyGameInfo;
 import Model.LobbyInvite;
 
