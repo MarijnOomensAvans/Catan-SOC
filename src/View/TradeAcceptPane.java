@@ -23,6 +23,8 @@ public class TradeAcceptPane extends JPanel {
 	private JButton AcceptPlayer2;
 	private JButton AcceptPlayer3;
 	
+	private JTextield() 
+	
 	private TradeController tc;
 	
 	public TradeAcceptPane(TradeController tc,int playerid) {
@@ -32,17 +34,17 @@ public class TradeAcceptPane extends JPanel {
 		otherPlayer2 =new JLabel();
 		otherPlayer3 =new JLabel();
 		
-		AcceptPlayer1 = new JButton();
-		AcceptPlayer2 = new JButton();
-		AcceptPlayer3 = new JButton();
+		AcceptPlayer1 = new JButton("Acepteren");
+		AcceptPlayer2 = new JButton("Acepteren");
+		AcceptPlayer3 = new JButton("Acepteren");
 		
 		otherPlayer1.setBounds(100, 100, 50, 50);
-		otherPlayer2.setBounds(100, 150, 50, 50);
-		otherPlayer3.setBounds(100, 500, 50, 50);
+		otherPlayer2.setBounds(100, 175, 50, 50);
+		otherPlayer3.setBounds(100, 250, 50, 50);
 		
-		AcceptPlayer1.setBounds(150, 100, 50, 50);
-		AcceptPlayer2.setBounds(150, 150, 50, 50);
-		AcceptPlayer2.setBounds(150, 200, 50, 50);
+		AcceptPlayer1.setBounds(150, 112, 100, 30);
+		AcceptPlayer2.setBounds(150, 187, 100, 30);
+		AcceptPlayer3.setBounds(150, 262, 100, 30);
 
 		
 		getOtherPlayerNames();
@@ -67,10 +69,10 @@ public class TradeAcceptPane extends JPanel {
 				otherPlayer1.setText(names.get(i));
 			}
 			else if(i == 1) {
-				otherPlayer1.setText(names.get(i));
+				otherPlayer2.setText(names.get(i));
 			}
 			else if(i == 2) {
-				otherPlayer1.setText(names.get(i));
+				otherPlayer3.setText(names.get(i));
 			}
 		}
 	}
