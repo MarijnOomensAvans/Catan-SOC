@@ -1,11 +1,14 @@
 package Controller;
 
+import java.awt.Color;
+
 import Model.Board;
 
 public class BoardController {
-	private Board board = new Board();
+	private Board board;
 	
 	public void generateBoard() {
+		board = new Board();
 		board.generateBoard();
 	}
 	
@@ -25,5 +28,8 @@ public class BoardController {
 		board.finishBoard(idspel);
 	}
 	
+	public Color getColour(int i) {
+		return board.getColour(i);
+	}
 	
 }

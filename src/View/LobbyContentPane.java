@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import Controller.BoardController;
 import Model.LobbyGameInfo;
 import Model.LobbyInvite;
 
@@ -16,6 +17,7 @@ public class LobbyContentPane extends JPanel {
 	private SetupGamePane setupGame;
 	private LobbyFrame frame;
 	private JButton playButton;
+	private BoardController cboard = new BoardController();
 
 	public LobbyContentPane(LobbyFrame frame) {
 		playButton = new JButton("Start");
@@ -23,7 +25,6 @@ public class LobbyContentPane extends JPanel {
 		this.lobby = new LobbyPanel(this, playButton);
 		this.setupGame = new SetupGamePane();
 		playButton.addActionListener(e -> {
-			
 		switchLobbyScreen();
 		});
 		add(lobby);
@@ -35,6 +36,9 @@ public class LobbyContentPane extends JPanel {
 
 	public void switchLobbyScreen() {
 		frame.makeNewGameID();
+		cboard.generateBoard();
+		cboard.setBoardType(frame.getGameID(), 1);
+		cboard.finishBoard(frame.getGameID());
 		removeAll();
 		repaint();
 		add(setupGame);

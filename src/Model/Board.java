@@ -1,9 +1,11 @@
 package Model;
 
+import java.awt.Color;
 import java.util.HashMap;
 import java.util.Random;
 
 import DAL.BoardDal;
+import View.BoardColours;
 
 public class Board {
 	Random rand = new Random();
@@ -14,6 +16,7 @@ public class Board {
 	private int loopnumb = 0;
 	private int looplet = 1000;
 	private int boardType;
+	private LobbyModel lobby = new LobbyModel();
 
 	public void setBoardType(int idspel,int boardType) {
 		this.boardType = boardType;
@@ -682,5 +685,27 @@ public class Board {
 	
 	public char getHarbourResource(int x,int y) {
 		return bdal.getLocationHarbourResource(x, y);
+	}
+	
+	public Color getColour(int i) {
+		i = (i + 1000);
+		int x = ((Tile) axisgrid.get(i)).getX();
+		int y = ((Tile) axisgrid.get(i)).getY();
+		char returnColour = bdal.getResourceTile(lobby.getGameid(), x, y);
+		switch(returnColour) {
+		case 'H':
+			return BoardColours.WOOD.getRGB();
+		case 'G':
+			return BoardColours.GRAIN.getRGB();
+		case 'E':
+			return BoardColours.ORE.getRGB();
+		case 'B':
+			return BoardColours.BRICK.getRGB();
+		case 'W': 
+			return BoardColours.WOOL.getRGB();
+		case 'X':
+			return BoardColours.DESERT.getRGB();
+		}
+		return null;
 	}
 }

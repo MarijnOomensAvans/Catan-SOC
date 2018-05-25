@@ -15,10 +15,6 @@ public class LobbyModel {
 		return gameid;
 	}
 
-	public void setGameid(int gameid) {
-		this.gameid = gameid;
-	}
-
 	public LobbyModel() {
 		lobbyDAL = new LobbyDAL();
 		System.out.println(lobbyDAL.getFreePlayerid());

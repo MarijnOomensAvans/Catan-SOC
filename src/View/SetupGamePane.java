@@ -1,10 +1,4 @@
 package View;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Point;
-
 import javax.swing.JPanel;
 
 public class SetupGamePane extends JPanel {
