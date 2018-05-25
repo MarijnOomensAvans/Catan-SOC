@@ -16,7 +16,6 @@ public class Board {
 	private int loopnumb = 0;
 	private int looplet = 1000;
 	private int boardType;
-	private LobbyModel lobby = new LobbyModel();
 
 	public void setBoardType(int idspel,int boardType) {
 		this.boardType = boardType;
@@ -687,11 +686,11 @@ public class Board {
 		return bdal.getLocationHarbourResource(x, y);
 	}
 	
-	public Color getColour(int i) {
+	public Color getColour(int i, int idspel) {
 		i = (i + 1000);
 		int x = ((Tile) axisgrid.get(i)).getX();
 		int y = ((Tile) axisgrid.get(i)).getY();
-		char returnColour = bdal.getResourceTile(lobby.getGameid(), x, y);
+		char returnColour = bdal.getResourceTile(idspel, x, y);
 		switch(returnColour) {
 		case 'H':
 			return BoardColours.WOOD.getRGB();
