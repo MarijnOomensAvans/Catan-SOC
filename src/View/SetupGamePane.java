@@ -1,5 +1,9 @@
 package View;
+import java.awt.Dimension;
+
 import javax.swing.JPanel;
+
+import Controller.BoardController;
 
 public class SetupGamePane extends JPanel {
 
@@ -9,15 +13,16 @@ public class SetupGamePane extends JPanel {
 	private DrawingPanel hexagonPanel;
 	private SetupChangePanel changePanel;
 	
-	public SetupGamePane() {
-		
+	public SetupGamePane(BoardController bc) {
+		setPreferredSize(new Dimension(WIDTH,HEIGHT));
 		changePanel = new SetupChangePanel();
-		hexagonPanel = new DrawingPanel();
+		hexagonPanel = new DrawingPanel(bc);
 
 		hexagonPanel.setBounds(0, 0, 500, 500);
 		
 		add(changePanel);
 		add(hexagonPanel);
+		
 		
 	}
 }

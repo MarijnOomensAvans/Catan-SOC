@@ -41,9 +41,13 @@ public class DrawingPanel extends JPanel {
 	private Hexagon hexagon18;
 	private Hexagon hexagon19;
 	
+	private BoardController bc;
+	
 	private ArrayList<Hexagon> hexagons;
 
-	public DrawingPanel() {
+	public DrawingPanel(BoardController bc) {
+		this.bc = bc;
+		
 		hexagons = new ArrayList<>();
 		
 		hexagon6 = new Hexagon(new Point(400, 164), 50);
@@ -106,7 +110,7 @@ public class DrawingPanel extends JPanel {
 		g2d.rotate(-Math.PI / 2, w2, h2);
 		for(int i =0; i < hexagons.size(); i++) {
 			g2d.drawPolygon(hexagons.get(i).getHexagon());
-			Color color = bcontroller.getColour(i);
+			Color color = bc.getColour(i);
 			g2d.setColor(color);
 			g2d.fillPolygon(hexagons.get(i).getHexagon());
 		}

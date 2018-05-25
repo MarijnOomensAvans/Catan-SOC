@@ -7,6 +7,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import Controller.BoardController;
 import Controller.LobbyController;
 import Model.LobbyGameInfo;
 import Model.LobbyInvite;
@@ -20,9 +21,9 @@ public class LobbyFrame extends JFrame{
 	private JMenu lobbyMenu;
 	private JMenuItem logOut;
 	
-	public LobbyFrame(LobbyController controller) {
+	public LobbyFrame(LobbyController controller, BoardController bc) {
 		this.controller = controller;
-		pane = new LobbyContentPane(this);
+		pane = new LobbyContentPane(controller,bc);
 		setTitle("Lobby");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
@@ -32,28 +33,7 @@ public class LobbyFrame extends JFrame{
 		setLocationRelativeTo(null);
 		setVisible(true);
 	}
-	
-	public ArrayList<String> getUsernames(){
-		return controller.getUsernames();
-	}
 
-	
-	public ArrayList<LobbyInvite> getInvites() {
-		return controller.getInvites();
-	}
-	
-
-	public void makeNewGameID() {
-		controller.makeNewGameID();
-	}
-	
-	public int getGameID() {
-		return controller.getGameID();
-	}
-	public ArrayList<String> getPlayers(int gameID){
-		return controller.getPlayers(gameID);
-
-	}
 	
 	public void makeMenuBar() {
 
@@ -73,29 +53,10 @@ public class LobbyFrame extends JFrame{
 		
 	}
 	
-	public void closeLobby() {
-		controller.closeLobbyScreen();
-	}
 	
 	public void switchScreen() {
 		pane.switchLobbyScreen();
 		pack();
-	}
-
-	public boolean isRandomBoard(int gameID) {
-		return controller.isRandomBoard(gameID);
-	}
-
-	public ArrayList<String> getUsersInGame(int gameID) {
-		return controller.getUsersInGame(gameID);
-	}
-
-	public void inviteResponse(boolean response, int gameID) {
-		controller.inviteResponse(response, gameID);
-	}
-	
-	public ArrayList<LobbyGameInfo> getGames() {
-		return controller.getGames();
 	}
 
 }

@@ -9,12 +9,14 @@ import View.LobbyFrame;
 
 public class LobbyController {
 
+	private BoardController bc;
 	private LobbyModel lobbyModel;
 	private LobbyFrame frame;
 
 	public LobbyController() {
+		bc = new BoardController();
 		lobbyModel = new LobbyModel();
-		frame = new LobbyFrame(this);
+		frame = new LobbyFrame(this,bc);
 	}
 
 	public ArrayList<String> getUsernames() {
