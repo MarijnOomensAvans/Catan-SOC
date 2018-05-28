@@ -35,6 +35,11 @@ public class BoardController {
 	public Color getColour(int i, int idspel) {
 		return board.getColour(i, idspel);
 	}
+	
+	public String getChit(int i, int idspel) {
+		return board.getChit(i, idspel);
+		
+	}
 
 	
 }

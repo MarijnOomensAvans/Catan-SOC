@@ -707,7 +707,10 @@ public class Board {
 	public char getHarbourResource(int x, int y) {
 		return bdal.getLocationHarbourResource(x, y);
 	}
-
+	
+	// --------------------------------------------------------------------------------------------------------------------------
+	// Methods for returning colour of a chit based on their char
+	
 	public Color getColour(int i, int idspel) {
 		i = (i + 1000);
 		int x = ((Tile) axisgrid.get(i)).getX();
@@ -730,7 +733,19 @@ public class Board {
 		return null;
 	}
 
-	// ------------------------------------------------------------------------------------------------------------------------
+	// --------------------------------------------------------------------------------------------------------------------------
+	// Methods for returning the chit
+	public String getChit(int i, int idspel) {
+		i = (i + 1000);
+		int x = ((Tile) axisgrid.get(i)).getX();
+		int y = ((Tile) axisgrid.get(i)).getY();
+		String returnChit = "" + bdal.getChit(idspel, x, y);
+		return returnChit;
+	}
+	
+	
+	
+	// --------------------------------------------------------------------------------------------------------------------------
 	// Method to remove tile resources with change.
 
 	public void removeResource(int idspel) {
@@ -740,4 +755,6 @@ public class Board {
 			//bdal.removeChits(idspel,((Tile) axisgrid.get(i)).getX(), ((Tile) axisgrid.get(i)).getY());
 		}
 	}
+	
+
 }

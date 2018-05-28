@@ -115,7 +115,8 @@ public class DrawingPanel extends JPanel {
 		g2d.setTransform(orig);
 		g2d.setColor(BoardColours.CHITS.getRGB());
 		for(int i = 0; i < hexagons.size(); i++) {
-		g2d.drawString("" + (i + 1), hexagons.get(i).getCenter().y - 5,hexagons.get(i).getCenter().x);
+		String chits = bc.getChit(i, idspel);
+		g2d.drawString(chits, hexagons.get(i).getCenter().y - 5,hexagons.get(i).getCenter().x);
 		}
 	}
 }

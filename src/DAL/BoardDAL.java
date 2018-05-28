@@ -114,6 +114,23 @@ public class BoardDal {
 		}
 		return 0;
 	}
+	
+	public int getChit(int idspel, int x, int y) {
+		String s = "idgetalfiche";
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT idgetalfiche FROM tegel WHERE idspel = '" + idspel
+					+ "' && x = '" + x + "' && y = '" + y + "'");
+
+			if (rs.next()) {
+				return rs.getInt(s);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
 
 	public void setBoardType(int idspel, int boardType) {
 		Statement stmt = null;
