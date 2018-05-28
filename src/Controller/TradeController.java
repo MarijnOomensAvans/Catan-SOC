@@ -71,4 +71,10 @@ public class TradeController {
 		ArrayList<Integer> id =otherPlayers.getOtherid(gameid, playerid);
 		return id;
 	}
+
+	public ArrayList<Integer> getTradeResponses(int playerid) {
+		ArrayList<Integer> response = otherPlayers.getTradeResponses(playerid);
+		return response;
+		
+	}
 }

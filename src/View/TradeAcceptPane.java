@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.util.ArrayList;
+import java.lang.Integer;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -31,10 +32,10 @@ public class TradeAcceptPane extends JPanel {
 	private ArrayList<Integer> player2counterbid;
 	private ArrayList<Integer> player3counterbid;
 	
-	String[] columnames ={" ","Hout","erts" ,"Baksteen", "Graan" ,"Wol"	};
-	//Object[][] data {"Vraagt",
+	String[] columnames ={" ","Baksteen","Wol" ,"Erts", "Graan" ,"Hout"	};
+	Object[][] data1 {"Vraagt", new Integer(5);
 		
-	//};
+	};
 	//private JTable table;
 	
 	private JButton AcceptPlayer1;
@@ -173,8 +174,17 @@ public class TradeAcceptPane extends JPanel {
 			}
 		}
 	
-	public void getTradeRespones() {
-		
+	public void getTradeResponses(int playerid) {
+		if(playerid == otherplayerid1) {
+			player1counterbid =tc.getTradeResponses(playerid);
+			
+		}
+		else if(playerid == otherplayerid2) {
+			player2counterbid =tc.getTradeResponses(playerid);
+		}
+		else if(playerid == otherplayerid3) {
+			player3counterbid =tc.getTradeResponses(playerid);
+		}
 	}
 	}
 	

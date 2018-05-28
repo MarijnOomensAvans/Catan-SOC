@@ -31,6 +31,11 @@ public class TradeOtherPlayers {
 		return id;
 	}
 
+	public ArrayList<Integer> getTradeResponses(int playerid) {
+		ArrayList<Integer> response = td.getTradeResponses(playerid);
+		return response;
+	}
+
 	
 
 }
