@@ -6,6 +6,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import Controller.BoardController;
+import Controller.ChatController;
 import Controller.LobbyController;
 import Model.LobbyGameInfo;
 import Model.LobbyInvite;
@@ -21,7 +22,7 @@ public class LobbyContentPane extends JPanel {
 	private JButton playButton;
 	private JButton inviteButton;
 
-	public LobbyContentPane(LobbyController controller, BoardController bc) {
+	public LobbyContentPane(LobbyController controller, BoardController bc, ChatController cc,int playerid, Chatoutputgui cog) {
 		this.bc = bc;
 		inviteButton = new JButton("Invite");
 		playButton = new JButton("Start");
@@ -36,6 +37,7 @@ public class LobbyContentPane extends JPanel {
 			switchInviteScreen();
 		});
 		add(lobby);
+		add(new ChatContentPane(cc,cog,playerid));
 	}
 
 	public ArrayList<String> getUsernames() {
