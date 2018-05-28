@@ -15,9 +15,9 @@ public class MainClass {
 		while(connected == false) {
 			if((mainDAL.loadDataBaseDriver("com.mysql.jdbc.Driver")) && (mainDAL.makeConnection())) {
 				connected = true;
-				System.out.println("Connected to Database :D");
+				//System.out.println("Connected to Database :D");
 			} else {
-				System.out.println("Connection failed");
+				//System.out.println("Connection failed");
 			}
 		}
 	}

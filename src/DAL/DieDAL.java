@@ -62,14 +62,14 @@ public class DieDAL
 				ResultSet rs = stmt.executeQuery("SELECT laatste_worp_steen1 FROM spel WHERE idspel = " + gameID);
 				rs.next();
 				value = rs.getInt(1);
-				System.out.print("Rolled " + value);	//debug
+				//System.out.print("Rolled " + value);	//debug
 			}		
 			else if(id == 2)
 			{	//get die 2
 				ResultSet rs = stmt.executeQuery("SELECT laatste_worp_steen2 FROM spel WHERE idspel = " + gameID);
 				rs.next();
 				value = rs.getInt(1);
-				System.out.println(" and " + value);	//debug
+				//System.out.println(" and " + value);	//debug
 			}
 			stmt.close();
 			}catch(SQLException e) {
