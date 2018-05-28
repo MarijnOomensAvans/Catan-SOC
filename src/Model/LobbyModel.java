@@ -17,12 +17,12 @@ public class LobbyModel {
 
 	public LobbyModel() {
 		lobbyDAL = new LobbyDAL();
-		
+
 	}
 
 	public ArrayList<String> getUsernames() {
 		usernames = lobbyDAL.getAllAccounts();
-		
+
 		return usernames;
 	}
 
@@ -84,9 +84,9 @@ public class LobbyModel {
 
 		lobbyDAL.createInvitation(username, gameid, volgnr, kleur, speelstatus);
 	}
-	
+
 	public void updateInvitation(String username, int gameid, int volgnr) {
-		
+		lobbyDAL.updateInvitation(username, gameid, volgnr);
 	}
 
 }

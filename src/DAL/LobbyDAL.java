@@ -11,9 +11,9 @@ import Model.LobbyGameInfo;
 import Model.LobbyInvite;
 
 public class LobbyDAL {
-	
+
 	Connection conn = MainDAL.getConnection();
-	
+
 	public ArrayList<String> getAllAccounts() {
 
 		ArrayList<String> accounts = new ArrayList<String>();
@@ -24,7 +24,7 @@ public class LobbyDAL {
 			while (rs.next()) {
 				accounts.add(rs.getString(1));
 			}
-			
+
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -245,8 +245,10 @@ public class LobbyDAL {
 			Statement stmt = conn.createStatement();
 			int playerid = getFreePlayerid();
 
-			stmt.executeUpdate("INSERT INTO speler (`idspeler`, `idspel`, `username`, `kleur`, `speelstatus`, `shouldrefresh`, `volgnr`) "
-					+ "VALUES ( " + playerid + ", " + gameid + ", '" + username + "' , '" + kleur + "' , '" + speelstatus + "', '0', '" + volgnr + "');");
+			stmt.executeUpdate(
+					"INSERT INTO speler (`idspeler`, `idspel`, `username`, `kleur`, `speelstatus`, `shouldrefresh`, `volgnr`) "
+							+ "VALUES ( " + playerid + ", " + gameid + ", '" + username + "' , '" + kleur + "' , '"
+							+ speelstatus + "', '0', '" + volgnr + "');");
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -257,9 +259,9 @@ public class LobbyDAL {
 		try {
 			Statement stmt = conn.createStatement();
 
-			stmt.executeUpdate("UPDATE speler "
-					+ "SET `username`= '" + username + "', `speelstatus`='uitgedaagde' WHERE idspel = " + gameid + "AND volgnr = " + volgnr);
-			
+			stmt.executeUpdate("UPDATE speler " + "SET `username`= '" + username
+					+ "', `speelstatus`='uitgedaagde' WHERE idspel = " + gameid + "AND volgnr = " + volgnr);
+
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -269,13 +271,14 @@ public class LobbyDAL {
 	public void initializeGame(int gameid) {
 		try {
 			Statement stmt = conn.createStatement();
-			stmt.executeUpdate("INSERT INTO spel (`idspel`, `israndomboard`, `eersteronde`) VALUES (" + gameid + ", '0', '1')");
+			stmt.executeUpdate(
+					"INSERT INTO spel (`idspel`, `israndomboard`, `eersteronde`) VALUES (" + gameid + ", '0', '1')");
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void setBoardTypeRandom(int gameid) {
 
 		try {

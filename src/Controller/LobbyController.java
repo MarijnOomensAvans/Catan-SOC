@@ -18,7 +18,7 @@ public class LobbyController {
 	public LobbyController() {
 		bc = new BoardController();
 		lobbyModel = new LobbyModel();
-		frame = new LobbyFrame(this,bc);
+		frame = new LobbyFrame(this, bc);
 	}
 
 	public ArrayList<String> getUsernames() {
@@ -28,11 +28,11 @@ public class LobbyController {
 	public ArrayList<LobbyInvite> getInvites() {
 		return lobbyModel.getInvites();
 	}
-	
+
 	public ArrayList<String> getPlayers(int gameID) {
 		return lobbyModel.getPlayers(gameID);
 	}
-	
+
 	public ArrayList<LobbyGameInfo> getGames() {
 		return lobbyModel.getGames();
 	}
@@ -44,11 +44,11 @@ public class LobbyController {
 	public void closeLobbyScreen() {
 		frame.dispose();
 	}
-	
+
 	public void makeNewGameID() {
 		lobbyModel.makeNewGameID();
 	}
-	
+
 	public int getGameID() {
 		return lobbyModel.getGameid();
 	}
@@ -60,14 +60,22 @@ public class LobbyController {
 	public ArrayList<String> getUsersInGame(int gameID) {
 		return lobbyModel.getUsersInGame(gameID);
 	}
-	
+
 	public void inviteResponse(boolean response, int gameID) {
 		lobbyModel.inviteResponse(response, gameID);
 	}
-	
+
 	public void openGame(int gameID) {
 		frame.dispose();
 		gameFrame = new InGameFrame(bc, gameID);
+	}
+	
+	public void createInvitation(String username, int gameid, int volgnr) {
+		lobbyModel.createInvitation(username, gameid, volgnr);
+	}
+	
+	public void updateInvitation(String username, int gameid, int volgnr) {
+		lobbyModel.updateInvitation(username, gameid, volgnr);
 	}
 
 }

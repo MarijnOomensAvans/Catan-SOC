@@ -63,7 +63,6 @@ public class InvitePanel extends JPanel {
 			@Override
 			public void itemStateChanged(ItemEvent e) {
 				if (e.getStateChange() == ItemEvent.SELECTED) {
-					
 					box1Selected = box1.getSelectedItem().toString();
 					System.out.println(box1Selected);
 				}
