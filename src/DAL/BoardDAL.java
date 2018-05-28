@@ -39,7 +39,8 @@ public class BoardDal {
 		Statement stmt = null;
 		try {
 			stmt = conn.createStatement();
-			stmt.executeUpdate("UPDATE `tegel` SET `idgrondstofsoort`='" + idgrondstofsoort + "', `idgetalfiche`='" + idgetalfiche + "' " + "WHERE `idspel`= "
+			// Add  + "', `idgetalfiche`='" + idgetalfiche + "' " + " later.
+			stmt.executeUpdate("UPDATE `tegel` SET `idgrondstofsoort`='" + idgrondstofsoort + "' WHERE `idspel`= "
 					+ idspel + " AND `x` = " + x + " AND `y` = " + y + " AND `idtegel` = " + idtegel);
 			stmt.close();
 		} catch (SQLException e) {
