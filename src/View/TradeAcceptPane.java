@@ -172,6 +172,10 @@ public class TradeAcceptPane extends JPanel {
 				}
 			}
 		}
+	
+	public void getTradeRespones() {
+		
+	}
 	}
 	
 
