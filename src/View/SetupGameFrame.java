@@ -15,7 +15,7 @@ public class SetupGameFrame extends JFrame {
 	public SetupGameFrame(LobbyController lc, BoardController bc, JButton inviteButton) {
 
 		setupPane = new SetupGamePane(lc, bc, lc.getGameID(), inviteButton);
-		invitePane = new InvitePanel(lc);
+		invitePane = new InvitePanel(lc, this);
 		this.setContentPane(setupPane);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setResizable(false);

@@ -34,7 +34,7 @@ public class InvitePanel extends JPanel {
 
 	private ArrayList<String> names;
 
-	public InvitePanel(LobbyController lc) {
+	public InvitePanel(LobbyController lc, SetupGameFrame frame) {
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		setBackground(new Color(230, 230, 230, 255));
 		setLayout(new GridBagLayout());
@@ -130,6 +130,7 @@ public class InvitePanel extends JPanel {
 				lc.createInvitation(boxValues[0], lc.getGameID(), 2);
 				lc.createInvitation(boxValues[1], lc.getGameID(), 3);
 				lc.createInvitation(boxValues[2], lc.getGameID(), 4);
+				frame.dispose();
 			}
 
 		});
