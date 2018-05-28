@@ -7,6 +7,7 @@ public class MaterialCard {
 	private String idCard;
 	private String KindOfMaterial;
 	private BankDAL bd;
+	private int playerid;
 
 	public MaterialCard(BankDAL bd, int a) {
 		this.bd = bd;
@@ -25,7 +26,9 @@ public class MaterialCard {
 		
 	}
 
-	
+	public void setPlayerid(int playerid) {
+		this.playerid = playerid;
+	}
 
 	public String getKindOfMaterial() {
 		return KindOfMaterial;

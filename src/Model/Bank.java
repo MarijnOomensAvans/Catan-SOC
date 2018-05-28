@@ -14,7 +14,7 @@ public class Bank {
 	public Bank(BankDAL bd) {
 		this.bd = bd;
 		makeMaterialCards();
-		makeDevCards();
+		//makeDevCards();
 	}
 	
 	private void makeMaterialCards() {
@@ -24,11 +24,12 @@ public class Bank {
 		
 		
 	}
-	public MaterialCard getMaterialCard(String kind) {
+	public MaterialCard getMaterialCard(String kind, int playerid) {
 		MaterialCard returncard = null;
 		for(int i=0; i<matbank.size(); i++) {
 			if(matbank.get(i).getKindOfMaterial().equals(kind)) {
 				returncard = matbank.get(i);
+				returncard.setPlayerid(playerid);
 				matbank.remove(returncard);
 				break;
 			}

@@ -84,7 +84,7 @@ public class PersonDal {
 	
 	public void addMaterialCard(int idgame,String idcard, int idplayer) {
 		Statement stmt = null;
-		String query = "INSERT INTO spelergrondstofkaart(idspel,idgrondstofkaart,idspeler) VALUES("+ idgame+", '"+idcard+"',"+idplayer+")";
+		String query = "UPDATE spelergrondstofkaart SET idspeler ="+ idplayer+ " WHERE idspel ="+ idgame+"AND idgrondstofkaart "+idcard+"',"+idplayer+")";
 		try
 		{
 			stmt = conn.createStatement();

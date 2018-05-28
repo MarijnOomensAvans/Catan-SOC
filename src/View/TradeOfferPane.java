@@ -188,8 +188,11 @@ public class TradeOfferPane extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				int amount = stoneOfferCounter+1;
+				if(td.hasStoneCard(amount)) {
 				stoneOfferCounter++;
 				stoneoffer.setText(""+stoneOfferCounter);
+				}
 			}
 			
 		});
@@ -199,9 +202,11 @@ public class TradeOfferPane extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				int amount = oreOfferCounter+1;
+				if(td.hasOreCard(amount)) {
 				oreOfferCounter++;
 				oreoffer.setText(""+oreOfferCounter);
-				
+				}
 			}
 			
 		});
@@ -210,9 +215,11 @@ public class TradeOfferPane extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				int amount = woodOfferCounter+1;
+				if(td.hasWoodCard(amount)) {
 				woodOfferCounter++;
 				woodoffer.setText(""+ woodOfferCounter);
-				
+				}
 			}
 			
 		});
@@ -221,9 +228,11 @@ public class TradeOfferPane extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				int amount = wheatOfferCounter+1;
+				if(td.hasWheatCard(amount)) {
 				wheatOfferCounter++;
 				wheatoffer.setText("" + wheatOfferCounter);
-				
+				}
 			}
 			
 		});
@@ -232,9 +241,11 @@ public class TradeOfferPane extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				int amount = woolOfferCounter+1;
+				if(td.hasWoolCard(amount)) {
 				woolOfferCounter++;
 					wooloffer.setText("" + woolOfferCounter);
-				
+				}
 			}
 			
 		});

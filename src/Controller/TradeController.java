@@ -7,24 +7,26 @@ import DAL.TradeDAL;
 
 import java.util.ArrayList;
 
+import Model.Player;
 import Model.TradeOffer;
 import Model.TradeOtherPlayers;
 import View.TradeAcceptPane;
 import View.TradeGui;
 
 public class TradeController {
-	
-
 
 	private TradeDAL td;
-	
-	TradeOtherPlayers otherPlayers;
+	private PersonDal pd;
+	private TradeOtherPlayers otherPlayers;
 	private int playerid;
 	private int gameid;
 	private TradeGui gui;
+	private Player player;
 	
-	public TradeController(int playerid, int gameid, PersonDal pd) {
+	public TradeController(int playerid, int gameid, PersonDal pd, Player player) {
+		this.pd = pd;
 		this.td = new TradeDAL();
+		this.player = player;
 		this.playerid= playerid;
 		this.gameid = gameid;
 		gui = new TradeGui(this, playerid);
@@ -76,5 +78,28 @@ public class TradeController {
 		ArrayList<Integer> response = otherPlayers.getTradeResponses(playerid);
 		return response;
 		
+	}
+
+	public boolean hasStoneCard(int amount) {
+		boolean has = player.hasStoneCard(amount);
+		return has;
+	}
+
+	public boolean hasOreCard(int amount) {
+		boolean has = player.hasOreCard(amount);
+		return has;
+	}
+	
+	public boolean hasWoodCard(int amount) {
+		boolean has = player.hasWoodCard(amount);
+		return has;
+	}
+	public boolean hasWheatCard(int amount) {
+		boolean has = player.hasWheatCard(amount);
+		return has;
+	}
+	public boolean hasWoolCard(int amount) {
+		boolean has = player.hasWoolCard(amount);
+		return has;
 	}
 }

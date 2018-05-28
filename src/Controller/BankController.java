@@ -23,8 +23,8 @@ public class BankController {
 		
 	}
 
-	public MaterialCard getMaterialCard(String kind) {
-		MaterialCard card = bank.getMaterialCard(kind);
+	public MaterialCard getMaterialCard(String kind, int playerid) {
+		MaterialCard card = bank.getMaterialCard(kind,playerid);
 		return card;
 	}
 

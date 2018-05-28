@@ -28,9 +28,10 @@ public class Player {
 		this.pd = pd;
 		this.player_id = playerid;
 		this.game_id = gameid;
-		setName();
-		setColor();
-		setOrder_number();
+		//setName();
+		//setColor();
+		//setOrder_number();
+
 		
 	}
 	
@@ -51,7 +52,7 @@ public class Player {
 	}
 
 	public void addMaterialCard(String kind) {
-		MaterialCard newCard = conn.getMaterialCard(kind);
+		MaterialCard newCard = conn.getMaterialCard(kind, player_id);
 		String cardid = newCard.getIdCard();
 		pd.addMaterialCard(game_id, cardid, player_id);
 		hand.add(newCard);
@@ -112,6 +113,87 @@ public class Player {
 	}
 	public int getKnightmight() {
 			return knightmight;
+	}
+
+	public boolean hasStoneCard(int amount) {
+		int counter =0;
+		if(hand.size()>0) {
+			
+		for(int i =0; i<= hand.size(); i++) {
+			if(hand.get(i).getKindOfMaterial().equals("B")) {
+				counter++;
+			};
+		}
+		}
+		if(counter>= amount) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	public boolean hasWheatCard(int amount) {
+		int counter =0;
+		if(hand.size()>0) {
+			
+		for(int i =0; i<= hand.size(); i++) {
+			if(hand.get(i).getKindOfMaterial().equals("G")) {
+				counter++;
+			};
+		}
+		}
+		if(counter>= amount) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	public boolean hasWoodCard(int amount) {
+		int counter =0;
+		if(hand.size()>0) {
+			
+		for(int i =0; i<= hand.size(); i++) {
+			if(hand.get(i).getKindOfMaterial().equals("H")) {
+				counter++;
+			};
+		}
+		}
+		if(counter>= amount) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	public boolean hasWoolCard(int amount) {
+		int counter =0;
+		if(hand.size()>0) {
+			
+		for(int i =0; i<= hand.size(); i++) {
+			if(hand.get(i).getKindOfMaterial().equals("W")) {
+				counter++;
+			};
+		}
+		}
+		if(counter>= amount) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	public boolean hasOreCard(int amount) {
+		int counter =0;
+		if(hand.size()>0) {
+			
+		for(int i =0; i<= hand.size(); i++) {
+			if(hand.get(i).getKindOfMaterial().equals("E")) {
+				counter++;
+			};
+		}
+		}
+		if(counter>= amount) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 	
 }
