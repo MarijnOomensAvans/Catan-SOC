@@ -126,6 +126,7 @@ public class LoginPanel extends JPanel {
 		return passwordTextField.getText();
 	}
 	
+	//Display a warning
 	public void setWarning(String warning) {
 		warningLabel.setText(warning);
 	}
