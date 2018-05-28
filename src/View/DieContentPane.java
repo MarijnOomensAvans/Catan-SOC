@@ -43,7 +43,7 @@ public class DieContentPane extends JPanel implements ActionListener
 	}
 
 	public void initFiles()
-	{
+	{	//initialise the die images
 		one = new File("./images/one.png");
 		two = new File("./images/two.png");
 		three = new File("./images/three.png");
@@ -54,11 +54,11 @@ public class DieContentPane extends JPanel implements ActionListener
 	
 	@Override
 	public void actionPerformed(ActionEvent e) 
-	{
-		
+	{	//roll the dice and tell setDie to change the images
 		int i[] = con.rollDice();
 		
-		for(int itt = 1; itt < 3; itt++) {
+		for(int itt = 1; itt < 3; itt++) 
+		{	//loop for both die
 			switch (i[itt - 1])
 			{
 				case 1 :
@@ -81,10 +81,10 @@ public class DieContentPane extends JPanel implements ActionListener
 					break;
 			}
 		}
-		
 	}
 	
-	public void setDie(File file, int img) {
+	public void setDie(File file, int img) 
+	{	//changes the images of the dice to the new values
 		myFile = file;
 		if(myFile != null)
 		{
@@ -105,7 +105,7 @@ public class DieContentPane extends JPanel implements ActionListener
 	}
 	
 	protected void paintComponent(Graphics g)
-	{
+	{	//draw the images
 		super.paintComponent(g);
 		g.drawImage(myBufferedImage1, 100, 200, 87, 87, null);
 		g.drawImage(myBufferedImage2, 225, 200, 87, 87, null);
