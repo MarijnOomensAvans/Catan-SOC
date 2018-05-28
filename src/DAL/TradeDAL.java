@@ -116,14 +116,15 @@ public class TradeDAL {
 		ArrayList<Integer> results = new ArrayList<Integer>();
 		
 		Statement stmt = null;
-		String query = "SELECT geeft_baksteen, geeft_wol, geeft_erts, geeft_graan, geeft_hout, vraagt_baksteen, vraagt_wol, vraagt_erts`, vraagt_graan, vraagt_hout FROM ruilaanbod WHERE idspeler =" + playerid;
+		String query = "SELECT geeft_baksteen, geeft_wol, geeft_erts, geeft_graan, geeft_hout, vraagt_baksteen, vraagt_wol, vraagt_erts, vraagt_graan, vraagt_hout FROM ruilaanbod WHERE idspeler =" + playerid;
 		try
 		{
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next())
-				results.add(rs.getInt(1));
-			
+				for (int i = 1; i<=10;i++) {
+				results.add(rs.getInt(i));
+				}
 			stmt.close();
 		} catch (SQLException e)
 		{

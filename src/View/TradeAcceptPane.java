@@ -3,7 +3,6 @@ package View;
 
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.util.ArrayList;
 import java.lang.Integer;
 
@@ -33,10 +32,10 @@ public class TradeAcceptPane extends JPanel {
 	private ArrayList<Integer> player3counterbid;
 	
 	String[] columnames ={" ","Baksteen","Wol" ,"Erts", "Graan" ,"Hout"	};
-	Object[][] data1 {"Vraagt", new Integer(5);
 		
-	};
-	//private JTable table;
+	private JTable table1;
+	private JTable table2;
+	private JTable table3;
 	
 	private JButton AcceptPlayer1;
 	private JButton AcceptPlayer2;
@@ -59,8 +58,35 @@ public class TradeAcceptPane extends JPanel {
 		player1counterbid = new ArrayList<Integer>();
 		player2counterbid = new ArrayList<Integer>();
 		player3counterbid = new ArrayList<Integer>();
+		getOtherPlayerid(gameid, playerid);
+		getOtherPlayerNames();
+		getTradeResponses(otherplayerid1);
+		getTradeResponses(otherplayerid2);
+		getTradeResponses(otherplayerid3);
 		
-		///table = new JTable(columnames);
+		Object[][] data1 ={{" ","Baksteen","Wol" ,"Erts", "Graan" ,"Hout"},
+				{"Vraagt", new Integer(player1counterbid.get(0)),new Integer(player1counterbid.get(1)),
+			new Integer(player1counterbid.get(2)),new Integer(player1counterbid.get(3)),new Integer(player1counterbid.get(4)),
+		},
+		{"Geeft",new Integer(player1counterbid.get(5)),new Integer(player1counterbid.get(6)),new Integer(player1counterbid.get(7)),
+		new Integer(player1counterbid.get(8)),new Integer(player1counterbid.get(9)),}};
+		table1 = new JTable(data1,columnames);
+		
+		Object[][] data2 ={{" ","Baksteen","Wol" ,"Erts", "Graan" ,"Hout"},
+				{"Vraagt", new Integer(player2counterbid.get(0)),new Integer(player2counterbid.get(1)),
+			new Integer(player2counterbid.get(2)),new Integer(player2counterbid.get(3)),new Integer(player2counterbid.get(4)),
+		},
+		{"Geeft",new Integer(player2counterbid.get(5)),new Integer(player2counterbid.get(6)),new Integer(player2counterbid.get(7)),
+		new Integer(player2counterbid.get(8)),new Integer(player2counterbid.get(9)),}};
+		table2 = new JTable(data2,columnames);
+		
+		Object[][] data3 ={{" ","Baksteen","Wol" ,"Erts", "Graan" ,"Hout"},
+				{"Vraagt", new Integer(player3counterbid.get(0)),new Integer(player3counterbid.get(1)),
+			new Integer(player3counterbid.get(2)),new Integer(player3counterbid.get(3)),new Integer(player3counterbid.get(4)),
+		},
+		{"Geeft",new Integer(player3counterbid.get(5)),new Integer(player3counterbid.get(6)),new Integer(player3counterbid.get(7)),
+		new Integer(player3counterbid.get(8)),new Integer(player3counterbid.get(9)),}};
+		table3 = new JTable(data3,columnames);
 		
 				
 		AcceptPlayer1 = new JButton("Acepteren");
@@ -83,7 +109,9 @@ public class TradeAcceptPane extends JPanel {
 		response2.setBounds(270, 187,50,30);
 		response3.setBounds(270, 262,50,30);
 		
-		
+		table1.setBounds(350,110,350,50);
+		table2.setBounds(350,180,350,50);
+		table3.setBounds(350,250,350,50);
 		
 		AcceptPlayer1.setEnabled(false);
 		AcceptPlayer2.setEnabled(false);
@@ -93,8 +121,6 @@ public class TradeAcceptPane extends JPanel {
 		response2.setEditable(false);
 		response3.setEditable(false);
 		
-		getOtherPlayerid(gameid, playerid);
-		getOtherPlayerNames();
 		getResponses(otherplayerid1);
 		getResponses(otherplayerid2);
 		getResponses(otherplayerid3);
@@ -106,6 +132,10 @@ public class TradeAcceptPane extends JPanel {
 		add(otherPlayer1);
 		add(otherPlayer2);
 		add(otherPlayer3);
+		
+		add(table1);
+		add(table2);
+		add(table3);
 		
 		
 		add(response1);
@@ -143,9 +173,6 @@ public class TradeAcceptPane extends JPanel {
 				}
 				else if(response == false){
 					response1.setBackground(Color.RED);
-				}else {
-					AcceptPlayer1.setEnabled(true);
-					response1.setBackground(Color.RED);
 				}
 			}
 			else if(playerid == otherplayerid2) {
@@ -154,9 +181,6 @@ public class TradeAcceptPane extends JPanel {
 					AcceptPlayer2.setEnabled(true);
 				}
 				else if(response == false){
-					response2.setBackground(Color.RED);
-				}else {
-					AcceptPlayer2.setEnabled(true);
 					response2.setBackground(Color.RED);
 				}
 			}
@@ -167,23 +191,37 @@ public class TradeAcceptPane extends JPanel {
 				}
 				else if(response == false){
 					response3.setBackground(Color.RED);
-				}else {
-					AcceptPlayer3.setEnabled(true);
-					response3.setBackground(Color.RED);
 				}
 			}
 		}
 	
 	public void getTradeResponses(int playerid) {
 		if(playerid == otherplayerid1) {
+			if(tc.getTradeResponses(playerid).size()!= 0) {
 			player1counterbid =tc.getTradeResponses(playerid);
-			
+			}else {
+				for(int i =0; i<=9; i++) {
+				player1counterbid.add(0);
+				}
+			}
 		}
 		else if(playerid == otherplayerid2) {
+			if(tc.getTradeResponses(playerid).size()!= 0) {
 			player2counterbid =tc.getTradeResponses(playerid);
+			}else {
+				for(int i =0; i<=9; i++) {
+				player2counterbid.add(0);
+				}
+			}
 		}
 		else if(playerid == otherplayerid3) {
-			player3counterbid =tc.getTradeResponses(playerid);
+			if(tc.getTradeResponses(playerid).size()!= 0) {
+				player3counterbid =tc.getTradeResponses(playerid);
+				}else {
+					for(int i =0; i<=9; i++) {
+					player3counterbid.add(0);
+					}
+				}
 		}
 	}
 	}
