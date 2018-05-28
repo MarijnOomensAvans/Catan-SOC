@@ -22,7 +22,7 @@ public class ChatDAL  {
 		conn = MainDAL.getConnection();
 	}
 	
-	public void SendMessage(int playerid, String message) {
+	public void SendMessage(int playerid, String message) { ///sends the message to the database
 		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 		LocalDateTime now = LocalDateTime.now(); 
 		Statement stmt = null;
@@ -60,8 +60,7 @@ public class ChatDAL  {
 				ResultSet rs = stmt.executeQuery(sizequery);
 				rs.next();
 				counter = rs.getInt(1);
-				//stmt.close();
-				//stmt = conn.createStatement();
+				
 				
 				if(checkFirstTime == false)
 				{
@@ -104,17 +103,7 @@ public class ChatDAL  {
 			{
 				System.out.println(e.getMessage());
 			}
-//			if(firstMessage == false) 
-//			{
-
-//				if(counter > size)
-//				{
-//					size = counter;
-//					firstMessage = true;
-//					return result;
-//				} return null;
-				
-//			}
+//		
 			return null;
 		
 			

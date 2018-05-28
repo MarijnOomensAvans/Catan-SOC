@@ -15,7 +15,7 @@ public class PersonDAL {
 		 conn = MainDAL.getConnection();
 	}
 	
-	public String getName(int id)
+	public String getName(int id) ///gets your username from the database 
 	{
 		String result ="";
 		
@@ -37,7 +37,7 @@ public class PersonDAL {
 		return result;
 	}
 
-	public String getColor(int playerid)
+	public String getColor(int playerid)///gets the color you are from the database
 	{
 		String result ="";
 		Statement stmt = null;
@@ -57,7 +57,7 @@ public class PersonDAL {
 		}
 		return result;
 }
-	public int getgame_id(int playerid)
+	public int getgame_id(int playerid)///gets the gameid from the database
 	{
 		String result ="";
 		Statement stmt = null;
@@ -79,7 +79,7 @@ public class PersonDAL {
 		return resultint;
 }
 	
-	public int getorder_number(int playerid)
+	public int getorder_number(int playerid)///gets the order your in from the database
 	{
 		String result ="";
 		Statement stmt = null;
