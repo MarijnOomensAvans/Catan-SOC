@@ -10,6 +10,8 @@ import Controller.LoginController;
 public class BoardDal {
 	Connection conn = MainDAL.getConnection();
 
+	// ------------------------------------------------------------------------------------------------------------------------
+	// This will put the tiles into the database.
 	public void setTile(int idspel, int idtegel, int x, int y, char idgrondstofsoort, int idgetalfiche) {
 		Statement stmt = null;
 		if (idtegel != 1009) {
@@ -35,6 +37,8 @@ public class BoardDal {
 		}
 	}
 
+	// ------------------------------------------------------------------------------------------------------------------------
+	// This will update the tiles if a different boardtype is chosen.
 	public void updateTile(int idspel, int idtegel, int x, int y, char idgrondstofsoort, int idgetalfiche) {
 		Statement stmt = null;
 		try {
@@ -48,6 +52,8 @@ public class BoardDal {
 		}
 	}
 	
+	// ------------------------------------------------------------------------------------------------------------------------
+	// This removes the chits when a new board type is chosen.
 	public void removeChits(int idspel, int x, int y) {
 		Statement stmt = null;
 		try {
@@ -60,6 +66,9 @@ public class BoardDal {
 		}
 	}
 
+	
+	// ------------------------------------------------------------------------------------------------------------------------
+	// Check for Harbour
 	private boolean hasHarbour(int x, int y) {
 		try {
 			Statement stmt = conn.createStatement();
@@ -78,6 +87,9 @@ public class BoardDal {
 
 	}
 
+	
+	// ------------------------------------------------------------------------------------------------------------------------
+	// Check for Harbour resource if it has a harbour.
 	public char getLocationHarbourResource(int x, int y) {
 		String s = "idgrondstofsoort";
 		if (hasHarbour(x, y)) {
@@ -98,6 +110,9 @@ public class BoardDal {
 		return 0;
 	}
 
+	
+	// ------------------------------------------------------------------------------------------------------------------------
+	// Check for resource of tile.
 	public char getResourceTile(int idspel, int x, int y) {
 		String s = "idgrondstofsoort";
 		try {
@@ -115,6 +130,8 @@ public class BoardDal {
 		return 0;
 	}
 	
+	// ------------------------------------------------------------------------------------------------------------------------
+	// Check for chit of tile
 	public int getChit(int idspel, int x, int y) {
 		String s = "idgetalfiche";
 		try {
@@ -132,6 +149,8 @@ public class BoardDal {
 		return 0;
 	}
 
+	// ------------------------------------------------------------------------------------------------------------------------
+	// Check for boardtype of game.
 	public void setBoardType(int idspel, int boardType) {
 		Statement stmt = null;
 		String query = "UPDATE spel SET israndomboard = '" + (boardType - 1) + "' WHERE idspel = '" + idspel + "' ";
