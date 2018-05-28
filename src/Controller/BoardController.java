@@ -28,8 +28,8 @@ public class BoardController {
 		board.finishBoard(idspel);
 	}
 	
-	public void removeResource() {
-		board.removeResource();
+	public void removeResource(int idspel) {
+		board.removeResource(idspel);
 	}
 	
 	public Color getColour(int i, int idspel) {

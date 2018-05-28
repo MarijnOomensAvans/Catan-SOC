@@ -29,10 +29,13 @@ public class SetupChangePanel extends JPanel implements ActionListener{
 	private JButton returnButton;
 	private JButton InviteButton;
 	
+	private SetupGamePane sp;
+	
 	private int idspel;
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public SetupChangePanel(LobbyController lc, BoardController bc, JButton inviteButton, int idspel) {
+	public SetupChangePanel(LobbyController lc, BoardController bc, JButton inviteButton, int idspel, SetupGamePane setupGamePane) {
+		this.sp = setupGamePane;
 		this.lc = lc;
 		this.idspel = idspel;
 		this.bc = bc;
@@ -59,14 +62,16 @@ public class SetupChangePanel extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		String input = (String) boardTypes.getSelectedItem();
 		if(input == "Standaard") {
-			bc.removeResource();
+			bc.removeResource(lc.getGameID());
 			bc.setBoardType(lc.getGameID(), 1);
 			bc.finishBoard(idspel);
+			sp.remake();
 		}
 		else if (input == "Random"){
-			bc.removeResource();
+			bc.removeResource(lc.getGameID());
 			bc.setBoardType(lc.getGameID(), 2);
 			bc.finishBoard(idspel);
+			sp.remake();
 		}
 		
 	}

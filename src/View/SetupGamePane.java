@@ -18,7 +18,7 @@ public class SetupGamePane extends JPanel {
 
 	public SetupGamePane(LobbyController lc, BoardController bc, int idspel, JButton inviteButton) {
 		setPreferredSize(new Dimension(WIDTH,HEIGHT));
-		changePanel = new SetupChangePanel(lc, bc, inviteButton, idspel);
+		changePanel = new SetupChangePanel(lc, bc, inviteButton, idspel, this);
 		hexagonPanel = new DrawingPanel(bc, idspel);
 
 
@@ -28,5 +28,9 @@ public class SetupGamePane extends JPanel {
 		add(hexagonPanel);
 		
 		
+	}
+	
+	public void remake() {
+		repaint();
 	}
 }

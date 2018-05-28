@@ -11,12 +11,13 @@ import Model.LobbyGameInfo;
 import Model.LobbyInvite;
 
 public class LobbyDAL {
-
+	
+	Connection conn = MainDAL.getConnection();
+	
 	public ArrayList<String> getAllAccounts() {
 
 		ArrayList<String> accounts = new ArrayList<String>();
 		try {
-			Connection conn = MainDAL.getConnection();
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT username FROM account");
 
@@ -34,7 +35,6 @@ public class LobbyDAL {
 	public ArrayList<LobbyGameInfo> getAllActiveGames() {
 		ArrayList<LobbyGameInfo> games = new ArrayList<LobbyGameInfo>();
 		try {
-			Connection conn = MainDAL.getConnection();
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT s.idspel FROM spel s " + "JOIN speler sp "
 					+ "ON s.idspel = sp.idspel " + "WHERE sp.username LIKE '" + LoginController.getUsername() + "' ");
@@ -58,7 +58,6 @@ public class LobbyDAL {
 		ArrayList<String> players = new ArrayList<String>();
 
 		try {
-			Connection conn = MainDAL.getConnection();
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt
 					.executeQuery("SELECT sp.username FROM spel s " + "JOIN speler sp ON s.idspel = sp.idspel "
@@ -78,7 +77,6 @@ public class LobbyDAL {
 		ArrayList<LobbyInvite> invites = new ArrayList<LobbyInvite>();
 
 		try {
-			Connection conn = MainDAL.getConnection();
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(
 					"SELECT s.idspel FROM spel s JOIN speler sp ON s.idspel = sp.idspel " + "WHERE sp.username LIKE '"
@@ -101,7 +99,6 @@ public class LobbyDAL {
 
 	private String getHost(int gameID) {
 		try {
-			Connection conn = MainDAL.getConnection();
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt
 					.executeQuery("SELECT sp.username FROM spel s " + "JOIN speler sp ON s.idspel = sp.idspel "
@@ -119,7 +116,6 @@ public class LobbyDAL {
 
 	public void acceptInvite(int gameID) {
 		try {
-			Connection conn = MainDAL.getConnection();
 			Statement stmt = conn.createStatement();
 			stmt.executeUpdate("UPDATE `bdjong1_db2`.`speler` SET `speelstatus`='geaccepteerd' " + "WHERE `idspel`= "
 					+ gameID + " " + "AND username LIKE '" + LoginController.getUsername() + "'");
@@ -131,7 +127,6 @@ public class LobbyDAL {
 
 	public void rejectInvite(int gameID) {
 		try {
-			Connection conn = MainDAL.getConnection();
 			Statement stmt = conn.createStatement();
 			stmt.executeUpdate("UPDATE `bdjong1_db2`.`speler` SET `speelstatus`='geweigerd' " + "WHERE `idspel`= "
 					+ gameID + " " + "AND username LIKE '" + LoginController.getUsername() + "'");
@@ -145,7 +140,6 @@ public class LobbyDAL {
 		ArrayList<String> players = new ArrayList<String>();
 
 		try {
-			Connection conn = MainDAL.getConnection();
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT sp.username FROM speler sp\r\n"
 					+ "WHERE (sp.speelstatus LIKE 'geaccepteerd' OR sp.speelstatus LIKE 'uitdager')\r\n"
@@ -165,7 +159,6 @@ public class LobbyDAL {
 	public int makeNewGameID() {
 		int gameid = getHighestGameID() + 1;
 		try {
-			Connection conn = MainDAL.getConnection();
 			Statement stmt = conn.createStatement();
 
 			stmt.executeUpdate("INSERT INTO spel(idspel) VALUES (" + gameid + ")");
@@ -180,7 +173,6 @@ public class LobbyDAL {
 	private int getHighestGameID() {
 		int highestGameId = 0;
 		try {
-			Connection conn = MainDAL.getConnection();
 			Statement stmt = conn.createStatement();
 
 			ResultSet rs = stmt.executeQuery("SELECT MAX(idspel) FROM spel");
@@ -197,7 +189,6 @@ public class LobbyDAL {
 	public boolean isRandomBoard(int gameID) {
 		int isRandom = 0;
 		try {
-			Connection conn = MainDAL.getConnection();
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT israndomboard FROM spel" + " WHERE spel.idspel = " + gameID);
 			rs.next();
@@ -217,7 +208,6 @@ public class LobbyDAL {
 	public String getPlayerTurn(int gameID) {
 		String currentPlayer = "";
 		try {
-			Connection conn = MainDAL.getConnection();
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT sp.username FROM spel s " + "JOIN speler sp "
 					+ "ON s.beurt_idspeler = sp.idspeler " + "WHERE s.idspel = " + gameID);
@@ -233,7 +223,6 @@ public class LobbyDAL {
 	public int getFreePlayerid() {
 		int playerid = 1;
 		try {
-			Connection conn = MainDAL.getConnection();
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT idspeler FROM speler");
 			while (rs.next()) {
@@ -253,7 +242,6 @@ public class LobbyDAL {
 
 	public void createInvitation(String username, int gameid, int volgnr, String kleur, String speelstatus) {
 		try {
-			Connection conn = MainDAL.getConnection();
 			Statement stmt = conn.createStatement();
 			int playerid = getFreePlayerid();
 
@@ -267,7 +255,6 @@ public class LobbyDAL {
 
 	public void updateInvitation(String username, int gameid, int volgnr) {
 		try {
-			Connection conn = MainDAL.getConnection();
 			Statement stmt = conn.createStatement();
 
 			stmt.executeUpdate("UPDATE speler "
@@ -281,7 +268,6 @@ public class LobbyDAL {
 
 	public void initializeGame(int gameid) {
 		try {
-			Connection conn = MainDAL.getConnection();
 			Statement stmt = conn.createStatement();
 			stmt.executeUpdate("INSERT INTO spel (`idspel`, `israndomboard`, `eersteronde`) VALUES (" + gameid + ", '0', '1')");
 			stmt.close();
@@ -293,7 +279,6 @@ public class LobbyDAL {
 	public void setBoardTypeRandom(int gameid) {
 
 		try {
-			Connection conn = MainDAL.getConnection();
 			Statement stmt = conn.createStatement();
 			stmt.executeUpdate("UPDATE spel SET israndomboard = " + 1 + " WHERE idspel = " + gameid);
 			stmt.close();
