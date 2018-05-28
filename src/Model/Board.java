@@ -1,8 +1,14 @@
 package Model;
 
 import java.awt.Color;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Random;
+
+import javax.imageio.ImageIO;
 
 import DAL.BoardDal;
 import View.BoardColours;
@@ -707,7 +713,10 @@ public class Board {
 	public char getHarbourResource(int x, int y) {
 		return bdal.getLocationHarbourResource(x, y);
 	}
-
+	
+	// --------------------------------------------------------------------------------------------------------------------------
+	// Methods for returning colour of a chit based on their char
+	
 	public Color getColour(int i, int idspel) {
 		i = (i + 1000);
 		int x = ((Tile) axisgrid.get(i)).getX();
@@ -730,14 +739,157 @@ public class Board {
 		return null;
 	}
 
-	// ------------------------------------------------------------------------------------------------------------------------
+	// --------------------------------------------------------------------------------------------------------------------------
+	// Methods for returning the chit
+	public Image getImage(int i, int idspel) {
+		i = (i + 1000);
+		BufferedImage img = null;
+		int x = ((Tile) axisgrid.get(i)).getX();
+		int y = ((Tile) axisgrid.get(i)).getY();
+		String returnChit = "" + bdal.getChit(idspel, x, y);
+		switch(returnChit) {
+		case "1":
+			try {
+				img = ImageIO.read( new File("./images/2.png" ));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			break;
+		case "2":
+			try {
+				img = ImageIO.read( new File("./images/3.png" ));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			break;
+		case "3":
+			try {
+				img = ImageIO.read( new File("./images/3.png" ));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			break;
+		case "4":
+			try {
+				img = ImageIO.read( new File("./images/4.png" ));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			break;
+		case "5":
+			try {
+				img = ImageIO.read( new File("./images/4.png" ));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			break;
+		case "6":
+			try {
+				img = ImageIO.read( new File("./images/5.png" ));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			break;
+		case "7":
+			try {
+				img = ImageIO.read( new File("./images/5.png" ));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			break;
+		case "8":
+			try {
+				img = ImageIO.read( new File("./images/6.png" ));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			break;
+		case "9":
+			try {
+				img = ImageIO.read( new File("./images/6.png" ));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			break;
+		case "10":
+			try {
+				img = ImageIO.read( new File("./images/8.png" ));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			break;
+		case "11":
+			try {
+				img = ImageIO.read( new File("./images/8.png" ));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			break;
+		case "12":
+			try {
+				img = ImageIO.read( new File("./images/9.png" ));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			break;
+		case "13":
+			try {
+				img = ImageIO.read( new File("./images/9.png" ));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			break;
+		case "14":
+			try {
+				img = ImageIO.read( new File("./images/10.png" ));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			break;
+		case "15": 
+			try {
+				img = ImageIO.read( new File("./images/10.png" ));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			break;
+		case "16":
+			try {
+				img = ImageIO.read( new File("./images/11.png" ));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			break;
+		case "17":
+			try {
+				img = ImageIO.read( new File("./images/11.png" ));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			break;
+		case "18":
+			try {
+				img = ImageIO.read( new File("./images/12.png" ));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			break;
+		}
+		return img;
+	}
+	
+	
+	
+	// --------------------------------------------------------------------------------------------------------------------------
 	// Method to remove tile resources with change.
 
 	public void removeResource(int idspel) {
 		for (int i = 1000; i < 1019; i++) {
 			((Tile) axisgrid.get(i)).setResourcetype('N');
 			((Tile) axisgrid.get(i)).setChit(0);
-			//bdal.removeChits(idspel,((Tile) axisgrid.get(i)).getX(), ((Tile) axisgrid.get(i)).getY());
+			bdal.removeChits(idspel,((Tile) axisgrid.get(i)).getX(), ((Tile) axisgrid.get(i)).getY());
 		}
 	}
+	
+
 }

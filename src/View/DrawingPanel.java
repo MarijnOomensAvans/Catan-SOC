@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
@@ -103,7 +104,6 @@ public class DrawingPanel extends JPanel {
 		int w2 = getWidth() / 2;
 		int h2 = getHeight() / 2;
 		g2d.setColor(Color.BLACK);
-		AffineTransform orig = g2d.getTransform();
 		g2d.rotate(-Math.PI / 2, w2, h2);
 		for(int i =0; i < hexagons.size(); i++) {
 			g2d.drawPolygon(hexagons.get(i).getHexagon());
@@ -112,10 +112,10 @@ public class DrawingPanel extends JPanel {
 			g2d.fillPolygon(hexagons.get(i).getHexagon());
 
 		}
-		g2d.setTransform(orig);
 		g2d.setColor(BoardColours.CHITS.getRGB());
 		for(int i = 0; i < hexagons.size(); i++) {
-		g2d.drawString("" + (i + 1), hexagons.get(i).getCenter().y - 5,hexagons.get(i).getCenter().x);
+		Image img = bc.getImage(i, idspel);
+		g.drawImage( img, hexagons.get(i).getCenter().x - 15, hexagons.get(i).getCenter().y - 15, this);
 		}
 	}
 }

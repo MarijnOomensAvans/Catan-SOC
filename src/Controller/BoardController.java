@@ -1,6 +1,7 @@
 package Controller;
 
 import java.awt.Color;
+import java.awt.Image;
 
 import Model.Board;
 
@@ -34,6 +35,11 @@ public class BoardController {
 	
 	public Color getColour(int i, int idspel) {
 		return board.getColour(i, idspel);
+	}
+	
+	public Image getImage(int i, int idspel) {
+		return board.getImage(i, idspel);
+		
 	}
 
 	

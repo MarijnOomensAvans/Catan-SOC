@@ -40,7 +40,7 @@ public class BoardDal {
 		try {
 			stmt = conn.createStatement();
 			// Add  + "', `idgetalfiche`='" + idgetalfiche + "' " + " later.
-			stmt.executeUpdate("UPDATE `tegel` SET `idgrondstofsoort`='" + idgrondstofsoort + "' WHERE `idspel`= "
+			stmt.executeUpdate("UPDATE `tegel` SET `idgrondstofsoort`='" + idgrondstofsoort + "', `idgetalfiche`='" + idgetalfiche + "' " + " WHERE `idspel`= "
 					+ idspel + " AND `x` = " + x + " AND `y` = " + y + " AND `idtegel` = " + idtegel);
 			stmt.close();
 		} catch (SQLException e) {
@@ -48,17 +48,17 @@ public class BoardDal {
 		}
 	}
 	
-//	public void removeChits(int idspel, int x, int y) {
-//		Statement stmt = null;
-//		try {
-//			stmt = conn.createStatement();
-//			stmt.executeUpdate("UPDATE `tegel` SET `idgetalfiche`=NULL " + "WHERE `idspel`= "
-//					+ idspel + " AND `x` = " + x + " AND `y` = " + y);
-//			stmt.close();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//	}
+	public void removeChits(int idspel, int x, int y) {
+		Statement stmt = null;
+		try {
+			stmt = conn.createStatement();
+			stmt.executeUpdate("UPDATE `tegel` SET `idgetalfiche`=NULL " + "WHERE `idspel`= "
+					+ idspel + " AND `x` = " + x + " AND `y` = " + y);
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	private boolean hasHarbour(int x, int y) {
 		try {
@@ -107,6 +107,23 @@ public class BoardDal {
 
 			if (rs.next()) {
 				return rs.getString(s).charAt(0);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
+	}
+	
+	public int getChit(int idspel, int x, int y) {
+		String s = "idgetalfiche";
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT idgetalfiche FROM tegel WHERE idspel = '" + idspel
+					+ "' && x = '" + x + "' && y = '" + y + "'");
+
+			if (rs.next()) {
+				return rs.getInt(s);
 			}
 
 		} catch (SQLException e) {
