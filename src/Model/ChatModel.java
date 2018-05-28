@@ -27,9 +27,9 @@ public class ChatModel extends Observable {
 }
 	
 	
-	public ArrayList<String> getLatestMessage() {
+	public ArrayList<String> getLatestMessage() {/// gets the latest messages
 		ArrayList<String> results = new ArrayList<>();
-			results = cd.GetMessage();
+		results = cd.GetMessage();
 		this.setChanged();
 		this.notifyObservers(results);
 		return results;
