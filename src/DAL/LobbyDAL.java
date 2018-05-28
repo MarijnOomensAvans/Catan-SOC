@@ -156,6 +156,8 @@ public class LobbyDAL {
 		return players;
 	}
 
+	//Checks the highest game ID and increments the returned number with 1, then puts that number in the database. Returns the number to the
+	//LobbyModel.
 	public int makeNewGameID() {
 		int gameid = getHighestGameID() + 1;
 		try {
@@ -170,6 +172,7 @@ public class LobbyDAL {
 		return gameid;
 	}
 
+	//A private method to get the highest game id in the databes, this method is only used in the makenNewGameID method
 	private int getHighestGameID() {
 		int highestGameId = 0;
 		try {

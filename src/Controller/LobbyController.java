@@ -11,7 +11,6 @@ import View.Chatoutputgui;
 import View.InGameFrame;
 import View.LobbyFrame;
 import View.SetupGameFrame;
-import View.SetupGamePane;
 
 public class LobbyController {
 
