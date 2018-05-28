@@ -23,7 +23,7 @@ public class ChatController implements Runnable {
 		cd = new ChatDAL();
 		t1 = new Thread(this);
 		this.chatmodel =new ChatModel(cd);
-		this.cog = new Chatoutputgui(this, 1);
+		this.cog = new Chatoutputgui(this, 1);/// this is made here so that the model can get his observer
 		this.chatview = new ChatGui(this, cog, 1);
 		t1.start();
 
@@ -45,7 +45,7 @@ public class ChatController implements Runnable {
 	
 	public void run() {
 		while(true) {
-		try {
+		try {			///tries to get a new message every second 
 			getLatestMessage();
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {

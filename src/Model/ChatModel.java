@@ -33,7 +33,7 @@ public class ChatModel extends Observable {
 			String messages = cd.GetMessage();
 			result = messages;
 		
-		this.setChanged();
+		this.setChanged();		///notify's the output box that a new message has been recieved
 		this.notifyObservers(result);
 		return result;
 	}
