@@ -16,14 +16,19 @@ public class TradeOtherPlayers {
 
 	}
 
-	public ArrayList<String> getOherPlayerName(int gameid, int playerid) {
-		ArrayList<String> names =pd.getOtherPlayerName(gameid,playerid);
+	public String getOherPlayerName(int playerid) {
+		String names =pd.getOtherPlayerName(playerid);
 		return names;
 	}
 
-	public ArrayList<Boolean> getResponses(int playerid) {
-		ArrayList<Boolean> responses = td.getResponses(playerid);
+	public boolean getResponses(int playerid) {
+		boolean responses = td.getResponses(playerid);
 		return responses;
+	}
+
+	public ArrayList<Integer> getOtherid(int gameid,int playerid) {
+		ArrayList<Integer> id= pd.getOtherid(gameid, playerid);
+		return id;
 	}
 
 	

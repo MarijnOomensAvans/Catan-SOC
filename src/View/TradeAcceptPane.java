@@ -3,11 +3,13 @@ package View;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTable;
 import javax.swing.JTextField;
 
 
@@ -20,6 +22,21 @@ public class TradeAcceptPane extends JPanel {
 	private JLabel otherPlayer2;
 	private JLabel otherPlayer3;
 	
+	private int otherplayerid1;
+	private int otherplayerid2;
+	private int otherplayerid3;
+
+	
+	private ArrayList<Integer> player1counterbid;
+	private ArrayList<Integer> player2counterbid;
+	private ArrayList<Integer> player3counterbid;
+	
+	String[] columnames ={" ","Hout","erts" ,"Baksteen", "Graan" ,"Wol"	};
+	//Object[][] data {"Vraagt",
+		
+	//};
+	//private JTable table;
+	
 	private JButton AcceptPlayer1;
 	private JButton AcceptPlayer2;
 	private JButton AcceptPlayer3;
@@ -30,13 +47,21 @@ public class TradeAcceptPane extends JPanel {
 	
 	private TradeController tc;
 	
-	public TradeAcceptPane(TradeController tc,int playerid) {
+	public TradeAcceptPane(TradeController tc,int playerid, int gameid) {
 		this.tc = tc;
 		this.setLayout(null);
 		otherPlayer1 =new JLabel();
 		otherPlayer2 =new JLabel();
 		otherPlayer3 =new JLabel();
 		
+		
+		player1counterbid = new ArrayList<Integer>();
+		player2counterbid = new ArrayList<Integer>();
+		player3counterbid = new ArrayList<Integer>();
+		
+		///table = new JTable(columnames);
+		
+				
 		AcceptPlayer1 = new JButton("Acepteren");
 		AcceptPlayer2 = new JButton("Acepteren");
 		AcceptPlayer3 = new JButton("Acepteren");
@@ -57,11 +82,21 @@ public class TradeAcceptPane extends JPanel {
 		response2.setBounds(270, 187,50,30);
 		response3.setBounds(270, 262,50,30);
 		
+		
+		
 		AcceptPlayer1.setEnabled(false);
 		AcceptPlayer2.setEnabled(false);
 		AcceptPlayer3.setEnabled(false);
 		
+		response1.setEditable(false);
+		response2.setEditable(false);
+		response3.setEditable(false);
+		
+		getOtherPlayerid(gameid, playerid);
 		getOtherPlayerNames();
+		getResponses(otherplayerid1);
+		getResponses(otherplayerid2);
+		getResponses(otherplayerid3);
 		
 		add(AcceptPlayer1);
 		add(AcceptPlayer2);
@@ -71,6 +106,7 @@ public class TradeAcceptPane extends JPanel {
 		add(otherPlayer2);
 		add(otherPlayer3);
 		
+		
 		add(response1);
 		add(response2);
 		add(response3);
@@ -79,67 +115,63 @@ public class TradeAcceptPane extends JPanel {
 		setVisible(true);
 		revalidate();
 		repaint();
-		getResponses();
+		
+	}
+
+	private void getOtherPlayerid(int gameid , int playerid) {
+		ArrayList<Integer> ids =tc.getOtherid(gameid,playerid);
+		otherplayerid1 =ids.get(0);
+		otherplayerid2 =ids.get(1);
+		otherplayerid3 =ids.get(2);
+		
 	}
 
 	private void getOtherPlayerNames() {
-		ArrayList<String> names =tc.getOtherNames();
-		for(int i =0; i<names.size();i++) {
-			if(i == 0) {
-				otherPlayer1.setText(names.get(i));
+		otherPlayer1.setText(tc.getOtherNames(otherplayerid1));
+		otherPlayer2.setText(tc.getOtherNames(otherplayerid2));
+		otherPlayer3.setText(tc.getOtherNames(otherplayerid3));
+		
+	}
+	
+	public void getResponses(int playerid) {
+		boolean response=tc.getResponses(playerid);
+			if(playerid == otherplayerid1) {
+				if(response== true) {
+					response1.setBackground(Color.GREEN);
+					AcceptPlayer1.setEnabled(true);
+				}
+				else if(response == false){
+					response1.setBackground(Color.RED);
+				}else {
+					AcceptPlayer1.setEnabled(true);
+					response1.setBackground(Color.RED);
+				}
 			}
-			else if(i == 1) {
-				otherPlayer2.setText(names.get(i));
+			else if(playerid == otherplayerid2) {
+				if(response== true) {
+					response2.setBackground(Color.GREEN);
+					AcceptPlayer2.setEnabled(true);
+				}
+				else if(response == false){
+					response2.setBackground(Color.RED);
+				}else {
+					AcceptPlayer2.setEnabled(true);
+					response2.setBackground(Color.RED);
+				}
 			}
-			else if(i == 2) {
-				otherPlayer3.setText(names.get(i));
+			else if(playerid == otherplayerid3) {
+				if(response== true) {
+					response3.setBackground(Color.GREEN);
+					AcceptPlayer3.setEnabled(true);
+				}
+				else if(response == false){
+					response3.setBackground(Color.RED);
+				}else {
+					AcceptPlayer3.setEnabled(true);
+					response3.setBackground(Color.RED);
+				}
 			}
 		}
 	}
 	
-	public void getResponses() {
-		ArrayList<Boolean> responses=tc.getResponses();
-		for(int i=0; i<responses.size();i++) {
-			if(i == 0) {
-				if(responses.get(i)== true) {
-					response1.setBackground(Color.GREEN);
-					AcceptPlayer1.setEnabled(true);
-				}
-				else if(responses.get(i)== null){
-					AcceptPlayer1.setEnabled(true);
-					response1.setBackground(Color.RED);
-				}else {
-					response1.setBackground(Color.RED);
-				}
-			}
-			else if(i == 1) {
-				if(responses.get(i)== true) {
-					response2.setBackground(Color.GREEN);
-					AcceptPlayer2.setEnabled(true);
 
-				}
-				else if(responses.get(i)== null){
-					AcceptPlayer2.setEnabled(true);
-					response3.setBackground(Color.RED);
-				}else {
-					response3.setBackground(Color.RED);
-				}
-				
-			}
-			else if(i == 2) {
-				if(responses.get(i)== true) {
-					response3.setBackground(Color.GREEN);
-					AcceptPlayer3.setEnabled(true);
-
-				}
-				else if(responses.get(i)== null){
-					AcceptPlayer3.setEnabled(true);
-					response3.setBackground(Color.RED);
-				}else {
-					response3.setBackground(Color.RED);
-				}
-			}
-		}
-	}
-
-}

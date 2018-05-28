@@ -100,17 +100,17 @@ public class PersonDal {
 		}
 	}
 
-	public ArrayList<String> getOtherPlayerName(int gameid, int playerid) {
-		ArrayList<String> result = new ArrayList<String>();
+	public String getOtherPlayerName(int playerid) {
+		String result ="";
 		Statement stmt = null;
-		String query = "SELECT username FROM speler WHERE idspel =" + gameid+ " AND idspeler NOT IN("+ playerid+")";
+		String query = "SELECT username FROM speler WHERE idspeler ="+ playerid;
 		try
 		{
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next())
 			{
-				result.add(rs.getString(1));
+				result =rs.getString(1);
 				
 			}
 			stmt.close();
@@ -120,6 +120,27 @@ public class PersonDal {
 		}
 		return result;
 		
+	}
+
+	public ArrayList<Integer> getOtherid(int gameid, int playerid) {
+		ArrayList<Integer> result = new ArrayList<Integer>();
+		Statement stmt = null;
+		String query = "SELECT idspeler FROM speler WHERE idspel =" + gameid+ " AND idspeler NOT IN("+ playerid+")";
+		try
+		{
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while (rs.next())
+			{
+				result.add(rs.getInt(1));
+				
+			}
+			stmt.close();
+		} catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		return result;
 	}
 
 

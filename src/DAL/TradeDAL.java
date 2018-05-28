@@ -90,18 +90,18 @@ public class TradeDAL {
 		return results;
 	}
 
-	public ArrayList<Boolean> getResponses(int playerid) {
-		ArrayList<Boolean> results = new ArrayList<Boolean>();
+	public boolean getResponses(int playerid) {
+		boolean results = false;
 		
 		Statement stmt = null;
-		String query = "SELECT geaccepteerd FROM ruilaanbod WHERE idspeler NOT IN("+ playerid+")";
+		String query = "SELECT geaccepteerd FROM ruilaanbod WHERE idspeler ="+ playerid;
 		try
 		{
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next())
 			{	
-				results.add(rs.getBoolean(1));
+				results =rs.getBoolean(1);
 			}
 			
 			stmt.close();
@@ -111,6 +111,8 @@ public class TradeDAL {
 		}
 		return results;
 	}
+
+
 	
 	
 

@@ -45,14 +45,14 @@ public class TradeController {
 			 givesWood,asksStone, asksWool,  asksOre, asksWheat, asksWood);
 	}
 	
-	public ArrayList<String> getOtherNames(){
-		ArrayList<String> names =otherPlayers.getOherPlayerName(gameid, playerid);
+	public String getOtherNames(int otherplayerid1){
+		String names =otherPlayers.getOherPlayerName(otherplayerid1);
 		return names;
 		
 	}
 
 	public void switchPane() {
-		gui.setContentPane(new TradeAcceptPane(this, playerid));
+		gui.setContentPane(new TradeAcceptPane(this, playerid, gameid));
 		gui.validate();
 		gui.repaint();
 		
@@ -62,8 +62,13 @@ public class TradeController {
 		td.getTradeOffer(1);
 	}
 
-	public ArrayList<Boolean> getResponses() {
-		ArrayList<Boolean> responses=otherPlayers.getResponses(playerid);
+	public boolean getResponses(int playerid) {
+		boolean responses=otherPlayers.getResponses(playerid);
 		return responses;
+	}
+
+	public ArrayList<Integer> getOtherid(int gameid, int playerid) {
+		ArrayList<Integer> id =otherPlayers.getOtherid(gameid, playerid);
+		return id;
 	}
 }
