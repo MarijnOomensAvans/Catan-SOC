@@ -10,14 +10,16 @@ import View.BoardColours;
 public class Board {
 	Random rand = new Random();
 	BoardDal bdal = new BoardDal();
-	//We made one hashmap with all Tiles and Location in it (under superclass collection). Every Collection objecht has an id which we use
-	//to quickly identify different objects.
+	// We made one hashmap with all Tiles and Location in it (under superclass
+	// collection). Every Collection objecht has an id which we use
+	// to quickly identify different objects.
 	private HashMap<Integer, Collection> axisgrid = new HashMap<Integer, Collection>();
 	private int loopnumb = 0;
 	private int looplet = 1000;
 	private int boardType;
+	private int counter = 0;
 
-	public void setBoardType(int idspel,int boardType) {
+	public void setBoardType(int idspel, int boardType) {
 		this.boardType = boardType;
 		bdal.setBoardType(idspel, boardType);
 	}
@@ -32,9 +34,9 @@ public class Board {
 			break;
 		}
 	}
-	
 
-	//The board is always generated in the same manner, since the positions of tiles and locations are predetermined.
+	// The board is always generated in the same manner, since the positions of
+	// tiles and locations are predetermined.
 	public void generateBoard() {
 		for (int x = 1; x < 12; x++) {
 			for (int y = 1; y < 12; y++) {
@@ -137,9 +139,9 @@ public class Board {
 		}
 	}
 
-	
-	//Tiles are placed at a location in the grid (x and y coordinates). After the grid is placed, locations are initialised around the grid.
-	//We check for overlapping locations with the booleans.
+	// Tiles are placed at a location in the grid (x and y coordinates). After the
+	// grid is placed, locations are initialised around the grid.
+	// We check for overlapping locations with the booleans.
 	private void placetile(int x, int y) {
 		Tile tile = new Tile(x, y);
 		boolean loc1 = true;
@@ -203,25 +205,45 @@ public class Board {
 	private void setRandomBoard(int idspel) {
 		randomResource();
 		randomChit();
-		for (int i = 1000; i < 1019; i++) {
-			bdal.setTile(idspel, i, ((Tile) axisgrid.get(i)).getX(), ((Tile) axisgrid.get(i)).getY(),
-					((Tile) axisgrid.get(i)).getResourcetype(), ((Tile) axisgrid.get(i)).getChit());
+		if (counter == 0) {
+			for (int i = 1000; i < 1019; i++) {
+				bdal.setTile(idspel, i, ((Tile) axisgrid.get(i)).getX(), ((Tile) axisgrid.get(i)).getY(),
+						((Tile) axisgrid.get(i)).getResourcetype(), ((Tile) axisgrid.get(i)).getChit());
+			}
+			counter++;
+		} else {
+			for (int i = 1000; i < 1019; i++) {
+				bdal.updateTile(idspel, i, ((Tile) axisgrid.get(i)).getX(), ((Tile) axisgrid.get(i)).getY(),
+						((Tile) axisgrid.get(i)).getResourcetype(), ((Tile) axisgrid.get(i)).getChit());
+			}
 		}
+
 	}
-	
+
 	private void setStandardBoard(int idspel) {
 		standardResource();
 		standardChit();
-		for (int i = 1000; i < 1019; i++) {
-			bdal.setTile(idspel, i, ((Tile) axisgrid.get(i)).getX(), ((Tile) axisgrid.get(i)).getY(),
-					((Tile) axisgrid.get(i)).getResourcetype(), ((Tile) axisgrid.get(i)).getChit());
+		if (counter == 0) {
+			for (int i = 1000; i < 1019; i++) {
+				bdal.setTile(idspel, i, ((Tile) axisgrid.get(i)).getX(), ((Tile) axisgrid.get(i)).getY(),
+						((Tile) axisgrid.get(i)).getResourcetype(), ((Tile) axisgrid.get(i)).getChit());
+			}
+			counter++;
+		} else {
+			for (int i = 1000; i < 1019; i++) {
+				bdal.updateTile(idspel, i, ((Tile) axisgrid.get(i)).getX(), ((Tile) axisgrid.get(i)).getY(),
+						((Tile) axisgrid.get(i)).getResourcetype(), ((Tile) axisgrid.get(i)).getChit());
+			}
 		}
+
 	}
 
 	// Chit placement
 	// ------------------------------------------------------------------------------------------------------------------------
-	//Chits are places randomly in an even manner (there's always a set amount of a specific chitnumber i.e only 2 8's).
-	//Chits are placed with an id, this id corrosponds with the id set in the database (id 2 and 3 are both number 2).
+	// Chits are places randomly in an even manner (there's always a set amount of a
+	// specific chitnumber i.e only 2 8's).
+	// Chits are placed with an id, this id corrosponds with the id set in the
+	// database (id 2 and 3 are both number 2).
 	private void randomChit() {
 		((Tile) axisgrid.get(1009)).setChit(0);
 		int location = 1000;
@@ -505,7 +527,7 @@ public class Board {
 
 	// Resource placement
 	// -------------------------------------------------------------------------------------------------------------------
-	//Resources are placed randomly in an even manner.
+	// Resources are placed randomly in an even manner.
 	private void randomResource() {
 		((Tile) axisgrid.get(1009)).setResourcetype('X');
 		int location = 1000;
@@ -665,8 +687,8 @@ public class Board {
 		}
 
 	}
-	
-	//-----------------------------------------------------------------------------------------------------------------------
+
+	// -----------------------------------------------------------------------------------------------------------------------
 
 	private void placeResource(int position, char resource) {
 		((Tile) axisgrid.get(position)).setResourcetype(resource);
@@ -675,23 +697,23 @@ public class Board {
 	private void placeChit(int position, int chit) {
 		((Tile) axisgrid.get(position)).setChit(chit);
 	}
-	
-	//--------------------------------------------------------------------------------------------------------------------------
-	//Methods for returning resourcetypes from tiles and harbours
-	public char getTileResource(int idspel,int x,int y) {
+
+	// --------------------------------------------------------------------------------------------------------------------------
+	// Methods for returning resourcetypes from tiles and harbours
+	public char getTileResource(int idspel, int x, int y) {
 		return bdal.getResourceTile(idspel, x, y);
 	}
-	
-	public char getHarbourResource(int x,int y) {
+
+	public char getHarbourResource(int x, int y) {
 		return bdal.getLocationHarbourResource(x, y);
 	}
-	
+
 	public Color getColour(int i, int idspel) {
 		i = (i + 1000);
 		int x = ((Tile) axisgrid.get(i)).getX();
 		int y = ((Tile) axisgrid.get(i)).getY();
 		char returnColour = bdal.getResourceTile(idspel, x, y);
-		switch(returnColour) {
+		switch (returnColour) {
 		case 'H':
 			return BoardColours.WOOD.getRGB();
 		case 'G':
@@ -700,11 +722,22 @@ public class Board {
 			return BoardColours.ORE.getRGB();
 		case 'B':
 			return BoardColours.BRICK.getRGB();
-		case 'W': 
+		case 'W':
 			return BoardColours.WOOL.getRGB();
 		case 'X':
 			return BoardColours.DESERT.getRGB();
 		}
 		return null;
+	}
+
+	// ------------------------------------------------------------------------------------------------------------------------
+	// Method to remove tile resources with change.
+
+	public void removeResource(int idspel) {
+		for (int i = 1000; i < 1019; i++) {
+			((Tile) axisgrid.get(i)).setResourcetype('N');
+			((Tile) axisgrid.get(i)).setChit(0);
+			//bdal.removeChits(idspel,((Tile) axisgrid.get(i)).getX(), ((Tile) axisgrid.get(i)).getY());
+		}
 	}
 }
