@@ -224,27 +224,25 @@ public class LobbyDAL {
 		int playerid = 1;
 		try {
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT idspeler FROM speler");
-			while (rs.next()) {
-				if (rs.getInt(1) != playerid) {
-					return playerid;
-				} else {
-					playerid++;
-				}
-			}
+			
+			ResultSet rs = stmt.executeQuery("SELECT MAX(idspeler) FROM speler");
+			rs.next();
+			playerid = rs.getInt(1) + 1;
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-		return 0;
+		return playerid;
 	}
 
 	public void createInvitation(String username, int gameid, int volgnr, String kleur, String speelstatus) {
 		try {
 			Statement stmt = conn.createStatement();
 			int playerid = getFreePlayerid();
-
+			
+			System.out.println(playerid);
+			
 			stmt.executeUpdate(
 					"INSERT INTO speler (`idspeler`, `idspel`, `username`, `kleur`, `speelstatus`, `shouldrefresh`, `volgnr`) "
 							+ "VALUES ( " + playerid + ", " + gameid + ", '" + username + "' , '" + kleur + "' , '"

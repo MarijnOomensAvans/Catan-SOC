@@ -2,12 +2,16 @@ package Controller;
 
 import java.util.ArrayList;
 
+import javax.swing.JButton;
+
 import Model.LobbyGameInfo;
 import Model.LobbyInvite;
 import Model.LobbyModel;
 import View.Chatoutputgui;
 import View.InGameFrame;
 import View.LobbyFrame;
+import View.SetupGameFrame;
+import View.SetupGamePane;
 
 public class LobbyController {
 
@@ -15,6 +19,7 @@ public class LobbyController {
 	private LobbyModel lobbyModel;
 	private LobbyFrame frame;
 	private InGameFrame gameFrame;
+	private SetupGameFrame setupFrame;
 	private ChatController cc;
 	private Chatoutputgui cog;
 
@@ -23,11 +28,7 @@ public class LobbyController {
 		cc = new ChatController(cog);
 		bc = new BoardController();
 		lobbyModel = new LobbyModel();
-<<<<<<< HEAD
-		frame = new LobbyFrame(this, bc);
-=======
 		frame = new LobbyFrame(this,bc,cc,cog,1);
->>>>>>> b0c545fe2441c6bee267f34d1984fddf9f1264f6
 	}
 
 	public ArrayList<String> getUsernames() {
@@ -85,6 +86,20 @@ public class LobbyController {
 	
 	public void updateInvitation(String username, int gameid, int volgnr) {
 		lobbyModel.updateInvitation(username, gameid, volgnr);
+	}
+	
+	public void openGameSetup() {
+		JButton inviteButton = new JButton("Invite");
+
+		makeNewGameID();
+		bc.generateBoard();
+		bc.setBoardType(getGameID(), 1);
+		bc.finishBoard(getGameID());
+		setupFrame = new SetupGameFrame(this, bc, inviteButton);
+		
+		inviteButton.addActionListener(e -> {
+			setupFrame.openInvitePanel();
+		});
 	}
 
 }

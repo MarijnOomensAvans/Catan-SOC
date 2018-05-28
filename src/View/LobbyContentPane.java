@@ -3,6 +3,7 @@ package View;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import Controller.BoardController;
@@ -16,45 +17,26 @@ public class LobbyContentPane extends JPanel {
 
 	private BoardController bc;
 	private LobbyPanel lobby;
-	private SetupGamePane setupGame;
 	private LobbyController lc;
 	private InvitePanel invitePanel;
 	private JButton playButton;
-	private JButton inviteButton;
 
 	public LobbyContentPane(LobbyController controller, BoardController bc, ChatController cc,int playerid, Chatoutputgui cog) {
 		this.bc = bc;
-		inviteButton = new JButton("Invite");
 		playButton = new JButton("Start");
 		this.lc = controller;
-		this.invitePanel = new InvitePanel(this);
 		this.lobby = new LobbyPanel(this, playButton);
 
 		playButton.addActionListener(e -> {
-			switchLobbyScreen();
+			lc.openGameSetup();
 		});
-		inviteButton.addActionListener(e -> {
-			switchInviteScreen();
-		});
+		
 		add(lobby);
 		add(new ChatContentPane(cc,cog,playerid));
 	}
 
 	public ArrayList<String> getUsernames() {
 		return lc.getUsernames();
-	}
-
-	public void switchLobbyScreen() {
-		lc.makeNewGameID();
-		this.setupGame = new SetupGamePane(lc, bc, lc.getGameID(), inviteButton);
-		bc.generateBoard();
-		bc.setBoardType(lc.getGameID(), 1);
-		bc.finishBoard(lc.getGameID());
-		removeAll();
-		add(setupGame);
-		revalidate();
-		repaint();
-
 	}
 
 	public void switchInviteScreen() {

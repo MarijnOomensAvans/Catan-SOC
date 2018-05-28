@@ -10,14 +10,14 @@ import Controller.LobbyController;
 @SuppressWarnings("serial")
 public class SetupGamePane extends JPanel {
 
-	private final int WIDTH = 1400;
-	private final int HEIGHT = 900;
+	private final int WIDTH = 700;
+	private final int HEIGHT = 500;
 	
 	private DrawingPanel hexagonPanel;
 	private SetupChangePanel changePanel;
 
 	public SetupGamePane(LobbyController lc, BoardController bc, int idspel, JButton inviteButton) {
-		setPreferredSize(new Dimension(WIDTH,HEIGHT));
+		//setPreferredSize(new Dimension(WIDTH,HEIGHT));
 		changePanel = new SetupChangePanel(lc, bc, inviteButton, idspel, this);
 		hexagonPanel = new DrawingPanel(bc, idspel);
 

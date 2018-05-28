@@ -53,12 +53,6 @@ public class LobbyFrame extends JFrame{
 		setJMenuBar(lobbyMenuBar);
 		
 	}
-	
-	
-	public void switchScreen() {
-		pane.switchLobbyScreen();
-		pack();
-	}
 
 
 }
