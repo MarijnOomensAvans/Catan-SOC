@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.awt.Polygon;
 
 public class Hexagon {
+// making instance variable
 	  private final int radius;
 
       private final Point center;
@@ -11,12 +12,13 @@ public class Hexagon {
       private final Polygon hexagon;
 
       public Hexagon(Point center, int radius) {
+// initialize everything
           this.center = center;
           this.radius = radius;
           this.hexagon = createHexagon();
 
       }
-
+// create a hexagon
       private Polygon createHexagon() {
           Polygon polygon = new Polygon();
 
@@ -32,15 +34,15 @@ public class Hexagon {
           
           return polygon;
       }
-
+// get teh radius back
       public int getRadius() {
           return radius;
       }
-
+//  get center back
       public Point getCenter() {
           return center;
       }
-
+// get the hexagon back
       public Polygon getHexagon() {
           return hexagon;
       }

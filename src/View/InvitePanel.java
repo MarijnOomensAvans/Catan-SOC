@@ -18,7 +18,7 @@ import Controller.LobbyController;
 import Controller.LoginController;
 
 public class InvitePanel extends JPanel {
-
+// creating intance variables
 	private final int WIDTH = 1000;
 	private final int HEIGHT = 50;
 
@@ -35,6 +35,7 @@ public class InvitePanel extends JPanel {
 	private ArrayList<String> names;
 
 	public InvitePanel(LobbyController lc, SetupGameFrame frame) {
+// initialize everything
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		setBackground(new Color(230, 230, 230, 255));
 		setLayout(new GridBagLayout());
@@ -50,7 +51,7 @@ public class InvitePanel extends JPanel {
 		sendButton.setFont(buttonFont);
 
 		boxValues = new String[3];
-
+// initialize comboBoxes
 		box1 = new JComboBox(names.toArray());
 		box2 = new JComboBox(names.toArray());
 		box3 = new JComboBox(names.toArray());
@@ -58,9 +59,9 @@ public class InvitePanel extends JPanel {
 		box1.setSelectedIndex(-1);
 		box2.setSelectedIndex(-1);
 		box3.setSelectedIndex(-1);
-
+// creating a gridbagcontraints
 		GridBagConstraints gc = new GridBagConstraints();
-
+// positioning the box
 		gc.weightx = 0.5f;
 		gc.weighty = 0.5f;
 
@@ -83,7 +84,7 @@ public class InvitePanel extends JPanel {
 		gc.gridwidth = 3;
 		gc.anchor = GridBagConstraints.CENTER;
 		this.add(sendButton, gc);
-
+// add itemlisteners add to array
 		box1.addItemListener(new ItemListener() {
 
 			@Override
@@ -114,7 +115,7 @@ public class InvitePanel extends JPanel {
 
 			}
 		});
-
+// add actionlistener searching for users
 		sendButton.addActionListener(e -> {
 
 			boolean boxIsEmpty = false;

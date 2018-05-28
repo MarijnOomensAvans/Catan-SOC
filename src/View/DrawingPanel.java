@@ -14,7 +14,7 @@ import Controller.BoardController;
 
 @SuppressWarnings("serial")
 public class DrawingPanel extends JPanel {
-
+// making 19 rooms for hexagons
 	private Hexagon hexagon1;
 	private Hexagon hexagon2;
 	private Hexagon hexagon3;
@@ -34,19 +34,19 @@ public class DrawingPanel extends JPanel {
 	private Hexagon hexagon17;
 	private Hexagon hexagon18;
 	private Hexagon hexagon19;
-	
+// making room for an gameId
 	private int idspel;
-	
+// making room for a board controller	
 	private BoardController bc;
-	
+// making room for an arraylist	
 	private ArrayList<Hexagon> hexagons;
 
 	public DrawingPanel(BoardController bc, int idspel) {
 		this.idspel = idspel;
 		this.bc = bc;
-		
+// initialize arraylist 		
 		hexagons = new ArrayList<>();
-		
+// initialize hexagons with points		
 		hexagon6 = new Hexagon(new Point(400, 164), 50);
 		hexagon11 = new Hexagon(new Point(400, 250), 50);
 		hexagon16 = new Hexagon(new Point(400, 336), 50);
@@ -70,7 +70,7 @@ public class DrawingPanel extends JPanel {
 		hexagon4 = new Hexagon(new Point(100, 164), 50);
 		hexagon9 = new Hexagon(new Point(100, 250), 50);
 		hexagon14 = new Hexagon(new Point(100, 336), 50);
-		
+// adding hexagons		
 		hexagons.add(hexagon1);
 		hexagons.add(hexagon2);
 		hexagons.add(hexagon3);
@@ -91,12 +91,14 @@ public class DrawingPanel extends JPanel {
 		hexagons.add(hexagon18);
 		hexagons.add(hexagon19);
 		
-		
+// set preferred size	
 		this.setPreferredSize(new Dimension(500, 500));
+// set background
 		setBackground(BoardColours.SEA.getRGB());
 	}
 
 
+// drawing the hexagons
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
