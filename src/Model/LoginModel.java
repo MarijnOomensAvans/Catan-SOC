@@ -10,9 +10,9 @@ public class LoginModel {
 	private LoginDAL loginDal;
 	private LoginController inlogController;
 
-	public LoginModel(LoginController inlogController) {
+	public LoginModel(LoginController loginController) {
 		loginDal = new LoginDAL();
-		this.inlogController = inlogController;
+		this.inlogController = loginController;
 	}
 
 	public boolean login(String username, String password) {
