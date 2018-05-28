@@ -17,7 +17,7 @@ public class Board {
 	Random rand = new Random();
 	BoardDal bdal = new BoardDal();
 	// We made one hashmap with all Tiles and Location in it (under superclass
-	// collection). Every Collection objecht has an id which we use
+	// collection). Every Collection object has an id which we use
 	// to quickly identify different objects.
 	private HashMap<Integer, Collection> axisgrid = new HashMap<Integer, Collection>();
 	private int loopnumb = 0;
