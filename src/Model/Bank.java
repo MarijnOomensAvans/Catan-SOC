@@ -52,14 +52,8 @@ public class Bank {
 		return devbank.get(number);
 	}
 	
-	public void printallMatCards() {
-		for(int i=0; i<matbank.size(); i++) {
-				System.out.println("Kaart "+ i +" van het soort " + matbank.get(i).getIdCard());
-				System.out.println(matbank.get(i).getKindOfMaterial());
-			
-			
-		}
-	}
+
+	
 	public void printallDevCards() {
 		for(int i=0; i<devbank.size(); i++) {
 			System.out.println("Kaart " + i +" van het soort " + devbank.get(i).getKindName());

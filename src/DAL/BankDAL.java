@@ -14,7 +14,7 @@ public class BankDAL {
 	}
 	
 	
-	public String getId(int id) {
+	public String getId(int id) {  // gets the card id from the database so the cards are connected to the database
 		String result ="";
 		Statement stmt = null;
 		String query = "";
@@ -41,7 +41,7 @@ public class BankDAL {
 	}
 
 
-	public String getKindOfMaterial(int id) {
+	public String getKindOfMaterial(int id) {/// give the character from the database so that the card knows what type it is
 		String result ="";
 		Statement stmt = null;
 		int limit  = id-1;
