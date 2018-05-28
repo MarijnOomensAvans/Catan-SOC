@@ -1,5 +1,7 @@
 package Controller;
 
+import java.util.ArrayList;
+
 import DAL.ChatDAL;
 import DAL.MainDAL;
 import Model.ChatModel;
@@ -36,8 +38,8 @@ public class ChatController implements Runnable {
 
 	}
 	
-	public String getLatestMessage() {
-		String message =chatmodel.getLatestMessage();
+	public ArrayList<String> getLatestMessage() {
+		ArrayList<String> message =chatmodel.getLatestMessage();
 		return message;
 	}
 

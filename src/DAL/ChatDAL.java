@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 
 
@@ -13,6 +14,7 @@ public class ChatDAL  {
 	
 	Connection conn;
 	private int size;
+	private int difference;
 	private boolean firstMessage = false;
 	private boolean checkFirstTime =false;
 	
@@ -44,52 +46,77 @@ public class ChatDAL  {
 		}
 	}
 
-	public String GetMessage() {
-			String result ="";
+	public ArrayList<String> GetMessage() {
+			ArrayList<String> results = new ArrayList<>();
+			
+			String result = "";
 			Statement stmt = null;
 			int counter =0;
 			String sizequery = "SELECT COUNT(*) FROM CHATREGEL";
-			String query = "SELECT c.tijdstip, s.username, c.bericht FROM chatregel AS c "
-					+ "LEFT JOIN speler AS s ON s.idspeler = c.idspeler "
-					+ "ORDER BY tijdstip DESC "
-					+ "LIMIT 1";
+
 			try
 			{
 				stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(sizequery);
 				rs.next();
 				counter = rs.getInt(1);
-				stmt.close();
-				stmt = conn.createStatement();
-				ResultSet re = stmt.executeQuery(query);
-				re.next();
-				result = re.getString(1);
-				result = result.substring(11, result.length()-2);			//remove the date
-				result += " " + re.getString(2) + re.getString(3);
-				stmt.close();
-			} catch (SQLException e)
-			{
-				System.out.println(e.getMessage());
-			}
-			if(firstMessage == false) {
-				if(checkFirstTime == false) {
+				//stmt.close();
+				//stmt = conn.createStatement();
+				
+				if(checkFirstTime == false)
+				{
 					size = counter;
 					checkFirstTime = true;
 					return null;
 				}
-				if(counter > size) {
-					size = counter;
-					firstMessage = true;
-					return result;
-				} return null;
 				
+				if( counter > size) 
+				{
+					difference = counter - size;
+					
+					String query = "SELECT * FROM "
+							+ "(SELECT c.tijdstip, s.username, c.bericht FROM chatregel AS c "
+							+ "LEFT JOIN speler AS s ON s.idspeler = c.idspeler "
+							+ "ORDER BY tijdstip "
+							+ "DESC LIMIT " +difference+ ") sub "
+							+ "ORDER BY tijdstip ASC"; 
+
+					rs = stmt.executeQuery(query);
+					while(rs.next())
+					{
+						result = rs.getString(1);
+						result = result.substring(11, result.length()-2);			//remove the date
+						result += " " + rs.getString(2) + rs.getString(3);
+						results.add(result);
+					}
+					stmt.close();
+					
+					size = counter;
+					return results;
+				}
+				
+				else
+				{
+					return null;
+				}
+						
+			} catch (SQLException e)
+			{
+				System.out.println(e.getMessage());
 			}
-			if( counter > size) {
-				size = counter;
-				return result;
-			
-			}
-				return null;
+//			if(firstMessage == false) 
+//			{
+
+//				if(counter > size)
+//				{
+//					size = counter;
+//					firstMessage = true;
+//					return result;
+//				} return null;
+				
+//			}
+			return null;
+		
 			
 		}
 		
