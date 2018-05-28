@@ -28,10 +28,7 @@ public class LobbyContentPane extends JPanel {
 		this.lc = controller;
 		this.invitePanel = new InvitePanel(this);
 		this.lobby = new LobbyPanel(this, playButton);
-<<<<<<< HEAD
 
-=======
->>>>>>> 3bf9d70903966d44125896289760fc28b7197531
 		playButton.addActionListener(e -> {
 			switchLobbyScreen();
 		});
