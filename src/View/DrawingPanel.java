@@ -104,6 +104,7 @@ public class DrawingPanel extends JPanel {
 		int h2 = getHeight() / 2;
 		g2d.setColor(Color.BLACK);
 		AffineTransform orig = g2d.getTransform();
+		g2d.scale(-1, 1);
 		g2d.rotate(-Math.PI / 2, w2, h2);
 		for(int i =0; i < hexagons.size(); i++) {
 			g2d.drawPolygon(hexagons.get(i).getHexagon());
