@@ -2,6 +2,7 @@ package Model;
 
 
 
+import java.util.ArrayList;
 import java.util.Observable;
 
 import DAL.ChatDAL;
@@ -26,16 +27,16 @@ public class ChatModel extends Observable {
 }
 	
 	
-	public String getLatestMessage() {
-		String result = "";
+	public ArrayList<String> getLatestMessage() {
+		ArrayList<String> results = new ArrayList<>();
+		//String result = "";
 		
-		
-			String messages = cd.GetMessage();
-			result = messages;
+			results = cd.GetMessage();
+			//result = messages;
 		
 		this.setChanged();
-		this.notifyObservers(result);
-		return result;
+		this.notifyObservers(results);
+		return results;
 	}
 	
 
