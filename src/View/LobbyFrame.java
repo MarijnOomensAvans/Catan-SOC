@@ -59,4 +59,5 @@ public class LobbyFrame extends JFrame{
 		pack();
 	}
 
+
 }

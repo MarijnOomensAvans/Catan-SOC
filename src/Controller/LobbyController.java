@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import Model.LobbyGameInfo;
 import Model.LobbyInvite;
 import Model.LobbyModel;
+import View.InGameFrame;
 import View.LobbyFrame;
 
 public class LobbyController {
@@ -12,6 +13,7 @@ public class LobbyController {
 	private BoardController bc;
 	private LobbyModel lobbyModel;
 	private LobbyFrame frame;
+	private InGameFrame gameFrame;
 
 	public LobbyController() {
 		bc = new BoardController();
@@ -61,6 +63,11 @@ public class LobbyController {
 	
 	public void inviteResponse(boolean response, int gameID) {
 		lobbyModel.inviteResponse(response, gameID);
+	}
+	
+	public void openGame(int gameID) {
+		frame.dispose();
+		gameFrame = new InGameFrame(bc, gameID);
 	}
 
 }

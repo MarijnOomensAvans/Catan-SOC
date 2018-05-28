@@ -240,8 +240,16 @@ public class LobbyPanel extends JPanel {
 				infoPanel.add(nameLabel);
 
 			}
+			
 			row.add(namePanel, BorderLayout.NORTH);
 			row.add(infoPanel, BorderLayout.CENTER);
+			row.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					pane.openGame(gameID);
+					
+					
+				}
+			});
 			row.setBorder(blackLine);
 			gamesPanel.add(row);
 		}

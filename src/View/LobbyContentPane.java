@@ -29,16 +29,14 @@ public class LobbyContentPane extends JPanel {
 		this.invitePanel = new InvitePanel(this);
 		this.lobby = new LobbyPanel(this, playButton);
 
-
 		playButton.addActionListener(e -> {
-		switchLobbyScreen();
+			switchLobbyScreen();
 		});
 		inviteButton.addActionListener(e -> {
-		switchInviteScreen();
+			switchInviteScreen();
 		});
 		add(lobby);
 	}
-		
 
 	public ArrayList<String> getUsernames() {
 		return lc.getUsernames();
@@ -54,29 +52,28 @@ public class LobbyContentPane extends JPanel {
 		add(setupGame);
 		revalidate();
 		repaint();
-		
+
 	}
-	
+
 	public void switchInviteScreen() {
 		removeAll();
 		add(invitePanel);
 		revalidate();
 		repaint();
 	}
-	
+
 	public int getGameID() {
 		return lc.getGameID();
 	}
-	
 
-	public ArrayList<String> getPlayers(int gameID){
+	public ArrayList<String> getPlayers(int gameID) {
 		return lc.getPlayers(gameID);
 	}
-	
-	public ArrayList<LobbyInvite> getInvites(){
+
+	public ArrayList<LobbyInvite> getInvites() {
 		return lc.getInvites();
 	}
-	
+
 	public void closeLobbyScreen() {
 		playButton.addActionListener(e -> {
 			lc.closeLobbyScreen();
@@ -90,13 +87,17 @@ public class LobbyContentPane extends JPanel {
 	public ArrayList<String> getUsersInGame(int gameID) {
 		return lc.getUsersInGame(gameID);
 	}
-	
+
 	public void inviteResponse(boolean response, int gameID) {
 		lc.inviteResponse(response, gameID);
 	}
-	
+
 	public ArrayList<LobbyGameInfo> getGames() {
 		return lc.getGames();
+	}
+
+	public void openGame(int gameID) {
+		lc.openGame(gameID);
 	}
 
 }
