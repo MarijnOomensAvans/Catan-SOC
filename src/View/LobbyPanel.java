@@ -168,7 +168,7 @@ public class LobbyPanel extends JPanel {
 		leftPanel.setLayout(new BorderLayout());
 		leftPanel.add(challengePanel, BorderLayout.NORTH);
 		leftPanel.add(gamesPanel, BorderLayout.CENTER);
-		
+
 		challengePanel.setPreferredSize(new Dimension(SIDEPANELWIDTH, 400));
 		gamesPanel.setPreferredSize(new Dimension(SIDEPANELWIDTH, 500));
 
@@ -196,6 +196,7 @@ public class LobbyPanel extends JPanel {
 		drawGames();
 	}
 
+	// Display the accounts currently registered (current user is red)
 	public void drawAccountLabels() {
 		usernames = pane.getUsernames();
 
@@ -213,6 +214,7 @@ public class LobbyPanel extends JPanel {
 		}
 	}
 
+	// Display the current games the user is in
 	public void drawGames() {
 		games = pane.getGames();
 		ArrayList<Component> gameLabels = new ArrayList<Component>();
@@ -240,14 +242,13 @@ public class LobbyPanel extends JPanel {
 				infoPanel.add(nameLabel);
 
 			}
-			
+
 			row.add(namePanel, BorderLayout.NORTH);
 			row.add(infoPanel, BorderLayout.CENTER);
 			row.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent e) {
 					pane.openGame(gameID);
-					
-					
+
 				}
 			});
 			row.setBorder(blackLine);
@@ -324,6 +325,7 @@ public class LobbyPanel extends JPanel {
 		}
 	}
 
+	// Hover for game info
 	public class Hover extends MouseAdapter {
 
 		private int gameID;

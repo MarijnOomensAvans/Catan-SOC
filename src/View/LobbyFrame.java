@@ -1,7 +1,5 @@
 package View;
 
-import java.util.ArrayList;
-
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -10,8 +8,6 @@ import javax.swing.JMenuItem;
 import Controller.BoardController;
 import Controller.ChatController;
 import Controller.LobbyController;
-import Model.LobbyGameInfo;
-import Model.LobbyInvite;
 
 @SuppressWarnings("serial")
 public class LobbyFrame extends JFrame{

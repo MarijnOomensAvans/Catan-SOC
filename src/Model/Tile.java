@@ -1,7 +1,8 @@
 package Model;
 
 public class Tile extends Collection {
-	char resourcetype;
+	
+	private char resourcetype;
 	
 	private int x;
 	private int y;

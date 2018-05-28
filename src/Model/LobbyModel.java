@@ -38,6 +38,7 @@ public class LobbyModel {
 		return lobbyDAL.getPlayers(gameID);
 	}
 
+	//Saves the returned value of the makeNewGameID method.
 	public void makeNewGameID() {
 		int gameid = lobbyDAL.makeNewGameID();
 		this.gameid = gameid;

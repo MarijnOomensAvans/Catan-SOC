@@ -1,6 +1,7 @@
 package Model;
 
 public class Location extends Collection{
+	//The locations are already hardcoded in the database, so we make them locally just to compare the coordinates.
 	private int x;
 	private int y;
 	
