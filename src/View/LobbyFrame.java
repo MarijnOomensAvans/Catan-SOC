@@ -8,6 +8,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import Controller.BoardController;
+import Controller.ChatController;
 import Controller.LobbyController;
 import Model.LobbyGameInfo;
 import Model.LobbyInvite;
@@ -21,9 +22,9 @@ public class LobbyFrame extends JFrame{
 	private JMenu lobbyMenu;
 	private JMenuItem logOut;
 	
-	public LobbyFrame(LobbyController controller, BoardController bc) {
+	public LobbyFrame(LobbyController controller, BoardController bc, ChatController cc, Chatoutputgui cog, int i) {
 		this.controller = controller;
-		pane = new LobbyContentPane(controller,bc);
+		pane = new LobbyContentPane(controller,bc,cc,1,cog);
 		setTitle("Lobby");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);

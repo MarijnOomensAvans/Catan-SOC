@@ -9,19 +9,16 @@ import View.Chatoutputgui;
 
 public class ChatController implements Runnable {
 	
-	@SuppressWarnings("unused")
-	private ChatGui chatview;
+
 	private ChatModel chatmodel;
-	private Chatoutputgui cog;
+
 	@SuppressWarnings("unused")
 	private MainDAL md = new MainDAL();
 	private ChatDAL cd = new ChatDAL();
 	private Thread t1;
 	
-	public ChatController() {
-		this.cog = new Chatoutputgui(this, 1);
+	public ChatController(Chatoutputgui cog) {
 		this.chatmodel =new ChatModel(cd);
-		this.chatview = new ChatGui(this, cog, 1);
 		t1 = new Thread(this);
 		t1.start();
 		chatmodel.addObserver(cog);

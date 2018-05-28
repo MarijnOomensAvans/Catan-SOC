@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import Model.LobbyGameInfo;
 import Model.LobbyInvite;
 import Model.LobbyModel;
+import View.Chatoutputgui;
 import View.InGameFrame;
 import View.LobbyFrame;
 
@@ -14,11 +15,15 @@ public class LobbyController {
 	private LobbyModel lobbyModel;
 	private LobbyFrame frame;
 	private InGameFrame gameFrame;
+	private ChatController cc;
+	private Chatoutputgui cog;
 
 	public LobbyController() {
+		cog = new Chatoutputgui(cc, 1);
+		cc = new ChatController(cog);
 		bc = new BoardController();
 		lobbyModel = new LobbyModel();
-		frame = new LobbyFrame(this,bc);
+		frame = new LobbyFrame(this,bc,cc,cog,1);
 	}
 
 	public ArrayList<String> getUsernames() {
