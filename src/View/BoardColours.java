@@ -10,6 +10,7 @@ public enum BoardColours {
 	BRICK(163, 77, 8),
 	SEA(0, 191, 255),
 	GRAIN(229, 161, 43),
+	CHITS(255,0,0),
 	STANDARD(255,255,255);
 	
 	private final int r;
