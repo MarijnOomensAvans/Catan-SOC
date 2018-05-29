@@ -533,6 +533,15 @@ public class TradeOfferPane extends JPanel {
 			
 		});
 		
+		counterOffer.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				td.createOffer(playerid, stoneOfferCounter, woolOfferCounter, oreOfferCounter, wheatOfferCounter, woodOfferCounter, stoneDemandCounter, woolDemandCounter, oreDemandCounter, wheatOfferCounter, woodDemandCounter,true);
+			}
+			
+		});
+		
 		if(showButton == true) {
 		sendButton.setBounds(340,475,100,80);
 		add(sendButton);
