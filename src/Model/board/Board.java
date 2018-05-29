@@ -11,7 +11,6 @@ import java.util.Random;
 import javax.imageio.ImageIO;
 
 import DAL.BoardDal;
-import Model.Collection;
 import View.board.BoardColours;
 
 public class Board {

@@ -1,7 +1,5 @@
 package Model.board;
 
-import Model.Collection;
-
 public class Tile extends Collection {
 	
 	private char resourcetype;
