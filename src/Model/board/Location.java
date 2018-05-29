@@ -1,7 +1,5 @@
 package Model.board;
 
-import Model.Collection;
-
 public class Location extends Collection{
 	//The locations are already hardcoded in the database, so we make them locally just to compare the coordinates.
 	private int x;
