@@ -224,34 +224,34 @@ public class TradeAcceptPane extends JPanel implements Observer {
 		for (int i = 0; i < ((ArrayList<Integer>) arg).size(); i++) {
 			if (i == 0) {
 				stoneOfferCounter =((ArrayList<Integer>) arg).get(i);
-				stoneoffer.setText(""+((ArrayList<Integer>) arg).get(i));
+				stoneoffer.setText(""+stoneOfferCounter);
 			} else if (i == 1) {
 				woolOfferCounter =((ArrayList<Integer>) arg).get(i);
-				wooloffer.setText(""+((ArrayList<Integer>) arg).get(i));
+				wooloffer.setText(""+woolOfferCounter);
 			} else if (i == 2) {
 				oreOfferCounter =((ArrayList<Integer>) arg).get(i);
-				oreoffer.setText(""+((ArrayList<Integer>) arg).get(i));
+				oreoffer.setText(""+oreOfferCounter);
 			} else if (i == 3) {
 				wheatOfferCounter =((ArrayList<Integer>) arg).get(i);
-				wheatoffer.setText(""+((ArrayList<Integer>) arg).get(i));
+				wheatoffer.setText(""+wheatOfferCounter);
 			} else if (i == 4) {
 				woodOfferCounter =((ArrayList<Integer>) arg).get(i);
-				woodoffer.setText(""+((ArrayList<Integer>) arg).get(i));
+				woodoffer.setText(""+woodOfferCounter);
 			} else if (i == 5) {
 				stoneDemandCounter =((ArrayList<Integer>) arg).get(i);
-				stoneDemand.setText(""+((ArrayList<Integer>) arg).get(i));
+				stoneDemand.setText(""+stoneDemandCounter);
 			} else if (i == 6) {
 				woolDemandCounter =((ArrayList<Integer>) arg).get(i);
-				woolDemand.setText(""+((ArrayList<Integer>) arg).get(i));
+				woolDemand.setText(""+woolDemandCounter);
 			} else if (i == 7) {
 				oreDemandCounter =((ArrayList<Integer>) arg).get(i);
-				oreDemand.setText(""+((ArrayList<Integer>) arg).get(i));
+				oreDemand.setText(""+oreDemandCounter);
 			} else if (i == 8) {
 				wheatDemandCounter =((ArrayList<Integer>) arg).get(i);
-				wheatDemand.setText(""+((ArrayList<Integer>) arg).get(i));
+				wheatDemand.setText(""+wheatDemandCounter);
 			} else if (i == 9) {
 				woodDemandCounter =((ArrayList<Integer>) arg).get(i);
-				woodDemand.setText(""+((ArrayList<Integer>) arg).get(i));
+				woodDemand.setText(""+woodDemandCounter);
 			}
 		}
 		this.repaint();
