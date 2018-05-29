@@ -6,14 +6,16 @@ import DAL.PersonDal;
 import DAL.TradeDAL;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
 import Model.Player;
 import Model.TradeOffer;
 import Model.TradeOtherPlayers;
 import View.TradeResultPane;
+import View.TradeAcceptPane;
 import View.TradeGui;
 
-public class TradeController implements Runnable {
+public class TradeController extends Observable implements Runnable {
 
 	private TradeDAL td;
 	private PersonDal pd;
@@ -22,6 +24,8 @@ public class TradeController implements Runnable {
 	private int gameid;
 	private TradeGui gui;
 	private Player player;
+	private TradeAcceptPane tap;
+	private Thread t1;
 	
 	public TradeController(int playerid, int gameid, PersonDal pd, Player player) {
 		this.pd = pd;
@@ -29,8 +33,12 @@ public class TradeController implements Runnable {
 		this.player = player;
 		this.playerid= playerid;
 		this.gameid = gameid;
-		gui = new TradeGui(this, playerid);
+		t1 = new Thread(this);
+		t1.start();
+		tap = new TradeAcceptPane(this, gameid);
+		gui = new TradeGui(this, playerid,tap);
 		otherPlayers =new TradeOtherPlayers(pd,td);
+		this.addObserver(tap);
 	}
 	
 	public void createOffer(int idPlayer, int givesStone, int givesWool, int givesOre, int givesWheat,
@@ -117,7 +125,8 @@ public class TradeController implements Runnable {
 	}
 
 	private void getLatestTradeOffer(ArrayList<Integer> otherIds) {
-		td.getLatestTradeOffer(otherIds);
-		
+		ArrayList<Integer> offer =td.getLatestTradeOffer(otherIds);
+		this.setChanged();
+		this.notifyObservers(offer);
 	}
 }

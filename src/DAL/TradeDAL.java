@@ -136,8 +136,7 @@ public class TradeDAL {
 
 	public ArrayList<Integer> getLatestTradeOffer(ArrayList<Integer> otherIds){
 		ArrayList<Integer> results = new ArrayList<>();
-		
-		String result = "";
+
 		Statement stmt = null;
 		int counter =0;
 		String sizequery = "SELECT COUNT(*) FROM ruilaanbod";
