@@ -133,6 +133,11 @@ public class TradeDAL {
 		return results;
 	}
 
+	public void getLatestTradeOffer() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 	
 	

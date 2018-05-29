@@ -105,12 +105,18 @@ public class TradeController implements Runnable {
 
 	@Override
 	public void run() {
+		while(true) {
 		try {
-			
+			getLatestTradeOffer();
 			Thread.sleep(1000);
 		}catch(InterruptedException e) {
 			
 		}
+		}
+	}
+
+	private void getLatestTradeOffer() {
+		td.getLatestTradeOffer();
 		
 	}
 }
