@@ -7,8 +7,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import Controller.LoginController;
-import Model.LobbyGameInfo;
-import Model.LobbyInvite;
+import Model.lobby.LobbyGameInfo;
+import Model.lobby.LobbyInvite;
 
 public class LobbyDAL {
 

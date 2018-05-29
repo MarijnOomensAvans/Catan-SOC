@@ -3,8 +3,8 @@ package Controller;
 import DAL.ChatDAL;
 import DAL.MainDAL;
 import Model.ChatModel;
-import View.ChatGui;
-import View.Chatoutputgui;
+import View.chat.ChatGui;
+import View.chat.Chatoutputgui;
 
 
 public class ChatController implements Runnable {

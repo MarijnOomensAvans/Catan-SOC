@@ -1,7 +1,7 @@
 package Controller;
 
 import Model.LoginModel;
-import View.LoginFrame;
+import View.logIn.LoginFrame;
 
 public class LoginController {
 

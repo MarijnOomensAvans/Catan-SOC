@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 
-import Model.LobbyGameInfo;
-import Model.LobbyInvite;
-import Model.LobbyModel;
-import View.Chatoutputgui;
-import View.InGameFrame;
-import View.LobbyFrame;
-import View.SetupGameFrame;
+import Model.lobby.LobbyGameInfo;
+import Model.lobby.LobbyInvite;
+import Model.lobby.LobbyModel;
+import View.chat.Chatoutputgui;
+import View.inGame.InGameFrame;
+import View.lobby.LobbyFrame;
+import View.setupGame.SetupGameFrame;
 
 public class LobbyController {
 

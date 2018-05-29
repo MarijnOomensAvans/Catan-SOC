@@ -3,7 +3,7 @@ package Controller;
 import java.awt.Color;
 import java.awt.Image;
 
-import Model.Board;
+import Model.board.Board;
 
 public class BoardController {
 	private Board board;
