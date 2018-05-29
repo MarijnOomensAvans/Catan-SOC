@@ -335,7 +335,7 @@ public class TradeOfferPane extends JPanel {
 		minusDemandWool = new JButton("-");
 		
 
-		stoneDemand = new JTextField(""+stoneOfferCounter);
+		stoneDemand = new JTextField(""+stoneDemandCounter);
 		oreDemand = new JTextField(""+oreDemandCounter);
 		woodDemand = new JTextField(""+woodDemandCounter);
 		woolDemand = new JTextField(""+woolDemandCounter);

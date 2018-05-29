@@ -69,8 +69,8 @@ public class TradeAcceptPane extends JPanel implements Observer {
 
 	private TradeController tc;
 
-	public TradeAcceptPane(TradeController td, int playerid) {
-		this.tc = td;
+	public TradeAcceptPane(TradeController tc, int playerid) {
+		this.tc = tc;
 		this.setLayout(null);
 		stone = new File("./Images/baksteen.jpg");
 		wool = new File("./Images/schaap.jpg");
@@ -78,7 +78,7 @@ public class TradeAcceptPane extends JPanel implements Observer {
 		wheat = new File("./Images/graan.jpg");
 		wood = new File("./Images/hout.jpg");
 
-		offer = new JLabel("Geeft");
+		offer = new JLabel("Geeft aan jou");
 		offer.setBounds(355, 10, 100, 100);
 		offer.setFont(new Font("Serif", Font.BOLD, 40));
 		add(offer);
@@ -117,7 +117,7 @@ public class TradeAcceptPane extends JPanel implements Observer {
 		wooloffer.setBackground(Color.WHITE);
 		wheatoffer.setBackground(Color.WHITE);
 
-		stoneDemand = new JTextField("" + stoneOfferCounter);
+		stoneDemand = new JTextField("" + stoneDemandCounter);
 		oreDemand = new JTextField("" + oreDemandCounter);
 		woodDemand = new JTextField("" + woodDemandCounter);
 		woolDemand = new JTextField("" + woolDemandCounter);
@@ -179,14 +179,22 @@ public class TradeAcceptPane extends JPanel implements Observer {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				tc.createOffer(playerid, stoneDemandCounter, woolDemandCounter, oreDemandCounter, wheatDemandCounter, woodDemandCounter, stoneOfferCounter, woolOfferCounter, oreOfferCounter, wheatOfferCounter, woodOfferCounter, true);
+			}
 
+		});
+		rejectButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				tc.createOffer(playerid, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false);
 			}
 
 		});
 
 		acceptButton.setBounds(250, 475, 100, 80);
-		rejectButton.setBounds(350, 475, 100, 80);
-		counterOffer.setBounds(450, 475, 100, 80);
+		counterOffer.setBounds(350, 475, 100, 80);
+		rejectButton.setBounds(450, 475, 100, 80);
 		add(acceptButton);
 		add(rejectButton);
 		add(counterOffer);
@@ -215,29 +223,39 @@ public class TradeAcceptPane extends JPanel implements Observer {
 
 		for (int i = 0; i < ((ArrayList<Integer>) arg).size(); i++) {
 			if (i == 0) {
-				stoneDemandCounter = ((ArrayList<Integer>) arg).get(i);
+				stoneOfferCounter =((ArrayList<Integer>) arg).get(i);
+				stoneoffer.setText(""+((ArrayList<Integer>) arg).get(i));
 			} else if (i == 1) {
-				woolDemandCounter = ((ArrayList<Integer>) arg).get(i);
+				woolOfferCounter =((ArrayList<Integer>) arg).get(i);
+				wooloffer.setText(""+((ArrayList<Integer>) arg).get(i));
 			} else if (i == 2) {
-				oreDemandCounter = ((ArrayList<Integer>) arg).get(i);
+				oreOfferCounter =((ArrayList<Integer>) arg).get(i);
+				oreoffer.setText(""+((ArrayList<Integer>) arg).get(i));
 			} else if (i == 3) {
-				wheatDemandCounter = ((ArrayList<Integer>) arg).get(i);
+				wheatOfferCounter =((ArrayList<Integer>) arg).get(i);
+				wheatoffer.setText(""+((ArrayList<Integer>) arg).get(i));
 			} else if (i == 4) {
-				woodDemandCounter = ((ArrayList<Integer>) arg).get(i);
+				woodOfferCounter =((ArrayList<Integer>) arg).get(i);
+				woodoffer.setText(""+((ArrayList<Integer>) arg).get(i));
 			} else if (i == 5) {
-				stoneOfferCounter = ((ArrayList<Integer>) arg).get(i);
+				stoneDemandCounter =((ArrayList<Integer>) arg).get(i);
+				stoneDemand.setText(""+((ArrayList<Integer>) arg).get(i));
 			} else if (i == 6) {
-				woolOfferCounter = ((ArrayList<Integer>) arg).get(i);
+				woolDemandCounter =((ArrayList<Integer>) arg).get(i);
+				woolDemand.setText(""+((ArrayList<Integer>) arg).get(i));
 			} else if (i == 7) {
-				oreOfferCounter = ((ArrayList<Integer>) arg).get(i);
+				oreDemandCounter =((ArrayList<Integer>) arg).get(i);
+				oreDemand.setText(""+((ArrayList<Integer>) arg).get(i));
 			} else if (i == 8) {
-				wheatOfferCounter = ((ArrayList<Integer>) arg).get(i);
+				wheatDemandCounter =((ArrayList<Integer>) arg).get(i);
+				wheatDemand.setText(""+((ArrayList<Integer>) arg).get(i));
 			} else if (i == 9) {
-				woodOfferCounter = ((ArrayList<Integer>) arg).get(i);
+				woodDemandCounter =((ArrayList<Integer>) arg).get(i);
+				woodDemand.setText(""+((ArrayList<Integer>) arg).get(i));
 			}
 		}
-		
 		this.repaint();
+		
 
 	}
 
