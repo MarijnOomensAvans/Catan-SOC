@@ -119,7 +119,7 @@ public class Player {
 		int counter =0;
 		if(hand.size()>0) {
 			
-		for(int i =0; i<= hand.size(); i++) {
+		for(int i =0; i< hand.size(); i++) {
 			if(hand.get(i).getKindOfMaterial().equals("B")) {
 				counter++;
 			};
@@ -135,7 +135,7 @@ public class Player {
 		int counter =0;
 		if(hand.size()>0) {
 			
-		for(int i =0; i<= hand.size(); i++) {
+		for(int i =0; i< hand.size(); i++) {
 			if(hand.get(i).getKindOfMaterial().equals("G")) {
 				counter++;
 			};
@@ -151,7 +151,7 @@ public class Player {
 		int counter =0;
 		if(hand.size()>0) {
 			
-		for(int i =0; i<= hand.size(); i++) {
+		for(int i =0; i< hand.size(); i++) {
 			if(hand.get(i).getKindOfMaterial().equals("H")) {
 				counter++;
 			};
@@ -167,7 +167,7 @@ public class Player {
 		int counter =0;
 		if(hand.size()>0) {
 			
-		for(int i =0; i<= hand.size(); i++) {
+		for(int i =0; i< hand.size(); i++) {
 			if(hand.get(i).getKindOfMaterial().equals("W")) {
 				counter++;
 			};
@@ -183,7 +183,7 @@ public class Player {
 		int counter =0;
 		if(hand.size()>0) {
 			
-		for(int i =0; i<= hand.size(); i++) {
+		for(int i =0; i< hand.size(); i++) {
 			if(hand.get(i).getKindOfMaterial().equals("E")) {
 				counter++;
 			};
