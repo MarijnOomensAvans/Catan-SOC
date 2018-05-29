@@ -1,4 +1,4 @@
-package View.dice;
+package View.setupGame;
 
 import java.awt.Color;
 import java.awt.Dimension;
