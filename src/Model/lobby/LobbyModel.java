@@ -83,7 +83,11 @@ public class LobbyModel {
 			break;
 		}
 
-		lobbyDAL.createInvitation(username, gameid, volgnr, kleur, speelstatus);
+		int playerid = lobbyDAL.createInvitation(username, gameid, volgnr, kleur, speelstatus);
+		
+		if(volgnr == 1) {
+			lobbyDAL.initializePlayerTurn(gameid, playerid);
+		}
 	}
 
 	public void updateInvitation(String username, int gameid, int volgnr) {
