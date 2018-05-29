@@ -239,10 +239,11 @@ public class LobbyDAL {
 		return playerid;
 	}
 
-	public void createInvitation(String username, int gameid, int volgnr, String kleur, String speelstatus) {
+	public int createInvitation(String username, int gameid, int volgnr, String kleur, String speelstatus) {
+		int playerid = 0;
 		try {
 			Statement stmt = conn.createStatement();
-			int playerid = getFreePlayerid();
+			playerid = getFreePlayerid();
 			
 			System.out.println(playerid);
 			
@@ -254,6 +255,8 @@ public class LobbyDAL {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		return playerid;
 	}
 
 	public void updateInvitation(String username, int gameid, int volgnr) {
@@ -274,6 +277,19 @@ public class LobbyDAL {
 			Statement stmt = conn.createStatement();
 			stmt.executeUpdate(
 					"INSERT INTO spel (`idspel`, `israndomboard`, `eersteronde`) VALUES (" + gameid + ", '0', '1')");
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void initializePlayerTurn(int gameid, int playerid) {
+		try {
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate(
+						"UPDATE 'spel' SET 'beurt_idspeler' = " + playerid +
+						" WHERE 'idspel' = " + gameid
+					);
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
