@@ -18,6 +18,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
@@ -36,7 +37,7 @@ public class LobbyPanel extends JPanel {
 	private final int WIDTH = 1400;
 	private final int HEIGHT = 900;
 	private final int TOPPANELHEIGHT = 200;
-	private final int SIDEPANELWIDTH = 300;
+	private final int SIDEPANELWIDTH = 320;
 	private final int NAMEHEIGHT = 40;
 	private final int INVITEWIDTH = 290;
 	private final int INVITELABELWIDTH = 150;
@@ -56,6 +57,7 @@ public class LobbyPanel extends JPanel {
 	private JPanel buttonPanel;
 	private JPanel blankPanel;
 	private JPanel gameButtonPane;
+	private JPanel showGamePanel;
 	private LobbyGameInfoPanel infoPanel;
 
 	private JLabel accountLabel;
@@ -71,6 +73,10 @@ public class LobbyPanel extends JPanel {
 	private Font gameInfoNameFont;
 	private Font accountFont;
 	private Font buttonFont;
+	
+	private JScrollPane scrollGames;
+	private JScrollPane scrollPlayers;
+	private JScrollPane scrollInvite;
 
 	@SuppressWarnings("unused")
 	private JButton playButton;
@@ -114,6 +120,20 @@ public class LobbyPanel extends JPanel {
 		blankPanel = new JPanel();
 		gameButtonPane = new JPanel();
 		infoPanel = new LobbyGameInfoPanel(gameInfoFont);
+		showGamePanel = new JPanel();
+		
+		scrollGames = new JScrollPane(showGamePanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollGames.getVerticalScrollBar().setUnitIncrement(5);
+		scrollGames.setBackground(Color.DARK_GRAY);
+		
+		scrollPlayers = new JScrollPane(accountPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollPlayers.getVerticalScrollBar().setUnitIncrement(5);
+		scrollPlayers.setBackground(Color.DARK_GRAY);
+		
+		scrollInvite = new JScrollPane(challengePanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollInvite.getVerticalScrollBar().setUnitIncrement(5);
+		scrollInvite.setBackground(Color.DARK_GRAY);
+
 
 		nameLabel = new JLabel("SO-C");
 		accountLabel = new JLabel("Accounts");
@@ -138,6 +158,7 @@ public class LobbyPanel extends JPanel {
 		buttonPanel.setLayout(new BorderLayout());
 		buttonPanel.add(blankPanel, BorderLayout.NORTH);
 		buttonPanel.add(gameButtonPane, BorderLayout.CENTER);
+		
 
 		topPanel.setPreferredSize(new Dimension(WIDTH, TOPPANELHEIGHT));
 		leftPanel.setPreferredSize(new Dimension(SIDEPANELWIDTH, HEIGHT));
@@ -163,10 +184,14 @@ public class LobbyPanel extends JPanel {
 
 		challengePanel.add(challengeLabel);
 
-		gamesPanel.add(gameLabel);
+		showGamePanel.setLayout(new GridLayout(0, 1));
+		gamesPanel.setLayout(new BorderLayout());
+		gamesPanel.add(gameLabel, BorderLayout.NORTH);
+		//gamesPanel.add(showGamePanel, BorderLayout.CENTER);
+		gamesPanel.add(scrollGames, BorderLayout.CENTER);
 
 		leftPanel.setLayout(new BorderLayout());
-		leftPanel.add(challengePanel, BorderLayout.NORTH);
+		leftPanel.add(scrollInvite, BorderLayout.NORTH);
 		leftPanel.add(gamesPanel, BorderLayout.CENTER);
 
 		challengePanel.setPreferredSize(new Dimension(SIDEPANELWIDTH, 400));
@@ -175,7 +200,7 @@ public class LobbyPanel extends JPanel {
 		rightPanel.setLayout(new BorderLayout());
 		rightPanel.setBorder(blackLine);
 		rightPanel.add(accountLabel, BorderLayout.NORTH);
-		rightPanel.add(accountPanel, BorderLayout.CENTER);
+		rightPanel.add(scrollPlayers, BorderLayout.CENTER);
 
 		ourNamePanel.add(nameLabel);
 		centerPanel.setLayout(new BorderLayout());
@@ -252,7 +277,7 @@ public class LobbyPanel extends JPanel {
 				}
 			});
 			row.setBorder(blackLine);
-			gamesPanel.add(row);
+			showGamePanel.add(row);
 		}
 	}
 
@@ -341,7 +366,7 @@ public class LobbyPanel extends JPanel {
 			ArrayList<String> players = pane.getUsersInGame(gameID);
 			boolean isRandom = pane.isRandomBoard(gameID);
 
-			leftPanel.remove(gamesPanel);
+			leftPanel.remove(showGamePanel);
 			infoPanel.updateInfo(gameID, isRandom, host, players);
 			leftPanel.add(infoPanel);
 			leftPanel.repaint();
@@ -351,7 +376,7 @@ public class LobbyPanel extends JPanel {
 		@Override
 		public void mouseExited(MouseEvent e) {
 			leftPanel.remove(infoPanel);
-			leftPanel.add(gamesPanel);
+			leftPanel.add(showGamePanel);
 			leftPanel.repaint();
 			leftPanel.validate();
 		}
