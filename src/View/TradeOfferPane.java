@@ -80,6 +80,7 @@ public class TradeOfferPane extends JPanel {
 	private JButton minusDemandWool;
 	
 	private JButton sendButton;
+	private JButton counterOffer;
 
 	private JTextField stoneDemand;
 	private JTextField oreDemand;
@@ -90,7 +91,11 @@ public class TradeOfferPane extends JPanel {
 	private JLabel offer;
 	private JLabel demand;
 	
-	public TradeOfferPane(TradeController td, int playerid) {
+	@SuppressWarnings("unused")
+	private boolean showButton;
+	
+	public TradeOfferPane(TradeController td, int playerid, boolean showbutton) {
+		this.showButton = showbutton;
 		this.setLayout(null);
 		stone = new File("./Images/baksteen.jpg");
 		wool = new File("./Images/schaap.jpg");
@@ -517,7 +522,7 @@ public class TradeOfferPane extends JPanel {
 		
 		
 		sendButton = new JButton("Versturen");
-		
+		counterOffer = new JButton("Tegenbod versturen");
 		sendButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -528,9 +533,14 @@ public class TradeOfferPane extends JPanel {
 			
 		});
 		
+		if(showButton == true) {
 		sendButton.setBounds(340,475,100,80);
 		add(sendButton);
-		
+		}
+		else {
+			counterOffer.setBounds(320,475,150,80);
+			add(counterOffer);
+		}
 		setPreferredSize(new Dimension(800,600));
 		setVisible(true);
 	}

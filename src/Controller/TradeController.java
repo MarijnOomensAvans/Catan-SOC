@@ -70,7 +70,7 @@ public class TradeController extends Observable implements Runnable {
 	}
 	
 	public void switchCounterOffer() {
-		gui.setContentPane(new TradeOfferPane(this, playerid));
+		gui.setContentPane(new TradeOfferPane(this, playerid, false));
 		gui.validate();
 		gui.repaint();
 	}
