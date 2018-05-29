@@ -14,6 +14,7 @@ import Model.TradeOtherPlayers;
 import View.TradeResultPane;
 import View.TradeAcceptPane;
 import View.TradeGui;
+import View.TradeOfferPane;
 
 public class TradeController extends Observable implements Runnable {
 
@@ -66,6 +67,12 @@ public class TradeController extends Observable implements Runnable {
 		gui.validate();
 		gui.repaint();
 		
+	}
+	
+	public void switchCounterOffer() {
+		gui.setContentPane(new TradeOfferPane(this, playerid));
+		gui.validate();
+		gui.repaint();
 	}
 
 	public ArrayList<Integer> getOffer(){

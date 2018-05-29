@@ -191,6 +191,14 @@ public class TradeAcceptPane extends JPanel implements Observer {
 			}
 
 		});
+		counterOffer.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				tc.switchCounterOffer();
+			}
+
+		});
 
 		acceptButton.setBounds(250, 475, 100, 80);
 		counterOffer.setBounds(350, 475, 100, 80);
