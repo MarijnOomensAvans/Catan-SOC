@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class TradeDAL {
 	
 	Connection conn;
+	private int size;
 	
 	public TradeDAL() {
 		 conn = MainDAL.getConnection();
@@ -133,9 +134,42 @@ public class TradeDAL {
 		return results;
 	}
 
-	public void getLatestTradeOffer() {
-		// TODO Auto-generated method stub
+	public ArrayList<Integer> getLatestTradeOffer(ArrayList<Integer> otherIds){
+		ArrayList<Integer> results = new ArrayList<>();
 		
+		String result = "";
+		Statement stmt = null;
+		int counter =0;
+		String sizequery = "SELECT COUNT(*) FROM ruilaanbod";
+
+		try
+		{
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(sizequery);
+			rs.next();
+			counter = rs.getInt(1);
+			
+			if(counter > 0)
+			{
+				String query = "SELECT idspeler FROM ruilaanbod";	//beurtid speler toevoegen!!
+				
+				rs = stmt.executeQuery(query);
+				
+				while (rs.next())
+				{
+					if(otherIds.contains(rs.getInt(1)))
+					{
+						results = getTradeResponses(rs.getInt(1));
+						return results;
+					}
+				}
+			
+			}
+		}catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		return null;
 	}
 
 

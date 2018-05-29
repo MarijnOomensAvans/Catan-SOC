@@ -204,10 +204,6 @@ public class TradeAcceptPane extends JPanel {
 		setVisible(true);
 	}
 		
-	
-	private void getOffer() {
-		tc.getTradeResponses(playerid)
-	}
 		
 	
 	

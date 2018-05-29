@@ -107,7 +107,8 @@ public class TradeController implements Runnable {
 	public void run() {
 		while(true) {
 		try {
-			getLatestTradeOffer();
+			ArrayList<Integer> otherIds = pd.getOtherid(gameid, playerid);
+			getLatestTradeOffer(otherIds);
 			Thread.sleep(1000);
 		}catch(InterruptedException e) {
 			
@@ -115,8 +116,8 @@ public class TradeController implements Runnable {
 		}
 	}
 
-	private void getLatestTradeOffer() {
-		td.getLatestTradeOffer();
+	private void getLatestTradeOffer(ArrayList<Integer> otherIds) {
+		td.getLatestTradeOffer(otherIds);
 		
 	}
 }
