@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import Model.Player;
 import Model.TradeOffer;
 import Model.TradeOtherPlayers;
-import View.TradeAcceptPane;
+import View.TradeResultPane;
 import View.TradeGui;
 
 public class TradeController {
@@ -54,7 +54,7 @@ public class TradeController {
 	}
 
 	public void switchPane() {
-		gui.setContentPane(new TradeAcceptPane(this, playerid, gameid));
+		gui.setContentPane(new TradeResultPane(this, playerid, gameid));
 		gui.validate();
 		gui.repaint();
 		
