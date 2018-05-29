@@ -66,7 +66,10 @@ public class TradeAcceptPane extends JPanel {
 	private JLabel offer;
 	private JLabel demand;
 	
+	private TradeController tc;
+	
 	public TradeAcceptPane(TradeController td, int playerid) {
+		this.tc =td;
 		this.setLayout(null);
 		stone = new File("./Images/baksteen.jpg");
 		wool = new File("./Images/schaap.jpg");
@@ -201,6 +204,10 @@ public class TradeAcceptPane extends JPanel {
 		setVisible(true);
 	}
 		
+	
+	private void getOffer() {
+		tc.getTradeResponses(playerid)
+	}
 		
 	
 	

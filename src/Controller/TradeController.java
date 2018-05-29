@@ -13,7 +13,7 @@ import Model.TradeOtherPlayers;
 import View.TradeResultPane;
 import View.TradeGui;
 
-public class TradeController {
+public class TradeController implements Runnable {
 
 	private TradeDAL td;
 	private PersonDal pd;
@@ -60,8 +60,9 @@ public class TradeController {
 		
 	}
 
-	public void getOffer(){
-		td.getTradeOffer(1);
+	public ArrayList<Integer> getOffer(){
+		ArrayList<Integer> offer =td.getTradeOffer(1);
+		return offer;
 	}
 
 	public boolean getResponses(int playerid) {
@@ -77,7 +78,6 @@ public class TradeController {
 	public ArrayList<Integer> getTradeResponses(int playerid) {
 		ArrayList<Integer> response = otherPlayers.getTradeResponses(playerid);
 		return response;
-		
 	}
 
 	public boolean hasStoneCard(int amount) {
@@ -101,5 +101,16 @@ public class TradeController {
 	public boolean hasWoolCard(int amount) {
 		boolean has = player.hasWoolCard(amount);
 		return has;
+	}
+
+	@Override
+	public void run() {
+		try {
+			
+			Thread.sleep(1000);
+		}catch(InterruptedException e) {
+			
+		}
+		
 	}
 }
