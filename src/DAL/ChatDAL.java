@@ -46,21 +46,20 @@ public class ChatDAL  {
 		}
 	}
 
-	public ArrayList<String> GetMessage() {
+	public ArrayList<String> GetMessage(int gameid) {
 			ArrayList<String> results = new ArrayList<>();
-			
 			String result = "";
 			Statement stmt = null;
 			int counter =0;
-			String sizequery = "SELECT COUNT(*) FROM CHATREGEL";
-
+			String sizequery = "SELECT COUNT(*) FROM CHATREGEL as c "
+					+ "LEFT JOIN speler AS s ON s.idspeler = c.idspeler "
+					+ "WHERE s.idspel ="+ gameid;
 			try
 			{
 				stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery(sizequery);
-				rs.next();
-				counter = rs.getInt(1);
-				
+				ResultSet rs1 = stmt.executeQuery(sizequery);
+				rs1.next();
+				counter = rs1.getInt(1);
 				
 				if(checkFirstTime == false)
 				{
@@ -76,16 +75,17 @@ public class ChatDAL  {
 					String query = "SELECT * FROM "
 							+ "(SELECT c.tijdstip, s.username, c.bericht FROM chatregel AS c "
 							+ "LEFT JOIN speler AS s ON s.idspeler = c.idspeler "
+							+ "Where s.idspel ="+gameid+" "
 							+ "ORDER BY tijdstip "
 							+ "DESC LIMIT " +difference+ ") sub "
 							+ "ORDER BY tijdstip ASC"; 
 
-					rs = stmt.executeQuery(query);
-					while(rs.next())
+					rs1 = stmt.executeQuery(query);
+					while(rs1.next())
 					{
-						result = rs.getString(1);
+						result = rs1.getString(1);
 						result = result.substring(11, result.length()-2);			//remove the date
-						result += " " + rs.getString(2) + rs.getString(3);
+						result += " " + rs1.getString(2) + rs1.getString(3);
 						results.add(result);
 					}
 					stmt.close();

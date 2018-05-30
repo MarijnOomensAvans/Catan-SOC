@@ -18,15 +18,17 @@ public class ChatController implements Runnable {
 	@SuppressWarnings("unused")
 	private MainDAL md;
 	private ChatDAL cd;
-	Thread t1;
+	private Thread t1;
+	private int gameid;
 	
-	public ChatController() {
+	public ChatController(int gameid) {
+		this.gameid = gameid;
 		md = new MainDAL();
 		cd = new ChatDAL();
 		t1 = new Thread(this);
 		this.chatmodel =new ChatModel(cd);
-		this.cog = new Chatoutputgui(this, 1);/// this is made here so that the model can get his observer
-		this.chatview = new ChatGui(this, cog, 1);
+		this.cog = new Chatoutputgui(this, 45);/// this is made here so that the model can get his observer
+		this.chatview = new ChatGui(this, cog, 45);
 		t1.start();
 
 		chatmodel.addObserver(cog);
@@ -38,8 +40,8 @@ public class ChatController implements Runnable {
 
 	}
 	
-	public ArrayList<String> getLatestMessage() {
-		ArrayList<String> message =chatmodel.getLatestMessage();
+	public ArrayList<String> getLatestMessage(int gameid) {
+		ArrayList<String> message =chatmodel.getLatestMessage(gameid);
 		return message;
 	}
 
@@ -48,7 +50,7 @@ public class ChatController implements Runnable {
 	public void run() {
 		while(true) {
 		try {			///tries to get a new message every second 
-			getLatestMessage();
+			getLatestMessage(gameid);
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			
