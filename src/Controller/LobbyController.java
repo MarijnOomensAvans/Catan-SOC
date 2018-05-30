@@ -23,10 +23,10 @@ public class LobbyController {
 	private Chatoutputgui cog;
 
 	public LobbyController() {
+		lobbyModel = new LobbyModel();
 		cog = new Chatoutputgui(cc, 1);
 		cc = new ChatController(getGameID(),cog);
 		bc = new BoardController();
-		lobbyModel = new LobbyModel();
 		frame = new LobbyFrame(this,bc,cc,cog,1);
 	}
 
