@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import Controller.LobbyController;
 import Controller.LoginController;
 
+@SuppressWarnings("serial")
 public class InvitePanel extends JPanel {
 	// creating intance variables
 	private final int WIDTH = 1000;

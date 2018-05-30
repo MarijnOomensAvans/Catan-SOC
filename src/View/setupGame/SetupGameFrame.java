@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import Controller.BoardController;
 import Controller.LobbyController;
 
+@SuppressWarnings("serial")
 public class SetupGameFrame extends JFrame {
 
 	private SetupGamePane setupPane;
