@@ -11,12 +11,12 @@ import java.util.Set;
 
 import javax.imageio.ImageIO;
 
-import DAL.BoardDAL;
+import DAL.BoardDal;
 import View.board.BoardColours;
 
 public class Board {
 	Random rand = new Random();
-	BoardDAL bdal = new BoardDAL();
+	BoardDal bdal = new BoardDal();
 	// We made one hashmap with all Tiles and Location in it (under superclass
 	// collection). Every Collection object has an id which we use
 	// to quickly identify different objects.
