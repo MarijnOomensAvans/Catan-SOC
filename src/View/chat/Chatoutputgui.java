@@ -1,6 +1,11 @@
 
 package View.chat;
 
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.GridBagConstraints;
+import java.awt.GridLayout;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -11,26 +16,25 @@ import javax.swing.text.DefaultCaret;
 
 import Controller.ChatController;
 
-
-
 @SuppressWarnings("serial")
 public class Chatoutputgui extends JPanel implements Observer {
-	
-	private JTextArea output;
-	 JScrollPane scroll;
 
-	
+	private JTextArea output;
+	JScrollPane scroll;
+
 	public Chatoutputgui(ChatController control, int playerid) {
-		output = new JTextArea(21,37);
-		scroll = new JScrollPane(output,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-		 DefaultCaret caret = (DefaultCaret)output.getCaret();
-		 caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
+		output = new JTextArea(21, 37);
+		scroll = new JScrollPane(output, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+				JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		DefaultCaret caret = (DefaultCaret) output.getCaret();
+		caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
 
 		output.setEditable(false);
-		
+
+		this.setLayout(new GridLayout(1, 1));
 		add(scroll);
+		this.setBackground(Color.BLACK);
 	}
-	
 
 	@Override
 	public void update(Observable o, Object arg) {

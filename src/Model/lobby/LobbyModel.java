@@ -87,6 +87,7 @@ public class LobbyModel {
 		
 		if(volgnr == 1) {
 			lobbyDAL.initializePlayerTurn(gameid, playerid);
+			System.out.println("Set " + playerid + " as user at turn");
 		}
 	}
 
