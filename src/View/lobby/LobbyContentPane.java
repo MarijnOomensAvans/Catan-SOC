@@ -35,7 +35,6 @@ public class LobbyContentPane extends JPanel {
 		});
 		
 		add(lobby);
-		add(new ChatContentPane(cc,cog,playerid));
 	}
 // pass array usernames through  
 	public ArrayList<String> getUsernames() {

@@ -28,7 +28,7 @@ public class IngameView extends JPanel{
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		setLayout(new BorderLayout());
 		chatController = new ChatController(gameID);
-		
+		chatOutput = new Chatoutputgui(chatController,45);
 		ChatContentPane chatPanel = new ChatContentPane(chatController, chatOutput, 45);
 		JPanel leftPanel = new JPanel();
 		JPanel centerPanel = new JPanel();
