@@ -71,6 +71,7 @@ public class TradeAcceptPane extends JPanel implements Observer {
 
 	public TradeAcceptPane(TradeController tc, int playerid) {
 		this.tc = tc;
+		tc.setRunthread(true);
 		this.setLayout(null);
 		stone = new File("./Images/baksteen.jpg");
 		wool = new File("./Images/schaap.jpg");
@@ -78,13 +79,13 @@ public class TradeAcceptPane extends JPanel implements Observer {
 		wheat = new File("./Images/graan.jpg");
 		wood = new File("./Images/hout.jpg");
 
-		offer = new JLabel("Geeft aan jou");
-		offer.setBounds(355, 10, 100, 100);
+		offer = new JLabel();
+		offer.setBounds(355, 10, 350, 100);
 		offer.setFont(new Font("Serif", Font.BOLD, 40));
 		add(offer);
 
-		demand = new JLabel("Vraagt");
-		demand.setBounds(345, 215, 150, 100);
+		demand = new JLabel();
+		demand.setBounds(345, 215, 350, 100);
 		demand.setFont(new Font("Serif", Font.BOLD, 40));
 		add(demand);
 
@@ -179,7 +180,9 @@ public class TradeAcceptPane extends JPanel implements Observer {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				tc.setRunthread(false);
 				tc.createOffer(playerid, stoneDemandCounter, woolDemandCounter, oreDemandCounter, wheatDemandCounter, woodDemandCounter, stoneOfferCounter, woolOfferCounter, oreOfferCounter, wheatOfferCounter, woodOfferCounter, true);
+
 			}
 
 		});
@@ -187,6 +190,7 @@ public class TradeAcceptPane extends JPanel implements Observer {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				tc.setRunthread(false);
 				tc.createOffer(playerid, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false);
 			}
 
@@ -195,6 +199,7 @@ public class TradeAcceptPane extends JPanel implements Observer {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				tc.setRunthread(false);
 				tc.switchCounterOffer();
 			}
 
@@ -230,34 +235,41 @@ public class TradeAcceptPane extends JPanel implements Observer {
 	public void update(Observable o, Object arg) {
 
 		for (int i = 0; i < ((ArrayList<Integer>) arg).size(); i++) {
-			if (i == 0) {
+			if(i ==0) {
+				int playerid = ((ArrayList<Integer>) arg).get(i);
+				offer.setText(tc.getUsername(playerid)+ " geeft");
+				offer.setBounds(305, 10, 350, 100);
+				demand.setText(tc.getUsername(playerid)+ " vraagt");
+				demand.setBounds(300, 215, 350, 100);
+			}
+			if (i == 1) {
 				stoneOfferCounter =((ArrayList<Integer>) arg).get(i);
 				stoneoffer.setText(""+stoneOfferCounter);
-			} else if (i == 1) {
+			} else if (i == 2) {
 				woolOfferCounter =((ArrayList<Integer>) arg).get(i);
 				wooloffer.setText(""+woolOfferCounter);
-			} else if (i == 2) {
+			} else if (i == 3) {
 				oreOfferCounter =((ArrayList<Integer>) arg).get(i);
 				oreoffer.setText(""+oreOfferCounter);
-			} else if (i == 3) {
+			} else if (i == 4) {
 				wheatOfferCounter =((ArrayList<Integer>) arg).get(i);
 				wheatoffer.setText(""+wheatOfferCounter);
-			} else if (i == 4) {
+			} else if (i == 5) {
 				woodOfferCounter =((ArrayList<Integer>) arg).get(i);
 				woodoffer.setText(""+woodOfferCounter);
-			} else if (i == 5) {
+			} else if (i == 6) {
 				stoneDemandCounter =((ArrayList<Integer>) arg).get(i);
 				stoneDemand.setText(""+stoneDemandCounter);
-			} else if (i == 6) {
+			} else if (i == 7) {
 				woolDemandCounter =((ArrayList<Integer>) arg).get(i);
 				woolDemand.setText(""+woolDemandCounter);
-			} else if (i == 7) {
+			} else if (i == 8) {
 				oreDemandCounter =((ArrayList<Integer>) arg).get(i);
 				oreDemand.setText(""+oreDemandCounter);
-			} else if (i == 8) {
+			} else if (i == 9) {
 				wheatDemandCounter =((ArrayList<Integer>) arg).get(i);
 				wheatDemand.setText(""+wheatDemandCounter);
-			} else if (i == 9) {
+			} else if (i == 10) {
 				woodDemandCounter =((ArrayList<Integer>) arg).get(i);
 				woodDemand.setText(""+woodDemandCounter);
 			}

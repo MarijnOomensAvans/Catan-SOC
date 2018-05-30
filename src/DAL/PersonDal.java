@@ -27,7 +27,7 @@ public class PersonDal {
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next())
 			{
-				result = rs.getString(id);
+				result = rs.getString(1);
 			}
 			stmt.close();
 		} catch (SQLException e)
@@ -49,7 +49,7 @@ public class PersonDal {
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next())
 			{
-				result = rs.getString(playerid);
+				result = rs.getString(1);
 			}
 			stmt.close();
 		} catch (SQLException e)
@@ -71,7 +71,7 @@ public class PersonDal {
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next())
 			{
-				result = rs.getString(playerid);
+				result = rs.getString(1);
 			}
 			stmt.close();
 		} catch (SQLException e)
