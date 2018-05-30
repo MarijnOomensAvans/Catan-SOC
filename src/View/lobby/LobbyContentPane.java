@@ -23,15 +23,21 @@ public class LobbyContentPane extends JPanel {
 	private LobbyController lc;
 	private InvitePanel invitePanel;
 	private JButton playButton;
+	private JButton myGameButton;
 // initialize 
 	public LobbyContentPane(LobbyController controller, BoardController bc, ChatController cc,int playerid, Chatoutputgui cog) {
 		this.bc = bc;
-		playButton = new JButton("Start");
+		playButton = new JButton("new spel");
+		myGameButton = new JButton("mijn spellen");
 		this.lc = controller;
-		this.lobby = new LobbyPanel(this, playButton);
+		this.lobby = new LobbyPanel(this, playButton, myGameButton);
 // open the gamesetup pane
 		playButton.addActionListener(e -> {
 			lc.openGameSetup();
+		});
+		
+		myGameButton.addActionListener(e ->{
+			lc.openGameStateContorller();
 		});
 		
 		add(lobby);

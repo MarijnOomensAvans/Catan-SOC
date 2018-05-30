@@ -34,11 +34,15 @@ public class LobbyController {
 		cc = new ChatController(getGameID());
 		bc = new BoardController();
 		frame = new LobbyFrame(this,bc,cc,cog,1);
-		gsc = new GameStateController(this);
 	}
 
 	public ArrayList<String> getUsernames() {
 		return lobbyModel.getUsernames();
+	}
+	
+	public void openGameStateContorller() {
+		gsc = new GameStateController(this);
+		
 	}
 	
 	public ArrayList<LobbyGameState> getHostedGames(){

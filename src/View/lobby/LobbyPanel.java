@@ -80,8 +80,9 @@ public class LobbyPanel extends JPanel {
 
 	@SuppressWarnings("unused")
 	private JButton playButton;
+	private JButton	myGameButton;
 
-	public LobbyPanel(LobbyContentPane pane, JButton playButton) {
+	public LobbyPanel(LobbyContentPane pane, JButton playButton, JButton myGameButton) {
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 
 		titleFont = new Font("TimesRoman", 15, 50);
@@ -104,7 +105,14 @@ public class LobbyPanel extends JPanel {
 		playButton.setBorder(buttonBorder);
 		playButton.setFocusPainted(false);
 		playButton.setBackground(Color.ORANGE);
-		playButton.setPreferredSize(new Dimension(150, 75));
+		playButton.setPreferredSize(new Dimension(200, 75));
+		
+		this.playButton = myGameButton;
+		myGameButton.setFont(buttonFont);
+		myGameButton.setBorder(buttonBorder);
+		myGameButton.setFocusPainted(false);
+		myGameButton.setBackground(Color.ORANGE);
+		myGameButton.setPreferredSize(new Dimension(200, 75));
 
 		topPanel = new JPanel();
 		rightPanel = new JPanel();
@@ -151,8 +159,10 @@ public class LobbyPanel extends JPanel {
 		blankPanel.setBackground(Color.white);
 		blankPanel.setPreferredSize(new Dimension(WIDTH - (SIDEPANELWIDTH * 2), 200));
 
+		//gameButtonPane.setLayout(new BorderLayout());
 		gameButtonPane.setBackground(Color.white);
 		gameButtonPane.add(playButton);
+		gameButtonPane.add(myGameButton);
 
 		buttonPanel.setBackground(Color.red);
 		buttonPanel.setLayout(new BorderLayout());

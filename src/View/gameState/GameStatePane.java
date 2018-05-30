@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -19,7 +20,7 @@ import Model.lobby.LobbyGameState;
 public class GameStatePane extends JPanel {
 
 	private final int WIDTH = 500;
-	private final int HEIGHT = 1000;
+	private final int HEIGHT = 600;
 	private final int PANELWIDTH = 480;
 	private final int PANELHEIGHT = 995;
 	private final int GAMEHEIGHT = 100;
@@ -83,6 +84,7 @@ public class GameStatePane extends JPanel {
 				namePanel.add(name, BorderLayout.NORTH);
 				namePanel.add(state, BorderLayout.CENTER);
 				stateColour(state);
+				namePanel.setBorder(BorderFactory.createLineBorder(Color.black, 3));
 				
 				names.add(namePanel);
 			}
@@ -106,12 +108,4 @@ public class GameStatePane extends JPanel {
 			state.setForeground(Color.LIGHT_GRAY);
 		}
 	}
-
-	// public int checkDeclines() {
-	// int decline = 0;
-	// for(int i = 0; i < lc.getHostedGames()) {
-	//
-	// }
-	// return decline;
-	// }
 }
