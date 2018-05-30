@@ -26,10 +26,10 @@ public class LobbyController {
 	private DrawingPanel inGameBoard;
 
 	public LobbyController() {
-		cog = new Chatoutputgui(cc, 1);
-		cc = new ChatController(cog);
-		bc = new BoardController();
 		lobbyModel = new LobbyModel();
+		cog = new Chatoutputgui(cc, 1);
+		cc = new ChatController(getGameID(),cog);
+		bc = new BoardController();
 		frame = new LobbyFrame(this,bc,cc,cog,1);
 	}
 

@@ -44,11 +44,13 @@ public class ChatDAL  {
 		}
 	}
 
-	public String GetMessage() {
+	public String GetMessage(int gameid) {
 			String result ="";
 			Statement stmt = null;
 			int counter =0;
-			String sizequery = "SELECT COUNT(*) FROM CHATREGEL";
+			String sizequery = "SELECT COUNT(*) FROM CHATREGEL as c "
+					+ "LEFT JOIN speler AS s ON s.idspeler = c.idspeler "
+					+ "WHERE s.idspel ="+ gameid;
 			String query = "SELECT c.tijdstip, s.username, c.bericht FROM chatregel AS c "
 					+ "LEFT JOIN speler AS s ON s.idspeler = c.idspeler "
 					+ "ORDER BY tijdstip DESC "
