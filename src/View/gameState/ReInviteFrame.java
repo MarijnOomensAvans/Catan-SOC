@@ -4,20 +4,19 @@ import javax.swing.JFrame;
 
 import Controller.LobbyController;
 
-public class GameStatusFrame extends JFrame{
+public class ReInviteFrame extends JFrame{
 
-	private GameStatePane pane;
+	private ReInvitePane pane;
 	
-	public GameStatusFrame(LobbyController lc) {
+	public ReInviteFrame(LobbyController lc) {
 		
-		pane = new GameStatePane(lc);
+		pane = new ReInvitePane(lc);
 		
-		setTitle("Game States");
+		setTitle("Reinvite");
 		setContentPane(pane);
 		setResizable(false);
 		pack();
 		setLocationRelativeTo(null);
 		setVisible(true);
-		
 	}
 }

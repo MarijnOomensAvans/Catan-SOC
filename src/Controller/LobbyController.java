@@ -21,6 +21,7 @@ public class LobbyController {
 	private SetupGameFrame setupFrame;
 	private ChatController cc;
 	private Chatoutputgui cog;
+	private GameStateController gsc;
 
 	public LobbyController() {
 		cog = new Chatoutputgui(cc, 1);
@@ -28,6 +29,7 @@ public class LobbyController {
 		bc = new BoardController();
 		lobbyModel = new LobbyModel();
 		frame = new LobbyFrame(this,bc,cc,cog,1);
+		gsc = new GameStateController(this);
 	}
 
 	public ArrayList<String> getUsernames() {
