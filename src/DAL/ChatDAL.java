@@ -47,90 +47,67 @@ public class ChatDAL  {
 	}
 
 	public ArrayList<String> GetMessage(int gameid) {
-			ArrayList<String> results = new ArrayList<>();
-			String result = "";
-			Statement stmt = null;
-			int counter =0;
-			String sizequery = "SELECT COUNT(*) FROM CHATREGEL as c "
-					+ "LEFT JOIN speler AS s ON s.idspeler = c.idspeler "
-					+ "WHERE s.idspel ="+ gameid;
-			try
-			{
-				stmt = conn.createStatement();
-<<<<<<< HEAD
-				ResultSet rs = stmt.executeQuery(sizequery);
-				rs.next();
-				counter = rs.getInt(1);
-				stmt.close();
-				stmt = conn.createStatement();
-				ResultSet re = stmt.executeQuery(query);
-				re.next();
-				result = re.getString(1);
-				result = result.substring(11, result.length()-2);//remove the date
-				result += " " + re.getString(2) + re.getString(3);
-				stmt.close();
-			} catch (SQLException e)
-			{
-				System.out.println(e.getMessage());
-			}
-			if(firstMessage == false) {
-				if(checkFirstTime == false) {
-=======
-				ResultSet rs1 = stmt.executeQuery(sizequery);
-				rs1.next();
-				counter = rs1.getInt(1);
-				
-				if(checkFirstTime == false)
-				{
->>>>>>> 4d7f37fabf11cb5dc7034918eaaefc44192b830b
-					size = counter;
-					checkFirstTime = true;
-					return null;
-				}
-				
-				if( counter > size) 
-				{
-					difference = counter - size;
-					
-					String query = "SELECT * FROM "
-							+ "(SELECT c.tijdstip, s.username, c.bericht FROM chatregel AS c "
-							+ "LEFT JOIN speler AS s ON s.idspeler = c.idspeler "
-							+ "Where s.idspel ="+gameid+" "
-							+ "ORDER BY tijdstip "
-							+ "DESC LIMIT " +difference+ ") sub "
-							+ "ORDER BY tijdstip ASC"; 
-
-					rs1 = stmt.executeQuery(query);
-					while(rs1.next())
-					{
-						result = rs1.getString(1);
-						result = result.substring(11, result.length()-2);			//remove the date
-						result += " " + rs1.getString(2) + rs1.getString(3);
-						results.add(result);
-					}
-					stmt.close();
-					
-					size = counter;
-					return results;
-				}
-				
-				else
-				{
-					return null;
-				}
-						
-			} catch (SQLException e)
-			{
-				System.out.println(e.getMessage());
-			}
-//		
-			return null;
-		
+		ArrayList<String> results = new ArrayList<>();
+		String result = "";
+		Statement stmt = null;
+		int counter =0;
+		String sizequery = "SELECT COUNT(*) FROM CHATREGEL as c "
+				+ "LEFT JOIN speler AS s ON s.idspeler = c.idspeler "
+				+ "WHERE s.idspel ="+ gameid;
+		try
+		{
+			stmt = conn.createStatement();
+			ResultSet rs1 = stmt.executeQuery(sizequery);
+			rs1.next();
+			counter = rs1.getInt(1);
 			
+			if(checkFirstTime == false)
+			{
+				size = counter;
+				checkFirstTime = true;
+				return null;
+			}
+			
+			if( counter > size) 
+			{
+				difference = counter - size;
+				
+				String query = "SELECT * FROM "
+						+ "(SELECT c.tijdstip, s.username, c.bericht FROM chatregel AS c "
+						+ "LEFT JOIN speler AS s ON s.idspeler = c.idspeler "
+						+ "Where s.idspel ="+gameid+" "
+						+ "ORDER BY tijdstip "
+						+ "DESC LIMIT " +difference+ ") sub "
+						+ "ORDER BY tijdstip ASC"; 
+
+				rs1 = stmt.executeQuery(query);
+				while(rs1.next())
+				{
+					result = rs1.getString(1);
+					result = result.substring(11, result.length()-2);			//remove the date
+					result += " " + rs1.getString(2) + rs1.getString(3);
+					results.add(result);
+				}
+				stmt.close();
+				
+				size = counter;
+				return results;
+			}
+			
+			else
+			{
+				return null;
+			}
+					
+		} catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
 		}
+//	
+		return null;
 		
 	}
-
+}
 	
 
 
