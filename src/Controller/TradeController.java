@@ -27,11 +27,11 @@ public class TradeController extends Observable implements Runnable {
 	private TradeAcceptPane tap;
 	private TradeResultPane trp;
 	private Thread t1;
-<<<<<<< HEAD
+//<<<<<<< HEAD
 	private ArrayList<Integer> otherIds;
-=======
+//=======
 	private boolean runthread = false;
->>>>>>> 64b4117ee8a1ad962f3f86cdc08a809913d7852e
+//>>>>>>> 64b4117ee8a1ad962f3f86cdc08a809913d7852e
 	
 	public TradeController(int playerid, int gameid, PersonDal pd, Player player) {
 		this.pd = pd;
@@ -128,7 +128,7 @@ public class TradeController extends Observable implements Runnable {
 
 	@Override
 	public void run() {
-<<<<<<< HEAD
+//<<<<<<< HEAD
 		while (true) {
 			try {			
 				for(int i = 0; i<otherIds.size(); i++)
@@ -139,17 +139,18 @@ public class TradeController extends Observable implements Runnable {
 			} catch (InterruptedException e) {
 
 			}
-=======
-		while(runthread ==true) {
-		try {
-			ArrayList<Integer> otherIds = pd.getOtherid(gameid, playerid);
-			getLatestTradeOffer(otherIds);
-			Thread.sleep(1000);
-		}catch(InterruptedException e) {
-			
-		}
->>>>>>> 64b4117ee8a1ad962f3f86cdc08a809913d7852e
-		}
+//=======
+//		while(runthread ==true) {
+//		try {
+//			ArrayList<Integer> otherIds = pd.getOtherid(gameid, playerid);
+//			getLatestTradeOffer(otherIds);
+//			Thread.sleep(1000);
+//		}catch(InterruptedException e) {
+//			
+//		}
+//>>>>>>> 64b4117ee8a1ad962f3f86cdc08a809913d7852e
+//		}
+	}
 	}
 
 	private void getLatestTradeOffer(int playerid) {
