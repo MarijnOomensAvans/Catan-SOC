@@ -1,7 +1,5 @@
 package Controller;
 
-
-
 import DAL.PersonDal;
 import DAL.TradeDAL;
 
@@ -26,67 +24,70 @@ public class TradeController extends Observable implements Runnable {
 	private TradeGui gui;
 	private Player player;
 	private TradeAcceptPane tap;
+	private TradeResultPane trp;
 	private Thread t1;
+	private ArrayList<Integer> otherIds;
 	
 	public TradeController(int playerid, int gameid, PersonDal pd, Player player) {
 		this.pd = pd;
 		this.td = new TradeDAL();
 		this.player = player;
-		this.playerid= playerid;
+		this.playerid = playerid;
 		this.gameid = gameid;
+		otherIds = pd.getOtherid(gameid, playerid);
 		t1 = new Thread(this);
 		t1.start();
 		tap = new TradeAcceptPane(this, playerid);
-		gui = new TradeGui(this, playerid,tap);
-		otherPlayers =new TradeOtherPlayers(pd,td);
+		TradeOfferPane top = new TradeOfferPane(this, playerid, true);
+		gui = new TradeGui(this, playerid, top);
+		
+		otherPlayers = new TradeOtherPlayers(pd, td);
 		this.addObserver(tap);
 	}
-	
-	public void createOffer(int idPlayer, int givesStone, int givesWool, int givesOre, int givesWheat,
-			int givesWood, int asksStone, int asksWool, int asksOre, int asksWheat, int asksWood, 
-			boolean accepted) {
-		new TradeOffer(td, idPlayer, givesStone, givesWool,givesOre,givesWheat,
-			 givesWood,asksStone, asksWool,  asksOre, asksWheat, asksWood, 
-			accepted);
+
+	public void createOffer(int idPlayer, int givesStone, int givesWool, int givesOre, int givesWheat, int givesWood,
+			int asksStone, int asksWool, int asksOre, int asksWheat, int asksWood, boolean accepted) {
+		new TradeOffer(td, idPlayer, givesStone, givesWool, givesOre, givesWheat, givesWood, asksStone, asksWool,
+				asksOre, asksWheat, asksWood, accepted);
 	}
-	
-	public void createOffer(int idPlayer, int givesStone, int givesWool, int givesOre, int givesWheat,
-			int givesWood, int asksStone, int asksWool, int asksOre, int asksWheat, int asksWood) {
-		new TradeOffer(td, idPlayer, givesStone, givesWool,givesOre,givesWheat,
-			 givesWood,asksStone, asksWool,  asksOre, asksWheat, asksWood);
+
+	public void createOffer(int idPlayer, int givesStone, int givesWool, int givesOre, int givesWheat, int givesWood,
+			int asksStone, int asksWool, int asksOre, int asksWheat, int asksWood) {
+		new TradeOffer(td, idPlayer, givesStone, givesWool, givesOre, givesWheat, givesWood, asksStone, asksWool,
+				asksOre, asksWheat, asksWood);
 	}
-	
-	public String getOtherNames(int otherplayerid1){
-		String names =otherPlayers.getOherPlayerName(otherplayerid1);
+
+	public String getOtherNames(int otherplayerid1) {
+		String names = otherPlayers.getOherPlayerName(otherplayerid1);
 		return names;
-		
+
 	}
 
 	public void switchPane() {
-		gui.setContentPane(new TradeResultPane(this, playerid, gameid));
+		trp = new TradeResultPane(this, playerid, gameid);
+		gui.setContentPane(trp);
 		gui.validate();
 		gui.repaint();
-		
 	}
-	
+
 	public void switchCounterOffer() {
 		gui.setContentPane(new TradeOfferPane(this, playerid, false));
 		gui.validate();
 		gui.repaint();
 	}
 
-	public ArrayList<Integer> getOffer(){
-		ArrayList<Integer> offer =td.getTradeOffer(1);
+	public ArrayList<Integer> getOffer() {
+		ArrayList<Integer> offer = td.getTradeOffer(1);
 		return offer;
 	}
 
 	public boolean getResponses(int playerid) {
-		boolean responses=otherPlayers.getResponses(playerid);
+		boolean responses = otherPlayers.getResponses(playerid);
 		return responses;
 	}
 
 	public ArrayList<Integer> getOtherid(int gameid, int playerid) {
-		ArrayList<Integer> id =otherPlayers.getOtherid(gameid, playerid);
+		ArrayList<Integer> id = otherPlayers.getOtherid(gameid, playerid);
 		return id;
 	}
 
@@ -104,15 +105,17 @@ public class TradeController extends Observable implements Runnable {
 		boolean has = player.hasOreCard(amount);
 		return has;
 	}
-	
+
 	public boolean hasWoodCard(int amount) {
 		boolean has = player.hasWoodCard(amount);
 		return has;
 	}
+
 	public boolean hasWheatCard(int amount) {
 		boolean has = player.hasWheatCard(amount);
 		return has;
 	}
+
 	public boolean hasWoolCard(int amount) {
 		boolean has = player.hasWoolCard(amount);
 		return has;
@@ -120,19 +123,37 @@ public class TradeController extends Observable implements Runnable {
 
 	@Override
 	public void run() {
-		while(true) {
-		try {
-			ArrayList<Integer> otherIds = pd.getOtherid(gameid, playerid);
-			getLatestTradeOffer(otherIds);
-			Thread.sleep(1000);
-		}catch(InterruptedException e) {
-			
-		}
+		while (true) {
+			try {			
+				for(int i = 0; i<otherIds.size(); i++)
+				{
+					getLatestTradeOffer(otherIds.get(i));
+				}
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+
+			}
 		}
 	}
 
-	private void getLatestTradeOffer(ArrayList<Integer> otherIds) {
-		ArrayList<Integer> offer =td.getLatestTradeOffer(otherIds);
+	private void getLatestTradeOffer(int playerid) {
+		ArrayList<Integer> offer = td.getTradeResponses(playerid);
+		if (offer.size() != 0 && trp != null) {
+			if(playerid == otherIds.get(0))
+			{
+				trp.setResponse1();
+			}
+			
+			else if(playerid == otherIds.get(1))
+			{
+				trp.setResponse2();
+			}
+			
+			else if(playerid == otherIds.get(2))
+			{
+				trp.setResponse3();
+			}
+		}
 		this.setChanged();
 		this.notifyObservers(offer);
 	}

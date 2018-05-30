@@ -10,9 +10,9 @@ public class TradeGui extends JFrame {
 	
 	
 	
-	public TradeGui(TradeController tradeController, int playerid,TradeAcceptPane tap){
+	public TradeGui(TradeController tradeController, int playerid,TradeOfferPane top){
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setContentPane(tap);
+		setContentPane(top);
 		setResizable(false);
 		setVisible(true);
 		setTitle("Handelsscherm");

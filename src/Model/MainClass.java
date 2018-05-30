@@ -13,11 +13,12 @@ public class MainClass {
 		PersonDal pd = new PersonDal();
 		BankController bc = new BankController(md);
 		PlayerController player =new PlayerController(md,pd, bc,1);
-		Player player1 = new Player(player, pd, 42, 770);
+		int playerid = 44;
+		Player player1 = new Player(player, pd, playerid, 770);
 		player1.addMaterialCard("B");
 		player1.addMaterialCard("B");
 		player1.addMaterialCard("H");
-		new TradeController(42, 770, pd, player1);
+		new TradeController(playerid, 770, pd, player1);
 
 	}
 }

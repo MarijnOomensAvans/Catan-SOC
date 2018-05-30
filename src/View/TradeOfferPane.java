@@ -397,8 +397,8 @@ public class TradeOfferPane extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				stoneOfferCounter++;
-				stoneDemand.setText(""+stoneOfferCounter);
+				stoneDemandCounter++;
+				stoneDemand.setText(""+stoneDemandCounter);
 			}
 			
 		});
@@ -464,10 +464,10 @@ public class TradeOfferPane extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (stoneOfferCounter > 0)
+				if (stoneDemandCounter > 0)
 				{
-					stoneOfferCounter--;
-					stoneDemand.setText("" + stoneOfferCounter);
+					stoneDemandCounter--;
+					stoneDemand.setText("" + stoneDemandCounter);
 				}
 			}
 		});
