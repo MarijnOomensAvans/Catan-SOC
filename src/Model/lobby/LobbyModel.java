@@ -17,7 +17,9 @@ public class LobbyModel {
 
 	public LobbyModel() {
 		lobbyDAL = new LobbyDAL();
-
+		
+		ArrayList<LobbyGameState> hostedGames = lobbyDAL.getHostedGames();
+		
 	}
 
 	public ArrayList<String> getUsernames() {

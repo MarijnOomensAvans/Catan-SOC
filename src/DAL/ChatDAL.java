@@ -64,7 +64,7 @@ public class ChatDAL  {
 				ResultSet re = stmt.executeQuery(query);
 				re.next();
 				result = re.getString(1);
-				result = result.substring(11, result.length()-2);			//remove the date
+				result = result.substring(11, result.length()-2);//remove the date
 				result += " " + re.getString(2) + re.getString(3);
 				stmt.close();
 			} catch (SQLException e)
