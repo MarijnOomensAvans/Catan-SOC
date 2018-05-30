@@ -8,9 +8,12 @@ import javax.swing.JPanel;
 
 import Controller.BoardController;
 import Controller.ChatController;
+import View.board.BoardColours;
+import View.setupGame.DrawingPanel;
 import View.chat.ChatContentPane;
 import View.chat.Chatoutputgui;
 
+@SuppressWarnings("serial")
 public class IngameView extends JPanel{
 	
 	private final int WIDTH = 1500;
@@ -20,19 +23,24 @@ public class IngameView extends JPanel{
 	private Chatoutputgui chatOutput;
 	//plek maken voor chat
 
-	public IngameView(BoardController bc, int gameID) {
+	public IngameView(BoardController bc, int gameID,DrawingPanel inGameBoard) {
 		
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		setLayout(new BorderLayout());
-
-		chatOutput = new Chatoutputgui(chatController, 45);
-		chatController = new ChatController(chatOutput);
-		
+		chatController = new ChatController(gameID);
+		chatOutput = new Chatoutputgui(chatController,45);
 		ChatContentPane chatPanel = new ChatContentPane(chatController, chatOutput, 45);
 		JPanel leftPanel = new JPanel();
 		JPanel centerPanel = new JPanel();
 		JPanel rightPanel = new JPanel();
-		JPanel bottomPanel = new JPanel();		
+		JPanel bottomPanel = new JPanel();	
+		
+		JPanel boardPanel = new JPanel();
+		
+		boardPanel.add(inGameBoard);
+		
+		centerPanel.setLayout(new BorderLayout());
+		centerPanel.add(boardPanel, BorderLayout.CENTER);
 		
 		centerPanel.setPreferredSize(new Dimension(900, 700));
 		leftPanel.setPreferredSize(new Dimension(300, 700));
@@ -40,9 +48,9 @@ public class IngameView extends JPanel{
 		bottomPanel.setPreferredSize(new Dimension(1500, 200));
 		
 		leftPanel.setBackground(Color.black);
-		centerPanel.setBackground(Color.red);
 		rightPanel.setBackground(Color.orange);
 		bottomPanel.setBackground(Color.green);
+		boardPanel.setBackground(BoardColours.SEA.getRGB());
 		
 		leftPanel.setLayout(new BorderLayout());
 		leftPanel.add(chatPanel, BorderLayout.CENTER);
@@ -51,11 +59,6 @@ public class IngameView extends JPanel{
 		this.add(centerPanel, BorderLayout.CENTER);
 		this.add(rightPanel, BorderLayout.LINE_END);
 		this.add(bottomPanel, BorderLayout.PAGE_END);
-		
-		
-		
-		
-		
 		
 		
 	}

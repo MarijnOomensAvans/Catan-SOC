@@ -36,6 +36,7 @@ public class MainDAL {
 		{
 			conn = DriverManager
 					.getConnection("jdbc:mysql://databases.aii.avans.nl/bdjong1_db2?user=bdjong1&password=Ab12345");
+			System.out.println("CONNECTION");
 		
 		} catch (SQLException ex)
 		{

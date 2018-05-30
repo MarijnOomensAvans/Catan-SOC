@@ -35,5 +35,10 @@ public class SetupGameFrame extends JFrame {
 		this.repaint();
 		this.validate();
 	}
+	
+	public DrawingPanel getInGameBoard() {
+		return setupPane.getHexagonPanel();
+	}
+	
 
 }

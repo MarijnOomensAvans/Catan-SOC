@@ -5,16 +5,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class PersonDal {
+public class PersonDAL {
 	
 	Connection conn;
 	
 	
-	public PersonDal() {
+	public PersonDAL() {
 		 conn = MainDAL.getConnection();
 	}
 	
-	public String getName(int id)
+	public String getName(int id) ///gets your username from the database 
 	{
 		String result ="";
 		String idstring = Integer.toString(id);
@@ -36,7 +36,8 @@ public class PersonDal {
 		return result;
 	}
 
-	public String getColor(int playerid, int gameid)
+	public String getColor(int playerid, int gameid) //gets the color you are from the database
+
 	{
 		String result ="";
 		Statement stmt = null;
@@ -57,7 +58,8 @@ public class PersonDal {
 		return result;
 }
 	
-	public int getorder_number(int playerid, int gameid)
+	public int getorder_number(int playerid, int gameid) // Gets the order number
+
 	{
 		String result ="";
 		Statement stmt = null;
@@ -79,7 +81,9 @@ public class PersonDal {
 		return resultint;
 }
 	
-	public void addMaterialCard(int idgame,String idcard, int idplayer) {
+	public void addMaterialCard(int idgame,String idcard, int idplayer) { // adds material Card
+
+		String result ="";
 		Statement stmt = null;
 		String query = "INSERT INTO spelergrondstofkaart(idspel,idgrondstofkaart,idspeler) VALUES("+ idgame+", '"+idcard+"',"+idplayer+")";
 		try

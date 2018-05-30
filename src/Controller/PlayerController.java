@@ -1,7 +1,7 @@
 package Controller;
 
 import DAL.MainDAL;
-import DAL.PersonDal;
+import DAL.PersonDAL;
 import Model.DevelopmentCard;
 import Model.MaterialCard;
 import Model.Player;
@@ -11,12 +11,12 @@ public class PlayerController {
 	private BankController bc;
 	@SuppressWarnings("unused")
 	private MainDAL md;
-	private PersonDal pd;
+	private PersonDAL pd;
 	
 	public PlayerController(MainDAL md, BankController bc,int personid) {
 		this.md = md;
 		this.bc = bc;
-		pd = new PersonDal();
+		pd = new PersonDAL();
 		Player player1 =new Player(this, pd, 12, 220);
 
 		Player player2 =new Player(this, pd, 11, 220);

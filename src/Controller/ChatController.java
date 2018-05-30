@@ -1,5 +1,7 @@
 package Controller;
 
+import java.util.ArrayList;
+
 import DAL.ChatDAL;
 import DAL.MainDAL;
 import Model.ChatModel;
@@ -9,18 +11,20 @@ import View.chat.Chatoutputgui;
 
 public class ChatController implements Runnable {
 	
-
+	private int gameid;
 	private ChatModel chatmodel;
 
-	@SuppressWarnings("unused")
-	private MainDAL md = new MainDAL();
 	private ChatDAL cd = new ChatDAL();
 	private Thread t1;
+	private Chatoutputgui cog;
 	
-	public ChatController(Chatoutputgui cog) {
-		this.chatmodel =new ChatModel(cd);
+	public ChatController(int gameid) {
+		this.gameid = gameid;
+		cd = new ChatDAL();
 		t1 = new Thread(this);
+		this.chatmodel =new ChatModel(cd);
 		t1.start();
+		cog = new Chatoutputgui(this, 1);
 		chatmodel.addObserver(cog);
 		
 	}
@@ -29,9 +33,8 @@ public class ChatController implements Runnable {
 		chatmodel.SendMessage(playerid, message);
 
 	}
-	
-	public String getLatestMessage() {
-		String message =chatmodel.getLatestMessage();
+	public ArrayList<String> getLatestMessage(int gameid) {
+		ArrayList<String> message = chatmodel.getLatestMessage(gameid);
 		return message;
 	}
 
@@ -39,8 +42,8 @@ public class ChatController implements Runnable {
 	
 	public void run() {
 		while(true) {
-		try {
-			getLatestMessage();
+		try {			///tries to get a new message every second 
+			getLatestMessage(gameid);
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			
