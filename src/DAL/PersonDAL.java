@@ -5,12 +5,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class PersonDal {
+public class PersonDAL {
 	
 	Connection conn;
 	
 	
-	public PersonDal() {
+	public PersonDAL() {
 		 conn = MainDAL.getConnection();
 	}
 	
@@ -36,11 +36,8 @@ public class PersonDal {
 		return result;
 	}
 
-<<<<<<< HEAD
-	public String getColor(int playerid, int gameid)
-=======
-	public String getColor(int playerid)///gets the color you are from the database
->>>>>>> chat
+	public String getColor(int playerid, int gameid) //gets the color you are from the database
+
 	{
 		String result ="";
 		Statement stmt = null;
@@ -60,12 +57,9 @@ public class PersonDal {
 		}
 		return result;
 }
-<<<<<<< HEAD
 	
-	public int getorder_number(int playerid, int gameid)
-=======
-	public int getgame_id(int playerid)///gets the gameid from the database
->>>>>>> chat
+	public int getorder_number(int playerid, int gameid) // Gets the order number
+
 	{
 		String result ="";
 		Statement stmt = null;
@@ -87,13 +81,9 @@ public class PersonDal {
 		return resultint;
 }
 	
-<<<<<<< HEAD
-	public void addMaterialCard(int idgame,String idcard, int idplayer) {
-=======
-	public int getorder_number(int playerid)///gets the order your in from the database
-	{
+	public void addMaterialCard(int idgame,String idcard, int idplayer) { // adds material Card
+
 		String result ="";
->>>>>>> chat
 		Statement stmt = null;
 		String query = "INSERT INTO spelergrondstofkaart(idspel,idgrondstofkaart,idspeler) VALUES("+ idgame+", '"+idcard+"',"+idplayer+")";
 		try

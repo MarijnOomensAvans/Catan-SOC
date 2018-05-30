@@ -46,23 +46,12 @@ public class ChatDAL  {
 		}
 	}
 
-<<<<<<< HEAD
-	public String GetMessage(int gameid) {
-			String result ="";
-			Statement stmt = null;
-			int counter =0;
-			String sizequery = "SELECT COUNT(*) FROM CHATREGEL as c "
-					+ "LEFT JOIN speler AS s ON s.idspeler = c.idspeler "
-					+ "WHERE s.idspel ="+ gameid;
-			String query = "SELECT c.tijdstip, s.username, c.bericht FROM chatregel AS c "
-=======
 	public ArrayList<String> GetMessage(int gameid) {
 			ArrayList<String> results = new ArrayList<>();
 			String result = "";
 			Statement stmt = null;
 			int counter =0;
 			String sizequery = "SELECT COUNT(*) FROM CHATREGEL as c "
->>>>>>> chat
 					+ "LEFT JOIN speler AS s ON s.idspeler = c.idspeler "
 					+ "WHERE s.idspel ="+ gameid;
 			try
