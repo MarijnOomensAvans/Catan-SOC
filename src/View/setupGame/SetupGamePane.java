@@ -1,13 +1,10 @@
 package View.setupGame;
 
-import java.awt.Dimension;
-
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import Controller.BoardController;
 import Controller.LobbyController;
-import View.board.DrawingPanel;
 
 @SuppressWarnings("serial")
 public class SetupGamePane extends JPanel {
@@ -25,6 +22,10 @@ public class SetupGamePane extends JPanel {
 		add(changePanel);
 		add(hexagonPanel);
 
+	}
+
+	public DrawingPanel getHexagonPanel() {
+		return hexagonPanel;
 	}
 
 	// Repaint the panel after a change
