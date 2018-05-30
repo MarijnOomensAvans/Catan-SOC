@@ -26,11 +26,11 @@ public class ChatModel extends Observable {
 }
 	
 	
-	public String getLatestMessage() {
+	public String getLatestMessage(int gameid) {
 		String result = "";
 		
 		
-			String messages = cd.GetMessage();
+			String messages = cd.GetMessage(gameid);
 			result = messages;
 		
 		this.setChanged();

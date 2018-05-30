@@ -9,15 +9,16 @@ import View.chat.Chatoutputgui;
 
 public class ChatController implements Runnable {
 	
-
+	private int gameid;
 	private ChatModel chatmodel;
 
 	@SuppressWarnings("unused")
 	private ChatDAL cd = new ChatDAL();
 	private Thread t1;
 	
-	public ChatController(Chatoutputgui cog) {
+	public ChatController(int gameid,Chatoutputgui cog) {
 		this.chatmodel =new ChatModel(cd);
+		this.gameid = gameid;
 		t1 = new Thread(this);
 		t1.start();
 		chatmodel.addObserver(cog);
@@ -29,8 +30,8 @@ public class ChatController implements Runnable {
 
 	}
 	
-	public String getLatestMessage() {
-		String message =chatmodel.getLatestMessage();
+	public String getLatestMessage(int gameid) {
+		String message =chatmodel.getLatestMessage(gameid);
 		return message;
 	}
 
@@ -39,7 +40,7 @@ public class ChatController implements Runnable {
 	public void run() {
 		while(true) {
 		try {
-			getLatestMessage();
+			getLatestMessage(gameid);
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 			
