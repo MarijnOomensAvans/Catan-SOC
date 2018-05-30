@@ -24,9 +24,6 @@ public class LoginController {
 		}
 	}
 
-	public void buttonPressedCancel() {
-
-	}
 
 	@SuppressWarnings("static-access")
 	public void buttonPressedLogin(String username, String password) {
