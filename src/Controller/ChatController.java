@@ -13,7 +13,6 @@ public class ChatController implements Runnable {
 	private ChatModel chatmodel;
 
 	@SuppressWarnings("unused")
-	private MainDAL md = new MainDAL();
 	private ChatDAL cd = new ChatDAL();
 	private Thread t1;
 	
