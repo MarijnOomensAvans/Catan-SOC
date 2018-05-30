@@ -1,4 +1,4 @@
-package View.dice;
+package View.board;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -11,8 +11,6 @@ import java.util.ArrayList;
 import javax.swing.JPanel;
 
 import Controller.BoardController;
-import View.board.BoardColours;
-import View.board.Hexagon;
 
 @SuppressWarnings("serial")
 public class DrawingPanel extends JPanel {

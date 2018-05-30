@@ -5,7 +5,6 @@ import javax.swing.JFrame;
 
 import Controller.BoardController;
 import Controller.LobbyController;
-import View.lobby.InvitePanel;
 
 public class SetupGameFrame extends JFrame {
 

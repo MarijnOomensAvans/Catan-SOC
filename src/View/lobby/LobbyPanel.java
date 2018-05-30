@@ -187,7 +187,6 @@ public class LobbyPanel extends JPanel {
 		showGamePanel.setLayout(new GridLayout(0, 1));
 		gamesPanel.setLayout(new BorderLayout());
 		gamesPanel.add(gameLabel, BorderLayout.NORTH);
-		//gamesPanel.add(showGamePanel, BorderLayout.CENTER);
 		gamesPanel.add(scrollGames, BorderLayout.CENTER);
 
 		leftPanel.setLayout(new BorderLayout());

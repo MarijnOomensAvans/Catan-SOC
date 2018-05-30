@@ -13,6 +13,7 @@ import Model.lobby.LobbyGameInfo;
 import Model.lobby.LobbyInvite;
 import View.chat.ChatContentPane;
 import View.chat.Chatoutputgui;
+import View.setupGame.InvitePanel;
 
 @SuppressWarnings("serial")
 public class LobbyContentPane extends JPanel {

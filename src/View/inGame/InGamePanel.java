@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 
 import Controller.BoardController;
 import Controller.LoginController;
-import View.dice.DrawingPanel;
+import View.board.DrawingPanel;
 
 public class InGamePanel extends JPanel{
 	
