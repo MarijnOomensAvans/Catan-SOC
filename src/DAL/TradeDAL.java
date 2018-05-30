@@ -10,6 +10,7 @@ import java.util.ArrayList;
 public class TradeDAL {
 	
 	Connection conn;
+	@SuppressWarnings("unused")
 	private int size;
 	
 	public TradeDAL() {
@@ -158,7 +159,8 @@ public class TradeDAL {
 				{
 					if(otherIds.contains(rs.getInt(1)))
 					{
-						results = getTradeResponses(rs.getInt(1));
+						results.add(rs.getInt(1));
+						results.addAll(getTradeResponses(rs.getInt(1)));
 						return results;
 					}
 				}

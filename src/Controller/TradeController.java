@@ -136,4 +136,9 @@ public class TradeController extends Observable implements Runnable {
 		this.setChanged();
 		this.notifyObservers(offer);
 	}
+
+	public String getUsername(int playerid) {
+		String username =pd.getName(playerid);
+		return username;
+	}
 }
