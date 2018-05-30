@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class BoardDal {
+public class BoardDAL {
 	Connection conn = MainDAL.getConnection();
 
 	// ------------------------------------------------------------------------------------------------------------------------
