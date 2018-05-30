@@ -16,7 +16,9 @@ public class MainClass {
 		Player player1 = new Player(player, pd, 42, 770);
 		player1.addMaterialCard("B");
 		player1.addMaterialCard("B");
-		player1.addMaterialCard("H");
+		player1.addMaterialCard("B");
+		player1.addMaterialCard("B");
+
 		new TradeController(42, 770, pd, player1);
 
 	}

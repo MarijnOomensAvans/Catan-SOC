@@ -81,6 +81,7 @@ public class TradeOfferPane extends JPanel {
 	
 	private JButton sendButton;
 	private JButton counterOffer;
+	private JButton bank;
 
 	private JTextField stoneDemand;
 	private JTextField oreDemand;
@@ -91,7 +92,6 @@ public class TradeOfferPane extends JPanel {
 	private JLabel offer;
 	private JLabel demand;
 	
-	@SuppressWarnings("unused")
 	private boolean showButton;
 	
 	public TradeOfferPane(TradeController td, int playerid, boolean showbutton) {
@@ -523,6 +523,7 @@ public class TradeOfferPane extends JPanel {
 		
 		sendButton = new JButton("Versturen");
 		counterOffer = new JButton("Tegenbod versturen");
+		bank = new JButton("Ruilen met de bank");
 		sendButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -542,14 +543,27 @@ public class TradeOfferPane extends JPanel {
 			
 		});
 		
+		bank.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				td.switchBankPane();
+			}
+			
+		});
+		
 		if(showButton == true) {
-		sendButton.setBounds(340,475,100,80);
+		sendButton.setBounds(420,475,100,80);
 		add(sendButton);
+		bank.setBounds(270,475,150,80);
+		add(bank);
 		}
 		else {
 			counterOffer.setBounds(320,475,150,80);
 			add(counterOffer);
 		}
+		
+		
 		setPreferredSize(new Dimension(800,600));
 		setVisible(true);
 	}

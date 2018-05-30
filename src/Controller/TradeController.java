@@ -12,6 +12,7 @@ import Model.Player;
 import Model.TradeOffer;
 import Model.TradeOtherPlayers;
 import View.TradeResultPane;
+import View.BankPane;
 import View.TradeAcceptPane;
 import View.TradeGui;
 import View.TradeOfferPane;
@@ -27,6 +28,7 @@ public class TradeController extends Observable implements Runnable {
 	private Player player;
 	private TradeAcceptPane tap;
 	private Thread t1;
+	private boolean runthread = false;
 	
 	public TradeController(int playerid, int gameid, PersonDal pd, Player player) {
 		this.pd = pd;
@@ -120,7 +122,7 @@ public class TradeController extends Observable implements Runnable {
 
 	@Override
 	public void run() {
-		while(true) {
+		while(runthread ==true) {
 		try {
 			ArrayList<Integer> otherIds = pd.getOtherid(gameid, playerid);
 			getLatestTradeOffer(otherIds);
@@ -140,5 +142,16 @@ public class TradeController extends Observable implements Runnable {
 	public String getUsername(int playerid) {
 		String username =pd.getName(playerid);
 		return username;
+	}
+
+	public void switchBankPane() {
+		gui.setContentPane(new BankPane(this, playerid));
+		gui.validate();
+		gui.repaint();
+		
+	}
+
+	public void setRunthread(boolean runthread) {
+		this.runthread = runthread;
 	}
 }
