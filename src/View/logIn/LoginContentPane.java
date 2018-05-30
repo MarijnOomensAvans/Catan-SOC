@@ -37,7 +37,6 @@ public class LoginContentPane extends JPanel {
 		});
 
 		cancelButton.addActionListener(e -> {
-			controller.buttonPressedCancel();
 			switchScreenInlog();
 		});
 
