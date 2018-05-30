@@ -23,10 +23,11 @@ public class Chatoutputgui extends JPanel implements Observer {
 	
 	public Chatoutputgui(ChatController control, int playerid) {
 		output = new JTextArea(21,37);
-		scroll = new JScrollPane(output,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		scroll = new JScrollPane(output,JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		 DefaultCaret caret = (DefaultCaret)output.getCaret();
 		 caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
-
+		output.setLineWrap(true);
+		 output.setWrapStyleWord(true);
 		output.setEditable(false);
 		
 		add(scroll);
