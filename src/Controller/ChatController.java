@@ -24,6 +24,7 @@ public class ChatController implements Runnable {
 		t1 = new Thread(this);
 		this.chatmodel =new ChatModel(cd);
 		t1.start();
+		cog = new Chatoutputgui(this, 1);
 		chatmodel.addObserver(cog);
 		
 	}

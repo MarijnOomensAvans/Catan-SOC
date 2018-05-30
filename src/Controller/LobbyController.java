@@ -27,7 +27,6 @@ public class LobbyController {
 
 	public LobbyController() {
 		lobbyModel = new LobbyModel();
-		cog = new Chatoutputgui(cc, 1);
 		cc = new ChatController(getGameID());
 		bc = new BoardController();
 		frame = new LobbyFrame(this,bc,cc,cog,1);
