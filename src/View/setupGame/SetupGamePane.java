@@ -5,7 +5,6 @@ import javax.swing.JPanel;
 
 import Controller.BoardController;
 import Controller.LobbyController;
-import View.dice.DrawingPanel;
 
 @SuppressWarnings("serial")
 public class SetupGamePane extends JPanel {

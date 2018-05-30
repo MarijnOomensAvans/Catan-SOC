@@ -7,6 +7,7 @@ import Controller.BoardController;
 import Controller.LobbyController;
 import View.lobby.InvitePanel;
 
+@SuppressWarnings("serial")
 public class SetupGameFrame extends JFrame {
 
 	private SetupGamePane setupPane;

@@ -18,6 +18,7 @@ import Controller.LobbyController;
 import Controller.LoginController;
 import View.setupGame.SetupGameFrame;
 
+@SuppressWarnings("serial")
 public class InvitePanel extends JPanel {
 // creating intance variables
 	private final int WIDTH = 1000;
