@@ -194,7 +194,7 @@ public class LobbyPanel extends JPanel {
 
 		challengePanel.add(challengeLabel);
 
-		showGamePanel.setLayout(new GridLayout(0, 1));
+		showGamePanel.setLayout(new BoxLayout(showGamePanel, SwingConstants.VERTICAL));
 		gamesPanel.setLayout(new BorderLayout());
 		gamesPanel.add(gameLabel, BorderLayout.NORTH);
 		gamesPanel.add(scrollGames, BorderLayout.CENTER);
@@ -257,17 +257,21 @@ public class LobbyPanel extends JPanel {
 
 			int gameID = games.get(i).getID();
 			ArrayList<String> players = games.get(i).getPlayers();
+			if(players.size() != 4) {
+				break;
+			}
 			JPanel row = new JPanel(new BorderLayout());
 			JPanel namePanel = new JPanel();
 			JPanel infoPanel = new JPanel();
 			JLabel label = new JLabel("GameID:" + games.get(i).getID() + " (" + games.get(i).currentTurn() + ")");
 			label.setFont(buttonFont);
 			row.setPreferredSize(new Dimension(INVITEWIDTH, NAMEHEIGHT * 4));
+			row.setMaximumSize(new Dimension(INVITEWIDTH, NAMEHEIGHT * 4));
 			namePanel.add(label);
 			namePanel.setBorder(blackLine);
 			namePanel.setBackground(Color.orange);
 			infoPanel.setLayout(new GridLayout(2, 2));
-
+			
 			for (int n = 0; n < players.size(); n++) {
 				JLabel nameLabel = new JLabel((players.get(n)));
 				nameLabel.setFont(gameInfoNameFont);
