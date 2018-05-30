@@ -218,7 +218,9 @@ public class LobbyDAL {
 			ResultSet rs = stmt.executeQuery("SELECT sp.username FROM spel s " + "JOIN speler sp "
 					+ "ON s.beurt_idspeler = sp.idspeler " + "WHERE s.idspel = " + gameID);
 			rs.next();
-			currentPlayer = rs.getString(1);
+			if(rs.getRow() == 1) {
+				currentPlayer = rs.getString(1);
+			}
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
