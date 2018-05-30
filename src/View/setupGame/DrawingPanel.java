@@ -44,7 +44,7 @@ public class DrawingPanel extends JPanel {
 
 	public DrawingPanel(BoardController bc, int idspel) {
 		this.idspel = idspel;
-		//this.bc = bc;
+		this.bc = bc;
 // initialize arraylist 		
 		hexagons = new ArrayList<>();
 // initialize hexagons with points		
@@ -90,10 +90,10 @@ public class DrawingPanel extends JPanel {
 		hexagons.add(hexagon16);
 		hexagons.add(hexagon17);
 		hexagons.add(hexagon18);
-		hexagons.add(hexagon19);
+		hexagons.add(hexagon19);	
 		
-// set preferred size	
-		this.setPreferredSize(new Dimension(500, 500));
+		setPreferredSize(new Dimension(500,500));
+
 // set background
 		setBackground(BoardColours.SEA.getRGB());
 	}
