@@ -14,7 +14,7 @@ public class PersonDal {
 		 conn = MainDAL.getConnection();
 	}
 	
-	public String getName(int id)
+	public String getName(int id) ///gets your username from the database 
 	{
 		String result ="";
 		String idstring = Integer.toString(id);
@@ -36,7 +36,11 @@ public class PersonDal {
 		return result;
 	}
 
+<<<<<<< HEAD
 	public String getColor(int playerid, int gameid)
+=======
+	public String getColor(int playerid)///gets the color you are from the database
+>>>>>>> chat
 	{
 		String result ="";
 		Statement stmt = null;
@@ -56,8 +60,12 @@ public class PersonDal {
 		}
 		return result;
 }
+<<<<<<< HEAD
 	
 	public int getorder_number(int playerid, int gameid)
+=======
+	public int getgame_id(int playerid)///gets the gameid from the database
+>>>>>>> chat
 	{
 		String result ="";
 		Statement stmt = null;
@@ -79,7 +87,13 @@ public class PersonDal {
 		return resultint;
 }
 	
+<<<<<<< HEAD
 	public void addMaterialCard(int idgame,String idcard, int idplayer) {
+=======
+	public int getorder_number(int playerid)///gets the order your in from the database
+	{
+		String result ="";
+>>>>>>> chat
 		Statement stmt = null;
 		String query = "INSERT INTO spelergrondstofkaart(idspel,idgrondstofkaart,idspeler) VALUES("+ idgame+", '"+idcard+"',"+idplayer+")";
 		try
