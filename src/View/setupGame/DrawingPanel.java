@@ -6,7 +6,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
-import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 import javax.swing.JPanel;
 
@@ -45,7 +44,7 @@ public class DrawingPanel extends JPanel {
 
 	public DrawingPanel(BoardController bc, int idspel) {
 		this.idspel = idspel;
-		this.bc = bc;
+		//this.bc = bc;
 // initialize arraylist 		
 		hexagons = new ArrayList<>();
 // initialize hexagons with points		
