@@ -21,6 +21,10 @@ public class LobbyModel {
 		ArrayList<LobbyGameState> hostedGames = lobbyDAL.getHostedGames();
 		
 	}
+	
+	public ArrayList<LobbyGameState> getHostedGames(){
+		return lobbyDAL.getHostedGames();
+	}
 
 	public ArrayList<String> getUsernames() {
 		usernames = lobbyDAL.getAllAccounts();

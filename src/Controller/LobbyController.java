@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 
 import Model.lobby.LobbyGameInfo;
+import Model.lobby.LobbyGameState;
 import Model.lobby.LobbyInvite;
 import Model.lobby.LobbyModel;
 import View.chat.Chatoutputgui;
@@ -38,6 +39,10 @@ public class LobbyController {
 
 	public ArrayList<String> getUsernames() {
 		return lobbyModel.getUsernames();
+	}
+	
+	public ArrayList<LobbyGameState> getHostedGames(){
+		return lobbyModel.getHostedGames();
 	}
 
 	public ArrayList<LobbyInvite> getInvites() {
