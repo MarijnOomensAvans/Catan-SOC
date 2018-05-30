@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import Controller.LoginController;
 import Model.lobby.LobbyGameInfo;
+import Model.lobby.LobbyGameState;
 import Model.lobby.LobbyInvite;
 
 public class LobbyDAL {
@@ -156,8 +157,9 @@ public class LobbyDAL {
 		return players;
 	}
 
-	//Checks the highest game ID and increments the returned number with 1, then puts that number in the database. Returns the number to the
-	//LobbyModel.
+	// Checks the highest game ID and increments the returned number with 1, then
+	// puts that number in the database. Returns the number to the
+	// LobbyModel.
 	public int makeNewGameID() {
 		int gameid = getHighestGameID() + 1;
 		try {
@@ -172,7 +174,8 @@ public class LobbyDAL {
 		return gameid;
 	}
 
-	//A private method to get the highest game id in the databes, this method is only used in the makenNewGameID method
+	// A private method to get the highest game id in the databes, this method is
+	// only used in the makenNewGameID method
 	private int getHighestGameID() {
 		int highestGameId = 0;
 		try {
@@ -227,7 +230,7 @@ public class LobbyDAL {
 		int playerid = 1;
 		try {
 			Statement stmt = conn.createStatement();
-			
+
 			ResultSet rs = stmt.executeQuery("SELECT MAX(idspeler) FROM speler");
 			rs.next();
 			playerid = rs.getInt(1) + 1;
@@ -244,9 +247,9 @@ public class LobbyDAL {
 		try {
 			Statement stmt = conn.createStatement();
 			playerid = getFreePlayerid();
-			
+
 			System.out.println(playerid);
-			
+
 			stmt.executeUpdate(
 					"INSERT INTO speler (`idspeler`, `idspel`, `username`, `kleur`, `speelstatus`, `shouldrefresh`, `volgnr`) "
 							+ "VALUES ( " + playerid + ", " + gameid + ", '" + username + "' , '" + kleur + "' , '"
@@ -255,7 +258,7 @@ public class LobbyDAL {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return playerid;
 	}
 
@@ -282,14 +285,11 @@ public class LobbyDAL {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void initializePlayerTurn(int gameid, int playerid) {
 		try {
 			Statement stmt = conn.createStatement();
-			stmt.executeUpdate(
-						"UPDATE 'spel' SET 'beurt_idspeler' = " + playerid +
-						" WHERE 'idspel' = " + gameid
-					);
+			stmt.executeUpdate("UPDATE 'spel' SET 'beurt_idspeler' = " + playerid + " WHERE 'idspel' = " + gameid);
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -297,13 +297,83 @@ public class LobbyDAL {
 	}
 
 	public void setBoardTypeRandom(int gameid) {
-
 		try {
 			Statement stmt = conn.createStatement();
 			stmt.executeUpdate("UPDATE spel SET israndomboard = " + 1 + " WHERE idspel = " + gameid);
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}
+	}
+
+	public ArrayList<LobbyGameState> getHostedGames() {
+		ArrayList<LobbyGameState> hostedGames = new ArrayList<LobbyGameState>();
+		ArrayList<Integer> currentGames = new ArrayList<Integer>();
+
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt
+					.executeQuery("SELECT s.idspel, sp.speelstatus FROM spel s JOIN speler sp ON s.idspel = sp.idspel"
+							+ " WHERE sp.username = '" 	+ LoginController.getUsername()
+							+ "' AND speelstatus LIKE 'uitdager'");
+
+			while (rs.next()) {
+				currentGames.add(rs.getInt(1));
+			}
+
+			for (int i = 0; i < currentGames.size(); i++) {
+
+				PlayerInfo playerInfo = getPlayerInfo(currentGames.get(i).intValue());
+
+				for (int n = 0; n < playerInfo.playerStatus.size(); n++) {
+					if (playerInfo.playerStatus.get(n).equals("uitgedaagde")
+							|| playerInfo.playerStatus.get(n).equals("geweigerd")) {
+						LobbyGameState game = new LobbyGameState(currentGames.get(i).intValue(), playerInfo.playerNames, playerInfo.playerStatus);
+						hostedGames.add(game);
+						break;
+					}
+				}
+			}
+
+			// Get players and player statuses
+
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return hostedGames;
+	}
+
+	private PlayerInfo getPlayerInfo(int gameid) {
+
+		PlayerInfo playerInfo = new PlayerInfo();
+
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT sp.username, sp.speelstatus FROM speler sp WHERE sp.idspel = "
+					+ gameid + " ORDER BY volgnr ASC");
+
+			while (rs.next()) {
+				playerInfo.playerNames.add(rs.getString(1));
+				playerInfo.playerStatus.add(rs.getString(2));
+			}
+
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return playerInfo;
+	}
+
+	private class PlayerInfo {
+		public ArrayList<String> playerNames;
+		public ArrayList<String> playerStatus;
+
+		public PlayerInfo() {
+			playerNames = new ArrayList<String>();
+			playerStatus = new ArrayList<String>();
 		}
 	}
 

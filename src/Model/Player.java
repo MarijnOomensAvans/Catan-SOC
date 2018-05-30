@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 
 import Controller.PlayerController;
-import DAL.PersonDal;
+import DAL.PersonDAL;
 
 public class Player {
 	
@@ -16,14 +16,14 @@ public class Player {
 	private int order_number;
 
 	private PlayerController conn;
-	private PersonDal pd;
+	private PersonDAL pd;
 	private int points = 0;
 	private int knightmight = 0;
 	
 	private ArrayList<MaterialCard> hand = new ArrayList<MaterialCard>();
 	private ArrayList<DevelopmentCard> handdev = new ArrayList<DevelopmentCard>();
 
-	public Player(PlayerController controller, PersonDal pd, int playerid, int gameid) {
+	public Player(PlayerController controller, PersonDAL pd, int playerid, int gameid) {
 		conn = controller;
 		this.pd = pd;
 		this.player_id = playerid;

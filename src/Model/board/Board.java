@@ -7,6 +7,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Random;
+import java.util.Set;
 
 import javax.imageio.ImageIO;
 
@@ -889,6 +890,12 @@ public class Board {
 			((Tile) axisgrid.get(i)).setChit(0);
 			bdal.removeChits(idspel,((Tile) axisgrid.get(i)).getX(), ((Tile) axisgrid.get(i)).getY());
 		}
+	}
+	
+	// --------------------------------------------------------------------------------------------------------------------------
+	// Method to give the X and Y of a Collection
+	public Set<Integer> getLocatieKeys() {
+			return axisgrid.keySet();
 	}
 	
 
