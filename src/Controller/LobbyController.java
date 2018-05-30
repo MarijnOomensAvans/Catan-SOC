@@ -23,11 +23,10 @@ public class LobbyController {
 	private SetupGameFrame setupFrame;
 	private ChatController cc;
 	private Chatoutputgui cog;
-<<<<<<< HEAD
+
 	private GameStateController gsc;
-=======
+
 	private DrawingPanel inGameBoard;
->>>>>>> 559a38760b99db0ca5b651b22a88ccd778acc3c9
 
 	public LobbyController() {
 		lobbyModel = new LobbyModel();
