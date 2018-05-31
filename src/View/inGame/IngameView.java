@@ -23,13 +23,13 @@ public class IngameView extends JPanel{
 	private Chatoutputgui chatOutput;
 	//plek maken voor chat
 
-	public IngameView(BoardController bc, int gameID,DrawingPanel inGameBoard) {
+	public IngameView(BoardController bc, int gameID,DrawingPanel inGameBoard, int playerID) {
 		
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		setLayout(new BorderLayout());
 		chatController = new ChatController(gameID);
-		chatOutput = new Chatoutputgui(chatController,45);
-		ChatContentPane chatPanel = new ChatContentPane(chatController, chatOutput, 45);
+		chatOutput = new Chatoutputgui(chatController,playerID);
+		ChatContentPane chatPanel = new ChatContentPane(chatController, chatOutput, playerID);
 		JPanel leftPanel = new JPanel();
 		JPanel centerPanel = new JPanel();
 		JPanel rightPanel = new JPanel();

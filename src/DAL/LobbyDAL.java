@@ -378,5 +378,27 @@ public class LobbyDAL {
 			playerStatus = new ArrayList<String>();
 		}
 	}
+	
+	public String getPlayerID(int gameID)
+	{
+		String result ="";
+		String playerName = LoginController.getUsername();
+		Statement stmt = null;
+		String query = "SELECT idspeler FROM speler WHERE idspel = '" + gameID + "' AND username ='" + playerName + "'";
+		try
+		{
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while (rs.next())
+			{
+				result = rs.getString(1);
+			}
+			stmt.close();
+		} catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
 
 }

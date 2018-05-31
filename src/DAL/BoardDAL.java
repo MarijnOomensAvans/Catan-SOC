@@ -39,32 +39,45 @@ public class BoardDal {
 	// This will update the tiles if a different boardtype is chosen.
 	public void updateTile(int idspel, int idtegel, int x, int y, char idgrondstofsoort, int idgetalfiche) {
 		Statement stmt = null;
-		try {
-			stmt = conn.createStatement();
-			// Add  + "', `idgetalfiche`='" + idgetalfiche + "' " + " later.
-			stmt.executeUpdate("UPDATE `tegel` SET `idgrondstofsoort`='" + idgrondstofsoort + "', `idgetalfiche`='" + idgetalfiche + "' " + " WHERE `idspel`= "
-					+ idspel + " AND `x` = " + x + " AND `y` = " + y + " AND `idtegel` = " + idtegel);
-			stmt.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
+		if (idgetalfiche != 0) {
+			try {
+				stmt = conn.createStatement();
+				// Add + "', `idgetalfiche`='" + idgetalfiche + "' " + " later.
+				stmt.executeUpdate("UPDATE `tegel` SET `idgrondstofsoort`='" + idgrondstofsoort + "', `idgetalfiche`='"
+						+ idgetalfiche + "' " + " WHERE `idspel`= " + idspel + " AND `x` = " + x + " AND `y` = " + y
+						+ " AND `idtegel` = " + idtegel);
+				stmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		else {
+			try {
+				stmt = conn.createStatement();
+				// Add + "', `idgetalfiche`='" + idgetalfiche + "' " + " later.
+				stmt.executeUpdate("UPDATE `tegel` SET `idgrondstofsoort`='" + idgrondstofsoort + "'" + " WHERE `idspel`= " + idspel + " AND `x` = " + x + " AND `y` = " + y
+						+ " AND `idtegel` = " + idtegel);
+				stmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 	}
-	
+
 	// ------------------------------------------------------------------------------------------------------------------------
 	// This removes the chits when a new board type is chosen.
 	public void removeChits(int idspel, int x, int y) {
 		Statement stmt = null;
 		try {
 			stmt = conn.createStatement();
-			stmt.executeUpdate("UPDATE `tegel` SET `idgetalfiche`=NULL " + "WHERE `idspel`= "
-					+ idspel + " AND `x` = " + x + " AND `y` = " + y);
+			stmt.executeUpdate("UPDATE `tegel` SET `idgetalfiche`=NULL " + "WHERE `idspel`= " + idspel + " AND `x` = "
+					+ x + " AND `y` = " + y);
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
-	
 	// ------------------------------------------------------------------------------------------------------------------------
 	// Check for Harbour
 	private boolean hasHarbour(int x, int y) {
@@ -85,7 +98,6 @@ public class BoardDal {
 
 	}
 
-	
 	// ------------------------------------------------------------------------------------------------------------------------
 	// Check for Harbour resource if it has a harbour.
 	public char getLocationHarbourResource(int x, int y) {
@@ -108,7 +120,6 @@ public class BoardDal {
 		return 0;
 	}
 
-	
 	// ------------------------------------------------------------------------------------------------------------------------
 	// Check for resource of tile.
 	public char getResourceTile(int idspel, int x, int y) {
@@ -127,15 +138,15 @@ public class BoardDal {
 		}
 		return 0;
 	}
-	
+
 	// ------------------------------------------------------------------------------------------------------------------------
 	// Check for chit of tile
 	public int getChit(int idspel, int x, int y) {
 		String s = "idgetalfiche";
 		try {
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT idgetalfiche FROM tegel WHERE idspel = '" + idspel
-					+ "' && x = '" + x + "' && y = '" + y + "'");
+			ResultSet rs = stmt.executeQuery("SELECT idgetalfiche FROM tegel WHERE idspel = '" + idspel + "' && x = '"
+					+ x + "' && y = '" + y + "'");
 
 			if (rs.next()) {
 				return rs.getInt(s);

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 
+import DAL.LobbyDAL;
 import Model.lobby.LobbyGameInfo;
 import Model.lobby.LobbyGameState;
 import Model.lobby.LobbyInvite;
@@ -24,11 +25,12 @@ public class LobbyController {
 	private SetupGameFrame setupFrame;
 	private ChatController cc;
 	private Chatoutputgui cog;
-
+	private LobbyDAL lobbyDAL;
 	private GameStateController gsc;
 
 	public LobbyController() {
-		lobbyModel = new LobbyModel();
+		lobbyDAL = new LobbyDAL();
+		lobbyModel = new LobbyModel(lobbyDAL);
 		cc = new ChatController(getGameID());
 		bc = new BoardController();
 		frame = new LobbyFrame(this,bc,cc,cog,1);
@@ -91,7 +93,8 @@ public class LobbyController {
 		frame.dispose();	
 		bc.generateBoard();
 		DrawingPanel dp = new DrawingPanel(bc, gameID);
-		gameFrame = new InGameFrame(bc, gameID, dp);
+		int playerID = Integer.parseInt(lobbyDAL.getPlayerID(gameID));
+		gameFrame = new InGameFrame(bc, gameID, dp, playerID);
 	}
 	
 	public void createInvitation(String username, int gameid, int volgnr) {
