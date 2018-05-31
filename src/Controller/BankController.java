@@ -33,7 +33,7 @@ public class BankController {
 		
 	}
 
-	public DevelopmentCard getDevelopmentCard() {
+	public DevelopmentCard getDevelopmentCard(String iddevcard) {
 		DevelopmentCard devcard =bank.getDevelopmentCard();
 		return devcard;
 	}

@@ -17,9 +17,9 @@ public class PlayerController {
 		this.md = md;
 		this.bc = bc;
 		pd = new PersonDAL();
-		Player player1 =new Player(this, pd, 12, 220);
+		Player player1 =new Player(this, pd, 41, 770);
 
-		Player player2 =new Player(this, pd, 11, 220);
+//		Player player2 =new Player(this, pd, 42, 770);
 		
 	}
 
@@ -33,9 +33,11 @@ public class PlayerController {
 		
 	}
 
-	public DevelopmentCard getDevelopmentCard() {
-		DevelopmentCard devcard =bc.getDevelopmentCard();
+	public DevelopmentCard getDevelopmentCard(String iddevcard) {
+		DevelopmentCard devcard =bc.getDevelopmentCard(iddevcard);
 		return devcard;
 	}
-
+	
 }
+
+
