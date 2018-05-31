@@ -258,9 +258,7 @@ public class LobbyPanel extends JPanel {
 
 			int gameID = games.get(i).getID();
 			ArrayList<String> players = games.get(i).getPlayers();
-			if(players.size() != 4) {
-				break;
-			}
+			if(players.size() == 4) {
 			JPanel row = new JPanel(new BorderLayout());
 			JPanel namePanel = new JPanel();
 			JPanel infoPanel = new JPanel();
@@ -292,6 +290,7 @@ public class LobbyPanel extends JPanel {
 			});
 			row.setBorder(blackLine);
 			showGamePanel.add(row);
+			}
 		}
 	}
 
