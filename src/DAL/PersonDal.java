@@ -144,8 +144,19 @@ public class PersonDal {
 	}
 	
 	
-	public void updateCard(ArrayList<Integer> cards) {
-		
+	public void updateCard(int otherplayerid, String id) {
+		Statement stmt = null;
+		String query = "UPDATE spelergronstofkaart SET spelerid ="+ otherplayerid+ "WHERE idgrondstofkaart ='" + id+ "'";
+		try
+		{
+			stmt = conn.createStatement();
+			stmt.executeQuery(query);
+			
+		} catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+	
 	}
 
 
