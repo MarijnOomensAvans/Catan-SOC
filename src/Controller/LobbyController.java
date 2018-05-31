@@ -31,7 +31,7 @@ public class LobbyController {
 	public LobbyController() {
 		lobbyDAL = new LobbyDAL();
 		lobbyModel = new LobbyModel(lobbyDAL);
-		cc = new ChatController(getGameID());
+		cc = new ChatController(getGameID(), 0);
 		bc = new BoardController();
 		frame = new LobbyFrame(this,bc,cc,cog,1);
 	}
