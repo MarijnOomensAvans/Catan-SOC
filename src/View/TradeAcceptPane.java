@@ -182,7 +182,7 @@ public class TradeAcceptPane extends JPanel implements Observer {
 			public void actionPerformed(ActionEvent e) {
 				tc.setRunthread(false);
 				tc.createOffer(playerid, stoneDemandCounter, woolDemandCounter, oreDemandCounter, wheatDemandCounter, woodDemandCounter, stoneOfferCounter, woolOfferCounter, oreOfferCounter, wheatOfferCounter, woodOfferCounter, true);
-
+				tc.close();
 			}
 
 		});
@@ -192,6 +192,7 @@ public class TradeAcceptPane extends JPanel implements Observer {
 			public void actionPerformed(ActionEvent e) {
 				tc.setRunthread(false);
 				tc.createOffer(playerid, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false);
+				tc.close();
 			}
 
 		});

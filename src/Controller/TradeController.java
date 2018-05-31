@@ -6,6 +6,7 @@ import DAL.TradeDAL;
 import java.util.ArrayList;
 import java.util.Observable;
 
+
 import Model.Player;
 import Model.TradeOffer;
 import Model.TradeOtherPlayers;
@@ -27,11 +28,9 @@ public class TradeController extends Observable implements Runnable {
 	private TradeAcceptPane tap;
 	private TradeResultPane trp;
 	private Thread t1;
-//<<<<<<< HEAD
+
 	private ArrayList<Integer> otherIds;
-//=======
 	private boolean runthread = false;
-//>>>>>>> 64b4117ee8a1ad962f3f86cdc08a809913d7852e
 	
 	public TradeController(int playerid, int gameid, PersonDal pd, Player player) {
 		this.pd = pd;
@@ -128,8 +127,7 @@ public class TradeController extends Observable implements Runnable {
 
 	@Override
 	public void run() {
-//<<<<<<< HEAD
-		while (true) {
+		while (runthread ==true) {
 			try {			
 				for(int i = 0; i<otherIds.size(); i++)
 				{
@@ -137,20 +135,8 @@ public class TradeController extends Observable implements Runnable {
 				}
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {
-
 			}
-//=======
-//		while(runthread ==true) {
-//		try {
-//			ArrayList<Integer> otherIds = pd.getOtherid(gameid, playerid);
-//			getLatestTradeOffer(otherIds);
-//			Thread.sleep(1000);
-//		}catch(InterruptedException e) {
-//			
-//		}
-//>>>>>>> 64b4117ee8a1ad962f3f86cdc08a809913d7852e
-//		}
-	}
+		}
 	}
 
 	private void getLatestTradeOffer(int playerid) {
@@ -189,5 +175,10 @@ public class TradeController extends Observable implements Runnable {
 
 	public void setRunthread(boolean runthread) {
 		this.runthread = runthread;
+	}
+
+	public void close() {
+		gui.dispose();
+		
 	}
 }
