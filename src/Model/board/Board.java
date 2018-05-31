@@ -897,6 +897,5 @@ public class Board {
 	public Set<Integer> getLocatieKeys() {
 			return axisgrid.keySet();
 	}
-	
 
 }
