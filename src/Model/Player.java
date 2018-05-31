@@ -22,6 +22,7 @@ public class Player {
 	
 	private ArrayList<MaterialCard> hand = new ArrayList<MaterialCard>();
 	private ArrayList<DevelopmentCard> handdev = new ArrayList<DevelopmentCard>();
+	private String iddevcard;
 
 	public Player(PlayerController controller, PersonDAL pd, int playerid, int gameid) {
 		conn = controller;
@@ -31,15 +32,13 @@ public class Player {
 		setName();
 		setColor();
 		setOrder_number();
-		adddevelopmentCard();
-		adddevelopmentCard();
-		adddevelopmentCard();
-		adddevelopmentCard();
-		adddevelopmentCard();
+		addDevelopmentCard();
+		addDevelopmentCard();
+		addDevelopmentCard();
+		
 		printallPlayerDevCards();
-		testpointDevCard();
-		testKnightmight();
-		testMonopoly();
+		removeDevCard("o12r", gameid, playerid);
+		
 		
 	}
 	
@@ -65,6 +64,15 @@ public class Player {
 		pd.addMaterialCard(game_id, cardid, player_id);
 		hand.add(newCard);
 	}
+	public void addDevelopmentCard() {
+		
+		DevelopmentCard newDevCard = conn.getDevelopmentCard(iddevcard);
+		handdev.add(newDevCard);
+		String devcardid = newDevCard.getIddevcard();
+		pd.addDevelopmentCard(game_id, devcardid, player_id, false);
+		
+		}
+	
 	
 	public void removeMatCard(String kind) {
 		for(int i=0; i< hand.size(); i++) {
@@ -75,11 +83,22 @@ public class Player {
 			}
 		}
 	}
-
-	public void adddevelopmentCard() {
-		handdev.add(conn.getDevelopmentCard());
-	
+	public void removeDevCard(String iddevcard, int gameid, int playerid) {
+		for(int i=0; i< handdev.size(); i++) {
+			if(handdev.get(i).getIddevcard().equals(iddevcard)) {
+				System.out.println("hallo");
+				System.out.println(pd.getDevUsed(gameid, iddevcard, playerid));
+				pd.useDevelopmentCard(gameid, iddevcard, playerid, true);
+				System.out.println(pd.getDevUsed(gameid, iddevcard, playerid));
+				handdev.remove(handdev.get(i));
+			}
 		}
+	}
+	
+	
+	
+	
+
 	
 	public void testpointDevCard() {
 		for(int i=0; i< handdev.size(); i++) {
@@ -108,14 +127,6 @@ public class Player {
 		for(int i=0; i< handdev.size(); i++) {
 			if(handdev.get(i).getIddevcard().substring(3).equals("s")) {
 				System.out.println("Bij het spelen van deze kaart mag je direct twee starten bouwen.");
-			}
-		}
-	}
-	public void removeDevCard(String iddevcard) {
-		for(int i=0; i< handdev.size(); i++) {
-			if(handdev.get(i).getIddevcard() == iddevcard) {
-				hand.remove(hand.get(i));
-				break;
 			}
 		}
 	}
