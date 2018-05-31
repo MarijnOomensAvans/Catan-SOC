@@ -196,14 +196,20 @@ public class Player {
 		}
 	}
 
-	public ArrayList<String> getTradeCards(ArrayList<Integer> offer) {
-		ArrayList<String> ids = new ArrayList<String>();
+	public void updateCards(int otherplayerid, ArrayList<Integer> offer) {
 		for(int i =0; i <offer.size();i++) {
 			if(i == 1) {
 				if(offer.get(i) > 0) {
+<<<<<<< HEAD
 					for(int e =0; e< offer.get(i); e++) {
 						String cardId = "";	//get first card of this kind from opponent
 						pd.updateCard(cardId, this.player_id);	//give this card to the player that initiated the trade
+=======
+					for(int e =0; e< hand.size(); e++) {
+						if(hand.get(e).getKindOfMaterial().equals("B")) {
+							pd.updateCard(otherplayerid, hand.get(i).getIdCard());
+						}
+>>>>>>> c5a5a63007f24129eb7f61521eed4b104ed1a93e
 					}
 				}
 			}
@@ -211,7 +217,7 @@ public class Player {
 				if(offer.get(i) > 0) {
 					for(int e =0; e< hand.size(); e++) {
 						if(hand.get(e).getKindOfMaterial().equals("W")) {
-							ids.add(hand.get(i).getIdCard());
+							pd.updateCard(otherplayerid, hand.get(i).getIdCard());
 						}
 					}
 				}
@@ -220,7 +226,7 @@ public class Player {
 				if(offer.get(i) > 0) {
 					for(int e =0; e< hand.size(); e++) {
 						if(hand.get(e).getKindOfMaterial().equals("E")) {
-							ids.add(hand.get(i).getIdCard());
+							pd.updateCard(otherplayerid, hand.get(i).getIdCard());
 						}
 					}
 				}
@@ -229,7 +235,7 @@ public class Player {
 				if(offer.get(i) > 0) {
 					for(int e =0; e< hand.size(); e++) {
 						if(hand.get(e).getKindOfMaterial().equals("G")) {
-							ids.add(hand.get(i).getIdCard());
+							pd.updateCard(otherplayerid, hand.get(i).getIdCard());
 						}
 					}
 				}
@@ -238,14 +244,14 @@ public class Player {
 				if(offer.get(i) > 0) {
 					for(int e =0; e< hand.size(); e++) {
 						if(hand.get(e).getKindOfMaterial().equals("H")) {
-							ids.add(hand.get(i).getIdCard());
+							pd.updateCard(otherplayerid, hand.get(i).getIdCard());
 						}
 					}
 				}
 			}
 		}
 		
-		return ids;
+	
 		
 	}
 	

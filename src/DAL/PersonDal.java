@@ -144,20 +144,33 @@ public class PersonDal {
 	}
 	
 	
+<<<<<<< HEAD
 	public void updateCard(String cardId, int playerid) {
 		
 		Statement stmt = null;
 		String query = "UPDATE spelergrondstofkaart SET idspeler = "+playerid+ " WHERE idgrondstofkaart = "+cardId;
+=======
+	public void updateCard(int otherplayerid, String id) {
+		Statement stmt = null;
+		String query = "UPDATE spelergronstofkaart SET spelerid ="+ otherplayerid+ "WHERE idgrondstofkaart ='" + id+ "'";
+>>>>>>> c5a5a63007f24129eb7f61521eed4b104ed1a93e
 		try
 		{
 			stmt = conn.createStatement();
 			stmt.executeQuery(query);
 			
+<<<<<<< HEAD
 			stmt.close();
+=======
+>>>>>>> c5a5a63007f24129eb7f61521eed4b104ed1a93e
 		} catch (SQLException e)
 		{
 			System.out.println(e.getMessage());
 		}
+<<<<<<< HEAD
+=======
+	
+>>>>>>> c5a5a63007f24129eb7f61521eed4b104ed1a93e
 	}
 
 

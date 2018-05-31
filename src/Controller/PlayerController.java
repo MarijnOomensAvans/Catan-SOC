@@ -41,7 +41,8 @@ public class PlayerController {
 	}
 
 	public void tradeCards(int otherplayerid, ArrayList<Integer> offer, Player player) {
-		player.getTradeCards(offer);
+		player.updateCards(otherplayerid,offer);
+
 		
 	}
 
