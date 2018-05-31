@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -39,7 +40,11 @@ public class Chatoutputgui extends JPanel implements Observer {
 
 	@Override
 	public void update(Observable o, Object arg) {
-		output.append((String) arg);
+		if(arg != null) {
+			for(int i = 0; i < ((ArrayList<String>) arg).size(); i++) {
+				output.append(((ArrayList<String>) arg).get(i));
+			}
+		}
 	}
 
 }
