@@ -12,7 +12,7 @@ public class PersonDAL {
 	public PersonDAL() {
 		conn = MainDAL.getConnection();
 	}
-
+	
 	public String getName(int id) /// gets your username from the database
 	{
 		String result = "";
