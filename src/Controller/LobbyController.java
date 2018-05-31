@@ -24,16 +24,16 @@ public class LobbyController {
 	private SetupGameFrame setupFrame;
 	private ChatController cc;
 	private Chatoutputgui cog;
+	private DrawingPanel inGameBoard;
 
 	private GameStateController gsc;
-
-	private DrawingPanel inGameBoard;
 
 	public LobbyController() {
 		lobbyModel = new LobbyModel();
 		cc = new ChatController(getGameID());
 		bc = new BoardController();
 		frame = new LobbyFrame(this,bc,cc,cog,1);
+		inGameBoard = setupFrame.getInGameBoard();
 	}
 
 	public ArrayList<String> getUsernames() {
