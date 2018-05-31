@@ -3,6 +3,8 @@ package View;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.lang.Integer;
 
@@ -39,6 +41,7 @@ public class TradeResultPane extends JPanel {
 	private JButton AcceptPlayer1;
 	private JButton AcceptPlayer2;
 	private JButton AcceptPlayer3;
+	private JButton rejectEverything;
 	
 	private JTextField response1;
 	private JTextField response2;
@@ -65,6 +68,7 @@ public class TradeResultPane extends JPanel {
 		AcceptPlayer1 = new JButton("Accepteren");
 		AcceptPlayer2 = new JButton("Accepteren");
 		AcceptPlayer3 = new JButton("Accepteren");
+		rejectEverything = new JButton("Alles weigeren");
 		
 		otherPlayer1.setBounds(100, 100, 50, 50);
 		otherPlayer2.setBounds(100, 175, 50, 50);
@@ -73,14 +77,37 @@ public class TradeResultPane extends JPanel {
 		AcceptPlayer1.setBounds(150, 112, 100, 30);
 		AcceptPlayer2.setBounds(150, 187, 100, 30);
 		AcceptPlayer3.setBounds(150, 262, 100, 30);
+		rejectEverything.setBounds(100,350,150,30);
 		
 		AcceptPlayer1.setEnabled(false);
 		AcceptPlayer2.setEnabled(false);
 		AcceptPlayer3.setEnabled(false);
 		
+		AcceptPlayer1.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				tc.tradeCards(otherplayerid1);
+				
+				
+			}
+			
+		});
+		rejectEverything.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				tc.deleteOffers(playerid, otherplayerid1,otherplayerid2,otherplayerid3);
+				tc.close();
+				
+			}
+			
+		});
+		
 		add(AcceptPlayer1);
 		add(AcceptPlayer2);
 		add(AcceptPlayer3);
+		add(rejectEverything);
 		
 		add(otherPlayer1);
 		add(otherPlayer2);

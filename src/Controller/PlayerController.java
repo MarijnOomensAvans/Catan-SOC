@@ -4,7 +4,6 @@ import DAL.MainDAL;
 import DAL.PersonDal;
 import Model.DevelopmentCard;
 import Model.MaterialCard;
-import Model.Player;
 
 public class PlayerController {
 	
@@ -36,6 +35,11 @@ public class PlayerController {
 	public DevelopmentCard getDevelopmentCard() {
 		DevelopmentCard devcard =bc.getDevelopmentCard();
 		return devcard;
+	}
+
+	public void tradeCards(int otherplayerid) {
+		
+		
 	}
 
 }

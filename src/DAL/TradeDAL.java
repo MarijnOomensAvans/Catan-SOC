@@ -228,6 +228,22 @@ public class TradeDAL {
 	//	return null;
 	}
 
+	public void deleteOffers(int playerid, int otherplayerid1, int otherplayerid2, int otherplayerid3) {
+		Statement stmt = null;
+		String query = "DELETE FROM ruilaanbod where idspeler IN ("+playerid+", "+otherplayerid1+", "+otherplayerid2+", "+otherplayerid3+")";
+		try
+		{
+			stmt = conn.createStatement();
+			stmt.executeUpdate(query);
+						
+			
+		}catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		
+	}
+
 
 	
 	
