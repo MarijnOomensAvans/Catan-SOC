@@ -80,6 +80,7 @@ public class LobbyPanel extends JPanel {
 
 	@SuppressWarnings("unused")
 	private JButton playButton;
+	@SuppressWarnings("unused")
 	private JButton	myGameButton;
 
 	public LobbyPanel(LobbyContentPane pane, JButton playButton, JButton myGameButton) {

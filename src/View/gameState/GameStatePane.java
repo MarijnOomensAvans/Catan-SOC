@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
@@ -25,8 +26,13 @@ public class GameStatePane extends JPanel {
 	private final int PANELHEIGHT = 995;
 	private final int GAMEHEIGHT = 100;
 
+	private JButton reInviteButton;
 	private JPanel games;
 	private LobbyController lc;
+	
+	private int gameID;
+
+	private ArrayList<LobbyGameState> hostedGames;
 
 	private JScrollPane scroll;
 
@@ -42,17 +48,16 @@ public class GameStatePane extends JPanel {
 	}
 
 	public void getGames() {
-		ArrayList<LobbyGameState> hostedGames;
 		hostedGames = lc.getHostedGames();
 
 		for (int i = 0; i < hostedGames.size(); i++) {
 			ArrayList<String> usernames;
 			usernames = hostedGames.get(i).getPlayers();
-			
+
 			ArrayList<String> states;
 			states = hostedGames.get(i).getStatus();
 
-			JButton reInviteButton = new JButton("Invite");
+			reInviteButton = new JButton("Invite");
 			reInviteButton.setEnabled(true);
 			reInviteButton.setBackground(Color.orange);
 
@@ -60,32 +65,28 @@ public class GameStatePane extends JPanel {
 			game.setLayout(new BorderLayout());
 			game.setPreferredSize(new Dimension(PANELWIDTH, GAMEHEIGHT));
 
-			reInviteButton.addActionListener(e -> {
-				new ReInviteFrame(lc);
-			});
-
 			JPanel buttonPanel = new JPanel();
 			buttonPanel.setPreferredSize(new Dimension(100, HEIGHT));
 
 			JPanel names = new JPanel();
 			names.setLayout(new GridLayout(2, 2));
+			getGameIDButton(i, hostedGames.get(i).getGameid());
 			for (int j = 0; j < usernames.size(); j++) {
-				
+
 				JPanel namePanel = new JPanel();
-				
-				
+
 				JLabel name = new JLabel(usernames.get(j));
 				name.setHorizontalAlignment(SwingConstants.HORIZONTAL);
-				
+
 				JLabel state = new JLabel(states.get(j));
 				state.setHorizontalAlignment(SwingConstants.HORIZONTAL);
-				
+
 				namePanel.setLayout(new BorderLayout());
 				namePanel.add(name, BorderLayout.NORTH);
 				namePanel.add(state, BorderLayout.CENTER);
 				stateColour(state);
 				namePanel.setBorder(BorderFactory.createLineBorder(Color.black, 3));
-				
+
 				names.add(namePanel);
 			}
 
@@ -98,14 +99,30 @@ public class GameStatePane extends JPanel {
 			games.add(game);
 		}
 	}
-	
+
 	public void stateColour(JLabel state) {
-		if(state.getText().equals("geaccepteerd") || state.getText().equals("uitdager")) {
+		if (state.getText().equals("geaccepteerd") || state.getText().equals("uitdager")) {
 			state.setForeground(Color.GREEN);
-		}else if(state.getText().equals("geweigerd")){
+		} else if (state.getText().equals("geweigerd")) {
 			state.setForeground(Color.red);
-		}else{
+		} else {
 			state.setForeground(Color.LIGHT_GRAY);
 		}
 	}
+
+	public void getGameIDButton(int i, int id) {
+		reInviteButton.addActionListener(e -> {
+			new ReInviteFrame(lc);
+			setGameID(id);
+		});
+	}
+
+	public int getGameID() {
+		return gameID;
+	}
+
+	public void setGameID(int gameID) {
+		this.gameID = gameID;
+	}
+	
 }
