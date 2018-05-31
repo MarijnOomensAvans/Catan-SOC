@@ -142,6 +142,11 @@ public class PersonDal {
 		}
 		return result;
 	}
+	
+	
+	public void updateCard(ArrayList<Integer> cards) {
+		
+	}
 
 
 }

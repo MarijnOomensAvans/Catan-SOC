@@ -195,5 +195,59 @@ public class Player {
 			return false;
 		}
 	}
+
+	public ArrayList<String> getTradeCards(ArrayList<Integer> offer) {
+		ArrayList<String> ids = new ArrayList<String>();
+		for(int i =0; i <offer.size();i++) {
+			if(i == 1) {
+				if(offer.get(i) > 0) {
+					for(int e =0; e< hand.size(); e++) {
+						if(hand.get(e).getKindOfMaterial().equals("B")) {
+							ids.add(hand.get(i).getIdCard());
+						}
+					}
+				}
+			}
+			if(i == 2) {
+				if(offer.get(i) > 0) {
+					for(int e =0; e< hand.size(); e++) {
+						if(hand.get(e).getKindOfMaterial().equals("W")) {
+							ids.add(hand.get(i).getIdCard());
+						}
+					}
+				}
+			}
+			if(i == 3) {
+				if(offer.get(i) > 0) {
+					for(int e =0; e< hand.size(); e++) {
+						if(hand.get(e).getKindOfMaterial().equals("E")) {
+							ids.add(hand.get(i).getIdCard());
+						}
+					}
+				}
+			}
+			if(i == 4) {
+				if(offer.get(i) > 0) {
+					for(int e =0; e< hand.size(); e++) {
+						if(hand.get(e).getKindOfMaterial().equals("G")) {
+							ids.add(hand.get(i).getIdCard());
+						}
+					}
+				}
+			}
+			if(i == 5) {
+				if(offer.get(i) > 0) {
+					for(int e =0; e< hand.size(); e++) {
+						if(hand.get(e).getKindOfMaterial().equals("H")) {
+							ids.add(hand.get(i).getIdCard());
+						}
+					}
+				}
+			}
+		}
+		
+		return ids;
+		
+	}
 	
 }
