@@ -44,10 +44,10 @@ public class TradeController extends Observable implements Runnable {
 		tap = new TradeAcceptPane(this, playerid);
 		t1 = new Thread(this);
 		t1.start();
+		otherPlayers = new TradeOtherPlayers(pd, td);
 		TradeOfferPane top = new TradeOfferPane(this, playerid, true);
 		tap = new TradeAcceptPane(this, playerid);
-		gui = new TradeGui(this, playerid, top,tap);
-		otherPlayers = new TradeOtherPlayers(pd, td);
+		gui = new TradeGui(this, playerid, top,tap,gameid);
 		this.addObserver(tap);
 	}
 

@@ -1,5 +1,7 @@
 package Model;
 
+import DAL.BankDAL;
+
 public class DevelopmentCard {
 	
 	private String kindName;
@@ -7,7 +9,7 @@ public class DevelopmentCard {
 	
 	private int kind;
 	
-	public DevelopmentCard(int kind) {
+	public DevelopmentCard(BankDAL bd, int kind) {
 		this.kind = kind;
 		setKindName();
 	}

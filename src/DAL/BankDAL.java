@@ -1,5 +1,6 @@
 package DAL;
 
+
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,7 +15,7 @@ public class BankDAL {
 	}
 	
 	
-	public String getId(int id) {
+	public String getId(int id) {  // gets the card id from the database so the cards are connected to the database
 		String result ="";
 		Statement stmt = null;
 		String query = "";
@@ -41,7 +42,7 @@ public class BankDAL {
 	}
 
 
-	public String getKindOfMaterial(int id) {
+	public String getKindOfMaterial(int id) {/// give the character from the database so that the card knows what type it is
 		String result ="";
 		Statement stmt = null;
 		int limit  = id-1;
@@ -65,6 +66,73 @@ public class BankDAL {
 		
 	}
 	
+	public String getDevId(int id) {
+		String result ="";
+		Statement stmt = null;
+		String query = "";
+		if( id == 0) {
+			query = "SELECT idontwikkelingskaart FROM ontwikkelingskaart LIMIT 1" ;
+		}else {
+		int limit  = id-1;
+		query = "SELECT idontwikkelingskaart FROM ontwikkelingskaart LIMIT "+limit+",1" ;
+		}
+		try
+		{
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while (rs.next())
+			{
+				result = rs.getString(1);
+			}
+			stmt.close();
+		} catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
+	public String getDevName(int id) {
+		String result ="";
+		Statement stmt = null;
+		String query = "";
+		if( id == 0) {
+			query = "SELECT naam FROM ontwikkelingskaart LIMIT 1" ;
+		}else {
+		int limit  = id-1;
+		query = "SELECT naam FROM ontwikkelingskaart LIMIT "+limit+",1" ;
+		}
+		try
+		{
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while (rs.next())
+			{
+				result = rs.getString(1);
+			}
+			stmt.close();
+		} catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
+	
+	public void addCardstoDB(int gameid,String idCard) {
+		Statement stmt = null;
+		String query = "INSERT spelergrondstofkaart(idspel,idgrondstofkaart) VALUES ("+gameid+" ,'"+ idCard+"')";
+		
+		try
+		{
+			stmt = conn.createStatement();
+			 stmt.executeUpdate(query);
+			
+			stmt.close();
+		} catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		
+	}
 
 
 }

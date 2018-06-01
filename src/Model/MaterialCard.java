@@ -1,5 +1,6 @@
 package Model;
 
+
 import DAL.BankDAL;
 
 public class MaterialCard {
@@ -7,14 +8,19 @@ public class MaterialCard {
 	private String idCard;
 	private String KindOfMaterial;
 	private BankDAL bd;
-	private int playerid;
 
-	public MaterialCard(BankDAL bd, int a) {
+	public MaterialCard(BankDAL bd, int a, int gameid) {
 		this.bd = bd;
 		setId(a);
 		setKindOfMaterial(a);
+		//addToDB(gameid);
 	}
 	
+	private void addToDB(int gameid) {
+		bd.addCardstoDB(gameid, idCard);
+		
+	}
+
 	private void setKindOfMaterial(int a) {
 		KindOfMaterial =bd.getKindOfMaterial(a);
 		
@@ -26,9 +32,7 @@ public class MaterialCard {
 		
 	}
 
-	public void setPlayerid(int playerid) {
-		this.playerid = playerid;
-	}
+	
 
 	public String getKindOfMaterial() {
 		return KindOfMaterial;

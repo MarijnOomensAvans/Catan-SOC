@@ -213,7 +213,7 @@ public class Player {
 				if(offer.get(i) > 0) {
 					for(int e =0; e< hand.size(); e++) {
 						if(hand.get(e).getKindOfMaterial().equals("W")) {
-							String cardId = "";	//get first card of this kind from opponent
+							String cardId = pd.getOtherPlayerCard(otherplayerid,"W");	//get first card of this kind from opponent
 							pd.updateCard(cardId, this.player_id);	//give this card to the player that initiated the trade
 
 						}
@@ -224,7 +224,7 @@ public class Player {
 				if(offer.get(i) > 0) {
 					for(int e =0; e< hand.size(); e++) {
 						if(hand.get(e).getKindOfMaterial().equals("E")) {
-							String cardId = "";	//get first card of this kind from opponent
+							String cardId = pd.getOtherPlayerCard(otherplayerid,"E");;	//get first card of this kind from opponent
 							pd.updateCard(cardId, this.player_id);	//give this card to the player that initiated the trade
 
 						}
@@ -235,7 +235,7 @@ public class Player {
 				if(offer.get(i) > 0) {
 					for(int e =0; e< hand.size(); e++) {
 						if(hand.get(e).getKindOfMaterial().equals("G")) {
-							String cardId = "";	//get first card of this kind from opponent
+							String cardId = pd.getOtherPlayerCard(otherplayerid,"G");;	//get first card of this kind from opponent
 							pd.updateCard(cardId, this.player_id);	//give this card to the player that initiated the trade
 
 						}
@@ -246,7 +246,7 @@ public class Player {
 				if(offer.get(i) > 0) {
 					for(int e =0; e< hand.size(); e++) {
 						if(hand.get(e).getKindOfMaterial().equals("H")) {
-							String cardId = "";	//get first card of this kind from opponent
+							String cardId = pd.getOtherPlayerCard(otherplayerid,"H");;	//get first card of this kind from opponent
 							pd.updateCard(cardId, this.player_id);	//give this card to the player that initiated the trade
 
 						}

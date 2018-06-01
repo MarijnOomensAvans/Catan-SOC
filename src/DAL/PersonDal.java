@@ -147,7 +147,7 @@ public class PersonDal {
 	public String getOtherPlayerCard(int otherplayerid, String kind) {
 		String cardid = "";
 		Statement stmt = null;
-		String query = "SELECT idgrondstofkaart FROM spelergrondstofkaart WHERE idspeler = "+otherplayerid+ "AND idgrondstofkaart LIKE " +kind+ "% LIMIT 1";
+		String query = "SELECT idgrondstofkaart FROM spelergrondstofkaart WHERE idspeler = "+otherplayerid+ " AND idgrondstofkaart LIKE '" +kind+ "%' LIMIT 1";
 
 		try
 		{
@@ -155,6 +155,7 @@ public class PersonDal {
 			ResultSet rs = stmt.executeQuery(query);
 			rs.next();
 			cardid = rs.getString(1);
+
 			stmt.close();
 
 		} catch (SQLException e)
@@ -162,17 +163,18 @@ public class PersonDal {
 			System.out.println(e.getMessage());
 		}
 		return cardid;
+
 	}
 
 	public void updateCard(String cardId, int playerid) {
 		
 		Statement stmt = null;
-		String query = "UPDATE spelergrondstofkaart SET idspeler = "+playerid+ " WHERE idgrondstofkaart = "+cardId;
+		String query = "UPDATE spelergrondstofkaart SET idspeler = "+playerid+ " WHERE idgrondstofkaart = '"+cardId+"'";
 
 		try
 		{
 			stmt = conn.createStatement();
-			stmt.executeQuery(query);
+			stmt.executeUpdate(query);
 			
 
 			stmt.close();

@@ -1,5 +1,6 @@
 package Controller;
 
+
 import DAL.BankDAL;
 import DAL.MainDAL;
 import Model.Bank;
@@ -16,15 +17,15 @@ public class BankController {
 	@SuppressWarnings("unused")
 	private Player player;
 	
-	public BankController(MainDAL md) {
+	public BankController(MainDAL md, int gameid) {
 		this.md = md;
 		bd = new BankDAL();
-		bank = new Bank(bd);
+		bank = new Bank(bd,gameid);
 		
 	}
 
 	public MaterialCard getMaterialCard(String kind, int playerid) {
-		MaterialCard card = bank.getMaterialCard(kind,playerid);
+		MaterialCard card = bank.getMaterialCard(kind);
 		return card;
 	}
 
@@ -37,5 +38,4 @@ public class BankController {
 		DevelopmentCard devcard =bank.getDevelopmentCard();
 		return devcard;
 	}
-
 }

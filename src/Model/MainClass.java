@@ -11,9 +11,9 @@ public class MainClass {
 	public static void main(String[] args) {
 		MainDAL md = new MainDAL();
 		PersonDal pd = new PersonDal();
-		BankController bc = new BankController(md);
+		BankController bc = new BankController(md, 770);
 		PlayerController player =new PlayerController(md,pd, bc,1);
-		int playerid = 42;
+		int playerid = 41;
 		Player player1 = new Player(player, pd, playerid, 770);
 		player1.addMaterialCard("B");
 		player1.addMaterialCard("B");
