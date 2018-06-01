@@ -4,11 +4,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -18,18 +16,16 @@ import javax.swing.SwingConstants;
 import Controller.LobbyController;
 import Model.lobby.LobbyGameState;
 
+@SuppressWarnings("serial")
 public class GameStatePane extends JPanel {
 
 	private final int WIDTH = 500;
 	private final int HEIGHT = 600;
 	private final int PANELWIDTH = 480;
-	private final int PANELHEIGHT = 995;
 	private final int GAMEHEIGHT = 100;
 
 	private JPanel games;
 	private LobbyController lc;
-
-	private int gameID;
 
 	private ArrayList<LobbyGameState> hostedGames;
 

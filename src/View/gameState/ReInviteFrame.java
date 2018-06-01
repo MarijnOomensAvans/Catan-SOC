@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import Controller.LobbyController;
 import Model.lobby.LobbyGameState;
 
+@SuppressWarnings("serial")
 public class ReInviteFrame extends JFrame{
 
 	private ReInvitePane pane;
