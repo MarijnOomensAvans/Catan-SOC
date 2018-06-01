@@ -123,7 +123,7 @@ public class TradeDAL {
 		ArrayList<Integer> results = new ArrayList<Integer>();
 		
 		Statement stmt = null;
-		String query = "SELECT geeft_baksteen, geeft_wol, geeft_erts, geeft_graan, geeft_hout, vraagt_baksteen, vraagt_wol, vraagt_erts, vraagt_graan, vraagt_hout FROM ruilaanbod WHERE idspeler =" + playerid;
+		String query = "SELECT idspeler,geeft_baksteen, geeft_wol, geeft_erts, geeft_graan, geeft_hout, vraagt_baksteen, vraagt_wol, vraagt_erts, vraagt_graan, vraagt_hout FROM ruilaanbod WHERE idspeler =" + playerid;
 		try
 		{
 			stmt = conn.createStatement();

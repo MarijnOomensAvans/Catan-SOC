@@ -71,7 +71,7 @@ public class TradeAcceptPane extends JPanel implements Observer {
 
 	public TradeAcceptPane(TradeController tc, int playerid) {
 		this.tc = tc;
-		tc.setRunthread(true);
+		this.tc.setRunthread(true);
 		this.setLayout(null);
 		stone = new File("./Images/baksteen.jpg");
 		wool = new File("./Images/schaap.jpg");

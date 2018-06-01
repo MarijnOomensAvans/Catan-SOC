@@ -13,7 +13,7 @@ public class MainClass {
 		PersonDal pd = new PersonDal();
 		BankController bc = new BankController(md);
 		PlayerController player =new PlayerController(md,pd, bc,1);
-		int playerid = 44;
+		int playerid = 42;
 		Player player1 = new Player(player, pd, playerid, 770);
 		player1.addMaterialCard("B");
 		player1.addMaterialCard("B");
