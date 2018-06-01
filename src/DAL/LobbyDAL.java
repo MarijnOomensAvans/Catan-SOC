@@ -289,9 +289,12 @@ public class LobbyDAL {
 	}
 
 	public void initializePlayerTurn(int gameid, int playerid) {
+		System.out.println("LOG: Initializing player turn");
+		System.out.println("GameID = " + gameid + ", PlayerID = " + playerid);
+		
 		try {
 			Statement stmt = conn.createStatement();
-			stmt.executeUpdate("UPDATE 'spel' SET 'beurt_idspeler' = " + playerid + " WHERE 'idspel' = " + gameid);
+			stmt.executeUpdate("UPDATE spel SET beurt_idspeler = " + playerid + " WHERE idspel = " + gameid);
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
