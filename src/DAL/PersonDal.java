@@ -145,19 +145,17 @@ public class PersonDal {
 	
 	
 	public String getOtherPlayerCard(int otherplayerid, String kind) {
-		ArrayList<Integer> cardids = new ArrayList<Integer>();
+		String cardid = "";
 		Statement stmt = null;
-		String query = "SELECT idgrondstofkaart FROM spelergrondstofkaart WHERE idspeler = "+otherplayerid;
+		String query = "SELECT idgrondstofkaart FROM spelergrondstofkaart WHERE idspeler = "+otherplayerid+ "AND idgrondstofkaart LIKE " +kind+ "% LIMIT 1";
 
 		try
 		{
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
-			while (rs.next())
-			{
-				cardids.add(rs.getInt(1));
-				
-			}
+			rs.next();
+			cardid = rs.getString(1);
+
 			
 
 			stmt.close();
