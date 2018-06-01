@@ -218,7 +218,7 @@ public class LobbyDAL {
 			ResultSet rs = stmt.executeQuery("SELECT sp.username FROM spel s " + "JOIN speler sp "
 					+ "ON s.beurt_idspeler = sp.idspeler " + "WHERE s.idspel = " + gameID);
 			rs.next();
-			if(rs.getRow() == 1) {
+			if (rs.getRow() == 1) {
 				currentPlayer = rs.getString(1);
 			}
 			stmt.close();
@@ -265,11 +265,15 @@ public class LobbyDAL {
 	}
 
 	public void updateInvitation(String username, int gameid, int volgnr) {
+		System.out.println("UPDATING INVITATION");
+		System.out.println("Username: " + username + ", GameID: " + gameid + " Volgnr: " + volgnr);
+		
 		try {
+
 			Statement stmt = conn.createStatement();
 
-			stmt.executeUpdate("UPDATE speler " + "SET `username`= '" + username
-					+ "', `speelstatus`='uitgedaagde' WHERE idspel = " + gameid + "AND volgnr = " + volgnr);
+			stmt.executeUpdate("UPDATE speler " + "SET username= '" + username
+					+ "', speelstatus = 'uitgedaagde' WHERE idspel = " + gameid + " AND volgnr = " + volgnr);
 
 			stmt.close();
 		} catch (SQLException e) {
@@ -291,7 +295,7 @@ public class LobbyDAL {
 	public void initializePlayerTurn(int gameid, int playerid) {
 		System.out.println("LOG: Initializing player turn");
 		System.out.println("GameID = " + gameid + ", PlayerID = " + playerid);
-		
+
 		try {
 			Statement stmt = conn.createStatement();
 			stmt.executeUpdate("UPDATE spel SET beurt_idspeler = " + playerid + " WHERE idspel = " + gameid);
@@ -319,7 +323,7 @@ public class LobbyDAL {
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt
 					.executeQuery("SELECT s.idspel, sp.speelstatus FROM spel s JOIN speler sp ON s.idspel = sp.idspel"
-							+ " WHERE sp.username = '" 	+ LoginController.getUsername()
+							+ " WHERE sp.username = '" + LoginController.getUsername()
 							+ "' AND speelstatus LIKE 'uitdager'");
 
 			while (rs.next()) {
@@ -333,7 +337,8 @@ public class LobbyDAL {
 				for (int n = 0; n < playerInfo.playerStatus.size(); n++) {
 					if (playerInfo.playerStatus.get(n).equals("uitgedaagde")
 							|| playerInfo.playerStatus.get(n).equals("geweigerd")) {
-						LobbyGameState game = new LobbyGameState(currentGames.get(i).intValue(), playerInfo.playerNames, playerInfo.playerStatus);
+						LobbyGameState game = new LobbyGameState(currentGames.get(i).intValue(), playerInfo.playerNames,
+								playerInfo.playerStatus);
 						hostedGames.add(game);
 						break;
 					}
@@ -381,24 +386,20 @@ public class LobbyDAL {
 			playerStatus = new ArrayList<String>();
 		}
 	}
-	
-	public String getPlayerID(int gameID)
-	{
-		String result ="";
+
+	public String getPlayerID(int gameID) {
+		String result = "";
 		String playerName = LoginController.getUsername();
 		Statement stmt = null;
 		String query = "SELECT idspeler FROM speler WHERE idspel = '" + gameID + "' AND username ='" + playerName + "'";
-		try
-		{
+		try {
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
-			while (rs.next())
-			{
+			while (rs.next()) {
 				result = rs.getString(1);
 			}
 			stmt.close();
-		} catch (SQLException e)
-		{
+		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
 		return result;

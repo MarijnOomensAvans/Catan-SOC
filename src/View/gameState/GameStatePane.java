@@ -28,7 +28,7 @@ public class GameStatePane extends JPanel {
 
 	private JPanel games;
 	private LobbyController lc;
-	
+
 	private int gameID;
 
 	private ArrayList<LobbyGameState> hostedGames;
@@ -37,13 +37,15 @@ public class GameStatePane extends JPanel {
 
 	public GameStatePane(LobbyController lc) {
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
+		this.setLayout(new BorderLayout());
 		this.lc = lc;
 		games = new JPanel();
-		games.setPreferredSize(new Dimension(WIDTH - 20, HEIGHT - 5));
 		games.setBackground(Color.DARK_GRAY);
+		games.setLayout(new GridLayout(0, 1, 0, 10));
 		scroll = new JScrollPane(games, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		getGames();
-		add(scroll);
+		scroll.getVerticalScrollBar().setUnitIncrement(5);
+		add(scroll, BorderLayout.CENTER);
 	}
 
 	public void getGames() {
@@ -55,8 +57,6 @@ public class GameStatePane extends JPanel {
 
 			ArrayList<String> states;
 			states = hostedGames.get(i).getStatus();
-
-		
 
 			JPanel game = new JPanel();
 			game.setLayout(new BorderLayout());
@@ -87,10 +87,11 @@ public class GameStatePane extends JPanel {
 			}
 
 			buttonPanel.setLayout(new BorderLayout());
-			buttonPanel.add(createReinviteButton(hostedGames.get(i).getGameid(), i), BorderLayout.CENTER);
+			buttonPanel.add(createReinviteButton(hostedGames.get(i).getGameid(), hostedGames.get(i)), BorderLayout.CENTER);
 
 			game.add(names, BorderLayout.CENTER);
 			game.add(buttonPanel, BorderLayout.LINE_END);
+			game.setPreferredSize(new Dimension(WIDTH - 25, 100));
 
 			games.add(game);
 		}
@@ -106,16 +107,22 @@ public class GameStatePane extends JPanel {
 		}
 	}
 
-	
-	public JButton createReinviteButton(int id, int i) {
-		JButton reInviteButton = new JButton();
-		reInviteButton = new JButton("Invite");
-		reInviteButton.setEnabled(true);
+	public JButton createReinviteButton(int id, LobbyGameState game) {
+		JButton reInviteButton = new JButton("Reinvite");
+		reInviteButton.setEnabled(false);
+		
+		//Check if a user has declined an invite
+		for(int i = 0; i < game.getStatus().size(); i++) {
+			if(game.getStatus().get(i).equals("geweigerd")) {
+				reInviteButton.setEnabled(true);
+				break;
+			}
+		}
 		reInviteButton.setBackground(Color.orange);
 		reInviteButton.addActionListener(e -> {
-			new ReInviteFrame(lc, id);
+			new ReInviteFrame(lc, id, game);
 		});
 		return reInviteButton;
 	}
-	
+
 }
