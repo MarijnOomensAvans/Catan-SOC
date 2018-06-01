@@ -144,6 +144,31 @@ public class PersonDal {
 	}
 	
 	
+	public String getOtherPlayerCard(int otherplayerid, String kind) {
+		ArrayList<Integer> cardids = new ArrayList<Integer>();
+		Statement stmt = null;
+		String query = "SELECT idgrondstofkaart FROM spelergrondstofkaart WHERE idspeler = "+otherplayerid;
+
+		try
+		{
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while (rs.next())
+			{
+				cardids.add(rs.getInt(1));
+				
+			}
+			
+
+			stmt.close();
+
+		} catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		return cardids;
+
+	}
 
 	public void updateCard(String cardId, int playerid) {
 		

@@ -203,7 +203,7 @@ public class Player {
 
 					for(int e =0; e< offer.get(i); e++) {
 						if(hand.get(e).getKindOfMaterial().equals("B")) {
-						String cardId = "";	//get first card of this kind from opponent
+						String cardId = pd.getOtherPlayerCards(otherplayerid,"B");
 						pd.updateCard(cardId, this.player_id);	//give this card to the player that initiated the trade
 						}
 					}
