@@ -289,9 +289,12 @@ public class LobbyDAL {
 	}
 
 	public void initializePlayerTurn(int gameid, int playerid) {
+		System.out.println("LOG: Initializing player turn");
+		System.out.println("GameID = " + gameid + ", PlayerID = " + playerid);
+		
 		try {
 			Statement stmt = conn.createStatement();
-			stmt.executeUpdate("UPDATE 'spel' SET 'beurt_idspeler' = " + playerid + " WHERE 'idspel' = " + gameid);
+			stmt.executeUpdate("UPDATE spel SET beurt_idspeler = " + playerid + " WHERE idspel = " + gameid);
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -377,6 +380,28 @@ public class LobbyDAL {
 			playerNames = new ArrayList<String>();
 			playerStatus = new ArrayList<String>();
 		}
+	}
+	
+	public String getPlayerID(int gameID)
+	{
+		String result ="";
+		String playerName = LoginController.getUsername();
+		Statement stmt = null;
+		String query = "SELECT idspeler FROM speler WHERE idspel = '" + gameID + "' AND username ='" + playerName + "'";
+		try
+		{
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while (rs.next())
+			{
+				result = rs.getString(1);
+			}
+			stmt.close();
+		} catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		return result;
 	}
 
 }

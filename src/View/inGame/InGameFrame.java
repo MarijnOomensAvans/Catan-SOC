@@ -10,9 +10,9 @@ public class InGameFrame extends JFrame{
 // making intance variables
 	private IngameView pane;
 	
-	public InGameFrame(BoardController bc, int gameID,DrawingPanel inGameBoard) {
+	public InGameFrame(BoardController bc, int gameID,DrawingPanel inGameBoard, int playerID) {
 //initialize contentpane 
-		pane = new IngameView(bc, gameID,inGameBoard);
+		pane = new IngameView(bc, gameID,inGameBoard, playerID);
 // create the frame		
 		setTitle("Catan");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import javax.swing.JButton;
 
+import DAL.LobbyDAL;
 import Model.lobby.LobbyGameInfo;
 import Model.lobby.LobbyGameState;
 import Model.lobby.LobbyInvite;
@@ -24,16 +25,19 @@ public class LobbyController {
 	private SetupGameFrame setupFrame;
 	private ChatController cc;
 	private Chatoutputgui cog;
-	private DrawingPanel inGameBoard;
-
+	private LobbyDAL lobbyDAL;
 	private GameStateController gsc;
 
 	public LobbyController() {
-		lobbyModel = new LobbyModel();
-		cc = new ChatController(getGameID());
+		lobbyDAL = new LobbyDAL();
+		lobbyModel = new LobbyModel(lobbyDAL);
+		cc = new ChatController(getGameID(), 0);
 		bc = new BoardController();
 		frame = new LobbyFrame(this,bc,cc,cog,1);
+<<<<<<< HEAD
 		//inGameBoard = setupFrame.getInGameBoard();
+=======
+>>>>>>> 3d26b60ba48a73802a677ef8db5765122ea0cee1
 	}
 
 	public ArrayList<String> getUsernames() {
@@ -91,7 +95,10 @@ public class LobbyController {
 
 	public void openGame(int gameID) {
 		frame.dispose();	
-		gameFrame = new InGameFrame(bc, gameID, inGameBoard);
+		bc.generateBoard();
+		DrawingPanel dp = new DrawingPanel(bc, gameID);
+		int playerID = Integer.parseInt(lobbyDAL.getPlayerID(gameID));
+		gameFrame = new InGameFrame(bc, gameID, dp, playerID);
 	}
 	
 	public void createInvitation(String username, int gameid, int volgnr) {
@@ -110,7 +117,6 @@ public class LobbyController {
 		bc.setBoardType(getGameID(), 1);
 		bc.finishBoard(getGameID());
 		setupFrame = new SetupGameFrame(this, bc, inviteButton);
-		inGameBoard = setupFrame.getInGameBoard();
 		
 		inviteButton.addActionListener(e -> {
 			setupFrame.openInvitePanel();

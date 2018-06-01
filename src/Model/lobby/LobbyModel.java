@@ -15,8 +15,8 @@ public class LobbyModel {
 		return gameid;
 	}
 
-	public LobbyModel() {
-		lobbyDAL = new LobbyDAL();
+	public LobbyModel(LobbyDAL lobbyDAL) {
+		this.lobbyDAL = lobbyDAL;
 		
 		ArrayList<LobbyGameState> hostedGames = lobbyDAL.getHostedGames();
 		

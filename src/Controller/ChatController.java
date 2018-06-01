@@ -18,17 +18,21 @@ public class ChatController implements Runnable {
 	private Thread t1;
 	private Chatoutputgui cog;
 	
-	public ChatController(int gameid) {
+	public ChatController(int gameid, int playerid) {
 		this.gameid = gameid;
 		cd = new ChatDAL();
 		t1 = new Thread(this);
 		this.chatmodel =new ChatModel(cd);
+		cog = new Chatoutputgui(this, playerid);
 		t1.start();
-		cog = new Chatoutputgui(this, 1);
 		chatmodel.addObserver(cog);
 		
 	}
 	
+	public Chatoutputgui getCog() {
+		return cog;
+	}
+
 	public void SendMessage(int playerid , String message) {
 		chatmodel.SendMessage(playerid, message);
 

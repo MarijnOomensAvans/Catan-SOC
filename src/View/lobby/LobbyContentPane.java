@@ -27,8 +27,8 @@ public class LobbyContentPane extends JPanel {
 // initialize 
 	public LobbyContentPane(LobbyController controller, BoardController bc, ChatController cc,int playerid, Chatoutputgui cog) {
 		this.bc = bc;
-		playButton = new JButton("new spel");
-		myGameButton = new JButton("mijn spellen");
+		playButton = new JButton("Nieuw spel");
+		myGameButton = new JButton("Mijn spellen");
 		this.lc = controller;
 		this.lobby = new LobbyPanel(this, playButton, myGameButton);
 // open the gamesetup pane
