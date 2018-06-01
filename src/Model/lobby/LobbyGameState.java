@@ -26,4 +26,8 @@ public class LobbyGameState {
 		return status;
 	}
 	
+	public String getStatusForPLayerIndex(int id) {
+		return status.get(id);
+	}
+	
 }

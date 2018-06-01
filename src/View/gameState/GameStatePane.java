@@ -26,7 +26,6 @@ public class GameStatePane extends JPanel {
 	private final int PANELHEIGHT = 995;
 	private final int GAMEHEIGHT = 100;
 
-	private JButton reInviteButton;
 	private JPanel games;
 	private LobbyController lc;
 	
@@ -57,9 +56,7 @@ public class GameStatePane extends JPanel {
 			ArrayList<String> states;
 			states = hostedGames.get(i).getStatus();
 
-			reInviteButton = new JButton("Invite");
-			reInviteButton.setEnabled(true);
-			reInviteButton.setBackground(Color.orange);
+		
 
 			JPanel game = new JPanel();
 			game.setLayout(new BorderLayout());
@@ -70,7 +67,6 @@ public class GameStatePane extends JPanel {
 
 			JPanel names = new JPanel();
 			names.setLayout(new GridLayout(2, 2));
-			getGameIDButton(i, hostedGames.get(i).getGameid());
 			for (int j = 0; j < usernames.size(); j++) {
 
 				JPanel namePanel = new JPanel();
@@ -91,7 +87,7 @@ public class GameStatePane extends JPanel {
 			}
 
 			buttonPanel.setLayout(new BorderLayout());
-			buttonPanel.add(reInviteButton, BorderLayout.CENTER);
+			buttonPanel.add(createReinviteButton(hostedGames.get(i).getGameid(), i), BorderLayout.CENTER);
 
 			game.add(names, BorderLayout.CENTER);
 			game.add(buttonPanel, BorderLayout.LINE_END);
@@ -110,19 +106,16 @@ public class GameStatePane extends JPanel {
 		}
 	}
 
-	public void getGameIDButton(int i, int id) {
+	
+	public JButton createReinviteButton(int id, int i) {
+		JButton reInviteButton = new JButton();
+		reInviteButton = new JButton("Invite");
+		reInviteButton.setEnabled(true);
+		reInviteButton.setBackground(Color.orange);
 		reInviteButton.addActionListener(e -> {
-			new ReInviteFrame(lc);
-			setGameID(id);
+			new ReInviteFrame(lc, id);
 		});
-	}
-
-	public int getGameID() {
-		return gameID;
-	}
-
-	public void setGameID(int gameID) {
-		this.gameID = gameID;
+		return reInviteButton;
 	}
 	
 }

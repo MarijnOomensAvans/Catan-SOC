@@ -33,7 +33,7 @@ public class LobbyController {
 		cc = new ChatController(getGameID());
 		bc = new BoardController();
 		frame = new LobbyFrame(this,bc,cc,cog,1);
-		inGameBoard = setupFrame.getInGameBoard();
+		//inGameBoard = setupFrame.getInGameBoard();
 	}
 
 	public ArrayList<String> getUsernames() {

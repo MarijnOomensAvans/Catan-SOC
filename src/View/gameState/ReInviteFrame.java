@@ -8,10 +8,9 @@ public class ReInviteFrame extends JFrame{
 
 	private ReInvitePane pane;
 	
-	public ReInviteFrame(LobbyController lc) {
+	public ReInviteFrame(LobbyController lc, int id) {
 		
-		pane = new ReInvitePane(lc);
-		
+		pane = new ReInvitePane(lc, id);	
 		setTitle("Reinvite");
 		setContentPane(pane);
 		setResizable(false);

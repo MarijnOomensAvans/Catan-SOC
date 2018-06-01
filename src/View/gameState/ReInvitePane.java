@@ -1,67 +1,69 @@
 package View.gameState;
 
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.ArrayList;
 
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
 import com.mysql.fabric.xmlrpc.base.Array;
 
 import Controller.LobbyController;
+import Model.lobby.LobbyGameState;
 
-public class ReInvitePane extends JPanel{
+public class ReInvitePane extends JPanel {
 
-	private final int WIDTH = 400;
-	private final int HEIGHT = 50;
-	
+
 	private int amountOfDeclines = 0;
-	
+
 	private ArrayList<String> states;
 	private ArrayList<String> names;
-	
+
 	private LobbyController lc;
-	
-	public ReInvitePane(LobbyController lc) {
-		
-		setPreferredSize(new Dimension(WIDTH, HEIGHT));
+
+
+	public ReInvitePane(LobbyController lc, int gameId) {
+
 		this.lc = lc;
-		
-		
-	
-		
-	}
-	
-	public void getStates() {
-			for(int i =0; i < states.size(); i++) {
-			if (states.get(i).equals("geweigerd")) {
-				amountOfDeclines++;
-				System.out.println(amountOfDeclines);
-				System.out.println(names.get(i));
+
+		for (int i = 0; i < lc.getHostedGames().size(); i++) {
+			LobbyGameState lobbyGameState = lc.getHostedGames().get(i);
+			if (lobbyGameState.getGameid() == gameId) {
+				for (int j = 0; j < lobbyGameState.getPlayers().size(); j++) {
+					if (lobbyGameState.getStatusForPLayerIndex(j).equals("geweigerd")) {
+						amountOfDeclines++;
+					}
+				}
 			}
 		}
+		getDeclines(amountOfDeclines, gameId);
+		add(createInviteButton());
 	}
-	
-	public void getNames() {
-		
-		for(int i = 0; i < lc.getHostedGames().size(); i++) {
-			names = lc.getHostedGames().get(i).getPlayers();
-			states = lc.getHostedGames().get(i).getStatus();
-			
-		}
-		
-	}
-	
-	public void getDeclines() {
-		
+
+	public void getDeclines(int amountOfDeclines, int id) {
+
 		JComboBox<String> box = null;
-		for(int i = 0; i < amountOfDeclines; i++) {
-			for(int j = 0; j < names.size(); j++) {
-				box = new JComboBox(names.toArray());
+		for (int i = 0; i < amountOfDeclines; i++) {
+			for (int j = 0; j < lc.getUsernames().size(); j++) {
+				box = new JComboBox(lc.getUsernames().toArray());					
+					
 			}
-			add(box);
-			
+
 		}
+		add(box);
 	}
 	
+	public JButton createInviteButton() {
+		JButton reInviteButton = new JButton();
+		reInviteButton = new JButton("Invite");
+		reInviteButton.setEnabled(true);
+		reInviteButton.setBackground(Color.orange);
+		return reInviteButton;
+	}
+
+
 }
