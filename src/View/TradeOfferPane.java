@@ -528,7 +528,7 @@ public class TradeOfferPane extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				td.createOffer(playerid, stoneOfferCounter, woolOfferCounter, oreOfferCounter, wheatOfferCounter, woodOfferCounter, stoneDemandCounter, woolDemandCounter, oreDemandCounter, wheatOfferCounter, woodDemandCounter);
+				td.createOffer(playerid, stoneOfferCounter, woolOfferCounter, oreOfferCounter, wheatOfferCounter, woodOfferCounter, stoneDemandCounter, woolDemandCounter, oreDemandCounter, wheatDemandCounter, woodDemandCounter);
 				td.switchPane();
 			}
 			
