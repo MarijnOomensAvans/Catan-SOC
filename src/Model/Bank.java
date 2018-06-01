@@ -11,15 +11,15 @@ public class Bank {
 	private ArrayList<DevelopmentCard> devbank = new ArrayList <DevelopmentCard>();
 	private ArrayList<MaterialCard> matbank = new ArrayList <MaterialCard>();
 	
-	public Bank(BankDAL bd) {
+	public Bank(BankDAL bd, int gameid) {
 		this.bd = bd;
-		makeMaterialCards();
+		makeMaterialCards(gameid);
 		makeDevCards();
 	}
 	
-	private void makeMaterialCards() {
+	private void makeMaterialCards(int gameid) {
 			for(int a=1; a<96; a++) {
-				matbank.add(new MaterialCard(bd,a));
+				matbank.add(new MaterialCard(bd,a,gameid));
 			}
 		
 		

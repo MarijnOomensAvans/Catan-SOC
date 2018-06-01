@@ -116,6 +116,22 @@ public class BankDAL {
 		return result;
 	}
 	
+	public void addCardstoDB(int gameid,String idCard) {
+		Statement stmt = null;
+		String query = "INSERT spelergrondstofkaart(idspel,idgrondstofkaart) VALUES ("+gameid+" ,'"+ idCard+"')";
+		
+		try
+		{
+			stmt = conn.createStatement();
+			 stmt.executeUpdate(query);
+			
+			stmt.close();
+		} catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		
+	}
 
 
 }

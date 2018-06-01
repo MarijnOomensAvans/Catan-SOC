@@ -8,12 +8,18 @@ public class MaterialCard {
 	private String KindOfMaterial;
 	private BankDAL bd;
 
-	public MaterialCard(BankDAL bd, int a) {
+	public MaterialCard(BankDAL bd, int a, int gameid) {
 		this.bd = bd;
 		setId(a);
 		setKindOfMaterial(a);
+		addToDB(gameid);
 	}
 	
+	private void addToDB(int gameid) {
+		bd.addCardstoDB(gameid, idCard);
+		
+	}
+
 	private void setKindOfMaterial(int a) {
 		KindOfMaterial =bd.getKindOfMaterial(a);
 		
