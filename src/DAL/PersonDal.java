@@ -155,17 +155,13 @@ public class PersonDal {
 			ResultSet rs = stmt.executeQuery(query);
 			rs.next();
 			cardid = rs.getString(1);
-
-			
-
 			stmt.close();
 
 		} catch (SQLException e)
 		{
 			System.out.println(e.getMessage());
 		}
-		return cardids;
-
+		return cardid;
 	}
 
 	public void updateCard(String cardId, int playerid) {
