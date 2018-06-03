@@ -390,41 +390,6 @@ public class BankPane extends JPanel {
 		
 		sendButton = new JButton("Versturen");
 
-		sendButton.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				ArrayList<String> cardkinds = new ArrayList<String>();
-				for(int i =0; i<=stoneOfferCounter;i++) {
-					if(i> 0) {
-						cardkinds.add("B");
-					}
-				}
-				for(int i =0; i<oreOfferCounter;i++) {
-					if(i> 0) {
-						cardkinds.add("E");
-					}
-				}
-				for(int i =0; i<=woodOfferCounter;i++) {
-					if(i> 0) {
-						cardkinds.add("H");
-					}
-				}
-				for(int i =0; i<=wheatOfferCounter;i++) {
-					if(i> 0) {
-						cardkinds.add("G");
-					}
-				}
-				for(int i =0; i<=woolOfferCounter;i++) {
-					if(i> 0) {
-						cardkinds.add("W");
-					}
-				}
-				tc.tradeBank(playerid,cardkinds);
-				
-			}
-			
-		});
 		plusStoneDemand.addActionListener(new ActionListener() {
 
 			@Override
@@ -570,9 +535,9 @@ public class BankPane extends JPanel {
 						cardkindsDemand.add("E");
 					}
 				}
-				for(int i =0; i< woodDemandCounter;i++) {
-					if(woodDemandCounter > 0) {
-						cardkindsDemand.add("H");
+				for(int i =0; i< woolDemandCounter;i++) {
+					if(woolDemandCounter > 0) {
+						cardkindsDemand.add("W");
 					}
 				}
 				for(int i =0; i< wheatDemandCounter;i++) {
