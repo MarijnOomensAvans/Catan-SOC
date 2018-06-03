@@ -5,16 +5,20 @@ import DAL.BankDAL;
 public class DevelopmentCard {
 	
 	private String kindName;
-	private String iddevcard;
+	private String idDevCard;
 	private BankDAL bd;
 
 	
 //	private int kind;
 	
-	public DevelopmentCard(BankDAL bd, int b) {
+	public DevelopmentCard(BankDAL bd, int b, int gameid) {
 		this.bd = bd;
 		setIddevcard(b);
 		setKindName(b);
+		addDevCardToDB(gameid);
+	}
+	private void addDevCardToDB(int gameid) {
+		bd.addDevCardstoDB(gameid, idDevCard);
 	}
 	private void setKindName(int b) {
 		this.kindName = bd.getDevName(b);
@@ -22,7 +26,7 @@ public class DevelopmentCard {
 
 
 	private void setIddevcard(int b) {
-		this.iddevcard = bd.getDevId(b);
+		this.idDevCard = bd.getDevId(b);
 	}
 
 //	public int getKind() {
@@ -32,8 +36,8 @@ public class DevelopmentCard {
 	public String getKindName() {
 		return kindName;
 	}
-	public String getIddevcard() {
-		return iddevcard;
+	public String getIdDevCard() {
+		return idDevCard;
 	}
 
 

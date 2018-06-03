@@ -11,10 +11,10 @@ public class Bank {
 	private ArrayList<DevelopmentCard> devbank = new ArrayList <DevelopmentCard>();
 	private ArrayList<MaterialCard> matbank = new ArrayList <MaterialCard>();
 	
-	public Bank(BankDAL bd) {
+	public Bank(BankDAL bd, int gameid) {
 		this.bd = bd;
 		makeMaterialCards();
-		makeDevCards();
+		makeDevCards(gameid);
 	}
 	
 	private void makeMaterialCards() {
@@ -41,9 +41,9 @@ public class Bank {
 		
 	}
 
-	private void makeDevCards() {
+	private void makeDevCards(int gameid) {
 		for(int b=0; b<25; b++) {
-			devbank.add(new DevelopmentCard(bd, b));
+			devbank.add(new DevelopmentCard(bd, b, gameid));
 		}
 	}
 	public DevelopmentCard getDevelopmentCard() {
