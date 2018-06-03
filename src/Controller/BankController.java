@@ -1,6 +1,8 @@
 package Controller;
 
 
+import java.util.ArrayList;
+
 import DAL.BankDAL;
 import DAL.MainDAL;
 import Model.Bank;
@@ -37,5 +39,21 @@ public class BankController {
 	public DevelopmentCard getDevelopmentCard() {
 		DevelopmentCard devcard =bank.getDevelopmentCard();
 		return devcard;
+	}
+
+	public void trade(int playerid, ArrayList<String> cardkinds) {
+		bank.trade(playerid,cardkinds);
+		
+	}
+
+	public void deleteCards(int playerid2, ArrayList<String> cardkindsOffer) {
+		for(int i=0; i< cardkindsOffer.size(); i++) {
+			String cardid =bank.getMaterialCardIdTrade(cardkindsOffer.get(i));
+			boolean hasPlayerid = bank.hasPlayerid(cardid);
+			if(hasPlayerid == true) {
+				bd.deleteCards(playerid2, cardid);
+			}
+		}
+		
 	}
 }

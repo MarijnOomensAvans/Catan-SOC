@@ -10,13 +10,12 @@ import java.util.ArrayList;
 public class TradeDAL {
 	
 	Connection conn;
-//<<<<<<< HEAD
+
 	private int counter;
 	private boolean checkFirstTime = false;
-//=======
+
 	@SuppressWarnings("unused")
 	private int size;
-//>>>>>>> 64b4117ee8a1ad962f3f86cdc08a809913d7852e
 	
 	public TradeDAL() {
 		 conn = MainDAL.getConnection();

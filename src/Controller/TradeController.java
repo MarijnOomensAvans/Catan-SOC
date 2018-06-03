@@ -29,13 +29,15 @@ public class TradeController extends Observable implements Runnable {
 	private TradeResultPane trp;
 	private Thread t1;
 	private PlayerController pc;
+	private BankController bc;
 
 	private ArrayList<Integer> otherIds;
 	private boolean runthread;
 	
-	public TradeController(int playerid, int gameid, PersonDal pd, Player player, PlayerController pc) {
+	public TradeController(int playerid, int gameid, PersonDal pd, Player player, PlayerController pc, BankController bc) {
 		this.pd = pd;
 		this.td = new TradeDAL();
+		this.bc = bc;
 		this.player = player;
 		this.playerid = playerid;
 		this.gameid = gameid;
@@ -192,6 +194,16 @@ public class TradeController extends Observable implements Runnable {
 
 	public void deleteOffers(int playerid, int otherplayerid1, int otherplayerid2, int otherplayerid3) {
 		td.deleteOffers(playerid, otherplayerid1,otherplayerid2,otherplayerid3);
+		
+	}
+
+	public void tradeBank(int playerid2, ArrayList<String> cardkinds) {
+		bc.trade(playerid2,cardkinds);
+		
+	}
+
+	public void deleteCards(int playerid2, ArrayList<String> cardkindsOffer) {
+			bc.deleteCards(playerid2, cardkindsOffer);
 		
 	}
 }

@@ -29,9 +29,9 @@ public class Bank {
 		MaterialCard returncard = null;
 		for(int i=0; i<matbank.size(); i++) {
 			if(matbank.get(i).getKindOfMaterial().equals(kind)) {
+				if(matbank.get(i).getPlayerid(matbank.get(i).getIdCard())== null) {;
 				returncard = matbank.get(i);
-				matbank.remove(returncard);
-				break;
+				break;}
 			}
 		}
 		return returncard;
@@ -41,6 +41,27 @@ public class Bank {
 		matbank.add(card);
 		
 	}
+	public String getMaterialCardId(String kind) {
+		for(int i=0; i<matbank.size(); i++) {
+			if(matbank.get(i).getKindOfMaterial().equals(kind)) {
+				String id =matbank.get(i).getIdCard();
+				if(matbank.get(i).getPlayerid(id)== null) {
+					return id;
+				}
+			}
+	}
+		return null;}
+	
+	public String getMaterialCardIdTrade(String kind) {
+		for(int i=0; i<matbank.size(); i++) {
+			if(matbank.get(i).getKindOfMaterial().equals(kind)) {
+				String id =matbank.get(i).getIdCard();
+				if(matbank.get(i).getPlayerid(id)!= null) {
+					return id;
+				}
+			}
+	}
+		return null;}
 
 	private void makeDevCards() {
 		for(int b=0; b<25; b++) {
@@ -59,6 +80,26 @@ public class Bank {
 		for(int i=0; i<devbank.size(); i++) {
 			System.out.println("Kaart " + i +" van het soort " + devbank.get(i).getKindName());
 		}
+	}
+
+	public void trade(int playerid, ArrayList<String> cardkinds) {
+		for(int i=0; i<cardkinds.size(); i++) {
+			
+		String cardid =getMaterialCardId(cardkinds.get(i));
+		bd.trade(playerid,cardid);
+		}
+		
+	}
+
+	public boolean hasPlayerid(String cardid) {
+		for(int i =0; i< matbank.size(); i++) {
+			if(matbank.get(i).getIdCard().equals(cardid)) {
+				if(matbank.get(i).getPlayerid(cardid) != null) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 	}
 
