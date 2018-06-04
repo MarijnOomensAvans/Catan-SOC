@@ -183,6 +183,56 @@ public class PersonDAL {
 		}
 
 	}
+	public void addDevelopmentCard(int idgame, String iddevcard, int idplayer, boolean cardPlayed ) {
+		Statement stmt = null;
+		String query = "UPDATE spelerontwikkelingskaart SET idspeler ="+ idplayer+ " WHERE idspel ="+ idgame+" AND idontwikkelingskaart = '"+ iddevcard+ "'";
+		try
+		{
+			stmt = conn.createStatement();
+			@SuppressWarnings("unused")
+			int i = stmt.executeUpdate(query);
+			stmt.close();
+		} catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+	}
+	public void useDevelopmentCard(int idgame, String iddevcard, int idplayer, boolean cardPlayed ) {
+		Statement stmt = null;
+		String query = "UPDATE spelerontwikkelingskaart SET gespeeld ="+ cardPlayed +" WHERE idspel ="+ idgame+" AND idontwikkelingskaart = '"+ iddevcard + "' AND idspeler = "+ idplayer +"";
+		try
+		{
+			stmt = conn.createStatement();
+			@SuppressWarnings("unused")
+			int i = stmt.executeUpdate(query);
+			stmt.close();
+		} catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+	}
+	public String getDevUsed(int idgame, String iddevcard, int idplayer)
+	{
+		String result ="";
+		Statement stmt = null;
+		String query = "SELECT gespeeld FROM spelerontwikkelingskaart WHERE idspeler =" + idplayer+ " AND idspel ="+ idgame + " AND idontwikkelingskaart = '"+ iddevcard +"'";
+		try
+		{
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while (rs.next())
+			{
+				result = rs.getString(1);
+			}
+			stmt.close();
+		} catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		return result;
+			
+		
+}
 	
 	
 
