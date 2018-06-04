@@ -229,6 +229,8 @@ public class TradeResultPane extends JPanel {
 				}
 				else if(response == false){
 					response1.setBackground(Color.RED);
+				}else {
+					response1.setBackground(Color.RED);
 				}
 			}
 			else if(playerid == otherplayerid2) {
@@ -240,6 +242,8 @@ public class TradeResultPane extends JPanel {
 				}
 				else if(response == false){
 					response2.setBackground(Color.RED);
+				}else {
+					response2.setBackground(Color.RED);
 				}
 			}
 			else if(playerid == otherplayerid3) {
@@ -250,6 +254,8 @@ public class TradeResultPane extends JPanel {
 				}
 				}
 				else if(response == false){
+					response3.setBackground(Color.RED);
+				}else {
 					response3.setBackground(Color.RED);
 				}
 			}
