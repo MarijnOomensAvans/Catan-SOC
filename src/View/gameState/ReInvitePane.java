@@ -59,10 +59,6 @@ public class ReInvitePane extends JPanel {
 		});
 		return reInviteButton;
 	}
-<<<<<<< HEAD
-
-	
-=======
 	
 	private void sendInvitationUpdates() {
 		for(int i = 0; i < inviteBoxes.size(); i++) {
@@ -71,6 +67,5 @@ public class ReInvitePane extends JPanel {
 			lc.updateInvitation(username, gameid, volgnr);
 		}
 	}
->>>>>>> f3bead25c147581fd267963d11abe57211f910c3
 
 }

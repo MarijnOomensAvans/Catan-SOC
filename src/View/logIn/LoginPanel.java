@@ -1,53 +1,63 @@
 package View.logIn;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.GridLayout;
-import javax.swing.BoxLayout;
+import java.awt.Font;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
+import java.awt.image.BufferedImage;
+
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
+import javax.swing.SwingConstants;
+import javax.swing.text.PasswordView;
 
 @SuppressWarnings("serial")
 public class LoginPanel extends JPanel {
-	
+
 	private JTextField usernameTextField;
 	private JTextField passwordTextField;
-	
+	private BufferedImage background;
+
 	private JLabel usernameLabel;
 	private JLabel passwordLabel;
-	
 	private JLabel warningLabel;
 
 	@SuppressWarnings("unused")
 	private JButton loginButton;
 	@SuppressWarnings("unused")
 	private JButton registerButton;
-
-	private final int WIDTH = 300;
-	private final int HEIGHT = 170;
+	
+	private Font font;
+	private Font warningFont;
 
 	private final int FIELDWIDTH = 90;
-	private final int FIELDHEIGHT = 20;
+	private final int FIELDHEIGHT = 30;
 
 	private final int BUTTONWIDTH = 110;
 	private final int BUTTONHEIGHT = 30;
-	
+
 	private final int SIGNINPANELWIDTH = 100;
 	private final int SIGHTINPANELHEIGHT = 70;
 
-	public LoginPanel(JButton registerButton, JButton loginButton) {
+	public LoginPanel(JButton registerButton, JButton loginButton, int width, int height) {
+
+		setPreferredSize(new Dimension(width, height));
+		
+		font = new Font("Arial", Font.BOLD, 21);
+		warningFont = new Font("Arial", Font.BOLD, 18);
 
 		usernameTextField = new JTextField();
 		passwordTextField = new JTextField();
 
 		usernameLabel = new JLabel("Gebruikersnaam:");
 		passwordLabel = new JLabel("Wachtwoord:");
-		
-		warningLabel = new JLabel();
+
+		warningLabel = new JLabel(" ");
 		warningLabel.setForeground(Color.red);
 
 		usernameTextField.setAlignmentX(CENTER_ALIGNMENT);
@@ -58,64 +68,69 @@ public class LoginPanel extends JPanel {
 
 		usernameTextField.setPreferredSize(new Dimension(FIELDWIDTH, FIELDHEIGHT));
 		passwordTextField.setPreferredSize(new Dimension(FIELDWIDTH, FIELDHEIGHT));
-
-		setPreferredSize(new Dimension(WIDTH, HEIGHT));
-
-		setLayout(new BorderLayout());
+		
+		usernameLabel.setFont(font);
+		passwordLabel.setFont(font);
+		warningLabel.setFont(warningFont);
+		
+		this.setBackground(new Color(170, 150, 150, 200));
+		this.setBorder(BorderFactory.createLineBorder(new Color(150, 50, 59, 240), 5));
 
 		this.loginButton = loginButton;
 		this.registerButton = registerButton;
-
-		loginButton.setPreferredSize(new Dimension(BUTTONWIDTH, BUTTONHEIGHT));
-		registerButton.setPreferredSize(new Dimension(BUTTONWIDTH, BUTTONHEIGHT));
-
-		JPanel warningPanel = new JPanel();
 		
-		JPanel signInPanel = new JPanel();
-		JPanel usernameLabelPanel = new JPanel(); 
-		JPanel usernamePanel = new JPanel(); 
-		JPanel passwordLabelPanel = new JPanel();
-		JPanel passwordPanel = new JPanel(); 
-		JPanel labelPanel = new JPanel();
-		JPanel textFieldPanel = new JPanel();
-
-		JPanel buttonsPanel = new JPanel();
-		JPanel registerPanel = new JPanel();
-		JPanel logInPanel = new JPanel();
+		warningLabel.setHorizontalAlignment(SwingConstants.HORIZONTAL);
 		
-		usernameLabelPanel.add(usernameLabel);
-		passwordLabelPanel.add(passwordLabel);
+		this.setLayout(new GridBagLayout());
+		GridBagConstraints gc = new GridBagConstraints();
 		
-		warningPanel.add(warningLabel);
+		gc.weighty = 0.5f;
+		gc.weightx = .8;
 		
-		usernamePanel.add(usernameTextField);
-		passwordPanel.add(passwordTextField);
+		gc.insets = new Insets(5, 5, 5, 5);
+		gc.gridx = 0;
+		gc.gridy = 0;
+		gc.anchor = GridBagConstraints.LAST_LINE_END;
+		add(usernameLabel, gc);
 		
-
-		labelPanel.setLayout(new GridLayout(2, 1, 10, 10));
-		labelPanel.add(usernameLabelPanel, BorderLayout.NORTH);
-		labelPanel.add(passwordLabelPanel, BorderLayout.SOUTH);
+		gc.gridx = 0;
+		gc.gridy = 1;
+		gc.anchor = GridBagConstraints.LINE_END;
+		add(passwordLabel, gc);
 		
-		textFieldPanel.add(usernamePanel);
-		textFieldPanel.add(passwordPanel);
-
-		registerPanel.add(registerButton);
-
-		logInPanel.add(loginButton);
-
-		signInPanel.setLayout(new GridLayout(1, 2));
-		signInPanel.setPreferredSize(new Dimension(SIGNINPANELWIDTH, SIGHTINPANELHEIGHT));
-		signInPanel.add(labelPanel);
-		signInPanel.add(textFieldPanel);
-
-		buttonsPanel.setLayout(new BoxLayout(buttonsPanel, 1));
-		buttonsPanel.add(logInPanel);
-		buttonsPanel.add(registerPanel);
-
-		add(warningPanel, BorderLayout.NORTH);
-		add(signInPanel, BorderLayout.CENTER);
-		add(buttonsPanel, BorderLayout.SOUTH);
-
+		gc.insets = new Insets(5, 5, 5, 20);
+		gc.gridx = 1;
+		gc.gridy = 0;
+		gc.fill = GridBagConstraints.HORIZONTAL;
+		gc.anchor = GridBagConstraints.PAGE_END;
+		add(usernameTextField, gc);
+		
+		gc.gridx = 1;
+		gc.gridy = 1;
+		gc.anchor = GridBagConstraints.CENTER;
+		add(passwordTextField, gc);
+		
+		gc.insets = new Insets(20, 20, 20, 20);
+		gc.gridx = 0;
+		gc.gridy = 2;
+		gc.weightx = 0;
+		gc.anchor = GridBagConstraints.CENTER;
+		add(registerButton, gc);
+		
+		gc.gridx = 1;
+		gc.gridy = 2;
+		gc.weightx = 1;
+		gc.anchor = GridBagConstraints.CENTER;
+		add(loginButton, gc);
+		
+		gc.gridx = 0;
+		gc.gridy = 3;
+		gc.anchor = GridBagConstraints.CENTER;
+		gc.gridwidth = 2;
+		gc.weighty = 0.2f;
+		gc.insets = new Insets(0,0,0,0);
+		gc.fill = GridBagConstraints.BOTH;
+		add(warningLabel, gc);
 	}
 
 	public String getUsername() {
@@ -125,12 +140,10 @@ public class LoginPanel extends JPanel {
 	public String getPassword() {
 		return passwordTextField.getText();
 	}
-	
-	//Display a warning
+
+	// Display a warning
 	public void setWarning(String warning) {
 		warningLabel.setText(warning);
 	}
 
-	
-	
 }

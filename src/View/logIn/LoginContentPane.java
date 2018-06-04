@@ -1,5 +1,12 @@
 package View.logIn;
 
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.GridBagLayout;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -13,17 +20,19 @@ public class LoginContentPane extends JPanel {
 	private LoginFrame GUI;
 	private JButton registerButton, loginButton;
 	private JButton registerCompleetButton, cancelButton;
+	private BufferedImage background;
 
 	public LoginContentPane(LoginFrame GUI, LoginController controller) {
 		this.GUI = GUI;
 		registerButton = new JButton("Registreer");
 		loginButton = new JButton("Inloggen");
 		registerCompleetButton = new JButton("Registreer");
-
 		cancelButton = new JButton("Annuleer");
+		
+		this.setPreferredSize(new Dimension(1280, 720));
 
-		loginPanel = new LoginPanel(registerButton, loginButton);
-		registerPanel = new RegisterPanel(registerCompleetButton, cancelButton);
+		loginPanel = new LoginPanel(registerButton, loginButton, 380, 200);
+		registerPanel = new RegisterPanel(registerCompleetButton, cancelButton, 380, 200);
 
 		loginButton.addActionListener(e -> {
 			String username = loginPanel.getUsername();
@@ -37,33 +46,43 @@ public class LoginContentPane extends JPanel {
 		});
 
 		cancelButton.addActionListener(e -> {
-			switchScreenInlog();
+			switchScreenLogin();
 		});
 
 		registerCompleetButton.addActionListener(e -> {
 			String username = registerPanel.getUsername();
 			String password = registerPanel.getPassword();
 			String passwordVer = registerPanel.getPasswordVerification();
-			controller.buttonPressedRegisterCompleet(username, password, passwordVer);
+			if(controller.buttonPressedRegisterCompleet(username, password, passwordVer)) {
+				switchScreenLogin();
+			}
 		});
 
+		try {
+			background = ImageIO.read(this.getClass().getClassLoader().getResource("images/background.jpg"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		this.setLayout(new GridBagLayout());
+		
 		add(loginPanel);
 	}
 
 	//Switch the visible panel to register
 	public void switchScreenRegister() {
-		removeAll();
+		remove(loginPanel);
 		repaint();
 		add(registerPanel);
-		GUI.pack();
+		validate();
 	}
 	
 	//Switch the visible panel to login
-	public void switchScreenInlog() {
-		removeAll();
+	public void switchScreenLogin() {
+		remove(registerPanel);
 		repaint();
 		add(loginPanel);
-		GUI.pack();
+		validate();
 	}
 
 	
@@ -71,6 +90,13 @@ public class LoginContentPane extends JPanel {
 	public void setWarning(String warning) {
 		loginPanel.setWarning(warning);
 		registerPanel.setWarning(warning);
+		this.repaint();
+	}
+	
+	@Override
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		g.drawImage(background,  0, 0, null);
 	}
 
 }
