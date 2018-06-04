@@ -175,7 +175,23 @@ public class TradeAcceptPane extends JPanel implements Observer {
 		acceptButton = new JButton("Accepteren");
 		rejectButton = new JButton("Weigeren");
 		counterOffer = new JButton("Tegenbod");
-
+		
+		acceptButton.setEnabled(false);
+		ArrayList<Integer> offer = new ArrayList<Integer>();
+		offer.add(playerid);
+		offer.add(stoneOfferCounter);
+		offer.add(woolOfferCounter);
+		offer.add(oreOfferCounter);
+		offer.add(wheatOfferCounter);
+		offer.add(woodOfferCounter);
+		offer.add(stoneDemandCounter);
+		offer.add(woolDemandCounter);
+		offer.add(oreDemandCounter);
+		offer.add(wheatDemandCounter);
+		offer.add(woodDemandCounter);
+		if(tc.hasCards(offer) == true) {
+			acceptButton.setEnabled(true);
+		}
 		acceptButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -184,7 +200,6 @@ public class TradeAcceptPane extends JPanel implements Observer {
 				tc.createOffer(playerid, stoneDemandCounter, woolDemandCounter, oreDemandCounter, wheatDemandCounter, woodDemandCounter, stoneOfferCounter, woolOfferCounter, oreOfferCounter, wheatOfferCounter, woodOfferCounter, true);
 				tc.close();
 			}
-
 		});
 		rejectButton.addActionListener(new ActionListener() {
 
