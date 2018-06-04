@@ -19,6 +19,10 @@ public class MainClass {
 		player1.addMaterialCard("B");
 		player1.addMaterialCard("B");
 		player1.addMaterialCard("B");
+		player1.addMaterialCard("B");
+		player1.addMaterialCard("B");
+		player1.addMaterialCard("B");
+		player1.addMaterialCard("B");
 		player1.addMaterialCard("H");
 		new TradeController(playerid, 770, pd, player1,player,bc);
 	}
