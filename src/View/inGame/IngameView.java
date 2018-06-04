@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -15,6 +17,7 @@ import javax.swing.border.Border;
 import Controller.BoardController;
 import Controller.ChatController;
 import View.board.BoardColours;
+import View.build.BuildFrame;
 import View.chat.ChatContentPane;
 import View.chat.Chatoutputgui;
 import View.setupGame.DrawingPanel;
@@ -85,9 +88,18 @@ public class IngameView extends JPanel{
 		
 		JPanel boardPanel = new JPanel();
 		
-		JButton buildButton = new JButton();
-		JButton tradeButton = new JButton();
-		JButton devcardButton = new JButton();
+		JButton buildButton = new JButton("Bouwen");
+		buildButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new BuildFrame();
+				
+			}
+			
+		});
+		JButton tradeButton = new JButton("Handelen");
+		JButton devcardButton = new JButton("Ontwikkelingskaarten");
 		JButton throwDiceButton = new JButton("Gooi Dobbelstenen");
 		
 		JLabel streetLabel = new JLabel("Straat: 1B-1H");

@@ -13,13 +13,13 @@ public class Bank {
 	
 	public Bank(BankDAL bd, int gameid) {
 		this.bd = bd;
-		makeMaterialCards();
+		makeMaterialCards(gameid);
 		makeDevCards(gameid);
 	}
 	
-	private void makeMaterialCards() {
+	private void makeMaterialCards(int gameid) {
 			for(int a=1; a<96; a++) {
-				matbank.add(new MaterialCard(bd,a));
+				matbank.add(new MaterialCard(bd,a,gameid));
 			}
 		
 		
@@ -28,9 +28,9 @@ public class Bank {
 		MaterialCard returncard = null;
 		for(int i=0; i<matbank.size(); i++) {
 			if(matbank.get(i).getKindOfMaterial().equals(kind)) {
+				if(matbank.get(i).getPlayerid(matbank.get(i).getIdCard())== null) {;
 				returncard = matbank.get(i);
-				matbank.remove(returncard);
-				break;
+				break;}
 			}
 		}
 		return returncard;
@@ -46,6 +46,31 @@ public class Bank {
 			devbank.add(new DevelopmentCard(bd, b, gameid));
 		}
 	}
+			
+	public String getMaterialCardId(String kind) {
+		for(int i=0; i<matbank.size(); i++) {
+			if(matbank.get(i).getKindOfMaterial().equals(kind)) {
+				String id =matbank.get(i).getIdCard();
+				if(matbank.get(i).getPlayerid(id)== null) {
+					return id;
+				}
+			}
+	}
+		return null;
+		}
+	
+	public String getMaterialCardIdTrade(String kind) {
+		for(int i=0; i<matbank.size(); i++) {
+			if(matbank.get(i).getKindOfMaterial().equals(kind)) {
+				String id =matbank.get(i).getIdCard();
+				if(matbank.get(i).getPlayerid(id)!= null) {
+					return id;
+				}
+			}
+	}
+		return null;
+		}
+
 	public DevelopmentCard getDevelopmentCard() {
 		Random random = new Random();
 		int number =random.nextInt(devbank.size());
@@ -59,6 +84,26 @@ public class Bank {
 			System.out.println("Kaart " + i +" van het soort " + devbank.get(i).getKindName());
 		}
 	}
+
+	public void trade(int playerid, ArrayList<String> cardkinds) {
+		for(int i=0; i<cardkinds.size(); i++) {
+			
+		String cardid =getMaterialCardId(cardkinds.get(i));
+		bd.trade(playerid,cardid);
+		}
+		
 	}
+
+	public boolean hasPlayerid(String cardid) {
+		for(int i =0; i< matbank.size(); i++) {
+			if(matbank.get(i).getIdCard().equals(cardid)) {
+				if(matbank.get(i).getPlayerid(cardid) != null) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+}
 
 
