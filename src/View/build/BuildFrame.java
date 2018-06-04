@@ -9,7 +9,6 @@ public class BuildFrame extends JFrame{
 	public BuildFrame() {
 		this.buildcontentpane = new BuildContentPane(this);
 		this.setTitle("Bouw");
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		this.setContentPane(buildcontentpane);
 		pack();
