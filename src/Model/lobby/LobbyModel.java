@@ -1,6 +1,7 @@
 package Model.lobby;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
 import DAL.LobbyDAL;
 
@@ -17,18 +18,14 @@ public class LobbyModel {
 
 	public LobbyModel(LobbyDAL lobbyDAL) {
 		this.lobbyDAL = lobbyDAL;
-		
-		ArrayList<LobbyGameState> hostedGames = lobbyDAL.getHostedGames();
-		
 	}
-	
-	public ArrayList<LobbyGameState> getHostedGames(){
+
+	public ArrayList<LobbyGameState> getHostedGames() {
 		return lobbyDAL.getHostedGames();
 	}
 
 	public ArrayList<String> getUsernames() {
 		usernames = lobbyDAL.getAllAccounts();
-
 		return usernames;
 	}
 
@@ -44,7 +41,7 @@ public class LobbyModel {
 		return lobbyDAL.getPlayers(gameID);
 	}
 
-	//Saves the returned value of the makeNewGameID method.
+	// Saves the returned value of the makeNewGameID method.
 	public void makeNewGameID() {
 		int gameid = lobbyDAL.makeNewGameID();
 		this.gameid = gameid;
@@ -90,8 +87,8 @@ public class LobbyModel {
 		}
 
 		int playerid = lobbyDAL.createInvitation(username, gameid, volgnr, kleur, speelstatus);
-		
-		if(volgnr == 1) {
+
+		if (volgnr == 1) {
 			lobbyDAL.initializePlayerTurn(gameid, playerid);
 			System.out.println("Set " + playerid + " as user at turn");
 		}
@@ -100,5 +97,4 @@ public class LobbyModel {
 	public void updateInvitation(String username, int gameid, int volgnr) {
 		lobbyDAL.updateInvitation(username, gameid, volgnr);
 	}
-
 }

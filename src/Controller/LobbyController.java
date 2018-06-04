@@ -34,7 +34,8 @@ public class LobbyController {
 		cc = new ChatController(getGameID(), 0);
 		bc = new BoardController();
 		frame = new LobbyFrame(this,bc,cc,cog,1);
-		//inGameBoard = setupFrame.getInGameBoard();
+		LobbyUpdateController updateController = new LobbyUpdateController();
+		updateController.addObserver(frame.getPanel());
 	}
 
 	public ArrayList<String> getUsernames() {

@@ -91,5 +91,8 @@ public class LobbyContentPane extends JPanel {
 	public void openGame(int gameID) {
 		lc.openGame(gameID);
 	}
+	public LobbyPanel getPanel() {
+		return lobby;
+	}
 
 }
