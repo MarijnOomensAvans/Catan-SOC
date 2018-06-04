@@ -115,5 +115,12 @@ public class ClickPoints
 			yvalues.add(y);
 		}
 	}
+	
+	public void showPOint() {
+		for (int j = 0; j < points.size(); j++) {
+		System.out.println(points.get("3,5"));
+		}
+	}
+
 
 }
