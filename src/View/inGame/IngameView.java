@@ -79,7 +79,6 @@ public class IngameView extends JPanel{
 		
 		JPanel boardPanel = new JPanel();
 		
-<<<<<<< HEAD
 		JButton buildButton = new JButton("Bouwen");
 		buildButton.addActionListener(new ActionListener() {
 
@@ -92,17 +91,12 @@ public class IngameView extends JPanel{
 		});
 		JButton tradeButton = new JButton("Handelen");
 		JButton devcardButton = new JButton("Ontwikkelingskaarten");
-=======
-		JButton buildButton = new JButton();
-		JButton tradeButton = new JButton();
-		JButton devcardButton = new JButton();
 		JButton throwDiceButton = new JButton("Gooi Dobbelstenen");
 		
 		JLabel streetLabel = new JLabel("Straat: 1B-1H");
 		JLabel villageLabel = new JLabel("Dorp: 1B-1H-1G-1W");
 		JLabel cityLabel = new JLabel("Stad: 2G-3E");
 		JLabel devCardLabel = new JLabel("Ontwikkelingskaart: 1W-1G-1E");
->>>>>>> c6aa5438dbf81f34e53b8e0b7865499ddaf22759
 		
 		
 		buildButton.setPreferredSize(new Dimension(BUTTONWIDTH, BUTTONHEIGHT));
@@ -132,8 +126,6 @@ public class IngameView extends JPanel{
 		buttonPanel.add(buildButton);
 		buttonPanel.add(tradeButton);
 		buttonPanel.add(devcardButton);
-<<<<<<< HEAD
-=======
 		
 		buildCostPanel.setPreferredSize(new Dimension(200, 100));
 		buildCostPanel.setLayout(new GridLayout(0, 1));
@@ -148,7 +140,6 @@ public class IngameView extends JPanel{
 		costAndDicePanel.setLayout(new BorderLayout());
 		costAndDicePanel.add(buildCostPanel, BorderLayout.CENTER);
 		costAndDicePanel.add(diceButtonPanel, BorderLayout.EAST);
->>>>>>> c6aa5438dbf81f34e53b8e0b7865499ddaf22759
 		
 		bottomInfoPanel.setLayout(new BorderLayout());
 		bottomInfoPanel.add(resourceCardPanel, BorderLayout.WEST);
