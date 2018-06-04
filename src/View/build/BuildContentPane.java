@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Controller.BuildController;
+import Model.Player;
 
 @SuppressWarnings("serial")
 public class BuildContentPane extends JPanel{
@@ -21,9 +22,11 @@ public class BuildContentPane extends JPanel{
 	ImageIcon imageDevCard = new ImageIcon("./images/OntwikkleingskaartIcon.png");
 	private Dimension buttonsize = new Dimension(200,100);
 	private BuildController buildcontroller = new BuildController();
+	private Player player;
 	
 	
-	public BuildContentPane(BuildFrame frame) {
+	public BuildContentPane(BuildFrame frame,Player player) {
+		this.player = player;
 		this.setLayout(gridLayout);
 		gridLayout.setVgap(50);
 		this.setPreferredSize(new Dimension(500,500));
@@ -40,6 +43,9 @@ public class BuildContentPane extends JPanel{
             	frame.closeFrame();
             }
         });
+		if(!(player.hasStoneCard(1) && player.hasWheatCard(1) && player.hasWoodCard(1) && player.hasWoolCard(1))) {
+			villageBuild.setEnabled(false);
+		}
 		villageBuild.setPreferredSize(buttonsize);
 		this.add(villageBuild);
 		//City
@@ -54,6 +60,9 @@ public class BuildContentPane extends JPanel{
             	frame.closeFrame();
             }
         });
+		if(!(player.hasOreCard(3) && player.hasWheatCard(2))) {
+			cityBuild.setEnabled(false);
+		}
 		cityBuild.setPreferredSize(buttonsize);
 		this.add(cityBuild);
 		//Street
@@ -68,6 +77,9 @@ public class BuildContentPane extends JPanel{
             	frame.closeFrame();
             }
         });
+		if(!(player.hasStoneCard(1) && player.hasWoodCard(1))) {
+			streetBuild.setEnabled(false);
+		}
 		streetBuild.setPreferredSize(buttonsize);
 		this.add(streetBuild);
 		//Devcard
@@ -82,6 +94,9 @@ public class BuildContentPane extends JPanel{
             	frame.closeFrame();
             }
         });
+		if(!(player.hasWoodCard(1) && player.hasWheatCard(1) && player.hasOreCard(1))) {
+			devCardBuild.setEnabled(false);
+		}
 		devCardBuild.setPreferredSize(buttonsize);
 		this.add(devCardBuild);
 
