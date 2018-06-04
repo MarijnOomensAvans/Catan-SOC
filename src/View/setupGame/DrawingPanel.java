@@ -7,14 +7,23 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Set;
+
 import javax.swing.JPanel;
 
 import Controller.BoardController;
+import Model.board.ClickPoints;
+import Model.board.Location;
 import View.board.BoardColours;
 import View.board.Hexagon;
 
 @SuppressWarnings("serial")
 public class DrawingPanel extends JPanel {
+	
+	private ClickPoints clickpoints;
+	
+	private ArrayList<Location> keys;
+	
 // making 19 rooms for hexagons
 	private Hexagon hexagon1;
 	private Hexagon hexagon2;
@@ -96,10 +105,11 @@ public class DrawingPanel extends JPanel {
 
 // set background
 		setBackground(BoardColours.SEA.getRGB());
+		createKlikpunten();
+    	clickpoints.showPOint();
 	}
 
-
-// drawing the hexagons
+	// drawing the hexagons
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
@@ -121,4 +131,58 @@ public class DrawingPanel extends JPanel {
 		g.drawImage( img, hexagons.get(i).getCenter().x - 15, hexagons.get(i).getCenter().y - 15, this);
 		}
 	}
+	
+  private void createKlikpunten()
+
+  {
+
+	  clickpoints = new ClickPoints();
+	   keys = bc.getLocatieKeys();
+
+        for (int i = 0; i < 54; i++)
+
+        {
+      	  String key = "" + keys.get(i).getX() + "," + keys.get(i).getY();
+        	clickpoints.addPoint(convertXfromKeyToScreenX(keys, i), convertYfromKeyToScreenY(keys, i), key);
+
+        }
+
+  }
+
+
+
+  private int convertXfromKeyToScreenX(ArrayList<Location> key, int i)
+
+  {
+
+        int keyX = keys.get(i).getX();
+
+        return 500 + ((keyX - 1) * (50 / 2)) + keyX - 2;
+
+  }
+
+
+
+  private int convertYfromKeyToScreenY(ArrayList<Location> key, int i)
+
+  {
+
+        int keyX = key.get(i).getX();
+
+	        int keyY = key.get(i).getY();
+
+        return 500 + (((2 * (12 - keyY)) - (10 - keyX)) * 100);
+
+  }
+
+
+
+  private String convertXYfromScreenToKey(int x, int y)
+
+  {
+
+        return clickpoints.getKey(x, y);
+
+  }
+
 }

@@ -148,5 +148,154 @@ public class Player {
 	public int getKnightmight() {
 			return knightmight;
 	}
+	public boolean hasKnightCard(int amount) {
+		int counter =0;
+		if(handdev.size()>0) {
+			
+		for(int i =0; i< handdev.size(); i++) {
+			if(handdev.get(i).getIdDevCard().substring(3).equals("r")) {
+				counter++;
+			};
+		}
+		}
+		if(counter>= amount) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+	public boolean hasStratenBouw(int amount) {
+		int counter =0;
+		if(handdev.size()>0) {
+			
+		for(int i =0; i< handdev.size(); i++) {
+			if(handdev.get(i).getIdDevCard().substring(3).equals("s")) {
+				counter++;
+			};
+		}
+		}
+		if(counter>= amount) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+	public boolean hasMonopolie(int amount) {
+		int counter =0;
+		if(handdev.size()>0) {
+			
+		for(int i =0; i< handdev.size(); i++) {
+			if(handdev.get(i).getIdDevCard().substring(3).equals("m")) {
+				counter++;
+			};
+		}
+		}
+		if(counter>= amount) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	public boolean hasUitvinding(int amount) {
+		int counter =0;
+		if(handdev.size()>0) {
+			
+		for(int i =0; i< handdev.size(); i++) {
+			if(handdev.get(i).getIdDevCard().substring(3).equals("u")) {
+				counter++;
+			};
+		}
+		}
+		if(counter>= amount) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+	public boolean hasKathedraal(int amount) {
+		int counter =0;
+		if(handdev.size()>0) {
+			
+		for(int i =0; i< handdev.size(); i++) {
+			if(handdev.get(i).getIdDevCard().substring(2).equals("1q")) {
+				counter++;
+			};
+		}
+		}
+		if(counter>= amount) {
+			return true;
+		}else {
+			return false;
+		}
+}
+	public boolean hasParlement(int amount) {
+		int counter =0;
+		if(handdev.size()>0) {
+			
+		for(int i =0; i< handdev.size(); i++) {
+			if(handdev.get(i).getIdDevCard().substring(2).equals("5q")) {
+				counter++;
+			};
+		}
+		}
+		if(counter>= amount) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+	public boolean hasMarkt(int amount) {
+		int counter =0;
+		if(handdev.size()>0) {
+			
+		for(int i =0; i< handdev.size(); i++) {
+			if(handdev.get(i).getIdDevCard().substring(2).equals("2q")) {
+				counter++;
+			};
+		}
+		}
+		if(counter>= amount) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	public boolean hasBibliotheek(int amount) {
+		int counter =0;
+		if(handdev.size()>0) {
+			
+		for(int i =0; i< handdev.size(); i++) {
+			if(handdev.get(i).getIdDevCard().substring(2).equals("3q")) {
+				counter++;
+			};
+		}
+		}
+		if(counter>= amount) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+
+	public boolean hasUniversiteit(int amount) {
+		int counter =0;
+		if(handdev.size()>0) {
+			
+		for(int i =0; i< handdev.size(); i++) {
+			if(handdev.get(i).getIdDevCard().substring(2).equals("4q")) {
+				counter++;
+			};
+		}
+		}
+		if(counter>= amount) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 	
 }

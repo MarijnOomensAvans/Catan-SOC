@@ -2,8 +2,10 @@ package Controller;
 
 import java.awt.Color;
 import java.awt.Image;
+import java.util.ArrayList;
 
 import Model.board.Board;
+import Model.board.Location;
 
 public class BoardController {
 	private Board board;
@@ -40,6 +42,10 @@ public class BoardController {
 	public Image getImage(int i, int idspel) {
 		return board.getImage(i, idspel);
 		
+	}
+
+	public ArrayList<Location> getLocatieKeys() {
+		return board.getLocatieKeys();
 	}
 
 	
