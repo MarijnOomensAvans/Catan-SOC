@@ -1,58 +1,22 @@
 package Controller;
 
-<<<<<<< HEAD
-import DAL.MainDAL;
-import DAL.PersonDAL;
-=======
 import java.util.ArrayList;
 
-import DAL.MainDAL;
-import DAL.PersonDal;
->>>>>>> ruilen
 import Model.DevelopmentCard;
 import Model.MaterialCard;
 import Model.Player;
 
 public class PlayerController {
-<<<<<<< HEAD
 	private Player player;
 	private BankController bc;
-	@SuppressWarnings("unused")
-	private MainDAL md;
-	private PersonDAL pd;
 	
-	public PlayerController(MainDAL md, BankController bc,int personid) {
-		this.md = md;
+
+	public PlayerController(BankController bc,int personid) {
 		this.bc = bc;
-		pd = new PersonDAL();
-		Player player1 =new Player(this, pd, 41, 770);
-
-//		Player player2 =new Player(this, pd, 42, 770);
-		
-	}
-
-	public MaterialCard getMaterialCard(String kind) {
-		MaterialCard card =bc.getMaterialCard(kind);
-=======
-	
-	private BankController bc;
-	@SuppressWarnings("unused")
-	private MainDAL md;
-	private PersonDal pd;
-	
-
-	public PlayerController(MainDAL md,PersonDal pd, BankController bc,int personid) {
-
-		this.md = md;
-		this.bc = bc;
-		this.pd = pd;
-		//Player player1 =new Player(this, pd, personid, 1);
-		//player1.addMaterialCard("W");
 	}
 
 	public MaterialCard getMaterialCard(String kind, int playerid) {
 		MaterialCard card =bc.getMaterialCard(kind,playerid);
->>>>>>> ruilen
 		return card;
 	}
 
@@ -61,7 +25,6 @@ public class PlayerController {
 		
 	}
 
-<<<<<<< HEAD
 	public DevelopmentCard getDevelopmentCard(String iddevcard) {
 		DevelopmentCard devcard =bc.getDevelopmentCard(iddevcard);
 		return devcard;
@@ -104,11 +67,8 @@ public class PlayerController {
 		return has;
 	}
 
-	
-}
 
 
-=======
 	public DevelopmentCard getDevelopmentCard() {
 		DevelopmentCard devcard =bc.getDevelopmentCard();
 		return devcard;
@@ -121,4 +81,3 @@ public class PlayerController {
 	}
 
 }
->>>>>>> ruilen

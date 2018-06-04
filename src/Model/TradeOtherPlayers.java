@@ -2,15 +2,15 @@ package Model;
 
 import java.util.ArrayList;
 
-import DAL.PersonDal;
+import DAL.PersonDAL;
 import DAL.TradeDAL;
 
 public class TradeOtherPlayers {
 	
-	private PersonDal pd;
+	private PersonDAL pd;
 	private TradeDAL td;
 	
-	public TradeOtherPlayers(PersonDal pd, TradeDAL td) {
+	public TradeOtherPlayers(PersonDAL pd, TradeDAL td) {
 		this.pd = pd;
 		this.td = td;
 

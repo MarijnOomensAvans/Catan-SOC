@@ -1,6 +1,6 @@
 package Controller;
 
-import DAL.PersonDal;
+import DAL.PersonDAL;
 import DAL.TradeDAL;
 
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ import View.TradeOfferPane;
 public class TradeController extends Observable implements Runnable {
 
 	private TradeDAL td;
-	private PersonDal pd;
+	private PersonDAL pd;
 	private TradeOtherPlayers otherPlayers;
 	private int playerid;
 	private int gameid;
@@ -34,7 +34,7 @@ public class TradeController extends Observable implements Runnable {
 	private ArrayList<Integer> otherIds;
 	private boolean runthread;
 	
-	public TradeController(int playerid, int gameid, PersonDal pd, Player player, PlayerController pc, BankController bc) {
+	public TradeController(int playerid, int gameid, PersonDAL pd, Player player, PlayerController pc, BankController bc) {
 		this.pd = pd;
 		this.td = new TradeDAL();
 		this.bc = bc;

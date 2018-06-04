@@ -6,12 +6,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-public class PersonDal {
+public class PersonDAL {
 	
 	Connection conn;
 	
 	
-	public PersonDal() {
+	public PersonDAL() {
 		 conn = MainDAL.getConnection();
 	}
 	
@@ -183,6 +183,8 @@ public class PersonDal {
 		}
 
 	}
+	
+	
 
 
 }

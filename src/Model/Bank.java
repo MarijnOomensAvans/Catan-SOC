@@ -1,9 +1,5 @@
 package Model;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> ruilen
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -17,23 +13,13 @@ public class Bank {
 	
 	public Bank(BankDAL bd, int gameid) {
 		this.bd = bd;
-<<<<<<< HEAD
-		makeMaterialCards();
-		makeDevCards(gameid);
-	}
-	
-	private void makeMaterialCards() {
-			for(int a=1; a<96; a++) {
-				matbank.add(new MaterialCard(bd,a));
-=======
 		makeMaterialCards(gameid);
-		makeDevCards();
+		makeDevCards(gameid);
 	}
 	
 	private void makeMaterialCards(int gameid) {
 			for(int a=1; a<96; a++) {
 				matbank.add(new MaterialCard(bd,a,gameid));
->>>>>>> ruilen
 			}
 		
 		
@@ -42,15 +28,9 @@ public class Bank {
 		MaterialCard returncard = null;
 		for(int i=0; i<matbank.size(); i++) {
 			if(matbank.get(i).getKindOfMaterial().equals(kind)) {
-<<<<<<< HEAD
-				returncard = matbank.get(i);
-				matbank.remove(returncard);
-				break;
-=======
 				if(matbank.get(i).getPlayerid(matbank.get(i).getIdCard())== null) {;
 				returncard = matbank.get(i);
 				break;}
->>>>>>> ruilen
 			}
 		}
 		return returncard;
@@ -60,12 +40,13 @@ public class Bank {
 		matbank.add(card);
 		
 	}
-<<<<<<< HEAD
 
 	private void makeDevCards(int gameid) {
 		for(int b=0; b<25; b++) {
 			devbank.add(new DevelopmentCard(bd, b, gameid));
-=======
+		}
+	}
+			
 	public String getMaterialCardId(String kind) {
 		for(int i=0; i<matbank.size(); i++) {
 			if(matbank.get(i).getKindOfMaterial().equals(kind)) {
@@ -75,7 +56,8 @@ public class Bank {
 				}
 			}
 	}
-		return null;}
+		return null;
+		}
 	
 	public String getMaterialCardIdTrade(String kind) {
 		for(int i=0; i<matbank.size(); i++) {
@@ -86,14 +68,9 @@ public class Bank {
 				}
 			}
 	}
-		return null;}
-
-	private void makeDevCards() {
-		for(int b=0; b<25; b++) {
-			devbank.add(new DevelopmentCard(bd, b));
->>>>>>> ruilen
+		return null;
 		}
-	}
+
 	public DevelopmentCard getDevelopmentCard() {
 		Random random = new Random();
 		int number =random.nextInt(devbank.size());
@@ -107,8 +84,6 @@ public class Bank {
 			System.out.println("Kaart " + i +" van het soort " + devbank.get(i).getKindName());
 		}
 	}
-<<<<<<< HEAD
-=======
 
 	public void trade(int playerid, ArrayList<String> cardkinds) {
 		for(int i=0; i<cardkinds.size(); i++) {
@@ -129,7 +104,6 @@ public class Bank {
 		}
 		return false;
 	}
->>>>>>> ruilen
-	}
+}
 
 

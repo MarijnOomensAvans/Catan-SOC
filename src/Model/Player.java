@@ -5,11 +5,7 @@ import java.util.ArrayList;
 
 
 import Controller.PlayerController;
-<<<<<<< HEAD
 import DAL.PersonDAL;
-=======
-import DAL.PersonDal;
->>>>>>> ruilen
 
 public class Player {
 	
@@ -20,29 +16,20 @@ public class Player {
 	private int order_number;
 
 	private PlayerController conn;
-<<<<<<< HEAD
 	private PersonDAL pd;
-=======
-	private PersonDal pd;
->>>>>>> ruilen
 	private int points = 0;
 	private int knightmight = 0;
 	
 	private ArrayList<MaterialCard> hand = new ArrayList<MaterialCard>();
 	private ArrayList<DevelopmentCard> handdev = new ArrayList<DevelopmentCard>();
-<<<<<<< HEAD
+
 	private String idDevCard;
 
 	public Player(PlayerController controller, PersonDAL pd, int playerid, int gameid) {
-=======
-
-	public Player(PlayerController controller, PersonDal pd, int playerid, int gameid) {
->>>>>>> ruilen
 		conn = controller;
 		this.pd = pd;
 		this.player_id = playerid;
 		this.game_id = gameid;
-<<<<<<< HEAD
 		setName();
 		setColor();
 		setOrder_number();
@@ -53,12 +40,9 @@ public class Player {
 		printallPlayerDevCards();
 		removeDevCard("o12r", gameid, playerid);
 		
-=======
 		//setName();
 		//setColor();
 		//setOrder_number();
-
->>>>>>> ruilen
 		
 	}
 	
@@ -78,9 +62,8 @@ public class Player {
 			order_number = pd.getorder_number(player_id,game_id);
 	}
 
-	public void addMaterialCard(String kind) {
-<<<<<<< HEAD
-		MaterialCard newCard = conn.getMaterialCard(kind);
+	public void addMaterialCard(String kind,int gameid) {
+		MaterialCard newCard = conn.getMaterialCard(kind, gameid);
 		String cardid = newCard.getIdCard();
 		pd.addMaterialCard(game_id, cardid, player_id);
 		hand.add(newCard);
@@ -94,16 +77,6 @@ public class Player {
 		
 		}
 	
-=======
-		MaterialCard newCard = conn.getMaterialCard(kind, player_id);
-		if(newCard != null)
-		{
-			String cardid = newCard.getIdCard();
-			pd.addMaterialCard(game_id, cardid, player_id);
-			hand.add(newCard);
-		}
-	}
->>>>>>> ruilen
 	
 	public void removeMatCard(String kind) {
 		for(int i=0; i< hand.size(); i++) {
@@ -114,11 +87,9 @@ public class Player {
 			}
 		}
 	}
-<<<<<<< HEAD
 	public void removeDevCard(String idDevCard, int gameid, int playerid) {
 		for(int i=0; i< handdev.size(); i++) {
 			if(handdev.get(i).getIdDevCard().equals(idDevCard)) {
-				System.out.println("hallo");
 				System.out.println(pd.getDevUsed(gameid, idDevCard, playerid));
 				pd.useDevelopmentCard(gameid, idDevCard, playerid, true);
 				System.out.println(pd.getDevUsed(gameid, idDevCard, playerid));
@@ -144,31 +115,15 @@ public class Player {
 		for(int i=0; i< handdev.size(); i++) {
 			if(handdev.get(i).getIdDevCard().substring(3).equals("r")) {
 				System.out.println("Bij het spelen van deze kaart moet je de struikrover verzetten en van één van de getroffen spelers een grondstoffenkaart trekken.");
-=======
+			}
+		}
+	}
 
 	public void adddevelopmentCard(int kind) {
 		handdev.add(conn.getDevelopmentCard());
 	
 		}
 	
-	public void testpointDevCard() {
-		for(int i=0; i< handdev.size(); i++) {
-			if(handdev.get(i).getKind() >= 20) {
-				System.out.println("hey hier krijg je een punt voor");
-				points++;
-			}
-		}
-}
-	public void testKnightmight() {
-		for(int i=0; i< handdev.size(); i++) {
-			if(handdev.get(i).getKind() >= 6 && handdev.get(i).getKind() <=20) {
-				System.out.println("hey hier krijg je een ridder punt voor");
->>>>>>> ruilen
-				knightmight++;
-			}
-		}
-	}
-<<<<<<< HEAD
 	public void testMonopoly() {
 		for(int i=0; i< handdev.size(); i++) {
 			if(handdev.get(i).getIdDevCard().substring(3).equals("m")) {
@@ -180,13 +135,6 @@ public class Player {
 		for(int i=0; i< handdev.size(); i++) {
 			if(handdev.get(i).getIdDevCard().substring(3).equals("s")) {
 				System.out.println("Bij het spelen van deze kaart mag je direct twee starten bouwen.");
-=======
-	public void removeDevCard(int kind) {
-		for(int i=0; i< handdev.size(); i++) {
-			if(handdev.get(i).getKind() == kind) {
-				hand.remove(hand.get(i));
-				break;
->>>>>>> ruilen
 			}
 		}
 	}
@@ -202,16 +150,11 @@ public class Player {
 	public void printallPlayerDevCards() {
 		for(int i=0; i<handdev.size(); i++) {
 			System.out.println("Kaart " + i +" van het soort " + handdev.get(i).getKindName());
-<<<<<<< HEAD
-			
-=======
->>>>>>> ruilen
 	}
 	}
 	public int getKnightmight() {
 			return knightmight;
 	}
-<<<<<<< HEAD
 	public boolean hasKnightCard(int amount) {
 		int counter =0;
 		if(handdev.size()>0) {
@@ -235,7 +178,16 @@ public class Player {
 			
 		for(int i =0; i< handdev.size(); i++) {
 			if(handdev.get(i).getIdDevCard().substring(3).equals("s")) {
-=======
+				counter++;
+			};
+		}
+		}
+		if(counter>= amount) {
+			return true;
+		}else {
+			return false;
+		}
+			}
 
 	public boolean hasStoneCard(int amount) {
 		int counter =0;
@@ -243,7 +195,6 @@ public class Player {
 			
 		for(int i =0; i< hand.size(); i++) {
 			if(hand.get(i).getKindOfMaterial().equals("B")) {
->>>>>>> ruilen
 				counter++;
 			};
 		}
@@ -254,7 +205,6 @@ public class Player {
 			return false;
 		}
 	}
-<<<<<<< HEAD
 
 	public boolean hasMonopolie(int amount) {
 		int counter =0;
@@ -262,14 +212,22 @@ public class Player {
 			
 		for(int i =0; i< handdev.size(); i++) {
 			if(handdev.get(i).getIdDevCard().substring(3).equals("m")) {
-=======
+				counter++;
+			};
+		}
+		}
+		if(counter>= amount) {
+			return true;
+		}else {
+			return false;
+		}
+			}
 	public boolean hasWheatCard(int amount) {
 		int counter =0;
 		if(hand.size()>0) {
 			
 		for(int i =0; i< hand.size(); i++) {
 			if(hand.get(i).getKindOfMaterial().equals("G")) {
->>>>>>> ruilen
 				counter++;
 			};
 		}
@@ -280,21 +238,28 @@ public class Player {
 			return false;
 		}
 	}
-<<<<<<< HEAD
 	public boolean hasUitvinding(int amount) {
 		int counter =0;
 		if(handdev.size()>0) {
 			
 		for(int i =0; i< handdev.size(); i++) {
 			if(handdev.get(i).getIdDevCard().substring(3).equals("u")) {
-=======
+				counter++;
+			};
+		}
+		}
+		if(counter>= amount) {
+			return true;
+		}else {
+			return false;
+		}
+			}
 	public boolean hasWoodCard(int amount) {
 		int counter =0;
 		if(hand.size()>0) {
 			
 		for(int i =0; i< hand.size(); i++) {
 			if(hand.get(i).getKindOfMaterial().equals("H")) {
->>>>>>> ruilen
 				counter++;
 			};
 		}
@@ -305,7 +270,6 @@ public class Player {
 			return false;
 		}
 	}
-<<<<<<< HEAD
 
 	public boolean hasKathedraal(int amount) {
 		int counter =0;
@@ -329,14 +293,22 @@ public class Player {
 			
 		for(int i =0; i< handdev.size(); i++) {
 			if(handdev.get(i).getIdDevCard().substring(2).equals("5q")) {
-=======
+				counter++;
+			};
+		}
+		}
+		if(counter>= amount) {
+			return true;
+		}else {
+			return false;
+		}
+			}
 	public boolean hasWoolCard(int amount) {
 		int counter =0;
 		if(hand.size()>0) {
 			
 		for(int i =0; i< hand.size(); i++) {
 			if(hand.get(i).getKindOfMaterial().equals("W")) {
->>>>>>> ruilen
 				counter++;
 			};
 		}
@@ -347,7 +319,6 @@ public class Player {
 			return false;
 		}
 	}
-<<<<<<< HEAD
 
 	public boolean hasMarkt(int amount) {
 		int counter =0;
@@ -355,14 +326,22 @@ public class Player {
 			
 		for(int i =0; i< handdev.size(); i++) {
 			if(handdev.get(i).getIdDevCard().substring(2).equals("2q")) {
-=======
+				counter++;
+			};
+		}
+		}
+		if(counter>= amount) {
+			return true;
+		}else {
+			return false;
+		}
+			}
 	public boolean hasOreCard(int amount) {
 		int counter =0;
 		if(hand.size()>0) {
 			
 		for(int i =0; i< hand.size(); i++) {
 			if(hand.get(i).getKindOfMaterial().equals("E")) {
->>>>>>> ruilen
 				counter++;
 			};
 		}
@@ -373,7 +352,6 @@ public class Player {
 			return false;
 		}
 	}
-<<<<<<< HEAD
 	public boolean hasBibliotheek(int amount) {
 		int counter =0;
 		if(handdev.size()>0) {
@@ -406,7 +384,7 @@ public class Player {
 		}else {
 			return false;
 		}
-=======
+	}
 
 	public void updateCards(int otherplayerid, ArrayList<Integer> offer) {
 		for(int i =0; i <offer.size();i++) {
@@ -526,9 +504,6 @@ public class Player {
 			
 		}
 		
-	
-		
->>>>>>> ruilen
 	}
 	
 }
