@@ -65,5 +65,6 @@ public class ReInvitePane extends JPanel {
 		return reInviteButton;
 	}
 
+	
 
 }
