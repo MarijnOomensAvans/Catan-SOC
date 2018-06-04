@@ -206,4 +206,19 @@ public class TradeController extends Observable implements Runnable {
 			bc.deleteCards(playerid2, cardkindsOffer);
 		
 	}
+
+	public boolean hasCards(ArrayList<Integer> playercounterbid) {
+		if(player.hasStoneCard(playercounterbid.get(6))== true) {
+			if(player.hasOreCard(playercounterbid.get(8))==true){
+				if(player.hasWheatCard(playercounterbid.get(9))==true){
+					if(player.hasWoolCard(playercounterbid.get(7))==true){
+						if(player.hasWoodCard(playercounterbid.get(10))==true){
+							return true;
+						}
+					}
+				}
+			}
+		};
+		return false;
+	}
 }

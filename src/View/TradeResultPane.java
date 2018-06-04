@@ -87,9 +87,8 @@ public class TradeResultPane extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				tc.tradeCards(otherplayerid1);
-				tc.close();
-				
+					tc.tradeCards(otherplayerid1);
+					tc.close();
 			}
 			
 		});
@@ -143,13 +142,13 @@ public class TradeResultPane extends JPanel {
 	{
 		getTradeResponses(otherplayerid1);
 		Object[][] responseData1 ={{" ","Baksteen","Wol" ,"Erts", "Graan" ,"Hout"},
-				{"Vraagt", new Integer(player1counterbid.get(0)),new Integer(player1counterbid.get(1)),
-			new Integer(player1counterbid.get(2)),new Integer(player1counterbid.get(3)),new Integer(player1counterbid.get(4)),
+				{"Vraagt", new Integer(player1counterbid.get(1)),new Integer(player1counterbid.get(2)),
+			new Integer(player1counterbid.get(3)),new Integer(player1counterbid.get(4)),new Integer(player1counterbid.get(5)),
 		},
-		{"Geeft",new Integer(player1counterbid.get(5)),new Integer(player1counterbid.get(6)),new Integer(player1counterbid.get(7)),
-		new Integer(player1counterbid.get(8)),new Integer(player1counterbid.get(9)),}};
+		{"Geeft",new Integer(player1counterbid.get(6)),new Integer(player1counterbid.get(7)),new Integer(player1counterbid.get(8)),
+		new Integer(player1counterbid.get(9)),new Integer(player1counterbid.get(10)),}};
 		table1 = new JTable(responseData1,columnames);
-		table1.setBounds(350,110,350,50);
+		table1.setBounds(350,110,450,50);
 		table1.setEnabled(false);
 		add(table1);
 		
@@ -165,13 +164,13 @@ public class TradeResultPane extends JPanel {
 	{
 		getTradeResponses(otherplayerid2);
 		Object[][] responseData2 ={{" ","Baksteen","Wol" ,"Erts", "Graan" ,"Hout"},
-				{"Vraagt", new Integer(player2counterbid.get(0)),new Integer(player2counterbid.get(1)),
-			new Integer(player2counterbid.get(2)),new Integer(player2counterbid.get(3)),new Integer(player2counterbid.get(4)),
+				{"Vraagt", new Integer(player2counterbid.get(1)),new Integer(player2counterbid.get(2)),
+			new Integer(player2counterbid.get(3)),new Integer(player2counterbid.get(4)),new Integer(player2counterbid.get(5)),
 		},
-		{"Geeft",new Integer(player2counterbid.get(5)),new Integer(player2counterbid.get(6)),new Integer(player2counterbid.get(7)),
-		new Integer(player2counterbid.get(8)),new Integer(player2counterbid.get(9)),}};
+		{"Geeft",new Integer(player2counterbid.get(6)),new Integer(player2counterbid.get(7)),new Integer(player2counterbid.get(8)),
+		new Integer(player2counterbid.get(9)),new Integer(player2counterbid.get(10)),}};
 		table2 = new JTable(responseData2,columnames);
-		table2.setBounds(350,180,350,50);
+		table2.setBounds(350,180,450,50);
 		table2.setEnabled(false);
 		add(table2);
 		
@@ -187,13 +186,13 @@ public class TradeResultPane extends JPanel {
 	{
 		getTradeResponses(otherplayerid3);
 		Object[][] responseData3 ={{" ","Baksteen","Wol" ,"Erts", "Graan" ,"Hout"},
-				{"Vraagt", new Integer(player3counterbid.get(0)),new Integer(player3counterbid.get(1)),
-			new Integer(player3counterbid.get(2)),new Integer(player3counterbid.get(3)),new Integer(player3counterbid.get(4)),
+				{"Vraagt", new Integer(player3counterbid.get(1)),new Integer(player3counterbid.get(2)),
+			new Integer(player3counterbid.get(3)),new Integer(player3counterbid.get(4)),new Integer(player3counterbid.get(5)),
 		},
-		{"Geeft",new Integer(player3counterbid.get(5)),new Integer(player3counterbid.get(6)),new Integer(player3counterbid.get(7)),
-		new Integer(player3counterbid.get(8)),new Integer(player3counterbid.get(9)),}};
+		{"Geeft",new Integer(player3counterbid.get(6)),new Integer(player3counterbid.get(7)),new Integer(player3counterbid.get(8)),
+		new Integer(player3counterbid.get(9)),new Integer(player3counterbid.get(10)),}};
 		table3 = new JTable(responseData3,columnames);
-		table3.setBounds(350,250,350,50);
+		table3.setBounds(350,250,450,50);
 		table3.setEnabled(false);
 		add(table3);
 		
@@ -223,8 +222,10 @@ public class TradeResultPane extends JPanel {
 		boolean response=tc.getResponses(playerid);
 			if(playerid == otherplayerid1) {
 				if(response== true) {
+					if(tc.hasCards(player1counterbid) == true) {
 					response1.setBackground(Color.GREEN);
 					AcceptPlayer1.setEnabled(true);
+					}
 				}
 				else if(response == false){
 					response1.setBackground(Color.RED);
@@ -232,8 +233,10 @@ public class TradeResultPane extends JPanel {
 			}
 			else if(playerid == otherplayerid2) {
 				if(response== true) {
+					if(tc.hasCards(player1counterbid) == true) {
 					response2.setBackground(Color.GREEN);
 					AcceptPlayer2.setEnabled(true);
+				}
 				}
 				else if(response == false){
 					response2.setBackground(Color.RED);
@@ -241,8 +244,10 @@ public class TradeResultPane extends JPanel {
 			}
 			else if(playerid == otherplayerid3) {
 				if(response== true) {
+					if(tc.hasCards(player1counterbid) == true) {
 					response3.setBackground(Color.GREEN);
 					AcceptPlayer3.setEnabled(true);
+				}
 				}
 				else if(response == false){
 					response3.setBackground(Color.RED);

@@ -27,6 +27,7 @@ public class BankPane extends JPanel {
 	private int woodOfferCounter = 0;
 	private int wheatOfferCounter = 0;
 	private int woolOfferCounter = 0;
+	private int allOfferCounted;
 
 	private BufferedImage myBufferedImage1;
 	private BufferedImage myBufferedImage2;
@@ -63,6 +64,7 @@ public class BankPane extends JPanel {
 	private int woodDemandCounter = 0;
 	private int wheatDemandCounter = 0;
 	private int woolDemandCounter = 0;
+	private int allDemandCounted;
 
 	private JTextField stoneDemand;
 	private JTextField oreDemand;
@@ -82,17 +84,12 @@ public class BankPane extends JPanel {
 	private JButton minusDemandWheat;
 	private JButton minusDemandWool;
 
-	private int allcounted;
-
 	private JButton sendButton;
 
 	private JLabel offer;
 	private JLabel demand;
 
-	private TradeController tc;
-
 	public BankPane(TradeController tc, int playerid) {
-		this.tc = tc;
 		this.setLayout(null);
 		stone = new File("./Images/baksteen.jpg");
 		wool = new File("./Images/schaap.jpg");
@@ -383,45 +380,90 @@ public class BankPane extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				stoneDemandCounter++;
-				stoneDemand.setText("" + stoneDemandCounter);
+				allOfferCounted = stoneOfferCounter + oreOfferCounter + woodOfferCounter + wheatOfferCounter
+						+ woolOfferCounter;
+				allDemandCounted = stoneDemandCounter + oreDemandCounter + woodOfferCounter + wheatOfferCounter
+						+ woolOfferCounter;
+				if (allOfferCounted > allDemandCounted) {
+					if (allOfferCounted == stoneDemandCounter + 4) {
+						stoneDemandCounter++;
+						stoneDemand.setText("" + stoneDemandCounter);
+					}
+				}
 			}
+
 		});
 
 		plusOreDemand.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				oreDemandCounter++;
-				oreDemand.setText("" + oreDemandCounter);
+				allOfferCounted = stoneOfferCounter + oreOfferCounter + woodOfferCounter + wheatOfferCounter
+						+ woolOfferCounter;
+				allDemandCounted = stoneDemandCounter + oreDemandCounter + woodOfferCounter + wheatOfferCounter
+						+ woolOfferCounter;
+				if (allOfferCounted > allDemandCounted) {
+					if (allOfferCounted == oreDemandCounter + 4) {
+						oreDemandCounter++;
+						oreDemand.setText("" + oreDemandCounter);
+					}
+				}
 			}
+
 		});
 
 		plusWoodDemand.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				woodDemandCounter++;
-				woodDemand.setText("" + woodDemandCounter);
+				allOfferCounted = stoneOfferCounter + oreOfferCounter + woodOfferCounter + wheatOfferCounter
+						+ woolOfferCounter;
+				allDemandCounted = stoneDemandCounter + oreDemandCounter + woodOfferCounter + wheatOfferCounter
+						+ woolOfferCounter;
+				if (allOfferCounted > allDemandCounted) {
+					if (allOfferCounted == woodDemandCounter + 4) {
+						woodDemandCounter++;
+						woodDemand.setText("" + woodDemandCounter);
+					}
+				}
 			}
+
 		});
 
 		plusWheatDemand.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				wheatDemandCounter++;
-				wheatDemand.setText("" + wheatDemandCounter);
+				allOfferCounted = stoneOfferCounter + oreOfferCounter + woodOfferCounter + wheatOfferCounter
+						+ woolOfferCounter;
+				allDemandCounted = stoneDemandCounter + oreDemandCounter + woodOfferCounter + wheatOfferCounter
+						+ woolOfferCounter;
+				if (allOfferCounted > allDemandCounted) {
+					if (allOfferCounted == wheatDemandCounter + 4) {
+						wheatDemandCounter++;
+						wheatDemand.setText("" + wheatDemandCounter);
+					}
+				}
 			}
+
 		});
 
 		plusWoolDemand.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				woolDemandCounter++;
-				woolDemand.setText("" + woolDemandCounter);
+				allOfferCounted = stoneOfferCounter + oreOfferCounter + woodOfferCounter + wheatOfferCounter
+						+ woolOfferCounter;
+				allDemandCounted = stoneDemandCounter + oreDemandCounter + woodOfferCounter + wheatOfferCounter
+						+ woolOfferCounter;
+				if (allOfferCounted > allDemandCounted) {
+					if (allOfferCounted == woolDemandCounter + 4) {
+						woolDemandCounter++;
+						woolDemand.setText("" + woolDemandCounter);
+					}
+				}
 			}
+
 		});
 
 		minusDemandStone.addActionListener(new ActionListener() {
@@ -485,78 +527,61 @@ public class BankPane extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
-				if (stoneOfferCounter % 4 == 0 && woolOfferCounter % 4 == 0 && oreOfferCounter % 4 == 0
-						&& wheatOfferCounter % 4 == 0 && woodOfferCounter % 4 == 0) {
-
-					int totalDemandCounter = stoneOfferCounter / 4 + woolOfferCounter / 4 + oreOfferCounter / 4
-							+ wheatDemandCounter / 4 + woodDemandCounter / 4;
-					if (stoneDemandCounter + woolDemandCounter + oreDemandCounter + wheatDemandCounter
-							+ woodDemandCounter == totalDemandCounter) {
-
-						ArrayList<String> cardkindsDemand = new ArrayList<String>();
-						ArrayList<String> cardkindsOffer = new ArrayList<String>();
-
-						for (int i = 0; i < stoneDemandCounter; i++) {
-							if (stoneDemandCounter > 0) {
-								cardkindsDemand.add("B");
-							}
-						}
-						for (int i = 0; i < oreDemandCounter; i++) {
-							if (oreDemandCounter > 0) {
-								cardkindsDemand.add("E");
-							}
-						}
-						for (int i = 0; i < woolDemandCounter; i++) {
-							if (woolDemandCounter > 0) {
-								cardkindsDemand.add("W");
-							}
-						}
-						for (int i = 0; i < wheatDemandCounter; i++) {
-							if (wheatDemandCounter > 0) {
-								cardkindsDemand.add("G");
-							}
-						}
-						for (int i = 0; i < woodDemandCounter; i++) {
-							if (woodDemandCounter > 0) {
-								cardkindsDemand.add("H");
-							}
-						}
-						for (int i = 0; i < stoneOfferCounter; i++) {
-							if (stoneOfferCounter > 0) {
-								cardkindsOffer.add("B");
-							}
-						}
-						for (int i = 0; i < oreOfferCounter; i++) {
-							if (oreOfferCounter > 0) {
-								cardkindsOffer.add("E");
-							}
-						}
-						for (int i = 0; i < woodOfferCounter; i++) {
-							if (woodOfferCounter > 0) {
-								cardkindsOffer.add("H");
-							}
-						}
-						for (int i = 0; i < wheatOfferCounter; i++) {
-							if (wheatOfferCounter > 0) {
-								cardkindsOffer.add("G");
-							}
-						}
-						for (int i = 0; i < woolOfferCounter; i++) {
-							if (woolOfferCounter > 0) {
-								cardkindsOffer.add("W");
-							}
-						}
-						tc.tradeBank(playerid, cardkindsDemand);
-						tc.deleteCards(playerid, cardkindsOffer);
-						tc.close();
-					} else {
-						System.out.println("wrong demands");
+				ArrayList<String> cardkindsDemand = new ArrayList<String>();
+				ArrayList<String> cardkindsOffer = new ArrayList<String>();
+				for (int i = 0; i < stoneDemandCounter; i++) {
+					if (stoneDemandCounter > 0) {
+						cardkindsDemand.add("B");
 					}
-				} else {
-					System.out.println("wrong offers");
 				}
-
+				for (int i = 0; i < oreDemandCounter; i++) {
+					if (oreDemandCounter > 0) {
+						cardkindsDemand.add("E");
+					}
+				}
+				for (int i = 0; i < woolDemandCounter; i++) {
+					if (woolDemandCounter > 0) {
+						cardkindsDemand.add("W");
+					}
+				}
+				for (int i = 0; i < wheatDemandCounter; i++) {
+					if (wheatDemandCounter > 0) {
+						cardkindsDemand.add("G");
+					}
+				}
+				for (int i = 0; i < woodDemandCounter; i++) {
+					if (woodDemandCounter > 0) {
+						cardkindsDemand.add("H");
+					}
+				}
+				for (int i = 0; i < stoneOfferCounter; i++) {
+					if (stoneOfferCounter > 0) {
+						cardkindsOffer.add("B");
+					}
+				}
+				for (int i = 0; i < oreOfferCounter; i++) {
+					if (oreOfferCounter > 0) {
+						cardkindsOffer.add("E");
+					}
+				}
+				for (int i = 0; i < woodOfferCounter; i++) {
+					if (woodOfferCounter > 0) {
+						cardkindsOffer.add("H");
+					}
+				}
+				for (int i = 0; i < wheatOfferCounter; i++) {
+					if (wheatOfferCounter > 0) {
+						cardkindsOffer.add("G");
+					}
+				}
+				for (int i = 0; i < woolOfferCounter; i++) {
+					if (woolOfferCounter > 0) {
+						cardkindsOffer.add("W");
+					}
+				}
+				tc.tradeBank(playerid, cardkindsDemand);
+				tc.deleteCards(playerid, cardkindsOffer);
+				tc.close();
 			}
 
 		});
