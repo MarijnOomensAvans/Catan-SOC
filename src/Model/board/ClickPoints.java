@@ -113,13 +113,14 @@ public class ClickPoints
 			points.put(newpoint, key);
 			xvalues.add(x);
 			yvalues.add(y);
+			showPOint(newpoint);
 		}
 	}
 	
-	public void showPOint() {
-		for (int j = 0; j < points.size(); j++) {
-		System.out.println(points.get("3,5"));
-		}
+	
+	// Debug method
+	public void showPOint(Point point) {
+		System.out.println(points.get(point));
 	}
 
 

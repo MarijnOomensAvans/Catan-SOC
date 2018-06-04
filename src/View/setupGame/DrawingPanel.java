@@ -106,7 +106,6 @@ public class DrawingPanel extends JPanel {
 // set background
 		setBackground(BoardColours.SEA.getRGB());
 		createKlikpunten();
-    	clickpoints.showPOint();
 	}
 
 	// drawing the hexagons
@@ -123,7 +122,7 @@ public class DrawingPanel extends JPanel {
 			Color color = bc.getColour(i, idspel);
 			g2d.setColor(color);
 			g2d.fillPolygon(hexagons.get(i).getHexagon());
-
+		//	g2d.draw(point);
 		}
 		g2d.setColor(BoardColours.CHITS.getRGB());
 		for(int i = 0; i < hexagons.size(); i++) {
@@ -157,7 +156,7 @@ public class DrawingPanel extends JPanel {
 
         int keyX = keys.get(i).getX();
 
-        return 500 + ((keyX - 1) * (50 / 2)) + keyX - 2;
+        return 500 + ((keyX - 1) * (75 / 2)) + keyX - 2;
 
   }
 
@@ -168,8 +167,7 @@ public class DrawingPanel extends JPanel {
   {
 
         int keyX = key.get(i).getX();
-
-	        int keyY = key.get(i).getY();
+	    int keyY = key.get(i).getY();
 
         return 500 + (((2 * (12 - keyY)) - (10 - keyX)) * 100);
 
