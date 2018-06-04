@@ -53,9 +53,12 @@ public class Player {
 
 	public void addMaterialCard(String kind) {
 		MaterialCard newCard = conn.getMaterialCard(kind, player_id);
-		String cardid = newCard.getIdCard();
-		pd.addMaterialCard(game_id, cardid, player_id);
-		hand.add(newCard);
+		if(newCard != null)
+		{
+			String cardid = newCard.getIdCard();
+			pd.addMaterialCard(game_id, cardid, player_id);
+			hand.add(newCard);
+		}
 	}
 	
 	public void removeMatCard(String kind) {
