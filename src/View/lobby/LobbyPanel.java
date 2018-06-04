@@ -11,11 +11,14 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -27,7 +30,7 @@ import Model.lobby.LobbyGameInfo;
 import Model.lobby.LobbyInvite;
 
 @SuppressWarnings("serial")
-public class LobbyPanel extends JPanel {
+public class LobbyPanel extends JPanel implements Observer {
 
 	private LobbyContentPane pane;
 	private ArrayList<String> usernames;
@@ -77,6 +80,9 @@ public class LobbyPanel extends JPanel {
 	private JScrollPane scrollGames;
 	private JScrollPane scrollPlayers;
 	private JScrollPane scrollInvite;
+	
+	private ArrayList<JComponent> invitePanels;
+	private ArrayList<JComponent> gamePanels;
 
 	@SuppressWarnings("unused")
 	private JButton playButton;
@@ -226,6 +232,9 @@ public class LobbyPanel extends JPanel {
 
 		accountPanel.setLayout(new BoxLayout(accountPanel, 1));
 		accountPanel.setBackground(new Color(200, 200, 200, 255));
+		
+		invitePanels = new ArrayList<JComponent>();
+		gamePanels = new ArrayList<JComponent>();
 
 		drawAccountLabels();
 		drawInvites();
@@ -289,6 +298,7 @@ public class LobbyPanel extends JPanel {
 					}
 				});
 				row.setBorder(blackLine);
+				gamePanels.add(row);
 				showGamePanel.add(row);
 			}
 		}
@@ -296,7 +306,6 @@ public class LobbyPanel extends JPanel {
 
 	public void drawInvites() {
 		invites = pane.getInvites();
-		ArrayList<Component> inviteLabels = new ArrayList<Component>();
 
 		for (int i = 0; i < invites.size(); i++) {
 			int gameID = invites.get(i).getGameID();
@@ -329,10 +338,7 @@ public class LobbyPanel extends JPanel {
 			acceptButton.setPreferredSize(new Dimension(INVITEBUTTONWIDTH, NAMEHEIGHT));
 			acceptButton.addActionListener(e -> {
 				pane.inviteResponse(true, gameID);
-				for (int n = 0; n < inviteLabels.size(); n++) {
-					challengePanel.remove(inviteLabels.get(n));
-				}
-				drawInvites();
+				updateInvites();
 				challengePanel.repaint();
 				challengePanel.validate();
 			});
@@ -341,9 +347,7 @@ public class LobbyPanel extends JPanel {
 			refuseButton.setPreferredSize(new Dimension(INVITEBUTTONWIDTH, NAMEHEIGHT));
 			refuseButton.addActionListener(e -> {
 				pane.inviteResponse(false, gameID);
-				for (int n = 0; n < inviteLabels.size(); n++) {
-					challengePanel.remove(inviteLabels.get(n));
-				}
+				updateInvites();
 				drawInvites();
 				challengePanel.repaint();
 				challengePanel.validate();
@@ -358,7 +362,7 @@ public class LobbyPanel extends JPanel {
 			row.add(acceptButton, BorderLayout.CENTER);
 			row.add(refuseButton, BorderLayout.LINE_END);
 			challengePanel.add(row);
-			inviteLabels.add(row);
+			invitePanels.add(row);
 
 		}
 	}
@@ -392,5 +396,29 @@ public class LobbyPanel extends JPanel {
 			leftPanel.repaint();
 			leftPanel.validate();
 		}
+	}
+	
+	private void updateInvites() {
+		for(JComponent c : invitePanels) {
+			challengePanel.remove(c);
+		}
+		invitePanels.clear();
+		this.validate();
+		drawInvites();
+	}
+	
+	private void updateGames() {
+		for(JComponent c : gamePanels) {
+			showGamePanel.remove(c);
+		}
+		gamePanels.clear();
+		this.validate();
+		drawGames();
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		updateInvites();
+		updateGames();
 	}
 }
