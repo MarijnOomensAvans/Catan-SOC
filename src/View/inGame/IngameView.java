@@ -9,6 +9,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
 import Controller.BoardController;
@@ -64,10 +65,18 @@ public class IngameView extends JPanel{
 		JPanel extraPointsPanel = new JPanel();
 		JPanel ownPointsPanel = new JPanel();
 		
-		playerTurnPanel.setPreferredSize(new Dimension(300, 100));
-		playerCardsPanel.setPreferredSize(new Dimension(300, 400));
+		playerTurnPanel.setPreferredSize(new Dimension(300, 50));
+		playerCardsPanel.setPreferredSize(new Dimension(300, 250));
 		gameTurnPanel.setPreferredSize(new Dimension(300, 50));
+		extraPointsPanel.setPreferredSize(new Dimension(300, 200));
+		ownPointsPanel.setPreferredSize(new Dimension(300, 122));
 		
+//		playerTurnPanel.setBackground(Color.red);
+//		playerCardsPanel.setBackground(Color.blue);
+//		gameTurnPanel.setBackground(Color.gray);
+//		extraPointsPanel.setBackground(Color.green);
+//		ownPointsPanel.setBackground(Color.orange);
+//		
 		buttonPanel.setBorder(border);
 		resourceCardPanel.setBorder(border);
 		buildCostPanel.setBorder(border);
@@ -86,11 +95,26 @@ public class IngameView extends JPanel{
 		JLabel cityLabel = new JLabel("Stad: 2G-3E");
 		JLabel devCardLabel = new JLabel("Ontwikkelingskaart: 1W-1G-1E");
 		
+		JLabel turnLabel = new JLabel("Speler aan de beurt: "); //HIER MOET DE SPELER DIE AAN DE BEURT IS TOEGEVOEGD WORDEN
+		JLabel playersAndCardsLabel = new JLabel("Spelers en kaarten: " );
+		JLabel gameTurnLabel = new JLabel("Beurt: "); // HIER MOET DE HUIDIGE BEURT IN
+		JLabel largestArmyLabel = new JLabel("Grootste riddermacht: ");
+		JLabel longestRouteLabel = new JLabel("Langste handelsroute: ");
+		JLabel ownPointLabel = new JLabel("Eigen punten: ");
+		
+		turnLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		playersAndCardsLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		gameTurnLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		largestArmyLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		longestRouteLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		ownPointLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		
 		buildButton.setPreferredSize(new Dimension(BUTTONWIDTH, BUTTONHEIGHT));
 		tradeButton.setPreferredSize(new Dimension(BUTTONWIDTH, BUTTONHEIGHT));
 		devcardButton.setPreferredSize(new Dimension(BUTTONWIDTH, BUTTONHEIGHT));
 		
+		extraPointsPanel.setLayout(new GridLayout(0, 1));
+		playerCardsPanel.setLayout(new GridLayout(0, 1));
 		
 		boardPanel.add(inGameBoard);
 		
@@ -103,8 +127,8 @@ public class IngameView extends JPanel{
 		bottomPanel.setPreferredSize(new Dimension(1500, 200));
 		
 		leftPanel.setBackground(Color.black);
-		rightPanel.setBackground(Color.orange);
 		bottomPanel.setBackground(Color.green);
+		rightPanel.setBackground(Color.BLACK);
 		boardPanel.setBackground(BoardColours.SEA.getRGB());
 		
 		leftPanel.setLayout(new BorderLayout());
@@ -134,6 +158,20 @@ public class IngameView extends JPanel{
 		bottomInfoPanel.add(costAndDicePanel, BorderLayout.CENTER);
 
 		
+		playerTurnPanel.add(turnLabel);
+		playerCardsPanel.add(playersAndCardsLabel);
+		playerCardsPanel.add(GetCardsOwnedByPlayer("Mustafa", 1, 2, 3));
+		gameTurnPanel.add(gameTurnLabel);
+		extraPointsPanel.add(largestArmyLabel);
+		extraPointsPanel.add(longestRouteLabel);
+		ownPointsPanel.add(ownPointLabel);
+		
+		rightPanel.add(playerTurnPanel);
+		rightPanel.add(playerCardsPanel);
+		rightPanel.add(gameTurnPanel);
+		rightPanel.add(extraPointsPanel);
+		rightPanel.add(ownPointsPanel);
+		
 		bottomPanel.setLayout(new BorderLayout());
 		bottomPanel.add(buttonPanel, BorderLayout.WEST);
 		bottomPanel.add(bottomInfoPanel, BorderLayout.CENTER);
@@ -146,5 +184,11 @@ public class IngameView extends JPanel{
 		this.add(bottomPanel, BorderLayout.PAGE_END);
 		
 		
+	}
+	
+	public JLabel GetCardsOwnedByPlayer(String name, int resourceCards, int developmentCards, int playedKnights) {
+		JLabel cardsLabel = new JLabel(name + " " + "GK:" + resourceCards + "-OK" + developmentCards + "-GR" + playedKnights );
+		cardsLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		return cardsLabel;
 	}
 }
