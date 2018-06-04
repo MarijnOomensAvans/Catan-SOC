@@ -37,7 +37,7 @@ public class LobbyContentPane extends JPanel {
 		});
 		
 		myGameButton.addActionListener(e ->{
-			lc.openGameStateContorller();
+			lc.openGameStateController();
 		});
 		
 		add(lobby);
