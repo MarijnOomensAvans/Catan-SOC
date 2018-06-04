@@ -4,6 +4,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -12,6 +14,7 @@ import javax.swing.JPanel;
 import Controller.BoardController;
 import Controller.ChatController;
 import View.board.BoardColours;
+import View.build.BuildFrame;
 import View.chat.ChatContentPane;
 import View.chat.Chatoutputgui;
 import View.setupGame.DrawingPanel;
@@ -52,14 +55,23 @@ public class IngameView extends JPanel{
 		
 		JPanel boardPanel = new JPanel();
 		
-		JButton buildButton = new JButton();
-		JButton tradeButton = new JButton();
-		JButton defcardButton = new JButton();
+		JButton buildButton = new JButton("Bouwen");
+		buildButton.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new BuildFrame();
+				
+			}
+			
+		});
+		JButton tradeButton = new JButton("Handelen");
+		JButton devcardButton = new JButton("Ontwikkelingskaarten");
 		
 		
 		buildButton.setPreferredSize(new Dimension(BUTTONWIDTH, BUTTONHEIGHT));
 		tradeButton.setPreferredSize(new Dimension(BUTTONWIDTH, BUTTONHEIGHT));
-		defcardButton.setPreferredSize(new Dimension(BUTTONWIDTH, BUTTONHEIGHT));
+		devcardButton.setPreferredSize(new Dimension(BUTTONWIDTH, BUTTONHEIGHT));
 		
 		
 		boardPanel.add(inGameBoard);
@@ -83,7 +95,7 @@ public class IngameView extends JPanel{
 		buttonPanel.setLayout(gridLayout);
 		buttonPanel.add(buildButton);
 		buttonPanel.add(tradeButton);
-		buttonPanel.add(defcardButton);
+		buttonPanel.add(devcardButton);
 		
 		bottomInfoPanel.setLayout(new BorderLayout());
 		bottomInfoPanel.add(resourceCardPanel, BorderLayout.WEST);

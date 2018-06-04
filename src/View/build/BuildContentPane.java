@@ -10,6 +10,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import Controller.BuildController;
+
 @SuppressWarnings("serial")
 public class BuildContentPane extends JPanel{
 	private GridLayout gridLayout = new GridLayout(4,3);
@@ -18,6 +20,7 @@ public class BuildContentPane extends JPanel{
 	ImageIcon imageStreet = new ImageIcon("./images/StraatIcon.png");
 	ImageIcon imageDevCard = new ImageIcon("./images/OntwikkleingskaartIcon.png");
 	private Dimension buttonsize = new Dimension(200,100);
+	private BuildController buildcontroller = new BuildController();
 	
 	
 	public BuildContentPane(BuildFrame frame) {
