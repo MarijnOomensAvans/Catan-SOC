@@ -16,10 +16,10 @@ public class BankController {
 	@SuppressWarnings("unused")
 	private Player player;
 	
-	public BankController(MainDAL md) {
+	public BankController(MainDAL md, int gameid) {
 		this.md = md;
 		bd = new BankDAL();
-		bank = new Bank(bd);
+		bank = new Bank(bd, gameid);
 		
 	}
 

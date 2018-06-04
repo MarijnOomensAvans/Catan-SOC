@@ -22,7 +22,7 @@ public class Player {
 	
 	private ArrayList<MaterialCard> hand = new ArrayList<MaterialCard>();
 	private ArrayList<DevelopmentCard> handdev = new ArrayList<DevelopmentCard>();
-	private String iddevcard;
+	private String idDevCard;
 
 	public Player(PlayerController controller, PersonDAL pd, int playerid, int gameid) {
 		conn = controller;
@@ -66,9 +66,9 @@ public class Player {
 	}
 	public void addDevelopmentCard() {
 		
-		DevelopmentCard newDevCard = conn.getDevelopmentCard(iddevcard);
+		DevelopmentCard newDevCard = conn.getDevelopmentCard(idDevCard);
 		handdev.add(newDevCard);
-		String devcardid = newDevCard.getIddevcard();
+		String devcardid = newDevCard.getIdDevCard();
 		pd.addDevelopmentCard(game_id, devcardid, player_id, false);
 		
 		}
@@ -83,13 +83,13 @@ public class Player {
 			}
 		}
 	}
-	public void removeDevCard(String iddevcard, int gameid, int playerid) {
+	public void removeDevCard(String idDevCard, int gameid, int playerid) {
 		for(int i=0; i< handdev.size(); i++) {
-			if(handdev.get(i).getIddevcard().equals(iddevcard)) {
+			if(handdev.get(i).getIdDevCard().equals(idDevCard)) {
 				System.out.println("hallo");
-				System.out.println(pd.getDevUsed(gameid, iddevcard, playerid));
-				pd.useDevelopmentCard(gameid, iddevcard, playerid, true);
-				System.out.println(pd.getDevUsed(gameid, iddevcard, playerid));
+				System.out.println(pd.getDevUsed(gameid, idDevCard, playerid));
+				pd.useDevelopmentCard(gameid, idDevCard, playerid, true);
+				System.out.println(pd.getDevUsed(gameid, idDevCard, playerid));
 				handdev.remove(handdev.get(i));
 			}
 		}
@@ -102,7 +102,7 @@ public class Player {
 	
 	public void testpointDevCard() {
 		for(int i=0; i< handdev.size(); i++) {
-			if(handdev.get(i).getIddevcard().substring(3).equals("g")) {
+			if(handdev.get(i).getIdDevCard().substring(3).equals("g")) {
 				System.out.println("1 Overwinningspunt");
 				points++;
 			}
@@ -110,7 +110,7 @@ public class Player {
 	}
 	public void testKnightmight() {
 		for(int i=0; i< handdev.size(); i++) {
-			if(handdev.get(i).getIddevcard().substring(3).equals("r")) {
+			if(handdev.get(i).getIdDevCard().substring(3).equals("r")) {
 				System.out.println("Bij het spelen van deze kaart moet je de struikrover verzetten en van één van de getroffen spelers een grondstoffenkaart trekken.");
 				knightmight++;
 			}
@@ -118,14 +118,14 @@ public class Player {
 	}
 	public void testMonopoly() {
 		for(int i=0; i< handdev.size(); i++) {
-			if(handdev.get(i).getIddevcard().substring(3).equals("m")) {
+			if(handdev.get(i).getIdDevCard().substring(3).equals("m")) {
 				System.out.println("Bij het kiezen van deze kaart kies je een grondstof. Alle spelers geven je van deze grondstof alle kaarten die ze bezitten.");
 			}
 		}
 	}
 	public void testStratenbouw() {
 		for(int i=0; i< handdev.size(); i++) {
-			if(handdev.get(i).getIddevcard().substring(3).equals("s")) {
+			if(handdev.get(i).getIdDevCard().substring(3).equals("s")) {
 				System.out.println("Bij het spelen van deze kaart mag je direct twee starten bouwen.");
 			}
 		}

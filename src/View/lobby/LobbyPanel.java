@@ -253,7 +253,6 @@ public class LobbyPanel extends JPanel {
 	// Display the current games the user is in
 	public void drawGames() {
 		games = pane.getGames();
-		ArrayList<Component> gameLabels = new ArrayList<Component>();
 
 		for (int i = 0; i < games.size(); i++) {
 
