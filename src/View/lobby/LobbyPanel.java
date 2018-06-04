@@ -168,7 +168,6 @@ public class LobbyPanel extends JPanel implements Observer {
 		blankPanel.setBackground(Color.white);
 		blankPanel.setPreferredSize(new Dimension(WIDTH - (SIDEPANELWIDTH * 2), 200));
 
-		// gameButtonPane.setLayout(new BorderLayout());
 		gameButtonPane.setBackground(Color.white);
 		gameButtonPane.add(playButton);
 		gameButtonPane.add(myGameButton);

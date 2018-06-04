@@ -39,16 +39,21 @@ public class IngameView extends JPanel{
 	private ChatController chatController;
 	private Chatoutputgui chatOutput;
 	
+	private JButton throwDiceButton;
+	
 	private Border border;
 	//plek maken voor chat
 
 	public IngameView(BoardController bc, int gameID,DrawingPanel inGameBoard, int playerID) {
+		throwDiceButton = new JButton("Gooi Dobbelstenen");
 		
 		border = BorderFactory.createLineBorder(Color.BLACK, 1);
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		setLayout(new BorderLayout());
+		
 		DieController dc = new DieController(gameID);
-		DieContentPane diceViewPanel = new DieContentPane(dc);
+		DieContentPane diceViewPanel = new DieContentPane(dc, throwDiceButton);
+		
 		chatController = new ChatController(gameID,playerID);
 		chatOutput = chatController.getCog();
 		ChatContentPane chatPanel = new ChatContentPane(chatController, chatOutput, playerID);
@@ -62,7 +67,7 @@ public class IngameView extends JPanel{
 		JPanel resourceCardPanel = new JPanel();
 		JPanel buildCostPanel = new JPanel();
 		JPanel diceButtonPanel = new JPanel();
-		//JPanel diceViewPanel = new JPanel();
+		
 		JPanel costAndDicePanel = new JPanel();
 		
 		JPanel playerTurnPanel = new JPanel();
@@ -103,7 +108,6 @@ public class IngameView extends JPanel{
 		});
 		JButton tradeButton = new JButton("Handelen");
 		JButton devcardButton = new JButton("Ontwikkelingskaarten");
-		JButton throwDiceButton = new JButton("Gooi Dobbelstenen");
 		
 		JLabel streetLabel = new JLabel("Straat: 1B-1H");
 		JLabel villageLabel = new JLabel("Dorp: 1B-1H-1G-1W");

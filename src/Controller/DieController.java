@@ -1,7 +1,6 @@
 package Controller;
 
 import Model.Die;
-import View.dice.DieGUI;
 
 public class DieController 
 {	
