@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridBagLayout;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -59,7 +60,8 @@ public class LoginContentPane extends JPanel {
 		});
 
 		try {
-			background = ImageIO.read(this.getClass().getClassLoader().getResource("images/background.jpg"));
+			File bgFile = new File("./images/background.jpg");
+			background = ImageIO.read(bgFile);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
