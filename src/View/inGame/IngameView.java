@@ -199,7 +199,7 @@ public class IngameView extends JPanel{
 	}
 	
 	public JLabel GetCardsOwnedByPlayer(String name, int resourceCards, int developmentCards, int playedKnights) {
-		JLabel cardsLabel = new JLabel(name + " " + "GK:" + resourceCards + "-OK" + developmentCards + "-GR" + playedKnights );
+		JLabel cardsLabel = new JLabel(name + " " + "Grondstof:" + resourceCards + "-ontwikkelings" + developmentCards + "-Gespeelde ridders" + playedKnights );
 		cardsLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		return cardsLabel;
 	}
