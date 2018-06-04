@@ -1,9 +1,17 @@
 package DAL;
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> ruilen
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+<<<<<<< HEAD
+=======
+import java.util.ArrayList;
+>>>>>>> ruilen
 
 public class BankDAL {
 	
@@ -115,9 +123,16 @@ public class BankDAL {
 		}
 		return result;
 	}
+<<<<<<< HEAD
 	public void addDevCardstoDB(int gameid,String idDevCard) {
 		Statement stmt = null;
 		String query = "INSERT INTO spelerontwikkelingskaart(idspel, gespeeld, idontwikkelingskaart) VALUES ("+gameid+" ,"+ "0"+", '" +idDevCard+"')";
+=======
+	
+	public void addCardstoDB(int gameid,String idCard) {
+		Statement stmt = null;
+		String query = "INSERT spelergrondstofkaart(idspel,idgrondstofkaart) VALUES ("+gameid+" ,'"+ idCard+"')";
+>>>>>>> ruilen
 		
 		try
 		{
@@ -132,7 +147,75 @@ public class BankDAL {
 		
 	}
 
+<<<<<<< HEAD
 	
 
 
 }
+=======
+
+	public void trade(int playerid, String cardId) {
+		Statement stmt = null;
+		String query = "UPDATE spelergrondstofkaart SET idspeler = "+playerid+ " WHERE idgrondstofkaart = '"+cardId + "'";
+
+		try
+		{
+			stmt = conn.createStatement();
+			stmt.executeUpdate(query);
+			
+
+			stmt.close();
+
+		} catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+
+	}
+
+
+	public void deleteCards(int playerid2, String cardid) {
+		Statement stmt = null;
+		String query = "UPDATE spelergrondstofkaart SET idspeler = null WHERE idgrondstofkaart = '"+cardid + "'"+ " AND idspeler = "+playerid2;
+
+		try
+		{
+			stmt = conn.createStatement();
+			stmt.executeUpdate(query);
+			
+
+			stmt.close();
+
+		} catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		
+	}
+
+
+	public String getPlayerid(String cardid) {
+		String result ="";
+		Statement stmt = null;
+		String query = "SELECT idspeler FROM spelergrondstofkaart WHERE idgrondstofkaart = '"+ cardid+"'";
+		
+		try
+		{
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while (rs.next())
+			{
+				result = rs.getString(1);
+			}
+			stmt.close();
+		} catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
+	}
+
+
+
+>>>>>>> ruilen

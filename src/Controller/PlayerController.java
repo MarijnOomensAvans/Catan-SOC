@@ -1,12 +1,20 @@
 package Controller;
 
+<<<<<<< HEAD
 import DAL.MainDAL;
 import DAL.PersonDAL;
+=======
+import java.util.ArrayList;
+
+import DAL.MainDAL;
+import DAL.PersonDal;
+>>>>>>> ruilen
 import Model.DevelopmentCard;
 import Model.MaterialCard;
 import Model.Player;
 
 public class PlayerController {
+<<<<<<< HEAD
 	private Player player;
 	private BankController bc;
 	@SuppressWarnings("unused")
@@ -25,6 +33,26 @@ public class PlayerController {
 
 	public MaterialCard getMaterialCard(String kind) {
 		MaterialCard card =bc.getMaterialCard(kind);
+=======
+	
+	private BankController bc;
+	@SuppressWarnings("unused")
+	private MainDAL md;
+	private PersonDal pd;
+	
+
+	public PlayerController(MainDAL md,PersonDal pd, BankController bc,int personid) {
+
+		this.md = md;
+		this.bc = bc;
+		this.pd = pd;
+		//Player player1 =new Player(this, pd, personid, 1);
+		//player1.addMaterialCard("W");
+	}
+
+	public MaterialCard getMaterialCard(String kind, int playerid) {
+		MaterialCard card =bc.getMaterialCard(kind,playerid);
+>>>>>>> ruilen
 		return card;
 	}
 
@@ -33,6 +61,7 @@ public class PlayerController {
 		
 	}
 
+<<<<<<< HEAD
 	public DevelopmentCard getDevelopmentCard(String iddevcard) {
 		DevelopmentCard devcard =bc.getDevelopmentCard(iddevcard);
 		return devcard;
@@ -79,3 +108,17 @@ public class PlayerController {
 }
 
 
+=======
+	public DevelopmentCard getDevelopmentCard() {
+		DevelopmentCard devcard =bc.getDevelopmentCard();
+		return devcard;
+	}
+
+	public void tradeCards(int otherplayerid, ArrayList<Integer> offer, Player player) {
+		player.updateCards(otherplayerid,offer);
+
+		
+	}
+
+}
+>>>>>>> ruilen
