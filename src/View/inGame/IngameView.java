@@ -16,10 +16,12 @@ import javax.swing.border.Border;
 
 import Controller.BoardController;
 import Controller.ChatController;
+import Controller.DieController;
 import View.board.BoardColours;
 import View.build.BuildFrame;
 import View.chat.ChatContentPane;
 import View.chat.Chatoutputgui;
+import View.dice.DieContentPane;
 import View.setupGame.DrawingPanel;
 
 
@@ -45,6 +47,8 @@ public class IngameView extends JPanel{
 		border = BorderFactory.createLineBorder(Color.BLACK, 1);
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		setLayout(new BorderLayout());
+		DieController dc = new DieController(gameID);
+		DieContentPane diceViewPanel = new DieContentPane(dc);
 		chatController = new ChatController(gameID,playerID);
 		chatOutput = chatController.getCog();
 		ChatContentPane chatPanel = new ChatContentPane(chatController, chatOutput, playerID);
@@ -53,13 +57,12 @@ public class IngameView extends JPanel{
 		JPanel rightPanel = new JPanel();
 		JPanel bottomPanel = new JPanel();
 		
-		
 		JPanel buttonPanel = new JPanel();
 		JPanel bottomInfoPanel = new JPanel();
 		JPanel resourceCardPanel = new JPanel();
 		JPanel buildCostPanel = new JPanel();
 		JPanel diceButtonPanel = new JPanel();
-		JPanel diceViewPanel = new JPanel();
+		//JPanel diceViewPanel = new JPanel();
 		JPanel costAndDicePanel = new JPanel();
 		
 		JPanel playerTurnPanel = new JPanel();
