@@ -3,6 +3,9 @@ package Controller;
 import DAL.PersonDal;
 import DAL.TradeDAL;
 
+import java.awt.Window;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.util.ArrayList;
 import java.util.Observable;
 
@@ -51,6 +54,13 @@ public class TradeController extends Observable implements Runnable {
 		tap = new TradeAcceptPane(this, playerid);
 		gui = new TradeGui(this, playerid, top,tap,gameid);
 		this.addObserver(tap);
+		gui.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentHidden(ComponentEvent e) {
+                createOffer(playerid,0,0,0,0,0,0,0,0,0, 0, false);
+                ((Window) e.getComponent()).dispose();
+            }
+        });
 	}
 
 	public void createOffer(int idPlayer, int givesStone, int givesWool, int givesOre, int givesWheat, int givesWood,
