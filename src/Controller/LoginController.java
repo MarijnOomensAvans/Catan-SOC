@@ -18,9 +18,12 @@ public class LoginController {
 
 	}
 
-	public void buttonPressedRegisterCompleet(String username, String password, String passwordVer) {
+	public boolean buttonPressedRegisterCompleet(String username, String password, String passwordVer) {
 		if (loginModel.verifyRegisterInput(username, password, passwordVer)) {
 			loginModel.addAccount(username, password);
+			return true;
+		} else {
+			return false;
 		}
 	}
 
