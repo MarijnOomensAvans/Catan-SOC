@@ -14,7 +14,6 @@ public class LobbyUpdateController extends Observable implements Runnable {
 		while(true) {
 			this.setChanged();
 			this.notifyObservers();
-			System.out.println("Notified");
 			try {
 				Thread.sleep(2000);
 			} catch (InterruptedException e) {
