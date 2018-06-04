@@ -115,13 +115,13 @@ public class LoginPanel extends JPanel {
 		gc.gridy = 2;
 		gc.weightx = 0;
 		gc.anchor = GridBagConstraints.CENTER;
-		add(registerButton, gc);
+		add(loginButton, gc);
 		
 		gc.gridx = 1;
 		gc.gridy = 2;
 		gc.weightx = 1;
 		gc.anchor = GridBagConstraints.CENTER;
-		add(loginButton, gc);
+		add(registerButton, gc);
 		
 		gc.gridx = 0;
 		gc.gridy = 3;
