@@ -6,6 +6,7 @@ public class PlayerStats {
 	private int resourceCards, developmentCards, knightCards;
 	
 	public PlayerStats(String username, int rc, int dc, int kc) {
+		this.username = username;
 		resourceCards = rc;
 		developmentCards = dc;
 		knightCards = kc;

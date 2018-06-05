@@ -13,10 +13,6 @@ public class SpelDAL {
 
 	Connection conn = MainDAL.getConnection();
 	
-	public SpelDAL() {
-		MainDAL.getConnection();
-	}
-	
 	public ArrayList<PlayerStats> getPlayerStats(int gameid){
 		ArrayList<PlayerStats> stats = new ArrayList<PlayerStats>();
 		
@@ -36,11 +32,10 @@ public class SpelDAL {
 	
 	private PlayerStats getStats(int playerid) {
 		PlayerStats stats = null;
-		String username = "";
+		String username = "TEST";
 		int resourceCards = 0;
 		int developmentCards = 0;
 		int knightCards = 0;
-		
 		try {
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT o.naam, s.username FROM speler s JOIN spelerontwikkelingskaart so "
