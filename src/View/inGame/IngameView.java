@@ -20,6 +20,7 @@ import javax.swing.border.Border;
 import Controller.BoardController;
 import Controller.ChatController;
 import Controller.DieController;
+import DAL.GameManagerDAL;
 import View.board.BoardColours;
 import View.build.BuildFrame;
 import View.chat.ChatContentPane;
@@ -30,6 +31,8 @@ import View.setupGame.DrawingPanel;
 
 @SuppressWarnings("serial")
 public class IngameView extends JPanel{
+	
+	GameManagerDAL gameManagerDAL = new GameManagerDAL();
 	
 	private final int WIDTH = 1500;
 	private final int HEIGHT = 900; 
@@ -49,7 +52,9 @@ public class IngameView extends JPanel{
 
 	public IngameView(BoardController bc, int gameID,DrawingPanel inGameBoard, int playerID) {
 		throwDiceButton = new JButton("Gooi Dobbelstenen");
-		
+		if(gameManagerDAL.getFirstTurn(gameID)) {
+			throwDiceButton.setEnabled(false);
+		}
 		border = BorderFactory.createLineBorder(Color.BLACK, 1);
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		setLayout(new BorderLayout());
