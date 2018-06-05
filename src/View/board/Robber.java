@@ -1,5 +1,6 @@
 package View.board;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -17,7 +18,12 @@ public class Robber extends JPanel {
 	private BufferedImage myBufferedImage1;
 	
 	public Robber() {
-		robber = new File("Images/Therobber.png");
+		
+		this.setLayout(null);
+		this.setPreferredSize(new Dimension(400, 300));
+		
+		robber = new File("./Images/Therobber.png");
+		
 		try {
 			myBufferedImage1 = ImageIO.read(robber);
 		}catch (IOException e) {
