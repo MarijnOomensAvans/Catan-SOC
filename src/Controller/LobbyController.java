@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 
 import DAL.LobbyDAL;
+import DAL.SpelDAL;
+import Model.ingame.PlayerStats;
 import Model.lobby.LobbyGameInfo;
 import Model.lobby.LobbyGameState;
 import Model.lobby.LobbyInvite;
@@ -38,6 +40,14 @@ public class LobbyController {
 		frame = new LobbyFrame(this,bc,cc,cog,1);
 		LobbyUpdateController updateController = new LobbyUpdateController();
 		updateController.addObserver(frame.getPanel());
+		
+		/*TEST VERWIJDER DIT!!*/
+		
+		SpelDAL sd = new SpelDAL();
+		ArrayList<PlayerStats> stats = sd.getPlayerStats(855);
+		for(int i = 0; i < stats.size(); i++) {
+			System.out.println(stats.get(i).getUsername());
+		}
 	}
 
 	public ArrayList<String> getUsernames() {
