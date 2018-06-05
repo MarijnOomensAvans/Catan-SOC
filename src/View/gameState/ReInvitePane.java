@@ -100,7 +100,7 @@ public class ReInvitePane extends JPanel {
 
 		for (int i = 0; i < names.size(); i++) {
 			if (game.getStatusForPlayerIndex(i).toString().equals("uitgedaagde")
-					|| game.getStatusForPlayerIndex(i).toString().equals("geweigerd")) {
+					|| game.getStatusForPlayerIndex(i).toString().equals("geweigerd") || game.getStatusForPlayerIndex(i).toString().equals("geaccepteerd")) {
 				usedNames.add(names.get(i).toString());
 			}
 		}
