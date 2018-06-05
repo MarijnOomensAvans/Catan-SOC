@@ -103,8 +103,7 @@ public class LobbyPanel extends JPanel implements Observer {
 		blackLine = BorderFactory.createLineBorder(Color.black, 2, true);
 		buttonBorder = BorderFactory.createLineBorder(Color.black, 3, true);
 
-		URL iconUrl = this.getClass().getResource("/images/logoCatan.png");
-		ImageIcon imageIcon = new ImageIcon(iconUrl);
+		ImageIcon imageIcon = new ImageIcon(ClassLoader.getSystemResource("logoCatan.png"));
 		JLabel catanLabel = new JLabel(imageIcon);
 
 		this.playButton = playButton;

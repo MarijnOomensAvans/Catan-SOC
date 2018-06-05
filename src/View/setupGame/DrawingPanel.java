@@ -9,6 +9,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Set;
 
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import Controller.BoardController;
@@ -127,8 +128,9 @@ public class DrawingPanel extends JPanel {
 		}
 		g2d.setColor(BoardColours.CHITS.getRGB());
 		for(int i = 0; i < hexagons.size(); i++) {
-		Image img = bc.getImage(i, idspel);
-		g.drawImage( img, hexagons.get(i).getCenter().x - 15, hexagons.get(i).getCenter().y - 15, this);
+		ImageIcon img = bc.getImage(i, idspel);
+		img.paintIcon(this, g, hexagons.get(i).getCenter().x - 15, hexagons.get(i).getCenter().y - 15);
+		//g.drawImage( img, hexagons.get(i).getCenter().x - 15, hexagons.get(i).getCenter().y - 15, this);
 		drawPoints(g);
 		}
 	}
