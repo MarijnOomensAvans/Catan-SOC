@@ -102,5 +102,40 @@ public class SpelDAL {
 
 		return usernames;
 	}
+	
+	public void setBiggestArmy(int gameid, String username) {
+		int playerid = getPlayerId(gameid, username);
+		try {
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate("UPDATE spel SET grootste_rm_idspeler = " +
+			 + playerid + " WHERE idspel = " + gameid);
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	public int getPlayerId(int gameid, String username) {
+		int playerid = 0;
+		
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(
+					"SELECT idspeler FROM speler "
+					+ "WHERE (gameid = " + gameid + " AND username LIKE '"
+					+ username + "')"
+					);
+			while(rs.next()) {
+				playerid = rs.getInt(1);
+			}
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return playerid;
+	}
 
 }
