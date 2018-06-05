@@ -9,6 +9,11 @@ import Model.board.Location;
 
 public class BoardController {
 	private Board board;
+	private LobbyController controller;
+	
+	public BoardController(LobbyController controller) {
+		this.controller = controller;
+	}
 	
 	public void generateBoard() {
 		board = new Board();
@@ -46,6 +51,10 @@ public class BoardController {
 
 	public ArrayList<Location> getLocatieKeys() {
 		return board.getLocatieKeys();
+	}
+	
+	public void openLobby() {
+		new LobbyController();
 	}
 
 	

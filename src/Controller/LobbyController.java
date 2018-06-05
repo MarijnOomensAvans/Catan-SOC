@@ -32,7 +32,7 @@ public class LobbyController {
 		lobbyDAL = new LobbyDAL();
 		lobbyModel = new LobbyModel(lobbyDAL);
 		cc = new ChatController(getGameID(), 0);
-		bc = new BoardController();
+		bc = new BoardController(this);
 		frame = new LobbyFrame(this,bc,cc,cog,1);
 		LobbyUpdateController updateController = new LobbyUpdateController();
 		updateController.addObserver(frame.getPanel());

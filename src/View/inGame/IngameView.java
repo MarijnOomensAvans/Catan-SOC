@@ -10,6 +10,9 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
@@ -210,4 +213,6 @@ public class IngameView extends JPanel{
 		cardsLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		return cardsLabel;
 	}
+	
+
 }
