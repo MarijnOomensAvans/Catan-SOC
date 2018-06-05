@@ -231,7 +231,11 @@ public class IngameView extends JPanel{
 	public void getCards() {
 		for(int i =0; i < playerStats.size(); i++) {
 			String name = playerStats.get(i).getUsername();
-			JLabel cardsLabel = new JLabel(name);
+			int resourceCards = playerStats.get(i).getResourceCards();
+			int developmentCards = playerStats.get(i).getDevelopmentCards();
+			int knightCards = playerStats.get(i).getKnightCards();
+			JLabel cardsLabel = new JLabel(name +" GK:"+ resourceCards +" OK:"+ developmentCards +" RK:"+ knightCards);
+			cardsLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			playerCardsPanel.add(cardsLabel);
 			System.out.println("InGameView: " + name);
 		}
