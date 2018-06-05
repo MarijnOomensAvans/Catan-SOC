@@ -1,5 +1,6 @@
 package View.dice;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -7,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JPanel;
@@ -16,8 +18,7 @@ import Controller.DieController;
 public class DieContentPane extends JPanel implements ActionListener
 {
 	private DieController con;
-	
-	private JButton myButton = new JButton("Dobbel");
+	private JButton throwDiceButton;
 	private File myFile = new File("./images/one.png");
 	private File one;
 	private File two;
@@ -28,16 +29,15 @@ public class DieContentPane extends JPanel implements ActionListener
 	private BufferedImage myBufferedImage1 = new BufferedImage(1, 1, BufferedImage.TYPE_INT_RGB);
 	private BufferedImage myBufferedImage2 = new BufferedImage(1, 1, BufferedImage.TYPE_INT_RGB);
 	
-	public DieContentPane(DieController controller) 
+	public DieContentPane(DieController controller, JButton throwDiceButton) 
 	{
+		this.throwDiceButton = throwDiceButton;
 		initFiles();
 		this.setLayout(null);
 		this.setPreferredSize(new Dimension(400, 300));
 		
-		myButton.addActionListener(this);
-		myButton.setBounds(150, 75, 100, 100);
-		
-		this.add(myButton);
+		throwDiceButton.addActionListener(this);
+		throwDiceButton.setBounds(150, 75, 100, 100);
 		
 		con = controller;
 	}
@@ -107,7 +107,7 @@ public class DieContentPane extends JPanel implements ActionListener
 	protected void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
-		g.drawImage(myBufferedImage1, 100, 200, 87, 87, null);
-		g.drawImage(myBufferedImage2, 225, 200, 87, 87, null);
+		g.drawImage(myBufferedImage1, 0, 0, 100, 100, null);
+		g.drawImage(myBufferedImage2, 0, 100, 100, 100, null);
 	}
 }

@@ -12,7 +12,9 @@ import java.util.ArrayList;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 import Controller.LobbyController;
 import Controller.LoginController;
@@ -28,8 +30,12 @@ public class InvitePanel extends JPanel {
 	private JComboBox box3;
 
 	private JButton sendButton;
+	
+	private JLabel warning = new JLabel("");
 
 	private String[] boxValues;
+
+	private String name1;
 
 	private Font buttonFont;
 
@@ -42,6 +48,9 @@ public class InvitePanel extends JPanel {
 		setLayout(new GridBagLayout());
 
 		names = lc.getUsernames();
+		
+		warning.setHorizontalAlignment(SwingConstants.CENTER);
+		warning.setForeground(Color.red);
 
 		buttonFont = new Font("Times New Roman", Font.BOLD, 22);
 
@@ -85,6 +94,13 @@ public class InvitePanel extends JPanel {
 		gc.gridwidth = 3;
 		gc.anchor = GridBagConstraints.CENTER;
 		this.add(sendButton, gc);
+		
+		gc.gridwidth = 3;
+		gc.gridx = 0;
+		gc.gridy = 2;
+		gc.weighty = 0.2;
+		gc.fill = GridBagConstraints.BOTH;
+		this.add(warning, gc);
 		// add itemlisteners add to array
 		box1.addItemListener(new ItemListener() {
 
@@ -127,15 +143,30 @@ public class InvitePanel extends JPanel {
 				}
 			}
 
-			if (!boxIsEmpty) {
-				lc.createInvitation(LoginController.getUsername(), lc.getGameID(), 1);
-				lc.createInvitation(boxValues[0], lc.getGameID(), 2);
-				lc.createInvitation(boxValues[1], lc.getGameID(), 3);
-				lc.createInvitation(boxValues[2], lc.getGameID(), 4);
-				frame.dispose();
+			if(checkCombobox()) {		
+				if (!boxIsEmpty) {
+					lc.createInvitation(LoginController.getUsername(), lc.getGameID(), 1);
+					lc.createInvitation(boxValues[0], lc.getGameID(), 2);
+					lc.createInvitation(boxValues[1], lc.getGameID(), 3);
+					lc.createInvitation(boxValues[2], lc.getGameID(), 4);
+					frame.dispose();
+				}
+			}else {
+				warning.setText("Dubbele namen");
 			}
 
+			
 		});
 	}
+
+	public boolean checkCombobox() {
+		boolean allowed = true;
+		if (boxValues[0].equals(boxValues[1]) || boxValues[0].equals(boxValues[2])
+				|| boxValues[1].equals(boxValues[2])) {
+			allowed = false;
+		}
+		return allowed;
+	}
+
 
 }

@@ -10,21 +10,29 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
 import Controller.BoardController;
 import Controller.ChatController;
+import Controller.DieController;
+import DAL.GameManagerDAL;
 import View.board.BoardColours;
 import View.build.BuildFrame;
 import View.chat.ChatContentPane;
 import View.chat.Chatoutputgui;
+import View.dice.DieContentPane;
 import View.setupGame.DrawingPanel;
 
 
 @SuppressWarnings("serial")
 public class IngameView extends JPanel{
+	
+	GameManagerDAL gameManagerDAL = new GameManagerDAL();
 	
 	private final int WIDTH = 1500;
 	private final int HEIGHT = 900; 
@@ -37,14 +45,23 @@ public class IngameView extends JPanel{
 	private ChatController chatController;
 	private Chatoutputgui chatOutput;
 	
+	private JButton throwDiceButton;
+	
 	private Border border;
 	//plek maken voor chat
 
 	public IngameView(BoardController bc, int gameID,DrawingPanel inGameBoard, int playerID) {
-		
+		throwDiceButton = new JButton("Gooi Dobbelstenen");
+		if(gameManagerDAL.getFirstTurn(gameID)) {
+			throwDiceButton.setEnabled(false);
+		}
 		border = BorderFactory.createLineBorder(Color.BLACK, 1);
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		setLayout(new BorderLayout());
+		
+		DieController dc = new DieController(gameID);
+		DieContentPane diceViewPanel = new DieContentPane(dc, throwDiceButton);
+		
 		chatController = new ChatController(gameID,playerID);
 		chatOutput = chatController.getCog();
 		ChatContentPane chatPanel = new ChatContentPane(chatController, chatOutput, playerID);
@@ -53,13 +70,12 @@ public class IngameView extends JPanel{
 		JPanel rightPanel = new JPanel();
 		JPanel bottomPanel = new JPanel();
 		
-		
 		JPanel buttonPanel = new JPanel();
 		JPanel bottomInfoPanel = new JPanel();
 		JPanel resourceCardPanel = new JPanel();
 		JPanel buildCostPanel = new JPanel();
 		JPanel diceButtonPanel = new JPanel();
-		JPanel diceViewPanel = new JPanel();
+		
 		JPanel costAndDicePanel = new JPanel();
 		
 		JPanel playerTurnPanel = new JPanel();
@@ -100,7 +116,6 @@ public class IngameView extends JPanel{
 		});
 		JButton tradeButton = new JButton("Handelen");
 		JButton devcardButton = new JButton("Ontwikkelingskaarten");
-		JButton throwDiceButton = new JButton("Gooi Dobbelstenen");
 		
 		JLabel streetLabel = new JLabel("Straat: 1B-1H");
 		JLabel villageLabel = new JLabel("Dorp: 1B-1H-1G-1W");
@@ -199,8 +214,10 @@ public class IngameView extends JPanel{
 	}
 	
 	public JLabel GetCardsOwnedByPlayer(String name, int resourceCards, int developmentCards, int playedKnights) {
-		JLabel cardsLabel = new JLabel(name + " " + "GK:" + resourceCards + "-OK" + developmentCards + "-GR" + playedKnights );
+		JLabel cardsLabel = new JLabel(name + " " + "Grondstof:" + resourceCards + "-ontwikkelings" + developmentCards + "-Gespeelde ridders" + playedKnights );
 		cardsLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		return cardsLabel;
 	}
+	
+
 }

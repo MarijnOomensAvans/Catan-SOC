@@ -7,7 +7,6 @@ public class BuildFrame extends JFrame{
 	private BuildContentPane buildcontentpane;
 	
 	public BuildFrame() {
-		this.buildcontentpane = new BuildContentPane(this);
 		this.setTitle("Bouw");
 		setResizable(false);
 		this.setContentPane(buildcontentpane);

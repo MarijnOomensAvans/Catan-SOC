@@ -42,7 +42,7 @@ public class LobbyController {
 		return lobbyModel.getUsernames();
 	}
 	
-	public void openGameStateContorller() {
+	public void openGameStateController() {
 		gsc = new GameStateController(this);
 		
 	}
