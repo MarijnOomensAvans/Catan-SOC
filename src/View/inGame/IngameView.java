@@ -228,12 +228,13 @@ public class IngameView extends JPanel{
 //	}
 	
 	public void getCards() {
+		
 		playerStats = inGameController.getPlayerStats(gameID);
-		for(int i =0; i < playerStats.size(); i++) {
+		
+		for(int i = 0; i < playerStats.size(); i++) {
 			String name = playerStats.get(i).getUsername();
 			JLabel cardsLabel = new JLabel(name);
 			playerCardsPanel.add(cardsLabel);
-			System.out.println("InGameView: " + name);
 		}
 	}
 	
