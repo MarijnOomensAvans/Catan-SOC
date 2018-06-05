@@ -194,6 +194,7 @@ public class IngameView extends JPanel{
 		
 		playerTurnPanel.add(turnLabel);
 		playerCardsPanel.add(playersAndCardsLabel); 
+		getCards();
 		gameTurnPanel.add(gameTurnLabel);
 		extraPointsPanel.add(largestArmyLabel);
 		extraPointsPanel.add(longestRouteLabel);
@@ -226,8 +227,10 @@ public class IngameView extends JPanel{
 //	}
 	
 	public void getCards() {
+		
+		
 		for(int i =0; i < playerStats.size(); i++) {
-			String name = playerStats.get(i).getUsername().toString();
+			String name = playerStats.get(i).getUsername();
 			JLabel cardsLabel = new JLabel(name);
 			playerCardsPanel.add(cardsLabel);
 		}
