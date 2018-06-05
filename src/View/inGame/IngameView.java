@@ -58,6 +58,7 @@ public class IngameView extends JPanel{
 	//plek maken voor chat
 
 	public IngameView(BoardController bc, int gameID,DrawingPanel inGameBoard, int playerID, IngameController inGameController) {
+		playerStats = inGameController.getPlayerStats(gameID);
 		this.gameID = gameID;
 		throwDiceButton = new JButton("Gooi Dobbelstenen");
 		if(gameManagerDAL.getFirstTurn(gameID)) {
@@ -228,10 +229,14 @@ public class IngameView extends JPanel{
 //	}
 	
 	public void getCards() {
+<<<<<<< HEAD
 		
 		playerStats = inGameController.getPlayerStats(gameID);
 		
 		for(int i = 0; i < playerStats.size(); i++) {
+=======
+		for(int i =0; i < playerStats.size(); i++) {
+>>>>>>> 6668f524d969159611205d5321f9370a78999fc9
 			String name = playerStats.get(i).getUsername();
 			JLabel cardsLabel = new JLabel(name);
 			playerCardsPanel.add(cardsLabel);
