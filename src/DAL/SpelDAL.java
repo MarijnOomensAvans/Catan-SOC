@@ -1,17 +1,17 @@
 package DAL;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import com.mysql.jdbc.Connection;
 
 import Model.ingame.PlayerStats;
 
 public class SpelDAL {
 
-	private Connection conn;
+	Connection conn = MainDAL.getConnection();
 	
 	public SpelDAL() {
 		MainDAL.getConnection();
@@ -26,8 +26,9 @@ public class SpelDAL {
 			while(rs.next()) {
 				stats.add(getStats(rs.getInt(1)));
 			}
+			stmt.close();
 		} catch(SQLException e) {
-			
+			e.printStackTrace();
 		}
 		
 		return stats;
@@ -55,7 +56,7 @@ public class SpelDAL {
 					knightCards++;
 				}
 			}
-			stmt.close();
+			
 			Statement stmt2 = conn.createStatement();
 			ResultSet rs2 = stmt2.executeQuery("SELECT count(sgk.idspeler) FROM grondstofkaart gk JOIN spelergrondstofkaart sgk "
 					+ "ON gk.idgrondstofkaart = sgk.idgrondstofkaart " + 
@@ -63,6 +64,8 @@ public class SpelDAL {
 			while(rs.next()) {
 				resourceCards = rs.getInt(1);
 			}
+			stmt.close();
+			stmt2.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
