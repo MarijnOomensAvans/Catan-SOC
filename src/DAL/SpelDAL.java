@@ -27,7 +27,7 @@ public class SpelDAL {
 				stats.add(getStats(rs.getInt(1)));
 			}
 		} catch(SQLException e) {
-			
+			e.printStackTrace();
 		}
 		
 		return stats;
