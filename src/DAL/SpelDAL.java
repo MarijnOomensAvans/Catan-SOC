@@ -14,6 +14,7 @@ public class SpelDAL {
 
 	public ArrayList<PlayerStats> getPlayerStats(int gameid) {
 		ArrayList<PlayerStats> stats = new ArrayList<PlayerStats>();
+		ArrayList<String> usernames;
 
 		try {
 			Statement stmt = conn.createStatement();
@@ -25,13 +26,15 @@ public class SpelDAL {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		usernames = getUsernames(gameid);
 
 		return stats;
 	}
 
 	private PlayerStats getStats(int playerid) {
 		PlayerStats stats = null;
-		String username = "TEST";
+		String username = "";
 		int resourceCards = 0;
 		int developmentCards = 0;
 		int knightCards = 0;
@@ -44,7 +47,9 @@ public class SpelDAL {
 				if (username.equals("")) {
 					username = rs.getString(2);
 				}
+				
 				developmentCards++;
+				
 				if (rs.getString(1).equals("ridder")) {
 					knightCards++;
 				}
@@ -82,6 +87,22 @@ public class SpelDAL {
 			e.printStackTrace();
 		}
 		return currentPlayer;
+	}
+	
+	private ArrayList<String> getUsernames(int gameid) {
+		ArrayList<String> usernames = new ArrayList<String>();
+		
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT username FROM speler WHERE idspel = " + gameid);
+			while(rs.next()) {
+				usernames.add(rs.getString(1));
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return usernames;
 	}
 
 
