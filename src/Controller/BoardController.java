@@ -11,8 +11,8 @@ public class BoardController {
 	private Board board;
 	private LobbyController controller;
 	
-	public BoardController(LobbyController controller) {
-		this.controller = controller;
+	public BoardController() {
+
 	}
 	
 	public void generateBoard() {
