@@ -12,7 +12,7 @@ public class BoardDal {
 	// This will put the tiles into the database.
 	public void setTile(int idspel, int idtegel, int x, int y, char idgrondstofsoort, int idgetalfiche) {
 		Statement stmt = null;
-		if (idtegel != 1009) {
+		if (idgrondstofsoort != 'X') {
 			String query = "INSERT INTO tegel VALUES('" + idspel + "', '" + idtegel + "' , '" + x + "' , '" + y
 					+ "' , '" + idgrondstofsoort + "' ,  '" + idgetalfiche + "')";
 			try {
@@ -22,13 +22,14 @@ public class BoardDal {
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());
 			}
-		} else {
+		} else { //if tile is desert
 			String query = "INSERT INTO tegel(idspel,idtegel,x,y,idgrondstofsoort) VALUES('" + idspel + "', '" + idtegel
 					+ "' , '" + x + "' , '" + y + "' , '" + idgrondstofsoort + "')";
 			try {
 				stmt = conn.createStatement();
 				stmt.executeUpdate(query);
 				stmt.close();
+				this.setRobberPostion(idspel, idtegel);
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());
 			}
@@ -172,4 +173,18 @@ public class BoardDal {
 		}
 	}
 
+	// ------------------------------------------------------------------------------------------------------------------------
+	// Set robber position
+	public void setRobberPostion(int idspel, int idtegel) {
+		Statement stmt = null;
+		String query = "UPDATE spel SET struikrover_idtegel = '"+ idtegel + "' WHERE idspel = '" + idspel + "' ";
+		try {
+			stmt = conn.createStatement();
+			stmt.executeUpdate(query);
+			stmt.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
 }
