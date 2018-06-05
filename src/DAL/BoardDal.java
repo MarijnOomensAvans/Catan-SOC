@@ -187,4 +187,18 @@ public class BoardDal {
 		}
 	}
 	
+	public int getRobberPosituin(int idspel) {
+		int i =0 ;
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT struikrover_idtegel FROM spel WHERE idspel = '" + idspel);
+
+			i = rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return i;
+		
+	}
+	
 }
