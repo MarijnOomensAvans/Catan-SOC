@@ -116,18 +116,20 @@ public class DrawingPanel extends JPanel {
 		int w2 = getWidth() / 2;
 		int h2 = getHeight() / 2;
 		g2d.setColor(Color.BLACK);
-		g2d.rotate(-Math.PI / 2, w2, h2);
+	//	g2d.rotate(-Math.PI / 2, w2, h2);
 		for(int i =0; i < hexagons.size(); i++) {
 			g2d.drawPolygon(hexagons.get(i).getHexagon());
 			Color color = bc.getColour(i, idspel);
 			g2d.setColor(color);
 			g2d.fillPolygon(hexagons.get(i).getHexagon());
-		//	g2d.draw(point);
+
+			
 		}
 		g2d.setColor(BoardColours.CHITS.getRGB());
 		for(int i = 0; i < hexagons.size(); i++) {
 		Image img = bc.getImage(i, idspel);
 		g.drawImage( img, hexagons.get(i).getCenter().x - 15, hexagons.get(i).getCenter().y - 15, this);
+		drawPoints(g);
 		}
 	}
 	
@@ -156,7 +158,7 @@ public class DrawingPanel extends JPanel {
 
         int keyX = keys.get(i).getX();
 
-        return 500 + ((keyX - 1) * (75 / 2)) + keyX - 2;
+        return 63 + ((keyX - 1) * (75 / 2)) + keyX - 2;
 
   }
 
@@ -169,7 +171,7 @@ public class DrawingPanel extends JPanel {
         int keyX = key.get(i).getX();
 	    int keyY = key.get(i).getY();
 
-        return 500 + (((2 * (12 - keyY)) - (10 - keyX)) * 100);
+        return 64 + (((2 * (12 - keyY)) - (10 - keyX)) * 100);
 
   }
 
@@ -181,6 +183,13 @@ public class DrawingPanel extends JPanel {
 
         return clickpoints.getKey(x, y);
 
+  }
+  
+  private void drawPoints(Graphics g) {
+	  Set<Point> points = clickpoints.getPoints();
+	  for(Point p : points ) {
+		  g.fillOval(p.x-5, p.y-5, 10, 10);
+	  }
   }
 
 }

@@ -237,7 +237,6 @@ public class IngameView extends JPanel{
 			JLabel cardsLabel = new JLabel(name +" GK:"+ resourceCards +" OK:"+ developmentCards +" RK:"+ knightCards);
 			cardsLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			playerCardsPanel.add(cardsLabel);
-			System.out.println("InGameView: " + name);
 		}
 	}
 	
