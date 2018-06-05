@@ -6,13 +6,11 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
@@ -20,7 +18,10 @@ import javax.swing.border.Border;
 import Controller.BoardController;
 import Controller.ChatController;
 import Controller.DieController;
+import Controller.IngameController;
+import Controller.PlayerController;
 import DAL.GameManagerDAL;
+import Model.ingame.PlayerStats;
 import View.board.BoardColours;
 import View.build.BuildFrame;
 import View.chat.ChatContentPane;
@@ -40,17 +41,25 @@ public class IngameView extends JPanel{
 	private final int BUTTONWIDTH = 300;
 	private final int BUTTONHEIGHT = 40;
 	
+	private int gameID;
+	private ArrayList<PlayerStats> playerStats;
+	
 	private GridLayout gridLayout = new GridLayout(0, 1, 0, 15);
 	
 	private ChatController chatController;
 	private Chatoutputgui chatOutput;
+	private IngameController inGameController;
+	
+	private JPanel playerCardsPanel;
 	
 	private JButton throwDiceButton;
 	
 	private Border border;
 	//plek maken voor chat
 
-	public IngameView(BoardController bc, int gameID,DrawingPanel inGameBoard, int playerID) {
+	public IngameView(BoardController bc, int gameID,DrawingPanel inGameBoard, int playerID, IngameController inGameController) {
+		playerStats = inGameController.getPlayerStats(gameID);
+		this.gameID = gameID;
 		throwDiceButton = new JButton("Gooi Dobbelstenen");
 		if(gameManagerDAL.getFirstTurn(gameID)) {
 			throwDiceButton.setEnabled(false);
@@ -79,7 +88,7 @@ public class IngameView extends JPanel{
 		JPanel costAndDicePanel = new JPanel();
 		
 		JPanel playerTurnPanel = new JPanel();
-		JPanel playerCardsPanel = new JPanel();
+		playerCardsPanel = new JPanel();
 		JPanel gameTurnPanel = new JPanel();
 		JPanel extraPointsPanel = new JPanel();
 		JPanel ownPointsPanel = new JPanel();
@@ -186,8 +195,8 @@ public class IngameView extends JPanel{
 
 		
 		playerTurnPanel.add(turnLabel);
-		playerCardsPanel.add(playersAndCardsLabel);
-		playerCardsPanel.add(GetCardsOwnedByPlayer("Mustafa", 1, 2, 3));
+		playerCardsPanel.add(playersAndCardsLabel); 
+		getCards();
 		gameTurnPanel.add(gameTurnLabel);
 		extraPointsPanel.add(largestArmyLabel);
 		extraPointsPanel.add(longestRouteLabel);
@@ -213,10 +222,25 @@ public class IngameView extends JPanel{
 		
 	}
 	
-	public JLabel GetCardsOwnedByPlayer(String name, int resourceCards, int developmentCards, int playedKnights) {
-		JLabel cardsLabel = new JLabel(name + " " + "Grondstof:" + resourceCards + "-ontwikkelings" + developmentCards + "-Gespeelde ridders" + playedKnights );
-		cardsLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		return cardsLabel;
+//	public JLabel GetCardsOwnedByPlayer(String name, int resourceCards, int developmentCards, int playedKnights) {
+//		JLabel cardsLabel = new JLabel(name + " " + "Grondstof:" + resourceCards + "-ontwikkelings" + developmentCards + "-Gespeelde ridders" + playedKnights );
+//		cardsLabel.setHorizontalAlignment(SwingConstants.CENTER);
+//		return cardsLabel;
+//	}
+	
+	public void getCards() {
+<<<<<<< HEAD
+		
+		playerStats = inGameController.getPlayerStats(gameID);
+		
+		for(int i = 0; i < playerStats.size(); i++) {
+=======
+		for(int i =0; i < playerStats.size(); i++) {
+>>>>>>> 6668f524d969159611205d5321f9370a78999fc9
+			String name = playerStats.get(i).getUsername();
+			JLabel cardsLabel = new JLabel(name);
+			playerCardsPanel.add(cardsLabel);
+		}
 	}
 	
 

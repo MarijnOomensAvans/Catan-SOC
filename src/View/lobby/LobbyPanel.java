@@ -338,8 +338,6 @@ public class LobbyPanel extends JPanel implements Observer {
 			acceptButton.addActionListener(e -> {
 				pane.inviteResponse(true, gameID);
 				updateInvites();
-				challengePanel.repaint();
-				challengePanel.validate();
 			});
 
 			JButton refuseButton = new JButton("X");
@@ -347,9 +345,6 @@ public class LobbyPanel extends JPanel implements Observer {
 			refuseButton.addActionListener(e -> {
 				pane.inviteResponse(false, gameID);
 				updateInvites();
-				drawInvites();
-				challengePanel.repaint();
-				challengePanel.validate();
 			});
 
 			acceptButton.setBackground(new Color(60, 180, 60, 255));
@@ -402,8 +397,9 @@ public class LobbyPanel extends JPanel implements Observer {
 			challengePanel.remove(c);
 		}
 		invitePanels.clear();
-		this.validate();
 		drawInvites();
+		this.repaint();
+		this.validate();
 	}
 	
 	private void updateGames() {
@@ -411,13 +407,13 @@ public class LobbyPanel extends JPanel implements Observer {
 			showGamePanel.remove(c);
 		}
 		gamePanels.clear();
-		this.validate();
 		drawGames();
+		this.validate();
 	}
 
 	@Override
 	public void update(Observable o, Object arg) {
 		updateInvites();
-		//updateGames();
+		updateGames();
 	}
 }
