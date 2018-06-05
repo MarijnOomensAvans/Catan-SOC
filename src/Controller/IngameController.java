@@ -18,4 +18,8 @@ public class IngameController {
 		return spelModel.getPlayerStats(gameId);
 		
 	}
+	
+	public String getTurn(int id) {
+		return spelModel.getTurn(id);
+	}
 }

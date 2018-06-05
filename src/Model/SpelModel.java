@@ -17,4 +17,7 @@ public class SpelModel {
 		return spelDal.getPlayerStats(id);
 		
 	}
+	public String getTurn(int id) {
+		return spelDal.getPlayerTurn(id);
+	}
 }
