@@ -48,7 +48,6 @@ public class IngameView extends JPanel{
 	
 	private ChatController chatController;
 	private Chatoutputgui chatOutput;
-	private IngameController inGameController;
 	
 	private JPanel playerCardsPanel;
 	
@@ -58,6 +57,7 @@ public class IngameView extends JPanel{
 	//plek maken voor chat
 
 	public IngameView(BoardController bc, int gameID,DrawingPanel inGameBoard, int playerID, IngameController inGameController) {
+
 		playerStats = inGameController.getPlayerStats(gameID);
 		this.gameID = gameID;
 		throwDiceButton = new JButton("Gooi Dobbelstenen");
@@ -133,7 +133,8 @@ public class IngameView extends JPanel{
 		
 		JLabel turnLabel = new JLabel("Speler aan de beurt: "); //HIER MOET DE SPELER DIE AAN DE BEURT IS TOEGEVOEGD WORDEN
 		JLabel playersAndCardsLabel = new JLabel("Spelers en kaarten: " );
-		JLabel gameTurnLabel = new JLabel("Beurt: "); // HIER MOET DE HUIDIGE BEURT IN
+		JLabel gameTurnLabel = new JLabel("Beurt: ");
+		JLabel gameTurnStringLabel = new JLabel(inGameController.getTurn(gameID));
 		JLabel largestArmyLabel = new JLabel("Grootste riddermacht: ");
 		JLabel longestRouteLabel = new JLabel("Langste handelsroute: ");
 		JLabel ownPointLabel = new JLabel("Eigen punten: ");
@@ -198,6 +199,8 @@ public class IngameView extends JPanel{
 		playerCardsPanel.add(playersAndCardsLabel); 
 		getCards();
 		gameTurnPanel.add(gameTurnLabel);
+		gameTurnPanel.add(gameTurnStringLabel);
+		System.out.println(inGameController.getTurn(gameID));
 		extraPointsPanel.add(largestArmyLabel);
 		extraPointsPanel.add(longestRouteLabel);
 		ownPointsPanel.add(ownPointLabel);
