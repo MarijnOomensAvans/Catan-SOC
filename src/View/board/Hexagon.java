@@ -21,20 +21,27 @@ public class Hexagon {
 // create a hexagon
       private Polygon createHexagon() {
           Polygon polygon = new Polygon();
-
-          for (int i = 0; i < 6; i++) {
-              int xval = (int) (center.x + radius
-                      * Math.cos(i * 2 * Math.PI / 6D));
-              int yval = (int) (center.y + radius
-                      * Math.sin(i * 2 * Math.PI / 6D));
+          int xval = center.x + radius;
+          int yval = center.y - 30;
               polygon.addPoint(xval, yval);
-              
-              
-          }
-          
+              xval = center.x + radius;
+              yval = center.y + 30;
+              polygon.addPoint(xval, yval);
+              xval = center.x;
+              yval = center.y + (radius + 10);
+              polygon.addPoint(xval, yval);
+              xval = center.x - radius;
+              yval = center.y + 30;
+              polygon.addPoint(xval, yval);
+              xval = center.x - radius;
+              yval = center.y - 30;
+              polygon.addPoint(xval, yval);
+              xval = center.x;
+              yval = center.y - (radius + 10);
+              polygon.addPoint(xval,yval);
           return polygon;
       }
-// get teh radius back
+// get the radius back
       public int getRadius() {
           return radius;
       }

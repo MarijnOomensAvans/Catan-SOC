@@ -57,29 +57,29 @@ public class DrawingPanel extends JPanel {
 // initialize arraylist 		
 		hexagons = new ArrayList<>();
 // initialize hexagons with points		
-		hexagon6 = new Hexagon(new Point(400, 164), 50);
-		hexagon11 = new Hexagon(new Point(400, 250), 50);
-		hexagon16 = new Hexagon(new Point(400, 336), 50);
+		hexagon6 = new Hexagon(new Point(200, 70), 50);
+		hexagon11 = new Hexagon(new Point(300, 70), 50);
+		hexagon16 = new Hexagon(new Point(400, 70), 50);
 		
-		hexagon3 = new Hexagon(new Point(325, 121), 50);
-		hexagon8 = new Hexagon(new Point(325, 208), 50);
-		hexagon13 = new Hexagon(new Point(325, 294), 50);
-		hexagon18 = new Hexagon(new Point(325, 380), 50);
+		hexagon3 = new Hexagon(new Point(150, 160), 50);
+		hexagon8 = new Hexagon(new Point(250, 160), 50);
+		hexagon13 = new Hexagon(new Point(350, 160), 50);
+		hexagon18 = new Hexagon(new Point(450, 160), 50);
 		
-		hexagon1 = new Hexagon(new Point(250, 78), 50);
-		hexagon5 = new Hexagon(new Point(250, 164), 50);
-		hexagon10 = new Hexagon(new Point(250, 250), 50);
-		hexagon15 = new Hexagon(new Point(250, 336), 50);
-		hexagon19 = new Hexagon(new Point(250, 423), 50);
+		hexagon1 = new Hexagon(new Point(100, 250), 50);
+		hexagon5 = new Hexagon(new Point(200, 250), 50);
+		hexagon10 = new Hexagon(new Point(300, 250), 50);
+		hexagon15 = new Hexagon(new Point(400, 250), 50);
+		hexagon19 = new Hexagon(new Point(500, 250), 50);
 		
-		hexagon2 = new Hexagon(new Point(175, 121), 50);
-		hexagon7 = new Hexagon(new Point(175, 208), 50);
-		hexagon12 = new Hexagon(new Point(175, 294), 50);
-		hexagon17 = new Hexagon(new Point(175, 380), 50);
+		hexagon2 = new Hexagon(new Point(150, 340), 50);
+		hexagon7 = new Hexagon(new Point(250, 340), 50);
+		hexagon12 = new Hexagon(new Point(350, 340), 50);
+		hexagon17 = new Hexagon(new Point(450, 340), 50);
 		
-		hexagon4 = new Hexagon(new Point(100, 164), 50);
-		hexagon9 = new Hexagon(new Point(100, 250), 50);
-		hexagon14 = new Hexagon(new Point(100, 336), 50);
+		hexagon4 = new Hexagon(new Point(200, 430), 50);
+		hexagon9 = new Hexagon(new Point(300, 430), 50);
+		hexagon14 = new Hexagon(new Point(400, 430), 50);
 // adding hexagons		
 		hexagons.add(hexagon1);
 		hexagons.add(hexagon2);
@@ -101,7 +101,7 @@ public class DrawingPanel extends JPanel {
 		hexagons.add(hexagon18);
 		hexagons.add(hexagon19);	
 		
-		setPreferredSize(new Dimension(500,500));
+		setPreferredSize(new Dimension(600,600));
 
 // set background
 		setBackground(BoardColours.SEA.getRGB());
@@ -158,7 +158,7 @@ public class DrawingPanel extends JPanel {
 
         int keyX = keys.get(i).getX();
 
-        return 63 + ((keyX - 1) * (75 / 2)) + keyX - 2;
+        return 50 + ((keyX - 1) * (99 / 2)) + keyX - 2;
 
   }
 
@@ -171,7 +171,7 @@ public class DrawingPanel extends JPanel {
         int keyX = key.get(i).getX();
 	    int keyY = key.get(i).getY();
 
-        return 64 + (((2 * (12 - keyY)) - (10 - keyX)) * 100);
+        return 10 + (((2 * (12 - keyY)) - (10 - keyX)) * 30);
 
   }
 
