@@ -260,6 +260,10 @@ public class LobbyPanel extends JPanel implements Observer {
 	// Display the current games the user is in
 	public void drawGames() {
 		games = pane.getGames();
+		for(JComponent c : gamePanels) {
+			showGamePanel.remove(c);
+		}
+		gamePanels.clear();
 
 		for (int i = 0; i < games.size(); i++) {
 
@@ -304,6 +308,11 @@ public class LobbyPanel extends JPanel implements Observer {
 
 	public void drawInvites() {
 		invites = pane.getInvites();
+		
+		for(JComponent c : invitePanels) {
+			challengePanel.remove(c);
+		}
+		invitePanels.clear();
 
 		for (int i = 0; i < invites.size(); i++) {
 			int gameID = invites.get(i).getGameID();
@@ -392,20 +401,12 @@ public class LobbyPanel extends JPanel implements Observer {
 	}
 	
 	private void updateInvites() {
-		for(JComponent c : invitePanels) {
-			challengePanel.remove(c);
-		}
-		invitePanels.clear();
 		drawInvites();
 		this.repaint();
 		this.validate();
 	}
 	
 	private void updateGames() {
-		for(JComponent c : gamePanels) {
-			showGamePanel.remove(c);
-		}
-		gamePanels.clear();
 		drawGames();
 		this.validate();
 	}

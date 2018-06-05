@@ -14,7 +14,7 @@ public class SpelDAL {
 
 	public ArrayList<PlayerStats> getPlayerStats(int gameid) {
 		ArrayList<PlayerStats> stats = new ArrayList<PlayerStats>();
-		ArrayList<String> usernames;
+		ArrayList<String> usernames = getUsernames(gameid);
 
 		try {
 			Statement stmt = conn.createStatement();
@@ -26,49 +26,47 @@ public class SpelDAL {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+
+		usernames = getUsernames(gameid);
 		
-		//usernames = getUsernames(gameid);
+		for(int i = 0; i < 4; i++) {
+			stats.get(i).setUsername(usernames.get(i));
+		}
 
 		return stats;
 	}
 
 	private PlayerStats getStats(int playerid) {
 		PlayerStats stats = null;
-		String username = "";
 		int resourceCards = 0;
 		int developmentCards = 0;
 		int knightCards = 0;
 		try {
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT o.naam, s.username FROM speler s JOIN spelerontwikkelingskaart so "
+			ResultSet rs = stmt.executeQuery("SELECT o.naam FROM speler s JOIN spelerontwikkelingskaart so "
 					+ "ON s.idspeler = so.idspeler JOIN ontwikkelingskaart o "
 					+ "ON o.idontwikkelingskaart = so.idontwikkelingskaart " + "WHERE s.idspeler = " + playerid);
 			while (rs.next()) {
-				if (username.equals("")) {
-					username = rs.getString(2);
-				}
-				
 				developmentCards++;
-				
+
 				if (rs.getString(1).equals("ridder")) {
 					knightCards++;
 				}
 			}
-
+			stmt.close();
 			Statement stmt2 = conn.createStatement();
 			ResultSet rs2 = stmt2
 					.executeQuery("SELECT count(sgk.idspeler) FROM grondstofkaart gk JOIN spelergrondstofkaart sgk "
 							+ "ON gk.idgrondstofkaart = sgk.idgrondstofkaart " + "WHERE sgk.idspeler = " + playerid);
-			while (rs.next()) {
-				resourceCards = rs.getInt(1);
+			while (rs2.next()) {
+				resourceCards = rs2.getInt(1);
 			}
-			stmt.close();
 			stmt2.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-		stats = new PlayerStats(username, resourceCards, developmentCards, knightCards);
+		stats = new PlayerStats(resourceCards, developmentCards, knightCards);
 		return stats;
 	}
 
@@ -88,22 +86,21 @@ public class SpelDAL {
 		}
 		return currentPlayer;
 	}
-	
+
 	private ArrayList<String> getUsernames(int gameid) {
 		ArrayList<String> usernames = new ArrayList<String>();
-		
+
 		try {
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT username FROM speler WHERE idspel = " + gameid);
-			while(rs.next()) {
+			ResultSet rs = stmt.executeQuery("SELECT username FROM speler WHERE idspel = " + gameid + " ORDER BY volgnr ASC");
+			while (rs.next()) {
 				usernames.add(rs.getString(1));
 			}
-		} catch(SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return usernames;
 	}
-
 
 }
