@@ -27,7 +27,7 @@ public class SpelDAL {
 			e.printStackTrace();
 		}
 		
-		usernames = getUsernames(gameid);
+		//usernames = getUsernames(gameid);
 
 		return stats;
 	}
