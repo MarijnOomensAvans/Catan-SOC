@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Set;
 
 /**
  * @author Ger Saris
@@ -115,5 +116,10 @@ public class ClickPoints
 			yvalues.add(y);
 		}
 	}
+	
+public Set<Point> getPoints(){
+	return points.keySet();
+	
+}
 
 }
