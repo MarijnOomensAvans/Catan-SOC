@@ -40,6 +40,14 @@ public class LobbyController {
 		frame = new LobbyFrame(this,bc,cc,cog,1);
 		LobbyUpdateController updateController = new LobbyUpdateController();
 		updateController.addObserver(frame.getPanel());
+		
+		/*TEST VERWIJDER DIT!!*/
+		
+		SpelDAL sd = new SpelDAL();
+		ArrayList<PlayerStats> stats = sd.getPlayerStats(855);
+		for(int i = 0; i < stats.size(); i++) {
+			System.out.println(stats.get(i).getUsername());
+		}
 	}
 
 	public ArrayList<String> getUsernames() {
