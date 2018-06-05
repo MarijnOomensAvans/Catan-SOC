@@ -402,6 +402,7 @@ public class LobbyPanel extends JPanel implements Observer {
 			challengePanel.remove(c);
 		}
 		invitePanels.clear();
+		this.repaint();
 		this.validate();
 		drawInvites();
 	}
