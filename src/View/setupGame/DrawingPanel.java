@@ -6,6 +6,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -18,7 +20,7 @@ import View.board.BoardColours;
 import View.board.Hexagon;
 
 @SuppressWarnings("serial")
-public class DrawingPanel extends JPanel {
+public class DrawingPanel extends JPanel implements MouseListener {
 	
 	private ClickPoints clickpoints;
 	
@@ -106,6 +108,7 @@ public class DrawingPanel extends JPanel {
 // set background
 		setBackground(BoardColours.SEA.getRGB());
 		createKlikpunten();
+		this.addMouseListener(this);
 	}
 
 	// drawing the hexagons
@@ -191,5 +194,34 @@ public class DrawingPanel extends JPanel {
 		  g.fillOval(p.x-5, p.y-5, 10, 10);
 	  }
   }
+
+@Override
+public void mouseClicked(MouseEvent e) {
+	String test = convertXYfromScreenToKey(e.getX(), e.getY());
+	System.out.println(test);
+}
+
+@Override
+public void mouseEntered(MouseEvent e) {
+	
+}
+
+@Override
+public void mouseExited(MouseEvent e) {
+	// TODO Auto-generated method stub
+	
+}
+
+@Override
+public void mousePressed(MouseEvent e) {
+	// TODO Auto-generated method stub
+	
+}
+
+@Override
+public void mouseReleased(MouseEvent e) {
+	// TODO Auto-generated method stub
+	
+}
 
 }
