@@ -12,10 +12,14 @@ public class PlayerController {
 	private BankController bc;
 	private PersonDAL db;
 
-	public PlayerController(int playerID, int gameID) {
-		bc = new BankController(gameID);
-		db = new PersonDAL();
+	public PlayerController(int playerID, int gameID,BankController bc, PersonDAL pd ) {
+		this.bc =bc;
+		db = pd;
 		player = new Player(this, db, playerID, gameID);
+	}
+
+	public Player getPlayer() {
+		return player;
 	}
 
 	public MaterialCard getMaterialCard(String kind, int playerid) {

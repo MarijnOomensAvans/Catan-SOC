@@ -2,16 +2,26 @@ package Controller;
 
 import java.util.ArrayList;
 
+import DAL.PersonDAL;
 import Model.SpelModel;
 import Model.ingame.PlayerStats;
 
 public class IngameController {
 	
 	private SpelModel spelModel;
+	private BankController bc;
+	private int gameid;
+	private PersonDAL pd;
+	private PlayerController pc;
+	private int playerID;
 	
-	public IngameController() {
-	 spelModel = new SpelModel();
-
+	public IngameController(int gameid, int playerID) {
+		this.gameid = gameid;
+		this.playerID = playerID;
+		spelModel = new SpelModel();
+		bc = new BankController(gameid);
+		pd = new PersonDAL();
+		this.pc = new PlayerController(playerID, gameid, bc, pd);
 	}
 	
 	public ArrayList<PlayerStats> getPlayerStats(int gameId){
@@ -28,7 +38,7 @@ public class IngameController {
 	}
 
 	public void openTrade() {
-		// TODO Auto-generated method stub
+		new TradeController(playerID, gameid, pd, pc.getPlayer(), pc, bc);
 		
 	}
 
