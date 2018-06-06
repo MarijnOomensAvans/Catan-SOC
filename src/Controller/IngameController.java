@@ -11,7 +11,6 @@ import View.developmentCards.DevelopmentGui;
 public class IngameController {
 
 	private SpelModel spelModel;
-<<<<<<< HEAD
 	private BankController bc;
 	private int gameid;
 	private PersonDAL pd;
@@ -25,20 +24,6 @@ public class IngameController {
 		bc = new BankController(gameid);
 		pd = new PersonDAL();
 		this.pc = new PlayerController(playerID, gameid, bc, pd);
-=======
-	private PlayerController playerController;
-	private BankController bankController;
-	private int playerid;
-	private int gameid;
-
-	public IngameController(int gameid, int playerid) {
-		this.gameid = gameid;
-		this.playerid = playerid;
-		spelModel = new SpelModel();
-		playerController = new PlayerController(playerid, gameid);
-		bankController = new BankController(gameid);
-
->>>>>>> 7dbd23a57c8f49caf38184148d0ba4ae9ce03dc6
 	}
 
 	public ArrayList<PlayerStats> getPlayerStats(int gameId) {
@@ -55,17 +40,16 @@ public class IngameController {
 	}
 
 	public void openTrade() {
-<<<<<<< HEAD
+
 		new TradeController(playerID, gameid, pd, pc.getPlayer(), pc, bc);
 		
-=======
+
 		// TODO Auto-generated method stub
 
->>>>>>> 7dbd23a57c8f49caf38184148d0ba4ae9ce03dc6
 	}
 
 	public void openDevcard() {
-		DevelopmentContentPane dcp = new DevelopmentContentPane(playerController, playerid);
-		new DevelopmentGui(playerController, dcp, gameid, playerid);
+		DevelopmentContentPane dcp = new DevelopmentContentPane(pc, playerID);
+		new DevelopmentGui(pc, dcp, gameid, playerID);
 	}
 }
