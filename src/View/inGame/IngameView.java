@@ -55,16 +55,7 @@ public class IngameView extends JPanel {
 	private JLabel intTurnLabel;
 
 	private JButton throwDiceButton;
-<<<<<<< HEAD
-	
 	private Border border;
-	//plek maken voor chat
-=======
-
-	private Border border;
-
-
->>>>>>> bf5a13dc069d5cad531f498092dc22aa8834ad54
 
 	public IngameView(BoardController bc, int gameID, DrawingPanel inGameBoard, int playerID,
 			IngameController inGameController) {
