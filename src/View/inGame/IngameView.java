@@ -20,6 +20,7 @@ import Controller.ChatController;
 import Controller.DieController;
 import Controller.IngameController;
 import Controller.LoginController;
+import Controller.PlayerController;
 import DAL.GameManagerDAL;
 import Model.ingame.PlayerStats;
 import View.board.BoardColours;
@@ -58,7 +59,7 @@ public class IngameView extends JPanel {
 	private Border border;
 
 	public IngameView(BoardController bc, int gameID, DrawingPanel inGameBoard, int playerID,
-			IngameController inGameController) {
+			IngameController inGameController, PlayerController pc) {
 		this.ingameController = inGameController;
 		playerStats = inGameController.getPlayerStats(gameID);
 		this.gameID = gameID;
@@ -110,7 +111,7 @@ public class IngameView extends JPanel {
 		// gameTurnPanel.setBackground(Color.gray);
 		// extraPointsPanel.setBackground(Color.green);
 		// ownPointsPanel.setBackground(Color.orange);
-		//
+		
 		buttonPanel.setBorder(border);
 		resourceCardPanel.setBorder(border);
 		buildCostPanel.setBorder(border);
@@ -124,7 +125,7 @@ public class IngameView extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new BuildFrame(null);
+				new BuildFrame(pc);
 
 			}
 

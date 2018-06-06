@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Controller.BuildController;
+import Controller.PlayerController;
 import Model.Player;
 
 @SuppressWarnings("serial")
@@ -24,12 +25,12 @@ public class BuildContentPane extends JPanel{
 	@SuppressWarnings("unused")
 	private BuildController buildcontroller;
 	@SuppressWarnings("unused")
-	private Player player;
+	private PlayerController pc;
 	
 	
-	public BuildContentPane(BuildFrame frame,Player player) {
+	public BuildContentPane(BuildFrame frame,PlayerController pc) {
 		buildcontroller = new BuildController();
-		this.player = player;
+		this.pc = pc;
 		this.setLayout(gridLayout);
 		gridLayout.setVgap(50);
 		this.setPreferredSize(new Dimension(500,500));
@@ -46,7 +47,7 @@ public class BuildContentPane extends JPanel{
             	frame.closeFrame();
             }
         });
-		if(!(player.hasStoneCard(1) && player.hasWheatCard(1) && player.hasWoodCard(1) && player.hasWoolCard(1))) {
+		if(!(pc.hasStoneCards(1) && pc.hasWheatCards(1) && pc.hasWoodCards(1) && pc.hasWoolCards(1))) {
 			villageBuild.setEnabled(false);
 		}
 		villageBuild.setPreferredSize(buttonsize);
@@ -63,7 +64,7 @@ public class BuildContentPane extends JPanel{
             	frame.closeFrame();
             }
         });
-		if(!(player.hasOreCard(3) && player.hasWheatCard(2))) {
+		if(!(pc.hasOreCards(3) && pc.hasWheatCards(2))) {
 			cityBuild.setEnabled(false);
 		}
 		cityBuild.setPreferredSize(buttonsize);
@@ -80,7 +81,7 @@ public class BuildContentPane extends JPanel{
             	frame.closeFrame();
             }
         });
-		if(!(player.hasStoneCard(1) && player.hasWoodCard(1))) {
+		if(!(pc.hasStoneCards(1) && pc.hasWoodCards(1))) {
 			streetBuild.setEnabled(false);
 		}
 		streetBuild.setPreferredSize(buttonsize);
@@ -97,7 +98,7 @@ public class BuildContentPane extends JPanel{
             	frame.closeFrame();
             }
         });
-		if(!(player.hasWoodCard(1) && player.hasWheatCard(1) && player.hasOreCard(1))) {
+		if(!(pc.hasWoodCards(1) && pc.hasWheatCards(1) && pc.hasOreCards(1))) {
 			devCardBuild.setEnabled(false);
 		}
 		devCardBuild.setPreferredSize(buttonsize);

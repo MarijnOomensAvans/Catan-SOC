@@ -73,6 +73,26 @@ public class PlayerController {
 		int amountUniversiteit = db.amountDeveloperCards(playerid, false, "__4g");
 		return amountUniversiteit;
 	}
+	
+	public boolean hasStoneCards(int amount) {
+		return player.hasStoneCard(amount);
+	}
+	
+	public boolean hasOreCards(int amount) {
+		return player.hasOreCard(amount);
+	}
+	
+	public boolean hasWoodCards(int amount) {
+		return player.hasWoodCard(amount);
+	}
+	
+	public boolean hasWoolCards(int amount) {
+		return player.hasWoolCard(amount);
+	}
+	
+	public boolean hasWheatCards(int amount) {
+		return player.hasWheatCard(amount);
+	}
 
 
 	public void tradeCards(int otherplayerid, ArrayList<Integer> offer, Player player) {
