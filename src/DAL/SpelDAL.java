@@ -214,7 +214,7 @@ public class SpelDAL {
 					.executeQuery("SELECT COUNT(*) FROM spelerontwikkelingskaart so JOIN ontwikkelingskaart o "
 							+ "ON so.idontwikkelingskaart = o.idontwikkelingskaart JOIN speler s ON so.idspeler = s.idspeler"
 							+ " WHERE (o.naam LIKE ('kathedraal') OR o.naam LIKE ('bibliotheek') OR o.naam LIKE ('markt') OR o.naam LIKE ('universiteit') "
-							+ "OR o.naam LIKE ('parlement')) AND s.username LIKE " + username );
+							+ "OR o.naam LIKE ('parlement')) AND s.username LIKE '" + username + "'" );
 			while (rs.next()) {
 				devPoints = rs.getInt(1);
 			}

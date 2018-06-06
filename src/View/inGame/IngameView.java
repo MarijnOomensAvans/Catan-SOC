@@ -109,7 +109,7 @@ public class IngameView extends JPanel {
 		// gameTurnPanel.setBackground(Color.gray);
 		// extraPointsPanel.setBackground(Color.green);
 		// ownPointsPanel.setBackground(Color.orange);
-		//
+		
 		buttonPanel.setBorder(border);
 		resourceCardPanel.setBorder(border);
 		buildCostPanel.setBorder(border);

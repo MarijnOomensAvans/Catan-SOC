@@ -34,7 +34,6 @@ public class LobbyController {
 
 	public LobbyController() {
 		lobbyDAL = new LobbyDAL();
-		inGameController = new IngameController();
 		lobbyModel = new LobbyModel(lobbyDAL);
 		cc = new ChatController(getGameID(), 0);
 		bc = new BoardController();
@@ -101,6 +100,7 @@ public class LobbyController {
 		bc.generateBoard();
 		DrawingPanel dp = new DrawingPanel(bc, gameID);
 		int playerID = Integer.parseInt(lobbyDAL.getPlayerID(gameID));
+		inGameController = new IngameController(gameID, playerID);
 		gameFrame = new InGameFrame(bc, gameID, dp, playerID, inGameController);
 		pc = new PlayerController(playerID, gameID);
 	}
