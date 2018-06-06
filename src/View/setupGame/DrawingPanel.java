@@ -20,6 +20,7 @@ import Model.board.ClickPoints;
 import Model.board.Location;
 import View.board.BoardColours;
 import View.board.Hexagon;
+import View.board.Robber;
 
 @SuppressWarnings("serial")
 public class DrawingPanel extends JPanel{
@@ -29,6 +30,8 @@ public class DrawingPanel extends JPanel{
 	private String hlPoint;
 	
 	private ArrayList<Location> keys;
+	
+	private Robber robber;
 	
 // making 19 rooms for hexagons
 	private Hexagon hexagon1;
@@ -58,6 +61,7 @@ public class DrawingPanel extends JPanel{
 	private ArrayList<Hexagon> hexagons;
 
 	public DrawingPanel(BoardController bc, int idspel) {
+		robber = new Robber(bc, idspel,this);
 		this.idspel = idspel;
 		this.bc = bc;
 // initialize arraylist 		
@@ -105,7 +109,8 @@ public class DrawingPanel extends JPanel{
 		hexagons.add(hexagon16);
 		hexagons.add(hexagon17);
 		hexagons.add(hexagon18);
-		hexagons.add(hexagon19);	
+		hexagons.add(hexagon19);
+		this.add(robber);
 		
 		setPreferredSize(new Dimension(600,600));
 
