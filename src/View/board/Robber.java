@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Controller.BoardController;
-import View.setupGame.DrawingPanel;
+
 
 
 
@@ -20,19 +20,12 @@ import View.setupGame.DrawingPanel;
 public class Robber extends JPanel {
 	
 	private ImageIcon image1;
-	private BoardController bc;
-	private int gameID;
-	private DrawingPanel dp;
 	private JLabel image;
 	
-	public Robber(BoardController bc, int gameID, DrawingPanel drawingPanel) {
-		this.bc = bc;
-		this.gameID = gameID;
-		this.dp = drawingPanel;
+	public Robber() {
 		this.setPreferredSize(new Dimension(25,60));
 		image1 = new ImageIcon(ClassLoader.getSystemResource("Therobber.png"));
 		image = new JLabel(image1);
-		image.setBounds(getXRobber(), getYRobber(), 25, 58);
 		this.setBackground(null);
 		add(image);
 		repaint();
@@ -40,15 +33,4 @@ public class Robber extends JPanel {
 		
 	}
 
-	
-	private int getXRobber() {
-		int x =bc.getRobberXPosition(gameID);
-		return x;
-		
-	}
-	private int getYRobber() {
-		int y = bc.getRobberYPosition(gameID);
-		return y;
-		
-	}
 }
