@@ -13,7 +13,8 @@ import java.util.Set;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
-import DAL.BoardDAL;
+import com.magmaflow.BoardDAL;
+
 import View.board.BoardColours;
 
 public class Board {
