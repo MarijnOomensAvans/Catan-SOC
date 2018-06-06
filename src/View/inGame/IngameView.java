@@ -55,11 +55,8 @@ public class IngameView extends JPanel {
 	private JButton throwDiceButton;
 
 	private Border border;
-<<<<<<< HEAD
-	// plek maken voor chat
-=======
-	//plek maken voor chat
->>>>>>> 1cb2702e09bbb75093fbea7f3b40493f5d092854
+
+
 
 	public IngameView(BoardController bc, int gameID, DrawingPanel inGameBoard, int playerID,
 			IngameController inGameController) {
@@ -279,8 +276,7 @@ public class IngameView extends JPanel {
 		}
 		return intTurnLabel;
 	}
-<<<<<<< HEAD
-=======
+
 	
 	public JLabel ownPoints() {
 		JLabel ownPoint = null;
@@ -291,7 +287,6 @@ public class IngameView extends JPanel {
 		}
 		return ownPoint;
 	}
-	
->>>>>>> 1cb2702e09bbb75093fbea7f3b40493f5d092854
+
 
 }
