@@ -13,17 +13,19 @@ import Model.Player;
 public class BankController {
 	
 	@SuppressWarnings("unused")
-	private MainDAL md;
 	private BankDAL bd;
 	private Bank bank;
 	@SuppressWarnings("unused")
 	private Player player;
 	
-	public BankController(MainDAL md, int gameid) {
-		this.md = md;
+	public BankController(int gameid) {
 		bd = new BankDAL();
 		bank = new Bank(bd, gameid);
 		
+	}
+	
+	public void makeCards() {
+		bank.makeCards();
 	}
 
 	public MaterialCard getMaterialCard(String kind, int playerid) {
@@ -36,14 +38,11 @@ public class BankController {
 		
 	}
 
-	public DevelopmentCard getDevelopmentCard(String iddevcard) {
-		DevelopmentCard devcard =bank.getDevelopmentCard();
+	public DevelopmentCard getDevelopmentCard(String iddevcard, int playerid) {
+		DevelopmentCard devcard =bank.getDevelopmentCard(iddevcard);
 		return devcard;
 	}
-	public DevelopmentCard getDevelopmentCard() {
-		DevelopmentCard devcard =bank.getDevelopmentCard();
-		return devcard;
-	}
+
 
 	public void trade(int playerid, ArrayList<String> cardkinds) {
 		bank.trade(playerid,cardkinds);

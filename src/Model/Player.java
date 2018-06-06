@@ -33,16 +33,7 @@ public class Player {
 		setName();
 		setColor();
 		setOrder_number();
-		addDevelopmentCard();
-		addDevelopmentCard();
-		addDevelopmentCard();
-		
 		printallPlayerDevCards();
-		removeDevCard("o12r", gameid, playerid);
-		
-		//setName();
-		//setColor();
-		//setOrder_number();
 		
 	}
 	
@@ -59,7 +50,7 @@ public class Player {
 	
 
 	public void setOrder_number() {
-			order_number = pd.getorder_number(player_id,game_id);
+			order_number = Integer.parseInt(pd.getorder_number(player_id,game_id));
 	}
 
 	public void addMaterialCard(String kind,int gameid) {
@@ -68,14 +59,14 @@ public class Player {
 		pd.addMaterialCard(game_id, cardid, player_id);
 		hand.add(newCard);
 	}
-	public void addDevelopmentCard() {
+		public void addDevelopmentCard(String idDevCard,int gameid) {
 		
-		DevelopmentCard newDevCard = conn.getDevelopmentCard(idDevCard);
+		DevelopmentCard newDevCard = conn.getDevelopmentCard(idDevCard, gameid);
 		handdev.add(newDevCard);
 		String devcardid = newDevCard.getIdDevCard();
 		pd.addDevelopmentCard(game_id, devcardid, player_id, false);
 		
-		}
+	}
 	
 	
 	public void removeMatCard(String kind) {
@@ -119,10 +110,7 @@ public class Player {
 		}
 	}
 
-	public void adddevelopmentCard(int kind) {
-		handdev.add(conn.getDevelopmentCard());
 	
-		}
 	
 	public void testMonopoly() {
 		for(int i=0; i< handdev.size(); i++) {
@@ -155,40 +143,9 @@ public class Player {
 	public int getKnightmight() {
 			return knightmight;
 	}
-	public boolean hasKnightCard(int amount) {
-		int counter =0;
-		if(handdev.size()>0) {
-			
-		for(int i =0; i< handdev.size(); i++) {
-			if(handdev.get(i).getIdDevCard().substring(3).equals("r")) {
-				counter++;
-			};
-		}
-		}
-		if(counter>= amount) {
-			return true;
-		}else {
-			return false;
-		}
-	}
+	
 
-	public boolean hasStratenBouw(int amount) {
-		int counter =0;
-		if(handdev.size()>0) {
-			
-		for(int i =0; i< handdev.size(); i++) {
-			if(handdev.get(i).getIdDevCard().substring(3).equals("s")) {
-				counter++;
-			};
-		}
-		}
-		if(counter>= amount) {
-			return true;
-		}else {
-			return false;
-		}
-			}
-
+	
 	public boolean hasStoneCard(int amount) {
 		int counter =0;
 		if(hand.size()>0) {
@@ -206,22 +163,6 @@ public class Player {
 		}
 	}
 
-	public boolean hasMonopolie(int amount) {
-		int counter =0;
-		if(handdev.size()>0) {
-			
-		for(int i =0; i< handdev.size(); i++) {
-			if(handdev.get(i).getIdDevCard().substring(3).equals("m")) {
-				counter++;
-			};
-		}
-		}
-		if(counter>= amount) {
-			return true;
-		}else {
-			return false;
-		}
-			}
 	public boolean hasWheatCard(int amount) {
 		int counter =0;
 		if(hand.size()>0) {
@@ -238,22 +179,6 @@ public class Player {
 			return false;
 		}
 	}
-	public boolean hasUitvinding(int amount) {
-		int counter =0;
-		if(handdev.size()>0) {
-			
-		for(int i =0; i< handdev.size(); i++) {
-			if(handdev.get(i).getIdDevCard().substring(3).equals("u")) {
-				counter++;
-			};
-		}
-		}
-		if(counter>= amount) {
-			return true;
-		}else {
-			return false;
-		}
-			}
 	public boolean hasWoodCard(int amount) {
 		int counter =0;
 		if(hand.size()>0) {
@@ -269,40 +194,9 @@ public class Player {
 		}else {
 			return false;
 		}
-	}
+	
 
-	public boolean hasKathedraal(int amount) {
-		int counter =0;
-		if(handdev.size()>0) {
-			
-		for(int i =0; i< handdev.size(); i++) {
-			if(handdev.get(i).getIdDevCard().substring(2).equals("1q")) {
-				counter++;
-			};
-		}
-		}
-		if(counter>= amount) {
-			return true;
-		}else {
-			return false;
-		}
 }
-	public boolean hasParlement(int amount) {
-		int counter =0;
-		if(handdev.size()>0) {
-			
-		for(int i =0; i< handdev.size(); i++) {
-			if(handdev.get(i).getIdDevCard().substring(2).equals("5q")) {
-				counter++;
-			};
-		}
-		}
-		if(counter>= amount) {
-			return true;
-		}else {
-			return false;
-		}
-			}
 	public boolean hasWoolCard(int amount) {
 		int counter =0;
 		if(hand.size()>0) {
@@ -320,61 +214,12 @@ public class Player {
 		}
 	}
 
-	public boolean hasMarkt(int amount) {
-		int counter =0;
-		if(handdev.size()>0) {
-			
-		for(int i =0; i< handdev.size(); i++) {
-			if(handdev.get(i).getIdDevCard().substring(2).equals("2q")) {
-				counter++;
-			};
-		}
-		}
-		if(counter>= amount) {
-			return true;
-		}else {
-			return false;
-		}
-			}
 	public boolean hasOreCard(int amount) {
 		int counter =0;
 		if(hand.size()>0) {
 			
 		for(int i =0; i< hand.size(); i++) {
 			if(hand.get(i).getKindOfMaterial().equals("E")) {
-				counter++;
-			};
-		}
-		}
-		if(counter>= amount) {
-			return true;
-		}else {
-			return false;
-		}
-	}
-	public boolean hasBibliotheek(int amount) {
-		int counter =0;
-		if(handdev.size()>0) {
-			
-		for(int i =0; i< handdev.size(); i++) {
-			if(handdev.get(i).getIdDevCard().substring(2).equals("3q")) {
-				counter++;
-			};
-		}
-		}
-		if(counter>= amount) {
-			return true;
-		}else {
-			return false;
-		}
-	}
-
-	public boolean hasUniversiteit(int amount) {
-		int counter =0;
-		if(handdev.size()>0) {
-			
-		for(int i =0; i< handdev.size(); i++) {
-			if(handdev.get(i).getIdDevCard().substring(2).equals("4q")) {
 				counter++;
 			};
 		}

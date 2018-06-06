@@ -61,7 +61,9 @@ public class DrawingPanel extends JPanel{
 	private ArrayList<Hexagon> hexagons;
 
 	public DrawingPanel(BoardController bc, int idspel) {
-		robber = new Robber(bc, idspel,this);
+		robber = new Robber();
+		this.setLayout(null);
+		robber = new Robber();
 		this.idspel = idspel;
 		this.bc = bc;
 // initialize arraylist 		
@@ -110,6 +112,7 @@ public class DrawingPanel extends JPanel{
 		hexagons.add(hexagon17);
 		hexagons.add(hexagon18);
 		hexagons.add(hexagon19);
+		robber.setBounds(bc.getRobberXPosition(idspel)-12,bc.getRobberYPosition(idspel)-30,25,60);;
 		this.add(robber);
 		
 		setPreferredSize(new Dimension(600,600));

@@ -5,7 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class BoardDal {
+public class BoardDAL {
 	Connection conn = MainDAL.getConnection();
 
 	// ------------------------------------------------------------------------------------------------------------------------
@@ -197,6 +197,9 @@ public class BoardDal {
 			i = rs.getInt(1);
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}
+		if(i < 999) {
+			i = i + 999;
 		}
 		return i;
 

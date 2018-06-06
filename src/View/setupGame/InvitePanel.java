@@ -30,7 +30,7 @@ public class InvitePanel extends JPanel {
 	private JComboBox box3;
 
 	private JButton sendButton;
-	
+
 	private JLabel warning = new JLabel("");
 
 	private String[] boxValues;
@@ -48,7 +48,7 @@ public class InvitePanel extends JPanel {
 		setLayout(new GridBagLayout());
 
 		names = lc.getUsernames();
-		
+
 		warning.setHorizontalAlignment(SwingConstants.CENTER);
 		warning.setForeground(Color.red);
 
@@ -94,7 +94,7 @@ public class InvitePanel extends JPanel {
 		gc.gridwidth = 3;
 		gc.anchor = GridBagConstraints.CENTER;
 		this.add(sendButton, gc);
-		
+
 		gc.gridwidth = 3;
 		gc.gridx = 0;
 		gc.gridy = 2;
@@ -143,7 +143,7 @@ public class InvitePanel extends JPanel {
 				}
 			}
 
-			if(checkCombobox()) {		
+			if (checkCombobox()) {
 				if (!boxIsEmpty) {
 					lc.createInvitation(LoginController.getUsername(), lc.getGameID(), 1);
 					lc.createInvitation(boxValues[0], lc.getGameID(), 2);
@@ -151,11 +151,10 @@ public class InvitePanel extends JPanel {
 					lc.createInvitation(boxValues[2], lc.getGameID(), 4);
 					frame.dispose();
 				}
-			}else {
+			} else {
 				warning.setText("Dubbele namen");
 			}
 
-			
 		});
 	}
 
@@ -165,8 +164,11 @@ public class InvitePanel extends JPanel {
 				|| boxValues[1].equals(boxValues[2])) {
 			allowed = false;
 		}
+		if (boxValues[0].equals(LoginController.getUsername()) || boxValues[1].equals(LoginController.getUsername())
+				|| boxValues[2].equals(LoginController.getUsername())) {
+			allowed = false;
+		}
 		return allowed;
 	}
-
 
 }

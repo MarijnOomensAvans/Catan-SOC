@@ -60,12 +60,11 @@ public class PersonDAL {
 		return result;
 }
 	
-	public int getorder_number(int playerid, int gameid)
+	public String getorder_number(int playerid, int gameid)
 	{
 		String result ="";
-		String idstring = Integer.toString(playerid);
 		Statement stmt = null;
-		String query = "SELECT volgnr FROM speler WHERE idspeler =" + idstring+ " AND idspel ="+ gameid;
+		String query = "SELECT volgnr FROM speler WHERE idspeler =" + playerid+ " AND idspel ="+ gameid;
 		try
 		{
 			stmt = conn.createStatement();
@@ -79,8 +78,7 @@ public class PersonDAL {
 		{
 			System.out.println(e.getMessage());
 		}
-		int resultint =Integer.parseInt(result);
-		return resultint;
+		return result;
 }
 	
 	public void addMaterialCard(int idgame,String idcard, int idplayer) {
@@ -234,6 +232,27 @@ public class PersonDAL {
 			
 		
 }
+	public int amountDeveloperCards(int idplayer, boolean cardPlayed, String cardtype) {
+		int amount = 0;
+		Statement stmt = null;
+		String query = "SELECT COUNT(idontwikkelingskaart) FROM spelerontwikkelingskaart WHERE gespeeld="+ cardPlayed + " AND idspeler = '"+ idplayer +"' AND idontwikkelingskaart LIKE '"+ cardtype+"'";
+		try
+		{
+			stmt = conn.createStatement();
+			@SuppressWarnings("unused")
+			ResultSet i = stmt.executeQuery(query);
+			while (i.next())
+			{
+				amount = i.getInt(1);
+			}
+		
+			stmt.close();
+		} catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		return amount;
+	}
 	
 	
 
