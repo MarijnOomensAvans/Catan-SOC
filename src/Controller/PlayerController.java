@@ -12,10 +12,14 @@ public class PlayerController {
 	private BankController bc;
 	private PersonDAL db;
 
-	public PlayerController(int playerID, int gameID) {
-		bc = new BankController(gameID);
-		db = new PersonDAL();
+	public PlayerController(int playerID, int gameID,BankController bc, PersonDAL pd ) {
+		this.bc =bc;
+		db = pd;
 		player = new Player(this, db, playerID, gameID);
+	}
+
+	public Player getPlayer() {
+		return player;
 	}
 
 	public MaterialCard getMaterialCard(String kind, int playerid) {
@@ -28,54 +32,68 @@ public class PlayerController {
 		
 	}
 
-	public DevelopmentCard getDevelopmentCard(String iddevcard) {
-		DevelopmentCard devcard =bc.getDevelopmentCard(iddevcard);
+	public DevelopmentCard getDevelopmentCard(String iddevcard, int gameid) {
+		DevelopmentCard devcard =bc.getDevelopmentCard(iddevcard, gameid);
 		return devcard;
 	}
-	public boolean hasKnightCard(int amount) {
-		boolean has = player.hasKnightCard(amount);
-		return has;
+	public int getAmountRidder(int playerid) {
+		int amountofRidder = db.amountDeveloperCards(playerid, false, "___r");
+		return amountofRidder;
 	}
-	public boolean hasStratenBouw(int amount) {
-		boolean has = player.hasStratenBouw(amount);
-		return has;
+	public int getAmountStratenbouw(int playerid) {
+		int amountofStratenbouw = db.amountDeveloperCards(playerid, false, "___s");
+		return amountofStratenbouw;
 	}
-	public boolean hasMonopolie(int amount) {
-		boolean has = player.hasMonopolie(amount);
-		return has;
+	public int getAmountMonopolie(int playerid) {
+		int amountofMonopolie = db.amountDeveloperCards(playerid, false, "___m");
+		return amountofMonopolie;
 	}
-	public boolean hasUitvinding(int amount) {
-		boolean has = player.hasUitvinding(amount);
-		return has;
+	public int getAmountUitvinding(int playerid) {
+		int amountofUitvinding = db.amountDeveloperCards(playerid, false, "___u");
+		return amountofUitvinding;
 	}
-	public boolean hasKathedraal(int amount) {
-		boolean has = player.hasKathedraal(amount);
-		return has;
+	public int getAmountKathedraal(int playerid) {
+		int amountofKathedraal = db.amountDeveloperCards(playerid, false, "__1g");
+		return amountofKathedraal;
 		
 	}
-	public boolean hasParlement(int amount) {
-		boolean has = player.hasParlement(amount);
-		return has;
+	public int getAmountParlement(int playerid) {
+		int amountofParlement = db.amountDeveloperCards(playerid, false, "__5g");
+		return amountofParlement;
 	}
-	public boolean hasMarkt(int amount) {
-		boolean has = player.hasMarkt(amount);
-		return has;
+	public int getAmountMarkt(int playerid) {
+		int amountofMarkt = db.amountDeveloperCards(playerid, false, "__2g");
+		return amountofMarkt;
 	}
-	public boolean hasBibliotheek(int amount) {
-		boolean has = player.hasBibliotheek(amount);
-		return has;
+	public int getAmountBibliotheek(int playerid) {
+		int amountofBibliotheek = db.amountDeveloperCards(playerid, false, "__3g");
+		return amountofBibliotheek;
 	}
-	public boolean hasUniversiteit(int amount) {
-		boolean has = player.hasUniversiteit(amount);
-		return has;
+	public int getAmountUniversiteit(int playerid) {
+		int amountUniversiteit = db.amountDeveloperCards(playerid, false, "__4g");
+		return amountUniversiteit;
+	}
+	
+	public boolean hasStoneCards(int amount) {
+		return player.hasStoneCard(amount);
+	}
+	
+	public boolean hasOreCards(int amount) {
+		return player.hasOreCard(amount);
+	}
+	
+	public boolean hasWoodCards(int amount) {
+		return player.hasWoodCard(amount);
+	}
+	
+	public boolean hasWoolCards(int amount) {
+		return player.hasWoolCard(amount);
+	}
+	
+	public boolean hasWheatCards(int amount) {
+		return player.hasWheatCard(amount);
 	}
 
-
-
-	public DevelopmentCard getDevelopmentCard() {
-		DevelopmentCard devcard =bc.getDevelopmentCard();
-		return devcard;
-	}
 
 	public void tradeCards(int otherplayerid, ArrayList<Integer> offer, Player player) {
 		player.updateCards(otherplayerid,offer);

@@ -5,9 +5,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import DAL.MainDAL;
+
 public class BoardDAL {
 	Connection conn = MainDAL.getConnection();
 
+	// ------------------------------------------------------------------------------------------------------------------------
+	// This will put the tiles into the database.
 	public void setTile(int idspel, int idtegel, int x, int y, char idgrondstofsoort, int idgetalfiche) {
 		Statement stmt = null;
 		if (idgrondstofsoort != 'X') {
@@ -195,9 +199,6 @@ public class BoardDAL {
 			i = rs.getInt(1);
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		if(i > 999) {
-			i = i + 999;
 		}
 		return i;
 

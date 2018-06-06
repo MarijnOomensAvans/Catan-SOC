@@ -1,16 +1,10 @@
 package Model.board;
 
 import java.awt.Color;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
-import java.util.Set;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 import DAL.BoardDAL;

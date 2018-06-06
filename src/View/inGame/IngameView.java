@@ -20,6 +20,7 @@ import Controller.ChatController;
 import Controller.DieController;
 import Controller.IngameController;
 import Controller.LoginController;
+import Controller.PlayerController;
 import DAL.GameManagerDAL;
 import Model.ingame.PlayerStats;
 import View.board.BoardColours;
@@ -28,6 +29,8 @@ import View.chat.ChatContentPane;
 import View.chat.Chatoutputgui;
 import View.dice.DieContentPane;
 import View.setupGame.DrawingPanel;
+import View.developmentCards.DevelopmentGui;
+import View.developmentCards.DevelopmentContentPane;
 
 @SuppressWarnings("serial")
 public class IngameView extends JPanel {
@@ -53,13 +56,10 @@ public class IngameView extends JPanel {
 	private JLabel intTurnLabel;
 
 	private JButton throwDiceButton;
-
 	private Border border;
 
-
-
 	public IngameView(BoardController bc, int gameID, DrawingPanel inGameBoard, int playerID,
-			IngameController inGameController) {
+			IngameController inGameController, PlayerController pc) {
 		this.ingameController = inGameController;
 		playerStats = inGameController.getPlayerStats(gameID);
 		this.gameID = gameID;
@@ -85,12 +85,13 @@ public class IngameView extends JPanel {
 		JPanel rightPanel = new JPanel();
 		JPanel bottomPanel = new JPanel();
 
+		JPanel diceAndButtonPanel = new JPanel();
 		JPanel buttonPanel = new JPanel();
 		JPanel bottomInfoPanel = new JPanel();
 		JPanel resourceCardPanel = new JPanel();
 		JPanel buildCostPanel = new JPanel();
 		JPanel diceButtonPanel = new JPanel();
-
+		
 		JPanel costAndDicePanel = new JPanel();
 
 		JPanel playerTurnPanel = new JPanel();
@@ -110,7 +111,7 @@ public class IngameView extends JPanel {
 		// gameTurnPanel.setBackground(Color.gray);
 		// extraPointsPanel.setBackground(Color.green);
 		// ownPointsPanel.setBackground(Color.orange);
-		//
+		
 		buttonPanel.setBorder(border);
 		resourceCardPanel.setBorder(border);
 		buildCostPanel.setBorder(border);
@@ -124,13 +125,26 @@ public class IngameView extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new BuildFrame(null);
+				new BuildFrame(pc, inGameBoard);
 
 			}
 
 		});
 		JButton tradeButton = new JButton("Handelen");
 		JButton devcardButton = new JButton("Ontwikkelingskaarten");
+		JButton endTurnButton = new JButton("Beurt beëindigen");
+		
+		tradeButton.addActionListener(e -> {
+			inGameController.openTrade();
+		});
+
+		devcardButton.addActionListener(e -> {
+			inGameController.openDevcard();
+		});
+		
+		endTurnButton.addActionListener(e -> {
+			
+		});
 
 		JLabel streetLabel = new JLabel("Straat: 1B-1H");
 		JLabel villageLabel = new JLabel("Dorp: 1B-1H-1G-1W");
@@ -200,6 +214,10 @@ public class IngameView extends JPanel {
 		bottomInfoPanel.setLayout(new BorderLayout());
 		bottomInfoPanel.add(resourceCardPanel, BorderLayout.WEST);
 		bottomInfoPanel.add(costAndDicePanel, BorderLayout.CENTER);
+		
+		diceAndButtonPanel.setLayout(new BorderLayout());
+		diceAndButtonPanel.add(diceViewPanel, BorderLayout.CENTER);
+		diceAndButtonPanel.add(endTurnButton, BorderLayout.EAST);
 
 		playerTurnPanel.add(turnLabel);
 		playerTurnPanel.add(playerTurnStringLabel);
@@ -222,7 +240,7 @@ public class IngameView extends JPanel {
 		bottomPanel.setLayout(new BorderLayout());
 		bottomPanel.add(buttonPanel, BorderLayout.WEST);
 		bottomPanel.add(bottomInfoPanel, BorderLayout.CENTER);
-		bottomPanel.add(diceViewPanel, BorderLayout.EAST);
+		bottomPanel.add(diceAndButtonPanel, BorderLayout.EAST);
 
 		hasBiggestArmy();
 
