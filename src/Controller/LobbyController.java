@@ -101,8 +101,8 @@ public class LobbyController {
 		bc.generateBoard();
 		DrawingPanel dp = new DrawingPanel(bc, gameID);
 		int playerID = Integer.parseInt(lobbyDAL.getPlayerID(gameID));
-		gameFrame = new InGameFrame(bc, gameID, dp, playerID, inGameController);
 		pc = new PlayerController(playerID, gameID);
+		gameFrame = new InGameFrame(bc, gameID, dp, playerID, inGameController, pc);
 	}
 	
 	public void createInvitation(String username, int gameid, int volgnr) {
