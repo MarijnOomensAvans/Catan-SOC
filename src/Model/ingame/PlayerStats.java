@@ -69,5 +69,9 @@ public class PlayerStats {
 	public int getDevelopmentBuildingPoints() {
 		return developmentBuildingPoints;
 	}
+
+	public void setDevelopmentPoints(int developmentPoints) {
+		this.developmentBuildingPoints = developmentPoints;
+	}
 	
 }
