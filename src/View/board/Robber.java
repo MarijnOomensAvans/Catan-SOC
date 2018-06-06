@@ -28,7 +28,7 @@ public class Robber extends JPanel {
 		this.gameID = gameID;
 		this.dp = drawingPanel;
 		
-		image1 = new ImageIcon("./res/Therobber.png");
+		image1 = new ImageIcon("Therobber.png");
 		repaint();
 		
 	}
