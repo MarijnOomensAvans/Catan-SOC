@@ -22,4 +22,8 @@ public class IngameController {
 	public String getTurn(int id) {
 		return spelModel.getTurn(id);
 	}
+	
+	public void setbiggestArmy(int gameid, String username) {
+		spelModel.setBiggestArmy(gameid, username);
+	}
 }

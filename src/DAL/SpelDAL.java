@@ -71,8 +71,6 @@ public class SpelDAL {
 		int knightCards = 0;
 		int villageCount = 0;
 		int cityCount = 0;
-		boolean hasTradeRoute = false;
-		boolean hasBiggestArmy = false;
 
 		/* GET CARDS */
 		try {
@@ -193,7 +191,7 @@ public class SpelDAL {
 
 		try {
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT idspeler FROM speler " + "WHERE (gameid = " + gameid
+			ResultSet rs = stmt.executeQuery("SELECT idspeler FROM speler " + "WHERE (idspel = " + gameid
 					+ " AND username LIKE '" + username + "')");
 			while (rs.next()) {
 				playerid = rs.getInt(1);

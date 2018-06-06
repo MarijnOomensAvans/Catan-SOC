@@ -19,6 +19,7 @@ import Controller.BoardController;
 import Controller.ChatController;
 import Controller.DieController;
 import Controller.IngameController;
+import Controller.LoginController;
 import Controller.PlayerController;
 import DAL.GameManagerDAL;
 import Model.ingame.PlayerStats;
@@ -208,6 +209,7 @@ public class IngameView extends JPanel {
 		extraPointsPanel.add(hasBiggestArmy());
 		extraPointsPanel.add(longestRouteLabel);
 		ownPointsPanel.add(ownPointLabel);
+		ownPointsPanel.add(ownPoints());
 
 		rightPanel.add(playerTurnPanel);
 		rightPanel.add(playerCardsPanel);
@@ -231,12 +233,13 @@ public class IngameView extends JPanel {
 
 	public void getCards() {
 		for (int i = 0; i < playerStats.size(); i++) {
+			
 			String name = playerStats.get(i).getUsername();
 			int resourceCards = playerStats.get(i).getResourceCards();
 			int developmentCards = playerStats.get(i).getDevelopmentCards();
 			int knightCards = playerStats.get(i).getKnightCards();
-			JLabel cardsLabel = new JLabel(
-					name + " GK:" + resourceCards + " OK:" + developmentCards + " GR:" + knightCards);
+			int publicPoints = playerStats.get(i).getPublicPoints();
+			JLabel cardsLabel = new JLabel(name + " GK:" + resourceCards + " OK:" + developmentCards + " GR:" + knightCards + " OV:"+ publicPoints);
 			cardsLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			playerCardsPanel.add(cardsLabel);
 		}
@@ -249,6 +252,7 @@ public class IngameView extends JPanel {
 			if (playerStats.get(i).getKnightCards() > biggest) {
 				biggest = playerStats.get(i).getKnightCards();
 				nameBiggest = playerStats.get(i).getUsername();
+				ingameController.setbiggestArmy(gameID, nameBiggest);
 			}
 			// System.out.println("naam: "+playerStats.get(i).getUsername()+" amount: "
 			 //+playerStats.get(i).getKnightCards());
@@ -268,6 +272,16 @@ public class IngameView extends JPanel {
 			repaint();
 		}
 		return intTurnLabel;
+	}
+	
+	public JLabel ownPoints() {
+		JLabel ownPoint = null;
+		for(int i =0; i< playerStats.size(); i++) {
+			if(LoginController.getUsername().equals(playerStats.get(i).getUsername())) {
+				ownPoint = new JLabel(playerStats.get(i).getPrivatePoints()+"");				
+			}
+		}
+		return ownPoint;
 	}
 	
 
