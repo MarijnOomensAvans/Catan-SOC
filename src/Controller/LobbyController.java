@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 
 import DAL.LobbyDAL;
-import DAL.SpelDAL;
-import Model.ingame.PlayerStats;
 import Model.lobby.LobbyGameInfo;
 import Model.lobby.LobbyGameState;
 import Model.lobby.LobbyInvite;
