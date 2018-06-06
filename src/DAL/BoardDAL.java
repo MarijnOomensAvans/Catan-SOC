@@ -199,7 +199,7 @@ public class BoardDAL {
 			e.printStackTrace();
 		}
 		if(i < 999) {
-			i = i + 999;
+			i = i +999;
 		}
 		return i;
 

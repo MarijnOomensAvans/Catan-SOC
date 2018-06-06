@@ -33,12 +33,13 @@ public class SpelDAL {
 
 		for (int i = 0; i < 4; i++) {
 			stats.get(i).setUsername(usernames.get(i));
+			stats.get(i).setDevelopmentPoints(getDevelopmentPoints(stats.get(i).getUsername()));
 
 			if (stats.get(i).getUsername().equals(biggestArmyUsername)) {
 				stats.get(i).setBiggestArmy(true);
 			}
-			
-			if(stats.get(i).getUsername().equals(longestRouteUsername)) {
+
+			if (stats.get(i).getUsername().equals(longestRouteUsername)) {
 				stats.get(i).setTradeRoute(true);
 			}
 		}
@@ -98,7 +99,7 @@ public class SpelDAL {
 			e.printStackTrace();
 		}
 
-		/* GET POINTS */
+		/* GET BUILDING POINTS */
 		try {
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(
@@ -118,7 +119,8 @@ public class SpelDAL {
 			e.printStackTrace();
 		}
 
-		stats = new PlayerStats(resourceCards, developmentCards, knightCards, villageCount, cityCount, developmentCards);
+		stats = new PlayerStats(resourceCards, developmentCards, knightCards, villageCount, cityCount,
+				developmentCards);
 		return stats;
 	}
 
@@ -161,7 +163,7 @@ public class SpelDAL {
 		int playerid = getPlayerId(gameid, username);
 		try {
 			Statement stmt = conn.createStatement();
-			stmt.executeUpdate("UPDATE spel SET grootste_rm_idspeler = " + +playerid + " WHERE idspel = " + gameid);
+			stmt.executeUpdate("UPDATE spel SET grootste_rm_idspeler = " + playerid + " WHERE idspel = " + gameid);
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -202,6 +204,26 @@ public class SpelDAL {
 		}
 
 		return playerid;
+	}
+
+	private int getDevelopmentPoints(String username) {
+		int devPoints = 0;
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt
+					.executeQuery("SELECT COUNT(*) FROM spelerontwikkelingskaart so JOIN ontwikkelingskaart o "
+							+ "ON so.idontwikkelingskaart = o.idontwikkelingskaart JOIN speler s ON so.idspeler = s.idspeler"
+							+ " WHERE (o.naam LIKE ('kathedraal') OR o.naam LIKE ('bibliotheek') OR o.naam LIKE ('markt') OR o.naam LIKE ('universiteit') "
+							+ "OR o.naam LIKE ('parlement')) AND s.username LIKE " + username );
+			while (rs.next()) {
+				devPoints = rs.getInt(1);
+			}
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return devPoints;
 	}
 
 }

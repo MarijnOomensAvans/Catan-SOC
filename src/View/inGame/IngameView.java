@@ -56,10 +56,7 @@ public class IngameView extends JPanel {
 	private JLabel intTurnLabel;
 
 	private JButton throwDiceButton;
-
 	private Border border;
-
-
 
 	public IngameView(BoardController bc, int gameID, DrawingPanel inGameBoard, int playerID,
 			IngameController inGameController, PlayerController pc) {
@@ -88,12 +85,13 @@ public class IngameView extends JPanel {
 		JPanel rightPanel = new JPanel();
 		JPanel bottomPanel = new JPanel();
 
+		JPanel diceAndButtonPanel = new JPanel();
 		JPanel buttonPanel = new JPanel();
 		JPanel bottomInfoPanel = new JPanel();
 		JPanel resourceCardPanel = new JPanel();
 		JPanel buildCostPanel = new JPanel();
 		JPanel diceButtonPanel = new JPanel();
-
+		
 		JPanel costAndDicePanel = new JPanel();
 
 		JPanel playerTurnPanel = new JPanel();
@@ -134,6 +132,7 @@ public class IngameView extends JPanel {
 		});
 		JButton tradeButton = new JButton("Handelen");
 		JButton devcardButton = new JButton("Ontwikkelingskaarten");
+		JButton endTurnButton = new JButton("Beurt beëindigen");
 		
 		tradeButton.addActionListener(e -> {
 			inGameController.openTrade();
@@ -141,6 +140,10 @@ public class IngameView extends JPanel {
 
 		devcardButton.addActionListener(e -> {
 			inGameController.openDevcard();
+		});
+		
+		endTurnButton.addActionListener(e -> {
+			
 		});
 
 		JLabel streetLabel = new JLabel("Straat: 1B-1H");
@@ -211,6 +214,10 @@ public class IngameView extends JPanel {
 		bottomInfoPanel.setLayout(new BorderLayout());
 		bottomInfoPanel.add(resourceCardPanel, BorderLayout.WEST);
 		bottomInfoPanel.add(costAndDicePanel, BorderLayout.CENTER);
+		
+		diceAndButtonPanel.setLayout(new BorderLayout());
+		diceAndButtonPanel.add(diceViewPanel, BorderLayout.CENTER);
+		diceAndButtonPanel.add(endTurnButton, BorderLayout.EAST);
 
 		playerTurnPanel.add(turnLabel);
 		playerTurnPanel.add(playerTurnStringLabel);
@@ -233,7 +240,7 @@ public class IngameView extends JPanel {
 		bottomPanel.setLayout(new BorderLayout());
 		bottomPanel.add(buttonPanel, BorderLayout.WEST);
 		bottomPanel.add(bottomInfoPanel, BorderLayout.CENTER);
-		bottomPanel.add(diceViewPanel, BorderLayout.EAST);
+		bottomPanel.add(diceAndButtonPanel, BorderLayout.EAST);
 
 		hasBiggestArmy();
 
