@@ -53,9 +53,13 @@ public class IngameView extends JPanel {
 	private JLabel intTurnLabel;
 
 	private JButton throwDiceButton;
+
 	
 	
 	private Border border;
+	//plek maken voor chat
+
+
 
 	public IngameView(BoardController bc, int gameID, DrawingPanel inGameBoard, int playerID,
 			IngameController inGameController) {
@@ -120,7 +124,7 @@ public class IngameView extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new BuildFrame();
+				new BuildFrame(null);
 
 			}
 
