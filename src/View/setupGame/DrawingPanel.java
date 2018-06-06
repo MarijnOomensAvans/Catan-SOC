@@ -4,11 +4,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.Point;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -32,6 +30,7 @@ public class DrawingPanel extends JPanel{
 	private ArrayList<Location> keys;
 	
 	private Robber robber;
+	private boolean mayBuild = false;
 	
 // making 19 rooms for hexagons
 	private Hexagon hexagon1;
@@ -123,9 +122,11 @@ public class DrawingPanel extends JPanel{
 		addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				if(mayBuild == true) {
 				String test = convertXYfromScreenToKey(e.getX(), e.getY());
 				hlPoint = test;
 				 repaint();
+				}
 			}
 		});
 	}
@@ -135,8 +136,6 @@ public class DrawingPanel extends JPanel{
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;
-		int w2 = getWidth() / 2;
-		int h2 = getHeight() / 2;
 		g2d.setColor(Color.BLACK);
 		for(int i =0; i < hexagons.size(); i++) {
 			g2d.drawPolygon(hexagons.get(i).getHexagon());
@@ -221,6 +220,10 @@ public class DrawingPanel extends JPanel{
 	  g.fillOval(lookup.x - 5, lookup.y - 5, 10, 10);
 	  g.setColor(BoardColours.CHITS.getRGB());
 	  }
+  }
+  
+  public void setBuild(boolean mayBuild) {
+	  this.mayBuild = mayBuild;
   }
 
 
