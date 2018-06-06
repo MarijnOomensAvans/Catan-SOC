@@ -232,6 +232,27 @@ public class PersonDAL {
 			
 		
 }
+	public int amountDeveloperCards(int idplayer, boolean cardPlayed, String cardtype) {
+		int amount = 0;
+		Statement stmt = null;
+		String query = "SELECT COUNT(idontwikkelingskaart) FROM spelerontwikkelingskaart WHERE gespeeld="+ cardPlayed + " AND idspeler = '"+ idplayer +"' AND idontwikkelingskaart LIKE '"+ cardtype+"'";
+		try
+		{
+			stmt = conn.createStatement();
+			@SuppressWarnings("unused")
+			ResultSet i = stmt.executeQuery(query);
+			while (i.next())
+			{
+				amount = i.getInt(1);
+			}
+		
+			stmt.close();
+		} catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		return amount;
+	}
 	
 	
 

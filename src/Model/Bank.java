@@ -76,13 +76,21 @@ public class Bank {
 		return null;
 		}
 
-	public DevelopmentCard getDevelopmentCard() {
+	public DevelopmentCard getDevelopmentCard(String devkind) {
+		DevelopmentCard returncard = null;
 		Random random = new Random();
-		int number =random.nextInt(devbank.size());
-		return devbank.get(number);
-	}
+		int i = random.nextInt(devbank.size());
+		String cardid =devbank.get(i).getIdDevCard();
+		while (bd.getDevPlayerid(cardid) != null){
+			i = random.nextInt(devbank.size());
+			cardid =devbank.get(i).getIdDevCard();
+			System.out.println(cardid);
+			devbank.remove(i);
+		}
+		returncard = devbank.get(i);
+		return returncard;
+}
 	
-
 	
 	public void printallDevCards() {
 		for(int i=0; i<devbank.size(); i++) {
