@@ -42,13 +42,6 @@ public class SpelDAL {
 			if (stats.get(i).getUsername().equals(longestRouteUsername)) {
 				stats.get(i).setTradeRoute(true);
 			}
-			
-			if(i == 0) {
-				System.out.println("Gebouw Ontwikkeling Punten: " + stats.get(i).getDevelopmentBuildingPoints());
-				System.out.println("Prive punten: " + stats.get(i).getPrivatePoints());
-				System.out.println("Openbare punten: " + stats.get(i).getPublicPoints());
-				System.out.println("Ontwikkelingskaart punten: " + stats.get(i).getDevelopmentCards());
-			}
 		}
 
 		return stats;
