@@ -38,14 +38,11 @@ public class BankController {
 		
 	}
 
-	public DevelopmentCard getDevelopmentCard(String iddevcard) {
-		DevelopmentCard devcard =bank.getDevelopmentCard();
+	public DevelopmentCard getDevelopmentCard(String iddevcard, int playerid) {
+		DevelopmentCard devcard =bank.getDevelopmentCard(iddevcard);
 		return devcard;
 	}
-	public DevelopmentCard getDevelopmentCard() {
-		DevelopmentCard devcard =bank.getDevelopmentCard();
-		return devcard;
-	}
+
 
 	public void trade(int playerid, ArrayList<String> cardkinds) {
 		bank.trade(playerid,cardkinds);
