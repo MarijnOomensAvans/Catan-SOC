@@ -7,32 +7,45 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+
+import Controller.BoardController;
+import View.setupGame.DrawingPanel;
 
 
 
 @SuppressWarnings("serial")
 public class Robber extends JPanel {
 	
-	private File robber;
-	private BufferedImage myBufferedImage1;
+	private ImageIcon image1;
+	private BoardController bc;
+	private int gameID;
+	private DrawingPanel dp;
 	
-	public Robber() {
+	public Robber(BoardController bc, int gameID, DrawingPanel drawingPanel) {
+		this.bc = bc;
+		this.gameID = gameID;
+		this.dp = drawingPanel;
 		
-		this.setLayout(null);
-		this.setPreferredSize(new Dimension(400, 300));
+		image1 = new ImageIcon("./res/Therobber.png");
+		repaint();
 		
-		robber = new File("./Images/Therobber.png");
-		
-		try {
-			myBufferedImage1 = ImageIO.read(robber);
-		}catch (IOException e) {
-			System.out.println(e.getMessage());
-		}
 	}
 	
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.drawImage(myBufferedImage1, 50, 100, 25, 60, null);
+		image1.paintIcon(dp, g, getXRobber(), getYRobber());
+	}
+	
+	private int getXRobber() {
+		int x =bc.getRobberXPosition(gameID);
+		return x;
+		
+	}
+	private int getYRobber() {
+		int y = bc.getRobberYPosition(gameID);
+		return y;
+		
 	}
 }

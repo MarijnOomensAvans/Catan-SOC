@@ -23,6 +23,7 @@ import Controller.PlayerController;
 import DAL.GameManagerDAL;
 import Model.ingame.PlayerStats;
 import View.board.BoardColours;
+import View.board.Robber;
 import View.build.BuildFrame;
 import View.chat.ChatContentPane;
 import View.chat.Chatoutputgui;
@@ -52,6 +53,7 @@ public class IngameView extends JPanel{
 	private JPanel playerCardsPanel;
 	
 	private JButton throwDiceButton;
+	
 	
 	private Border border;
 	//plek maken voor chat
