@@ -129,6 +129,14 @@ public class IngameView extends JPanel {
 		});
 		JButton tradeButton = new JButton("Handelen");
 		JButton devcardButton = new JButton("Ontwikkelingskaarten");
+		
+		tradeButton.addActionListener(e -> {
+			inGameController.openTrade();
+		});
+
+		devcardButton.addActionListener(e -> {
+			inGameController.openDevcard();
+		});
 
 		JLabel streetLabel = new JLabel("Straat: 1B-1H");
 		JLabel villageLabel = new JLabel("Dorp: 1B-1H-1G-1W");

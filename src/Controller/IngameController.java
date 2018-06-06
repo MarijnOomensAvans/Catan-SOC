@@ -26,4 +26,14 @@ public class IngameController {
 	public void setbiggestArmy(int gameid, String username) {
 		spelModel.setBiggestArmy(gameid, username);
 	}
+
+	public void openTrade() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void openDevcard() {
+		// TODO Auto-generated method stub
+		
+	}
 }
