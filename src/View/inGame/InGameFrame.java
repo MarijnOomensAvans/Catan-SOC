@@ -6,9 +6,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import Controller.BoardController;
+import Controller.ChatController;
 import Controller.IngameController;
 import Controller.PlayerController;
-import Model.Player;
 import View.setupGame.DrawingPanel;
 
 @SuppressWarnings("serial")
@@ -17,9 +17,9 @@ public class InGameFrame extends JFrame{
 	private IngameView pane;
 	private BoardController bc;
 	
-	public InGameFrame(BoardController bc, int gameID,DrawingPanel inGameBoard, int playerID, IngameController inGameController,PlayerController pc) {
+	public InGameFrame(BoardController bc, int gameID,DrawingPanel inGameBoard, int playerID, IngameController inGameController, PlayerController pc, ChatController chatController) {
 //initialize contentpane 
-		pane = new IngameView(bc, gameID,inGameBoard, playerID, inGameController, pc);
+		pane = new IngameView(bc, gameID,inGameBoard, playerID, inGameController, pc, chatController);
 		this.bc = bc;
 // create the frame		
 		setTitle("Catan");
