@@ -61,6 +61,7 @@ public class DrawingPanel extends JPanel{
 	private ArrayList<Hexagon> hexagons;
 
 	public DrawingPanel(BoardController bc, int idspel) {
+		robber = new Robber();
 		this.setLayout(null);
 		robber = new Robber();
 		this.idspel = idspel;

@@ -60,12 +60,11 @@ public class PersonDAL {
 		return result;
 }
 	
-	public int getorder_number(int playerid, int gameid)
+	public String getorder_number(int playerid, int gameid)
 	{
 		String result ="";
-		String idstring = Integer.toString(playerid);
 		Statement stmt = null;
-		String query = "SELECT volgnr FROM speler WHERE idspeler =" + idstring+ " AND idspel ="+ gameid;
+		String query = "SELECT volgnr FROM speler WHERE idspeler =" + playerid+ " AND idspel ="+ gameid;
 		try
 		{
 			stmt = conn.createStatement();
@@ -79,8 +78,7 @@ public class PersonDAL {
 		{
 			System.out.println(e.getMessage());
 		}
-		int resultint =Integer.parseInt(result);
-		return resultint;
+		return result;
 }
 	
 	public void addMaterialCard(int idgame,String idcard, int idplayer) {

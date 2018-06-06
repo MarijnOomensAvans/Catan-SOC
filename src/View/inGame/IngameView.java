@@ -19,8 +19,11 @@ import Controller.BoardController;
 import Controller.ChatController;
 import Controller.DieController;
 import Controller.IngameController;
+<<<<<<< HEAD
 import Controller.LoginController;
 import Controller.PlayerController;
+=======
+>>>>>>> 67d6ccf67f9f6ae675e0be6f79a11b36b990db91
 import DAL.GameManagerDAL;
 import Model.ingame.PlayerStats;
 import View.board.BoardColours;
@@ -55,6 +58,8 @@ public class IngameView extends JPanel {
 	private JLabel intTurnLabel;
 
 	private JButton throwDiceButton;
+
+	
 	
 	private Border border;
 	//plek maken voor chat
@@ -238,8 +243,12 @@ public class IngameView extends JPanel {
 			int resourceCards = playerStats.get(i).getResourceCards();
 			int developmentCards = playerStats.get(i).getDevelopmentCards();
 			int knightCards = playerStats.get(i).getKnightCards();
+<<<<<<< HEAD
 			int publicPoints = playerStats.get(i).getPublicPoints();
 			JLabel cardsLabel = new JLabel(name + " GK:" + resourceCards + " OK:" + developmentCards + " GR:" + knightCards + " OV:"+ publicPoints);
+=======
+			JLabel cardsLabel = new JLabel(name + " GK:" + resourceCards + " OK:" + developmentCards + " GR:" + knightCards);
+>>>>>>> 67d6ccf67f9f6ae675e0be6f79a11b36b990db91
 			cardsLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			playerCardsPanel.add(cardsLabel);
 		}
@@ -255,7 +264,7 @@ public class IngameView extends JPanel {
 				ingameController.setbiggestArmy(gameID, nameBiggest);
 			}
 			// System.out.println("naam: "+playerStats.get(i).getUsername()+" amount: "
-			 //+playerStats.get(i).getKnightCards());
+			// +playerStats.get(i).getKnightCards());
 		}
 		JLabel biggestArmyLabel = new JLabel(nameBiggest);
 		biggestArmyLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -264,7 +273,7 @@ public class IngameView extends JPanel {
 	}
 
 	public JLabel nextTurn(int id) {
-		int turn = 0;
+		int turn = 1;
 		intTurnLabel = new JLabel(turn + "");
 		if (playerStats.get(0).getUsername().equals(ingameController.getTurn(id))) {
 			turn++;
@@ -273,6 +282,7 @@ public class IngameView extends JPanel {
 		}
 		return intTurnLabel;
 	}
+<<<<<<< HEAD
 	
 	public JLabel ownPoints() {
 		JLabel ownPoint = null;
@@ -285,4 +295,6 @@ public class IngameView extends JPanel {
 	}
 	
 
+=======
+>>>>>>> 67d6ccf67f9f6ae675e0be6f79a11b36b990db91
 }

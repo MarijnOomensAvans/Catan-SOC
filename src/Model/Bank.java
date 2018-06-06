@@ -7,14 +7,19 @@ import DAL.BankDAL;
 
 public class Bank {
 	
+	private int gameID;
 	private BankDAL bd;
 	private ArrayList<DevelopmentCard> devbank = new ArrayList <DevelopmentCard>();
 	private ArrayList<MaterialCard> matbank = new ArrayList <MaterialCard>();
 	
-	public Bank(BankDAL bd, int gameid) {
+	public Bank(BankDAL bd, int gameID) {
 		this.bd = bd;
-		makeMaterialCards(gameid);
-		makeDevCards(gameid);
+		this.gameID = gameID;
+	}
+	
+	public void makeCards() {
+		makeMaterialCards(gameID);
+		makeDevCards(gameID);
 	}
 	
 	private void makeMaterialCards(int gameid) {
