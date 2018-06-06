@@ -29,19 +29,15 @@ public class Robber extends JPanel {
 		this.bc = bc;
 		this.gameID = gameID;
 		this.dp = drawingPanel;
-		this.setLayout(null);
+		this.setPreferredSize(new Dimension(25,60));
 		image1 = new ImageIcon(ClassLoader.getSystemResource("Therobber.png"));
 		image = new JLabel(image1);
-		image.setBounds(getXRobber(), getYRobber(), 26, 60);
+		image.setBounds(getXRobber(), getYRobber(), 25, 58);
 		this.setBackground(null);
 		add(image);
-
 		repaint();
+		validate();
 		
-	}
-	public void paintComponent(Graphics g) {
-		super.paintComponent(g);
-		image1.paintIcon(dp, g, 0, 0);
 	}
 
 	
