@@ -1,4 +1,4 @@
-package View;
+package View.trade;
 
 
 import java.awt.Color;
