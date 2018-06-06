@@ -3,11 +3,12 @@ package View.logIn;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GridBagLayout;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
+//import java.awt.image.BufferedImage;
+//import java.io.File;
+//import java.io.IOException;
 
-import javax.imageio.ImageIO;
+//import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -21,7 +22,7 @@ public class LoginContentPane extends JPanel {
 	private LoginFrame GUI;
 	private JButton registerButton, loginButton;
 	private JButton registerCompleetButton, cancelButton;
-	private BufferedImage background;
+	private ImageIcon background = new ImageIcon(ClassLoader.getSystemResource("background.jpg"));
 
 	public LoginContentPane(LoginFrame GUI, LoginController controller) {
 		this.GUI = GUI;
@@ -59,12 +60,11 @@ public class LoginContentPane extends JPanel {
 			}
 		});
 
-		try {
-			File bgFile = new File("./images/background.jpg");
-			background = ImageIO.read(bgFile);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		//try {
+			//background = ImageIO.read(bgFile);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 		
 		this.setLayout(new GridBagLayout());
 		
@@ -98,7 +98,8 @@ public class LoginContentPane extends JPanel {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.drawImage(background,  0, 0, null);
+		//g.drawImage(background,  0, 0, null);
+		background.paintIcon(this, g, 0, 0);
 	}
 
 }

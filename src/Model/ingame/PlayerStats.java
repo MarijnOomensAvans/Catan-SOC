@@ -5,8 +5,7 @@ public class PlayerStats {
 	private String username;
 	private int resourceCards, developmentCards, knightCards;
 	
-	public PlayerStats(String username, int rc, int dc, int kc) {
-		this.username = username;
+	public PlayerStats(int rc, int dc, int kc) {
 		resourceCards = rc;
 		developmentCards = dc;
 		knightCards = kc;
@@ -26,6 +25,10 @@ public class PlayerStats {
 	
 	public String getUsername() {
 		return username;
+	}
+	
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	
 }

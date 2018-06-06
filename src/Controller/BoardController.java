@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.Image;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
+
 import Model.board.Board;
 import Model.board.Location;
 
@@ -44,7 +46,7 @@ public class BoardController {
 		return board.getColour(i, idspel);
 	}
 	
-	public Image getImage(int i, int idspel) {
+	public ImageIcon getImage(int i, int idspel) {
 		return board.getImage(i, idspel);
 		
 	}
