@@ -21,11 +21,14 @@ public class BuildContentPane extends JPanel{
 	ImageIcon imageStreet = new ImageIcon(ClassLoader.getSystemResource("StraatIcon.png"));
 	ImageIcon imageDevCard = new ImageIcon(ClassLoader.getSystemResource("OntwikkleingskaartIcon.png"));
 	private Dimension buttonsize = new Dimension(200,100);
-	private BuildController buildcontroller = new BuildController();
+	@SuppressWarnings("unused")
+	private BuildController buildcontroller;
+	@SuppressWarnings("unused")
 	private Player player;
 	
 	
 	public BuildContentPane(BuildFrame frame,Player player) {
+		buildcontroller = new BuildController();
 		this.player = player;
 		this.setLayout(gridLayout);
 		gridLayout.setVgap(50);
