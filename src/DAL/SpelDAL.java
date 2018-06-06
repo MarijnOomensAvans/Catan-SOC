@@ -33,7 +33,7 @@ public class SpelDAL {
 
 		for (int i = 0; i < 4; i++) {
 			stats.get(i).setUsername(usernames.get(i));
-			stats.get(i).setDevelopmentPoints(getDevelopmentPoints(stats.get(i).getUsername()));
+			stats.get(i).setDevelopmentPoints(getDevelopmentPoints(getPlayerId(gameid, stats.get(i).getUsername())));
 
 			if (stats.get(i).getUsername().equals(biggestArmyUsername)) {
 				stats.get(i).setBiggestArmy(true);
@@ -206,15 +206,15 @@ public class SpelDAL {
 		return playerid;
 	}
 
-	private int getDevelopmentPoints(String username) {
+	private int getDevelopmentPoints(int playerid) {
 		int devPoints = 0;
 		try {
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt
 					.executeQuery("SELECT COUNT(*) FROM spelerontwikkelingskaart so JOIN ontwikkelingskaart o "
-							+ "ON so.idontwikkelingskaart = o.idontwikkelingskaart JOIN speler s ON so.idspeler = s.idspeler"
+							+ " ON so.idontwikkelingskaart = o.idontwikkelingskaart "
 							+ " WHERE (o.naam LIKE ('kathedraal') OR o.naam LIKE ('bibliotheek') OR o.naam LIKE ('markt') OR o.naam LIKE ('universiteit') "
-							+ "OR o.naam LIKE ('parlement')) AND s.username LIKE '" + username + "'" );
+							+ " OR o.naam LIKE ('parlement')) AND so.idspeler LIKE " + playerid);
 			while (rs.next()) {
 				devPoints = rs.getInt(1);
 			}
