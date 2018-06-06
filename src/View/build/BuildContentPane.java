@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import Controller.BuildController;
 import Controller.PlayerController;
 import Model.Player;
+import View.setupGame.DrawingPanel;
 
 @SuppressWarnings("serial")
 public class BuildContentPane extends JPanel{
@@ -28,7 +29,7 @@ public class BuildContentPane extends JPanel{
 	private PlayerController pc;
 	
 	
-	public BuildContentPane(BuildFrame frame,PlayerController pc) {
+	public BuildContentPane(BuildFrame frame,PlayerController pc, DrawingPanel inGameBoard) {
 		buildcontroller = new BuildController();
 		this.pc = pc;
 		this.setLayout(gridLayout);
@@ -43,7 +44,7 @@ public class BuildContentPane extends JPanel{
 		villageBuild.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO punten oplichten
+                inGameBoard.setBuild(true);
             	frame.closeFrame();
             }
         });
