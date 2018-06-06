@@ -54,19 +54,9 @@ public class IngameView extends JPanel {
 	private JLabel intTurnLabel;
 
 	private JButton throwDiceButton;
-<<<<<<< HEAD
-	
+
 	private Border border;
-	//plek maken voor chat
-=======
-
-	
-	
-	private Border border;
-	//plek maken voor chat
-
-
->>>>>>> a36b3dcce2f2ee825c8d2e08f57ccb95384f2811
+	// plek maken voor chat
 
 	public IngameView(BoardController bc, int gameID, DrawingPanel inGameBoard, int playerID,
 			IngameController inGameController) {
@@ -74,7 +64,10 @@ public class IngameView extends JPanel {
 		playerStats = inGameController.getPlayerStats(gameID);
 		this.gameID = gameID;
 		throwDiceButton = new JButton("Gooi Dobbelstenen");
-		if (gameManagerDAL.getFirstTurn(gameID)) {
+		if (gameManagerDAL.getFirstTurn(gameID) && gameManagerDAL.getPlayerIDTurn(gameID) == playerID
+				&& gameManagerDAL.getHasThrown(gameID) == false) {
+			throwDiceButton.setEnabled(true);
+		} else {
 			throwDiceButton.setEnabled(false);
 		}
 		border = BorderFactory.createLineBorder(Color.BLACK, 1);
@@ -261,7 +254,7 @@ public class IngameView extends JPanel {
 				nameBiggest = playerStats.get(i).getUsername();
 			}
 			// System.out.println("naam: "+playerStats.get(i).getUsername()+" amount: "
-			 //+playerStats.get(i).getKnightCards());
+			// +playerStats.get(i).getKnightCards());
 		}
 		JLabel biggestArmyLabel = new JLabel(nameBiggest);
 		biggestArmyLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -279,6 +272,5 @@ public class IngameView extends JPanel {
 		}
 		return intTurnLabel;
 	}
-	
 
 }

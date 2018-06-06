@@ -82,7 +82,8 @@ public class DieContentPane extends JPanel implements ActionListener
 					break;
 			}
 		}
-		
+		throwDiceButton.setEnabled(false);
+		repaint();
 	}
 	
 	public void setDie(String one2, int img) {
