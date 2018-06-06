@@ -21,15 +21,15 @@ public class DevelopmentContentPane extends JPanel{
 
 
 
-private File bibliotheek;
-private File kathedraal;
-private File markt;
-private File monopolie;
-private File parlement;
-private File ridder;
-private File stratenbouw;
-private File uitvinding;
-private File universiteit;
+private String bibliotheek;
+private String kathedraal;
+private String markt;
+private String monopolie;
+private String parlement;
+private String ridder;
+private String stratenbouw;
+private String uitvinding;
+private String universiteit;
 
 private JButton usebib;
 private JButton usekat;
@@ -65,15 +65,15 @@ private BufferedImage myBufferedImage9;
 		public DevelopmentContentPane(PlayerController pc, int playerid){
 			
 			this.setLayout(null);
-			bibliotheek = new File("./Images/bibliotheek.jpg");
-			kathedraal = new File("./Images/cathedraal.jpg");
-			markt = new File("./Images/markt.jpg");
-			monopolie = new File("./Images/monopoly.jpg");
-			parlement = new File("./Images/parlement.jpg");
-			ridder = new File("./Images/ridder.jpg");
-			stratenbouw = new File("./Images/stratenbouw.jpg");
-			uitvinding = new File("./Images/uitvinding.jpg");
-			universiteit = new File("./Images/universiteit.jpg");
+			bibliotheek = "bibliotheek.jpg";
+			kathedraal = "cathedraal.jpg";
+			markt = "markt.jpg";
+			monopolie = "monopolie.jpg";
+			parlement = "parlement.jpg";
+			ridder = "ridder.jpg";
+			stratenbouw = "stratenbouw.jpg";
+			uitvinding = "uitvinding.jpg";
+			universiteit = "universiteit.jpg";
 
 			usebib = new JButton("Gebruik");
 			usekat = new JButton("Gebruik");
@@ -97,15 +97,15 @@ private BufferedImage myBufferedImage9;
 			universiteitamount = new JTextField("" + pc.getAmountUniversiteit(playerid));
 			
 			try {
-				myBufferedImage1 = ImageIO.read(bibliotheek);
-				myBufferedImage2 = ImageIO.read(kathedraal);
-				myBufferedImage3 = ImageIO.read(markt);
-				myBufferedImage4 = ImageIO.read(monopolie);
-				myBufferedImage5 = ImageIO.read(parlement);
-				myBufferedImage6 = ImageIO.read(ridder);
-				myBufferedImage7 = ImageIO.read(stratenbouw);
-				myBufferedImage8 = ImageIO.read(uitvinding);
-				myBufferedImage9 = ImageIO.read(universiteit);
+				myBufferedImage1 = ImageIO.read(ClassLoader.getSystemResource(bibliotheek));
+				myBufferedImage2 = ImageIO.read(ClassLoader.getSystemResource(kathedraal));
+				myBufferedImage3 = ImageIO.read(ClassLoader.getSystemResource(markt));
+				myBufferedImage4 = ImageIO.read(ClassLoader.getSystemResource(monopolie));
+				myBufferedImage5 = ImageIO.read(ClassLoader.getSystemResource(parlement));
+				myBufferedImage6 = ImageIO.read(ClassLoader.getSystemResource(ridder));
+				myBufferedImage7 = ImageIO.read(ClassLoader.getSystemResource(stratenbouw));
+				myBufferedImage8 = ImageIO.read(ClassLoader.getSystemResource(uitvinding));
+				myBufferedImage9 = ImageIO.read(ClassLoader.getSystemResource(universiteit));
 				
 			}catch (IOException e) {
 			System.out.println(e.getMessage());
