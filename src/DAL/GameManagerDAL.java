@@ -49,4 +49,36 @@ public class GameManagerDAL {
 		return null;
 	}
 
+	public int getPlayerIDTurn(int gameid) {
+		int i= 0;
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt
+					.executeQuery("SELECT beurt_idspeler FROM spel WHERE idspel = " + gameid);
+
+			rs.next();
+			i =rs.getInt(1);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	return i;
+	}
+
+	public boolean getHasThrown(int gameid) {
+	
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt
+					.executeQuery("SELECT gedobbeld FROM spel WHERE idspel = " + gameid);
+
+			rs.next();
+			return rs.getBoolean(1);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	return false;
+	}
+
 }

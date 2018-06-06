@@ -54,10 +54,9 @@ public class IngameView extends JPanel {
 
 	private JButton throwDiceButton;
 
-	
-	
 	private Border border;
-	//plek maken voor chat
+
+
 
 	public IngameView(BoardController bc, int gameID, DrawingPanel inGameBoard, int playerID,
 			IngameController inGameController) {
@@ -65,7 +64,10 @@ public class IngameView extends JPanel {
 		playerStats = inGameController.getPlayerStats(gameID);
 		this.gameID = gameID;
 		throwDiceButton = new JButton("Gooi Dobbelstenen");
-		if (gameManagerDAL.getFirstTurn(gameID)) {
+		if (gameManagerDAL.getFirstTurn(gameID) && gameManagerDAL.getPlayerIDTurn(gameID) == playerID
+				&& gameManagerDAL.getHasThrown(gameID) == false) {
+			throwDiceButton.setEnabled(true);
+		} else {
 			throwDiceButton.setEnabled(false);
 		}
 		border = BorderFactory.createLineBorder(Color.BLACK, 1);
@@ -274,6 +276,7 @@ public class IngameView extends JPanel {
 		}
 		return intTurnLabel;
 	}
+
 	
 	public JLabel ownPoints() {
 		JLabel ownPoint = null;
@@ -284,6 +287,6 @@ public class IngameView extends JPanel {
 		}
 		return ownPoint;
 	}
-	
+
 
 }
