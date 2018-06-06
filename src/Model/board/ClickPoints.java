@@ -19,7 +19,7 @@ public class ClickPoints
 	private HashMap<Point, String> points;
 	private ArrayList<Integer> xvalues;
 	private ArrayList<Integer> yvalues;
-	private Point lookup;
+
 
 	// constructor
 
@@ -100,7 +100,7 @@ public class ClickPoints
 		}
 		
 		//lookup nearest point based on nearest foundX, foundY
-		lookup = new Point(foundX, foundY);
+		Point lookup = new Point(foundX, foundY);
 		ret = points.get(lookup);
 		return ret;
 	}
@@ -117,14 +117,9 @@ public class ClickPoints
 		}
 	}
 	
-	public Set<Point> getPoints(){
-		return points.keySet();
+public Set<Point> getPoints(){
+	return points.keySet();
 	
-	}
-	
-	public Point getSelectedPoint() {
-		return lookup;
-		
-	}
+}
 
 }

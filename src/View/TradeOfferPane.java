@@ -1,4 +1,4 @@
-package View.trade;
+package View;
 
 import java.awt.Color;
 import java.awt.Dimension;

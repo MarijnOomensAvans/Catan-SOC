@@ -6,7 +6,6 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Point;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -20,18 +19,13 @@ import Model.board.ClickPoints;
 import Model.board.Location;
 import View.board.BoardColours;
 import View.board.Hexagon;
-import View.board.Robber;
 
 @SuppressWarnings("serial")
-public class DrawingPanel extends JPanel{
+public class DrawingPanel extends JPanel implements MouseListener {
 	
 	private ClickPoints clickpoints;
 	
-	private String hlPoint;
-	
 	private ArrayList<Location> keys;
-	
-	private Robber robber;
 	
 // making 19 rooms for hexagons
 	private Hexagon hexagon1;
@@ -61,8 +55,6 @@ public class DrawingPanel extends JPanel{
 	private ArrayList<Hexagon> hexagons;
 
 	public DrawingPanel(BoardController bc, int idspel) {
-		this.setLayout(null);
-		robber = new Robber();
 		this.idspel = idspel;
 		this.bc = bc;
 // initialize arraylist 		
@@ -110,23 +102,14 @@ public class DrawingPanel extends JPanel{
 		hexagons.add(hexagon16);
 		hexagons.add(hexagon17);
 		hexagons.add(hexagon18);
-		hexagons.add(hexagon19);
-		robber.setBounds(bc.getRobberXPosition(idspel)-12,bc.getRobberYPosition(idspel)-30,25,60);;
-		this.add(robber);
+		hexagons.add(hexagon19);	
 		
 		setPreferredSize(new Dimension(600,600));
 
 // set background
 		setBackground(BoardColours.SEA.getRGB());
 		createKlikpunten();
-		addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				String test = convertXYfromScreenToKey(e.getX(), e.getY());
-				hlPoint = test;
-				 repaint();
-			}
-		});
+		this.addMouseListener(this);
 	}
 
 	// drawing the hexagons
@@ -137,6 +120,7 @@ public class DrawingPanel extends JPanel{
 		int w2 = getWidth() / 2;
 		int h2 = getHeight() / 2;
 		g2d.setColor(Color.BLACK);
+	//	g2d.rotate(-Math.PI / 2, w2, h2);
 		for(int i =0; i < hexagons.size(); i++) {
 			g2d.drawPolygon(hexagons.get(i).getHexagon());
 			Color color = bc.getColour(i, idspel);
@@ -149,8 +133,8 @@ public class DrawingPanel extends JPanel{
 		for(int i = 0; i < hexagons.size(); i++) {
 		ImageIcon img = bc.getImage(i, idspel);
 		img.paintIcon(this, g, hexagons.get(i).getCenter().x - 15, hexagons.get(i).getCenter().y - 15);
+		//g.drawImage( img, hexagons.get(i).getCenter().x - 15, hexagons.get(i).getCenter().y - 15, this);
 		drawPoints(g);
-		updateHighlight(g);
 		}
 	}
 	
@@ -165,7 +149,7 @@ public class DrawingPanel extends JPanel{
 
         {
       	  String key = "" + keys.get(i).getX() + "," + keys.get(i).getY();
-        	clickpoints.addPoint(convertXfromKeyToScreenX(i), convertYfromKeyToScreenY(i), key);
+        	clickpoints.addPoint(convertXfromKeyToScreenX(keys, i), convertYfromKeyToScreenY(keys, i), key);
 
         }
 
@@ -173,7 +157,7 @@ public class DrawingPanel extends JPanel{
 
 
 
-  private int convertXfromKeyToScreenX(int i)
+  private int convertXfromKeyToScreenX(ArrayList<Location> key, int i)
 
   {
 
@@ -185,12 +169,12 @@ public class DrawingPanel extends JPanel{
 
 
 
-  private int convertYfromKeyToScreenY(int i)
+  private int convertYfromKeyToScreenY(ArrayList<Location> key, int i)
 
   {
 
-        int keyX = keys.get(i).getX();
-	    int keyY = keys.get(i).getY();
+        int keyX = key.get(i).getX();
+	    int keyY = key.get(i).getY();
 
         return 10 + (((2 * (12 - keyY)) - (10 - keyX)) * 30);
 
@@ -212,15 +196,34 @@ public class DrawingPanel extends JPanel{
 		  g.fillOval(p.x-5, p.y-5, 10, 10);
 	  }
   }
-  
-  private void updateHighlight(Graphics g) {
-	  if(hlPoint != null) {
-	Point lookup = clickpoints.getSelectedPoint();
-	  g.setColor(Color.WHITE);
-	  g.fillOval(lookup.x - 5, lookup.y - 5, 10, 10);
-	  g.setColor(BoardColours.CHITS.getRGB());
-	  }
-  }
 
+@Override
+public void mouseClicked(MouseEvent e) {
+	String test = convertXYfromScreenToKey(e.getX(), e.getY());
+	System.out.println(test);
+}
+
+@Override
+public void mouseEntered(MouseEvent e) {
+	
+}
+
+@Override
+public void mouseExited(MouseEvent e) {
+	// TODO Auto-generated method stub
+	
+}
+
+@Override
+public void mousePressed(MouseEvent e) {
+	// TODO Auto-generated method stub
+	
+}
+
+@Override
+public void mouseReleased(MouseEvent e) {
+	// TODO Auto-generated method stub
+	
+}
 
 }

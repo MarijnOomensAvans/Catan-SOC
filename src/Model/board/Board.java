@@ -833,17 +833,4 @@ public class Board {
 			return returnValue;
 		}
 
-	public int getRobberXPosition(int gameid) {
-		int position =bdal.getRobberPosition(gameid);
-		int x = bdal.getRobberXPosition(gameid, position);
-        return 50 + ((x - 1) * (99 / 2)) + x - 2;
-	}
-	
-	public int getRobberYPosition(int gameid) {
-		int position =bdal.getRobberPosition(gameid);
-		int x = bdal.getRobberXPosition(gameid, position);
-		int y = bdal.getRobberYPosition(gameid, position);
-		 return 10 + (((2 * (12 - y)) - (10 - x)) * 30);
-	}
-
 }

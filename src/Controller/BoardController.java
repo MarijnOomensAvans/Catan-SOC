@@ -58,15 +58,6 @@ public class BoardController {
 	public void openLobby() {
 		new LobbyController();
 	}
-	
-	public int getRobberXPosition(int gameid) {
-		int position =board.getRobberXPosition(gameid);
-		return position;
-	}
-	public int getRobberYPosition(int gameid) {
-		int position =board.getRobberYPosition(gameid);
-		return position;
-	}
 
 	
 }

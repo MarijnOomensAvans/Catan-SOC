@@ -7,30 +7,32 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import Controller.BoardController;
-
 
 
 
 @SuppressWarnings("serial")
 public class Robber extends JPanel {
 	
-	private ImageIcon image1;
-	private JLabel image;
+	private File robber;
+	private BufferedImage myBufferedImage1;
 	
 	public Robber() {
-		this.setPreferredSize(new Dimension(25,60));
-		image1 = new ImageIcon(ClassLoader.getSystemResource("Therobber.png"));
-		image = new JLabel(image1);
-		this.setBackground(null);
-		add(image);
-		repaint();
-		validate();
 		
+		this.setLayout(null);
+		this.setPreferredSize(new Dimension(400, 300));
+		
+		robber = new File("./Images/Therobber.png");
+		
+		try {
+			myBufferedImage1 = ImageIO.read(robber);
+		}catch (IOException e) {
+			System.out.println(e.getMessage());
+		}
 	}
-
+	
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		g.drawImage(myBufferedImage1, 50, 100, 25, 60, null);
+	}
 }

@@ -22,7 +22,7 @@ public class BoardDal {
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());
 			}
-		} else { // if tile is desert
+		} else { //if tile is desert
 			String query = "INSERT INTO tegel(idspel,idtegel,x,y,idgrondstofsoort) VALUES('" + idspel + "', '" + idtegel
 					+ "' , '" + x + "' , '" + y + "' , '" + idgrondstofsoort + "')";
 			try {
@@ -51,13 +51,13 @@ public class BoardDal {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		} else {
+		}
+		else {
 			try {
 				stmt = conn.createStatement();
 				// Add + "', `idgetalfiche`='" + idgetalfiche + "' " + " later.
-				stmt.executeUpdate(
-						"UPDATE `tegel` SET `idgrondstofsoort`='" + idgrondstofsoort + "'" + " WHERE `idspel`= "
-								+ idspel + " AND `x` = " + x + " AND `y` = " + y + " AND `idtegel` = " + idtegel);
+				stmt.executeUpdate("UPDATE `tegel` SET `idgrondstofsoort`='" + idgrondstofsoort + "'" + " WHERE `idspel`= " + idspel + " AND `x` = " + x + " AND `y` = " + y
+						+ " AND `idtegel` = " + idtegel);
 				stmt.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -177,7 +177,7 @@ public class BoardDal {
 	// Set robber position
 	public void setRobberPostion(int idspel, int idtegel) {
 		Statement stmt = null;
-		String query = "UPDATE spel SET struikrover_idtegel = '" + idtegel + "' WHERE idspel = '" + idspel + "' ";
+		String query = "UPDATE spel SET struikrover_idtegel = '"+ idtegel + "' WHERE idspel = '" + idspel + "' ";
 		try {
 			stmt = conn.createStatement();
 			stmt.executeUpdate(query);
@@ -186,48 +186,19 @@ public class BoardDal {
 			System.out.println(e.getMessage());
 		}
 	}
-
-	public int getRobberPosition(int gameid) {
-		int i = 0;
+	
+	public int getRobberPosituin(int idspel) {
+		int i =0 ;
 		try {
 			Statement stmt = conn.createStatement();
-			String query = "SELECT struikrover_idtegel FROM spel WHERE idspel = " + gameid;
-			ResultSet rs = stmt.executeQuery(query);
-			rs.next();
+			ResultSet rs = stmt.executeQuery("SELECT struikrover_idtegel FROM spel WHERE idspel = '" + idspel);
+
 			i = rs.getInt(1);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return i;
-
+		
 	}
-
-	public int getRobberXPosition(int gameid, int position) {
-		int i = 0;
-		try {
-			Statement stmt = conn.createStatement();
-			String query = "SELECT x FROM Tegel WHERE idspel = " + gameid + " AND idtegel =" + position;
-			ResultSet rs = stmt.executeQuery(query);
-			rs.next();
-			i = rs.getInt(1);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return i;
-	}
-
-	public int getRobberYPosition(int gameid, int position) {
-		int i = 0;
-		try {
-			Statement stmt = conn.createStatement();
-			String query = "SELECT y FROM Tegel WHERE idspel = " + gameid + " AND idtegel =" + position;
-			ResultSet rs = stmt.executeQuery(query);
-			rs.next();
-			i = rs.getInt(1);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return i;
-	}
-
+	
 }

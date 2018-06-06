@@ -1,4 +1,4 @@
-package View.trade;
+package View;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -9,8 +9,6 @@ import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -38,11 +36,11 @@ public class TradeAcceptPane extends JPanel implements Observer {
 	private BufferedImage myBufferedImage4;
 	private BufferedImage myBufferedImage5;
 
-	private URL stone;
-	private URL ore;
-	private URL wood;
-	private URL wheat;
-	private URL wool;
+	private File stone;
+	private File ore;
+	private File wood;
+	private File wheat;
+	private File wool;
 
 	private JTextField stoneoffer;
 	private JTextField oreoffer;
@@ -75,17 +73,11 @@ public class TradeAcceptPane extends JPanel implements Observer {
 		this.tc = tc;
 		this.tc.setRunthread(true);
 		this.setLayout(null);
-		try {
-			
-			stone = new URL("baksteen.jpg");
-			wool = new URL("schaap.jpg");
-			ore = new URL("erts.jpg");
-			wheat = new URL("graan.jpg");
-			wood = new URL("hout.jpg");
-		
-		} catch (MalformedURLException e1) {
-			e1.printStackTrace();
-		}
+		stone = new File("./Images/baksteen.jpg");
+		wool = new File("./Images/schaap.jpg");
+		ore = new File("./Images/erts.jpg");
+		wheat = new File("./Images/graan.jpg");
+		wood = new File("./Images/hout.jpg");
 
 		offer = new JLabel();
 		offer.setBounds(355, 10, 350, 100);

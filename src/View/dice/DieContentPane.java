@@ -10,7 +10,6 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.print.DocFlavor.URL;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -20,13 +19,13 @@ public class DieContentPane extends JPanel implements ActionListener
 {
 	private DieController con;
 	private JButton throwDiceButton;
-	private String myFile = null;
-	private String one;
-	private String two;
-	private String three;
-	private String four;
-	private String five;
-	private String six;
+	private File myFile = new File("./images/one.png");
+	private File one;
+	private File two;
+	private File three;
+	private File four;
+	private File five;
+	private File six;
 	private BufferedImage myBufferedImage1 = new BufferedImage(1, 1, BufferedImage.TYPE_INT_RGB);
 	private BufferedImage myBufferedImage2 = new BufferedImage(1, 1, BufferedImage.TYPE_INT_RGB);
 	
@@ -45,12 +44,12 @@ public class DieContentPane extends JPanel implements ActionListener
 
 	public void initFiles()
 	{
-		one = "one.png";
-		two = "two.png";
-		three = "three.png";
-		four = "four.png";
-		five = "five.png";
-		six = "six.png";
+		one = new File("./images/one.png");
+		two = new File("./images/two.png");
+		three = new File("./images/three.png");
+		four = new File("./images/four.png");
+		five = new File("./images/five.png");
+		six = new File("./images/six.png");
 	}
 	
 	@Override
@@ -85,18 +84,18 @@ public class DieContentPane extends JPanel implements ActionListener
 		
 	}
 	
-	public void setDie(String one2, int img) {
-		myFile = one2;
+	public void setDie(File file, int img) {
+		myFile = file;
 		if(myFile != null)
 		{
 			try {
 				if (img == 1)
 				{
-					myBufferedImage1 = ImageIO.read(ClassLoader.getSystemResourceAsStream(myFile));
+					myBufferedImage1 = ImageIO.read(myFile);
 				}
 				else if (img == 2)
 				{
-					myBufferedImage2 = ImageIO.read(ClassLoader.getSystemResourceAsStream(myFile));
+					myBufferedImage2 = ImageIO.read(myFile);
 				}
 				}catch (IOException e) {
 				System.out.println(e.getMessage());
