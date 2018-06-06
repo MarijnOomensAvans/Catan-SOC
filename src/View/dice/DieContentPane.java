@@ -44,12 +44,12 @@ public class DieContentPane extends JPanel implements ActionListener
 
 	public void initFiles()
 	{
-		one = new File("./images/one.png");
-		two = new File("./images/two.png");
-		three = new File("./images/three.png");
-		four = new File("./images/four.png");
-		five = new File("./images/five.png");
-		six = new File("./images/six.png");
+		one = new File("one.png");
+		two = new File("images/two.png");
+		three = new File("images/three.png");
+		four = new File("images/four.png");
+		five = new File("images/five.png");
+		six = new File("images/six.png");
 	}
 	
 	@Override
