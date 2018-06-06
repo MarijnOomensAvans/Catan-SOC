@@ -10,11 +10,11 @@ import java.util.Observable;
 import Model.Player;
 import Model.TradeOffer;
 import Model.TradeOtherPlayers;
-import View.TradeResultPane;
-import View.BankPane;
-import View.TradeAcceptPane;
-import View.TradeGui;
-import View.TradeOfferPane;
+import View.trade.BankPane;
+import View.trade.TradeAcceptPane;
+import View.trade.TradeGui;
+import View.trade.TradeOfferPane;
+import View.trade.TradeResultPane;
 
 public class TradeController extends Observable implements Runnable {
 
