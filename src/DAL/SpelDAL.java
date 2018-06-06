@@ -64,6 +64,17 @@ public class SpelDAL {
 
 		return username;
 	}
+	
+	public void setLongestRoute(int gameid, String username) {
+		int playerid = getPlayerId(gameid, username);
+		try {
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate("UPDATE spel SET langste_hr_idspeler = " + playerid + " WHERE idspel = " + gameid);
+			stmt.close();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	private PlayerStats getStats(int playerid) {
 		PlayerStats stats = null;
@@ -214,7 +225,7 @@ public class SpelDAL {
 					.executeQuery("SELECT COUNT(*) FROM spelerontwikkelingskaart so JOIN ontwikkelingskaart o "
 							+ " ON so.idontwikkelingskaart = o.idontwikkelingskaart "
 							+ " WHERE (o.naam LIKE ('kathedraal') OR o.naam LIKE ('bibliotheek') OR o.naam LIKE ('markt') OR o.naam LIKE ('universiteit') "
-							+ " OR o.naam LIKE ('parlement')) AND so.idspeler LIKE " + playerid);
+							+ " OR o.naam LIKE ('parlement')) AND so.idspeler LIKE " + playerid + " AND so.gespeeld = 1");
 			while (rs.next()) {
 				devPoints = rs.getInt(1);
 			}
