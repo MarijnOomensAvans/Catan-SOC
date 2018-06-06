@@ -235,7 +235,7 @@ public class IngameView extends JPanel {
 			int developmentCards = playerStats.get(i).getDevelopmentCards();
 			int knightCards = playerStats.get(i).getKnightCards();
 			JLabel cardsLabel = new JLabel(
-					name + " GK:" + resourceCards + " OK:" + developmentCards + " RK:" + knightCards);
+					name + " GK:" + resourceCards + " OK:" + developmentCards + " GR:" + knightCards);
 			cardsLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			playerCardsPanel.add(cardsLabel);
 		}
@@ -250,7 +250,7 @@ public class IngameView extends JPanel {
 				nameBiggest = playerStats.get(i).getUsername();
 			}
 			// System.out.println("naam: "+playerStats.get(i).getUsername()+" amount: "
-			// +playerStats.get(i).getKnightCards());
+			 //+playerStats.get(i).getKnightCards());
 		}
 		JLabel biggestArmyLabel = new JLabel(nameBiggest);
 		biggestArmyLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -259,13 +259,15 @@ public class IngameView extends JPanel {
 	}
 
 	public JLabel nextTurn(int id) {
-		int turn = 1;
+		int turn = 0;
 		intTurnLabel = new JLabel(turn + "");
-		if (playerStats.get(0).getUsername() == ingameController.getTurn(id)) {
+		if (playerStats.get(0).getUsername().equals(ingameController.getTurn(id))) {
+			turn++;
 			intTurnLabel.setText(turn + "");
 			repaint();
 		}
 		return intTurnLabel;
 	}
+	
 
 }
