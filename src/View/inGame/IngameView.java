@@ -19,15 +19,10 @@ import Controller.BoardController;
 import Controller.ChatController;
 import Controller.DieController;
 import Controller.IngameController;
-<<<<<<< HEAD
 import Controller.LoginController;
-import Controller.PlayerController;
-=======
->>>>>>> 67d6ccf67f9f6ae675e0be6f79a11b36b990db91
 import DAL.GameManagerDAL;
 import Model.ingame.PlayerStats;
 import View.board.BoardColours;
-import View.board.Robber;
 import View.build.BuildFrame;
 import View.chat.ChatContentPane;
 import View.chat.Chatoutputgui;
@@ -243,12 +238,9 @@ public class IngameView extends JPanel {
 			int resourceCards = playerStats.get(i).getResourceCards();
 			int developmentCards = playerStats.get(i).getDevelopmentCards();
 			int knightCards = playerStats.get(i).getKnightCards();
-<<<<<<< HEAD
 			int publicPoints = playerStats.get(i).getPublicPoints();
 			JLabel cardsLabel = new JLabel(name + " GK:" + resourceCards + " OK:" + developmentCards + " GR:" + knightCards + " OV:"+ publicPoints);
-=======
-			JLabel cardsLabel = new JLabel(name + " GK:" + resourceCards + " OK:" + developmentCards + " GR:" + knightCards);
->>>>>>> 67d6ccf67f9f6ae675e0be6f79a11b36b990db91
+
 			cardsLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			playerCardsPanel.add(cardsLabel);
 		}
@@ -282,7 +274,6 @@ public class IngameView extends JPanel {
 		}
 		return intTurnLabel;
 	}
-<<<<<<< HEAD
 	
 	public JLabel ownPoints() {
 		JLabel ownPoint = null;
@@ -295,6 +286,4 @@ public class IngameView extends JPanel {
 	}
 	
 
-=======
->>>>>>> 67d6ccf67f9f6ae675e0be6f79a11b36b990db91
 }
