@@ -67,6 +67,10 @@ public class BoardController {
 		int position =board.getRobberYPosition(gameid);
 		return position;
 	}
+	
+	public void makeCards(int gameid) {
+		BankController bc = new BankController(gameid);
+	}
 
 	
 }

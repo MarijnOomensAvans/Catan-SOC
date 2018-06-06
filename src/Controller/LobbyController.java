@@ -29,6 +29,7 @@ public class LobbyController {
 	private Chatoutputgui cog;
 	private LobbyDAL lobbyDAL;
 	private GameStateController gsc;
+	private PlayerController pc;
 	private IngameController inGameController;
 
 	public LobbyController() {
@@ -39,7 +40,7 @@ public class LobbyController {
 		bc = new BoardController();
 		frame = new LobbyFrame(this,bc,cc,cog,1);
 		LobbyUpdateController updateController = new LobbyUpdateController();
-		updateController.addObserver(frame.getPanel());
+		updateController.addObserver(frame.getPanel());	
 	}
 
 	public ArrayList<String> getUsernames() {
@@ -101,6 +102,7 @@ public class LobbyController {
 		DrawingPanel dp = new DrawingPanel(bc, gameID);
 		int playerID = Integer.parseInt(lobbyDAL.getPlayerID(gameID));
 		gameFrame = new InGameFrame(bc, gameID, dp, playerID, inGameController);
+		pc = new PlayerController(playerID, gameID);
 	}
 	
 	public void createInvitation(String username, int gameid, int volgnr) {
@@ -118,6 +120,7 @@ public class LobbyController {
 		bc.generateBoard();
 		bc.setBoardType(getGameID(), 1);
 		bc.finishBoard(getGameID());
+		bc.makeCards(getGameID());
 		setupFrame = new SetupGameFrame(this, bc, inviteButton);
 		
 		inviteButton.addActionListener(e -> {

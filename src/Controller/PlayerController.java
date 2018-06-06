@@ -2,6 +2,7 @@ package Controller;
 
 import java.util.ArrayList;
 
+import DAL.PersonDAL;
 import Model.DevelopmentCard;
 import Model.MaterialCard;
 import Model.Player;
@@ -9,10 +10,12 @@ import Model.Player;
 public class PlayerController {
 	private Player player;
 	private BankController bc;
-	
+	private PersonDAL db;
 
-	public PlayerController(BankController bc,int personid) {
-		this.bc = bc;
+	public PlayerController(int playerID, int gameID) {
+		bc = new BankController(gameID);
+		db = new PersonDAL();
+		player = new Player(this, db, playerID, gameID);
 	}
 
 	public MaterialCard getMaterialCard(String kind, int playerid) {

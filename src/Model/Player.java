@@ -33,16 +33,7 @@ public class Player {
 		setName();
 		setColor();
 		setOrder_number();
-		addDevelopmentCard();
-		addDevelopmentCard();
-		addDevelopmentCard();
-		
 		printallPlayerDevCards();
-		removeDevCard("o12r", gameid, playerid);
-		
-		//setName();
-		//setColor();
-		//setOrder_number();
 		
 	}
 	
@@ -59,7 +50,7 @@ public class Player {
 	
 
 	public void setOrder_number() {
-			order_number = pd.getorder_number(player_id,game_id);
+			order_number = Integer.parseInt(pd.getorder_number(player_id,game_id));
 	}
 
 	public void addMaterialCard(String kind,int gameid) {

@@ -5,11 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class BoardDal {
+public class BoardDAL {
 	Connection conn = MainDAL.getConnection();
 
-	// ------------------------------------------------------------------------------------------------------------------------
-	// This will put the tiles into the database.
 	public void setTile(int idspel, int idtegel, int x, int y, char idgrondstofsoort, int idgetalfiche) {
 		Statement stmt = null;
 		if (idgrondstofsoort != 'X') {
