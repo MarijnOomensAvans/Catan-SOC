@@ -12,7 +12,6 @@ import Model.lobby.LobbyModel;
 import View.chat.Chatoutputgui;
 import View.inGame.InGameFrame;
 import View.lobby.LobbyFrame;
-import View.setupGame.DrawingPanel;
 import View.setupGame.SetupGameFrame;
 
 public class LobbyController {
@@ -96,11 +95,8 @@ public class LobbyController {
 	public void openGame(int gameID) {
 		frame.dispose();	
 		bc.generateBoard();
-		DrawingPanel dp = new DrawingPanel(bc, gameID);
 		int playerID = Integer.parseInt(lobbyDAL.getPlayerID(gameID));
-		inGameController = new IngameController(gameID, playerID);
-		gameFrame = new InGameFrame(bc, gameID, dp, playerID, inGameController, pc);
-
+		inGameController = new IngameController(gameID, playerID, gameFrame, bc);
 	}
 	
 	public void createInvitation(String username, int gameid, int volgnr) {

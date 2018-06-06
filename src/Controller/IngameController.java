@@ -7,23 +7,29 @@ import Model.SpelModel;
 import Model.ingame.PlayerStats;
 import View.developmentCards.DevelopmentContentPane;
 import View.developmentCards.DevelopmentGui;
+import View.inGame.InGameFrame;
+import View.setupGame.DrawingPanel;
 
 public class IngameController {
 
 	private SpelModel spelModel;
-	private BankController bc;
+	private BankController bct;
 	private int gameid;
 	private PersonDAL pd;
 	private PlayerController pc;
 	private int playerID;
+	private BoardController bc;
 	
-	public IngameController(int gameid, int playerID) {
+	public IngameController(int gameid, int playerID, InGameFrame gameFrame, BoardController bc) {
 		this.gameid = gameid;
 		this.playerID = playerID;
+		this.bc = bc;
 		spelModel = new SpelModel();
-		bc = new BankController(gameid);
+		bct = new BankController(gameid);
 		pd = new PersonDAL();
-		this.pc = new PlayerController(playerID, gameid, bc, pd);
+		DrawingPanel dp = new DrawingPanel(bc, gameid);
+		this.pc = new PlayerController(playerID, gameid, bct, pd);
+		gameFrame = new InGameFrame(bc, gameid, dp, playerID, this, pc);;
 	}
 
 	public ArrayList<PlayerStats> getPlayerStats(int gameId) {
@@ -41,7 +47,7 @@ public class IngameController {
 
 	public void openTrade() {
 
-		new TradeController(playerID, gameid, pd, pc.getPlayer(), pc, bc);
+		new TradeController(playerID, gameid, pd, pc.getPlayer(), pc, bct);
 		
 
 		// TODO Auto-generated method stub
