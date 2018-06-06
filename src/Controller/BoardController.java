@@ -67,13 +67,10 @@ public class BoardController {
 		int position =board.getRobberYPosition(gameid);
 		return position;
 	}
-<<<<<<< HEAD
 	
 	public void makeCards(int gameid) {
 		BankController bc = new BankController(gameid);
 	}
-=======
->>>>>>> parent of bcf33cd... Revert "Merge branch 'GameSetup' of https://github.com/MarijnOomensAvans/Catan-SOC into GameSetup"
 
 	
 }

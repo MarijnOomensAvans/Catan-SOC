@@ -59,11 +59,6 @@ public class IngameView extends JPanel {
 	private Border border;
 	//plek maken voor chat
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> parent of bcf33cd... Revert "Merge branch 'GameSetup' of https://github.com/MarijnOomensAvans/Catan-SOC into GameSetup"
 	public IngameView(BoardController bc, int gameID, DrawingPanel inGameBoard, int playerID,
 			IngameController inGameController) {
 		this.ingameController = inGameController;
@@ -241,12 +236,7 @@ public class IngameView extends JPanel {
 			int resourceCards = playerStats.get(i).getResourceCards();
 			int developmentCards = playerStats.get(i).getDevelopmentCards();
 			int knightCards = playerStats.get(i).getKnightCards();
-			JLabel cardsLabel = new JLabel(
-<<<<<<< HEAD
-					name + " GK:" + resourceCards + " OK:" + developmentCards + " RK:" + knightCards);
-=======
-					name + " GK:" + resourceCards + " OK:" + developmentCards + " GR:" + knightCards);
->>>>>>> parent of bcf33cd... Revert "Merge branch 'GameSetup' of https://github.com/MarijnOomensAvans/Catan-SOC into GameSetup"
+			JLabel cardsLabel = new JLabel(name + " GK:" + resourceCards + " OK:" + developmentCards + " GR:" + knightCards);
 			cardsLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			playerCardsPanel.add(cardsLabel);
 		}
@@ -261,11 +251,7 @@ public class IngameView extends JPanel {
 				nameBiggest = playerStats.get(i).getUsername();
 			}
 			// System.out.println("naam: "+playerStats.get(i).getUsername()+" amount: "
-<<<<<<< HEAD
 			// +playerStats.get(i).getKnightCards());
-=======
-			 //+playerStats.get(i).getKnightCards());
->>>>>>> parent of bcf33cd... Revert "Merge branch 'GameSetup' of https://github.com/MarijnOomensAvans/Catan-SOC into GameSetup"
 		}
 		JLabel biggestArmyLabel = new JLabel(nameBiggest);
 		biggestArmyLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -274,24 +260,13 @@ public class IngameView extends JPanel {
 	}
 
 	public JLabel nextTurn(int id) {
-<<<<<<< HEAD
 		int turn = 1;
-		intTurnLabel = new JLabel(turn + "");
-		if (playerStats.get(0).getUsername() == ingameController.getTurn(id)) {
-=======
-		int turn = 0;
 		intTurnLabel = new JLabel(turn + "");
 		if (playerStats.get(0).getUsername().equals(ingameController.getTurn(id))) {
 			turn++;
->>>>>>> parent of bcf33cd... Revert "Merge branch 'GameSetup' of https://github.com/MarijnOomensAvans/Catan-SOC into GameSetup"
 			intTurnLabel.setText(turn + "");
 			repaint();
 		}
 		return intTurnLabel;
 	}
-<<<<<<< HEAD
-=======
-	
->>>>>>> parent of bcf33cd... Revert "Merge branch 'GameSetup' of https://github.com/MarijnOomensAvans/Catan-SOC into GameSetup"
-
 }
