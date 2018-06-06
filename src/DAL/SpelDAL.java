@@ -42,6 +42,13 @@ public class SpelDAL {
 			if (stats.get(i).getUsername().equals(longestRouteUsername)) {
 				stats.get(i).setTradeRoute(true);
 			}
+			
+			if(i == 0) {
+				System.out.println("Gebouw Ontwikkeling Punten: " + stats.get(i).getDevelopmentBuildingPoints());
+				System.out.println("Prive punten: " + stats.get(i).getPrivatePoints());
+				System.out.println("Openbare punten: " + stats.get(i).getPublicPoints());
+				System.out.println("Ontwikkelingskaart punten: " + stats.get(i).getDevelopmentCards());
+			}
 		}
 
 		return stats;
@@ -87,13 +94,13 @@ public class SpelDAL {
 		/* GET CARDS */
 		try {
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT o.naam FROM speler s JOIN spelerontwikkelingskaart so "
+			ResultSet rs = stmt.executeQuery("SELECT o.naam, so.gespeeld FROM speler s JOIN spelerontwikkelingskaart so "
 					+ "ON s.idspeler = so.idspeler JOIN ontwikkelingskaart o "
 					+ "ON o.idontwikkelingskaart = so.idontwikkelingskaart " + "WHERE s.idspeler = " + playerid);
 			while (rs.next()) {
 				developmentCards++;
 
-				if (rs.getString(1).equals("ridder")) {
+				if ((rs.getString(1).equals("ridder")) && (rs.getInt(2) == 1)) {
 					knightCards++;
 				}
 			}
