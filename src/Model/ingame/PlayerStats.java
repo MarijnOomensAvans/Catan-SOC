@@ -43,11 +43,11 @@ public class PlayerStats {
 	public int getPublicPoints() {
 		int points = villagePoints + (cityPoints * 2);
 		if(hasBiggestArmy) {
-			points++;
+			points += 2;
 		} 
 		
 		if(hasTradeRoute) {
-			points++;
+			points += 2;
 		}
 		return points;
 	}
