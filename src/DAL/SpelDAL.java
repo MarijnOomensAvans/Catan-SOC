@@ -193,7 +193,7 @@ public class SpelDAL {
 
 		try {
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT idspeler FROM speler " + "WHERE (gameid = " + gameid
+			ResultSet rs = stmt.executeQuery("SELECT idspeler FROM speler " + "WHERE (idspel = " + gameid
 					+ " AND username LIKE '" + username + "')");
 			while (rs.next()) {
 				playerid = rs.getInt(1);

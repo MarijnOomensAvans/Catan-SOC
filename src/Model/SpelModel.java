@@ -20,4 +20,8 @@ public class SpelModel {
 	public String getTurn(int id) {
 		return spelDal.getPlayerTurn(id);
 	}
+	
+	public void setBiggestArmy(int gameid, String username) {
+		spelDal.setBiggestArmy(gameid, username);
+	}
 }

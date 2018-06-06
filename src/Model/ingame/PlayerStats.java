@@ -10,6 +10,8 @@ public class PlayerStats {
 	private boolean hasTradeRoute;
 	
 	public PlayerStats(int rc, int dc, int kc, int vp, int cp, int dp) {
+		hasBiggestArmy = false;
+		hasTradeRoute = false;
 		resourceCards = rc;
 		developmentCards = dc;
 		knightCards = kc;

@@ -16,6 +16,7 @@ import View.setupGame.DrawingPanel;
 
 
 
+
 @SuppressWarnings("serial")
 public class Robber extends JPanel {
 	
@@ -25,19 +26,14 @@ public class Robber extends JPanel {
 	private DrawingPanel dp;
 	private JLabel image;
 	
-	public Robber(BoardController bc, int gameID, DrawingPanel drawingPanel) {
-		this.bc = bc;
-		this.gameID = gameID;
-		this.dp = drawingPanel;
+	public Robber() {
 		this.setPreferredSize(new Dimension(25,60));
 		image1 = new ImageIcon(ClassLoader.getSystemResource("Therobber.png"));
 		image = new JLabel(image1);
-		image.setBounds(getXRobber(), getYRobber(), 25, 58);
 		this.setBackground(null);
 		add(image);
 		repaint();
 		validate();
-		
 	}
 
 	
@@ -49,6 +45,6 @@ public class Robber extends JPanel {
 	private int getYRobber() {
 		int y = bc.getRobberYPosition(gameID);
 		return y;
-		
 	}
+
 }
