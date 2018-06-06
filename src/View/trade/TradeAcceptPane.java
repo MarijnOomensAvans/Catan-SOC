@@ -38,11 +38,11 @@ public class TradeAcceptPane extends JPanel implements Observer {
 	private BufferedImage myBufferedImage4;
 	private BufferedImage myBufferedImage5;
 
-	private URL stone;
-	private URL ore;
-	private URL wood;
-	private URL wheat;
-	private URL wool;
+	private String stone;
+	private String ore;
+	private String wood;
+	private String wheat;
+	private String wool;
 
 	private JTextField stoneoffer;
 	private JTextField oreoffer;
@@ -75,17 +75,13 @@ public class TradeAcceptPane extends JPanel implements Observer {
 		this.tc = tc;
 		this.tc.setRunthread(true);
 		this.setLayout(null);
-		try {
-			
-			stone = new URL("baksteen.jpg");
-			wool = new URL("schaap.jpg");
-			ore = new URL("erts.jpg");
-			wheat = new URL("graan.jpg");
-			wood = new URL("hout.jpg");
 		
-		} catch (MalformedURLException e1) {
-			e1.printStackTrace();
-		}
+			stone = "baksteen.jpg";
+			wool = "schaap.jpg";
+			ore = "erts.jpg";
+			wheat = "graan.jpg";
+			wood = "hout.jpg";
+		
 
 		offer = new JLabel();
 		offer.setBounds(355, 10, 350, 100);
@@ -104,11 +100,11 @@ public class TradeAcceptPane extends JPanel implements Observer {
 		wheatoffer = new JTextField("" + wheatOfferCounter);
 
 		try {
-			myBufferedImage1 = ImageIO.read(stone);
-			myBufferedImage2 = ImageIO.read(wool);
-			myBufferedImage3 = ImageIO.read(ore);
-			myBufferedImage4 = ImageIO.read(wheat);
-			myBufferedImage5 = ImageIO.read(wood);
+			myBufferedImage1 = ImageIO.read(ClassLoader.getSystemResourceAsStream(stone));
+			myBufferedImage2 = ImageIO.read(ClassLoader.getSystemResourceAsStream(ore));
+			myBufferedImage3 = ImageIO.read(ClassLoader.getSystemResourceAsStream(wood));
+			myBufferedImage4 = ImageIO.read(ClassLoader.getSystemResourceAsStream(wool));
+			myBufferedImage5 = ImageIO.read(ClassLoader.getSystemResourceAsStream(wheat));
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
