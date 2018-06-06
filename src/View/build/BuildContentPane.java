@@ -16,10 +16,10 @@ import Model.Player;
 @SuppressWarnings("serial")
 public class BuildContentPane extends JPanel{
 	private GridLayout gridLayout = new GridLayout(4,3);
-	ImageIcon imageVillage = new ImageIcon("./images/DorpIcon.png");
-	ImageIcon imageCity = new ImageIcon("./images/StadIcon.png");
-	ImageIcon imageStreet = new ImageIcon("./images/StraatIcon.png");
-	ImageIcon imageDevCard = new ImageIcon("./images/OntwikkleingskaartIcon.png");
+	ImageIcon imageVillage = new ImageIcon(ClassLoader.getSystemResource("DorpIcon.png"));
+	ImageIcon imageCity = new ImageIcon(ClassLoader.getSystemResource("StadIcon.png"));
+	ImageIcon imageStreet = new ImageIcon(ClassLoader.getSystemResource("StraatIcon.png"));
+	ImageIcon imageDevCard = new ImageIcon(ClassLoader.getSystemResource("OntwikkleingskaartIcon.png"));
 	private Dimension buttonsize = new Dimension(200,100);
 	private BuildController buildcontroller = new BuildController();
 	private Player player;
