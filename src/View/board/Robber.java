@@ -29,17 +29,13 @@ public class Robber extends JPanel {
 		this.bc = bc;
 		this.gameID = gameID;
 		this.dp = drawingPanel;
-<<<<<<< HEAD
 		this.setLayout(null);
 		image1 = new ImageIcon(ClassLoader.getSystemResource("Therobber.png"));
 		image = new JLabel(image1);
 		image.setBounds(getXRobber(), getYRobber(), 26, 60);
 		this.setBackground(null);
 		add(image);
-=======
-		
-		image1 = new ImageIcon("Therobber.png");
->>>>>>> 453a5360826910ee58f527f2ab94c8b43d1ece2c
+
 		repaint();
 		
 	}
