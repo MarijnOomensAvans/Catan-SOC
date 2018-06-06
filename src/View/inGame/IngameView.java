@@ -125,7 +125,7 @@ public class IngameView extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new BuildFrame(pc);
+				new BuildFrame(pc, inGameBoard);
 
 			}
 
