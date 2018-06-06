@@ -836,7 +836,6 @@ public class Board {
 	public int getRobberXPosition(int gameid) {
 		int position =bdal.getRobberPosition(gameid);
 		int x = bdal.getRobberXPosition(gameid, position);
-
         return 50 + ((x - 1) * (99 / 2)) + x - 2;
 	}
 	
