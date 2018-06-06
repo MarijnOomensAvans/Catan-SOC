@@ -28,6 +28,8 @@ import View.chat.ChatContentPane;
 import View.chat.Chatoutputgui;
 import View.dice.DieContentPane;
 import View.setupGame.DrawingPanel;
+import View.developmentCards.DevelopmentGui;
+import View.developmentCards.DevelopmentContentPane;
 
 @SuppressWarnings("serial")
 public class IngameView extends JPanel {
