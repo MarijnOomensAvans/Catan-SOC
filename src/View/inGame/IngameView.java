@@ -194,11 +194,7 @@ public class IngameView extends JPanel implements Observer {
 		buildCostPanel.setBorder(border);
 		dieContentPane.setBorder(border);
 		diceButtonPanel.setBorder(border);
-<<<<<<< HEAD
 
-=======
-		//Get the amount of all types of resources from db
->>>>>>> b7914f86b0cf914d9bdbcf41317250ab2ffe0042
 		playerStoneCount = inGameController.getPc().getAmountStone(playerID);
 		playerOreCount = inGameController.getPc().getAmountOre(playerID);
 		playerWoodCount = inGameController.getPc().getAmountWood(playerID);
