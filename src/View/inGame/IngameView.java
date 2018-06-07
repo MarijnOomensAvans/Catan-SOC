@@ -195,21 +195,11 @@ public class IngameView extends JPanel implements Observer {
 		dieContentPane.setBorder(border);
 		diceButtonPanel.setBorder(border);
 
-<<<<<<< HEAD
-		// Get the amount of all types of resources from db
-		//// playerStoneCount = inGameController.getPc().getAmountStone(playerID);
-		//// playerOreCount = inGameController.getPc().getAmountOre(playerID);
-		//// playerWoodCount = inGameController.getPc().getAmountWood(playerID);
-		//// playerWoolCount = inGameController.getPc().getAmountWool(playerID);
-		//// playerWheatCount = inGameController.getPc().getAmountWheat(playerID);
-=======
-		//Get the amount of all types of resources from db
 		playerStoneCount = inGameController.getPc().getAmountStone(playerID);
 		playerOreCount = inGameController.getPc().getAmountOre(playerID);
 		playerWoodCount = inGameController.getPc().getAmountWood(playerID);
 		playerWoolCount = inGameController.getPc().getAmountWool(playerID);
 		playerWheatCount = inGameController.getPc().getAmountWheat(playerID);
->>>>>>> 6739c061adf5e0cc3bc7da66684ea5477b13d34e
 
 		boardPanel = new JPanel();
 
