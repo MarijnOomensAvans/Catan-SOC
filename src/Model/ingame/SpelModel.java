@@ -55,11 +55,11 @@ public class SpelModel extends Observable {
 			spelDal.removeShouldRefresh(gameid, LoginController.getUsername());
 		}
 	}
-	
+
 	public String getLongestRoute(int gameid) {
 		return spelDal.getLongestRouteUsername(gameid);
 	}
-	
+
 	public String getBiggestArmy(int gameid) {
 		return spelDal.getBiggestArmyUsername(gameid);
 	}
@@ -67,36 +67,40 @@ public class SpelModel extends Observable {
 	public boolean getFirstTurn() {
 		return gameManagerDal.getFirstTurn(gameid);
 	}
-	
+
 	public int getBuildingCount() {
 		return spelDal.hasBuilt(gameid);
 	}
-	
+
 	public int getBuildingCount(int volgnr) {
 		return spelDal.getBuildingCount(gameid, volgnr);
 	}
-	
+
 	public void firstTurnCheck() {
-		
-		if(getFirstTurn() && getTurn(gameid).equals(LoginController.getUsername())) {
+
+		if (getFirstTurn() && getTurn(gameid).equals(LoginController.getUsername())) {
 			int builtCount = spelDal.hasBuilt(gameid);
-			switch(builtCount) {
-				case(0):
-					System.out.println("1e dorp bouwen");
-					ingameController.buildVillage();
-					break;
-				case(1):
-					System.out.println("1e straat bouwen");
-					ingameController.buildStreet();
-					break;
-				case(2):
+			switch (builtCount) {
+			case (0):
+				System.out.println("1e dorp bouwen");
+				ingameController.buildVillage();
+				break;
+			case (1):
+				System.out.println("1e straat bouwen");
+				ingameController.buildStreet();
+				break;
+			case (2):
+				if (isSecondRound()) {
 					System.out.println("2e dorp bouwen");
 					ingameController.buildVillage();
 					break;
-				case(3):
+				}
+			case (3):
+				if (isSecondRound()) {
 					System.out.println("2e straat bouwen");
 					ingameController.buildStreet();
 					break;
+				}
 			}
 		}
 	}

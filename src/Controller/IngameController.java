@@ -29,7 +29,7 @@ public class IngameController {
 		this.gameid = gameid;
 		this.playerID = playerID;
 		this.bc = bc;
-		this.rb = new RobberController();
+		this.rb = new RobberController(playerID);
 		spelModel = new SpelModel(gameid, this);
 		Thread thread = new Thread(new GameUpdateController(spelModel));
 		thread.start();
@@ -38,7 +38,7 @@ public class IngameController {
 		this.dieController = new DieController(gameid, rb, this, bc, bct, pd);
 		chatController = new ChatController(gameid, playerID);
 		this.pc = new PlayerController(playerID, gameid, bct, pd);
-		dp = new DrawingPanel(bc, gameid);
+		dp = new DrawingPanel(bc, gameid,rb);
 		dp.setIngameController(this);
 		dp.setPlayerController(pc);
 		rb.setDrawingPanel(dp);
@@ -128,5 +128,9 @@ public class IngameController {
 	
 	public int getBuildingCount(int volgnr) {
 		return spelModel.getBuildingCount(volgnr);
+	}
+
+	public void setSecondRound(boolean b) {
+		spelModel.setSecondRound(b);
 	}
 }

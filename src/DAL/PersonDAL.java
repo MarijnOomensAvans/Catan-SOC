@@ -505,8 +505,10 @@ public class PersonDAL {
 		try {
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
-			rs.next();
+
+			if (rs.next()) {
 			result = rs.getString(1);
+			}
 			stmt.close();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
