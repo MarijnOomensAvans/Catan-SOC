@@ -66,7 +66,10 @@ public class DrawingPanel extends JPanel {
 	// making room for an arraylist
 	private ArrayList<Hexagon> hexagons;
 	private PlayerController pc;
+<<<<<<< HEAD
 
+=======
+>>>>>>> c189fa377b95808f596d7128c1a8622c75c2eed6
 	private Graphics2D g2d;
 	
 	//All images of player pieces
@@ -83,12 +86,19 @@ public class DrawingPanel extends JPanel {
 	ImageIcon village_White = new ImageIcon(ClassLoader.getSystemResource("village_White.png"));
 	
 	//Streets
+<<<<<<< HEAD
 	ImageIcon street_Blue = new ImageIcon(ClassLoader.getSystemResource("street_Blue.png"));
 	ImageIcon street_Orange = new ImageIcon(ClassLoader.getSystemResource("street_Orange.png"));
 	ImageIcon street_Red = new ImageIcon(ClassLoader.getSystemResource("street_Red.png"));
 	ImageIcon street_White = new ImageIcon(ClassLoader.getSystemResource("street_White.png"));
 	
 
+=======
+	ImageIcon street_Blue;
+	ImageIcon street_Orange;
+	ImageIcon street_Red;
+	ImageIcon street_White;
+>>>>>>> c189fa377b95808f596d7128c1a8622c75c2eed6
 
 	public DrawingPanel(BoardController bc, int idspel) {
 		robber = new Robber();
@@ -191,10 +201,10 @@ public class DrawingPanel extends JPanel {
 									pc.buildStreet(x1,x2,y1,y2);
 									paintBuildings();
 									// Log here 
-									if(devCardBuild = false) {
+									if(devCardBuild == false) {
 									mayBuild = false;
 									} else {
-										devCardBuild = true;
+										devCardBuild = false;
 									}
 									hlPoint = null;
 									repaint();
@@ -214,7 +224,6 @@ public class DrawingPanel extends JPanel {
 						hlPoint = null;
 						repaint();
 					}
-
 				if (mayMoveRobber == true) {
 					String returnString = tileConvertXYfromScreenToKey(e.getX(), e.getY());
 					// System.out.println(returnString);
@@ -232,6 +241,7 @@ public class DrawingPanel extends JPanel {
 
 		});
 	}
+
 
 	// drawing the hexagons
 	@Override
@@ -355,7 +365,10 @@ public class DrawingPanel extends JPanel {
 	public void setMayMoveRobber(boolean b) {
 		mayMoveRobber = b;
 	}
+<<<<<<< HEAD
 
+=======
+>>>>>>> c189fa377b95808f596d7128c1a8622c75c2eed6
 	
 	public void paintBuildings() {
 		for(int i = 0; i < pc.countBuildings(); i++) {
@@ -368,7 +381,10 @@ public class DrawingPanel extends JPanel {
 			}
 		}
 	}
+<<<<<<< HEAD
 
+=======
+>>>>>>> c189fa377b95808f596d7128c1a8622c75c2eed6
 
 	public void setBuildDev(boolean b, String string) {
 		this.mayBuild = b;
