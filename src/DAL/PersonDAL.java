@@ -477,4 +477,27 @@ public class PersonDAL {
 		return ids;
 	}
 
+//	public void hasVillage(String checkString) {
+//		String result = "";
+//		Statement stmt = null;
+//	//	String query = "SELECT idstuk FROM spelerstuk WHERE idspeler =" + spelerID + " AND idstuk LIKE '"
+//	//			+ pieceID + "'";
+//		try {
+//			stmt = conn.createStatement();
+//			ResultSet rs = stmt.executeQuery(query);
+//			while (rs.next()) {
+//				if (result.equals("")) {
+//					result = rs.getString(1);
+//				} else {
+//					result = result + "," + rs.getString(1);
+//				}
+//			}
+//			stmt.close();
+//		} catch (SQLException e) {
+//			System.out.println(e.getMessage());
+//		}
+//		return result;
+		
+	//}
+
 }

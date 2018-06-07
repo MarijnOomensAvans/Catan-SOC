@@ -69,21 +69,21 @@ public class DrawingPanel extends JPanel {
 	private IngameController ingameController;
 	private Graphics2D g2d;
 	private Graphics g;
-	
-	//All images of player pieces
-	//Cities
+
+	// All images of player pieces
+	// Cities
 	ImageIcon city_Blue = new ImageIcon(ClassLoader.getSystemResource("city_Blue.png"));
 	ImageIcon city_Orange = new ImageIcon(ClassLoader.getSystemResource("city_Orange.png"));
 	ImageIcon city_Red = new ImageIcon(ClassLoader.getSystemResource("city_Red.png"));
 	ImageIcon city_White = new ImageIcon(ClassLoader.getSystemResource("city_White.png"));
-	
-	//Villages
+
+	// Villages
 	ImageIcon village_Blue = new ImageIcon(ClassLoader.getSystemResource("village_Blue.png"));
 	ImageIcon village_Orange = new ImageIcon(ClassLoader.getSystemResource("village_Orange.png"));
 	ImageIcon village_Red = new ImageIcon(ClassLoader.getSystemResource("village_Red.png"));
 	ImageIcon village_White = new ImageIcon(ClassLoader.getSystemResource("village_White.png"));
-	
-	//Streets
+
+	// Streets
 	ImageIcon street_Blue = new ImageIcon(ClassLoader.getSystemResource("street_Blue.png"));
 	ImageIcon street_Orange = new ImageIcon(ClassLoader.getSystemResource("street_Orange.png"));
 	ImageIcon street_Red = new ImageIcon(ClassLoader.getSystemResource("street_Red.png"));
@@ -162,40 +162,48 @@ public class DrawingPanel extends JPanel {
 					String test = convertXYfromScreenToKey(e.getX(), e.getY());
 					if (test != null) {
 						if (hlPoint == test && !buildingType.equals("Street")) {
+							if (pc.emptySpace(buildingType, hlPoint)) {
 							pc.buildObject(buildingType, hlPoint);
 							paintBuildings();
 							// Log here
 							mayBuild = false;
 							hlPoint = null;
 							repaint();
+							}
 						} else if (hlPoint == null || !buildingType.equals("Street")) {
-							hlPoint = test;
-							repaint();
+								hlPoint = test;
+								repaint();
 						}
 						if (test != null && hlPoint != null && buildingType.equals("Street")) {
 							if (hlPoint != test) {
-								String[] hlarray = hlPoint.split(",");
-								String[] clarray = test.split(",");
-								int x1 = Integer.parseInt(hlarray[0]);
-								int y1 = Integer.parseInt(hlarray[1]);
-								int x2 = Integer.parseInt(clarray[0]);
-								int y2 = Integer.parseInt(clarray[1]);
-								if (x1 == (x2 + 1) && y1 == (y2 + 1) || x1 == (x2 + 1) && y1 == y2|| x1 == x2 && y1 == (y2 - 1) || x1 == (x2 - 1) && y1 == y2 || x1 == x2 && y1 == (y2 + 1) || x1 == (x2 - 1) && y1 == (y2 = 1)) {
-									pc.buildStreet(x1,x2,y1,y2);
-									paintBuildings();
-									// Log here 
-									if(devCardBuild == false) {
-									mayBuild = false;
+								if (pc.emptySpace(buildingType, hlPoint)) {
+									String[] hlarray = hlPoint.split(",");
+									String[] clarray = test.split(",");
+									int x1 = Integer.parseInt(hlarray[0]);
+									int y1 = Integer.parseInt(hlarray[1]);
+									int x2 = Integer.parseInt(clarray[0]);
+									int y2 = Integer.parseInt(clarray[1]);
+									if (x1 == (x2 + 1) && y1 == (y2 + 1) || x1 == (x2 + 1) && y1 == y2
+											|| x1 == x2 && y1 == (y2 - 1) || x1 == (x2 - 1) && y1 == y2
+											|| x1 == x2 && y1 == (y2 + 1) || x1 == (x2 - 1) && y1 == (y2 = 1)) {
+									//	if(pc.checkVillage(test, hlPoint)) {
+										pc.buildStreet(x1, x2, y1, y2);
+										paintBuildings();
+										// Log here
+										if (devCardBuild == false) {
+											mayBuild = false;
+										} else {
+											devCardBuild = false;
+										}
+										hlPoint = null;
+										repaint();
+										//}
 									} else {
-										devCardBuild = false;
+										// Log here
+										mayBuild = false;
+										hlPoint = null;
+										repaint();
 									}
-									hlPoint = null;
-									repaint();
-								} else {
-									// Log here
-									mayBuild = false;
-									hlPoint = null;
-									repaint();
 								}
 							}
 						}
@@ -348,20 +356,20 @@ public class DrawingPanel extends JPanel {
 	public void setMayMoveRobber(boolean b) {
 		mayMoveRobber = b;
 	}
-	
+
 	public void paintBuildings() {
-			String[] buildings = pc.getAllBuildings().split(",");
-			for(int x = 0; x < buildings.length; x++) {
-				village_Blue.paintIcon(this, g, buildingConvertXfromKeyToScreenX(pc.getCoordX(buildings[x])),buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[x]),pc.getCoordY(buildings[x])));
-				
-			}
+		String[] buildings = pc.getAllBuildings().split(",");
+		for (int x = 0; x < buildings.length; x++) {
+			village_Blue.paintIcon(this, g, buildingConvertXfromKeyToScreenX(pc.getCoordX(buildings[x])),
+					buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[x]), pc.getCoordY(buildings[x])));
+
+		}
 		repaint();
 	}
-	
+
 	private int buildingConvertXfromKeyToScreenX(int x)
 
 	{
-
 
 		return 50 + ((x - 1) * (99 / 2)) + x - 2;
 
@@ -374,7 +382,6 @@ public class DrawingPanel extends JPanel {
 		return 10 + (((2 * (12 - y)) - (10 - x)) * 30);
 
 	}
-
 
 	public void setBuildDev(boolean b, String string) {
 		this.mayBuild = b;
