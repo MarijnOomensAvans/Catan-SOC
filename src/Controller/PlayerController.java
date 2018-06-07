@@ -38,9 +38,9 @@ public class PlayerController {
 		DevelopmentCard devcard = bc.getDevelopmentCard(iddevcard, gameid);
 		return devcard;
 	}
-	
-	//------------------------------------------------------------------------------------------------------------------------
-	//Getamount for development cards
+
+	// ------------------------------------------------------------------------------------------------------------------------
+	// Getamount for development cards
 	public int getAmountRidder(int playerid) {
 		int amountofRidder = db.amountDeveloperCards(playerid, false, "___r");
 		return amountofRidder;
@@ -86,33 +86,31 @@ public class PlayerController {
 		int amountUniversiteit = db.amountDeveloperCards(playerid, false, "__4g");
 		return amountUniversiteit;
 	}
-	
-	//-------------------------------------------------------------------------------------------------------
-	//Getamount for resource cards
-	
+
+	// -------------------------------------------------------------------------------------------------------
+	// Getamount for resource cards
+
 	public int getAmountStone(int playerid) {
 		return db.amountResourceCards(playerid, "b%");
 	}
-	
+
 	public int getAmountOre(int playerid) {
 		return db.amountResourceCards(playerid, "e%");
 	}
-	
+
 	public int getAmountWood(int playerid) {
 		return db.amountResourceCards(playerid, "h%");
 	}
-	
+
 	public int getAmountWool(int playerid) {
 		return db.amountResourceCards(playerid, "w%");
 	}
-	
+
 	public int getAmountWheat(int playerid) {
 		return db.amountResourceCards(playerid, "g%");
 	}
-	
-	
-	//------------------------------------------------------------------------------------------------------
-	
+
+	// ------------------------------------------------------------------------------------------------------
 
 	public boolean hasStoneCards(int amount) {
 		return player.hasStoneCard(amount);
@@ -133,24 +131,25 @@ public class PlayerController {
 	public boolean hasWheatCards(int amount) {
 		return player.hasWheatCard(amount);
 	}
-	
 
 	public void tradeCards(int otherplayerid, ArrayList<Integer> offer, Player player) {
 		player.updateCards(otherplayerid, offer);
 
 	}
+
 	public void useRidder(int playerid) {
 		db.useDevelopmentCard("___r", playerid);
 	}
 
 	public void useMonopolie(int playerid) {
 		db.useDevelopmentCard("___m", playerid);
-		
+
 	}
 
 	public void useStratenbouw(int playerid) {
 		db.useDevelopmentCard("___s", playerid);
 	}
+
 	public void useUitvinding(int playerid) {
 		db.useDevelopmentCard("___u", playerid);
 	}
@@ -167,7 +166,7 @@ public class PlayerController {
 		return bc.checkMaterialCard(ID);
 	}
 
-	public void buildObject(String buildingType, int idspel, String hlPoint) {
+	public void buildObject(String buildingType, String hlPoint) {
 		String pieceID;
 		if (buildingType.equals("Village")) {
 			pieceID = "d0";
@@ -175,100 +174,101 @@ public class PlayerController {
 			String[] coords = hlPoint.split(",");
 			if (keys.length != 5) {
 				switch (keys.length) {
-				case 0:
+				case 1:
 					db.setBuilding("d01", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
 					break;
-				case 1:
+				case 2:
 					db.setBuilding("d02", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
 					break;
-				case 2:
+				case 3:
 					db.setBuilding("d03", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
 					break;
-				case 3:
+				case 4:
 					db.setBuilding("d04", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
 					break;
-				case 4:
+				case 5:
 					db.setBuilding("d05", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
 					break;
 
 				}
 			}
 		} else if (buildingType.equals("City")) {
-			 pieceID = "c0";
+			pieceID = "c0";
 			String[] keys = db.getBuilding(playerID, pieceID).split(",");
 			String[] coords = hlPoint.split(",");
 			if (keys.length != 4) {
 				switch (keys.length) {
-				case 0:
+				case 1:
 					db.setBuilding("c01", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
 					break;
-				case 1:
+				case 2:
 					db.setBuilding("c02", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
 					break;
-				case 2:
+				case 3:
 					db.setBuilding("c03", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
 					break;
-				case 3:
-					db.setBuilding("c04", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
-					break;
-
-				}
-			}
-		} else if (buildingType.equals("Street")) {
-			 pieceID = "r";
-			String[] keys = db.getBuilding(playerID, pieceID).split(",");
-			String[] coords = hlPoint.split(",");
-			if (keys.length != 5) {
-				switch (keys.length) {
-				case 1:
-					db.setBuilding("r01", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
-					break;
-				case 2:
-					db.setBuilding("r02", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
-					break;
-				case 3:
-					db.setBuilding("r03", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
-					break;
 				case 4:
-					db.setBuilding("r04", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
-					break;
-				case 5:
-					db.setBuilding("r05", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
-					break;
-				case 6:
-					db.setBuilding("r06", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
-					break;
-				case 7:
-					db.setBuilding("r07", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
-					break;
-				case 8:
-					db.setBuilding("r08", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
-					break;
-				case 9:
-					db.setBuilding("r09", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
-					break;
-				case 10:
-					db.setBuilding("r010", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
-					break;
-				case 11:
-					db.setBuilding("r011", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
-					break;
-				case 12:
-					db.setBuilding("r012", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
-					break;
-				case 13:
-					db.setBuilding("r013", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
-					break;
-				case 14:
-					db.setBuilding("r014", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
-					break;
-				case 15:
-					db.setBuilding("r015", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
+					db.setBuilding("c04", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
 					break;
 
 				}
 			}
 		}
 
+	}
+
+	public void buildStreet(int x1, int x2, int y1, int y2) {
+		String pieceID = "r";
+		String[] keys = db.getBuilding(playerID, pieceID).split(",");
+		if (keys.length != 15) {
+			switch (keys.length) {
+			case 1:
+				db.setStreet("r01", playerID, x1, y1, x2, y2);
+				break;
+			case 2:
+				db.setStreet("r02", playerID, x1, y1, x2, y2);
+				break;
+			case 3:
+				db.setStreet("r03", playerID, x1, y1, x2, y2);
+				break;
+			case 4:
+				db.setStreet("r04", playerID, x1, y1, x2, y2);
+				break;
+			case 5:
+				db.setStreet("r05", playerID, x1, y1, x2, y2);
+				break;
+			case 6:
+				db.setStreet("r06", playerID, x1, y1, x2, y2);
+				break;
+			case 7:
+				db.setStreet("r07", playerID, x1, y1, x2, y2);
+				break;
+			case 8:
+				db.setStreet("r08", playerID, x1, y1, x2, y2);
+				break;
+			case 9:
+				db.setStreet("r09", playerID, x1, y1, x2, y2);
+				break;
+			case 10:
+				db.setStreet("r010", playerID, x1, y1, x2, y2);
+				break;
+			case 11:
+				db.setStreet("r011", playerID, x1, y1, x2, y2);
+				break;
+			case 12:
+				db.setStreet("r012", playerID, x1, y1, x2, y2);
+				break;
+			case 13:
+				db.setStreet("r013", playerID, x1, y1, x2, y2);
+				break;
+			case 14:
+				db.setStreet("r014", playerID, x1, y1, x2, y2);
+				break;
+			case 15:
+				db.setStreet("r015", playerID, x1, y1, x2, y2);
+				break;
+
+			}
+		}
 	}
 }

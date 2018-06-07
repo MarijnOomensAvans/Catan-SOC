@@ -51,10 +51,6 @@ public class InGameFrame extends JFrame{
 		setJMenuBar(lobbyMenuBar);
 	}
 
-	public void update() {
-		pane.update();
-	}
-
 	public void nextTurnButtonUpdate() {
 		pane.nextTurnButtonUpdate();
 	}
