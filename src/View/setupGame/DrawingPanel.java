@@ -14,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import Controller.BoardController;
+import Controller.PlayerController;
 import Model.board.ClickPoints;
 import Model.board.Location;
 import Model.board.Tile;
@@ -34,6 +35,7 @@ public class DrawingPanel extends JPanel {
 	private Robber robber;
 	private boolean mayBuild = false;
 	private boolean mayMoveRobber = false;
+	private String buildingType;
 
 	// making 19 rooms for hexagons
 	private Hexagon hexagon1;
@@ -61,6 +63,7 @@ public class DrawingPanel extends JPanel {
 	private BoardController bc;
 	// making room for an arraylist
 	private ArrayList<Hexagon> hexagons;
+	private PlayerController pc;
 
 	public DrawingPanel(BoardController bc, int idspel) {
 		robber = new Robber();
@@ -115,6 +118,7 @@ public class DrawingPanel extends JPanel {
 		hexagons.add(hexagon18);
 		hexagons.add(hexagon19);
 		robber.setBounds(bc.getRobberXPosition(idspel) - 45, bc.getRobberYPosition(idspel) - 30, 25, 60);
+		;
 		this.add(robber);
 
 		setPreferredSize(new Dimension(600, 600));
@@ -127,22 +131,31 @@ public class DrawingPanel extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 				if (mayBuild == true) {
 					String test = convertXYfromScreenToKey(e.getX(), e.getY());
-					hlPoint = test;
-					System.out.println(hlPoint);
-					repaint();
+					if (test != null) {
+						if (hlPoint == test && !buildingType.equals("Street")) {
+							pc.buildObject(buildingType, idspel, hlPoint);
+							mayBuild = false;
+							hlPoint = null;
+							repaint();
+						}
+						else {
+							hlPoint = test;
+							repaint();
+						}
+						if(buildingType.equals("Street")) {
+							
+						}
+					}
+					else {
+					// Change to log later -	System.out.println("Building aborted");
+						mayBuild = false;
+						hlPoint = null;
+						repaint();
+					}
 				}
 				if (mayMoveRobber == true) {
 					String returnString = tileConvertXYfromScreenToKey(e.getX(), e.getY());
-					// System.out.println(returnString);
-					if (returnString != null) {
-						String positions[] = returnString.split(",");
-						int x = Integer.parseInt(positions[0]);
-						int y = Integer.parseInt(positions[1]);
-						bc.setRobberTile(idspel, x, y);
-						robber.setBounds(bc.getRobberXPosition(idspel) - 45, bc.getRobberYPosition(idspel) - 30, 25,
-								60);
-						mayMoveRobber = false;
-					}
+					System.out.println(returnString);
 				}
 			}
 
@@ -259,14 +272,17 @@ public class DrawingPanel extends JPanel {
 		}
 	}
 
-	public void setBuild(boolean mayBuild) {
+	public void setBuild(boolean mayBuild, String buildingType) {
 		this.mayBuild = mayBuild;
-	}
-
-	public void setMayMoveRobber(boolean mayMoveRobber) {
-		this.mayMoveRobber = mayMoveRobber;
+		this.buildingType = buildingType;
 	}
 	
+	public void setPlayerController(PlayerController pc) {
+		this.pc = pc;
+	}
 	
+	public void setMayMoveRobber(boolean b) {
+		mayMoveRobber = b;
+	}
 
 }

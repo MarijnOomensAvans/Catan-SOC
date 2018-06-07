@@ -1,39 +1,51 @@
-package Model;
+package Model.ingame;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
+import Controller.LoginController;
 import DAL.SpelDAL;
-import Model.ingame.PlayerStats;
 
-public class SpelModel {
+public class SpelModel extends Observable {
 
 	private SpelDAL spelDal;
-	
-	public SpelModel() {
+	private int gameid;
+
+	public SpelModel(int gameid) {
+		this.gameid = gameid;
 		spelDal = new SpelDAL();
 	}
-	
-	public ArrayList<PlayerStats> getPlayerStats(int id){
+
+	public ArrayList<PlayerStats> getPlayerStats(int id) {
 		return spelDal.getPlayerStats(id);
-		
+
 	}
+
 	public String getTurn(int id) {
 		return spelDal.getPlayerTurn(id);
 	}
-	
+
 	public void setBiggestArmy(int gameid, String username) {
 		spelDal.setBiggestArmy(gameid, username);
 	}
-	
+
 	public void setPlayerTurn(int gameid, String username) {
 		spelDal.setPlayerTurn(gameid, username);
 	}
-	
-/*	public void shouldRefresh(int gameID) {
-		spelDAL.shouldRefresh(gameID);
-	}*/
-	
+
+	public void shouldRefresh(int gameID) {
+		spelDal.shouldRefresh(gameID);
+	}
+
 	public boolean hasRolledDice(int gameid) {
 		return spelDal.hasRolledDice(gameid);
 	}
+
+	public void update() {
+		if (spelDal.hasShouldRefresh(gameid, LoginController.getUsername())) {
+			this.hasChanged();
+			this.notifyObservers();
+		}
+	}
+
 }

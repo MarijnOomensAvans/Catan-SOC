@@ -3,9 +3,13 @@ package Controller;
 import java.util.ArrayList;
 
 import DAL.PersonDAL;
+<<<<<<< HEAD
 import Model.SpelModel;
 import Model.TradeOtherPlayers;
+=======
+>>>>>>> 41685cfc084c32ee3f8341bd2dd007055785f555
 import Model.ingame.PlayerStats;
+import Model.ingame.SpelModel;
 import View.developmentCards.DevelopmentContentPane;
 import View.developmentCards.DevelopmentGui;
 import View.inGame.InGameFrame;
@@ -20,6 +24,8 @@ public class IngameController implements Runnable {
 	private int gameid;
 	private PersonDAL pd;
 	private PlayerController pc;
+
+
 	private int playerID;
 	private BoardController bc;
 	private ChatController chatController;
@@ -35,14 +41,17 @@ public class IngameController implements Runnable {
 		this.playerID = playerID;
 		this.bc = bc;
 		this.rb = new RobberController();
-		this.dieController = new DieController(gameid, rb);
-		spelModel = new SpelModel();
+		this.dieController = new DieController(gameid, rb, this);
+		spelModel = new SpelModel(gameid);
+		Thread thread = new Thread(new GameUpdateController(spelModel));
+		thread.start();
 		bct = new BankController(gameid);
 		pd = new PersonDAL();
 		chatController = new ChatController(gameid, playerID);
+		this.pc = new PlayerController(playerID, gameid, bct, pd);
 		DrawingPanel dp = new DrawingPanel(bc, gameid);
 		rb.setDrawingPanel(dp);
-		this.pc = new PlayerController(playerID, gameid, bct, pd);
+		dp.setPlayerController(pc);
 		gameFrame = new InGameFrame(bc, gameid, dp, playerID, this, pc, chatController, dieController);
 	}
 
@@ -63,8 +72,6 @@ public class IngameController implements Runnable {
 
 		tc =new TradeController(playerID, gameid, pd, pc.getPlayer(), pc, bct, new TradeGui(tc, playerID, new TradeOfferPane(tc, playerID, true), gameid));
 
-		// TODO Auto-generated method stub
-
 	}
 
 	public void openDevcard() {
@@ -76,19 +83,23 @@ public class IngameController implements Runnable {
 		spelModel.setPlayerTurn(gameid, username);
 	}
 
-/*	public void shouldRefresh(int gameID) {
+	public void shouldRefresh(int gameID) {
 		spelModel.shouldRefresh(gameID);
-	}*/
+	}
 
 	public void update() {
 		gameFrame.update();
 	}
 	
+	public PlayerController getPc() {
+		return pc;
+	}
 	public boolean hasRolledDice(int gameid) {
 		return spelModel.hasRolledDice(gameid);
 		
 	}
 
+<<<<<<< HEAD
 	@Override
 	public void run() {
 		while (true) {
@@ -109,4 +120,9 @@ public class IngameController implements Runnable {
 		return id;
 	}
 
+=======
+	public void thrownDice() {
+		gameFrame.nextTurnButtonUpdate();
+	}
+>>>>>>> 41685cfc084c32ee3f8341bd2dd007055785f555
 }

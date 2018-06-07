@@ -7,6 +7,8 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -15,8 +17,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
-
-import com.sun.javafx.PlatformUtil;
 
 import Controller.BoardController;
 import Controller.ChatController;
@@ -32,11 +32,9 @@ import View.chat.ChatContentPane;
 import View.chat.Chatoutputgui;
 import View.dice.DieContentPane;
 import View.setupGame.DrawingPanel;
-import View.developmentCards.DevelopmentGui;
-import View.developmentCards.DevelopmentContentPane;
 
 @SuppressWarnings("serial")
-public class IngameView extends JPanel {
+public class IngameView extends JPanel implements Observer{
 
 	GameManagerDAL gameManagerDAL = new GameManagerDAL();
 
@@ -82,6 +80,12 @@ public class IngameView extends JPanel {
 	private JLabel woodCount;
 	private JLabel woolCount;
 	private JLabel wheatCount;
+	
+	private int playerStoneCount;
+	private int playerOreCount;
+	private int playerWoodCount;
+	private int playerWoolCount;
+	private int playerWheatCount;
 
 	private JPanel leftPanel;
 	private JPanel centerPanel;
@@ -112,6 +116,7 @@ public class IngameView extends JPanel {
 	private JLabel longestRouteLabel;
 	private JLabel ownPointLabel;
 
+
 	public IngameView(BoardController bc, int gameID, DrawingPanel inGameBoard, int playerID,
 			IngameController inGameController, PlayerController pc, ChatController chatController,
 			DieController dieController) {
@@ -120,6 +125,14 @@ public class IngameView extends JPanel {
 		this.ingameController = inGameController;
 		this.dieController = dieController;
 		endTurnButton = new JButton("Beurt beëindigen");
+		endTurnButton.setEnabled(false);
+		endTurnButton.addActionListener(e -> {
+			inGameController.setPlayerTurn(gameID, nextPlayerTurn(gameID));
+			endTurnButton.setEnabled(false);
+			playerTurnUpdate();
+			inGameController.shouldRefresh(gameID);
+
+		});
 
 		playerStats = inGameController.getPlayerStats(gameID);
 		throwDiceButton = new JButton("Gooi Dobbelstenen");
@@ -140,6 +153,8 @@ public class IngameView extends JPanel {
 
 		dieContentPane = new DieContentPane(dieController, throwDiceButton);
 
+		
+		
 		chatOutput = chatController.getCog();
 		ChatContentPane chatPanel = new ChatContentPane(chatController, chatOutput, playerID);
 		JPanel leftPanel = new JPanel();
@@ -185,6 +200,13 @@ public class IngameView extends JPanel {
 		buildCostPanel.setBorder(border);
 		dieContentPane.setBorder(border);
 		diceButtonPanel.setBorder(border);
+		
+		//Get the amount of all types of resources from db
+		playerStoneCount = inGameController.getPc().getAmountStone(playerID);
+		playerOreCount = inGameController.getPc().getAmountOre(playerID);
+		playerWoodCount = inGameController.getPc().getAmountWood(playerID);
+		playerWoolCount = inGameController.getPc().getAmountWool(playerID);
+		playerWheatCount = inGameController.getPc().getAmountWheat(playerID);
 
 		boardPanel = new JPanel();
 
@@ -208,13 +230,8 @@ public class IngameView extends JPanel {
 		devcardButton.addActionListener(e -> {
 			inGameController.openDevcard();
 		});
-		if (allowedToEnd(gameID)) {
-			endTurnButton.addActionListener(e -> {
-				inGameController.setPlayerTurn(gameID, nextPlayerTurn(gameID));
-				endTurnButton.setEnabled(false);
-				playerTurnUpdate();
-
-			});
+		if (allowedToEnd(gameID) && inGameController.hasRolledDice(gameID)) {
+			endTurnButton.setEnabled(true);
 		}
 
 		streetLabel = new JLabel("Straat: 1B-1H");
@@ -288,12 +305,12 @@ public class IngameView extends JPanel {
 		resourceCardsPanel.add(woodLabel);
 		resourceCardsPanel.add(woolLabel);
 		resourceCardsPanel.add(wheatLabel);
-
-		stoneCount = new JLabel("2");
-		oreCount = new JLabel("4");
-		woodCount = new JLabel("1");
-		woolCount = new JLabel("1");
-		wheatCount = new JLabel("1");
+		
+		stoneCount = new JLabel(playerStoneCount + "");
+		oreCount = new JLabel(playerOreCount + "");
+		woodCount = new JLabel(playerWoodCount + "");
+		woolCount = new JLabel(playerWoolCount + "");
+		wheatCount = new JLabel(playerWheatCount + "");
 
 		Border paddingBorder = BorderFactory.createEmptyBorder(30, 30, 30, 30);
 		stoneCount.setBorder(paddingBorder);
@@ -424,7 +441,6 @@ public class IngameView extends JPanel {
 		for (int i = 0; i < playerStats.size(); i++) {
 			if (LoginController.getUsername().equals(ingameController.getTurn(id))) {
 				allowed = true;
-				endTurnButton.setEnabled(true);
 			}
 		}
 		return allowed;
@@ -453,7 +469,17 @@ public class IngameView extends JPanel {
 
 	public void playerTurnUpdate() {
 		playerTurnStringLabel.setText(ingameController.getTurn(gameID));
+	}
+	
+	public void nextTurnButtonUpdate() {
+		if(ingameController.hasRolledDice(gameID)) {
+			endTurnButton.setEnabled(true);
+		}
+	}
 
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		update();
 	}
 
 }

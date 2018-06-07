@@ -247,4 +247,5 @@ public class BoardDAL {
 		return i;
 	}
 
+
 }

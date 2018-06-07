@@ -54,4 +54,8 @@ public class InGameFrame extends JFrame{
 	public void update() {
 		pane.update();
 	}
+
+	public void nextTurnButtonUpdate() {
+		pane.nextTurnButtonUpdate();
+	}
 }
