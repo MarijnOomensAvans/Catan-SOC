@@ -387,6 +387,5 @@ public class IngameView extends JPanel {
 		playerTurnStringLabel.setText(ingameController.getTurn(gameID));
 		
 	}
-	
 
 }
