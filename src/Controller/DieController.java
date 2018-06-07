@@ -38,12 +38,13 @@ public class DieController
 		}
 	}
 
-	public Die getD1() {
-		return d1;
-	}
-
-	public Die getD2() {
-		return d2;
+	public int[] getCurrentValues() {
+		int[] values = new int[2];
+		values[0] = d1.getStoredDie();
+		values[1] = d2.getStoredDie();
+		
+		return values;
+		
 	}
 	
 }

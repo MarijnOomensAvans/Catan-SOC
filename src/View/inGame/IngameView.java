@@ -52,6 +52,8 @@ public class IngameView extends JPanel {
 	private IngameController ingameController;
 	private Chatoutputgui chatOutput;
 	private DieController dieController;
+	
+	private DieContentPane dieContentPane;
 
 	private JPanel playerCardsPanel;
 	private JLabel intTurnLabel;
@@ -78,7 +80,7 @@ public class IngameView extends JPanel {
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		setLayout(new BorderLayout());
 
-		DieContentPane diceViewPanel = new DieContentPane(dieController, throwDiceButton);
+		dieContentPane = new DieContentPane(dieController, throwDiceButton);
 
 		chatOutput = chatController.getCog();
 		ChatContentPane chatPanel = new ChatContentPane(chatController, chatOutput, playerID);
@@ -117,7 +119,7 @@ public class IngameView extends JPanel {
 		buttonPanel.setBorder(border);
 		resourceCardPanel.setBorder(border);
 		buildCostPanel.setBorder(border);
-		diceViewPanel.setBorder(border);
+		dieContentPane.setBorder(border);
 		diceButtonPanel.setBorder(border);
 
 		JPanel boardPanel = new JPanel();
@@ -220,7 +222,7 @@ public class IngameView extends JPanel {
 		bottomInfoPanel.add(costAndDicePanel, BorderLayout.CENTER);
 
 		diceAndButtonPanel.setLayout(new BorderLayout());
-		diceAndButtonPanel.add(diceViewPanel, BorderLayout.CENTER);
+		diceAndButtonPanel.add(dieContentPane, BorderLayout.CENTER);
 		diceAndButtonPanel.add(endTurnButton, BorderLayout.EAST);
 
 		playerTurnPanel.add(turnLabel);
@@ -252,7 +254,8 @@ public class IngameView extends JPanel {
 		this.add(centerPanel, BorderLayout.CENTER);
 		this.add(rightPanel, BorderLayout.LINE_END);
 		this.add(bottomPanel, BorderLayout.PAGE_END);
-
+		
+		update();
 	}
 
 	public void getCards() {
@@ -319,6 +322,12 @@ public class IngameView extends JPanel {
 			}
 		}
 		return allowed;
+	}
+	
+	/* UPDATE */
+	public void update() {
+		dieContentPane.update();
+		
 	}
 
 }
