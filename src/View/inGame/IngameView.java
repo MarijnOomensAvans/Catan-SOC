@@ -475,7 +475,7 @@ public class IngameView extends JPanel implements Observer {
 	}
 	
 	public void BiggestArmyUpdate() {
-		
+		biggestArmyLabel.setText(ingameController.getBiggestArmy(gameID));
 	}
 	
 

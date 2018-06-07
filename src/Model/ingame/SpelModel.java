@@ -53,8 +53,8 @@ public class SpelModel extends Observable {
 		return spelDal.getLongestRouteUsername(gameid);
 	}
 	
-/*	public String getBiggestArmy() {
-		
-	}*/
+	public String getBiggestArmy(int gameid) {
+		return spelDal.getBiggestArmyUsername(gameid);
+	}
 
 }
