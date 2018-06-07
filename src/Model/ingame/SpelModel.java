@@ -84,8 +84,8 @@ public class SpelModel extends Observable {
 					System.out.println("1e straat bouwen");
 					ingameController.buildStreet();
 					break;
-				case(3):
-					
+				case(2):
+					System.out.println("Alles gebouwd");
 					break;
 				/*case(2):
 					System.out.println("2e dorp bouwen");
