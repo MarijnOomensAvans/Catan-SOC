@@ -473,7 +473,7 @@ public class IngameView extends JPanel implements Observer {
 	}
 
 	public void throwDiceButtonUpdate() {
-		if(ingameController.hasRolledDice(gameID) && allowedToEnd(gameID)) {
+		if(!ingameController.hasRolledDice(gameID) && allowedToEnd(gameID)) {
 			dieContentPane.enableButton();
 		}
 	}
