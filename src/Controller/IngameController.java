@@ -17,6 +17,8 @@ public class IngameController {
 	private int gameid;
 	private PersonDAL pd;
 	private PlayerController pc;
+
+
 	private int playerID;
 	private BoardController bc;
 	private ChatController chatController;
@@ -77,6 +79,10 @@ public class IngameController {
 
 	public void update() {
 		gameFrame.update();
+	}
+	
+	public PlayerController getPc() {
+		return pc;
 	}
 	
 	public boolean hasRolledDice(int gameid) {

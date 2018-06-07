@@ -38,7 +38,9 @@ public class PlayerController {
 		DevelopmentCard devcard = bc.getDevelopmentCard(iddevcard, gameid);
 		return devcard;
 	}
-
+	
+	//------------------------------------------------------------------------------------------------------------------------
+	//Getamount for development cards
 	public int getAmountRidder(int playerid) {
 		int amountofRidder = db.amountDeveloperCards(playerid, false, "___r");
 		return amountofRidder;
@@ -84,6 +86,33 @@ public class PlayerController {
 		int amountUniversiteit = db.amountDeveloperCards(playerid, false, "__4g");
 		return amountUniversiteit;
 	}
+	
+	//-------------------------------------------------------------------------------------------------------
+	//Getamount for resource cards
+	
+	public int getAmountStone(int playerid) {
+		return db.amountResourceCards(playerid, "b%");
+	}
+	
+	public int getAmountOre(int playerid) {
+		return db.amountResourceCards(playerid, "e%");
+	}
+	
+	public int getAmountWood(int playerid) {
+		return db.amountResourceCards(playerid, "h%");
+	}
+	
+	public int getAmountWool(int playerid) {
+		return db.amountResourceCards(playerid, "w%");
+	}
+	
+	public int getAmountWheat(int playerid) {
+		return db.amountResourceCards(playerid, "g%");
+	}
+	
+	
+	//------------------------------------------------------------------------------------------------------
+	
 
 	public boolean hasStoneCards(int amount) {
 		return player.hasStoneCard(amount);
