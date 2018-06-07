@@ -117,12 +117,6 @@ public class IngameView extends JPanel {
 	private JLabel largestArmyLabel;
 	private JLabel longestRouteLabel;
 	private JLabel ownPointLabel;
-<<<<<<< HEAD
-	
-	
-	
-=======
->>>>>>> e8c04109b94133311d5939c75fec28bace353bfd
 
 	public IngameView(BoardController bc, int gameID, DrawingPanel inGameBoard, int playerID,
 			IngameController inGameController, PlayerController pc, ChatController chatController,
@@ -311,16 +305,12 @@ public class IngameView extends JPanel {
 		resourceCardsPanel.add(woodLabel);
 		resourceCardsPanel.add(woolLabel);
 		resourceCardsPanel.add(wheatLabel);
-<<<<<<< HEAD
 		
 		stoneCount = new JLabel(playerStoneCount + "");
 		oreCount = new JLabel(playerOreCount + "");
 		woodCount = new JLabel(playerWoodCount + "");
 		woolCount = new JLabel(playerWoolCount + "");
 		wheatCount = new JLabel(playerWheatCount + "");
-		
-		Border paddingBorder = BorderFactory.createEmptyBorder(30,30,30,30);
-=======
 
 		stoneCount = new JLabel("2");
 		oreCount = new JLabel("4");
@@ -329,7 +319,6 @@ public class IngameView extends JPanel {
 		wheatCount = new JLabel("1");
 
 		Border paddingBorder = BorderFactory.createEmptyBorder(30, 30, 30, 30);
->>>>>>> e8c04109b94133311d5939c75fec28bace353bfd
 		stoneCount.setBorder(paddingBorder);
 		oreCount.setBorder(paddingBorder);
 		woodCount.setBorder(paddingBorder);

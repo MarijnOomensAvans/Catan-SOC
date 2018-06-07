@@ -80,10 +80,9 @@ public class IngameController {
 		gameFrame.update();
 	}
 	
-<<<<<<< HEAD
 	public PlayerController getPc() {
 		return pc;
-=======
+	}
 	public boolean hasRolledDice(int gameid) {
 		return spelModel.hasRolledDice(gameid);
 		
@@ -91,6 +90,5 @@ public class IngameController {
 
 	public void thrownDice() {
 		gameFrame.nextTurnButtonUpdate();
->>>>>>> e8c04109b94133311d5939c75fec28bace353bfd
 	}
 }
