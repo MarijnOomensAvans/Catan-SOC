@@ -130,7 +130,7 @@ public class IngameView extends JPanel implements Observer{
 			inGameController.setPlayerTurn(gameID, nextPlayerTurn(gameID));
 			endTurnButton.setEnabled(false);
 			playerTurnUpdate();
-			inGameController.shouldRefresh(gameID);
+			inGameController.shouldRefresh();
 
 		});
 

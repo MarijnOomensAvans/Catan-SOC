@@ -33,8 +33,8 @@ public class SpelModel extends Observable {
 		spelDal.setPlayerTurn(gameid, username);
 	}
 
-	public void shouldRefresh(int gameID) {
-		spelDal.shouldRefresh(gameID);
+	public void shouldRefresh() {
+		spelDal.shouldRefresh(gameid);
 	}
 
 	public boolean hasRolledDice(int gameid) {
@@ -45,6 +45,7 @@ public class SpelModel extends Observable {
 		if (spelDal.hasShouldRefresh(gameid, LoginController.getUsername())) {
 			this.hasChanged();
 			this.notifyObservers();
+			spelDal.shouldRefresh(gameid);
 		}
 	}
 
