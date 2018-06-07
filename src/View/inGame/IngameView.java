@@ -7,6 +7,8 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -15,8 +17,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
-
-import com.sun.javafx.PlatformUtil;
 
 import Controller.BoardController;
 import Controller.ChatController;
@@ -32,11 +32,9 @@ import View.chat.ChatContentPane;
 import View.chat.Chatoutputgui;
 import View.dice.DieContentPane;
 import View.setupGame.DrawingPanel;
-import View.developmentCards.DevelopmentGui;
-import View.developmentCards.DevelopmentContentPane;
 
 @SuppressWarnings("serial")
-public class IngameView extends JPanel {
+public class IngameView extends JPanel implements Observer{
 
 	GameManagerDAL gameManagerDAL = new GameManagerDAL();
 
@@ -125,6 +123,7 @@ public class IngameView extends JPanel {
 			inGameController.setPlayerTurn(gameID, nextPlayerTurn(gameID));
 			endTurnButton.setEnabled(false);
 			playerTurnUpdate();
+			inGameController.shouldRefresh(gameID);
 
 		});
 
@@ -457,10 +456,14 @@ public class IngameView extends JPanel {
 	}
 	
 	public void nextTurnButtonUpdate() {
-		System.out.println(ingameController.hasRolledDice(gameID));
 		if(ingameController.hasRolledDice(gameID)) {
 			endTurnButton.setEnabled(true);
 		}
+	}
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		update();
 	}
 
 }

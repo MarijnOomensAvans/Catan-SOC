@@ -3,8 +3,8 @@ package Controller;
 import java.util.ArrayList;
 
 import DAL.PersonDAL;
-import Model.SpelModel;
 import Model.ingame.PlayerStats;
+import Model.ingame.SpelModel;
 import View.developmentCards.DevelopmentContentPane;
 import View.developmentCards.DevelopmentGui;
 import View.inGame.InGameFrame;
@@ -30,7 +30,9 @@ public class IngameController {
 		this.bc = bc;
 		this.rb = new RobberController();
 		this.dieController = new DieController(gameid, rb, this);
-		spelModel = new SpelModel();
+		spelModel = new SpelModel(gameid);
+		Thread thread = new Thread(new GameUpdateController(spelModel));
+		thread.start();
 		bct = new BankController(gameid);
 		pd = new PersonDAL();
 		chatController = new ChatController(gameid, playerID);
@@ -57,8 +59,6 @@ public class IngameController {
 
 		new TradeController(playerID, gameid, pd, pc.getPlayer(), pc, bct);
 
-		// TODO Auto-generated method stub
-
 	}
 
 	public void openDevcard() {
@@ -70,9 +70,9 @@ public class IngameController {
 		spelModel.setPlayerTurn(gameid, username);
 	}
 
-/*	public void shouldRefresh(int gameID) {
+	public void shouldRefresh(int gameID) {
 		spelModel.shouldRefresh(gameID);
-	}*/
+	}
 
 	public void update() {
 		gameFrame.update();

@@ -275,9 +275,34 @@ public class SpelDAL {
 	}
 	
 	public void shouldRefresh(int gameid) {
-		/*try {
-			
-		}*/
+		try {
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate("UPDATE speler SET shouldrefresh WHERE idspel = " + gameid);
+			stmt.close();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public boolean hasShouldRefresh(int gameid, String username) {
+		boolean value = false;
+		
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT shouldrefresh FROM speler WHERE idspeler = " + getPlayerId(gameid, username));
+			while(rs.next()) {
+				if(rs.getInt(1) == 0) {
+					return false;
+				} else {
+					return true;
+				}
+			}
+			stmt.close();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return value;
 	}
 
 }
