@@ -158,8 +158,6 @@ public class DrawingPanel extends JPanel {
 									mayBuild = false;
 									hlPoint = null;
 									repaint();
-<<<<<<< HEAD
-=======
 									}
 									else {
 										// Log here
@@ -173,7 +171,6 @@ public class DrawingPanel extends JPanel {
 									mayBuild = false;
 									hlPoint = null;
 									repaint();
->>>>>>> d2fccaf758ff0ec6b95a3d0e48dad0585b20a8cb
 								}
 							}
 						}
@@ -183,7 +180,7 @@ public class DrawingPanel extends JPanel {
 						hlPoint = null;
 						repaint();
 					}
-				}
+				
 				if (mayMoveRobber == true) {
 					String returnString = tileConvertXYfromScreenToKey(e.getX(), e.getY());
 					// System.out.println(returnString);
@@ -201,6 +198,7 @@ public class DrawingPanel extends JPanel {
 
 		});
 	}
+
 
 	// drawing the hexagons
 	@Override

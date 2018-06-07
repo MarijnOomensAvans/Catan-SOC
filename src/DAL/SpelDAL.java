@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import Controller.LoginController;
 import Model.ingame.PlayerStats;
 
 public class SpelDAL {
@@ -313,5 +314,23 @@ public class SpelDAL {
 		
 		return value;
 	}
+	
+	public int hasBuilt(int gameid) {
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt
+					.executeQuery("SELECT count(*)  FROM spelerstuk ss JOIN speler s "
+							+ "ON ss.idspeler = s.idspeler JOIN stuk st "
+							+ "ON st.idstuk = ss.idstuk WHERE s.username LIKE '" + LoginController.getUsername() + "' AND s.idspel = " + gameid);
+			while(rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return 0;
+	}
+
 
 }

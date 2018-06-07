@@ -374,6 +374,12 @@ public class IngameView extends JPanel implements Observer {
 		this.add(bottomPanel, BorderLayout.PAGE_END);
 
 		uiUpdate();
+		
+		firstTurnCheck();
+	}
+
+	private void firstTurnCheck() {
+		ingameController.firstTurnCheck();
 	}
 
 	public void getCards() {
