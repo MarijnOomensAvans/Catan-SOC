@@ -15,6 +15,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
+import com.sun.javafx.PlatformUtil;
+
 import Controller.BoardController;
 import Controller.ChatController;
 import Controller.DieController;
@@ -146,7 +148,9 @@ public class IngameView extends JPanel {
 		});
 		if (allowedToEnd(gameID)) {
 			endTurnButton.addActionListener(e -> {
-
+				inGameController.setPlayerTurn(gameID, nextPlayerTurn(gameID));
+				endTurnButton.setEnabled(false);
+				
 			});
 		}
 
@@ -319,6 +323,23 @@ public class IngameView extends JPanel {
 			}
 		}
 		return allowed;
+	}
+	
+	public String nextPlayerTurn(int id) {
+		String turnPlayer = "";
+			if(playerStats.get(0).getUsername().equals(ingameController.getTurn(id))) {
+				turnPlayer = playerStats.get(1).getUsername();
+			}
+			else if(playerStats.get(1).getUsername().equals(ingameController.getTurn(id))) {
+				turnPlayer = playerStats.get(2).getUsername();
+			}
+			else if(playerStats.get(2).getUsername().equals(ingameController.getTurn(id))) {
+				turnPlayer = playerStats.get(3).getUsername();
+			}
+			else if(playerStats.get(3).getUsername().equals(ingameController.getTurn(id))) {
+				turnPlayer = playerStats.get(0).getUsername();
+			}
+		return turnPlayer;
 	}
 
 }

@@ -240,7 +240,7 @@ public class SpelDAL {
 	public void setPlayerTurn(int gameid, String username) {
 		try {
 			Statement stmt = conn.createStatement();
-			stmt.executeQuery("UPDATE spel SET beurt_idspeler = '" + username + "' WHERE idspel = " + gameid);
+			stmt.executeUpdate("UPDATE spel SET beurt_idspeler = " + this.getPlayerId(gameid, username) + " WHERE idspel = " + gameid);
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
