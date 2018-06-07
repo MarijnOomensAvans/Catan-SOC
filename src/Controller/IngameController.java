@@ -4,13 +4,16 @@ import java.util.ArrayList;
 
 import DAL.PersonDAL;
 import Model.SpelModel;
+import Model.TradeOtherPlayers;
 import Model.ingame.PlayerStats;
 import View.developmentCards.DevelopmentContentPane;
 import View.developmentCards.DevelopmentGui;
 import View.inGame.InGameFrame;
 import View.setupGame.DrawingPanel;
+import View.trade.TradeGui;
+import View.trade.TradeOfferPane;
 
-public class IngameController {
+public class IngameController implements Runnable {
 
 	private SpelModel spelModel;
 	private BankController bct;
@@ -23,8 +26,11 @@ public class IngameController {
 	private DieController dieController;
 	private RobberController rb;
 	private InGameFrame gameFrame;
+	private TradeController tc;
+	private Thread tradeThread;
 
 	public IngameController(int gameid, int playerID, BoardController bc) {
+		tradeThread = new Thread(this);
 		this.gameid = gameid;
 		this.playerID = playerID;
 		this.bc = bc;
@@ -55,7 +61,7 @@ public class IngameController {
 
 	public void openTrade() {
 
-		new TradeController(playerID, gameid, pd, pc.getPlayer(), pc, bct);
+		tc =new TradeController(playerID, gameid, pd, pc.getPlayer(), pc, bct, new TradeGui(tc, playerID, new TradeOfferPane(tc, playerID, true), gameid));
 
 		// TODO Auto-generated method stub
 
@@ -82,4 +88,25 @@ public class IngameController {
 		return spelModel.hasRolledDice(gameid);
 		
 	}
+
+	@Override
+	public void run() {
+		while (true) {
+			try {
+				ArrayList<Integer> otherIds = getOtherid(gameid,playerID);
+				for(int i = 0; i<otherIds.size(); i++)
+				{
+					tc.getLatestTradeOffer(otherIds.get(i));
+				}
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+			}
+		}
+	}
+	public ArrayList<Integer> getOtherid(int gameid, int playerid) {
+		TradeOtherPlayers otherplayers = new TradeOtherPlayers(pd);
+		ArrayList<Integer> id = otherplayers.getOtherid(gameid, playerid);
+		return id;
+	}
+
 }
