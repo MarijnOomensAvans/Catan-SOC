@@ -35,13 +35,18 @@ public class IngameController {
 		thread.start();
 		bct = new BankController(gameid);
 		pd = new PersonDAL();
+		this.dieController = new DieController(gameid, rb, this, bc, bct, pd);
 		chatController = new ChatController(gameid, playerID);
-		dp = new DrawingPanel(bc, gameid);
-		rb.setDrawingPanel(dp);
 		this.pc = new PlayerController(playerID, gameid, bct, pd);
-		this.dieController = new DieController(gameid, rb, this, bc, bct,pd);
+		dp = new DrawingPanel(bc, gameid);
+		dp.setPlayerController(pc);
+		rb.setDrawingPanel(dp);
 		gameFrame = new InGameFrame(bc, gameid, dp, playerID, this, pc, chatController, dieController);
 		spelModel.addObserver(gameFrame.getPane());
+	}
+
+	public PlayerController getPc() {
+		return pc;
 	}
 
 	public ArrayList<PlayerStats> getPlayerStats(int gameId) {
@@ -63,7 +68,7 @@ public class IngameController {
 	}
 
 	public void openDevcard() {
-		DevelopmentContentPane dcp = new DevelopmentContentPane(pc, playerID,dp );
+		DevelopmentContentPane dcp = new DevelopmentContentPane(pc, playerID, dp);
 		new DevelopmentGui(pc, dcp, gameid, playerID);
 	}
 
@@ -85,7 +90,15 @@ public class IngameController {
 		return spelModel.hasRolledDice(gameid);
 		
 	}
-
+	
+	public String getLongestRoute(int gameID) {
+		return spelModel.getLongestRoute(gameid);
+	}
+	
+	public String getBiggestArmy(int gameid) {
+		return spelModel.getBiggestArmy(gameid);
+	}
+	
 	public ArrayList<Integer> getPlayerIds(int gameID2) {
 		ArrayList<Integer> ids = new ArrayList<Integer>();
 		ids =pd.getIds(gameID2);

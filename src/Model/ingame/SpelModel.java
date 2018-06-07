@@ -51,6 +51,14 @@ public class SpelModel extends Observable {
 			spelDal.removeShouldRefresh(gameid, LoginController.getUsername());
 		}
 	}
+	
+	public String getLongestRoute(int gameid) {
+		return spelDal.getLongestRouteUsername(gameid);
+	}
+	
+	public String getBiggestArmy(int gameid) {
+		return spelDal.getBiggestArmyUsername(gameid);
+	}
 
 	public boolean getFirstTurn() {
 		return gameManagerDal.getFirstTurn(gameid);

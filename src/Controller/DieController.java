@@ -48,18 +48,46 @@ public class DieController
 		ids = inGameController.getPlayerIds(gameID);
 		if(diceResult == 7) {
 			rb.robberThrown(diceResult,gameID);
-		}else {
-			if(diceResult == 2) {
+		}else if(diceResult == 2) {
 				int x =bc.getXTile(1, gameID);
 				int y =bc.getYTile(1, gameID);
 				char resource =bc.getTileResource(gameID, x, y);
 				String source =Character.toString(resource);
 						for(int i =0; i< ids.size(); i++) {
-							if(bc.getBuildingplayer(x,y,ids.get(i)) != 0) {
+							if(bc.getBuildingplayer(x+1,y,ids.get(i)) != 0) {
 								MaterialCard card =bct.getMaterialCard(source, ids.get(i));
 								String cardid =card.getIdCard();
 								pd.addMaterialCard(gameID, cardid, ids.get(i));
 						}
+							else if(bc.getBuildingplayer(x+1,y+1,ids.get(i)) != 0) {
+								MaterialCard card =bct.getMaterialCard(source, ids.get(i));
+								String cardid =card.getIdCard();
+								pd.addMaterialCard(gameID, cardid, ids.get(i));
+						}
+							else if(bc.getBuildingplayer(x,y+1,ids.get(i)) != 0) {
+								MaterialCard card =bct.getMaterialCard(source, ids.get(i));
+								String cardid =card.getIdCard();
+								pd.addMaterialCard(gameID, cardid, ids.get(i));
+						}
+							else if(bc.getBuildingplayer(x,y,ids.get(i)) != 0) {
+								MaterialCard card =bct.getMaterialCard(source, ids.get(i));
+								String cardid =card.getIdCard();
+								pd.addMaterialCard(gameID, cardid, ids.get(i));
+						}
+							else if(bc.getBuildingplayer(x-1,y,ids.get(i)) != 0) {
+								MaterialCard card =bct.getMaterialCard(source, ids.get(i));
+								String cardid =card.getIdCard();
+								pd.addMaterialCard(gameID, cardid, ids.get(i));
+						}else if(bc.getBuildingplayer(x-1,y-1,ids.get(i)) != 0) {
+							MaterialCard card =bct.getMaterialCard(source, ids.get(i));
+							String cardid =card.getIdCard();
+							pd.addMaterialCard(gameID, cardid, ids.get(i));
+							
+					}else if(bc.getBuildingplayer(x,y-1,ids.get(i)) != 0) {
+						//MaterialCard card =bct.getMaterialCard(source, ids.get(i));
+						//String cardid =card.getIdCard();
+						pd.addMaterialCard(gameID, "w04", ids.get(i));
+				}
 					}
 			}else if(diceResult == 3) {
 				int x =bc.getXTile(2, gameID);
@@ -70,20 +98,80 @@ public class DieController
 				char resource2 = bc.getTileResource(gameID, x2, y2);
 				String source =Character.toString(resource);
 				String source2 =Character.toString(resource2);
-						for(int i =0; i< ids.size(); i++) {
-							if(bc.getBuildingplayer(x,y,ids.get(i)) != 0) {
-								MaterialCard card =bct.getMaterialCard(source, ids.get(i));
-								String cardid =card.getIdCard();
-								pd.addMaterialCard(gameID, cardid, ids.get(i));
-						}	else if(bc.getBuildingplayer(x2,y2,ids.get(i)) != 0) {
-							MaterialCard card =bct.getMaterialCard(source2, ids.get(i));
-							String cardid =card.getIdCard();
-							pd.addMaterialCard(gameID, cardid, ids.get(i));
-					}
-					}
+				for(int i =0; i< ids.size(); i++) {
+					if(bc.getBuildingplayer(x+1,y,ids.get(i)) != 0) {
+						MaterialCard card =bct.getMaterialCard(source, ids.get(i));
+						String cardid =card.getIdCard();
+						pd.addMaterialCard(gameID, cardid, ids.get(i));
+				}
+					else if(bc.getBuildingplayer(x+1,y+1,ids.get(i)) != 0) {
+						MaterialCard card =bct.getMaterialCard(source, ids.get(i));
+						String cardid =card.getIdCard();
+						pd.addMaterialCard(gameID, cardid, ids.get(i));
+				}
+					else if(bc.getBuildingplayer(x,y+1,ids.get(i)) != 0) {
+						MaterialCard card =bct.getMaterialCard(source, ids.get(i));
+						String cardid =card.getIdCard();
+						pd.addMaterialCard(gameID, cardid, ids.get(i));
+				}
+					else if(bc.getBuildingplayer(x,y,ids.get(i)) != 0) {
+						MaterialCard card =bct.getMaterialCard(source, ids.get(i));
+						String cardid =card.getIdCard();
+						pd.addMaterialCard(gameID, cardid, ids.get(i));
+				}
+					else if(bc.getBuildingplayer(x-1,y,ids.get(i)) != 0) {
+						MaterialCard card =bct.getMaterialCard(source, ids.get(i));
+						String cardid =card.getIdCard();
+						pd.addMaterialCard(gameID, cardid, ids.get(i));
+				}else if(bc.getBuildingplayer(x-1,y-1,ids.get(i)) != 0) {
+					MaterialCard card =bct.getMaterialCard(source, ids.get(i));
+					String cardid =card.getIdCard();
+					pd.addMaterialCard(gameID, cardid, ids.get(i));
+					
+			}else if(bc.getBuildingplayer(x,y-1,ids.get(i)) != 0) {
+				MaterialCard card =bct.getMaterialCard(source, ids.get(i));
+				String cardid =card.getIdCard();
+				pd.addMaterialCard(gameID, cardid, ids.get(i));
+		}
+			
+				if(bc.getBuildingplayer(x2+1,y2,ids.get(i)) != 0) {
+					MaterialCard card =bct.getMaterialCard(source2, ids.get(i));
+					String cardid =card.getIdCard();
+					pd.addMaterialCard(gameID, cardid, ids.get(i));
+			}
+				else if(bc.getBuildingplayer(x2+1,y2+1,ids.get(i)) != 0) {
+					MaterialCard card =bct.getMaterialCard(source2, ids.get(i));
+					String cardid =card.getIdCard();
+					pd.addMaterialCard(gameID, cardid, ids.get(i));
+			}
+				else if(bc.getBuildingplayer(x2,y2+1,ids.get(i)) != 0) {
+					MaterialCard card =bct.getMaterialCard(source2, ids.get(i));
+					String cardid =card.getIdCard();
+					pd.addMaterialCard(gameID, cardid, ids.get(i));
+			}
+				else if(bc.getBuildingplayer(x2,y2,ids.get(i)) != 0) {
+					MaterialCard card =bct.getMaterialCard(source2, ids.get(i));
+					String cardid =card.getIdCard();
+					pd.addMaterialCard(gameID, cardid, ids.get(i));
+			}
+				else if(bc.getBuildingplayer(x-2,y2,ids.get(i)) != 0) {
+					MaterialCard card =bct.getMaterialCard(source2, ids.get(i));
+					String cardid =card.getIdCard();
+					pd.addMaterialCard(gameID, cardid, ids.get(i));
+			}else if(bc.getBuildingplayer(x2-1,y2-1,ids.get(i)) != 0) {
+				MaterialCard card =bct.getMaterialCard(source2, ids.get(i));
+				String cardid =card.getIdCard();
+				pd.addMaterialCard(gameID, cardid, ids.get(i));
+				
+		}else if(bc.getBuildingplayer(x2,y2-1,ids.get(i)) != 0) {
+			MaterialCard card =bct.getMaterialCard(source2, ids.get(i));
+			String cardid =card.getIdCard();
+			pd.addMaterialCard(gameID, cardid, ids.get(i));
+		}
+		}
 			}
 		}
-	}
+	
 
 	public int[] getCurrentValues() {
 		int[] values = new int[2];
