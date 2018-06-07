@@ -62,6 +62,7 @@ public class Bank {
 			devbank.add(new DevelopmentCard(bd, b, gameid));
 		}
 	}
+
 			
 	public String getMaterialCardId(String kind) {
 		for(int i=0; i<matbank.size(); i++) {
