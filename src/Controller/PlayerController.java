@@ -41,7 +41,9 @@ public class PlayerController {
 		DevelopmentCard devcard = bc.getDevelopmentCard(iddevcard, gameid);
 		return devcard;
 	}
-
+//	public void giveDevCardPlayer(int playerid, int gameid) {
+//		db.addDevelopmentCard(gameid, bd, playerid, false);
+//	}
 	// ------------------------------------------------------------------------------------------------------------------------
 	// Getamount for development cards
 	public int getAmountRidder(int playerid) {
@@ -135,7 +137,7 @@ public class PlayerController {
 		return player.hasWheatCard(amount);
 	}
 
-	public void tradeCards(int otherplayerid, ArrayList<Integer> offer, Player player) {
+	public void tradeCards(int otherplayerid, ArrayList<Integer> offer) {
 		player.updateCards(otherplayerid, offer);
 
 	}
@@ -345,8 +347,16 @@ public class PlayerController {
 	}
 
 	public boolean checkVillage(String test, String hlPoint) {
-		
+		String[] split = test.split(",");
+		String point1 = db.hasVillage(playerID, Integer.parseInt(split[0]),Integer.parseInt(split[1]));
+		split = hlPoint.split(",");
+		String point2 = db.hasVillage(playerID, Integer.parseInt(split[0]),Integer.parseInt(split[1]));
+		if(point1 != "" || point2 != "") {
+			return true;
+		}
+		else {
 		return false;
+		}
 	}
 	
 }

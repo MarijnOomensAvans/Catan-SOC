@@ -14,6 +14,7 @@ public class SpelModel extends Observable {
 	private GameManagerDAL gameManagerDal;
 	private int gameid;
 	private IngameController ingameController;
+	private boolean secondRound = false;
 
 	public SpelModel(int gameid, IngameController ingameController) {
 		this.ingameController = ingameController;
@@ -100,4 +101,11 @@ public class SpelModel extends Observable {
 		}
 	}
 
+	public boolean isSecondRound() {
+		return secondRound;
+	}
+
+	public void setSecondRound(boolean secondRound) {
+		this.secondRound = secondRound;
+	}
 }
