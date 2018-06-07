@@ -84,7 +84,6 @@ public class IngameController {
 	public PlayerController getPc() {
 		return pc;
 	}
-	
 	public boolean hasRolledDice(int gameid) {
 		return spelModel.hasRolledDice(gameid);
 		

@@ -312,6 +312,7 @@ public class IngameView extends JPanel {
 		woodCount = new JLabel(playerWoodCount + "");
 		woolCount = new JLabel(playerWoolCount + "");
 		wheatCount = new JLabel(playerWheatCount + "");
+
 		Border paddingBorder = BorderFactory.createEmptyBorder(30, 30, 30, 30);
 		stoneCount.setBorder(paddingBorder);
 		oreCount.setBorder(paddingBorder);
