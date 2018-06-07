@@ -38,10 +38,10 @@ public class RobberDAL {
 						stmt = conn.createStatement();
 						stmt.executeUpdate(query);
 						cards.remove(random);
+						stmt.close();
 					}
 				}
 			}
-			stmt.close();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}

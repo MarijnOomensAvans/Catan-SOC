@@ -33,7 +33,7 @@ public class DrawingPanel extends JPanel {
 
 	private Robber robber;
 	private boolean mayBuild = false;
-	private boolean mayMoveRobber = true;
+	private boolean mayMoveRobber = false;
 
 	// making 19 rooms for hexagons
 	private Hexagon hexagon1;
