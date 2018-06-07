@@ -349,6 +349,50 @@ public class PersonDAL {
 		}
 		return result;
 	}
+	
+	public int getCoordX(int spelerID, String pieceID) {
+		int result = 0;
+		Statement stmt = null;
+		String query = "SELECT x_van FROM spelerstuk WHERE idspeler =" + spelerID + " AND idstuk LIKE '"
+				+ pieceID + "'";
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while (rs.next()) {
+				if (result == 0) {
+					result = rs.getInt(1);
+				} else {
+					return result;
+				}
+			}
+			stmt.close();
+		} catch (SQLException e) { 
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
+	
+	public int getCoordY(int spelerID, String pieceID) {
+		int result = 0;
+		Statement stmt = null;
+		String query = "SELECT y_van FROM spelerstuk WHERE idspeler =" + spelerID + " AND idstuk LIKE '"
+				+ pieceID + "'";
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while (rs.next()) {
+				if (result == 0) {
+					result = rs.getInt(1);
+				} else {
+					return result;
+				}
+			}
+			stmt.close();
+		} catch (SQLException e) { 
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
 
 	public void setBuilding(String idstuk, int spelerID, int x, int y) {
 		Statement stmt = null;
