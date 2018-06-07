@@ -59,6 +59,7 @@ public class Bank {
 
 	public void giveMaterialCardBack(MaterialCard card) {
 		matbank.add(card);
+		bd.deleteCards(card.getIdCard(), gameID);
 
 	}
 
