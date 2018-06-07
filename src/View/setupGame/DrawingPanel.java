@@ -167,6 +167,7 @@ public class DrawingPanel extends JPanel {
 						if (hlPoint == test && !buildingType.equals("Street")) {
 							if (pc.emptySpace(buildingType, hlPoint)) {
 								pc.buildObject(buildingType, hlPoint);
+								removeMaterialCards(buildingType);
 								// Log here
 								mayBuild = false;
 								hlPoint = null;
@@ -190,12 +191,19 @@ public class DrawingPanel extends JPanel {
 									if (pc.checkVillage(test, hlPoint)) {
 										pc.buildStreet(x1, x2, y1, y2);
 										paintBuildings();
+										removeMaterialCards(buildingType);
 										// Log here
 										if (devCardBuild == false) {
 											mayBuild = false;
 										} else {
 											devCardBuild = false;
 										}
+										hlPoint = null;
+										repaint();
+									}
+									else {
+										// Log here
+										mayBuild = false;
 										hlPoint = null;
 										repaint();
 									}
@@ -412,5 +420,32 @@ public class DrawingPanel extends JPanel {
 	public void setIngameController(IngameController ingameController) {
 		this.ingameController = ingameController;
 	}
+	
+	public void removeMaterialCards(String buildingType) {
+		switch(buildingType) {
+		case "Village":
+            pc.getPlayer().removeMatCard("H");
+            pc.getPlayer().removeMatCard("W");
+            pc.getPlayer().removeMatCard("B");
+            pc.getPlayer().removeMatCard("G");
+			break;
+		case "City":
+            pc.getPlayer().removeMatCard("E");
+            pc.getPlayer().removeMatCard("E");
+            pc.getPlayer().removeMatCard("E");
+            pc.getPlayer().removeMatCard("G");
+            pc.getPlayer().removeMatCard("G");
+            break;
+		case "Street":
+            pc.getPlayer().removeMatCard("H");
+            pc.getPlayer().removeMatCard("B");
+			break;
+		case "DevCard":
+	       	 pc.getPlayer().removeMatCard("E");
+	       	 pc.getPlayer().removeMatCard("W");
+	       	 pc.getPlayer().removeMatCard("G");
+			break;
+            }
+		}
 
 }
