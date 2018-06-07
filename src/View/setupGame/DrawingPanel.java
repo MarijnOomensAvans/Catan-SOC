@@ -175,7 +175,7 @@ public class DrawingPanel extends JPanel {
 							hlPoint = test;
 							repaint();
 						}
-						if (test != null && hlPoint != null && buildingType.equals("Street")) {
+						if (test != hlPoint  && buildingType.equals("Street")) {
 							if (pc.emptySpace(buildingType, hlPoint)) {
 								String[] hlarray = hlPoint.split(",");
 								String[] clarray = test.split(",");
@@ -185,7 +185,7 @@ public class DrawingPanel extends JPanel {
 								int y2 = Integer.parseInt(clarray[1]);
 								if (x1 == (x2 + 1) && y1 == (y2 + 1) || x1 == (x2 + 1) && y1 == y2
 										|| x1 == x2 && y1 == (y2 - 1) || x1 == (x2 - 1) && y1 == y2
-										|| x1 == x2 && y1 == (y2 + 1) || x1 == (x2 - 1) && y1 == (y2 = 1)) {
+										|| x1 == x2 && y1 == (y2 + 1) || x1 == (x2 - 1) && y1 == (y2 - 1)) {
 									if (pc.checkVillage(test, hlPoint)) {
 										pc.buildStreet(x1, x2, y1, y2);
 										paintBuildings();
