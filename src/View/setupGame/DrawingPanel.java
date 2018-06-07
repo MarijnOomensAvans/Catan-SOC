@@ -14,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import Controller.BoardController;
+import Controller.IngameController;
 import Controller.PlayerController;
 import Model.board.ClickPoints;
 import Model.board.Location;
@@ -37,7 +38,6 @@ public class DrawingPanel extends JPanel {
 	private boolean mayMoveRobber = false;
 	private boolean devCardBuild = false;
 	private String buildingType;
-
 
 	// making 19 rooms for hexagons
 	private Hexagon hexagon1;
@@ -66,22 +66,23 @@ public class DrawingPanel extends JPanel {
 	// making room for an arraylist
 	private ArrayList<Hexagon> hexagons;
 	private PlayerController pc;
+	private IngameController ingameController;
 	private Graphics2D g2d;
-	
-	//All images of player pieces
-	//Cities
+
+	// All images of player pieces
+	// Cities
 	ImageIcon city_Blue;
 	ImageIcon city_Orange;
 	ImageIcon city_Red;
 	ImageIcon city_White;
-	
-	//Villages
+
+	// Villages
 	ImageIcon village_Blue;
 	ImageIcon village_Orange;
 	ImageIcon village_Red;
 	ImageIcon village_White;
-	
-	//Streets
+
+	// Streets
 	ImageIcon street_Blue;
 	ImageIcon street_Orange;
 	ImageIcon street_Red;
@@ -142,27 +143,25 @@ public class DrawingPanel extends JPanel {
 		robber.setBounds(bc.getRobberXPosition(idspel) - 45, bc.getRobberYPosition(idspel) - 30, 25, 60);
 		;
 		this.add(robber);
-		
-		//Initialize all ImageIcons (Player Pieces)
-		//City images
+
+		// Initialize all ImageIcons (Player Pieces)
+		// City images
 		city_Blue = new ImageIcon(ClassLoader.getSystemResource("city_Blue.png"));
 		city_Orange = new ImageIcon(ClassLoader.getSystemResource("city_Orange.png"));
 		city_Red = new ImageIcon(ClassLoader.getSystemResource("city_Red.png"));
 		city_White = new ImageIcon(ClassLoader.getSystemResource("city_White.png"));
-		
-		//Village images
+
+		// Village images
 		village_Blue = new ImageIcon(ClassLoader.getSystemResource("village_Blue.png"));
 		village_Orange = new ImageIcon(ClassLoader.getSystemResource("village_Orange.png"));
 		village_Red = new ImageIcon(ClassLoader.getSystemResource("village_Red.png"));
 		village_White = new ImageIcon(ClassLoader.getSystemResource("village_White.png"));
-		
-		//Street icons
+
+		// Street icons
 		street_Blue = new ImageIcon(ClassLoader.getSystemResource("street_Blue.png"));
 		street_Orange = new ImageIcon(ClassLoader.getSystemResource("street_Orange.png"));
 		street_Red = new ImageIcon(ClassLoader.getSystemResource("street_Red.png"));
 		street_White = new ImageIcon(ClassLoader.getSystemResource("street_White.png"));
-		
-		
 
 		setPreferredSize(new Dimension(600, 600));
 
@@ -172,6 +171,11 @@ public class DrawingPanel extends JPanel {
 		addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+
+				if (ingameController != null) {
+					ingameController.shouldRefresh(idspel);
+				}
+
 				if (mayBuild == true) {
 					String test = convertXYfromScreenToKey(e.getX(), e.getY());
 					if (test != null) {
@@ -181,7 +185,7 @@ public class DrawingPanel extends JPanel {
 							mayBuild = false;
 							hlPoint = null;
 							repaint();
-						} else if(hlPoint == null || !buildingType.equals("Street")){
+						} else if (hlPoint == null || !buildingType.equals("Street")) {
 							hlPoint = test;
 							repaint();
 						}
@@ -193,32 +197,33 @@ public class DrawingPanel extends JPanel {
 								int y1 = Integer.parseInt(hlarray[1]);
 								int x2 = Integer.parseInt(clarray[0]);
 								int y2 = Integer.parseInt(clarray[1]);
-								if (x1 == (x2 + 1) && y1 == (y2 + 1) || x1 == (x2 + 1) && y1 == y2|| x1 == x2 && y1 == (y2 - 1) || x1 == (x2 - 1) && y1 == y2 || x1 == x2 && y1 == (y2 + 1) || x1 == (x2 - 1) && y1 == (y2 = 1)) {
-									pc.buildStreet(x1,x2,y1,y2);
-									// Log here 
-									if(devCardBuild == false) {
-									mayBuild = false;
+								if (x1 == (x2 + 1) && y1 == (y2 + 1) || x1 == (x2 + 1) && y1 == y2
+										|| x1 == x2 && y1 == (y2 - 1) || x1 == (x2 - 1) && y1 == y2
+										|| x1 == x2 && y1 == (y2 + 1) || x1 == (x2 - 1) && y1 == (y2 = 1)) {
+									pc.buildStreet(x1, x2, y1, y2);
+									// Log here
+									if (devCardBuild == false) {
+										mayBuild = false;
 									} else {
 										devCardBuild = false;
 									}
 									hlPoint = null;
 									repaint();
-									}
-									else {
-										// Log here
-										mayBuild = false;
-										hlPoint = null;
-										repaint();
-									}
+								} else {
+									// Log here
+									mayBuild = false;
+									hlPoint = null;
+									repaint();
 								}
 							}
 						}
-					} else {
-						// Change to log later - System.out.println("Building aborted");
-						mayBuild = false;
-						hlPoint = null;
-						repaint();
 					}
+				} else {
+					// Change to log later - System.out.println("Building aborted");
+					mayBuild = false;
+					hlPoint = null;
+					repaint();
+				}
 				if (mayMoveRobber == true) {
 					String returnString = tileConvertXYfromScreenToKey(e.getX(), e.getY());
 					// System.out.println(returnString);
@@ -236,7 +241,6 @@ public class DrawingPanel extends JPanel {
 
 		});
 	}
-
 
 	// drawing the hexagons
 	@Override
@@ -360,14 +364,14 @@ public class DrawingPanel extends JPanel {
 	public void setMayMoveRobber(boolean b) {
 		mayMoveRobber = b;
 	}
-	
+
 	public void paintBuildings() {
-		for(int i = 0; i < pc.countBuildings(); i++) {
+		for (int i = 0; i < pc.countBuildings(); i++) {
 			String[] buildings = pc.getAllBuildings().split(",");
-			for(int x = 0; x < buildings.length; x++) {
-			
+			for (int x = 0; x < buildings.length; x++) {
+
 				village_Blue.paintIcon(this, g2d, pc.getCoordX(buildings[x]), pc.getCoordY(buildings[x]));
-				
+
 				repaint();
 			}
 		}
@@ -377,6 +381,10 @@ public class DrawingPanel extends JPanel {
 		this.mayBuild = b;
 		this.buildingType = string;
 		this.devCardBuild = true;
+	}
+
+	public void setIngameController(IngameController ingameController) {
+		this.ingameController = ingameController;
 	}
 
 }

@@ -67,6 +67,10 @@ public class SpelModel extends Observable {
 		return gameManagerDal.getFirstTurn(gameid);
 	}
 	
+	public int getBuildingCount() {
+		return spelDal.hasBuilt(gameid);
+	}
+	
 	public void firstTurnCheck() {
 		
 		if(getFirstTurn()) {
@@ -80,14 +84,17 @@ public class SpelModel extends Observable {
 					System.out.println("1e straat bouwen");
 					ingameController.buildStreet();
 					break;
-				case(2):
+				case(3):
+					
+					break;
+				/*case(2):
 					System.out.println("2e dorp bouwen");
 					ingameController.buildVillage();
 					break;
 				case(3):
 					System.out.println("2e straat bouwen");
 					ingameController.buildStreet();
-					break;
+					break;*/
 			}
 		}
 	}
