@@ -43,7 +43,6 @@ public class SpelModel extends Observable {
 
 	public void update() {
 		if (spelDal.hasShouldRefresh(gameid, LoginController.getUsername())) {
-			System.out.println("REAL REFRESH");
 			this.setChanged();
 			this.notifyObservers();
 			spelDal.removeShouldRefresh(gameid, LoginController.getUsername());

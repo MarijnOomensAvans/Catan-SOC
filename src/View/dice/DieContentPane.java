@@ -147,8 +147,5 @@ public class DieContentPane extends JPanel implements ActionListener {
 			setDie(six, 2);
 			break;
 		}
-		
-
-		System.out.println("rgl DIE 153");
 	}
 }

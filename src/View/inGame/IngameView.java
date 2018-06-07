@@ -455,10 +455,9 @@ public class IngameView extends JPanel implements Observer {
 
 	/* UPDATE */
 	public void uiUpdate() {
-		System.out.println("rgl 458");
 		dieContentPane.update();
 		playerTurnUpdate();
-		this.validate();
+		this.revalidate();
 		this.repaint();
 	}
 
@@ -474,7 +473,6 @@ public class IngameView extends JPanel implements Observer {
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		System.out.println("rgl 476");
 		uiUpdate();
 	}
 
