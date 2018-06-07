@@ -318,18 +318,10 @@ public class PlayerController {
 		}
 	}
 
-	public int countBuildings() {
-		int count = 0;
-		playerIDs = db.getPlayerId(gameID).split(",");
-		for (int i = 0; i < 4; i++) {
-			count = count + db.countBuildings(Integer.parseInt(playerIDs[i]));
-		}
-		return count;
-
-	}
 
 	public String getAllBuildings() {
 		String buildings = "";
+		playerIDs = db.getPlayerId(gameID).split(",");
 		for (int i = 0; i < 4; i++) {
 			buildings = buildings + db.getAllBuildings(Integer.parseInt(playerIDs[i]));
 		}
