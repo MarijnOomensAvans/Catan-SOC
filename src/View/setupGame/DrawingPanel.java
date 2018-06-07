@@ -152,14 +152,16 @@ public class DrawingPanel extends JPanel {
 								int y1 = Integer.parseInt(hlarray[1]);
 								int x2 = Integer.parseInt(clarray[0]);
 								int y2 = Integer.parseInt(clarray[1]);
-								if (x1 == (x2 + 1) && y1 == (y2 + 1) || x1 == (x2 + 1) && y1 == y2|| x1 == x2 && y1 == (y2 - 1)) {
+								if (x1 == (x2 + 1) && y1 == (y2 + 1) || x1 == (x2 + 1) && y1 == y2|| x1 == x2 && y1 == (y2 - 1) || x1 == (x2 - 1) && y1 == y2 || x1 == x2 && y1 == (y2 + 1) || x1 == (x2 - 1) && y1 == (y2 = 1)) {
 									pc.buildStreet(x1,x2,y1,y2);
 									// Log here 
+									if(devCardBuild = false) {
 									mayBuild = false;
+									} else {
+										devCardBuild = true;
+									}
 									hlPoint = null;
 									repaint();
-<<<<<<< HEAD
-=======
 									}
 									else {
 										// Log here
@@ -167,13 +169,6 @@ public class DrawingPanel extends JPanel {
 										hlPoint = null;
 										repaint();
 									}
-								}
-								else {
-									// Log here
-									mayBuild = false;
-									hlPoint = null;
-									repaint();
->>>>>>> d2fccaf758ff0ec6b95a3d0e48dad0585b20a8cb
 								}
 							}
 						}
@@ -183,7 +178,7 @@ public class DrawingPanel extends JPanel {
 						hlPoint = null;
 						repaint();
 					}
-				}
+
 				if (mayMoveRobber == true) {
 					String returnString = tileConvertXYfromScreenToKey(e.getX(), e.getY());
 					// System.out.println(returnString);
