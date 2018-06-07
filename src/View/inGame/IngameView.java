@@ -381,6 +381,7 @@ public class IngameView extends JPanel {
 	/* UPDATE */
 	public void update() {
 		dieContentPane.update();
+		playerTurnUpdate();
 	}
 	
 	public void playerTurnUpdate() {

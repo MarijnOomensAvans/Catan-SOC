@@ -67,4 +67,8 @@ public class IngameController {
 	public void setPlayerTurn(int gameid, String username) {
 		spelModel.setPlayerTurn(gameid, username);
 	}
+	
+	public void shouldRefresh(int gameID) {
+		spelModel.shouldRefresh(gameID);
+	}
 }
