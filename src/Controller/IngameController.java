@@ -129,4 +129,8 @@ public class IngameController {
 	public int getBuildingCount(int volgnr) {
 		return spelModel.getBuildingCount(volgnr);
 	}
+
+	public void setSecondRound(boolean b) {
+		spelModel.setSecondRound(b);
+	}
 }

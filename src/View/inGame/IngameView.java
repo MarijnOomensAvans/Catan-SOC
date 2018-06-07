@@ -499,6 +499,11 @@ public class IngameView extends JPanel implements Observer {
 	}
 
 	public void nextTurnButtonUpdate() {
+		
+		int buildingCount = ingameController.getBuildingCount();
+		int lastPlayerBuildingCount = ingameController.getBuildingCount(4);
+		
+		
 		if (allowedToEnd(gameID)) {
 			if (!ingameController.getFirstTurn()) {
 				if (ingameController.hasRolledDice(gameID)) {
@@ -507,6 +512,7 @@ public class IngameView extends JPanel implements Observer {
 			} else {
 				if ((ingameController.getBuildingCount(4) >= 2) && ingameController.getBuildingCount() == 4) {
 					System.out.println("1");
+					ingameController.setSecondRound(true);
 					endTurnButton.setEnabled(true);
 				} else if((ingameController.getBuildingCount(4) == 2) && ingameController.getBuildingCount() == 2){
 					if(ingameController.getTurn(gameID).equals(playerStats.get(3).getUsername())) {
@@ -517,6 +523,9 @@ public class IngameView extends JPanel implements Observer {
 						System.out.println("2");
 						endTurnButton.setEnabled(true);
 					}
+					ingameController.setSecondRound(true);
+				} else if (buildingCount == 2 && lastPlayerBuildingCount < 2) {
+					endTurnButton.setEnabled(true);
 				}
 			}
 		}
