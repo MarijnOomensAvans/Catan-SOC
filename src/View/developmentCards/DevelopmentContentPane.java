@@ -1,4 +1,5 @@
 package View.developmentCards;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 
@@ -75,15 +76,36 @@ private BufferedImage myBufferedImage9;
 			uitvinding = "uitvinding.jpg";
 			universiteit = "universiteit.jpg";
 
-			usebib = new JButton("Gebruik");
-			usekat = new JButton("Gebruik");
-			usemarkt = new JButton("Gebruik");
+//			usebib = new JButton("Gebruik");
+//			usekat = new JButton("Gebruik");
+//			usemarkt = new JButton("Gebruik");
 			usemono = new JButton("Gebruik");
-			usepar = new JButton("Gebruik");
+			if(pc.getAmountMonopolie(playerid)== 0) {
+				usemono.setBackground(Color.GRAY);
+				usemono.setBorderPainted(false);
+				usemono.setEnabled(false);
+			}
+//			usepar = new JButton("Gebruik");
 			useridder = new JButton("Gebruik");
+			if(pc.getAmountRidder(playerid)== 0) {
+				useridder.setBackground(Color.GRAY);
+				useridder.setBorderPainted(false);
+				useridder.setEnabled(false);
+			}
 			usestrat = new JButton("Gebruik");
+			if(pc.getAmountStratenbouw(playerid)== 0) {
+				usestrat.setBackground(Color.GRAY);
+				usestrat.setBorderPainted(false);
+				usestrat.setEnabled(false);
+
+			}
 			useuit = new JButton("Gebruik");
-			useuni = new JButton("Gebruik");
+			if(pc.getAmountUniversiteit(playerid)== 0) {
+				useuit.setBackground(Color.GRAY);
+				useuit.setBorderPainted(false);
+				useuit.setEnabled(false);
+			}
+//			useuni = new JButton("Gebruik");
 			
 			
 			bibliotheekamount = new JTextField("" + pc.getAmountBibliotheek(playerid));
@@ -112,25 +134,25 @@ private BufferedImage myBufferedImage9;
 			}
 		this.repaint();
 		
-		add(usebib);
-		usebib.setBounds(100,280, 100, 30);
+//		add(usebib);
+//		usebib.setBounds(100,280, 100, 30);
 		
 		add(bibliotheekamount);
-		bibliotheekamount.setBounds(70,280, 30, 30);
+		bibliotheekamount.setBounds(130,280, 30, 30);
 		
 		
-		add(usekat);
-		usekat.setBounds(310,280, 100, 30);
+//		add(usekat);
+//		usekat.setBounds(310,280, 100, 30);
 		
 		add(kathedraalamount);
-		kathedraalamount.setBounds(280,280, 30, 30);
+		kathedraalamount.setBounds(340,280, 30, 30);
 		
 		
-		add(usemarkt);
-		usemarkt.setBounds(520,280, 100, 30);
-		
+//		add(usemarkt);
+//		usemarkt.setBounds(520,280, 100, 30);
+//		
 		add(marktamount);
-		marktamount.setBounds(490,280,30,30);
+		marktamount.setBounds(550,280,30,30);
 		
 		add(usemono);
 		usemono.setBounds(730,280, 100, 30);
@@ -138,11 +160,11 @@ private BufferedImage myBufferedImage9;
 		add(monopolieamount);
 		monopolieamount.setBounds(700,280,30,30);
 		
-		add(usepar);
-		usepar.setBounds(940,280, 100, 30);
+//		add(usepar);
+//		usepar.setBounds(940,280, 100, 30);
 		
 		add(parlementamount);
-		parlementamount.setBounds(910,280,30,30);
+		parlementamount.setBounds(970,280,30,30);
 	
 		add(useridder);
 		useridder.setBounds(100,560, 100, 30);
@@ -162,11 +184,46 @@ private BufferedImage myBufferedImage9;
 		add(uitvindingamount);
 		uitvindingamount.setBounds(490,560,30,30);
 		
-		add(useuni);
-		useuni.setBounds(730,560, 100, 30);
+//		add(useuni);
+//		useuni.setBounds(730,560, 100, 30);
 		
 		add(universiteitamount);
-		universiteitamount.setBounds(700,560, 30,30);
+		universiteitamount.setBounds(760,560, 30,30);
+		
+		usestrat.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(pc.getAmountStratenbouw(playerid)>= 1) {
+				pc.useStratenbouw(playerid);
+				}
+			}
+		});
+		
+		usemono.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(pc.getAmountMonopolie(playerid)>= 1) {
+				pc.useMonopolie(playerid);
+				}
+			}
+		});
+		useridder.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(pc.getAmountRidder(playerid)>= 1) {
+				pc.useRidder(playerid);
+				}
+			}
+		});
+		useuit.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(pc.getAmountUitvinding(playerid)>= 1) {
+				pc.useUitvinding(playerid);
+				}
+			}
+		});
+	
 		bibliotheekamount.setEditable(false);
 		kathedraalamount.setEditable(false);
 		marktamount.setEditable(false);
