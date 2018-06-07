@@ -103,8 +103,16 @@ public class PlayerController {
 		
 	}
 
-	public String getMaterialCards() {
-		return db.getMaterialCards(playerID);
+	public String getMaterialCards(int i) {
+		return db.getMaterialCards(playerID, i);
+	}
+	
+	public int countMaterialCards() {
+		return db.countMaterialCards(playerID);
+	}
+
+	public MaterialCard checkMaterialCard(String ID) {
+		return bc.checkMaterialCard(ID);
 	}
 
 }

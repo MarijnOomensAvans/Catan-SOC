@@ -51,6 +51,7 @@ public class IngameView extends JPanel {
 	private ChatController chatController;
 	private IngameController ingameController;
 	private Chatoutputgui chatOutput;
+	private DieController dieController;
 
 	private JPanel playerCardsPanel;
 	private JLabel intTurnLabel;
@@ -60,11 +61,17 @@ public class IngameView extends JPanel {
 	private Border border;
 
 	public IngameView(BoardController bc, int gameID, DrawingPanel inGameBoard, int playerID,
+<<<<<<< HEAD
 			IngameController inGameController, PlayerController pc, ChatController chatController) {
 
+=======
+			IngameController inGameController, PlayerController pc, ChatController chatController, DieController dieController) {
+		
+>>>>>>> 125dd06826c9a66b8c6e11267cb637b95c5e7094
 		this.chatController = chatController;
 		this.gameID = gameID;
 		this.ingameController = inGameController;
+		this.dieController = dieController;
 		playerStats = inGameController.getPlayerStats(gameID);
 		throwDiceButton = new JButton("Gooi Dobbelstenen");
 		if (gameManagerDAL.getFirstTurn(gameID) && gameManagerDAL.getPlayerIDTurn(gameID) == playerID
@@ -76,9 +83,8 @@ public class IngameView extends JPanel {
 		border = BorderFactory.createLineBorder(Color.BLACK, 1);
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		setLayout(new BorderLayout());
-
-		DieController dc = new DieController(gameID);
-		DieContentPane diceViewPanel = new DieContentPane(dc, throwDiceButton);
+		
+		DieContentPane diceViewPanel = new DieContentPane(dieController, throwDiceButton);
 
 		chatOutput = chatController.getCog();
 		ChatContentPane chatPanel = new ChatContentPane(chatController, chatOutput, playerID);

@@ -20,18 +20,20 @@ public class IngameController {
 	private int playerID;
 	private BoardController bc;
 	private ChatController chatController;
+	private DieController dieController;
 
 	public IngameController(int gameid, int playerID, InGameFrame gameFrame, BoardController bc) {
 		this.gameid = gameid;
 		this.playerID = playerID;
 		this.bc = bc;
+		this.dieController = new DieController(gameid);
 		spelModel = new SpelModel();
 		bct = new BankController(gameid);
 		pd = new PersonDAL();
 		chatController = new ChatController(gameid, playerID);
 		DrawingPanel dp = new DrawingPanel(bc, gameid);
 		this.pc = new PlayerController(playerID, gameid, bct, pd);
-		gameFrame = new InGameFrame(bc, gameid, dp, playerID, this, pc, chatController);
+		gameFrame = new InGameFrame(bc, gameid, dp, playerID, this, pc, chatController, dieController);
 	}
 
 	public ArrayList<PlayerStats> getPlayerStats(int gameId) {
