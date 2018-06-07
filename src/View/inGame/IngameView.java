@@ -65,7 +65,7 @@ public class IngameView extends JPanel {
 	private JButton endTurnButton;
 	private Border border;
 	
-<<<<<<< HEAD
+
 	private ImageIcon stone;
 	private ImageIcon ore;
 	private ImageIcon wood;
@@ -83,7 +83,7 @@ public class IngameView extends JPanel {
 	private JLabel woodCount;
 	private JLabel woolCount;
 	private JLabel wheatCount;
-=======
+
 	private JPanel leftPanel;
 	private JPanel centerPanel;
 	private JPanel rightPanel;
@@ -114,7 +114,6 @@ public class IngameView extends JPanel {
 	private JLabel longestRouteLabel;
 	private JLabel ownPointLabel;
 	
->>>>>>> 613e655c7a96f4cbe16af6dba1326bd705c3e42d
 	
 
 	public IngameView(BoardController bc, int gameID, DrawingPanel inGameBoard, int playerID,
@@ -139,7 +138,6 @@ public class IngameView extends JPanel {
 
 		chatOutput = chatController.getCog();
 		ChatContentPane chatPanel = new ChatContentPane(chatController, chatOutput, playerID);
-<<<<<<< HEAD
 		JPanel leftPanel = new JPanel();
 		JPanel centerPanel = new JPanel();
 		JPanel rightPanel = new JPanel();
@@ -153,7 +151,6 @@ public class IngameView extends JPanel {
 		JPanel diceButtonPanel = new JPanel();
 		
 		JPanel costAndDicePanel = new JPanel();
-=======
 		 leftPanel = new JPanel();
 		 centerPanel = new JPanel();
 		 rightPanel = new JPanel();
@@ -165,7 +162,6 @@ public class IngameView extends JPanel {
 		 resourceCardPanel = new JPanel();
 		 buildCostPanel = new JPanel();
 		 diceButtonPanel = new JPanel();
->>>>>>> 613e655c7a96f4cbe16af6dba1326bd705c3e42d
 
 		 costAndDicePanel = new JPanel();
 
@@ -180,17 +176,6 @@ public class IngameView extends JPanel {
 		gameTurnPanel.setPreferredSize(new Dimension(300, 50));
 		extraPointsPanel.setPreferredSize(new Dimension(300, 200));
 		ownPointsPanel.setPreferredSize(new Dimension(300, 122));
-<<<<<<< HEAD
-		
-=======
-
-		// playerTurnPanel.setBackground(Color.red);
-		// playerCardsPanel.setBackground(Color.blue);
-		// gameTurnPanel.setBackground(Color.gray);
-		// extraPointsPanel.setBackground(Color.green);
-		// ownPointsPanel.setBackground(Color.orange);
-
->>>>>>> 613e655c7a96f4cbe16af6dba1326bd705c3e42d
 		buttonPanel.setBorder(border);
 		resourceCardsPanel.setBorder(border);
 		buildCostPanel.setBorder(border);
@@ -341,12 +326,11 @@ public class IngameView extends JPanel {
 		bottomInfoPanel.add(costAndDicePanel, BorderLayout.CENTER);
 
 		diceAndButtonPanel.setLayout(new BorderLayout());
-<<<<<<< HEAD
+
 		diceAndButtonPanel.setPreferredSize(new Dimension(230, 100));
-		diceAndButtonPanel.add(diceViewPanel, BorderLayout.CENTER);
-=======
+
 		diceAndButtonPanel.add(dieContentPane, BorderLayout.CENTER);
->>>>>>> 613e655c7a96f4cbe16af6dba1326bd705c3e42d
+
 		diceAndButtonPanel.add(endTurnButton, BorderLayout.EAST);
 
 		playerTurnPanel.add(turnLabel);
