@@ -168,7 +168,7 @@ public class PlayerController {
 	public MaterialCard checkMaterialCard(String ID) {
 		return bc.checkMaterialCard(ID);
 	}
-	
+
 	public boolean emptySpace(String buildingType, String hlPoint) {
 		String pieceID;
 		int x;
@@ -176,41 +176,38 @@ public class PlayerController {
 		int x2;
 		int y2;
 		boolean canBuild = false;
-		if(buildingType.equals("Village")) {
+		if (buildingType.equals("Village")) {
 			pieceID = "d0";
-		}
-		else if(buildingType.equals("City")) {
+		} else if (buildingType.equals("City")) {
 			pieceID = "c0";
-		}
-		else {
+		} else {
 			pieceID = "r";
 		}
 		String[] allBuild = db.getBuilding(playerID, pieceID).split(",");
 		String[] coords = hlPoint.split(",");
-		 x = Integer.parseInt(coords[0]);
-		 y = Integer.parseInt(coords[1]);
-		for(int i = 0; i < (allBuild.length); i++) {
+		x = Integer.parseInt(coords[0]);
+		y = Integer.parseInt(coords[1]);
+		for (int i = 0; i < (allBuild.length); i++) {
 			String xs = "x_van";
 			String ys = "y_van";
-			String[] xcoords = db.getCoords(playerID,allBuild[(i)], xs).split(",");
-			String[] ycoords = db.getCoords(playerID,allBuild[(i)], ys).split(",");
-			if(!xcoords[0].equals("")){
-			 x2 = Integer.parseInt(xcoords[0]);
-			 y2 = Integer.parseInt(ycoords[0]);
-			}
-			else {
+			String[] xcoords = db.getCoords(playerID, allBuild[(i)], xs).split(",");
+			String[] ycoords = db.getCoords(playerID, allBuild[(i)], ys).split(",");
+			if (!xcoords[0].equals("")) {
+				x2 = Integer.parseInt(xcoords[0]);
+				y2 = Integer.parseInt(ycoords[0]);
+			} else {
 				x2 = 0;
 				y2 = 0;
 			}
-			if(x == x2 && y == y2) {
+			if (x == x2 && y == y2) {
 				break;
-			}else {
+			} else {
 				canBuild = true;
 			}
-			
+
 		}
 		return canBuild;
-		
+
 	}
 
 	public void buildObject(String buildingType, String hlPoint) {
@@ -222,10 +219,9 @@ public class PlayerController {
 			if (keys.length != 5) {
 				switch (keys.length) {
 				case 1:
-					if(keys[0].equals("")) { 
-					db.setBuilding("d01", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
-					}
-					else {
+					if (keys[0].equals("")) {
+						db.setBuilding("d01", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
+					} else {
 						db.setBuilding("d02", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
 					}
 					break;
@@ -248,10 +244,9 @@ public class PlayerController {
 			if (keys.length != 4) {
 				switch (keys.length) {
 				case 1:
-					if(keys[0].equals("")) { 
-					db.setBuilding("c01", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
-					}
-					else {
+					if (keys[0].equals("")) {
+						db.setBuilding("c01", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
+					} else {
 						db.setBuilding("c02", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
 					}
 					break;
@@ -273,10 +268,9 @@ public class PlayerController {
 		if (keys.length != 15) {
 			switch (keys.length) {
 			case 1:
-				if(keys[0].equals("")) { 
+				if (keys[0].equals("")) {
 					db.setStreet("r01", playerID, x1, y1, x2, y2);
-				}
-				else {
+				} else {
 					db.setStreet("r02", playerID, x1, y1, x2, y2);
 				}
 				break;
@@ -323,22 +317,26 @@ public class PlayerController {
 			}
 		}
 	}
-	
+
 	public int countBuildings() {
 		int count = 0;
 		playerIDs = db.getPlayerId(gameID).split(",");
-		for(int i = 0; i < 4; i++) {
+		for (int i = 0; i < 4; i++) {
 			count = count + db.countBuildings(Integer.parseInt(playerIDs[i]));
 		}
 		return count;
 
 	}
-	
+
 	public String getAllBuildings() {
 		String buildings = "";
-		for(int i = 0; i < 4; i++) {
+		for (int i = 0; i < 4; i++) {
 			buildings = buildings + db.getAllBuildings(Integer.parseInt(playerIDs[i]));
-			}
+		}
 		return buildings;
+	}
+
+	public void updateHand() {
+		player.updateHand();
 	}
 }
