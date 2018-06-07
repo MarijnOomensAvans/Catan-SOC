@@ -88,4 +88,8 @@ public class IngameController {
 	public String getLongestRoute(int gameID) {
 		return spelModel.getLongestRoute(gameid);
 	}
+	
+	public String getBIggestArmy(int gameid) {
+		return spelModel.getBiggestArmy(gameid);
+	}
 }
