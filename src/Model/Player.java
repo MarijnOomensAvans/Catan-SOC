@@ -71,7 +71,7 @@ public class Player {
 	public void removeDevCard(String idDevCard, int gameid, int playerid) {
 		for(int i=0; i< handdev.size(); i++) {
 			if(handdev.get(i).getIdDevCard().equals(idDevCard)) {
-				pd.useDevelopmentCard(gameid, idDevCard, playerid, true);
+				pd.useDevelopmentCard(idDevCard, playerid);
 				handdev.remove(handdev.get(i));
 			}
 		}
