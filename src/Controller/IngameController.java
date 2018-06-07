@@ -29,7 +29,7 @@ public class IngameController {
 		this.playerID = playerID;
 		this.bc = bc;
 		this.rb = new RobberController();
-		this.dieController = new DieController(gameid, rb);
+		this.dieController = new DieController(gameid, rb, this);
 		spelModel = new SpelModel();
 		bct = new BankController(gameid);
 		pd = new PersonDAL();
@@ -80,5 +80,9 @@ public class IngameController {
 	public boolean hasRolledDice(int gameid) {
 		return spelModel.hasRolledDice(gameid);
 		
+	}
+
+	public void thrownDice() {
+		gameFrame.nextTurnButtonUpdate();
 	}
 }

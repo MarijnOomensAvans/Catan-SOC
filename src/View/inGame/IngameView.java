@@ -120,6 +120,13 @@ public class IngameView extends JPanel {
 		this.ingameController = inGameController;
 		this.dieController = dieController;
 		endTurnButton = new JButton("Beurt beëindigen");
+		endTurnButton.setEnabled(false);
+		endTurnButton.addActionListener(e -> {
+			inGameController.setPlayerTurn(gameID, nextPlayerTurn(gameID));
+			endTurnButton.setEnabled(false);
+			playerTurnUpdate();
+
+		});
 
 		playerStats = inGameController.getPlayerStats(gameID);
 		throwDiceButton = new JButton("Gooi Dobbelstenen");
@@ -208,13 +215,8 @@ public class IngameView extends JPanel {
 		devcardButton.addActionListener(e -> {
 			inGameController.openDevcard();
 		});
-		if (allowedToEnd(gameID)) {
-			endTurnButton.addActionListener(e -> {
-				inGameController.setPlayerTurn(gameID, nextPlayerTurn(gameID));
-				endTurnButton.setEnabled(false);
-				playerTurnUpdate();
-
-			});
+		if (allowedToEnd(gameID) && inGameController.hasRolledDice(gameID)) {
+			endTurnButton.setEnabled(true);
 		}
 
 		streetLabel = new JLabel("Straat: 1B-1H");
@@ -424,7 +426,6 @@ public class IngameView extends JPanel {
 		for (int i = 0; i < playerStats.size(); i++) {
 			if (LoginController.getUsername().equals(ingameController.getTurn(id))) {
 				allowed = true;
-				endTurnButton.setEnabled(true);
 			}
 		}
 		return allowed;
@@ -453,7 +454,13 @@ public class IngameView extends JPanel {
 
 	public void playerTurnUpdate() {
 		playerTurnStringLabel.setText(ingameController.getTurn(gameID));
-
+	}
+	
+	public void nextTurnButtonUpdate() {
+		System.out.println(ingameController.hasRolledDice(gameID));
+		if(ingameController.hasRolledDice(gameID)) {
+			endTurnButton.setEnabled(true);
+		}
 	}
 
 }
