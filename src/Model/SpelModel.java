@@ -29,7 +29,7 @@ public class SpelModel {
 		spelDal.setPlayerTurn(gameid, username);
 	}
 	
-	public void shouldRefresh(int gameID) {
-		spelDAL.shouldRefresh(gameID);
-	}
+//	public void shouldRefresh(int gameID) {
+//		spelDAL.shouldRefresh(gameID);
+//	}
 }
