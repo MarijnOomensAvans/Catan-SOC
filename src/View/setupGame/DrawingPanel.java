@@ -111,7 +111,7 @@ public class DrawingPanel extends JPanel{
 		hexagons.add(hexagon17);
 		hexagons.add(hexagon18);
 		hexagons.add(hexagon19);
-		robber.setBounds(bc.getRobberXPosition(idspel)-12,bc.getRobberYPosition(idspel)-30,25,60);;
+		robber.setBounds(bc.getRobberXPosition(idspel)-45,bc.getRobberYPosition(idspel)-30,25,60);;
 		this.add(robber);
 		
 		setPreferredSize(new Dimension(600,600));
