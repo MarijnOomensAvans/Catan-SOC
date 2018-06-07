@@ -66,29 +66,29 @@ public class DrawingPanel extends JPanel {
 	// making room for an arraylist
 	private ArrayList<Hexagon> hexagons;
 	private PlayerController pc;
-<<<<<<< HEAD
+
 	private Graphics2D g2d;
 	
 	//All images of player pieces
 	//Cities
-	ImageIcon city_Blue;
-	ImageIcon city_Orange;
-	ImageIcon city_Red;
-	ImageIcon city_White;
+	ImageIcon city_Blue = new ImageIcon(ClassLoader.getSystemResource("city_Blue.png"));
+	ImageIcon city_Orange = new ImageIcon(ClassLoader.getSystemResource("city_Orange.png"));
+	ImageIcon city_Red = new ImageIcon(ClassLoader.getSystemResource("city_Red.png"));
+	ImageIcon city_White = new ImageIcon(ClassLoader.getSystemResource("city_White.png"));
 	
 	//Villages
-	ImageIcon village_Blue;
-	ImageIcon village_Orange;
-	ImageIcon village_Red;
-	ImageIcon village_White;
+	ImageIcon village_Blue = new ImageIcon(ClassLoader.getSystemResource("village_Blue.png"));
+	ImageIcon village_Orange = new ImageIcon(ClassLoader.getSystemResource("village_Orange.png"));
+	ImageIcon village_Red = new ImageIcon(ClassLoader.getSystemResource("village_Red.png"));
+	ImageIcon village_White = new ImageIcon(ClassLoader.getSystemResource("village_White.png"));
 	
 	//Streets
-	ImageIcon street_Blue;
-	ImageIcon street_Orange;
-	ImageIcon street_Red;
-	ImageIcon street_White;
-=======
->>>>>>> 66c766ab036f7236f9c3aee610be5e492c2665cb
+	ImageIcon street_Blue = new ImageIcon(ClassLoader.getSystemResource("street_Blue.png"));
+	ImageIcon street_Orange = new ImageIcon(ClassLoader.getSystemResource("street_Orange.png"));
+	ImageIcon street_Red = new ImageIcon(ClassLoader.getSystemResource("street_Red.png"));
+	ImageIcon street_White = new ImageIcon(ClassLoader.getSystemResource("street_White.png"));
+	
+
 
 	public DrawingPanel(BoardController bc, int idspel) {
 		robber = new Robber();
@@ -148,22 +148,12 @@ public class DrawingPanel extends JPanel {
 		
 		//Initialize all ImageIcons (Player Pieces)
 		//City images
-		city_Blue = new ImageIcon(ClassLoader.getSystemResource("city_Blue.png"));
-		city_Orange = new ImageIcon(ClassLoader.getSystemResource("city_Orange.png"));
-		city_Red = new ImageIcon(ClassLoader.getSystemResource("city_Red.png"));
-		city_White = new ImageIcon(ClassLoader.getSystemResource("city_White.png"));
+
 		
 		//Village images
-		village_Blue = new ImageIcon(ClassLoader.getSystemResource("village_Blue.png"));
-		village_Orange = new ImageIcon(ClassLoader.getSystemResource("village_Orange.png"));
-		village_Red = new ImageIcon(ClassLoader.getSystemResource("village_Red.png"));
-		village_White = new ImageIcon(ClassLoader.getSystemResource("village_White.png"));
+		
 		
 		//Street icons
-		street_Blue = new ImageIcon(ClassLoader.getSystemResource("street_Blue.png"));
-		street_Orange = new ImageIcon(ClassLoader.getSystemResource("street_Orange.png"));
-		street_Red = new ImageIcon(ClassLoader.getSystemResource("street_Red.png"));
-		street_White = new ImageIcon(ClassLoader.getSystemResource("street_White.png"));
 		
 		
 
@@ -180,6 +170,7 @@ public class DrawingPanel extends JPanel {
 					if (test != null) {
 						if (hlPoint == test && !buildingType.equals("Street")) {
 							pc.buildObject(buildingType, hlPoint);
+							paintBuildings();
 							// Log here
 							mayBuild = false;
 							hlPoint = null;
@@ -198,6 +189,7 @@ public class DrawingPanel extends JPanel {
 								int y2 = Integer.parseInt(clarray[1]);
 								if (x1 == (x2 + 1) && y1 == (y2 + 1) || x1 == (x2 + 1) && y1 == y2|| x1 == x2 && y1 == (y2 - 1) || x1 == (x2 - 1) && y1 == y2 || x1 == x2 && y1 == (y2 + 1) || x1 == (x2 - 1) && y1 == (y2 = 1)) {
 									pc.buildStreet(x1,x2,y1,y2);
+									paintBuildings();
 									// Log here 
 									if(devCardBuild = false) {
 									mayBuild = false;
@@ -363,25 +355,25 @@ public class DrawingPanel extends JPanel {
 	public void setMayMoveRobber(boolean b) {
 		mayMoveRobber = b;
 	}
-<<<<<<< HEAD
+
 	
 	public void paintBuildings() {
 		for(int i = 0; i < pc.countBuildings(); i++) {
 			String[] buildings = pc.getAllBuildings().split(",");
 			for(int x = 0; x < buildings.length; x++) {
 			
-				village_Blue.paintIcon(this, g2d, pc.getCoordX(buildings[x]), pc.getCoordY(buildings[x]));
-				
+				village_Blue.paintIcon(this, g2d, convertXfromKeyToScreenX(pc.getCoordX(buildings[x])),convertYfromKeyToScreenY(pc.getCoordY(buildings[x])));
+				System.out.println("Buildings painted");
 				repaint();
 			}
 		}
-=======
+	}
+
 
 	public void setBuildDev(boolean b, String string) {
 		this.mayBuild = b;
 		this.buildingType = string;
 		this.devCardBuild = true;
->>>>>>> 66c766ab036f7236f9c3aee610be5e492c2665cb
 	}
 
 }
