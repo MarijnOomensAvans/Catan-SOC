@@ -6,7 +6,6 @@ import DAL.TradeDAL;
 import java.util.ArrayList;
 import java.util.Observable;
 
-
 import Model.Player;
 import Model.TradeOffer;
 import Model.TradeOtherPlayers;
@@ -33,8 +32,9 @@ public class TradeController extends Observable implements Runnable {
 
 	private ArrayList<Integer> otherIds;
 	private boolean runthread = true;
-	
-	public TradeController(int playerid, int gameid, PersonDAL pd, Player player, PlayerController pc, BankController bc) {
+
+	public TradeController(int playerid, int gameid, PersonDAL pd, Player player, PlayerController pc,
+			BankController bc) {
 		this.pd = pd;
 		this.td = new TradeDAL();
 		this.bc = bc;
@@ -49,9 +49,8 @@ public class TradeController extends Observable implements Runnable {
 		otherPlayers = new TradeOtherPlayers(pd);
 		TradeOfferPane top = new TradeOfferPane(this, playerid, true);
 		tap = new TradeAcceptPane(this, playerid);
-		gui = new TradeGui(this, playerid, top,tap,gameid);
+		gui = new TradeGui(this, playerid, top, tap, gameid);
 		this.addObserver(tap);
-		pc.updateHand();
 	}
 
 	public void createOffer(int idPlayer, int givesStone, int givesWool, int givesOre, int givesWheat, int givesWood,
@@ -96,7 +95,7 @@ public class TradeController extends Observable implements Runnable {
 	}
 
 	public ArrayList<Integer> getOtherid(int gameid, int playerid) {
-		ArrayList<Integer> id= pd.getOtherid(gameid, playerid);
+		ArrayList<Integer> id = pd.getOtherid(gameid, playerid);
 		return id;
 	}
 
@@ -133,9 +132,8 @@ public class TradeController extends Observable implements Runnable {
 	@Override
 	public void run() {
 		while (runthread) {
-			try {			
-				for(int i = 0; i<otherIds.size(); i++)
-				{
+			try {
+				for (int i = 0; i < otherIds.size(); i++) {
 					getLatestTradeOffer(otherIds.get(i));
 				}
 				Thread.sleep(1000);
@@ -147,18 +145,15 @@ public class TradeController extends Observable implements Runnable {
 	private void getLatestTradeOffer(int playerid) {
 		ArrayList<Integer> offer = td.getTradeResponses(playerid);
 		if (offer.size() != 0 && trp != null) {
-			if(playerid == otherIds.get(0))
-			{
+			if (playerid == otherIds.get(0)) {
 				trp.setResponse1();
 			}
-			
-			else if(playerid == otherIds.get(1))
-			{
+
+			else if (playerid == otherIds.get(1)) {
 				trp.setResponse2();
 			}
-			
-			else if(playerid == otherIds.get(2))
-			{
+
+			else if (playerid == otherIds.get(2)) {
 				trp.setResponse3();
 			}
 		}
@@ -167,7 +162,7 @@ public class TradeController extends Observable implements Runnable {
 	}
 
 	public String getUsername(int playerid) {
-		String username =pd.getName(playerid);
+		String username = pd.getName(playerid);
 		return username;
 	}
 
@@ -175,7 +170,7 @@ public class TradeController extends Observable implements Runnable {
 		gui.setContentPane(new BankPane(this, playerid));
 		gui.validate();
 		gui.repaint();
-		
+
 	}
 
 	public void setRunthread(boolean runthread) {
@@ -184,7 +179,7 @@ public class TradeController extends Observable implements Runnable {
 
 	public void close() {
 		gui.dispose();
-		
+
 	}
 
 	public TradeResultPane getTrp() {
@@ -192,38 +187,39 @@ public class TradeController extends Observable implements Runnable {
 	}
 
 	public void tradeCards(int otherplayerid) {
-		ArrayList<Integer> offer =td.getTradeOffer(otherplayerid);
-		pc.tradeCards(otherplayerid,offer,player);
-		
+		ArrayList<Integer> offer = td.getTradeOffer(otherplayerid);
+		pc.tradeCards(otherplayerid, offer, player);
+
 	}
 
 	public void deleteOffers(int playerid, int otherplayerid1, int otherplayerid2, int otherplayerid3) {
-		td.deleteOffers(playerid, otherplayerid1,otherplayerid2,otherplayerid3);
-		
+		td.deleteOffers(playerid, otherplayerid1, otherplayerid2, otherplayerid3);
+
 	}
 
 	public void tradeBank(int playerid2, ArrayList<String> cardkinds) {
-		bc.trade(playerid2,cardkinds);
-		
+		bc.trade(playerid2, cardkinds);
+
 	}
 
 	public void deleteCards(int playerid2, ArrayList<String> cardkindsOffer) {
-			bc.deleteCards(playerid2, cardkindsOffer);
-		
+		bc.deleteCards(playerid2, cardkindsOffer);
+
 	}
 
 	public boolean hasCards(ArrayList<Integer> playercounterbid) {
-		if(player.hasStoneCard(playercounterbid.get(6))== true) {
-			if(player.hasOreCard(playercounterbid.get(8))==true){
-				if(player.hasWheatCard(playercounterbid.get(9))==true){
-					if(player.hasWoolCard(playercounterbid.get(7))==true){
-						if(player.hasWoodCard(playercounterbid.get(10))==true){
+		if (player.hasStoneCard(playercounterbid.get(6)) == true) {
+			if (player.hasOreCard(playercounterbid.get(8)) == true) {
+				if (player.hasWheatCard(playercounterbid.get(9)) == true) {
+					if (player.hasWoolCard(playercounterbid.get(7)) == true) {
+						if (player.hasWoodCard(playercounterbid.get(10)) == true) {
 							return true;
 						}
 					}
 				}
 			}
-		};
+		}
+		;
 		return false;
 	}
 }

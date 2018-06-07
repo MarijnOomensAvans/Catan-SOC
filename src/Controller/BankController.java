@@ -57,7 +57,7 @@ public class BankController {
 			String cardid =bank.getMaterialCardIdTrade(cardkindsOffer.get(i));
 			boolean hasPlayerid = bank.hasPlayerid(cardid);
 			if(hasPlayerid == true) {
-				bd.deleteCards(playerid2, cardid);
+				bd.deleteCards(playerid2, cardid, gameid);
 			}
 		}
 		

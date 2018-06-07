@@ -145,10 +145,10 @@ public class TradeResultPane extends JPanel {
 	{
 		getTradeResponses(otherplayerid1);
 		Object[][] responseData1 ={{" ","Baksteen","Wol" ,"Erts", "Graan" ,"Hout"},
-				{"Vraagt", new Integer(player1counterbid.get(1)),new Integer(player1counterbid.get(2)),
+				{"Geeft", new Integer(player1counterbid.get(1)),new Integer(player1counterbid.get(2)),
 			new Integer(player1counterbid.get(3)),new Integer(player1counterbid.get(4)),new Integer(player1counterbid.get(5)),
 		},
-		{"Geeft",new Integer(player1counterbid.get(6)),new Integer(player1counterbid.get(7)),new Integer(player1counterbid.get(8)),
+		{"Vraagt",new Integer(player1counterbid.get(6)),new Integer(player1counterbid.get(7)),new Integer(player1counterbid.get(8)),
 		new Integer(player1counterbid.get(9)),new Integer(player1counterbid.get(10)),}};
 		table1 = new JTable(responseData1,columnames);
 		table1.setBounds(350,110,450,50);
@@ -167,10 +167,10 @@ public class TradeResultPane extends JPanel {
 	{
 		getTradeResponses(otherplayerid2);
 		Object[][] responseData2 ={{" ","Baksteen","Wol" ,"Erts", "Graan" ,"Hout"},
-				{"Vraagt", new Integer(player2counterbid.get(1)),new Integer(player2counterbid.get(2)),
+				{"Geeft", new Integer(player2counterbid.get(1)),new Integer(player2counterbid.get(2)),
 			new Integer(player2counterbid.get(3)),new Integer(player2counterbid.get(4)),new Integer(player2counterbid.get(5)),
 		},
-		{"Geeft",new Integer(player2counterbid.get(6)),new Integer(player2counterbid.get(7)),new Integer(player2counterbid.get(8)),
+		{"Vraagt",new Integer(player2counterbid.get(6)),new Integer(player2counterbid.get(7)),new Integer(player2counterbid.get(8)),
 		new Integer(player2counterbid.get(9)),new Integer(player2counterbid.get(10)),}};
 		table2 = new JTable(responseData2,columnames);
 		table2.setBounds(350,180,450,50);
@@ -189,10 +189,10 @@ public class TradeResultPane extends JPanel {
 	{
 		getTradeResponses(otherplayerid3);
 		Object[][] responseData3 ={{" ","Baksteen","Wol" ,"Erts", "Graan" ,"Hout"},
-				{"Vraagt", new Integer(player3counterbid.get(1)),new Integer(player3counterbid.get(2)),
+				{"Geeft", new Integer(player3counterbid.get(1)),new Integer(player3counterbid.get(2)),
 			new Integer(player3counterbid.get(3)),new Integer(player3counterbid.get(4)),new Integer(player3counterbid.get(5)),
 		},
-		{"Geeft",new Integer(player3counterbid.get(6)),new Integer(player3counterbid.get(7)),new Integer(player3counterbid.get(8)),
+		{"Vraagt",new Integer(player3counterbid.get(6)),new Integer(player3counterbid.get(7)),new Integer(player3counterbid.get(8)),
 		new Integer(player3counterbid.get(9)),new Integer(player3counterbid.get(10)),}};
 		table3 = new JTable(responseData3,columnames);
 		table3.setBounds(350,250,450,50);
@@ -238,7 +238,7 @@ public class TradeResultPane extends JPanel {
 			}
 			else if(playerid == otherplayerid2) {
 				if(response== true) {
-					if(tc.hasCards(player1counterbid) == true) {
+					if(tc.hasCards(player2counterbid) == true) {
 					response2.setBackground(Color.GREEN);
 					AcceptPlayer2.setEnabled(true);
 				}
@@ -251,7 +251,7 @@ public class TradeResultPane extends JPanel {
 			}
 			else if(playerid == otherplayerid3) {
 				if(response== true) {
-					if(tc.hasCards(player1counterbid) == true) {
+					if(tc.hasCards(player3counterbid) == true) {
 					response3.setBackground(Color.GREEN);
 					AcceptPlayer3.setEnabled(true);
 				}
