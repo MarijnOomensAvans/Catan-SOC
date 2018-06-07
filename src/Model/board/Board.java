@@ -847,5 +847,10 @@ public class Board {
 		int y = bdal.getRobberYPosition(gameid, position);
 		 return 10 + (((2 * (12 - y)) - (10 - x)) * 30);
 	}
-
+	
+	public void setRobberTile(int gameid, int x, int y)
+	{
+		bdal.setRobberPosition(gameid, x, y);
+	}
+	
 }
