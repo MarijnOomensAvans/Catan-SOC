@@ -14,7 +14,7 @@ public class MaterialCard {
 		this.bd = bd;
 		setId(a);
 		setKindOfMaterial(a);
-		//addToDB(gameid);
+		addToDB(gameid);
 	}
 	
 	private void addToDB(int gameid) {

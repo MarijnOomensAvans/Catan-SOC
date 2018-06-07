@@ -155,7 +155,16 @@ public class DrawingPanel extends JPanel {
 				}
 				if (mayMoveRobber == true) {
 					String returnString = tileConvertXYfromScreenToKey(e.getX(), e.getY());
-					System.out.println(returnString);
+					// System.out.println(returnString);
+					if (returnString != null) {
+						String positions[] = returnString.split(",");
+						int x = Integer.parseInt(positions[0]);
+						int y = Integer.parseInt(positions[1]);
+						bc.setRobberTile(idspel, x, y);
+						robber.setBounds(bc.getRobberXPosition(idspel) - 45, bc.getRobberYPosition(idspel) - 30, 25,
+								60);
+						mayMoveRobber = false;
+					}
 				}
 			}
 
