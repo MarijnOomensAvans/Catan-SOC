@@ -30,12 +30,12 @@ public class IngameController {
 		this.playerID = playerID;
 		this.bc = bc;
 		this.rb = new RobberController();
-		this.dieController = new DieController(gameid, rb, this, bc, bct, pd);
 		spelModel = new SpelModel(gameid);
 		Thread thread = new Thread(new GameUpdateController(spelModel));
 		thread.start();
 		bct = new BankController(gameid);
 		pd = new PersonDAL();
+		this.dieController = new DieController(gameid, rb, this, bc, bct, pd);
 		chatController = new ChatController(gameid, playerID);
 		this.pc = new PlayerController(playerID, gameid, bct, pd);
 		dp = new DrawingPanel(bc, gameid);
