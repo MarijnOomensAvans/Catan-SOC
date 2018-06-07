@@ -91,11 +91,11 @@ public class BankPane extends JPanel {
 
 	public BankPane(TradeController tc, int playerid) {
 		this.setLayout(null);
-		stone = new File("./Images/baksteen.jpg");
-		wool = new File("./Images/schaap.jpg");
-		ore = new File("./Images/erts.jpg");
-		wheat = new File("./Images/graan.jpg");
-		wood = new File("./Images/hout.jpg");
+		stone = new File("./res/baksteen.jpg");
+		wool = new File("./res/schaap.jpg");
+		ore = new File("./res/erts.jpg");
+		wheat = new File("./res/graan.jpg");
+		wood = new File("./res/hout.jpg");
 
 		offer = new JLabel("Ruilen met de bank 4:1");
 		offer.setBounds(205, 10, 400, 100);
