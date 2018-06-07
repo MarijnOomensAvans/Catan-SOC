@@ -3,6 +3,7 @@ package Model.ingame;
 import java.util.ArrayList;
 import java.util.Observable;
 
+import Controller.IngameController;
 import Controller.LoginController;
 import DAL.GameManagerDAL;
 import DAL.SpelDAL;
@@ -12,8 +13,10 @@ public class SpelModel extends Observable {
 	private SpelDAL spelDal;
 	private GameManagerDAL gameManagerDal;
 	private int gameid;
+	private IngameController ingameController;
 
-	public SpelModel(int gameid) {
+	public SpelModel(int gameid, IngameController ingameController) {
+		this.ingameController = ingameController;
 		this.gameid = gameid;
 		spelDal = new SpelDAL();
 		gameManagerDal = new GameManagerDAL();
@@ -63,25 +66,30 @@ public class SpelModel extends Observable {
 	public boolean getFirstTurn() {
 		return gameManagerDal.getFirstTurn(gameid);
 	}
-
-	public int getFirstTurnRound() {
-		// Check welke ronde
-		// gameManagerDal.getFirstTurnRound(int gameid);
-		return 0;
-	}
-
-	public boolean firstTurnConditions() {
-		int round = getFirstTurnRound();
-		if (round == 1) {
-			// Check of 1e ronde condities voldaan zijn
-			return true;
+	
+	public void firstTurnCheck() {
+		
+		if(getFirstTurn()) {
+			int builtCount = spelDal.hasBuilt(gameid);
+			switch(builtCount) {
+				case(0):
+					System.out.println("1e dorp bouwen");
+					ingameController.buildVillage();
+					break;
+				case(1):
+					System.out.println("1e straat bouwen");
+					ingameController.buildStreet();
+					break;
+				case(2):
+					System.out.println("2e dorp bouwen");
+					ingameController.buildVillage();
+					break;
+				case(3):
+					System.out.println("2e straat bouwen");
+					ingameController.buildStreet();
+					break;
+			}
 		}
-		if (round == 2) {
-			// Check of 2e ronde condities voldaan zijn
-			return true;
-		}
-
-		return false;
 	}
 
 }

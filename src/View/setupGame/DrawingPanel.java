@@ -211,6 +211,12 @@ public class DrawingPanel extends JPanel {
 										repaint();
 									}
 								}
+								else {
+									// Log here
+									mayBuild = false;
+									hlPoint = null;
+									repaint();
+								}
 							}
 						}
 					} else {
@@ -219,7 +225,6 @@ public class DrawingPanel extends JPanel {
 						hlPoint = null;
 						repaint();
 					}
-
 				if (mayMoveRobber == true) {
 					String returnString = tileConvertXYfromScreenToKey(e.getX(), e.getY());
 					// System.out.println(returnString);
@@ -237,6 +242,7 @@ public class DrawingPanel extends JPanel {
 
 		});
 	}
+
 
 	// drawing the hexagons
 	@Override

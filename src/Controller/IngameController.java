@@ -30,7 +30,7 @@ public class IngameController {
 		this.playerID = playerID;
 		this.bc = bc;
 		this.rb = new RobberController();
-		spelModel = new SpelModel(gameid);
+		spelModel = new SpelModel(gameid, this);
 		Thread thread = new Thread(new GameUpdateController(spelModel));
 		thread.start();
 		bct = new BankController(gameid);
@@ -107,5 +107,17 @@ public class IngameController {
 
 	public boolean getFirstTurn() {
 		return spelModel.getFirstTurn();
+	}
+
+	public void firstTurnCheck() {
+		spelModel.firstTurnCheck();
+	}
+	
+	public void buildVillage() {
+		dp.setBuild(true, "Village");
+	}
+	
+	public void buildStreet() {
+		dp.setBuild(true, "Street");
 	}
 }

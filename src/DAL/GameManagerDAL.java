@@ -80,5 +80,4 @@ public class GameManagerDAL {
 		}
 	return false;
 	}
-
 }
