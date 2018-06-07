@@ -166,17 +166,16 @@ public class BankDAL {
 
 	}
 
-	public String getPlayerid(String cardid) {
+	public String getPlayerid(String cardid,int gameid) {
 		String result = "";
 		Statement stmt = null;
-		String query = "SELECT idspeler FROM spelergrondstofkaart WHERE idgrondstofkaart = '" + cardid + "'";
+		String query = "SELECT idspeler FROM spelergrondstofkaart WHERE idgrondstofkaart = '" + cardid + "'"+" AND idspel ="+ gameid;
 
 		try {
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
-			while (rs.next()) {
-				result = rs.getString(1);
-			}
+			rs.next(); 
+			result = rs.getString(1);
 			stmt.close();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());

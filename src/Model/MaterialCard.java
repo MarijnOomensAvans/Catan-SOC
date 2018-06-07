@@ -8,10 +8,14 @@ public class MaterialCard {
 	private String KindOfMaterial;
 	private BankDAL bd;
 	private String playerid;
+	private int gameid;
 
-
-	public MaterialCard(BankDAL bd, int gameid) {
+	public MaterialCard(BankDAL bd, int gameid, int a) {
+		this.gameid = gameid;
 		this.bd = bd;
+		setId(a);
+		setKindOfMaterial(a);
+		
 	}
 	
 	public void addToDB(int gameid) {
@@ -30,7 +34,7 @@ public class MaterialCard {
 	}
 	
 	private void setPlayerid(String cardid) {
-		playerid =bd.getPlayerid(cardid);
+		playerid =bd.getPlayerid(cardid,gameid);
 		
 	}
 

@@ -165,9 +165,9 @@ public class PlayerController {
 		return db.countMaterialCards(playerID);
 	}
 
-	public MaterialCard checkMaterialCard(String ID) {
-		return bc.checkMaterialCard(ID);
-	}
+	///public MaterialCard checkMaterialCard(String ID) {
+	///	return bc.checkMaterialCard(ID);
+	//}
 
 	public boolean emptySpace(String buildingType, String hlPoint) {
 		String pieceID;
@@ -336,9 +336,9 @@ public class PlayerController {
 		return buildings;
 	}
 
-	public void updateHand() {
-		player.updateHand();
-	}
+	//public void updateHand() {
+		///player.updateHand();
+	//}
 
 
 	

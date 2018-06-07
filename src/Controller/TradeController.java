@@ -51,7 +51,7 @@ public class TradeController extends Observable implements Runnable {
 		tap = new TradeAcceptPane(this, playerid);
 		gui = new TradeGui(this, playerid, top,tap,gameid);
 		this.addObserver(tap);
-		pc.updateHand();
+		///pc.updateHand();
 	}
 
 	public void createOffer(int idPlayer, int givesStone, int givesWool, int givesOre, int givesWheat, int givesWood,
