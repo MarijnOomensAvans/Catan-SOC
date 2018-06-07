@@ -515,7 +515,6 @@ public class IngameView extends JPanel implements Observer {
 				}
 			} else {
 				if ((ingameController.getBuildingCount(4) >= 2) && ingameController.getBuildingCount() == 4) {
-					System.out.println("1");
 					ingameController.setSecondRound(true);
 					endTurnButton.setEnabled(true);
 				} else if((ingameController.getBuildingCount(4) == 2) && ingameController.getBuildingCount() == 2){
@@ -524,12 +523,13 @@ public class IngameView extends JPanel implements Observer {
 							endTurnButton.setEnabled(true);
 						}
 					} else {
-						System.out.println("2");
 						endTurnButton.setEnabled(true);
 					}
 					ingameController.setSecondRound(true);
 				} else if (buildingCount == 2 && lastPlayerBuildingCount < 2) {
 					endTurnButton.setEnabled(true);
+				} else if (buildingCount < 4 && lastPlayerBuildingCount == 4){
+					ingameController.setSecondRound(true);
 				}
 			}
 		}
