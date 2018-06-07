@@ -61,8 +61,7 @@ public class IngameView extends JPanel {
 	private Border border;
 
 	public IngameView(BoardController bc, int gameID, DrawingPanel inGameBoard, int playerID,
-			IngameController inGameController, PlayerController pc, ChatController chatController,
-			DieController dieController) {
+			IngameController inGameController, PlayerController pc, ChatController chatController, DieController dieController) {
 		this.chatController = chatController;
 		this.gameID = gameID;
 		this.ingameController = inGameController;
