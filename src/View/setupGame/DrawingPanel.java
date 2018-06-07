@@ -155,10 +155,10 @@ public class DrawingPanel extends JPanel {
 								if (x1 == (x2 + 1) && y1 == (y2 + 1) || x1 == (x2 + 1) && y1 == y2|| x1 == x2 && y1 == (y2 - 1) || x1 == (x2 - 1) && y1 == y2 || x1 == x2 && y1 == (y2 + 1) || x1 == (x2 - 1) && y1 == (y2 = 1)) {
 									pc.buildStreet(x1,x2,y1,y2);
 									// Log here 
-									if(devCardBuild = false) {
+									if(devCardBuild == false) {
 									mayBuild = false;
 									} else {
-										devCardBuild = true;
+										devCardBuild = false;
 									}
 									hlPoint = null;
 									repaint();
