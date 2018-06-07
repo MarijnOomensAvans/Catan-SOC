@@ -15,8 +15,8 @@ public class RobberDAL {
 		conn = MainDAL.getConnection();
 	}
 
-	public void removeHalf() {
-		ArrayList<Integer>playerIds = getPlayerids();
+	public void removeHalf(int gameid) {
+		ArrayList<Integer>playerIds = getPlayerids(gameid);
 		Statement stmt = null;
 		String query;
 		Random rand = new Random();
@@ -48,18 +48,20 @@ public class RobberDAL {
 	}
 
 	public ArrayList<Integer> getPlayerids(int gameid) {
+		ArrayList<Integer> playerids = new ArrayList<Integer>();
 		Statement stmt = null;
 		String query = "SELECT idspeler FROM speler WHERE idspel = " + gameid;
 
 		try {
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
-			rs.next();
-			return rs.getInt(1);
+			while(rs.next()) {
+				playerids.add(rs.getInt(1));
+			}
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
-		return 0;
+		return playerids;
 	}
 
 	public int getHandSize(int playerId) {
