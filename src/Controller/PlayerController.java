@@ -215,7 +215,7 @@ public class PlayerController {
 
 	}
 
-	public void buildObject(String buildingType, String hlPoint) {
+	public boolean buildObject(String buildingType, String hlPoint) {
 		String pieceID;
 		if (buildingType.equals("Village")) {
 			pieceID = "d0";
@@ -229,17 +229,18 @@ public class PlayerController {
 					} else {
 						db.setBuilding("d02", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
 					}
-					break;
+					return true;
 				case 2:
 					db.setBuilding("d03", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
-					break;
+					return true;
 				case 3:
 					db.setBuilding("d04", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
-					break;
+					return true;
 				case 4:
 					db.setBuilding("d05", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
-					break;
-
+					return true;
+				case 5:
+					return false;
 				}
 			}
 		} else if (buildingType.equals("City")) {
@@ -254,20 +255,24 @@ public class PlayerController {
 					} else {
 						db.setBuilding("c02", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
 					}
-					break;
+					return true;
 				case 2:
 					db.setBuilding("c03", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
-					break;
+					return true;
 				case 3:
 					db.setBuilding("c04", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
-					break;
+					return true;
+				case 4:
+					return false;
 				}
+
 			}
 		}
+		return false;
 
 	}
 
-	public void buildStreet(int x1, int x2, int y1, int y2) {
+	public boolean buildStreet(int x1, int x2, int y1, int y2) {
 		String pieceID = "r";
 		String[] keys = db.getBuilding(playerID, pieceID).split(",");
 		if (keys.length != 15) {
@@ -278,49 +283,52 @@ public class PlayerController {
 				} else {
 					db.setStreet("r02", playerID, x1, y1, x2, y2);
 				}
-				break;
+				return true;
 			case 2:
 				db.setStreet("r03", playerID, x1, y1, x2, y2);
-				break;
+				return true;
 			case 3:
 				db.setStreet("r04", playerID, x1, y1, x2, y2);
-				break;
+				return true;
 			case 4:
 				db.setStreet("r05", playerID, x1, y1, x2, y2);
-				break;
+				return true;
 			case 5:
 				db.setStreet("r06", playerID, x1, y1, x2, y2);
-				break;
+				return true;
 			case 6:
 				db.setStreet("r07", playerID, x1, y1, x2, y2);
-				break;
+				return true;
 			case 7:
 				db.setStreet("r08", playerID, x1, y1, x2, y2);
-				break;
+				return true;
 			case 8:
 				db.setStreet("r09", playerID, x1, y1, x2, y2);
-				break;
+				return true;
 			case 9:
 				db.setStreet("r10", playerID, x1, y1, x2, y2);
-				break;
+				return true;
 			case 10:
 				db.setStreet("r011", playerID, x1, y1, x2, y2);
-				break;
+				return true;
 			case 11:
 				db.setStreet("r012", playerID, x1, y1, x2, y2);
-				break;
+				return true;
 			case 12:
 				db.setStreet("r013", playerID, x1, y1, x2, y2);
-				break;
+				return true;
 			case 13:
 				db.setStreet("r014", playerID, x1, y1, x2, y2);
-				break;
+				return true;
 			case 14:
 				db.setStreet("r015", playerID, x1, y1, x2, y2);
-				break;
+				return true;
+			case 15:
+				return false;
 
 			}
 		}
+		return false;
 	}
 
 
