@@ -165,9 +165,9 @@ public class PlayerController {
 		return db.countMaterialCards(playerID);
 	}
 
-	///public MaterialCard checkMaterialCard(String ID) {
-	///	return bc.checkMaterialCard(ID);
-	//}
+	public MaterialCard checkMaterialCard(String ID) {
+		return bc.checkMaterialCard(ID);
+	}
 
 	public boolean emptySpace(String buildingType, String hlPoint) {
 		String pieceID;
@@ -328,9 +328,9 @@ public class PlayerController {
 		return buildings;
 	}
 
-	//public void updateHand() {
-		///player.updateHand();
-	//}
+	public void updateHand() {
+		player.updateHand();
+	}
 
 
 	
@@ -342,6 +342,11 @@ public class PlayerController {
 	public int getCoordY(String x) {
 		return db.getCoordX(this.playerID, x);
 		
+	}
+
+	public boolean checkVillage(String test, String hlPoint) {
+		
+		return false;
 	}
 	
 }

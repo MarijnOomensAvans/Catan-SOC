@@ -10,11 +10,9 @@ public class MaterialCard {
 	private String playerid;
 	private int gameid;
 
-	public MaterialCard(BankDAL bd, int gameid, int a) {
+	public MaterialCard(BankDAL bd, int gameid) {
 		this.gameid = gameid;
 		this.bd = bd;
-		setId(a);
-		setKindOfMaterial(a);
 		
 	}
 	
