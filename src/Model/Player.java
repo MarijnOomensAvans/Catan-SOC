@@ -67,7 +67,7 @@ public class Player {
 
 	public void removeMatCard(String kind) {
 		for (int i = 0; i < hand.size(); i++) {
-			if (hand.get(i).getKindOfMaterial() == kind) {
+			if (hand.get(i).getKindOfMaterial().equals(kind)) {
 				conn.giveMaterialCardBack(hand.get(i));
 				hand.remove(hand.get(i));
 				break;
