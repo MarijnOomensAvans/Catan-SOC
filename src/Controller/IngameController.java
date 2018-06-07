@@ -104,4 +104,8 @@ public class IngameController {
 		ids =pd.getIds(gameID2);
 		return ids;
 	}
+
+	public boolean getFirstTurn() {
+		return spelModel.getFirstTurn();
+	}
 }
