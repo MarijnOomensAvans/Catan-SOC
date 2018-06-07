@@ -37,9 +37,10 @@ public class IngameController {
 		bct = new BankController(gameid);
 		pd = new PersonDAL();
 		chatController = new ChatController(gameid, playerID);
-		dp = new DrawingPanel(bc, gameid);
-		rb.setDrawingPanel(dp);
 		this.pc = new PlayerController(playerID, gameid, bct, pd);
+		dp = new DrawingPanel(bc, gameid);
+		dp.setPlayerController(pc);
+		rb.setDrawingPanel(dp);
 		gameFrame = new InGameFrame(bc, gameid, dp, playerID, this, pc, chatController, dieController);
 		spelModel.addObserver(gameFrame.getPane());
 	}

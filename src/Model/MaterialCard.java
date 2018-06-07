@@ -54,8 +54,8 @@ public class MaterialCard {
 	}
 
 	public void setKindOfMaterialNew(char splitter) {
-		KindOfMaterial ="" + splitter;
-		KindOfMaterial.toUpperCase();
+		String upperCase = "" + splitter;
+		KindOfMaterial = upperCase.toUpperCase();
 	}
 
 
