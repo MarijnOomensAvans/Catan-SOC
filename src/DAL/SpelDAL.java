@@ -47,7 +47,7 @@ public class SpelDAL {
 		return stats;
 	}
 
-	private String getLongestRouteUsername(int gameid) {
+	public String getLongestRouteUsername(int gameid) {
 		String username = "Niemand";
 		try {
 			Statement stmt = conn.createStatement();

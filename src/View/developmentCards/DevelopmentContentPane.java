@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Controller.PlayerController;
+import View.setupGame.DrawingPanel;
 
 @SuppressWarnings("serial")
 public class DevelopmentContentPane extends JPanel{
@@ -63,7 +64,7 @@ private BufferedImage myBufferedImage7;
 private BufferedImage myBufferedImage8;
 private BufferedImage myBufferedImage9;
 		
-		public DevelopmentContentPane(PlayerController pc, int playerid){
+		public DevelopmentContentPane(PlayerController pc, int playerid, DrawingPanel dp){
 			
 			this.setLayout(null);
 			bibliotheek = "bibliotheek.jpg";
@@ -195,6 +196,8 @@ private BufferedImage myBufferedImage9;
 			public void actionPerformed(ActionEvent e) {
 				if(pc.getAmountStratenbouw(playerid)>= 1) {
 				pc.useStratenbouw(playerid);
+				dp.setBuild(true, "Street");
+				
 				}
 			}
 		});

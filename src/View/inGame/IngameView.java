@@ -80,6 +80,7 @@ public class IngameView extends JPanel implements Observer {
 	private JLabel woodCount;
 	private JLabel woolCount;
 	private JLabel wheatCount;
+	private JLabel biggestArmyLabel;
 
 	private int playerStoneCount;
 	private int playerOreCount;
@@ -104,6 +105,8 @@ public class IngameView extends JPanel implements Observer {
 	private JPanel ownPointsPanel;
 	private JPanel boardPanel;
 
+	private JLabel nameLongestRoutelabel;
+	private JLabel nameBiggestArmyLabel;
 	private JLabel streetLabel;
 	private JLabel villageLabel;
 	private JLabel cityLabel;
@@ -134,6 +137,7 @@ public class IngameView extends JPanel implements Observer {
 		});
 
 		playerStats = inGameController.getPlayerStats(gameID);
+		
 		throwDiceButton = new JButton("Gooi Dobbelstenen");
 		if (!gameManagerDAL.getFirstTurn(gameID) && gameManagerDAL.getPlayerIDTurn(gameID) == playerID
 				&& gameManagerDAL.getHasThrown(gameID) == false) {
@@ -193,12 +197,12 @@ public class IngameView extends JPanel implements Observer {
 		dieContentPane.setBorder(border);
 		diceButtonPanel.setBorder(border);
 
-		// Get the amount of all types of resources from db
-		////playerStoneCount = inGameController.getPc().getAmountStone(playerID);
-		////playerOreCount = inGameController.getPc().getAmountOre(playerID);
-		////playerWoodCount = inGameController.getPc().getAmountWood(playerID);
-		////playerWoolCount = inGameController.getPc().getAmountWool(playerID);
-		////playerWheatCount = inGameController.getPc().getAmountWheat(playerID);
+		//Get the amount of all types of resources from db
+		playerStoneCount = inGameController.getPc().getAmountStone(playerID);
+		playerOreCount = inGameController.getPc().getAmountOre(playerID);
+		playerWoodCount = inGameController.getPc().getAmountWood(playerID);
+		playerWoolCount = inGameController.getPc().getAmountWool(playerID);
+		playerWheatCount = inGameController.getPc().getAmountWheat(playerID);
 
 		boardPanel = new JPanel();
 
@@ -237,7 +241,9 @@ public class IngameView extends JPanel implements Observer {
 		playersAndCardsLabel = new JLabel("Spelers en kaarten: ");
 		gameTurnLabel = new JLabel("Ronde: ");
 		largestArmyLabel = new JLabel("Grootste riddermacht: ");
+		nameBiggestArmyLabel = new JLabel("jggfuktfuktctguc");
 		longestRouteLabel = new JLabel("Langste handelsroute: ");
+		nameLongestRoutelabel = new JLabel(inGameController.getLongestRoute(gameID));
 		ownPointLabel = new JLabel("Eigen punten: ");
 
 		turnLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -365,8 +371,6 @@ public class IngameView extends JPanel implements Observer {
 		bottomPanel.add(bottomInfoPanel, BorderLayout.CENTER);
 		bottomPanel.add(diceAndButtonPanel, BorderLayout.EAST);
 
-		hasBiggestArmy();
-
 		this.add(leftPanel, BorderLayout.LINE_START);
 		this.add(centerPanel, BorderLayout.CENTER);
 		this.add(rightPanel, BorderLayout.LINE_END);
@@ -401,7 +405,7 @@ public class IngameView extends JPanel implements Observer {
 				ingameController.setbiggestArmy(gameID, nameBiggest);
 			}
 		}
-		JLabel biggestArmyLabel = new JLabel(nameBiggest);
+		biggestArmyLabel = new JLabel(nameBiggest);
 		biggestArmyLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		return biggestArmyLabel;
 
@@ -465,6 +469,15 @@ public class IngameView extends JPanel implements Observer {
 	public void playerTurnUpdate() {
 		playerTurnStringLabel.setText(ingameController.getTurn(gameID));
 	}
+	
+	public void LongestRouteUpdate() {
+		nameLongestRoutelabel.setText(ingameController.getLongestRoute(gameID));
+	}
+	
+	public void BiggestArmyUpdate() {
+		biggestArmyLabel.setText(ingameController.getBiggestArmy(gameID));
+	}
+	
 
 	public void nextTurnButtonUpdate() {
 		if (ingameController.hasRolledDice(gameID) && allowedToEnd(gameID)) {

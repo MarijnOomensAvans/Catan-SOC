@@ -2,6 +2,7 @@ package View.developmentCards;
 import javax.swing.JFrame;
 
 import Controller.PlayerController;
+import View.setupGame.DrawingPanel;
 
 @SuppressWarnings("serial")
 public class DevelopmentGui extends JFrame {
