@@ -59,10 +59,12 @@ public class IngameView extends JPanel {
 	private Border border;
 
 	public IngameView(BoardController bc, int gameID, DrawingPanel inGameBoard, int playerID,
-			IngameController inGameController, PlayerController pc) {
+			IngameController inGameController, PlayerController pc, ChatController chatController) {
+		
+		this.chatController = chatController;
+		this.gameID = gameID;
 		this.ingameController = inGameController;
 		playerStats = inGameController.getPlayerStats(gameID);
-		this.gameID = gameID;
 		throwDiceButton = new JButton("Gooi Dobbelstenen");
 		if (gameManagerDAL.getFirstTurn(gameID) && gameManagerDAL.getPlayerIDTurn(gameID) == playerID
 				&& gameManagerDAL.getHasThrown(gameID) == false) {
@@ -77,7 +79,6 @@ public class IngameView extends JPanel {
 		DieController dc = new DieController(gameID);
 		DieContentPane diceViewPanel = new DieContentPane(dc, throwDiceButton);
 
-		chatController = new ChatController(gameID, playerID);
 		chatOutput = chatController.getCog();
 		ChatContentPane chatPanel = new ChatContentPane(chatController, chatOutput, playerID);
 		JPanel leftPanel = new JPanel();

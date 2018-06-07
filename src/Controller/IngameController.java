@@ -19,7 +19,8 @@ public class IngameController {
 	private PlayerController pc;
 	private int playerID;
 	private BoardController bc;
-	
+	private ChatController chatController;
+
 	public IngameController(int gameid, int playerID, InGameFrame gameFrame, BoardController bc) {
 		this.gameid = gameid;
 		this.playerID = playerID;
@@ -27,9 +28,10 @@ public class IngameController {
 		spelModel = new SpelModel();
 		bct = new BankController(gameid);
 		pd = new PersonDAL();
+		chatController = new ChatController(gameid, playerID);
 		DrawingPanel dp = new DrawingPanel(bc, gameid);
 		this.pc = new PlayerController(playerID, gameid, bct, pd);
-		gameFrame = new InGameFrame(bc, gameid, dp, playerID, this, pc);;
+		gameFrame = new InGameFrame(bc, gameid, dp, playerID, this, pc, chatController);
 	}
 
 	public ArrayList<PlayerStats> getPlayerStats(int gameId) {
@@ -48,7 +50,6 @@ public class IngameController {
 	public void openTrade() {
 
 		new TradeController(playerID, gameid, pd, pc.getPlayer(), pc, bct);
-		
 
 		// TODO Auto-generated method stub
 
