@@ -457,6 +457,7 @@ public class IngameView extends JPanel implements Observer {
 	public void uiUpdate() {
 		dieContentPane.update();
 		playerTurnUpdate();
+		throwDiceButtonUpdate();
 		this.revalidate();
 		this.repaint();
 	}
