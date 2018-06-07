@@ -31,12 +31,13 @@ public class IngameController {
 		this.playerID = playerID;
 		this.bc = bc;
 		this.rb = new RobberController();
-		this.dieController = new DieController(gameid, rb);
+		this.dieController = new DieController(gameid, rb, this);
 		spelModel = new SpelModel();
 		bct = new BankController(gameid);
 		pd = new PersonDAL();
 		chatController = new ChatController(gameid, playerID);
 		DrawingPanel dp = new DrawingPanel(bc, gameid);
+		rb.setDrawingPanel(dp);
 		this.pc = new PlayerController(playerID, gameid, bct, pd);
 		gameFrame = new InGameFrame(bc, gameid, dp, playerID, this, pc, chatController, dieController);
 	}
@@ -70,8 +71,8 @@ public class IngameController {
 	public void setPlayerTurn(int gameid, String username) {
 		spelModel.setPlayerTurn(gameid, username);
 	}
-/*
-	public void shouldRefresh(int gameID) {
+
+/*	public void shouldRefresh(int gameID) {
 		spelModel.shouldRefresh(gameID);
 	}*/
 
@@ -79,7 +80,17 @@ public class IngameController {
 		gameFrame.update();
 	}
 	
+<<<<<<< HEAD
 	public PlayerController getPc() {
 		return pc;
+=======
+	public boolean hasRolledDice(int gameid) {
+		return spelModel.hasRolledDice(gameid);
+		
+	}
+
+	public void thrownDice() {
+		gameFrame.nextTurnButtonUpdate();
+>>>>>>> e8c04109b94133311d5939c75fec28bace353bfd
 	}
 }
