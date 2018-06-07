@@ -65,6 +65,25 @@ public class DrawingPanel extends JPanel {
 	private ArrayList<Hexagon> hexagons;
 	private PlayerController pc;
 	private Graphics2D g2d;
+	
+	//All images of player pieces
+	//Cities
+	ImageIcon city_Blue;
+	ImageIcon city_Orange;
+	ImageIcon city_Red;
+	ImageIcon city_White;
+	
+	//Villages
+	ImageIcon village_Blue;
+	ImageIcon village_Orange;
+	ImageIcon village_Red;
+	ImageIcon village_White;
+	
+	//Streets
+	ImageIcon street_Blue;
+	ImageIcon street_Orange;
+	ImageIcon street_Red;
+	ImageIcon street_White;
 
 	public DrawingPanel(BoardController bc, int idspel) {
 		robber = new Robber();
@@ -121,6 +140,27 @@ public class DrawingPanel extends JPanel {
 		robber.setBounds(bc.getRobberXPosition(idspel) - 45, bc.getRobberYPosition(idspel) - 30, 25, 60);
 		;
 		this.add(robber);
+		
+		//Initialize all ImageIcons (Player Pieces)
+		//City images
+		city_Blue = new ImageIcon(ClassLoader.getSystemResource("city_Blue.png"));
+		city_Orange = new ImageIcon(ClassLoader.getSystemResource("city_Orange.png"));
+		city_Red = new ImageIcon(ClassLoader.getSystemResource("city_Red.png"));
+		city_White = new ImageIcon(ClassLoader.getSystemResource("city_White.png"));
+		
+		//Village images
+		village_Blue = new ImageIcon(ClassLoader.getSystemResource("village_Blue.png"));
+		village_Orange = new ImageIcon(ClassLoader.getSystemResource("village_Orange.png"));
+		village_Red = new ImageIcon(ClassLoader.getSystemResource("village_Red.png"));
+		village_White = new ImageIcon(ClassLoader.getSystemResource("village_White.png"));
+		
+		//Street icons
+		street_Blue = new ImageIcon(ClassLoader.getSystemResource("street_Blue.png"));
+		street_Orange = new ImageIcon(ClassLoader.getSystemResource("street_Orange.png"));
+		street_Red = new ImageIcon(ClassLoader.getSystemResource("street_Red.png"));
+		street_White = new ImageIcon(ClassLoader.getSystemResource("street_White.png"));
+		
+		
 
 		setPreferredSize(new Dimension(600, 600));
 
@@ -319,7 +359,9 @@ public class DrawingPanel extends JPanel {
 		for(int i = 0; i < pc.countBuildings(); i++) {
 			String[] buildings = pc.getAllBuildings().split(",");
 			for(int x = 0; x < buildings.length; x++) {
-				g2d.setColor(Color.PINK);
+			
+				village_Blue.paintIcon(this, g2d, pc.getCoordX(buildings[x]), pc.getCoordY(buildings[x]));
+				
 				repaint();
 			}
 		}
