@@ -189,128 +189,128 @@ public class Player {
 				if (offer.get(i) > 0) {
 
 					for (int e = 0; e < offer.get(i); e++) {
-						if (hand.get(e).getKindOfMaterial().equals("B")) {
+						//if (hand.get(e).getKindOfMaterial().equals("B")) {
 							String cardId = pd.getOtherPlayerCard(otherplayerid, "B");
 							pd.updateCard(cardId, this.player_id, this.game_id); // give this card to the player that initiated the
 																	// trade
-						}
+						//}
 					}
 				}
 			}
-			if (i == 2) {
+			else if (i == 2) {
 				if (offer.get(i) > 0) {
-					for (int e = 0; e < hand.size(); e++) {
-						if (hand.get(e).getKindOfMaterial().equals("W")) {
+					for (int e = 0; e < offer.get(i); e++) {
+						//if (hand.get(e).getKindOfMaterial().equals("W")) {
 							String cardId = pd.getOtherPlayerCard(otherplayerid, "W"); // get first card of this kind
 																						// from opponent
 							pd.updateCard(cardId, this.player_id, this.game_id); // give this card to the player that initiated the
 																	// trade
 
-						}
+						//}
 					}
 				}
 			}
-			if (i == 3) {
+			else if (i == 3) {
 				if (offer.get(i) > 0) {
-					for (int e = 0; e < hand.size(); e++) {
-						if (hand.get(e).getKindOfMaterial().equals("E")) {
+					for (int e = 0; e < offer.get(i); e++) {
+						//if (hand.get(e).getKindOfMaterial().equals("E")) {
 							String cardId = pd.getOtherPlayerCard(otherplayerid, "E");
-							; // get first card of this kind from opponent
+							 // get first card of this kind from opponent
 							pd.updateCard(cardId, this.player_id, this.game_id); // give this card to the player that initiated the
 																	// trade
 
-						}
+						//}
 					}
 				}
 			}
-			if (i == 4) {
+			else if (i == 4) {
 				if (offer.get(i) > 0) {
-					for (int e = 0; e < hand.size(); e++) {
-						if (hand.get(e).getKindOfMaterial().equals("G")) {
+					for (int e = 0; e < offer.get(i); e++) {
+						//if (hand.get(e).getKindOfMaterial().equals("G")) {
 							String cardId = pd.getOtherPlayerCard(otherplayerid, "G");
 							; // get first card of this kind from opponent
 							pd.updateCard(cardId, this.player_id, this.game_id); // give this card to the player that initiated the
 																	// trade
 
-						}
+						//}
 					}
 				}
 			}
-			if (i == 5) {
+			else if (i == 5) {
 				if (offer.get(i) > 0) {
-					for (int e = 0; e < hand.size(); e++) {
-						if (hand.get(e).getKindOfMaterial().equals("H")) {
+					for (int e = 0; e < offer.get(i); e++) {
+						//if (hand.get(e).getKindOfMaterial().equals("H")) {
 							String cardId = pd.getOtherPlayerCard(otherplayerid, "H");
 							; // get first card of this kind from opponent
 							pd.updateCard(cardId, this.player_id, this.game_id); // give this card to the player that initiated the
 																	// trade
 
-						}
+						//}
 					}
 				}
 			}
 
-			if (i == 6) {
+			else if (i == 6) {
 				if (offer.get(i) > 0) {
 
 					for (int e = 0; e < offer.get(i); e++) {
-						if (hand.get(e).getKindOfMaterial().equals("B")) {
+					//	if (hand.get(e).getKindOfMaterial().equals("B")) {
 							String cardId = pd.getOtherPlayerCard(this.player_id, "B");
 							pd.updateCard(cardId, otherplayerid, this.game_id); // give this card to the player that initiated the
 																	// trade
-						}
+					//	}
 					}
 				}
 			}
-			if (i == 7) {
+			else if (i == 7) {
 				if (offer.get(i) > 0) {
-					for (int e = 0; e < hand.size(); e++) {
-						if (hand.get(e).getKindOfMaterial().equals("W")) {
+					for (int e = 0; e < offer.get(i); e++) {
+						//if (hand.get(e).getKindOfMaterial().equals("W")) {
 							String cardId = pd.getOtherPlayerCard(this.player_id, "W"); // get first card of this kind
 																						// from opponent
 							pd.updateCard(cardId, otherplayerid, this.game_id); // give this card to the player that initiated the
 																	// trade
 
-						}
+						//}
 					}
 				}
 			}
-			if (i == 8) {
+			else if (i == 8) {
 				if (offer.get(i) > 0) {
-					for (int e = 0; e < hand.size(); e++) {
-						if (hand.get(e).getKindOfMaterial().equals("E")) {
+					for (int e = 0; e < offer.get(i); e++) {
+					//	if (hand.get(e).getKindOfMaterial().equals("E")) {
 							String cardId = pd.getOtherPlayerCard(this.player_id, "E");
-							; // get first card of this kind from opponent
+							 // get first card of this kind from opponent
 							pd.updateCard(cardId, otherplayerid, this.game_id); // give this card to the player that initiated the
 																	// trade
 
-						}
+					//	}
 					}
 				}
 			}
-			if (i == 9) {
+			else if (i == 9) {
 				if (offer.get(i) > 0) {
-					for (int e = 0; e < hand.size(); e++) {
-						if (hand.get(e).getKindOfMaterial().equals("G")) {
+					for (int e = 0; e < offer.get(i); e++) {
+					//	if (hand.get(e).getKindOfMaterial().equals("G")) {
 							String cardId = pd.getOtherPlayerCard(this.player_id, "G");
 							; // get first card of this kind from opponent
 							pd.updateCard(cardId, otherplayerid, this.game_id); // give this card to the player that initiated the
 																	// trade
 
-						}
+					//	}
 					}
 				}
 			}
-			if (i == 10) {
+			else if (i == 10) {
 				if (offer.get(i) > 0) {
-					for (int e = 0; e < hand.size(); e++) {
-						if (hand.get(e).getKindOfMaterial().equals("H")) {
+					for (int e = 0; e < offer.get(i); e++) {
+					//	if (hand.get(e).getKindOfMaterial().equals("H")) {
 							String cardId = pd.getOtherPlayerCard(this.player_id, "H");
 							; // get first card of this kind from opponent
 							pd.updateCard(cardId, otherplayerid, this.game_id); // give this card to the player that initiated the
 																	// trade
 
-						}
+					//	}
 					}
 				}
 			}

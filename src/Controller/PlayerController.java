@@ -135,7 +135,7 @@ public class PlayerController {
 		return player.hasWheatCard(amount);
 	}
 
-	public void tradeCards(int otherplayerid, ArrayList<Integer> offer, Player player) {
+	public void tradeCards(int otherplayerid, ArrayList<Integer> offer) {
 		player.updateCards(otherplayerid, offer);
 
 	}

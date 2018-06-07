@@ -149,10 +149,10 @@ public class BankDAL {
 
 	}
 
-	public void deleteCards(int playerid2, String cardid, int gameid) {
+	public void deleteCards(String cardid, int gameid) {
 		Statement stmt = null;
 		String query = "UPDATE spelergrondstofkaart SET idspeler = null WHERE idgrondstofkaart = '" + cardid + "'"
-				+ " AND idspeler = " + playerid2 + " AND idspel = " + gameid;
+				+ " AND idspel = " + gameid;
 
 		try {
 			stmt = conn.createStatement();

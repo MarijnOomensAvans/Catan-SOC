@@ -580,7 +580,7 @@ public class BankPane extends JPanel {
 					}
 				}
 				tc.tradeBank(playerid, cardkindsDemand);
-				tc.deleteCards(playerid, cardkindsOffer);
+				tc.deleteCards(cardkindsOffer);
 				tc.close();
 			}
 
