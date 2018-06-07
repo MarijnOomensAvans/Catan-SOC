@@ -27,6 +27,7 @@ public class BuildContentPane extends JPanel{
 	private BuildController buildcontroller;
 	@SuppressWarnings("unused")
 	private PlayerController pc;
+	private String buildingType;
 	
 	
 	public BuildContentPane(BuildFrame frame,PlayerController pc, DrawingPanel inGameBoard) {
@@ -44,7 +45,8 @@ public class BuildContentPane extends JPanel{
 		villageBuild.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                inGameBoard.setBuild(true);
+            	buildingType = "Village";
+                inGameBoard.setBuild(true, buildingType);
             	frame.closeFrame();
             }
         });
@@ -62,7 +64,8 @@ public class BuildContentPane extends JPanel{
 		cityBuild.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                inGameBoard.setBuild(true);
+            	buildingType = "City";
+                inGameBoard.setBuild(true, buildingType);
             	frame.closeFrame();
             }
         });
@@ -80,7 +83,8 @@ public class BuildContentPane extends JPanel{
 		streetBuild.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                inGameBoard.setBuild(true);
+            	buildingType = "Street";
+                inGameBoard.setBuild(true, buildingType);
             	frame.closeFrame();
             }
         });
@@ -98,7 +102,6 @@ public class BuildContentPane extends JPanel{
 		devCardBuild.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                inGameBoard.setBuild(true);
             	frame.closeFrame();
             }
         });
