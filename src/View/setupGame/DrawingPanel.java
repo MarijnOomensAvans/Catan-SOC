@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import Controller.BoardController;
 import Controller.IngameController;
 import Controller.PlayerController;
+import Controller.RobberController;
 import Model.board.ClickPoints;
 import Model.board.Location;
 import Model.board.Tile;
@@ -91,11 +92,11 @@ public class DrawingPanel extends JPanel {
 
 	boolean paint = true;
 
-	public DrawingPanel(BoardController bc, int idspel) {
+	public DrawingPanel(BoardController bc, int gameID, RobberController rb) {
 		robber = new Robber();
 		this.setLayout(null);
 		robber = new Robber();
-		this.idspel = idspel;
+		this.idspel = gameID;
 		this.bc = bc;
 		// initialize arraylist
 		hexagons = new ArrayList<>();
@@ -143,7 +144,7 @@ public class DrawingPanel extends JPanel {
 		hexagons.add(hexagon17);
 		hexagons.add(hexagon18);
 		hexagons.add(hexagon19);
-		robber.setBounds(bc.getRobberXPosition(idspel) - 45, bc.getRobberYPosition(idspel) - 30, 25, 60);
+		robber.setBounds(bc.getRobberXPosition(gameID) - 45, bc.getRobberYPosition(gameID) - 30, 25, 60);
 		;
 		this.add(robber);
 
@@ -157,7 +158,7 @@ public class DrawingPanel extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 
 				if (ingameController != null) {
-					ingameController.shouldRefresh(idspel);
+					ingameController.shouldRefresh(gameID);
 				}
 
 				if (mayBuild == true) {
@@ -221,9 +222,10 @@ public class DrawingPanel extends JPanel {
 						String positions[] = returnString.split(",");
 						int x = Integer.parseInt(positions[0]);
 						int y = Integer.parseInt(positions[1]);
-						bc.setRobberTile(idspel, x, y);
-						robber.setBounds(bc.getRobberXPosition(idspel) - 45, bc.getRobberYPosition(idspel) - 30, 25,
+						bc.setRobberTile(gameID, x, y);
+						robber.setBounds(bc.getRobberXPosition(gameID) - 45, bc.getRobberYPosition(gameID) - 30, 25,
 								60);
+						rb.choose(gameID);
 						mayMoveRobber = false;
 					}
 				}
