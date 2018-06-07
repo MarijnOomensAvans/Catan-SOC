@@ -89,16 +89,14 @@ public class IngameController {
 	public String getLongestRoute(int gameID) {
 		return spelModel.getLongestRoute(gameid);
 	}
-<<<<<<< HEAD
 	
-	public String getBIggestArmy(int gameid) {
+	public String getBiggestArmy(int gameid) {
 		return spelModel.getBiggestArmy(gameid);
-=======
-
+	}
+	
 	public ArrayList<Integer> getPlayerIds(int gameID2) {
 		ArrayList<Integer> ids = new ArrayList<Integer>();
 		ids =pd.getIds(gameID2);
 		return ids;
->>>>>>> 571ad76f05168926cdbcffe89345f501128f72b9
 	}
 }
