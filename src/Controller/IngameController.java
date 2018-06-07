@@ -45,6 +45,10 @@ public class IngameController {
 		spelModel.addObserver(gameFrame.getPane());
 	}
 
+	public PlayerController getPc() {
+		return pc;
+	}
+
 	public ArrayList<PlayerStats> getPlayerStats(int gameId) {
 		return spelModel.getPlayerStats(gameId);
 
