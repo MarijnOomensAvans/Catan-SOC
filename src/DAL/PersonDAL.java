@@ -174,9 +174,9 @@ public class PersonDAL {
 
 	public void useDevelopmentCard(String iddevcard, int idplayer) {
 		Statement stmt = null;
-		String query = "UPDATE spelerontwikkelingskaart SET gespeeld = 1 WHERE idontwikkelingskaart LIKE '"+ iddevcard+"' AND idspeler = "+ idplayer +" AND gespeeld = 0 LIMIT 1";
-		try
-		{
+		String query = "UPDATE spelerontwikkelingskaart SET gespeeld = 1 WHERE idontwikkelingskaart LIKE '" + iddevcard
+				+ "' AND idspeler = " + idplayer + " AND gespeeld = 0 LIMIT 1";
+		try {
 			stmt = conn.createStatement();
 			@SuppressWarnings("unused")
 			int i = stmt.executeUpdate(query);
@@ -224,23 +224,21 @@ public class PersonDAL {
 		}
 		return amount;
 	}
-	
+
 	public int amountResourceCards(int idplayer, String cardtype) {
 		int amount = 0;
 		Statement stmt = null;
-		String query = "SELECT COUNT(idgrondstofkaart) FROM spelergrondstofkaart WHERE idspeler = '"+ idplayer +"' AND idgrondstofkaart LIKE '"+ cardtype+"'";
-		try
-		{
+		String query = "SELECT COUNT(idgrondstofkaart) FROM spelergrondstofkaart WHERE idspeler = '" + idplayer
+				+ "' AND idgrondstofkaart LIKE '" + cardtype + "'";
+		try {
 			stmt = conn.createStatement();
 			ResultSet i = stmt.executeQuery(query);
-			while (i.next())
-			{
+			while (i.next()) {
 				amount = i.getInt(1);
 			}
-		
+
 			stmt.close();
-		} catch (SQLException e)
-		{
+		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
 		return amount;
@@ -289,12 +287,61 @@ public class PersonDAL {
 	public String getBuilding(int spelerID, String pieceID) {
 		String result = "";
 		Statement stmt = null;
-		String query = "SELECT idstuk FROM spelerstuk WHERE idspeler =" + spelerID + " AND idstuk LIKE '"+ pieceID + "%'";
+		String query = "SELECT idstuk FROM spelerstuk WHERE idspeler =" + spelerID + " AND idstuk LIKE '" + pieceID
+				+ "%'";
 		try {
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next()) {
-				result = result + "," + rs.getString(1);
+				if (result.equals("")) {
+					result = rs.getString(1);
+				} else {
+					result = result + "," + rs.getString(1);
+				}
+			}
+			stmt.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
+
+	
+	public String getAllBuildings(int spelerID) {
+		String result = "";
+		Statement stmt = null;
+		String query = "SELECT idstuk FROM spelerstuk WHERE idspeler =" + spelerID + "";
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while (rs.next()) {
+				if (result.equals("")) {
+					result = rs.getString(1);
+				} else {
+					result = result + "," + rs.getString(1);
+				}
+			}
+			stmt.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
+	
+	public String getCoords(int spelerID, String pieceID, String coord) {
+		String result = "";
+		Statement stmt = null;
+		String query = "SELECT " + coord + " FROM spelerstuk WHERE idspeler =" + spelerID + " AND idstuk LIKE '"
+				+ pieceID + "'";
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while (rs.next()) {
+				if (result.equals("")) {
+					result = rs.getString(1);
+				} else {
+					result = result + "," + rs.getString(1);
+				}
 			}
 			stmt.close();
 		} catch (SQLException e) {
@@ -305,8 +352,8 @@ public class PersonDAL {
 
 	public void setBuilding(String idstuk, int spelerID, int x, int y) {
 		Statement stmt = null;
-		String query = "INSERT INTO spelerstuk(idstuk,idspeler,x_van,y_van) VALUES('" + idstuk + "', '" + spelerID + "' , '" + x + "' , '" + y
-				+ "')";
+		String query = "INSERT INTO spelerstuk(idstuk,idspeler,x_van,y_van) VALUES('" + idstuk + "', '" + spelerID
+				+ "' , '" + x + "' , '" + y + "')";
 		try {
 			stmt = conn.createStatement();
 			stmt.executeUpdate(query);
@@ -315,7 +362,7 @@ public class PersonDAL {
 			System.out.println(e.getMessage());
 		}
 	}
-	
+
 	public void setStreet(String idstuk, int spelerID, int x, int y, int x2, int y2) {
 		Statement stmt = null;
 		String query = "INSERT INTO spelerstuk VALUES('" + idstuk + "', '" + spelerID + "' , '" + x + "' , '" + y
@@ -327,6 +374,47 @@ public class PersonDAL {
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
+	}
+	
+	public int countBuildings(int playerid) {
+		String cardid = "";
+		Statement stmt = null;
+		String query = "SELECT COUNT(idstuk) FROM spelerstuk WHERE idspeler = " + playerid + "";
+
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			rs.next();
+			cardid = rs.getString(1);
+			stmt.close();
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		int returnInt = Integer.parseInt(cardid);
+		return returnInt;
+	}
+	
+	public String getPlayerId(int gameid) {
+		String playerid = "";
+
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT idspeler FROM speler " + "WHERE (idspel = " + gameid
+					+ ")");
+			while (rs.next()) {
+				if(playerid.equals("")) {
+				playerid = rs.getString(1);
+				}else {
+					playerid = playerid + "," + rs.getString(1);
+				}
+			}
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return playerid;
 	}
 
 	public ArrayList<Integer> getIds(int gameID2) {
