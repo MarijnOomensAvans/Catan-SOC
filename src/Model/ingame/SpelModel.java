@@ -66,7 +66,7 @@ public class SpelModel extends Observable {
 
 	public int getFirstTurnRound() {
 		// Check welke ronde
-		//gameManagerDal.getFirstTurnRound(int gameid);
+		// gameManagerDal.getFirstTurnRound(int gameid);
 		return 0;
 	}
 
