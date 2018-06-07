@@ -15,9 +15,7 @@ public class DieController
 		this.rb = rb;
 		d1 = new Die(1, gameID);
 		d2 = new Die(2, gameID);
-		
-		//DieGUI dieGUI = new DieGUI(this);
-		//dieGUI.create();	
+
 	}
 	
 	public int[] rollDice() 
@@ -38,12 +36,13 @@ public class DieController
 		}
 	}
 
-	public Die getD1() {
-		return d1;
-	}
-
-	public Die getD2() {
-		return d2;
+	public int[] getCurrentValues() {
+		int[] values = new int[2];
+		values[0] = d1.getStoredDie();
+		values[1] = d2.getStoredDie();
+		
+		return values;
+		
 	}
 	
 }
