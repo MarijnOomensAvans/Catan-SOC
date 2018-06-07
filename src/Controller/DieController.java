@@ -36,4 +36,13 @@ public class DieController
 			
 		}
 	}
+
+	public Die getD1() {
+		return d1;
+	}
+
+	public Die getD2() {
+		return d2;
+	}
+	
 }

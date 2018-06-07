@@ -36,11 +36,10 @@ public class DieContentPane extends JPanel implements ActionListener
 		initFiles();
 		this.setLayout(null);
 		this.setPreferredSize(new Dimension(400, 300));
-		
+		con = controller;
 		throwDiceButton.addActionListener(this);
 		throwDiceButton.setBounds(150, 75, 100, 100);
 		
-		con = controller;
 	}
 
 	public void initFiles()
@@ -81,6 +80,7 @@ public class DieContentPane extends JPanel implements ActionListener
 					setDie(six, itt);
 					break;
 			}
+			
 		}
 		throwDiceButton.setEnabled(false);
 		repaint();

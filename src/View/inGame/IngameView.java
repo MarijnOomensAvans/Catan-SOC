@@ -56,11 +56,12 @@ public class IngameView extends JPanel {
 	private JLabel intTurnLabel;
 
 	private JButton throwDiceButton;
+	private JButton endTurnButton;
 	private Border border;
 
 	public IngameView(BoardController bc, int gameID, DrawingPanel inGameBoard, int playerID,
 			IngameController inGameController, PlayerController pc, ChatController chatController) {
-		
+
 		this.chatController = chatController;
 		this.gameID = gameID;
 		this.ingameController = inGameController;
@@ -92,7 +93,7 @@ public class IngameView extends JPanel {
 		JPanel resourceCardPanel = new JPanel();
 		JPanel buildCostPanel = new JPanel();
 		JPanel diceButtonPanel = new JPanel();
-		
+
 		JPanel costAndDicePanel = new JPanel();
 
 		JPanel playerTurnPanel = new JPanel();
@@ -112,7 +113,7 @@ public class IngameView extends JPanel {
 		// gameTurnPanel.setBackground(Color.gray);
 		// extraPointsPanel.setBackground(Color.green);
 		// ownPointsPanel.setBackground(Color.orange);
-		
+
 		buttonPanel.setBorder(border);
 		resourceCardPanel.setBorder(border);
 		buildCostPanel.setBorder(border);
@@ -133,8 +134,9 @@ public class IngameView extends JPanel {
 		});
 		JButton tradeButton = new JButton("Handelen");
 		JButton devcardButton = new JButton("Ontwikkelingskaarten");
-		JButton endTurnButton = new JButton("Beurt beëindigen");
-		
+		endTurnButton = new JButton("Beurt beëindigen");
+		endTurnButton.setEnabled(false);
+
 		tradeButton.addActionListener(e -> {
 			inGameController.openTrade();
 		});
@@ -142,10 +144,11 @@ public class IngameView extends JPanel {
 		devcardButton.addActionListener(e -> {
 			inGameController.openDevcard();
 		});
-		
-		endTurnButton.addActionListener(e -> {
-			
-		});
+		if (allowedToEnd(gameID)) {
+			endTurnButton.addActionListener(e -> {
+				
+			});
+		}
 
 		JLabel streetLabel = new JLabel("Straat: 1B-1H");
 		JLabel villageLabel = new JLabel("Dorp: 1B-1H-1G-1W");
@@ -215,7 +218,7 @@ public class IngameView extends JPanel {
 		bottomInfoPanel.setLayout(new BorderLayout());
 		bottomInfoPanel.add(resourceCardPanel, BorderLayout.WEST);
 		bottomInfoPanel.add(costAndDicePanel, BorderLayout.CENTER);
-		
+
 		diceAndButtonPanel.setLayout(new BorderLayout());
 		diceAndButtonPanel.add(diceViewPanel, BorderLayout.CENTER);
 		diceAndButtonPanel.add(endTurnButton, BorderLayout.EAST);
@@ -254,13 +257,14 @@ public class IngameView extends JPanel {
 
 	public void getCards() {
 		for (int i = 0; i < playerStats.size(); i++) {
-			
+
 			String name = playerStats.get(i).getUsername();
 			int resourceCards = playerStats.get(i).getResourceCards();
 			int developmentCards = playerStats.get(i).getDevelopmentCards();
 			int knightCards = playerStats.get(i).getKnightCards();
 			int publicPoints = playerStats.get(i).getPublicPoints();
-			JLabel cardsLabel = new JLabel(name + " GK:" + resourceCards + " OK:" + developmentCards + " GR:" + knightCards + " OV:"+ publicPoints);
+			JLabel cardsLabel = new JLabel(name + " GK:" + resourceCards + " OK:" + developmentCards + " GR:"
+					+ knightCards + " OV:" + publicPoints);
 
 			cardsLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			playerCardsPanel.add(cardsLabel);
@@ -296,16 +300,25 @@ public class IngameView extends JPanel {
 		return intTurnLabel;
 	}
 
-	
 	public JLabel ownPoints() {
 		JLabel ownPoint = null;
-		for(int i =0; i< playerStats.size(); i++) {
-			if(LoginController.getUsername().equals(playerStats.get(i).getUsername())) {
-				ownPoint = new JLabel(playerStats.get(i).getPrivatePoints()+"");				
+		for (int i = 0; i < playerStats.size(); i++) {
+			if (LoginController.getUsername().equals(playerStats.get(i).getUsername())) {
+				ownPoint = new JLabel(playerStats.get(i).getPrivatePoints() + "");
 			}
 		}
 		return ownPoint;
 	}
 
+	public boolean allowedToEnd(int id) {
+		boolean allowed = false;
+		for (int i = 0; i < playerStats.size(); i++) {
+			if (LoginController.getUsername().equals(ingameController.getTurn(id))) {
+				allowed = true;
+				endTurnButton.setEnabled(true);
+			}
+		}
+		return allowed;
+	}
 
 }
