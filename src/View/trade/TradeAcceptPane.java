@@ -6,6 +6,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -216,7 +218,15 @@ public class TradeAcceptPane extends JPanel implements Observer {
 		add(acceptButton);
 		add(rejectButton);
 		add(counterOffer);
-
+		
+		this.addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentHidden(ComponentEvent e) {
+                tc.createOffer(playerid,0,0,0,0,0,0,0,0,0, 0, false);
+                tc.close();
+            }
+        });
+		
 		setPreferredSize(new Dimension(800, 600));
 		setVisible(true);
 	}
