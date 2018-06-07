@@ -236,5 +236,15 @@ public class SpelDAL {
 
 		return devPoints;
 	}
+	
+	public void setPlayerTurn(int gameid, String username) {
+		try {
+			Statement stmt = conn.createStatement();
+			stmt.executeQuery("UPDATE spel SET beurt_idspeler = '" + username + "' WHERE idspel = " + gameid);
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 }
