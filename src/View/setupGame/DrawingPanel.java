@@ -211,12 +211,6 @@ public class DrawingPanel extends JPanel {
 										repaint();
 									}
 								}
-								else {
-									// Log here
-									mayBuild = false;
-									hlPoint = null;
-									repaint();
-								}
 							}
 						}
 					} else {
