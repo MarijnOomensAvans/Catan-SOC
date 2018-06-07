@@ -361,5 +361,9 @@ public class PlayerController {
 		return false;
 		}
 	}
+
+	public boolean getRound() {
+		return db.getRound(gameID);
+	}
 	
 }

@@ -517,4 +517,23 @@ public class PersonDAL {
 		
 	}
 
+	public boolean getRound(int gameID) {
+		String i = null;
+		try {
+			Statement stmt = conn.createStatement();
+			String query = "SELECT eersteronde FROM spel WHERE idspel = "+ gameID + "";
+			ResultSet rs = stmt.executeQuery(query);
+			rs.next();
+			i = rs.getString(1);
+		} catch (SQLException e) {
+		
+		}
+		if(i.equals("1")) {
+			return false;
+		}
+		else {
+		return true;
+		}
+	}
+
 }

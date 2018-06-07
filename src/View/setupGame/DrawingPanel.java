@@ -422,6 +422,7 @@ public class DrawingPanel extends JPanel {
 	}
 	
 	public void removeMaterialCards(String buildingType) {
+		if(pc.getRound()) {
 		switch(buildingType) {
 		case "Village":
             pc.getPlayer().removeMatCard("H");
@@ -447,5 +448,6 @@ public class DrawingPanel extends JPanel {
 			break;
             }
 		}
+	}
 
 }
