@@ -141,7 +141,7 @@ public class IngameView extends JPanel implements Observer{
 		} else {
 			endTurnButton.setEnabled(false);
 		}
-		if (gameManagerDAL.getFirstTurn(gameID) && gameManagerDAL.getPlayerIDTurn(gameID) == playerID
+		if (!gameManagerDAL.getFirstTurn(gameID) && gameManagerDAL.getPlayerIDTurn(gameID) == playerID
 				&& gameManagerDAL.getHasThrown(gameID) == false) {
 			throwDiceButton.setEnabled(true);
 		} else {
