@@ -133,21 +133,34 @@ public class DrawingPanel extends JPanel {
 					String test = convertXYfromScreenToKey(e.getX(), e.getY());
 					if (test != null) {
 						if (hlPoint == test && !buildingType.equals("Street")) {
-							pc.buildObject(buildingType, idspel, hlPoint);
+							pc.buildObject(buildingType, hlPoint);
+							// Log here
 							mayBuild = false;
 							hlPoint = null;
 							repaint();
-						}
-						else {
+						} else if(hlPoint == null || !buildingType.equals("Street")){
 							hlPoint = test;
 							repaint();
 						}
-						if(buildingType.equals("Street")) {
-							
+						if (test != null && hlPoint != null && buildingType.equals("Street")) {
+							if (hlPoint != test) {
+								String[] hlarray = hlPoint.split(",");
+								String[] clarray = test.split(",");
+								int x1 = Integer.parseInt(hlarray[0]);
+								int y1 = Integer.parseInt(hlarray[1]);
+								int x2 = Integer.parseInt(clarray[0]);
+								int y2 = Integer.parseInt(clarray[1]);
+								if (x1 == (x2 + 1) && y1 == (y2 + 1) || x1 == (x2 + 1) && y1 == y2|| x1 == x2 && y1 == (y2 - 1)) {
+									pc.buildStreet(x1,x2,y1,y2);
+									// Log here 
+									mayBuild = false;
+									hlPoint = null;
+									repaint();
+								}
+							}
 						}
-					}
-					else {
-					// Change to log later -	System.out.println("Building aborted");
+					} else {
+						// Change to log later - System.out.println("Building aborted");
 						mayBuild = false;
 						hlPoint = null;
 						repaint();
@@ -276,11 +289,11 @@ public class DrawingPanel extends JPanel {
 		this.mayBuild = mayBuild;
 		this.buildingType = buildingType;
 	}
-	
+
 	public void setPlayerController(PlayerController pc) {
 		this.pc = pc;
 	}
-	
+
 	public void setMayMoveRobber(boolean b) {
 		mayMoveRobber = b;
 	}
