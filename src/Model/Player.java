@@ -58,7 +58,15 @@ public class Player {
 
 	public void addDevelopmentCard(String idDevCard, int gameid) {
 
-		DevelopmentCard newDevCard = conn.getDevelopmentCard(idDevCard, gameid);
+		DevelopmentCard newDevCard = conn.getDevelopmentCard(gameid);
+		handdev.add(newDevCard);
+		String devcardid = newDevCard.getIdDevCard();
+		pd.addDevelopmentCard(game_id, devcardid, player_id, false);
+
+	}
+	public void addDevelopmentCard2(int gameid) {
+
+		DevelopmentCard newDevCard = conn.getDevelopmentCard(gameid);
 		handdev.add(newDevCard);
 		String devcardid = newDevCard.getIdDevCard();
 		pd.addDevelopmentCard(game_id, devcardid, player_id, false);

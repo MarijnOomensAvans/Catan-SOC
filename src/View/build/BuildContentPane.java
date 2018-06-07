@@ -116,6 +116,7 @@ public class BuildContentPane extends JPanel{
             	 pc.getPlayer().removeMatCard("E");
             	 pc.getPlayer().removeMatCard("W");
             	 pc.getPlayer().removeMatCard("G");
+            	 pc.getPlayer().addDevelopmentCard2(pc.getGameid());
             	frame.closeFrame();
             }
         });
