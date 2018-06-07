@@ -4,16 +4,19 @@ import java.util.ArrayList;
 import java.util.Observable;
 
 import Controller.LoginController;
+import DAL.GameManagerDAL;
 import DAL.SpelDAL;
 
 public class SpelModel extends Observable {
 
 	private SpelDAL spelDal;
+	private GameManagerDAL gameManagerDal;
 	private int gameid;
 
 	public SpelModel(int gameid) {
 		this.gameid = gameid;
 		spelDal = new SpelDAL();
+		gameManagerDal = new GameManagerDAL();
 	}
 
 	public ArrayList<PlayerStats> getPlayerStats(int id) {
@@ -47,6 +50,30 @@ public class SpelModel extends Observable {
 			this.notifyObservers();
 			spelDal.removeShouldRefresh(gameid, LoginController.getUsername());
 		}
+	}
+
+	public boolean getFirstTurn() {
+		return gameManagerDal.getFirstTurn(gameid);
+	}
+
+	public int getFirstTurnRound() {
+		// Check welke ronde
+		//gameManagerDal.getFirstTurnRound(int gameid);
+		return 0;
+	}
+
+	public boolean firstTurnConditions() {
+		int round = getFirstTurnRound();
+		if (round == 1) {
+			// Check of 1e ronde condities voldaan zijn
+			return true;
+		}
+		if (round == 2) {
+			// Check of 2e ronde condities voldaan zijn
+			return true;
+		}
+
+		return false;
 	}
 
 }

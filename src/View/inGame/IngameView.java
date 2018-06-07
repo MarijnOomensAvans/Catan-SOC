@@ -36,8 +36,6 @@ import View.setupGame.DrawingPanel;
 @SuppressWarnings("serial")
 public class IngameView extends JPanel implements Observer {
 
-	GameManagerDAL gameManagerDAL = new GameManagerDAL();
-
 	private final int WIDTH = 1500;
 	private final int HEIGHT = 900;
 
@@ -135,8 +133,8 @@ public class IngameView extends JPanel implements Observer {
 
 		playerStats = inGameController.getPlayerStats(gameID);
 		throwDiceButton = new JButton("Gooi Dobbelstenen");
-		if (!gameManagerDAL.getFirstTurn(gameID) && gameManagerDAL.getPlayerIDTurn(gameID) == playerID
-				&& gameManagerDAL.getHasThrown(gameID) == false) {
+		if (!inGameController.getFirstTurn() && inGameController.getTurn(gameID).equals(LoginController.getUsername())
+				&& inGameController.hasRolledDice(gameID)) {
 			throwDiceButton.setEnabled(true);
 		} else {
 			throwDiceButton.setEnabled(false);
@@ -194,11 +192,11 @@ public class IngameView extends JPanel implements Observer {
 		diceButtonPanel.setBorder(border);
 
 		// Get the amount of all types of resources from db
-		////playerStoneCount = inGameController.getPc().getAmountStone(playerID);
-		////playerOreCount = inGameController.getPc().getAmountOre(playerID);
-		////playerWoodCount = inGameController.getPc().getAmountWood(playerID);
-		////playerWoolCount = inGameController.getPc().getAmountWool(playerID);
-		////playerWheatCount = inGameController.getPc().getAmountWheat(playerID);
+		//// playerStoneCount = inGameController.getPc().getAmountStone(playerID);
+		//// playerOreCount = inGameController.getPc().getAmountOre(playerID);
+		//// playerWoodCount = inGameController.getPc().getAmountWood(playerID);
+		//// playerWoolCount = inGameController.getPc().getAmountWool(playerID);
+		//// playerWheatCount = inGameController.getPc().getAmountWheat(playerID);
 
 		boardPanel = new JPanel();
 
@@ -365,8 +363,6 @@ public class IngameView extends JPanel implements Observer {
 		bottomPanel.add(bottomInfoPanel, BorderLayout.CENTER);
 		bottomPanel.add(diceAndButtonPanel, BorderLayout.EAST);
 
-		hasBiggestArmy();
-
 		this.add(leftPanel, BorderLayout.LINE_START);
 		this.add(centerPanel, BorderLayout.CENTER);
 		this.add(rightPanel, BorderLayout.LINE_END);
@@ -473,11 +469,11 @@ public class IngameView extends JPanel implements Observer {
 	}
 
 	public void throwDiceButtonUpdate() {
-		if(!ingameController.hasRolledDice(gameID) && allowedToEnd(gameID)) {
+		if (!ingameController.hasRolledDice(gameID) && allowedToEnd(gameID)) {
 			dieContentPane.enableButton();
 		}
 	}
-	
+
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		uiUpdate();
