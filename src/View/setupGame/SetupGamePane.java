@@ -15,7 +15,7 @@ public class SetupGamePane extends JPanel {
 	public SetupGamePane(LobbyController lc, BoardController bc, int idspel, JButton inviteButton) {
 
 		changePanel = new SetupChangePanel(lc, bc, inviteButton, idspel, this);
-		hexagonPanel = new DrawingPanel(bc, idspel);
+		hexagonPanel = new DrawingPanel(bc, idspel, null);
 
 		hexagonPanel.setBounds(0, 0, 500, 500);
 

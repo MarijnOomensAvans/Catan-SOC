@@ -64,7 +64,7 @@ public class Bank {
 	}
 
 	private void makeDevCards(int gameid) {
-		if (!bd.hasDevCards(gameid)) {
+		{
 			for (int b = 0; b < 25; b++) {
 				devbank.add(new DevelopmentCard(bd, b, gameid));
 			}
@@ -95,7 +95,7 @@ public class Bank {
 		return null;
 	}
 
-	public DevelopmentCard getDevelopmentCard(String devkind) {
+	public DevelopmentCard getDevelopmentCard() {
 		DevelopmentCard returncard = null;
 		Random random = new Random();
 		int i = random.nextInt(devbank.size());
