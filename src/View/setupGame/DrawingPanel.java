@@ -280,5 +280,9 @@ public class DrawingPanel extends JPanel {
 	public void setPlayerController(PlayerController pc) {
 		this.pc = pc;
 	}
+	
+	public void setMayMoveRobber(boolean b) {
+		mayMoveRobber = b;
+	}
 
 }

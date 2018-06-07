@@ -172,11 +172,11 @@ public class PersonDAL {
 		}
 	}
 
-	public void useDevelopmentCard(int idgame, String iddevcard, int idplayer, boolean cardPlayed) {
+	public void useDevelopmentCard(String iddevcard, int idplayer) {
 		Statement stmt = null;
-		String query = "UPDATE spelerontwikkelingskaart SET gespeeld =" + cardPlayed + " WHERE idspel =" + idgame
-				+ " AND idontwikkelingskaart = '" + iddevcard + "' AND idspeler = " + idplayer + "";
-		try {
+		String query = "UPDATE spelerontwikkelingskaart SET gespeeld = 1 WHERE idontwikkelingskaart LIKE '"+ iddevcard+"' AND idspeler = "+ idplayer +" AND gespeeld = 0 LIMIT 1";
+		try
+		{
 			stmt = conn.createStatement();
 			@SuppressWarnings("unused")
 			int i = stmt.executeUpdate(query);

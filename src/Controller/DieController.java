@@ -8,9 +8,11 @@ public class DieController
 	private Die d1;
 	private Die d2;
 	private RobberController rb;
+	private IngameController inGameController;
 	
-	public DieController(int gameID, RobberController rb)
+	public DieController(int gameID, RobberController rb, IngameController inGameController)
 	{
+		this.inGameController = inGameController;
 		this.gameID = gameID;
 		this.rb = rb;
 		d1 = new Die(1, gameID);
@@ -43,6 +45,10 @@ public class DieController
 		
 		return values;
 		
+	}
+
+	public void thrownDice() {
+		inGameController.thrownDice();
 	}
 	
 }

@@ -31,7 +31,7 @@ public class BoardDAL {
 				stmt = conn.createStatement();
 				stmt.executeUpdate(query);
 				stmt.close();
-				this.setRobberPostion(idspel, idtegel);
+				this.setRobberTile(idspel, idtegel);
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());
 			}
@@ -177,13 +177,28 @@ public class BoardDAL {
 
 	// ------------------------------------------------------------------------------------------------------------------------
 	// Set robber position
-	public void setRobberPostion(int idspel, int idtegel) {
+	public void setRobberTile(int gameid, int tile) {
 		Statement stmt = null;
-		String query = "UPDATE spel SET struikrover_idtegel = '" + idtegel + "' WHERE idspel = '" + idspel + "' ";
+		String query = "UPDATE spel SET struikrover_idtegel = '" + tile + "' WHERE idspel = '" + gameid + "' ";
 		try {
 			stmt = conn.createStatement();
 			stmt.executeUpdate(query);
 			stmt.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	public void setRobberPosition(int gameid, int x, int y) {
+		Statement stmt = null;
+		String query = "SELECT idtegel from tegel where idspel = " +gameid+ " AND x = " +x+ " AND y = " +y;
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			rs.next();
+			int tile = rs.getInt(1);
+			stmt.close();
+			setRobberTile(gameid, tile);
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}

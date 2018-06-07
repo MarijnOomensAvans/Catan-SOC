@@ -245,6 +245,39 @@ public class SpelDAL {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		try {
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate("UPDATE spel SET gedobbeld = " + 0 + " WHERE idspel = " + gameid );
+			stmt.close();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public boolean hasRolledDice(int gameid) {
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT gedobbeld FROM spel WHERE idspel = " + gameid);
+			while(rs.next()) {
+				if(rs.getInt(1) == 0) {
+					return false;
+				} else {
+					return true;
+				}
+			}
+			stmt.close();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return false;
+	}
+	
+	public void shouldRefresh(int gameid) {
+		/*try {
+			
+		}*/
 	}
 
 }

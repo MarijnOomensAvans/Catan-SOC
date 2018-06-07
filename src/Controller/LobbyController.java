@@ -96,7 +96,7 @@ public class LobbyController {
 		frame.dispose();	
 		bc.generateBoard();
 		int playerID = Integer.parseInt(lobbyDAL.getPlayerID(gameID));
-		inGameController = new IngameController(gameID, playerID, gameFrame, bc);
+		inGameController = new IngameController(gameID, playerID, bc);
 	}
 	
 	public void createInvitation(String username, int gameid, int volgnr) {
