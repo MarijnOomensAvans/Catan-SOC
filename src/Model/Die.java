@@ -31,6 +31,6 @@ public class Die
 	{	//return last rolled value
 		int storedDie;
 		storedDie = dieDAL.getDie(this.id);
-		return 1;
+		return storedDie;
 	}
 }

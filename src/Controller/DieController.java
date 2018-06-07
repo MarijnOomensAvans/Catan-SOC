@@ -84,9 +84,9 @@ public class DieController
 							pd.addMaterialCard(gameID, cardid, ids.get(i));
 							
 					}else if(bc.getBuildingplayer(x,y-1,ids.get(i)) != 0) {
-						//MaterialCard card =bct.getMaterialCard(source, ids.get(i));
-						//String cardid =card.getIdCard();
-						pd.addMaterialCard(gameID, "w04", ids.get(i));
+						MaterialCard card =bct.getMaterialCard(source, ids.get(i));
+						String cardid =card.getIdCard();
+						pd.addMaterialCard(gameID, cardid, ids.get(i));
 				}
 					}
 			}else if(diceResult == 3) {
