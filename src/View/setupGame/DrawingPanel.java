@@ -263,4 +263,10 @@ public class DrawingPanel extends JPanel {
 		this.mayBuild = mayBuild;
 	}
 
+	public void setMayMoveRobber(boolean mayMoveRobber) {
+		this.mayMoveRobber = mayMoveRobber;
+	}
+	
+	
+
 }
