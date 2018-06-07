@@ -26,6 +26,9 @@ public class PlayerController {
 	public Player getPlayer() {
 		return player;
 	}
+	public int getGameid() {
+		return this.gameID;
+	}
 
 	public MaterialCard getMaterialCard(String kind, int playerid) {
 		MaterialCard card = bc.getMaterialCard(kind, playerid);
@@ -37,8 +40,8 @@ public class PlayerController {
 
 	}
 
-	public DevelopmentCard getDevelopmentCard(String iddevcard, int gameid) {
-		DevelopmentCard devcard = bc.getDevelopmentCard(iddevcard, gameid);
+	public DevelopmentCard getDevelopmentCard(int gameid) {
+		DevelopmentCard devcard = bc.getDevelopmentCard(gameid);
 		return devcard;
 	}
 //	public void giveDevCardPlayer(int playerid, int gameid) {
