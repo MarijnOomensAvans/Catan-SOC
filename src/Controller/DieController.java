@@ -15,9 +15,7 @@ public class DieController
 		this.rb = rb;
 		d1 = new Die(1, gameID);
 		d2 = new Die(2, gameID);
-		
-		//DieGUI dieGUI = new DieGUI(this);
-		//dieGUI.create();	
+
 	}
 	
 	public int[] rollDice() 
