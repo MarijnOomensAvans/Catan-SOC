@@ -102,10 +102,10 @@ public class TradeAcceptPane extends JPanel implements Observer {
 
 		try {
 			myBufferedImage1 = ImageIO.read(ClassLoader.getSystemResourceAsStream(stone));
-			myBufferedImage2 = ImageIO.read(ClassLoader.getSystemResourceAsStream(ore));
-			myBufferedImage3 = ImageIO.read(ClassLoader.getSystemResourceAsStream(wood));
-			myBufferedImage4 = ImageIO.read(ClassLoader.getSystemResourceAsStream(wool));
-			myBufferedImage5 = ImageIO.read(ClassLoader.getSystemResourceAsStream(wheat));
+			myBufferedImage2 = ImageIO.read(ClassLoader.getSystemResourceAsStream(wool));
+			myBufferedImage3 = ImageIO.read(ClassLoader.getSystemResourceAsStream(ore));
+			myBufferedImage4 = ImageIO.read(ClassLoader.getSystemResourceAsStream(wheat));
+			myBufferedImage5 = ImageIO.read(ClassLoader.getSystemResourceAsStream(wood));
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}

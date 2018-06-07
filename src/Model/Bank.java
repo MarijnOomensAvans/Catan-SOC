@@ -117,7 +117,7 @@ public class Bank {
 		for (int i = 0; i < cardkinds.size(); i++) {
 
 			String cardid = getMaterialCardId(cardkinds.get(i));
-			bd.trade(playerid, cardid);
+			bd.trade(playerid, cardid, gameID);
 		}
 
 	}

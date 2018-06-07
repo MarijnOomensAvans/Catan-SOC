@@ -39,6 +39,7 @@ public class IngameController {
 		chatController = new ChatController(gameid, playerID);
 		this.pc = new PlayerController(playerID, gameid, bct, pd);
 		dp = new DrawingPanel(bc, gameid);
+		dp.setIngameController(this);
 		dp.setPlayerController(pc);
 		rb.setDrawingPanel(dp);
 		gameFrame = new InGameFrame(bc, gameid, dp, playerID, this, pc, chatController, dieController);
@@ -119,5 +120,9 @@ public class IngameController {
 	
 	public void buildStreet() {
 		dp.setBuild(true, "Street");
+	}
+	
+	public int getBuildingCount() {
+		return spelModel.getBuildingCount();
 	}
 }
