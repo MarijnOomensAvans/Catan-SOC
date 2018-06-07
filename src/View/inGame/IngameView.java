@@ -127,10 +127,14 @@ public class IngameView extends JPanel implements Observer {
 		endTurnButton = new JButton("Beurt beëindigen");
 		endTurnButton.setEnabled(false);
 		endTurnButton.addActionListener(e -> {
-			inGameController.setPlayerTurn(gameID, nextPlayerTurn(gameID));
+			if(ingameController.isSecondRound()) {
+				ingameController.setPlayerTurn(gameID, reversedPlayerTurn(gameID));
+			} else {
+				ingameController.setPlayerTurn(gameID, nextPlayerTurn(gameID));
+			}
 			endTurnButton.setEnabled(false);
 			playerTurnUpdate();
-			inGameController.shouldRefresh(gameID);
+			ingameController.shouldRefresh(gameID);
 
 		});
 

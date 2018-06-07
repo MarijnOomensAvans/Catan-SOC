@@ -133,4 +133,8 @@ public class IngameController {
 	public void setSecondRound(boolean b) {
 		spelModel.setSecondRound(b);
 	}
+	
+	public boolean isSecondRound() {
+		return spelModel.isSecondRound();
+	}
 }
