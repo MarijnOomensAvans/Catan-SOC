@@ -8,8 +8,8 @@ import View.setupGame.DrawingPanel;
 public class DevelopmentGui extends JFrame {
 	
 	
-	public DevelopmentGui(PlayerController playerController,DevelopmentContentPane dcp,int playerid, int gameid){
-		
+	public DevelopmentGui(PlayerController playerController,int playerid, int gameid, DrawingPanel dp){
+		DevelopmentContentPane dcp = new DevelopmentContentPane(playerController, gameid, dp, this);
 
 		
 		setContentPane(dcp);
@@ -19,4 +19,5 @@ public class DevelopmentGui extends JFrame {
 		this.pack();
 		setLocationRelativeTo(null);
 	}
+	
 }

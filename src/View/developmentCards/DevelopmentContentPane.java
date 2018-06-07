@@ -64,7 +64,7 @@ private BufferedImage myBufferedImage7;
 private BufferedImage myBufferedImage8;
 private BufferedImage myBufferedImage9;
 		
-		public DevelopmentContentPane(PlayerController pc, int playerid, DrawingPanel dp){
+		public DevelopmentContentPane(PlayerController pc, int playerid, DrawingPanel dp, DevelopmentGui dgui){
 			
 			this.setLayout(null);
 			bibliotheek = "bibliotheek.jpg";
@@ -196,8 +196,8 @@ private BufferedImage myBufferedImage9;
 			public void actionPerformed(ActionEvent e) {
 				if(pc.getAmountStratenbouw(playerid)>= 1) {
 				pc.useStratenbouw(playerid);
-				dp.setBuild(true, "Street");
-				
+				dp.setBuildDev(true, "Street");
+				dgui.dispose();
 				}
 			}
 		});
@@ -207,6 +207,7 @@ private BufferedImage myBufferedImage9;
 			public void actionPerformed(ActionEvent e) {
 				if(pc.getAmountMonopolie(playerid)>= 1) {
 				pc.useMonopolie(playerid);
+				dgui.dispose();
 				}
 			}
 		});
@@ -215,6 +216,9 @@ private BufferedImage myBufferedImage9;
 			public void actionPerformed(ActionEvent e) {
 				if(pc.getAmountRidder(playerid)>= 1) {
 				pc.useRidder(playerid);
+				dgui.dispose();
+
+				
 				}
 			}
 		});
@@ -223,6 +227,7 @@ private BufferedImage myBufferedImage9;
 			public void actionPerformed(ActionEvent e) {
 				if(pc.getAmountUitvinding(playerid)>= 1) {
 				pc.useUitvinding(playerid);
+				dgui.dispose();
 				}
 			}
 		});
