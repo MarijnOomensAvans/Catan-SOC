@@ -31,6 +31,8 @@ public class IngameController {
 		this.rb = new RobberController();
 		this.dieController = new DieController(gameid, rb, this);
 		spelModel = new SpelModel(gameid);
+		Thread thread = new Thread(new GameUpdateController(spelModel));
+		thread.start();
 		bct = new BankController(gameid);
 		pd = new PersonDAL();
 		chatController = new ChatController(gameid, playerID);
@@ -57,9 +59,6 @@ public class IngameController {
 	public void openTrade() {
 
 		new TradeController(playerID, gameid, pd, pc.getPlayer(), pc, bct);
-
-		// TODO Auto-generated method stub
-
 	}
 
 	public void openDevcard() {
