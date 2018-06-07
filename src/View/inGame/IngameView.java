@@ -104,6 +104,11 @@ public class IngameView extends JPanel {
 		this.dieController = dieController;
 		playerStats = inGameController.getPlayerStats(gameID);
 		throwDiceButton = new JButton("Gooi Dobbelstenen");
+		if(hasRolledDice) {
+			endTurnButton.setEnabled(true);
+		}else {
+			endTurnButton.setEnabled(false);
+		}
 		if (gameManagerDAL.getFirstTurn(gameID) && gameManagerDAL.getPlayerIDTurn(gameID) == playerID
 				&& gameManagerDAL.getHasThrown(gameID) == false) {
 			throwDiceButton.setEnabled(true);
