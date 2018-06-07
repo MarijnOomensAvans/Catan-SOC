@@ -81,8 +81,8 @@ public class IngameController implements Runnable {
 		spelModel.setPlayerTurn(gameid, username);
 	}
 
-	public void shouldRefresh(int gameID) {
-		spelModel.shouldRefresh(gameID);
+	public void shouldRefresh() {
+		spelModel.shouldRefresh();
 	}
 
 	public void update() {
@@ -120,6 +120,7 @@ public class IngameController implements Runnable {
 
 	public void thrownDice() {
 		gameFrame.nextTurnButtonUpdate();
+		shouldRefresh();
 	}
 
 }

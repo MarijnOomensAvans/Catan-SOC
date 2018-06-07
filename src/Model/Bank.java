@@ -15,7 +15,7 @@ public class Bank {
 	public Bank(BankDAL bd, int gameID) {
 		this.bd = bd;
 		this.gameID = gameID;
-		makeMaterialCards(gameID);
+		makeCards();
 	}
 	
 	public void makeCards() {
