@@ -23,6 +23,7 @@ public class IngameController {
 	private DieController dieController;
 	private RobberController rb;
 	private InGameFrame gameFrame;
+	private DrawingPanel dp;
 
 	public IngameController(int gameid, int playerID, BoardController bc) {
 		this.gameid = gameid;
@@ -36,7 +37,7 @@ public class IngameController {
 		bct = new BankController(gameid);
 		pd = new PersonDAL();
 		chatController = new ChatController(gameid, playerID);
-		DrawingPanel dp = new DrawingPanel(bc, gameid);
+		dp = new DrawingPanel(bc, gameid);
 		rb.setDrawingPanel(dp);
 		this.pc = new PlayerController(playerID, gameid, bct, pd);
 		gameFrame = new InGameFrame(bc, gameid, dp, playerID, this, pc, chatController, dieController);
@@ -62,7 +63,7 @@ public class IngameController {
 	}
 
 	public void openDevcard() {
-		DevelopmentContentPane dcp = new DevelopmentContentPane(pc, playerID);
+		DevelopmentContentPane dcp = new DevelopmentContentPane(pc, playerID,dp );
 		new DevelopmentGui(pc, dcp, gameid, playerID);
 	}
 
