@@ -280,12 +280,12 @@ public class BoardDAL {
 		int i = 0;
 		try {
 			Statement stmt = conn.createStatement();
-			String query = "SELECT idspeler FROM tegel WHERE x_van = " + x + " AND y_van =" + y+" AND idspeler = " + idspeler;
+			String query = "SELECT idspeler FROM spelerstuk WHERE x_van = " + x + " AND y_van =" + y+" AND idspeler = " + idspeler;
 			ResultSet rs = stmt.executeQuery(query);
 			rs.next();
 			i = rs.getInt(1);
 		} catch (SQLException e) {
-			e.printStackTrace();
+		
 		}
 		return i;
 		

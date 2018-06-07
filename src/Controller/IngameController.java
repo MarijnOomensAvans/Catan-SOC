@@ -30,12 +30,12 @@ public class IngameController {
 		this.playerID = playerID;
 		this.bc = bc;
 		this.rb = new RobberController();
-		this.dieController = new DieController(gameid, rb, this, bc, bct, pd);
-		spelModel = new SpelModel(gameid);
+		spelModel = new SpelModel(gameid, this);
 		Thread thread = new Thread(new GameUpdateController(spelModel));
 		thread.start();
 		bct = new BankController(gameid);
 		pd = new PersonDAL();
+		this.dieController = new DieController(gameid, rb, this, bc, bct, pd);
 		chatController = new ChatController(gameid, playerID);
 		this.pc = new PlayerController(playerID, gameid, bct, pd);
 		dp = new DrawingPanel(bc, gameid);
@@ -68,8 +68,8 @@ public class IngameController {
 	}
 
 	public void openDevcard() {
-		DevelopmentContentPane dcp = new DevelopmentContentPane(pc, playerID, dp);
-		new DevelopmentGui(pc, dcp, gameid, playerID);
+//		DevelopmentContentPane dcp = new DevelopmentContentPane(pc, playerID, dp);
+		new DevelopmentGui(pc, gameid, playerID, dp);
 	}
 
 	public void setPlayerTurn(int gameid, String username) {
@@ -103,5 +103,21 @@ public class IngameController {
 		ArrayList<Integer> ids = new ArrayList<Integer>();
 		ids =pd.getIds(gameID2);
 		return ids;
+	}
+
+	public boolean getFirstTurn() {
+		return spelModel.getFirstTurn();
+	}
+
+	public void firstTurnCheck() {
+		spelModel.firstTurnCheck();
+	}
+	
+	public void buildVillage() {
+		dp.setBuild(true, "Village");
+	}
+	
+	public void buildStreet() {
+		dp.setBuild(true, "Street");
 	}
 }

@@ -339,4 +339,17 @@ public class PlayerController {
 	public void updateHand() {
 		player.updateHand();
 	}
+
+
+	
+	public int getCoordX(String pieceID) {
+		return db.getCoordX(this.playerID, pieceID);
+		
+	}
+	
+	public int getCoordY(String x) {
+		return db.getCoordX(this.playerID, x);
+		
+	}
+	
 }

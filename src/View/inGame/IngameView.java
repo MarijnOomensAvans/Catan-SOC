@@ -36,8 +36,6 @@ import View.setupGame.DrawingPanel;
 @SuppressWarnings("serial")
 public class IngameView extends JPanel implements Observer {
 
-	GameManagerDAL gameManagerDAL = new GameManagerDAL();
-
 	private final int WIDTH = 1500;
 	private final int HEIGHT = 900;
 
@@ -139,8 +137,8 @@ public class IngameView extends JPanel implements Observer {
 		playerStats = inGameController.getPlayerStats(gameID);
 		
 		throwDiceButton = new JButton("Gooi Dobbelstenen");
-		if (!gameManagerDAL.getFirstTurn(gameID) && gameManagerDAL.getPlayerIDTurn(gameID) == playerID
-				&& gameManagerDAL.getHasThrown(gameID) == false) {
+		if (!inGameController.getFirstTurn() && inGameController.getTurn(gameID).equals(LoginController.getUsername())
+				&& inGameController.hasRolledDice(gameID)) {
 			throwDiceButton.setEnabled(true);
 		} else {
 			throwDiceButton.setEnabled(false);
@@ -197,7 +195,6 @@ public class IngameView extends JPanel implements Observer {
 		dieContentPane.setBorder(border);
 		diceButtonPanel.setBorder(border);
 
-		//Get the amount of all types of resources from db
 		playerStoneCount = inGameController.getPc().getAmountStone(playerID);
 		playerOreCount = inGameController.getPc().getAmountOre(playerID);
 		playerWoodCount = inGameController.getPc().getAmountWood(playerID);
@@ -377,6 +374,12 @@ public class IngameView extends JPanel implements Observer {
 		this.add(bottomPanel, BorderLayout.PAGE_END);
 
 		uiUpdate();
+		
+		firstTurnCheck();
+	}
+
+	private void firstTurnCheck() {
+		ingameController.firstTurnCheck();
 	}
 
 	public void getCards() {
@@ -486,11 +489,11 @@ public class IngameView extends JPanel implements Observer {
 	}
 
 	public void throwDiceButtonUpdate() {
-		if(!ingameController.hasRolledDice(gameID) && allowedToEnd(gameID)) {
+		if (!ingameController.hasRolledDice(gameID) && allowedToEnd(gameID)) {
 			dieContentPane.enableButton();
 		}
 	}
-	
+
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		uiUpdate();
