@@ -10,9 +10,8 @@ public class TradeOtherPlayers {
 	private PersonDAL pd;
 	private TradeDAL td;
 	
-	public TradeOtherPlayers(PersonDAL pd, TradeDAL td) {
+	public TradeOtherPlayers(PersonDAL pd) {
 		this.pd = pd;
-		this.td = td;
 
 	}
 

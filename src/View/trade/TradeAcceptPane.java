@@ -75,7 +75,6 @@ public class TradeAcceptPane extends JPanel implements Observer {
 
 	public TradeAcceptPane(TradeController tc, int playerid) {
 		this.tc = tc;
-		this.tc.setRunthread(true);
 		this.setLayout(null);
 		
 			stone = "baksteen.jpg";
@@ -186,7 +185,6 @@ public class TradeAcceptPane extends JPanel implements Observer {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				tc.setRunthread(false);
 				tc.createOffer(playerid, stoneDemandCounter, woolDemandCounter, oreDemandCounter, wheatDemandCounter, woodDemandCounter, stoneOfferCounter, woolOfferCounter, oreOfferCounter, wheatOfferCounter, woodOfferCounter, true);
 				tc.close();
 			}
@@ -196,7 +194,6 @@ public class TradeAcceptPane extends JPanel implements Observer {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				tc.setRunthread(false);
 				tc.createOffer(playerid, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false);
 				tc.close();
 			}
@@ -206,7 +203,6 @@ public class TradeAcceptPane extends JPanel implements Observer {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				tc.setRunthread(false);
 				tc.switchCounterOffer();
 			}
 
