@@ -22,8 +22,9 @@ public class IngameController {
 	private ChatController chatController;
 	private DieController dieController;
 	private RobberController rb;
+	private InGameFrame gameFrame;
 
-	public IngameController(int gameid, int playerID, InGameFrame gameFrame, BoardController bc) {
+	public IngameController(int gameid, int playerID, BoardController bc) {
 		this.gameid = gameid;
 		this.playerID = playerID;
 		this.bc = bc;
@@ -66,5 +67,9 @@ public class IngameController {
 	
 	public void setPlayerTurn(int gameid, String username) {
 		spelModel.setPlayerTurn(gameid, username);
+	}
+	
+	public void update() {
+		gameFrame.update();
 	}
 }
