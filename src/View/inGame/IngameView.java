@@ -61,13 +61,8 @@ public class IngameView extends JPanel {
 	private Border border;
 
 	public IngameView(BoardController bc, int gameID, DrawingPanel inGameBoard, int playerID,
-<<<<<<< HEAD
-			IngameController inGameController, PlayerController pc, ChatController chatController) {
-
-=======
-			IngameController inGameController, PlayerController pc, ChatController chatController, DieController dieController) {
-		
->>>>>>> 125dd06826c9a66b8c6e11267cb637b95c5e7094
+			IngameController inGameController, PlayerController pc, ChatController chatController,
+			DieController dieController) {
 		this.chatController = chatController;
 		this.gameID = gameID;
 		this.ingameController = inGameController;
@@ -83,7 +78,7 @@ public class IngameView extends JPanel {
 		border = BorderFactory.createLineBorder(Color.BLACK, 1);
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		setLayout(new BorderLayout());
-		
+
 		DieContentPane diceViewPanel = new DieContentPane(dieController, throwDiceButton);
 
 		chatOutput = chatController.getCog();
@@ -152,7 +147,7 @@ public class IngameView extends JPanel {
 		});
 		if (allowedToEnd(gameID)) {
 			endTurnButton.addActionListener(e -> {
-				
+
 			});
 		}
 
