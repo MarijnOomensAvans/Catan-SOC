@@ -95,12 +95,28 @@ public class PlayerController {
 	public boolean hasWheatCards(int amount) {
 		return player.hasWheatCard(amount);
 	}
+	
 
 
 	public void tradeCards(int otherplayerid, ArrayList<Integer> offer, Player player) {
 		player.updateCards(otherplayerid,offer);
 
 		
+	}
+	public void useRidder(int playerid) {
+		db.useDevelopmentCard("___r", playerid);
+	}
+
+	public void useMonopolie(int playerid) {
+		db.useDevelopmentCard("___m", playerid);
+		
+	}
+
+	public void useStratenbouw(int playerid) {
+		db.useDevelopmentCard("___s", playerid);
+	}
+	public void useUitvinding(int playerid) {
+		db.useDevelopmentCard("___u", playerid);
 	}
 
 	public String getMaterialCards(int i) {
