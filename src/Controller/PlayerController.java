@@ -345,8 +345,16 @@ public class PlayerController {
 	}
 
 	public boolean checkVillage(String test, String hlPoint) {
-		
+		String[] split = test.split(",");
+		String point1 = db.hasVillage(playerID, Integer.parseInt(split[0]),Integer.parseInt(split[1]));
+		split = hlPoint.split(",");
+		String point2 = db.hasVillage(playerID, Integer.parseInt(split[0]),Integer.parseInt(split[1]));
+		if(point1 != "" || point2 != "") {
+			return true;
+		}
+		else {
 		return false;
+		}
 	}
 	
 }
