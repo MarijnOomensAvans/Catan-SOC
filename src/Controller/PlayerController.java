@@ -347,8 +347,8 @@ public class PlayerController {
 		
 	}
 	
-	public int getCoordY(String pieceID) {
-		return db.getCoordX(this.playerID, pieceID);
+	public int getCoordY(String x) {
+		return db.getCoordX(this.playerID, x);
 		
 	}
 	

@@ -132,10 +132,10 @@ public class BankDAL {
 
 	}
 
-	public void trade(int playerid, String cardId) {
+	public void trade(int playerid, String cardId, int gameid) {
 		Statement stmt = null;
 		String query = "UPDATE spelergrondstofkaart SET idspeler = " + playerid + " WHERE idgrondstofkaart = '" + cardId
-				+ "'";
+				+ "' AND idspel = " +gameid;
 
 		try {
 			stmt = conn.createStatement();
@@ -149,10 +149,10 @@ public class BankDAL {
 
 	}
 
-	public void deleteCards(int playerid2, String cardid) {
+	public void deleteCards(int playerid2, String cardid, int gameid) {
 		Statement stmt = null;
 		String query = "UPDATE spelergrondstofkaart SET idspeler = null WHERE idgrondstofkaart = '" + cardid + "'"
-				+ " AND idspeler = " + playerid2;
+				+ " AND idspeler = " + playerid2 + " AND idspel = " + gameid;
 
 		try {
 			stmt = conn.createStatement();
