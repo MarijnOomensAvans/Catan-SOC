@@ -47,8 +47,6 @@ public class DieController
 		
 	}
 
-	public void thrownDice() {
-		inGameController.thrownDice();
-	}
+
 	
 }

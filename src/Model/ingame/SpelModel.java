@@ -33,7 +33,7 @@ public class SpelModel extends Observable {
 		spelDal.setPlayerTurn(gameid, username);
 	}
 
-	public void shouldRefresh() {
+	public void shouldRefresh(int gameid) {
 		spelDal.shouldRefresh(gameid);
 	}
 

@@ -129,7 +129,7 @@ public class IngameView extends JPanel implements Observer {
 			inGameController.setPlayerTurn(gameID, nextPlayerTurn(gameID));
 			endTurnButton.setEnabled(false);
 			playerTurnUpdate();
-			inGameController.shouldRefresh();
+			inGameController.shouldRefresh(gameID);
 
 		});
 
@@ -194,11 +194,11 @@ public class IngameView extends JPanel implements Observer {
 		diceButtonPanel.setBorder(border);
 
 		// Get the amount of all types of resources from db
-		playerStoneCount = inGameController.getPc().getAmountStone(playerID);
-		playerOreCount = inGameController.getPc().getAmountOre(playerID);
-		playerWoodCount = inGameController.getPc().getAmountWood(playerID);
-		playerWoolCount = inGameController.getPc().getAmountWool(playerID);
-		playerWheatCount = inGameController.getPc().getAmountWheat(playerID);
+		////playerStoneCount = inGameController.getPc().getAmountStone(playerID);
+		////playerOreCount = inGameController.getPc().getAmountOre(playerID);
+		////playerWoodCount = inGameController.getPc().getAmountWood(playerID);
+		////playerWoolCount = inGameController.getPc().getAmountWool(playerID);
+		////playerWheatCount = inGameController.getPc().getAmountWheat(playerID);
 
 		boardPanel = new JPanel();
 

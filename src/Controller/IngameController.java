@@ -70,13 +70,11 @@ public class IngameController {
 		spelModel.setPlayerTurn(gameid, username);
 	}
 
-/*	public void shouldRefresh(int gameID) {
+	public void shouldRefresh(int gameID) {
 		spelModel.shouldRefresh(gameID);
-	}*/
-
-	public void update() {
-		gameFrame.update();
 	}
+
+
 	
 	public boolean hasRolledDice(int gameid) {
 		return spelModel.hasRolledDice(gameid);
