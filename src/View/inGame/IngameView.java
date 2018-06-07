@@ -14,6 +14,7 @@ import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
@@ -32,6 +33,8 @@ import View.chat.ChatContentPane;
 import View.chat.Chatoutputgui;
 import View.dice.DieContentPane;
 import View.setupGame.DrawingPanel;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 @SuppressWarnings("serial")
 public class IngameView extends JPanel implements Observer {
@@ -239,7 +242,6 @@ public class IngameView extends JPanel implements Observer {
 		playersAndCardsLabel = new JLabel("Spelers en kaarten: ");
 		gameTurnLabel = new JLabel("Ronde: ");
 		largestArmyLabel = new JLabel("Grootste riddermacht: ");
-		nameBiggestArmyLabel = new JLabel("jggfuktfuktctguc");
 		longestRouteLabel = new JLabel("Langste handelsroute: ");
 		nameLongestRoutelabel = new JLabel(inGameController.getLongestRoute(gameID));
 		ownPointLabel = new JLabel("Eigen punten: ");
@@ -375,7 +377,6 @@ public class IngameView extends JPanel implements Observer {
 		this.add(bottomPanel, BorderLayout.PAGE_END);
 
 		uiUpdate();
-
 		firstTurnCheck();
 	}
 
@@ -435,6 +436,23 @@ public class IngameView extends JPanel implements Observer {
 		}
 		return ownPoint;
 	}
+	
+	public void winnerBox() {
+		JOptionPane.showMessageDialog(null, weGotAWinner() + " heeft gewonnen", "Game beëindigd", JOptionPane.INFORMATION_MESSAGE);
+		ingameController.setAllPlayersCanceled(gameID);   
+	}
+	
+	public String weGotAWinner() {
+		int tenPoints = 10;
+		String winner = "";
+		for(int i = 0; i < playerStats.size(); i++) {
+			if(playerStats.get(i).getPrivatePoints() == tenPoints) {
+				winner = playerStats.get(i).getUsername();
+			}
+		}
+		return winner;
+	}
+	
 
 	public boolean allowedToEnd(int id) {
 		boolean allowed = false;
@@ -445,6 +463,7 @@ public class IngameView extends JPanel implements Observer {
 		}
 		return allowed;
 	}
+	
 
 	public String nextPlayerTurn(int id) {
 		String turnPlayer = "";

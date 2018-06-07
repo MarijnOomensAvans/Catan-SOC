@@ -299,6 +299,16 @@ public class SpelDAL {
 			e.printStackTrace();
 		}
 	}
+	
+	public void setPlayersCanceld(int gameid) {
+		try {
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate("UPDATE speler SET speelstatus = 'afgebroken' WHERE idspel =" + gameid+")");
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public boolean hasShouldRefresh(int gameid, String username) {
 		boolean value = false;

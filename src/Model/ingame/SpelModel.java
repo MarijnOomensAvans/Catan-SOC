@@ -108,4 +108,8 @@ public class SpelModel extends Observable {
 	public void setSecondRound(boolean secondRound) {
 		this.secondRound = secondRound;
 	}
+	
+	public void setAllPlayersCanceld(int gameid) {
+		spelDal.setPlayersCanceld(gameid);
+	}
 }
