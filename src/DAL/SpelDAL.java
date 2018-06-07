@@ -277,11 +277,20 @@ public class SpelDAL {
 	public void shouldRefresh(int gameid) {
 		try {
 			Statement stmt = conn.createStatement();
-			stmt.executeUpdate("UPDATE speler SET shouldrefresh WHERE idspel = " + gameid);
+			stmt.executeUpdate("UPDATE speler SET shouldrefresh = 1 WHERE idspel = " + gameid);
 			stmt.close();
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void removeShouldRefresh(int gameid, String username) {try {
+		Statement stmt = conn.createStatement();
+		stmt.executeUpdate("UPDATE speler SET shouldrefresh = 0 WHERE idspel = " + gameid + " AND username LIKE '" + username + "'");
+		stmt.close();
+	} catch(SQLException e) {
+		e.printStackTrace();
+	}
 	}
 	
 	public boolean hasShouldRefresh(int gameid, String username) {
