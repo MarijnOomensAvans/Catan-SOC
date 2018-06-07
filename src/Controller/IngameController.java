@@ -38,6 +38,7 @@ public class IngameController {
 		rb.setDrawingPanel(dp);
 		this.pc = new PlayerController(playerID, gameid, bct, pd);
 		gameFrame = new InGameFrame(bc, gameid, dp, playerID, this, pc, chatController, dieController);
+		spelModel.addObserver(gameFrame.getPane());
 	}
 
 	public ArrayList<PlayerStats> getPlayerStats(int gameId) {
