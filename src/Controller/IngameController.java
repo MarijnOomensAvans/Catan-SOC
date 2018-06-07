@@ -20,18 +20,23 @@ public class IngameController {
 	private int playerID;
 	private BoardController bc;
 	private ChatController chatController;
+	private DieController dieController;
+	private RobberController rb;
+	private InGameFrame gameFrame;
 
-	public IngameController(int gameid, int playerID, InGameFrame gameFrame, BoardController bc) {
+	public IngameController(int gameid, int playerID, BoardController bc) {
 		this.gameid = gameid;
 		this.playerID = playerID;
 		this.bc = bc;
+		this.rb = new RobberController();
+		this.dieController = new DieController(gameid, rb);
 		spelModel = new SpelModel();
 		bct = new BankController(gameid);
 		pd = new PersonDAL();
 		chatController = new ChatController(gameid, playerID);
 		DrawingPanel dp = new DrawingPanel(bc, gameid);
 		this.pc = new PlayerController(playerID, gameid, bct, pd);
-		gameFrame = new InGameFrame(bc, gameid, dp, playerID, this, pc, chatController);
+		gameFrame = new InGameFrame(bc, gameid, dp, playerID, this, pc, chatController, dieController);
 	}
 
 	public ArrayList<PlayerStats> getPlayerStats(int gameId) {
@@ -58,5 +63,17 @@ public class IngameController {
 	public void openDevcard() {
 		DevelopmentContentPane dcp = new DevelopmentContentPane(pc, playerID);
 		new DevelopmentGui(pc, dcp, gameid, playerID);
+	}
+
+	public void setPlayerTurn(int gameid, String username) {
+		spelModel.setPlayerTurn(gameid, username);
+	}
+/*
+	public void shouldRefresh(int gameID) {
+		spelModel.shouldRefresh(gameID);
+	}*/
+
+	public void update() {
+		gameFrame.update();
 	}
 }

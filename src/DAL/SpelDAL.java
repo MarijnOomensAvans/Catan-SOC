@@ -236,5 +236,23 @@ public class SpelDAL {
 
 		return devPoints;
 	}
+	
+	public void setPlayerTurn(int gameid, String username) {
+		try {
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate("UPDATE spel SET beurt_idspeler = " + this.getPlayerId(gameid, username) + " WHERE idspel = " + gameid);
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate("UPDATE spel SET gedobbeld = " + 0 + " WHERE idspel = " + gameid );
+			stmt.close();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 }

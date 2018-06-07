@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import Controller.BoardController;
 import Model.board.ClickPoints;
 import Model.board.Location;
+import Model.board.Tile;
 import View.board.BoardColours;
 import View.board.Hexagon;
 import View.board.Robber;
@@ -28,9 +29,11 @@ public class DrawingPanel extends JPanel{
 	private String hlPoint;
 	
 	private ArrayList<Location> keys;
+	private ArrayList<Tile> keystiles;
 	
 	private Robber robber;
 	private boolean mayBuild = false;
+	private boolean mayMoveRobber = true;
 	
 // making 19 rooms for hexagons
 	private Hexagon hexagon1;
@@ -111,7 +114,7 @@ public class DrawingPanel extends JPanel{
 		hexagons.add(hexagon17);
 		hexagons.add(hexagon18);
 		hexagons.add(hexagon19);
-		robber.setBounds(bc.getRobberXPosition(idspel)-12,bc.getRobberYPosition(idspel)-30,25,60);;
+		robber.setBounds(bc.getRobberXPosition(idspel)-45,bc.getRobberYPosition(idspel)-30,25,60);;
 		this.add(robber);
 		
 		setPreferredSize(new Dimension(600,600));
@@ -125,9 +128,15 @@ public class DrawingPanel extends JPanel{
 				if(mayBuild == true) {
 				String test = convertXYfromScreenToKey(e.getX(), e.getY());
 				hlPoint = test;
+				System.out.println(hlPoint);
 				 repaint();
 				}
+				if(mayMoveRobber == true) {
+					String returnString = tileConvertXYfromScreenToKey(e.getX(), e.getY());
+					System.out.println(returnString);
+				}
 			}
+
 		});
 	}
 
@@ -160,20 +169,44 @@ public class DrawingPanel extends JPanel{
 
 	  clickpoints = new ClickPoints();
 	   keys = bc.getLocatieKeys();
+	   keystiles = bc.getLocationTileKeys();
 
         for (int i = 0; i < 54; i++)
 
         {
       	  String key = "" + keys.get(i).getX() + "," + keys.get(i).getY();
-        	clickpoints.addPoint(convertXfromKeyToScreenX(i), convertYfromKeyToScreenY(i), key);
+        	clickpoints.addPoint(convertXfromKeyToScreenX(i), convertYfromKeyToScreenY(i), key, i);
 
+        }
+        for(int x = 0; x < 19; x++) {
+        	String keytile = "" + keystiles.get(x).getX() + "," + keystiles.get(x).getY();
+        	clickpoints.addTilePoint(tileConvertXfromKeyToScreenX(x), tileConvertYfromKeyToScreenY(x), keytile, x);
         }
 
   }
 
 
 
-  private int convertXfromKeyToScreenX(int i)
+  private int tileConvertYfromKeyToScreenY(int x)
+	  {
+
+	        int keyX = keystiles.get(x).getX();
+		    int keyY = keystiles.get(x).getY();
+
+	        return 10 + (((2 * (12 - keyY)) - (10 - keyX)) * 30);
+
+	  }
+
+private int tileConvertXfromKeyToScreenX(int x)
+	  {
+
+	        int keyX = keystiles.get(x).getX();
+
+	        return 50 + ((keyX - 1) * (99 / 2)) + keyX - 2;
+
+	  }
+
+private int convertXfromKeyToScreenX(int i)
 
   {
 
@@ -205,6 +238,10 @@ public class DrawingPanel extends JPanel{
         return clickpoints.getKey(x, y);
 
   }
+  
+	private String tileConvertXYfromScreenToKey(int x, int y) {
+		return clickpoints.getKeyTiles(x, y);
+	}
   
   private void drawPoints(Graphics g) {
 	  Set<Point> points = clickpoints.getPoints();

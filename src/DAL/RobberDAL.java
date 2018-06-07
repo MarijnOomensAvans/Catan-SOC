@@ -15,13 +15,14 @@ public class RobberDAL {
 		conn = MainDAL.getConnection();
 	}
 
-	public void removeHalf(ArrayList<Integer> playerIds) {
+	public void removeHalf(int gameid) {
+		ArrayList<Integer>playerIds = getPlayerids(gameid);
 		Statement stmt = null;
-		String query = "query";
+		String query;
 		Random rand = new Random();
 		int random = 0;
 		int half = 0;
-		String cardId = "";
+		String cardId;
 
 		try {
 			for (int i = 0; i < playerIds.size(); i++) {
@@ -33,16 +34,34 @@ public class RobberDAL {
 						random = rand.nextInt(cards.size());
 						cardId = cards.get(random);
 						query = "UPDATE spelergrondstofkaart SET idspeler = NULL WHERE idspeler = " + playerIds.get(i)
-								+ " AND idgrondstofkaart = '" +cardId+ "'";
+								+ " AND idgrondstofkaart = '" + cardId + "'";
 						stmt = conn.createStatement();
 						stmt.executeUpdate(query);
 						cards.remove(random);
 					}
 				}
 			}
+			stmt.close();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
+	}
+
+	public ArrayList<Integer> getPlayerids(int gameid) {
+		ArrayList<Integer> playerids = new ArrayList<Integer>();
+		Statement stmt = null;
+		String query = "SELECT idspeler FROM speler WHERE idspel = " + gameid;
+
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while(rs.next()) {
+				playerids.add(rs.getInt(1));
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return playerids;
 	}
 
 	public int getHandSize(int playerId) {
@@ -71,10 +90,33 @@ public class RobberDAL {
 			while (rs.next()) {
 				results.add(rs.getString(1));
 			}
+			stmt.close();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
 		return results;
+	}
+
+	public void pickRandomCard(int playerId, int opponentId) {
+		Statement stmt = null;
+		String query;
+		Random rand = new Random();
+		int random = 0;
+		String cardId;
+
+		try {
+			ArrayList<String> cards = getHand(opponentId);
+				random = rand.nextInt(cards.size());
+				cardId = cards.get(random);
+				query = "UPDATE spelergrondstofkaart SET idspeler = " +playerId+ " WHERE idspeler = " + opponentId
+						+ " AND idgrondstofkaart = '" + cardId + "'";
+				stmt = conn.createStatement();
+				stmt.executeUpdate(query);
+				stmt.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+
 	}
 
 }

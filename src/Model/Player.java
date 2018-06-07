@@ -27,7 +27,7 @@ public class Player {
 		setName();
 		setColor();
 		setOrder_number();
-
+		updateHand();
 	}
 
 	public void setName() {
@@ -40,6 +40,13 @@ public class Player {
 
 	public void setOrder_number() {
 		order_number = Integer.parseInt(pd.getorder_number(player_id, game_id));
+	}
+
+	public void updateHand() {
+		for (int i = 0; i < conn.countMaterialCards(); i++) {
+			MaterialCard newCard = conn.checkMaterialCard(conn.getMaterialCards(i));
+			hand.add(newCard);
+		}
 	}
 
 	public void addMaterialCard(String kind, int gameid) {
@@ -69,9 +76,15 @@ public class Player {
 	}
 
 	public void removeDevCard(String idDevCard, int gameid, int playerid) {
+<<<<<<< HEAD
 		for(int i=0; i< handdev.size(); i++) {
 			if(handdev.get(i).getIdDevCard().equals(idDevCard)) {
 				pd.useDevelopmentCard(idDevCard, playerid);
+=======
+		for (int i = 0; i < handdev.size(); i++) {
+			if (handdev.get(i).getIdDevCard().equals(idDevCard)) {
+				pd.useDevelopmentCard(gameid, idDevCard, playerid, true);
+>>>>>>> 0a2bdb7734fd5566d68384762faab7e64b7d9b15
 				handdev.remove(handdev.get(i));
 			}
 		}

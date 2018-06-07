@@ -186,6 +186,10 @@ public class TradeController extends Observable implements Runnable {
 		
 	}
 
+	public TradeResultPane getTrp() {
+		return trp;
+	}
+
 	public void tradeCards(int otherplayerid) {
 		ArrayList<Integer> offer =td.getTradeOffer(otherplayerid);
 		pc.tradeCards(otherplayerid,offer,player);

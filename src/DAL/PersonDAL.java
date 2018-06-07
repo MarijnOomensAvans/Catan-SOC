@@ -253,6 +253,50 @@ public class PersonDAL {
 		}
 		return amount;
 	}
+
+	public String getMaterialCards(int playerid, int i) {
+		ArrayList<String> results = new ArrayList<String>();
+		String returnString = "";
+		Statement stmt = null;
+		String query = "SELECT idgrondstofkaart FROM spelergrondstofkaart WHERE idspeler = "+ playerid + "";
+		try
+		{
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while(rs.next()) {
+				results.add(rs.getString(1));
+			}
+			stmt.close();
+
+		} catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		returnString = results.get(i);
+		return returnString;
+		
+	}
+	
+	public int countMaterialCards(int playerid) {
+		String cardid = "";
+		Statement stmt = null;
+		String query = "SELECT COUNT(idgrondstofkaart) FROM spelergrondstofkaart WHERE idspeler = "+ playerid + "";
+
+		try
+		{
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			rs.next();
+			cardid = rs.getString(1);
+			stmt.close();
+
+		} catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		int returnInt = Integer.parseInt(cardid);
+		return returnInt;
+	}
 	
 	
 
