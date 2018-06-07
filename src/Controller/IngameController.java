@@ -84,4 +84,8 @@ public class IngameController {
 		return spelModel.hasRolledDice(gameid);
 		
 	}
+	
+	public String getLongestRoute(int gameID) {
+		return spelModel.getLongestRoute(gameid);
+	}
 }
