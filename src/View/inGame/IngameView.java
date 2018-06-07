@@ -372,7 +372,7 @@ public class IngameView extends JPanel implements Observer {
 		this.add(rightPanel, BorderLayout.LINE_END);
 		this.add(bottomPanel, BorderLayout.PAGE_END);
 
-		update();
+		uiUpdate();
 	}
 
 	public void getCards() {
@@ -454,10 +454,9 @@ public class IngameView extends JPanel implements Observer {
 	}
 
 	/* UPDATE */
-	public void update() {
+	public void uiUpdate() {
 		dieContentPane.update();
 		playerTurnUpdate();
-		System.out.println(ingameController.getTurn(gameID));
 		this.validate();
 		this.repaint();
 	}
@@ -474,7 +473,7 @@ public class IngameView extends JPanel implements Observer {
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
-		update();
+		uiUpdate();
 	}
 
 }

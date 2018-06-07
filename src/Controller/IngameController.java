@@ -84,10 +84,6 @@ public class IngameController implements Runnable {
 	public void shouldRefresh() {
 		spelModel.shouldRefresh();
 	}
-
-	public void update() {
-		gameFrame.update();
-	}
 	
 	public PlayerController getPc() {
 		return pc;
