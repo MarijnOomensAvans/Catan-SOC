@@ -852,5 +852,19 @@ public class Board {
 	{
 		bdal.setRobberPosition(gameid, x, y);
 	}
+
+	public int getXTile(int number,int gameid) {
+		int i =bdal.getXTile(number, gameid);
+		return i;
+	}
+	public int getYTile(int number,int gameid) {
+		int i =bdal.getYTile(number, gameid);
+		return i;
+	}
+
+	public int getBuildingplayer(int x, int y, Integer idspeler) {
+		int i =bdal.getBuildingplayer(x,y,idspeler);
+		return i;
+	}
 	
 }

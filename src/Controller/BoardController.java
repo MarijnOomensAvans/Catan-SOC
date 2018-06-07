@@ -75,5 +75,18 @@ public class BoardController {
 	public void setRobberTile(int gameid, int x, int y) {
 		board.setRobberTile(gameid, x, y);
 	}
+	public int getXTile(int number, int gameid) {
+		int i =board.getXTile(number,gameid);
+		return i;
+	}
+	public int getYTile(int number, int gameid) {
+		int i =board.getYTile(number,gameid);
+		return i;
+	}
+
+	public int getBuildingplayer(int x, int y, Integer idspeler) {
+		int i =board.getBuildingplayer(x,y,idspeler);
+		return i;
+	}
 
 }
