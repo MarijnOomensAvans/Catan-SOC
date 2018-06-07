@@ -3,38 +3,28 @@ package Controller;
 import java.util.ArrayList;
 
 import DAL.PersonDAL;
-
-import Model.TradeOtherPlayers;
-
-import Model.ingame.PlayerStats;
 import Model.ingame.SpelModel;
+import Model.ingame.PlayerStats;
 import View.developmentCards.DevelopmentContentPane;
 import View.developmentCards.DevelopmentGui;
 import View.inGame.InGameFrame;
 import View.setupGame.DrawingPanel;
-import View.trade.TradeGui;
-import View.trade.TradeOfferPane;
 
-public class IngameController implements Runnable {
+public class IngameController {
 
 	private SpelModel spelModel;
 	private BankController bct;
 	private int gameid;
 	private PersonDAL pd;
 	private PlayerController pc;
-
-
 	private int playerID;
 	private BoardController bc;
 	private ChatController chatController;
 	private DieController dieController;
 	private RobberController rb;
 	private InGameFrame gameFrame;
-	private TradeController tc;
-	private Thread tradeThread;
 
 	public IngameController(int gameid, int playerID, BoardController bc) {
-		tradeThread = new Thread(this);
 		this.gameid = gameid;
 		this.playerID = playerID;
 		this.bc = bc;
@@ -46,11 +36,11 @@ public class IngameController implements Runnable {
 		bct = new BankController(gameid);
 		pd = new PersonDAL();
 		chatController = new ChatController(gameid, playerID);
-		this.pc = new PlayerController(playerID, gameid, bct, pd);
 		DrawingPanel dp = new DrawingPanel(bc, gameid);
 		rb.setDrawingPanel(dp);
-		dp.setPlayerController(pc);
+		this.pc = new PlayerController(playerID, gameid, bct, pd);
 		gameFrame = new InGameFrame(bc, gameid, dp, playerID, this, pc, chatController, dieController);
+		spelModel.addObserver(gameFrame.getPane());
 	}
 
 	public ArrayList<PlayerStats> getPlayerStats(int gameId) {
@@ -68,8 +58,7 @@ public class IngameController implements Runnable {
 
 	public void openTrade() {
 
-		tc =new TradeController(playerID, gameid, pd, pc.getPlayer(), pc, bct, new TradeGui(tc, playerID, new TradeOfferPane(tc, playerID, true), gameid));
-
+		new TradeController(playerID, gameid, pd, pc.getPlayer(), pc, bct);
 	}
 
 	public void openDevcard() {
@@ -81,42 +70,18 @@ public class IngameController implements Runnable {
 		spelModel.setPlayerTurn(gameid, username);
 	}
 
-	public void shouldRefresh() {
-		spelModel.shouldRefresh();
+	public void shouldRefresh(int gameID) {
+		spelModel.shouldRefresh(gameID);
 	}
 	
-	public PlayerController getPc() {
-		return pc;
+	public void thrownDice() {
+		gameFrame.nextTurnButtonUpdate();
+		shouldRefresh(gameid);
 	}
+
+	
 	public boolean hasRolledDice(int gameid) {
 		return spelModel.hasRolledDice(gameid);
 		
 	}
-
-	@Override
-	public void run() {
-		while (true) {
-			try {
-				ArrayList<Integer> otherIds = getOtherid(gameid,playerID);
-				for(int i = 0; i<otherIds.size(); i++)
-				{
-					tc.getLatestTradeOffer(otherIds.get(i));
-				}
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-			}
-		}
-	}
-	public ArrayList<Integer> getOtherid(int gameid, int playerid) {
-		TradeOtherPlayers otherplayers = new TradeOtherPlayers(pd);
-		ArrayList<Integer> id = otherplayers.getOtherid(gameid, playerid);
-		return id;
-	}
-
-
-	public void thrownDice() {
-		gameFrame.nextTurnButtonUpdate();
-		shouldRefresh();
-	}
-
 }

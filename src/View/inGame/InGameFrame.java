@@ -1,5 +1,7 @@
 package View.inGame;
 
+import java.util.Observer;
+
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -53,5 +55,9 @@ public class InGameFrame extends JFrame{
 
 	public void nextTurnButtonUpdate() {
 		pane.nextTurnButtonUpdate();
+	}
+
+	public Observer getPane() {
+		return pane;
 	}
 }

@@ -129,7 +129,7 @@ public class IngameView extends JPanel implements Observer {
 			inGameController.setPlayerTurn(gameID, nextPlayerTurn(gameID));
 			endTurnButton.setEnabled(false);
 			playerTurnUpdate();
-			inGameController.shouldRefresh();
+			inGameController.shouldRefresh(gameID);
 
 		});
 
@@ -194,11 +194,11 @@ public class IngameView extends JPanel implements Observer {
 		diceButtonPanel.setBorder(border);
 
 		// Get the amount of all types of resources from db
-		playerStoneCount = inGameController.getPc().getAmountStone(playerID);
-		playerOreCount = inGameController.getPc().getAmountOre(playerID);
-		playerWoodCount = inGameController.getPc().getAmountWood(playerID);
-		playerWoolCount = inGameController.getPc().getAmountWool(playerID);
-		playerWheatCount = inGameController.getPc().getAmountWheat(playerID);
+		////playerStoneCount = inGameController.getPc().getAmountStone(playerID);
+		////playerOreCount = inGameController.getPc().getAmountOre(playerID);
+		////playerWoodCount = inGameController.getPc().getAmountWood(playerID);
+		////playerWoolCount = inGameController.getPc().getAmountWool(playerID);
+		////playerWheatCount = inGameController.getPc().getAmountWheat(playerID);
 
 		boardPanel = new JPanel();
 
@@ -457,7 +457,8 @@ public class IngameView extends JPanel implements Observer {
 	public void uiUpdate() {
 		dieContentPane.update();
 		playerTurnUpdate();
-		this.validate();
+		throwDiceButtonUpdate();
+		this.revalidate();
 		this.repaint();
 	}
 
@@ -471,6 +472,12 @@ public class IngameView extends JPanel implements Observer {
 		}
 	}
 
+	public void throwDiceButtonUpdate() {
+		if(!ingameController.hasRolledDice(gameID) && allowedToEnd(gameID)) {
+			dieContentPane.enableButton();
+		}
+	}
+	
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		uiUpdate();
