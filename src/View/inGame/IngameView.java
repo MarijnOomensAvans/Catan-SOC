@@ -461,6 +461,21 @@ public class IngameView extends JPanel implements Observer {
 		return turnPlayer;
 	}
 
+	public String reversedPlayerTurn(int id) {
+		String turnPlayer = "";
+		if (playerStats.get(0).getUsername().equals(ingameController.getTurn(id))) {
+			System.out.println("WE ZIJN BIJ VOLGNR 1");
+		} else if (playerStats.get(1).getUsername().equals(ingameController.getTurn(id))) {
+			turnPlayer = playerStats.get(0).getUsername();
+		} else if (playerStats.get(2).getUsername().equals(ingameController.getTurn(id))) {
+			turnPlayer = playerStats.get(1).getUsername();
+		} else if (playerStats.get(3).getUsername().equals(ingameController.getTurn(id))) {
+			turnPlayer = playerStats.get(2).getUsername();
+		}
+
+		return turnPlayer;
+	}
+
 	/* UPDATE */
 	public void uiUpdate() {
 		dieContentPane.update();
@@ -490,10 +505,18 @@ public class IngameView extends JPanel implements Observer {
 					endTurnButton.setEnabled(true);
 				}
 			} else {
-				if (ingameController.getBuildingCount() == 2) {
+				if ((ingameController.getBuildingCount(4) >= 2) && ingameController.getBuildingCount() == 4) {
+					System.out.println("1");
 					endTurnButton.setEnabled(true);
-				} else if((ingameController.getBuildingCount(4) >= 2) && ingameController.getBuildingCount() == 4){
-					endTurnButton.setEnabled(true);
+				} else if((ingameController.getBuildingCount(4) == 2) && ingameController.getBuildingCount() == 2){
+					if(ingameController.getTurn(gameID).equals(playerStats.get(3).getUsername())) {
+						if(ingameController.getBuildingCount(4) == 4) {
+							endTurnButton.setEnabled(true);
+						}
+					} else {
+						System.out.println("2");
+						endTurnButton.setEnabled(true);
+					}
 				}
 			}
 		}
