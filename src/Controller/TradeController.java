@@ -41,7 +41,7 @@ public class TradeController extends Observable {
 		this.gameid = gameid;
 		this.pc = pc;
 		otherIds = pd.getOtherid(gameid, playerid);
-		otherPlayers = new TradeOtherPlayers(pd, td);
+		otherPlayers = new TradeOtherPlayers(pd);
 		this.gui = gui;
 
 	}
@@ -158,9 +158,6 @@ public class TradeController extends Observable {
 		
 	}
 
-	public void setRunthread(boolean runthread) {
-		this.runthread = runthread;
-	}
 
 	public void close() {
 		gui.dispose();

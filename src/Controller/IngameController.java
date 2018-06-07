@@ -3,11 +3,9 @@ package Controller;
 import java.util.ArrayList;
 
 import DAL.PersonDAL;
-<<<<<<< HEAD
-import Model.SpelModel;
+
 import Model.TradeOtherPlayers;
-=======
->>>>>>> 41685cfc084c32ee3f8341bd2dd007055785f555
+
 import Model.ingame.PlayerStats;
 import Model.ingame.SpelModel;
 import View.developmentCards.DevelopmentContentPane;
@@ -99,7 +97,6 @@ public class IngameController implements Runnable {
 		
 	}
 
-<<<<<<< HEAD
 	@Override
 	public void run() {
 		while (true) {
@@ -120,9 +117,9 @@ public class IngameController implements Runnable {
 		return id;
 	}
 
-=======
+
 	public void thrownDice() {
 		gameFrame.nextTurnButtonUpdate();
 	}
->>>>>>> 41685cfc084c32ee3f8341bd2dd007055785f555
+
 }
