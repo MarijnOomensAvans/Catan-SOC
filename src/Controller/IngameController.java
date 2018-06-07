@@ -51,6 +51,7 @@ public class IngameController implements Runnable {
 		rb.setDrawingPanel(dp);
 		dp.setPlayerController(pc);
 		gameFrame = new InGameFrame(bc, gameid, dp, playerID, this, pc, chatController, dieController);
+		spelModel.addObserver(gameFrame.getPane());
 	}
 
 	public ArrayList<PlayerStats> getPlayerStats(int gameId) {
