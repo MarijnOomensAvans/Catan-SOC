@@ -17,6 +17,8 @@ public class IngameController {
 	private int gameid;
 	private PersonDAL pd;
 	private PlayerController pc;
+
+
 	private int playerID;
 	private BoardController bc;
 	private ChatController chatController;
@@ -36,9 +38,10 @@ public class IngameController {
 		bct = new BankController(gameid);
 		pd = new PersonDAL();
 		chatController = new ChatController(gameid, playerID);
+		this.pc = new PlayerController(playerID, gameid, bct, pd);
 		DrawingPanel dp = new DrawingPanel(bc, gameid);
 		rb.setDrawingPanel(dp);
-		this.pc = new PlayerController(playerID, gameid, bct, pd);
+		dp.setPlayerController(pc);
 		gameFrame = new InGameFrame(bc, gameid, dp, playerID, this, pc, chatController, dieController);
 	}
 
@@ -78,6 +81,9 @@ public class IngameController {
 		gameFrame.update();
 	}
 	
+	public PlayerController getPc() {
+		return pc;
+	}
 	public boolean hasRolledDice(int gameid) {
 		return spelModel.hasRolledDice(gameid);
 		
