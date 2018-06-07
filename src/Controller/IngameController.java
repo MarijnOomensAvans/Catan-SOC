@@ -35,6 +35,7 @@ public class IngameController {
 		pd = new PersonDAL();
 		chatController = new ChatController(gameid, playerID);
 		DrawingPanel dp = new DrawingPanel(bc, gameid);
+		rb.setDrawingPanel(dp);
 		this.pc = new PlayerController(playerID, gameid, bct, pd);
 		gameFrame = new InGameFrame(bc, gameid, dp, playerID, this, pc, chatController, dieController);
 	}
