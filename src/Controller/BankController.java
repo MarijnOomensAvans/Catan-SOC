@@ -23,8 +23,6 @@ public class BankController {
 		bd = new BankDAL();
 		bank = new Bank(bd, gameid);
 
-//		bd.checkDevCards(777);
-
 		this.gameid = gameid;
 		
 	}
