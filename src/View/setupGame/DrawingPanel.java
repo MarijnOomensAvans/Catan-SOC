@@ -89,11 +89,8 @@ public class DrawingPanel extends JPanel {
 	ImageIcon street_Red = new ImageIcon(ClassLoader.getSystemResource("street_Red.png"));
 	ImageIcon street_White = new ImageIcon(ClassLoader.getSystemResource("street_White.png"));
 
-<<<<<<< HEAD
 	boolean paint = true;
 
-=======
->>>>>>> 674859275b325d29e12773b84eb7195dabadea47
 	public DrawingPanel(BoardController bc, int idspel) {
 		robber = new Robber();
 		this.setLayout(null);
@@ -180,7 +177,6 @@ public class DrawingPanel extends JPanel {
 						}
 						if (test != null && hlPoint != null && buildingType.equals("Street")) {
 							if (hlPoint != test) {
-<<<<<<< HEAD
 								String[] hlarray = hlPoint.split(",");
 								String[] clarray = test.split(",");
 								int x1 = Integer.parseInt(hlarray[0]);
@@ -192,7 +188,6 @@ public class DrawingPanel extends JPanel {
 									// Log here 
 									if(devCardBuild == false) {
 									mayBuild = false;
-=======
 								if (pc.emptySpace(buildingType, hlPoint)) {
 									String[] hlarray = hlPoint.split(",");
 									String[] clarray = test.split(",");
@@ -215,7 +210,6 @@ public class DrawingPanel extends JPanel {
 										hlPoint = null;
 										repaint();
 										}
->>>>>>> 674859275b325d29e12773b84eb7195dabadea47
 									} else {
 										// Log here
 										mayBuild = false;
@@ -379,7 +373,6 @@ public class DrawingPanel extends JPanel {
 		mayMoveRobber = b;
 	}
 
-<<<<<<< HEAD
 	
 	public void paintBuildings(Graphics g) {
 			String[] buildings = pc.getAllBuildings().split(",");
@@ -391,7 +384,7 @@ public class DrawingPanel extends JPanel {
 				
 				village_Blue.paintIcon(this, g, buildingConvertXfromKeyToScreenX(pc.getCoordX(buildings[x])) + 30,buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[x]),pc.getCoordY(buildings[x])) - 50);
 			}
-=======
+	}
 	public void paintBuildings() {
 		String[] buildings = pc.getAllBuildings().split(",");
 		for (int x = 0; x < buildings.length; x++) {
@@ -400,7 +393,6 @@ public class DrawingPanel extends JPanel {
 
 		}
 		repaint();
->>>>>>> 674859275b325d29e12773b84eb7195dabadea47
 	}
 
 	private int buildingConvertXfromKeyToScreenX(int x)
