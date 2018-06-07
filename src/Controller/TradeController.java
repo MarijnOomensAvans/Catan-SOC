@@ -51,6 +51,8 @@ public class TradeController extends Observable implements Runnable {
 		tap = new TradeAcceptPane(this, playerid);
 		gui = new TradeGui(this, playerid, top, tap, gameid);
 		this.addObserver(tap);
+		///pc.updateHand();
+
 	}
 
 	public void createOffer(int idPlayer, int givesStone, int givesWool, int givesOre, int givesWheat, int givesWood,
@@ -188,7 +190,7 @@ public class TradeController extends Observable implements Runnable {
 
 	public void tradeCards(int otherplayerid) {
 		ArrayList<Integer> offer = td.getTradeOffer(otherplayerid);
-		pc.tradeCards(otherplayerid, offer, player);
+		pc.tradeCards(otherplayerid, offer);
 
 	}
 
@@ -202,8 +204,8 @@ public class TradeController extends Observable implements Runnable {
 
 	}
 
-	public void deleteCards(int playerid2, ArrayList<String> cardkindsOffer) {
-		bc.deleteCards(playerid2, cardkindsOffer);
+	public void deleteCards(ArrayList<String> cardkindsOffer) {
+		bc.deleteCards(cardkindsOffer);
 
 	}
 

@@ -58,7 +58,8 @@ public class DieController {
 			getCards1(9);
 		} else if (diceResult == 8) {
 			getCards1(10);
-			getCards1(11);;
+			getCards1(11);
+			;
 		} else if (diceResult == 9) {
 			getCards1(12);
 			getCards1(13);
@@ -82,112 +83,99 @@ public class DieController {
 		String source = Character.toString(resource);
 		for (int i = 0; i < ids.size(); i++) {
 			if (bc.getBuildingplayer(x + 1, y, ids.get(i)) != 0) {
-				MaterialCard card = bct.getMaterialCard(source, ids.get(i));
-				String cardid = card.getIdCard();
-				pd.addMaterialCard(gameID, cardid, ids.get(i));
+				if (bc.isVillage(ids.get(i))) {
+					MaterialCard card = bct.getMaterialCard(source, ids.get(i));
+					String cardid = card.getIdCard();
+					pd.addMaterialCard(gameID, cardid, ids.get(i));
+				} else if (bc.isCity(ids.get(i))) {
+					MaterialCard card1 = bct.getMaterialCard(source, ids.get(i));
+					String cardid1 = card1.getIdCard();
+					pd.addMaterialCard(gameID, cardid1, ids.get(i));
+					MaterialCard card2 = bct.getMaterialCard(source, ids.get(i));
+					String cardid2 = card2.getIdCard();
+					pd.addMaterialCard(gameID, cardid2, ids.get(i));
+				}
 			} else if (bc.getBuildingplayer(x + 1, y + 1, ids.get(i)) != 0) {
-				MaterialCard card = bct.getMaterialCard(source, ids.get(i));
-				String cardid = card.getIdCard();
-				pd.addMaterialCard(gameID, cardid, ids.get(i));
+				if (bc.isVillage(ids.get(i))) {
+					MaterialCard card = bct.getMaterialCard(source, ids.get(i));
+					String cardid = card.getIdCard();
+					pd.addMaterialCard(gameID, cardid, ids.get(i));
+				} else if (bc.isCity(ids.get(i))) {
+					MaterialCard card1 = bct.getMaterialCard(source, ids.get(i));
+					String cardid1 = card1.getIdCard();
+					pd.addMaterialCard(gameID, cardid1, ids.get(i));
+					MaterialCard card2 = bct.getMaterialCard(source, ids.get(i));
+					String cardid2 = card2.getIdCard();
+					pd.addMaterialCard(gameID, cardid2, ids.get(i));
+				}
 			} else if (bc.getBuildingplayer(x, y + 1, ids.get(i)) != 0) {
-				MaterialCard card = bct.getMaterialCard(source, ids.get(i));
-				String cardid = card.getIdCard();
-				pd.addMaterialCard(gameID, cardid, ids.get(i));
+				if (bc.isVillage(ids.get(i))) {
+					MaterialCard card = bct.getMaterialCard(source, ids.get(i));
+					String cardid = card.getIdCard();
+					pd.addMaterialCard(gameID, cardid, ids.get(i));
+				} else if (bc.isCity(ids.get(i))) {
+					MaterialCard card1 = bct.getMaterialCard(source, ids.get(i));
+					String cardid1 = card1.getIdCard();
+					pd.addMaterialCard(gameID, cardid1, ids.get(i));
+					MaterialCard card2 = bct.getMaterialCard(source, ids.get(i));
+					String cardid2 = card2.getIdCard();
+					pd.addMaterialCard(gameID, cardid2, ids.get(i));
+				}
 			} else if (bc.getBuildingplayer(x, y, ids.get(i)) != 0) {
-				MaterialCard card = bct.getMaterialCard(source, ids.get(i));
-				String cardid = card.getIdCard();
-				pd.addMaterialCard(gameID, cardid, ids.get(i));
+				if (bc.isVillage(ids.get(i))) {
+					MaterialCard card = bct.getMaterialCard(source, ids.get(i));
+					String cardid = card.getIdCard();
+					pd.addMaterialCard(gameID, cardid, ids.get(i));
+				} else if (bc.isCity(ids.get(i))) {
+					MaterialCard card1 = bct.getMaterialCard(source, ids.get(i));
+					String cardid1 = card1.getIdCard();
+					pd.addMaterialCard(gameID, cardid1, ids.get(i));
+					MaterialCard card2 = bct.getMaterialCard(source, ids.get(i));
+					String cardid2 = card2.getIdCard();
+					pd.addMaterialCard(gameID, cardid2, ids.get(i));
+				}
 			} else if (bc.getBuildingplayer(x - 1, y, ids.get(i)) != 0) {
-				MaterialCard card = bct.getMaterialCard(source, ids.get(i));
-				String cardid = card.getIdCard();
-				pd.addMaterialCard(gameID, cardid, ids.get(i));
+				if (bc.isVillage(ids.get(i))) {
+					MaterialCard card = bct.getMaterialCard(source, ids.get(i));
+					String cardid = card.getIdCard();
+					pd.addMaterialCard(gameID, cardid, ids.get(i));
+				} else if (bc.isCity(ids.get(i))) {
+					MaterialCard card1 = bct.getMaterialCard(source, ids.get(i));
+					String cardid1 = card1.getIdCard();
+					pd.addMaterialCard(gameID, cardid1, ids.get(i));
+					MaterialCard card2 = bct.getMaterialCard(source, ids.get(i));
+					String cardid2 = card2.getIdCard();
+					pd.addMaterialCard(gameID, cardid2, ids.get(i));
+				}
 			} else if (bc.getBuildingplayer(x - 1, y - 1, ids.get(i)) != 0) {
-				MaterialCard card = bct.getMaterialCard(source, ids.get(i));
-				String cardid = card.getIdCard();
-				pd.addMaterialCard(gameID, cardid, ids.get(i));
-
+				if (bc.isVillage(ids.get(i))) {
+					MaterialCard card = bct.getMaterialCard(source, ids.get(i));
+					String cardid = card.getIdCard();
+					pd.addMaterialCard(gameID, cardid, ids.get(i));
+				} else if (bc.isCity(ids.get(i))) {
+					MaterialCard card1 = bct.getMaterialCard(source, ids.get(i));
+					String cardid1 = card1.getIdCard();
+					pd.addMaterialCard(gameID, cardid1, ids.get(i));
+					MaterialCard card2 = bct.getMaterialCard(source, ids.get(i));
+					String cardid2 = card2.getIdCard();
+					pd.addMaterialCard(gameID, cardid2, ids.get(i));
+				}
 			} else if (bc.getBuildingplayer(x, y - 1, ids.get(i)) != 0) {
-				MaterialCard card = bct.getMaterialCard(source, ids.get(i));
-				String cardid = card.getIdCard();
-				pd.addMaterialCard(gameID, cardid, ids.get(i));
+				if (bc.isVillage(ids.get(i))) {
+					MaterialCard card = bct.getMaterialCard(source, ids.get(i));
+					String cardid = card.getIdCard();
+					pd.addMaterialCard(gameID, cardid, ids.get(i));
+				} else if (bc.isCity(ids.get(i))) {
+					MaterialCard card1 = bct.getMaterialCard(source, ids.get(i));
+					String cardid1 = card1.getIdCard();
+					pd.addMaterialCard(gameID, cardid1, ids.get(i));
+					MaterialCard card2 = bct.getMaterialCard(source, ids.get(i));
+					String cardid2 = card2.getIdCard();
+					pd.addMaterialCard(gameID, cardid2, ids.get(i));
+				}
 			}
 		}
-	}
 
-	public void getCards2(int number1, int number2) {
-		ArrayList<Integer> ids = new ArrayList<Integer>();
-		ids = inGameController.getPlayerIds(gameID);
-		int x = bc.getXTile(number1, gameID);
-		int y = bc.getYTile(number1, gameID);
-		int x2 = bc.getXTile(number2, gameID);
-		int y2 = bc.getXTile(number2, gameID);
-		char resource = bc.getTileResource(gameID, x, y);
-		char resource2 = bc.getTileResource(gameID, x2, y2);
-		String source = Character.toString(resource);
-		String source2 = Character.toString(resource2);
-		for (int i = 0; i < ids.size(); i++) {
-			if (bc.getBuildingplayer(x + 1, y, ids.get(i)) != 0) {
-				MaterialCard card = bct.getMaterialCard(source, ids.get(i));
-				String cardid = card.getIdCard();
-				pd.addMaterialCard(gameID, cardid, ids.get(i));
-			} else if (bc.getBuildingplayer(x + 1, y + 1, ids.get(i)) != 0) {
-				MaterialCard card = bct.getMaterialCard(source, ids.get(i));
-				String cardid = card.getIdCard();
-				pd.addMaterialCard(gameID, cardid, ids.get(i));
-			} else if (bc.getBuildingplayer(x, y + 1, ids.get(i)) != 0) {
-				MaterialCard card = bct.getMaterialCard(source, ids.get(i));
-				String cardid = card.getIdCard();
-				pd.addMaterialCard(gameID, cardid, ids.get(i));
-			} else if (bc.getBuildingplayer(x, y, ids.get(i)) != 0) {
-				MaterialCard card = bct.getMaterialCard(source, ids.get(i));
-				String cardid = card.getIdCard();
-				pd.addMaterialCard(gameID, cardid, ids.get(i));
-			} else if (bc.getBuildingplayer(x - 1, y, ids.get(i)) != 0) {
-				MaterialCard card = bct.getMaterialCard(source, ids.get(i));
-				String cardid = card.getIdCard();
-				pd.addMaterialCard(gameID, cardid, ids.get(i));
-			} else if (bc.getBuildingplayer(x - 1, y - 1, ids.get(i)) != 0) {
-				MaterialCard card = bct.getMaterialCard(source, ids.get(i));
-				String cardid = card.getIdCard();
-				pd.addMaterialCard(gameID, cardid, ids.get(i));
-
-			} else if (bc.getBuildingplayer(x, y - 1, ids.get(i)) != 0) {
-				MaterialCard card = bct.getMaterialCard(source, ids.get(i));
-				String cardid = card.getIdCard();
-				pd.addMaterialCard(gameID, cardid, ids.get(i));
-			}
-
-			if (bc.getBuildingplayer(x2 + 1, y2, ids.get(i)) != 0) {
-				MaterialCard card = bct.getMaterialCard(source2, ids.get(i));
-				String cardid = card.getIdCard();
-				pd.addMaterialCard(gameID, cardid, ids.get(i));
-			} else if (bc.getBuildingplayer(x2 + 1, y2 + 1, ids.get(i)) != 0) {
-				MaterialCard card = bct.getMaterialCard(source2, ids.get(i));
-				String cardid = card.getIdCard();
-				pd.addMaterialCard(gameID, cardid, ids.get(i));
-			} else if (bc.getBuildingplayer(x2, y2 + 1, ids.get(i)) != 0) {
-				MaterialCard card = bct.getMaterialCard(source2, ids.get(i));
-				String cardid = card.getIdCard();
-				pd.addMaterialCard(gameID, cardid, ids.get(i));
-			} else if (bc.getBuildingplayer(x2, y2, ids.get(i)) != 0) {
-				MaterialCard card = bct.getMaterialCard(source2, ids.get(i));
-				String cardid = card.getIdCard();
-				pd.addMaterialCard(gameID, cardid, ids.get(i));
-			} else if (bc.getBuildingplayer(x - 2, y2, ids.get(i)) != 0) {
-				MaterialCard card = bct.getMaterialCard(source2, ids.get(i));
-				String cardid = card.getIdCard();
-				pd.addMaterialCard(gameID, cardid, ids.get(i));
-			} else if (bc.getBuildingplayer(x2 - 1, y2 - 1, ids.get(i)) != 0) {
-				MaterialCard card = bct.getMaterialCard(source2, ids.get(i));
-				String cardid = card.getIdCard();
-				pd.addMaterialCard(gameID, cardid, ids.get(i));
-
-			} else if (bc.getBuildingplayer(x2, y2 - 1, ids.get(i)) != 0) {
-				MaterialCard card = bct.getMaterialCard(source2, ids.get(i));
-				String cardid = card.getIdCard();
-				pd.addMaterialCard(gameID, cardid, ids.get(i));
-			}
-		}
 	}
 
 	

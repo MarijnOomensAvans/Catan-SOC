@@ -14,6 +14,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 import Controller.BoardController;
+import Controller.IngameController;
 import Controller.PlayerController;
 import Model.board.ClickPoints;
 import Model.board.Location;
@@ -37,7 +38,6 @@ public class DrawingPanel extends JPanel {
 	private boolean mayMoveRobber = false;
 	private boolean devCardBuild = false;
 	private String buildingType;
-
 
 	// making 19 rooms for hexagons
 	private Hexagon hexagon1;
@@ -66,31 +66,34 @@ public class DrawingPanel extends JPanel {
 	// making room for an arraylist
 	private ArrayList<Hexagon> hexagons;
 	private PlayerController pc;
-
+	private IngameController ingameController;
 	private Graphics2D g2d;
 	private Graphics g;
-	
-	//All images of player pieces
-	//Cities
+
+	// All images of player pieces
+	// Cities
 	ImageIcon city_Blue = new ImageIcon(ClassLoader.getSystemResource("city_Blue.png"));
 	ImageIcon city_Orange = new ImageIcon(ClassLoader.getSystemResource("city_Orange.png"));
 	ImageIcon city_Red = new ImageIcon(ClassLoader.getSystemResource("city_Red.png"));
 	ImageIcon city_White = new ImageIcon(ClassLoader.getSystemResource("city_White.png"));
-	
-	//Villages
+
+	// Villages
 	ImageIcon village_Blue = new ImageIcon(ClassLoader.getSystemResource("village_Blue.png"));
 	ImageIcon village_Orange = new ImageIcon(ClassLoader.getSystemResource("village_Orange.png"));
 	ImageIcon village_Red = new ImageIcon(ClassLoader.getSystemResource("village_Red.png"));
 	ImageIcon village_White = new ImageIcon(ClassLoader.getSystemResource("village_White.png"));
-	
-	//Streets
+
+	// Streets
 	ImageIcon street_Blue = new ImageIcon(ClassLoader.getSystemResource("street_Blue.png"));
 	ImageIcon street_Orange = new ImageIcon(ClassLoader.getSystemResource("street_Orange.png"));
 	ImageIcon street_Red = new ImageIcon(ClassLoader.getSystemResource("street_Red.png"));
 	ImageIcon street_White = new ImageIcon(ClassLoader.getSystemResource("street_White.png"));
 
+<<<<<<< HEAD
 	boolean paint = true;
 
+=======
+>>>>>>> 674859275b325d29e12773b84eb7195dabadea47
 	public DrawingPanel(BoardController bc, int idspel) {
 		robber = new Robber();
 		this.setLayout(null);
@@ -146,17 +149,6 @@ public class DrawingPanel extends JPanel {
 		robber.setBounds(bc.getRobberXPosition(idspel) - 45, bc.getRobberYPosition(idspel) - 30, 25, 60);
 		;
 		this.add(robber);
-		
-		//Initialize all ImageIcons (Player Pieces)
-		//City images
-
-		
-		//Village images
-		
-		
-		//Street icons
-		
-		
 
 		setPreferredSize(new Dimension(600, 600));
 
@@ -166,21 +158,29 @@ public class DrawingPanel extends JPanel {
 		addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+
+				if (ingameController != null) {
+					ingameController.shouldRefresh(idspel);
+				}
+
 				if (mayBuild == true) {
 					String test = convertXYfromScreenToKey(e.getX(), e.getY());
 					if (test != null) {
 						if (hlPoint == test && !buildingType.equals("Street")) {
+							if (pc.emptySpace(buildingType, hlPoint)) {
 							pc.buildObject(buildingType, hlPoint);
 							// Log here
 							mayBuild = false;
 							hlPoint = null;
 							repaint();
-						} else if(hlPoint == null || !buildingType.equals("Street")){
-							hlPoint = test;
-							repaint();
+							}
+						} else if (hlPoint == null || !buildingType.equals("Street")) {
+								hlPoint = test;
+								repaint();
 						}
 						if (test != null && hlPoint != null && buildingType.equals("Street")) {
 							if (hlPoint != test) {
+<<<<<<< HEAD
 								String[] hlarray = hlPoint.split(",");
 								String[] clarray = test.split(",");
 								int x1 = Integer.parseInt(hlarray[0]);
@@ -192,13 +192,31 @@ public class DrawingPanel extends JPanel {
 									// Log here 
 									if(devCardBuild == false) {
 									mayBuild = false;
+=======
+								if (pc.emptySpace(buildingType, hlPoint)) {
+									String[] hlarray = hlPoint.split(",");
+									String[] clarray = test.split(",");
+									int x1 = Integer.parseInt(hlarray[0]);
+									int y1 = Integer.parseInt(hlarray[1]);
+									int x2 = Integer.parseInt(clarray[0]);
+									int y2 = Integer.parseInt(clarray[1]);
+									if (x1 == (x2 + 1) && y1 == (y2 + 1) || x1 == (x2 + 1) && y1 == y2
+											|| x1 == x2 && y1 == (y2 - 1) || x1 == (x2 - 1) && y1 == y2
+											|| x1 == x2 && y1 == (y2 + 1) || x1 == (x2 - 1) && y1 == (y2 = 1)) {
+										if(pc.checkVillage(test, hlPoint)) {
+										pc.buildStreet(x1, x2, y1, y2);
+										paintBuildings();
+										// Log here
+										if (devCardBuild == false) {
+											mayBuild = false;
+										} else {
+											devCardBuild = false;
+										}
+										hlPoint = null;
+										repaint();
+										}
+>>>>>>> 674859275b325d29e12773b84eb7195dabadea47
 									} else {
-										devCardBuild = false;
-									}
-									hlPoint = null;
-									repaint();
-									}
-									else {
 										// Log here
 										mayBuild = false;
 										hlPoint = null;
@@ -207,12 +225,13 @@ public class DrawingPanel extends JPanel {
 								}
 							}
 						}
-					} else {
-						// Change to log later - System.out.println("Building aborted");
-						mayBuild = false;
-						hlPoint = null;
-						repaint();
 					}
+				} else {
+					// Change to log later - System.out.println("Building aborted");
+					mayBuild = false;
+					hlPoint = null;
+					repaint();
+				}
 				if (mayMoveRobber == true) {
 					String returnString = tileConvertXYfromScreenToKey(e.getX(), e.getY());
 					// System.out.println(returnString);
@@ -230,7 +249,6 @@ public class DrawingPanel extends JPanel {
 
 		});
 	}
-
 
 	// drawing the hexagons
 	@Override
@@ -361,6 +379,7 @@ public class DrawingPanel extends JPanel {
 		mayMoveRobber = b;
 	}
 
+<<<<<<< HEAD
 	
 	public void paintBuildings(Graphics g) {
 			String[] buildings = pc.getAllBuildings().split(",");
@@ -372,12 +391,21 @@ public class DrawingPanel extends JPanel {
 				
 				village_Blue.paintIcon(this, g, buildingConvertXfromKeyToScreenX(pc.getCoordX(buildings[x])) + 30,buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[x]),pc.getCoordY(buildings[x])) - 50);
 			}
+=======
+	public void paintBuildings() {
+		String[] buildings = pc.getAllBuildings().split(",");
+		for (int x = 0; x < buildings.length; x++) {
+			village_Blue.paintIcon(this, g, buildingConvertXfromKeyToScreenX(pc.getCoordX(buildings[x])),
+					buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[x]), pc.getCoordY(buildings[x])));
+
+		}
+		repaint();
+>>>>>>> 674859275b325d29e12773b84eb7195dabadea47
 	}
-	
+
 	private int buildingConvertXfromKeyToScreenX(int x)
 
 	{
-
 
 		return 50 + ((x - 1) * (99 / 2)) + x - 2;
 
@@ -391,11 +419,14 @@ public class DrawingPanel extends JPanel {
 
 	}
 
-
 	public void setBuildDev(boolean b, String string) {
 		this.mayBuild = b;
 		this.buildingType = string;
 		this.devCardBuild = true;
+	}
+
+	public void setIngameController(IngameController ingameController) {
+		this.ingameController = ingameController;
 	}
 
 }

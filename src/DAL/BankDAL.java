@@ -149,10 +149,10 @@ public class BankDAL {
 
 	}
 
-	public void deleteCards(int playerid2, String cardid, int gameid) {
+	public void deleteCards(String cardid, int gameid) {
 		Statement stmt = null;
 		String query = "UPDATE spelergrondstofkaart SET idspeler = null WHERE idgrondstofkaart = '" + cardid + "'"
-				+ " AND idspeler = " + playerid2 + " AND idspel = " + gameid;
+				+ " AND idspel = " + gameid;
 
 		try {
 			stmt = conn.createStatement();
@@ -166,17 +166,16 @@ public class BankDAL {
 
 	}
 
-	public String getPlayerid(String cardid) {
+	public String getPlayerid(String cardid,int gameid) {
 		String result = "";
 		Statement stmt = null;
-		String query = "SELECT idspeler FROM spelergrondstofkaart WHERE idgrondstofkaart = '" + cardid + "'";
+		String query = "SELECT idspeler FROM spelergrondstofkaart WHERE idgrondstofkaart = '" + cardid + "'"+" AND idspel ="+ gameid;
 
 		try {
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
-			while (rs.next()) {
-				result = rs.getString(1);
-			}
+			rs.next(); 
+			result = rs.getString(1);
 			stmt.close();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
