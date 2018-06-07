@@ -1,7 +1,6 @@
 package Controller;
 
 import java.awt.Color;
-import java.awt.Image;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
@@ -12,11 +11,6 @@ import Model.board.Tile;
 
 public class BoardController {
 	private Board board;
-	private LobbyController controller;
-
-	public BoardController() {
-
-	}
 
 	public void generateBoard() {
 		board = new Board();
