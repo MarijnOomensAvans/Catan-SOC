@@ -140,11 +140,11 @@ public class PersonDAL {
 		return cardid;
 	}
 
-	public void updateCard(String cardId, int playerid) {
+	public void updateCard(String cardId, int playerId, int gameId) {
 
 		Statement stmt = null;
-		String query = "UPDATE spelergrondstofkaart SET idspeler = " + playerid + " WHERE idgrondstofkaart = '" + cardId
-				+ "'";
+		String query = "UPDATE spelergrondstofkaart SET idspeler = " + playerId + " WHERE idgrondstofkaart = '" + cardId
+				+ "' AND idspel = " +gameId;
 
 		try {
 			stmt = conn.createStatement();
@@ -160,7 +160,7 @@ public class PersonDAL {
 
 	public void addDevelopmentCard(int idgame, String iddevcard, int idplayer, boolean cardPlayed) {
 		Statement stmt = null;
-		String query = "UPDATE spelerontwikkelingskaart SET idspeler =" + idplayer + " WHERE idspel =" + idgame
+		String query = "UPDATE spelerontwikkelingskaart SET idspeler =" + idplayer + " WHERE idspel = " + idgame
 				+ " AND idontwikkelingskaart = '" + iddevcard + "'";
 		try {
 			stmt = conn.createStatement();
