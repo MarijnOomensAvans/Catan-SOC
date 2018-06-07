@@ -66,7 +66,6 @@ public class DrawingPanel extends JPanel {
 	// making room for an arraylist
 	private ArrayList<Hexagon> hexagons;
 	private PlayerController pc;
-<<<<<<< HEAD
 	private Graphics2D g2d;
 	
 	//All images of player pieces
@@ -87,8 +86,6 @@ public class DrawingPanel extends JPanel {
 	ImageIcon street_Orange;
 	ImageIcon street_Red;
 	ImageIcon street_White;
-=======
->>>>>>> 66c766ab036f7236f9c3aee610be5e492c2665cb
 
 	public DrawingPanel(BoardController bc, int idspel) {
 		robber = new Robber();
@@ -363,7 +360,6 @@ public class DrawingPanel extends JPanel {
 	public void setMayMoveRobber(boolean b) {
 		mayMoveRobber = b;
 	}
-<<<<<<< HEAD
 	
 	public void paintBuildings() {
 		for(int i = 0; i < pc.countBuildings(); i++) {
@@ -375,13 +371,12 @@ public class DrawingPanel extends JPanel {
 				repaint();
 			}
 		}
-=======
+	}
 
 	public void setBuildDev(boolean b, String string) {
 		this.mayBuild = b;
 		this.buildingType = string;
 		this.devCardBuild = true;
->>>>>>> 66c766ab036f7236f9c3aee610be5e492c2665cb
 	}
 
 }
