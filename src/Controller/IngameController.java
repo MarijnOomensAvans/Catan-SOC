@@ -63,4 +63,8 @@ public class IngameController {
 		DevelopmentContentPane dcp = new DevelopmentContentPane(pc, playerID);
 		new DevelopmentGui(pc, dcp, gameid, playerID);
 	}
+	
+	public void setPlayerTurn(int gameid, String username) {
+		spelModel.setPlayerTurn(gameid, username);
+	}
 }

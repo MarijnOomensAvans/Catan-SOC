@@ -24,4 +24,8 @@ public class SpelModel {
 	public void setBiggestArmy(int gameid, String username) {
 		spelDal.setBiggestArmy(gameid, username);
 	}
+	
+	public void setPlayerTurn(int gameid, String username) {
+		spelDal.setPlayerTurn(gameid, username);
+	}
 }

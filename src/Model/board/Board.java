@@ -826,6 +826,14 @@ public class Board {
 		}
 			return returnValue;
 		}
+	
+	public ArrayList<Tile> getTileLocationKeys(){
+		ArrayList<Tile> returnValue = new ArrayList<Tile>();
+		for(int i = 1000; i < 1019; i++) {
+		returnValue.add((Tile) axisgrid.get(i));
+		}
+			return returnValue;
+	}
 
 	public int getRobberXPosition(int gameid) {
 		int position =bdal.getRobberPosition(gameid);
