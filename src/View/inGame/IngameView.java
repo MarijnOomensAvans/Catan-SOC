@@ -63,6 +63,38 @@ public class IngameView extends JPanel {
 	private JButton throwDiceButton;
 	private JButton endTurnButton;
 	private Border border;
+	
+	private JPanel leftPanel;
+	private JPanel centerPanel;
+	private JPanel rightPanel;
+	private JPanel bottomPanel;
+	private JPanel diceAndButtonPanel;
+	private JPanel buttonPanel;
+	private JPanel bottomInfoPanel;
+	private JPanel resourceCardPanel;
+	private JPanel buildCostPanel;
+	private JPanel diceButtonPanel;
+	private JPanel costAndDicePanel;
+	private JPanel playerTurnPanel;
+	private JPanel gameTurnPanel;
+	private JPanel extraPointsPanel;
+	private JPanel ownPointsPanel;
+	private JPanel boardPanel;
+	
+	
+	private JLabel streetLabel;
+	private JLabel villageLabel;
+	private JLabel cityLabel;
+	private JLabel devCardLabel;
+	private JLabel turnLabel;
+	private JLabel playerTurnStringLabel;
+	private JLabel playersAndCardsLabel;
+	private JLabel gameTurnLabel;
+	private JLabel largestArmyLabel;
+	private JLabel longestRouteLabel;
+	private JLabel ownPointLabel;
+	
+	
 
 	public IngameView(BoardController bc, int gameID, DrawingPanel inGameBoard, int playerID,
 			IngameController inGameController, PlayerController pc, ChatController chatController, DieController dieController) {
@@ -86,25 +118,25 @@ public class IngameView extends JPanel {
 
 		chatOutput = chatController.getCog();
 		ChatContentPane chatPanel = new ChatContentPane(chatController, chatOutput, playerID);
-		JPanel leftPanel = new JPanel();
-		JPanel centerPanel = new JPanel();
-		JPanel rightPanel = new JPanel();
-		JPanel bottomPanel = new JPanel();
+		 leftPanel = new JPanel();
+		 centerPanel = new JPanel();
+		 rightPanel = new JPanel();
+		 bottomPanel = new JPanel();
 
-		JPanel diceAndButtonPanel = new JPanel();
-		JPanel buttonPanel = new JPanel();
-		JPanel bottomInfoPanel = new JPanel();
-		JPanel resourceCardPanel = new JPanel();
-		JPanel buildCostPanel = new JPanel();
-		JPanel diceButtonPanel = new JPanel();
+		 diceAndButtonPanel = new JPanel();
+		 buttonPanel = new JPanel();
+		 bottomInfoPanel = new JPanel();
+		 resourceCardPanel = new JPanel();
+		 buildCostPanel = new JPanel();
+		 diceButtonPanel = new JPanel();
 
-		JPanel costAndDicePanel = new JPanel();
+		 costAndDicePanel = new JPanel();
 
-		JPanel playerTurnPanel = new JPanel();
+		 playerTurnPanel = new JPanel();
 		playerCardsPanel = new JPanel();
-		JPanel gameTurnPanel = new JPanel();
-		JPanel extraPointsPanel = new JPanel();
-		JPanel ownPointsPanel = new JPanel();
+		 gameTurnPanel = new JPanel();
+		 extraPointsPanel = new JPanel();
+		 ownPointsPanel = new JPanel();
 
 		playerTurnPanel.setPreferredSize(new Dimension(300, 50));
 		playerCardsPanel.setPreferredSize(new Dimension(300, 250));
@@ -124,7 +156,7 @@ public class IngameView extends JPanel {
 		dieContentPane.setBorder(border);
 		diceButtonPanel.setBorder(border);
 
-		JPanel boardPanel = new JPanel();
+		 boardPanel = new JPanel();
 
 		JButton buildButton = new JButton("Bouwen");
 		buildButton.addActionListener(new ActionListener() {
@@ -152,23 +184,24 @@ public class IngameView extends JPanel {
 			endTurnButton.addActionListener(e -> {
 				inGameController.setPlayerTurn(gameID, nextPlayerTurn(gameID));
 				endTurnButton.setEnabled(false);
+				playerTurnUpdate();
 				
 			});
 		}
 
-		JLabel streetLabel = new JLabel("Straat: 1B-1H");
-		JLabel villageLabel = new JLabel("Dorp: 1B-1H-1G-1W");
-		JLabel cityLabel = new JLabel("Stad: 2G-3E");
-		JLabel devCardLabel = new JLabel("Ontwikkelingskaart: 1W-1G-1E");
+		 streetLabel = new JLabel("Straat: 1B-1H");
+		 villageLabel = new JLabel("Dorp: 1B-1H-1G-1W");
+		 cityLabel = new JLabel("Stad: 2G-3E");
+		 devCardLabel = new JLabel("Ontwikkelingskaart: 1W-1G-1E");
 
-		JLabel turnLabel = new JLabel("Speler aan de beurt: "); // HIER MOET DE SPELER DIE AAN DE BEURT IS TOEGEVOEGD
+		 turnLabel = new JLabel("Speler aan de beurt: "); // HIER MOET DE SPELER DIE AAN DE BEURT IS TOEGEVOEGD
 																// WORDEN
-		JLabel playerTurnStringLabel = new JLabel(inGameController.getTurn(gameID));
-		JLabel playersAndCardsLabel = new JLabel("Spelers en kaarten: ");
-		JLabel gameTurnLabel = new JLabel("Ronde: ");
-		JLabel largestArmyLabel = new JLabel("Grootste riddermacht: ");
-		JLabel longestRouteLabel = new JLabel("Langste handelsroute: ");
-		JLabel ownPointLabel = new JLabel("Eigen punten: ");
+		 playerTurnStringLabel = new JLabel(inGameController.getTurn(gameID));
+		 playersAndCardsLabel = new JLabel("Spelers en kaarten: ");
+		 gameTurnLabel = new JLabel("Ronde: ");
+		 largestArmyLabel = new JLabel("Grootste riddermacht: ");
+		 longestRouteLabel = new JLabel("Langste handelsroute: ");
+		 ownPointLabel = new JLabel("Eigen punten: ");
 
 		turnLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		playersAndCardsLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -342,11 +375,18 @@ public class IngameView extends JPanel {
 			else if(playerStats.get(3).getUsername().equals(ingameController.getTurn(id))) {
 				turnPlayer = playerStats.get(0).getUsername();
 			}
+		
 		return turnPlayer;
 }
 	/* UPDATE */
 	public void update() {
 		dieContentPane.update();
 	}
+	
+	public void playerTurnUpdate() {
+		playerTurnStringLabel.setText(ingameController.getTurn(gameID));
+		
+	}
+	
 
 }
