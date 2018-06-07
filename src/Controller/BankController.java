@@ -63,7 +63,7 @@ public class BankController {
 		
 	}
 
-	public MaterialCard checkMaterialCard(String ID) {
-		return bank.checkMaterialCard(ID, gameid);
-	}
+///	public MaterialCard checkMaterialCard(String ID) {
+	//	return bank.checkMaterialCard(ID, gameid);
+	///}
 }
