@@ -62,6 +62,7 @@ public class BuildContentPane extends JPanel{
 		cityBuild.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                inGameBoard.setBuild(true);
             	frame.closeFrame();
             }
         });
@@ -79,6 +80,7 @@ public class BuildContentPane extends JPanel{
 		streetBuild.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                inGameBoard.setBuild(true);
             	frame.closeFrame();
             }
         });
@@ -96,6 +98,7 @@ public class BuildContentPane extends JPanel{
 		devCardBuild.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                inGameBoard.setBuild(true);
             	frame.closeFrame();
             }
         });

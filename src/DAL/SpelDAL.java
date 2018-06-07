@@ -64,6 +64,17 @@ public class SpelDAL {
 
 		return username;
 	}
+	
+	public void setLongestRoute(int gameid, String username) {
+		int playerid = getPlayerId(gameid, username);
+		try {
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate("UPDATE spel SET langste_hr_idspeler = " + playerid + " WHERE idspel = " + gameid);
+			stmt.close();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	private PlayerStats getStats(int playerid) {
 		PlayerStats stats = null;
@@ -76,13 +87,13 @@ public class SpelDAL {
 		/* GET CARDS */
 		try {
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT o.naam FROM speler s JOIN spelerontwikkelingskaart so "
+			ResultSet rs = stmt.executeQuery("SELECT o.naam, so.gespeeld FROM speler s JOIN spelerontwikkelingskaart so "
 					+ "ON s.idspeler = so.idspeler JOIN ontwikkelingskaart o "
 					+ "ON o.idontwikkelingskaart = so.idontwikkelingskaart " + "WHERE s.idspeler = " + playerid);
 			while (rs.next()) {
 				developmentCards++;
 
-				if (rs.getString(1).equals("ridder")) {
+				if ((rs.getString(1).equals("ridder")) && (rs.getInt(2) == 1)) {
 					knightCards++;
 				}
 			}
@@ -214,7 +225,7 @@ public class SpelDAL {
 					.executeQuery("SELECT COUNT(*) FROM spelerontwikkelingskaart so JOIN ontwikkelingskaart o "
 							+ " ON so.idontwikkelingskaart = o.idontwikkelingskaart "
 							+ " WHERE (o.naam LIKE ('kathedraal') OR o.naam LIKE ('bibliotheek') OR o.naam LIKE ('markt') OR o.naam LIKE ('universiteit') "
-							+ " OR o.naam LIKE ('parlement')) AND so.idspeler LIKE " + playerid);
+							+ " OR o.naam LIKE ('parlement')) AND so.idspeler LIKE " + playerid + " AND so.gespeeld = 1");
 			while (rs.next()) {
 				devPoints = rs.getInt(1);
 			}
@@ -224,6 +235,24 @@ public class SpelDAL {
 		}
 
 		return devPoints;
+	}
+	
+	public void setPlayerTurn(int gameid, String username) {
+		try {
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate("UPDATE spel SET beurt_idspeler = " + this.getPlayerId(gameid, username) + " WHERE idspel = " + gameid);
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		try {
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate("UPDATE spel SET gedobbeld = " + 0 + " WHERE idspel = " + gameid );
+			stmt.close();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -17,10 +17,12 @@ public class BankController {
 	private Bank bank;
 	@SuppressWarnings("unused")
 	private Player player;
+	private int gameid;
 	
 	public BankController(int gameid) {
 		bd = new BankDAL();
 		bank = new Bank(bd, gameid);
+		this.gameid = gameid;
 		
 	}
 	
@@ -58,5 +60,9 @@ public class BankController {
 			}
 		}
 		
+	}
+
+	public MaterialCard checkMaterialCard(String ID) {
+		return bank.checkMaterialCard(ID, gameid);
 	}
 }

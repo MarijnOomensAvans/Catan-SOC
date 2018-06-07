@@ -30,7 +30,7 @@ public class Robber extends JPanel {
 		this.setPreferredSize(new Dimension(25,60));
 		image1 = new ImageIcon(ClassLoader.getSystemResource("Therobber.png"));
 		image = new JLabel(image1);
-		this.setBackground(null);
+		this.setOpaque(false);
 		add(image);
 		repaint();
 		validate();

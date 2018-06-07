@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 
 import Model.board.Board;
 import Model.board.Location;
+import Model.board.Tile;
 
 public class BoardController {
 	private Board board;
@@ -70,6 +71,10 @@ public class BoardController {
 	
 	public void makeCards(int gameid) {
 		BankController bc = new BankController(gameid);
+	}
+
+	public ArrayList<Tile> getLocationTileKeys() {
+		return board.getTileLocationKeys();
 	}
 
 	
