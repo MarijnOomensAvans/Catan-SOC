@@ -1,4 +1,4 @@
-package DAL;
+/*package DAL;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -94,3 +94,4 @@ public class RobberDAL {
 	}
 
 }
+*/
