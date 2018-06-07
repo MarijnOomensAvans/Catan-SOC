@@ -186,7 +186,7 @@ public class DrawingPanel extends JPanel {
 									if (x1 == (x2 + 1) && y1 == (y2 + 1) || x1 == (x2 + 1) && y1 == y2
 											|| x1 == x2 && y1 == (y2 - 1) || x1 == (x2 - 1) && y1 == y2
 											|| x1 == x2 && y1 == (y2 + 1) || x1 == (x2 - 1) && y1 == (y2 = 1)) {
-									//	if(pc.checkVillage(test, hlPoint)) {
+										if(pc.checkVillage(test, hlPoint)) {
 										pc.buildStreet(x1, x2, y1, y2);
 										paintBuildings();
 										// Log here
@@ -197,7 +197,7 @@ public class DrawingPanel extends JPanel {
 										}
 										hlPoint = null;
 										repaint();
-										//}
+										}
 									} else {
 										// Log here
 										mayBuild = false;
