@@ -205,12 +205,13 @@ public class DrawingPanel extends JPanel {
 									repaint();
 								}
 							}
-						} else {
-							// Change to log later - System.out.println("Building aborted");
-							mayBuild = false;
-							hlPoint = null;
-							repaint();
-						}
+						}	
+					}
+					else {
+						// Log here
+						mayBuild = false;
+						hlPoint = null;
+						repaint();
 					}
 				}
 				if (mayMoveRobber == true) {
