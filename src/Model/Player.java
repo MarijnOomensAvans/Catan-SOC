@@ -33,8 +33,7 @@ public class Player {
 		setName();
 		setColor();
 		setOrder_number();
-		printallPlayerDevCards();
-		
+		updateHand();
 	}
 	
 	public void setName() {
@@ -52,6 +51,12 @@ public class Player {
 	public void setOrder_number() {
 			order_number = Integer.parseInt(pd.getorder_number(player_id,game_id));
 	}
+	
+	public void updateHand() {
+	MaterialCard mc = new MaterialCard();
+	ArrayList<MaterialCard> databaseHand = conn.getMaterialCards();	
+	}
+	
 
 	public void addMaterialCard(String kind,int gameid) {
 		MaterialCard newCard = conn.getMaterialCard(kind, gameid);

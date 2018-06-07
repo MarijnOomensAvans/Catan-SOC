@@ -11,10 +11,12 @@ public class PlayerController {
 	private Player player;
 	private BankController bc;
 	private PersonDAL db;
+	private int playerID;
 
 	public PlayerController(int playerID, int gameID,BankController bc, PersonDAL pd ) {
 		this.bc =bc;
-		db = pd;
+		this.db = pd;
+		this.playerID = playerID;
 		player = new Player(this, db, playerID, gameID);
 	}
 
@@ -99,6 +101,10 @@ public class PlayerController {
 		player.updateCards(otherplayerid,offer);
 
 		
+	}
+
+	public String getMaterialCards() {
+		return db.getMaterialCards(playerID);
 	}
 
 }
