@@ -420,7 +420,7 @@ public class PersonDAL {
 	public ArrayList<Integer> getIds(int gameID2) {
 		ArrayList<Integer> ids = new ArrayList<Integer>();
 		Statement stmt = null;
-		String query = "SELECT idspeler FROM spel WHERE idspel = "+gameID2;
+		String query = "SELECT idspeler FROM speler WHERE idspel = "+gameID2;
 		try {
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
