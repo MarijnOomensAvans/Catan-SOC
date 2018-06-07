@@ -74,7 +74,11 @@ public class IngameController {
 	public void shouldRefresh(int gameID) {
 		spelModel.shouldRefresh(gameID);
 	}
-
+	
+	public void thrownDice() {
+		gameFrame.nextTurnButtonUpdate();
+		shouldRefresh(gameid);
+	}
 
 	
 	public boolean hasRolledDice(int gameid) {
