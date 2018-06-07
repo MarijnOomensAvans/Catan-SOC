@@ -77,7 +77,7 @@ public class IngameView extends JPanel {
 		border = BorderFactory.createLineBorder(Color.BLACK, 1);
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
 		setLayout(new BorderLayout());
-		
+
 		DieContentPane diceViewPanel = new DieContentPane(dieController, throwDiceButton);
 
 		chatOutput = chatController.getCog();
@@ -146,7 +146,7 @@ public class IngameView extends JPanel {
 		});
 		if (allowedToEnd(gameID)) {
 			endTurnButton.addActionListener(e -> {
-				
+
 			});
 		}
 
