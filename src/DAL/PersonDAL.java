@@ -476,5 +476,25 @@ public class PersonDAL {
 		}
 		return ids;
 	}
+	
+	public int getPlayerTrackNumber(int gameid,String buildingType) {
+		int tracknumber = 0;
+
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT idspeler FROM speler " + "WHERE (idspel = " + gameid
+					+ ")");
+			while (rs.next()) {
+
+				tracknumber = rs.getInt(1);
+
+			}
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return tracknumber;
+	}
 
 }
