@@ -68,6 +68,7 @@ public class DrawingPanel extends JPanel {
 	private PlayerController pc;
 
 	private Graphics2D g2d;
+	private Graphics g;
 	
 	//All images of player pieces
 	//Cities
@@ -237,6 +238,8 @@ public class DrawingPanel extends JPanel {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;
+		this.g2d = g2d;
+		this.g = g;
 		g2d.setColor(Color.BLACK);
 		for (int i = 0; i < hexagons.size(); i++) {
 			g2d.drawPolygon(hexagons.get(i).getHexagon());
@@ -361,11 +364,27 @@ public class DrawingPanel extends JPanel {
 			String[] buildings = pc.getAllBuildings().split(",");
 			for(int x = 0; x < buildings.length; x++) {
 			
-				village_Blue.paintIcon(this, g2d, convertXfromKeyToScreenX(pc.getCoordX(buildings[x])),convertYfromKeyToScreenY(pc.getCoordY(buildings[x])));
-				System.out.println("Buildings painted");
+				village_Blue.paintIcon(this, g, buildingConvertXfromKeyToScreenX(pc.getCoordX(buildings[x])),buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[x]),pc.getCoordY(buildings[x])));
 				repaint();
 			}
 		}
+	}
+	
+	private int buildingConvertXfromKeyToScreenX(int x)
+
+	{
+
+
+		return 50 + ((x - 1) * (99 / 2)) + x - 2;
+
+	}
+
+	private int buildingConvertYfromKeyToScreenY(int x, int y)
+
+	{
+
+		return 10 + (((2 * (12 - y)) - (10 - x)) * 30);
+
 	}
 
 
