@@ -18,10 +18,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Controller.TradeController;
+import DAL.TradeDAL;
 
 @SuppressWarnings("serial")
 public class TradeOfferPane extends JPanel {
 	
+	private TradeController tc;
 
 	private int stoneOfferCounter =0;
 	private int oreOfferCounter =0;
@@ -93,7 +95,8 @@ public class TradeOfferPane extends JPanel {
 	
 	private boolean showButton;
 	
-	public TradeOfferPane(TradeController td, int playerid, boolean showbutton) {
+	public TradeOfferPane(TradeController tc, int playerid, boolean showbutton) {
+		this.tc = tc;
 		this.showButton = showbutton;
 		this.setLayout(null);
 		stone = "baksteen.jpg";
@@ -193,7 +196,7 @@ public class TradeOfferPane extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int amount = stoneOfferCounter+1;
-				if(td.hasStoneCard(amount)) {
+				if(tc.hasStoneCard(amount)) {
 				stoneOfferCounter++;
 				stoneoffer.setText(""+stoneOfferCounter);
 				}
@@ -207,7 +210,7 @@ public class TradeOfferPane extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int amount = oreOfferCounter+1;
-				if(td.hasOreCard(amount)) {
+				if(tc.hasOreCard(amount)) {
 				oreOfferCounter++;
 				oreoffer.setText(""+oreOfferCounter);
 				}
@@ -220,7 +223,7 @@ public class TradeOfferPane extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int amount = woodOfferCounter+1;
-				if(td.hasWoodCard(amount)) {
+				if(tc.hasWoodCard(amount)) {
 				woodOfferCounter++;
 				woodoffer.setText(""+ woodOfferCounter);
 				}
@@ -233,7 +236,7 @@ public class TradeOfferPane extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int amount = wheatOfferCounter+1;
-				if(td.hasWheatCard(amount)) {
+				if(tc.hasWheatCard(amount)) {
 				wheatOfferCounter++;
 				wheatoffer.setText("" + wheatOfferCounter);
 				}
@@ -246,7 +249,7 @@ public class TradeOfferPane extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				int amount = woolOfferCounter+1;
-				if(td.hasWoolCard(amount)) {
+				if(tc.hasWoolCard(amount)) {
 				woolOfferCounter++;
 					wooloffer.setText("" + woolOfferCounter);
 				}
@@ -527,8 +530,8 @@ public class TradeOfferPane extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				td.createOffer(playerid, stoneOfferCounter, woolOfferCounter, oreOfferCounter, wheatOfferCounter, woodOfferCounter, stoneDemandCounter, woolDemandCounter, oreDemandCounter, wheatDemandCounter, woodDemandCounter);
-				td.switchPane();
+				tc.createOffer(playerid, stoneOfferCounter, woolOfferCounter, oreOfferCounter, wheatOfferCounter, woodOfferCounter, stoneDemandCounter, woolDemandCounter, oreDemandCounter, wheatDemandCounter, woodDemandCounter);
+				tc.switchPane();
 			}
 			
 		});
@@ -537,7 +540,7 @@ public class TradeOfferPane extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				td.createOffer(playerid, stoneOfferCounter, woolOfferCounter, oreOfferCounter, wheatOfferCounter, woodOfferCounter, stoneDemandCounter, woolDemandCounter, oreDemandCounter, wheatDemandCounter, woodDemandCounter,true);
+				tc.createOffer(playerid, stoneOfferCounter, woolOfferCounter, oreOfferCounter, wheatOfferCounter, woodOfferCounter, stoneDemandCounter, woolDemandCounter, oreDemandCounter, wheatDemandCounter, woodDemandCounter,true);
 			}
 			
 		});
@@ -546,7 +549,7 @@ public class TradeOfferPane extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				td.switchBankPane();
+				tc.switchBankPane();
 			}
 			
 		});

@@ -32,7 +32,7 @@ public class TradeController extends Observable implements Runnable {
 	private BankController bc;
 
 	private ArrayList<Integer> otherIds;
-	private boolean runthread;
+	private boolean runthread = true;
 	
 	public TradeController(int playerid, int gameid, PersonDAL pd, Player player, PlayerController pc, BankController bc) {
 		this.pd = pd;
@@ -51,6 +51,7 @@ public class TradeController extends Observable implements Runnable {
 		tap = new TradeAcceptPane(this, playerid);
 		gui = new TradeGui(this, playerid, top,tap,gameid);
 		this.addObserver(tap);
+		pc.updateHand();
 	}
 
 	public void createOffer(int idPlayer, int givesStone, int givesWool, int givesOre, int givesWheat, int givesWood,
@@ -90,17 +91,17 @@ public class TradeController extends Observable implements Runnable {
 	}
 
 	public boolean getResponses(int playerid) {
-		boolean responses = otherPlayers.getResponses(playerid);
+		boolean responses = td.getResponses(playerid);
 		return responses;
 	}
 
 	public ArrayList<Integer> getOtherid(int gameid, int playerid) {
-		ArrayList<Integer> id = otherPlayers.getOtherid(gameid, playerid);
+		ArrayList<Integer> id= pd.getOtherid(gameid, playerid);
 		return id;
 	}
 
 	public ArrayList<Integer> getTradeResponses(int playerid) {
-		ArrayList<Integer> response = otherPlayers.getTradeResponses(playerid);
+		ArrayList<Integer> response = td.getTradeResponses(playerid);
 		return response;
 	}
 

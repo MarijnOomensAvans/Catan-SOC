@@ -35,11 +35,11 @@ public class BankPane extends JPanel {
 	private BufferedImage myBufferedImage4;
 	private BufferedImage myBufferedImage5;
 
-	private File stone;
-	private File ore;
-	private File wood;
-	private File wheat;
-	private File wool;
+	private String stone;
+	private String ore;
+	private String wood;
+	private String wheat;
+	private String wool;
 
 	private JButton plusstone;
 	private JButton plusore;
@@ -91,11 +91,11 @@ public class BankPane extends JPanel {
 
 	public BankPane(TradeController tc, int playerid) {
 		this.setLayout(null);
-		stone = new File("./res/baksteen.jpg");
-		wool = new File("./res/schaap.jpg");
-		ore = new File("./res/erts.jpg");
-		wheat = new File("./res/graan.jpg");
-		wood = new File("./res/hout.jpg");
+		stone = "baksteen.jpg";
+		wool = "schaap.jpg";
+		ore = "erts.jpg";
+		wheat = "graan.jpg";
+		wood = "hout.jpg";
 
 		offer = new JLabel("Ruilen met de bank 4:1");
 		offer.setBounds(205, 10, 400, 100);
@@ -125,11 +125,11 @@ public class BankPane extends JPanel {
 		wheatoffer = new JTextField("" + wheatOfferCounter);
 
 		try {
-			myBufferedImage1 = ImageIO.read(stone);
-			myBufferedImage2 = ImageIO.read(wool);
-			myBufferedImage3 = ImageIO.read(ore);
-			myBufferedImage4 = ImageIO.read(wheat);
-			myBufferedImage5 = ImageIO.read(wood);
+			myBufferedImage1 = ImageIO.read(ClassLoader.getSystemResource(stone));
+			myBufferedImage2 = ImageIO.read(ClassLoader.getSystemResource(wool));
+			myBufferedImage3 = ImageIO.read(ClassLoader.getSystemResource(ore));
+			myBufferedImage4 = ImageIO.read(ClassLoader.getSystemResource(wheat));
+			myBufferedImage5 = ImageIO.read(ClassLoader.getSystemResource(wood));
 		} catch (IOException e) {
 			System.out.println(e.getMessage());
 		}
