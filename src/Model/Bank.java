@@ -15,6 +15,7 @@ public class Bank {
 	public Bank(BankDAL bd, int gameID) {
 		this.bd = bd;
 		this.gameID = gameID;
+		makeMaterialCards(gameID);
 	}
 	
 	public void makeCards() {
@@ -38,6 +39,16 @@ public class Bank {
 				break;}
 			}
 		}
+		return returncard;
+	}
+	
+	public MaterialCard checkMaterialCard(String ID, int gameID) {
+		MaterialCard returncard = null;
+		for(int i=0; i<matbank.size(); i++) {
+				if(ID.equals(matbank.get(i).getIdCard())) {;
+				returncard = matbank.get(i);
+				break;}
+			}
 		return returncard;
 	}
 	

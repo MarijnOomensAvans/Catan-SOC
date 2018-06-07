@@ -25,7 +25,15 @@ public class DieController
 		d2.rollDie();
 		
 		int diceResult[] = {d1.getStoredDie(), d2.getStoredDie()};
-		
+		int diceRes = d1.getStoredDie() + d2.getStoredDie();
+		lookAtResult(diceRes);
 		return diceResult;
+	}
+	
+	
+	public void lookAtResult(int diceResult) {
+		if(diceResult == 7) {
+			
+		}
 	}
 }
