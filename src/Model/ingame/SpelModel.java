@@ -45,7 +45,7 @@ public class SpelModel extends Observable {
 		if (spelDal.hasShouldRefresh(gameid, LoginController.getUsername())) {
 			this.hasChanged();
 			this.notifyObservers();
-			spelDal.shouldRefresh(gameid);
+			spelDal.removeShouldRefresh(gameid, LoginController.getUsername());
 		}
 	}
 

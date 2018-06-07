@@ -17,7 +17,6 @@ public class GameUpdateController implements Runnable {
 		
 		while(running) {
 			model.update();
-			System.out.println("Refresh");
 			try {
 				Thread.sleep(2000);
 			} catch (InterruptedException e) {

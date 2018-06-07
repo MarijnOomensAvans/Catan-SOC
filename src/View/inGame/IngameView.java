@@ -34,7 +34,7 @@ import View.dice.DieContentPane;
 import View.setupGame.DrawingPanel;
 
 @SuppressWarnings("serial")
-public class IngameView extends JPanel implements Observer{
+public class IngameView extends JPanel implements Observer {
 
 	GameManagerDAL gameManagerDAL = new GameManagerDAL();
 
@@ -80,7 +80,7 @@ public class IngameView extends JPanel implements Observer{
 	private JLabel woodCount;
 	private JLabel woolCount;
 	private JLabel wheatCount;
-	
+
 	private int playerStoneCount;
 	private int playerOreCount;
 	private int playerWoodCount;
@@ -116,7 +116,6 @@ public class IngameView extends JPanel implements Observer{
 	private JLabel longestRouteLabel;
 	private JLabel ownPointLabel;
 
-
 	public IngameView(BoardController bc, int gameID, DrawingPanel inGameBoard, int playerID,
 			IngameController inGameController, PlayerController pc, ChatController chatController,
 			DieController dieController) {
@@ -136,11 +135,6 @@ public class IngameView extends JPanel implements Observer{
 
 		playerStats = inGameController.getPlayerStats(gameID);
 		throwDiceButton = new JButton("Gooi Dobbelstenen");
-		if (inGameController.hasRolledDice(gameID)) {
-			endTurnButton.setEnabled(true);
-		} else {
-			endTurnButton.setEnabled(false);
-		}
 		if (!gameManagerDAL.getFirstTurn(gameID) && gameManagerDAL.getPlayerIDTurn(gameID) == playerID
 				&& gameManagerDAL.getHasThrown(gameID) == false) {
 			throwDiceButton.setEnabled(true);
@@ -153,8 +147,6 @@ public class IngameView extends JPanel implements Observer{
 
 		dieContentPane = new DieContentPane(dieController, throwDiceButton);
 
-		
-		
 		chatOutput = chatController.getCog();
 		ChatContentPane chatPanel = new ChatContentPane(chatController, chatOutput, playerID);
 		JPanel leftPanel = new JPanel();
@@ -200,8 +192,8 @@ public class IngameView extends JPanel implements Observer{
 		buildCostPanel.setBorder(border);
 		dieContentPane.setBorder(border);
 		diceButtonPanel.setBorder(border);
-		
-		//Get the amount of all types of resources from db
+
+		// Get the amount of all types of resources from db
 		playerStoneCount = inGameController.getPc().getAmountStone(playerID);
 		playerOreCount = inGameController.getPc().getAmountOre(playerID);
 		playerWoodCount = inGameController.getPc().getAmountWood(playerID);
@@ -305,7 +297,7 @@ public class IngameView extends JPanel implements Observer{
 		resourceCardsPanel.add(woodLabel);
 		resourceCardsPanel.add(woolLabel);
 		resourceCardsPanel.add(wheatLabel);
-		
+
 		stoneCount = new JLabel(playerStoneCount + "");
 		oreCount = new JLabel(playerOreCount + "");
 		woodCount = new JLabel(playerWoodCount + "");
@@ -465,14 +457,17 @@ public class IngameView extends JPanel implements Observer{
 	public void update() {
 		dieContentPane.update();
 		playerTurnUpdate();
+		System.out.println(ingameController.getTurn(gameID));
+		this.validate();
+		this.repaint();
 	}
 
 	public void playerTurnUpdate() {
 		playerTurnStringLabel.setText(ingameController.getTurn(gameID));
 	}
-	
+
 	public void nextTurnButtonUpdate() {
-		if(ingameController.hasRolledDice(gameID)) {
+		if (ingameController.hasRolledDice(gameID) && allowedToEnd(gameID)) {
 			endTurnButton.setEnabled(true);
 		}
 	}
