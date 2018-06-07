@@ -89,4 +89,14 @@ public class BoardController {
 		return i;
 	}
 
+	public boolean isVillage(int gameid) {
+		boolean b =board.isVillage(gameid);
+		return b;
+	}
+
+	public boolean isCity(int playerid) {
+		boolean b= board.isCity(playerid);
+		return b;
+	}
+
 }

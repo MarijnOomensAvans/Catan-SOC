@@ -291,5 +291,40 @@ public class BoardDAL {
 		
 	}
 
+	public boolean isVillage(int idplayer) {
+		String i = null;
+		try {
+			Statement stmt = conn.createStatement();
+			String query = "SELECT idstuk FROM spelerstuk WHERE idspeler = "+idplayer+ " AND idstuk LIKE 'd%'";
+			ResultSet rs = stmt.executeQuery(query);
+			rs.next();
+			i = rs.getString(1);
+		} catch (SQLException e) {
+		
+		}
+		if(i!= null) {
+			return true;
+		}else {
+		return false;
+		}
+	}
 
+	public boolean isCity(int playerid) {
+		String i = null;
+		try {
+			Statement stmt = conn.createStatement();
+			String query = "SELECT idstuk FROM spelerstuk WHERE idspeler = "+playerid+ " AND idstuk LIKE 'c%'";
+			ResultSet rs = stmt.executeQuery(query);
+			rs.next();
+			i = rs.getString(1);
+		} catch (SQLException e) {
+		
+		}
+		if(i!= null) {
+			return true;
+		}else {
+		return false;
+	}
+
+	}
 }
