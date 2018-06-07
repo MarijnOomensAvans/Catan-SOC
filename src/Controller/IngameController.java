@@ -21,12 +21,14 @@ public class IngameController {
 	private BoardController bc;
 	private ChatController chatController;
 	private DieController dieController;
+	private RobberController rb;
 
 	public IngameController(int gameid, int playerID, InGameFrame gameFrame, BoardController bc) {
 		this.gameid = gameid;
 		this.playerID = playerID;
 		this.bc = bc;
-		this.dieController = new DieController(gameid);
+		this.rb = new RobberController();
+		this.dieController = new DieController(gameid,rb);
 		spelModel = new SpelModel();
 		bct = new BankController(gameid);
 		pd = new PersonDAL();
