@@ -1,4 +1,4 @@
-/*package Controller;
+package Controller;
 
 import DAL.RobberDAL;
 
@@ -15,4 +15,3 @@ public class RobberController {
 	}
 
 }
-*/
