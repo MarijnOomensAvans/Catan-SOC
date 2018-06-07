@@ -245,6 +245,14 @@ public class SpelDAL {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+		try {
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate("UPDATE spel SET gedobbeld = " + 0 + " WHERE idspel = " + gameid );
+			stmt.close();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
