@@ -27,11 +27,7 @@ public class Player {
 		setName();
 		setColor();
 		setOrder_number();
-<<<<<<< HEAD
 		updateHand();
-=======
-
->>>>>>> 31d07eb99f8b207cd652cf1d3604c3d10c6995ca
 	}
 
 	public void setName() {
@@ -47,8 +43,8 @@ public class Player {
 	}
 	
 	public void updateHand() {
-	MaterialCard mc = new MaterialCard();
-	ArrayList<MaterialCard> databaseHand = conn.getMaterialCards();	
+	//MaterialCard mc = new MaterialCard();
+	//ArrayList<MaterialCard> databaseHand = conn.getMaterialCards();	
 	}
 	
 
