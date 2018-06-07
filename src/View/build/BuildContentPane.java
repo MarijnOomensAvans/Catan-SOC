@@ -47,6 +47,10 @@ public class BuildContentPane extends JPanel{
             public void actionPerformed(ActionEvent e) {
             	buildingType = "Village";
                 inGameBoard.setBuild(true, buildingType);
+                pc.getPlayer().removeMatCard("H");
+                pc.getPlayer().removeMatCard("W");
+                pc.getPlayer().removeMatCard("B");
+                pc.getPlayer().removeMatCard("G");
             	frame.closeFrame();
             }
         });
@@ -66,6 +70,11 @@ public class BuildContentPane extends JPanel{
             public void actionPerformed(ActionEvent e) {
             	buildingType = "City";
                 inGameBoard.setBuild(true, buildingType);
+                pc.getPlayer().removeMatCard("E");
+                pc.getPlayer().removeMatCard("E");
+                pc.getPlayer().removeMatCard("E");
+                pc.getPlayer().removeMatCard("G");
+                pc.getPlayer().removeMatCard("G");
             	frame.closeFrame();
             }
         });
@@ -85,6 +94,8 @@ public class BuildContentPane extends JPanel{
             public void actionPerformed(ActionEvent e) {
             	buildingType = "Street";
                 inGameBoard.setBuild(true, buildingType);
+                pc.getPlayer().removeMatCard("H");
+                pc.getPlayer().removeMatCard("B");
             	frame.closeFrame();
             }
         });
@@ -102,6 +113,9 @@ public class BuildContentPane extends JPanel{
 		devCardBuild.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	 pc.getPlayer().removeMatCard("E");
+            	 pc.getPlayer().removeMatCard("W");
+            	 pc.getPlayer().removeMatCard("G");
             	frame.closeFrame();
             }
         });

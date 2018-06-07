@@ -492,6 +492,8 @@ public class IngameView extends JPanel implements Observer {
 			} else {
 				if (ingameController.getBuildingCount() == 2) {
 					endTurnButton.setEnabled(true);
+				} else if((ingameController.getBuildingCount(4) >= 2) && ingameController.getBuildingCount() == 4){
+					endTurnButton.setEnabled(true);
 				}
 			}
 		}
