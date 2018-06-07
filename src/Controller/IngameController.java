@@ -29,7 +29,6 @@ public class IngameController {
 		this.playerID = playerID;
 		this.bc = bc;
 		this.rb = new RobberController();
-		this.dieController = new DieController(gameid, rb, this);
 		spelModel = new SpelModel(gameid);
 		Thread thread = new Thread(new GameUpdateController(spelModel));
 		thread.start();
@@ -39,6 +38,7 @@ public class IngameController {
 		DrawingPanel dp = new DrawingPanel(bc, gameid);
 		rb.setDrawingPanel(dp);
 		this.pc = new PlayerController(playerID, gameid, bct, pd);
+		this.dieController = new DieController(gameid, rb, this, bc, bct,pd);
 		gameFrame = new InGameFrame(bc, gameid, dp, playerID, this, pc, chatController, dieController);
 		spelModel.addObserver(gameFrame.getPane());
 	}
@@ -83,5 +83,11 @@ public class IngameController {
 	public boolean hasRolledDice(int gameid) {
 		return spelModel.hasRolledDice(gameid);
 		
+	}
+
+	public ArrayList<Integer> getPlayerIds(int gameID2) {
+		ArrayList<Integer> ids = new ArrayList<Integer>();
+		ids =pd.getIds(gameID2);
+		return ids;
 	}
 }

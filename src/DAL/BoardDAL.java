@@ -247,5 +247,49 @@ public class BoardDAL {
 		return i;
 	}
 
+	public int getXTile(int number,int gameid) {
+		int i = 0;
+		try {
+			Statement stmt = conn.createStatement();
+			String query = "SELECT x FROM Tegel WHERE idspel = " + gameid + " AND idgetalfiche =" + number;
+			ResultSet rs = stmt.executeQuery(query);
+			rs.next();
+			i = rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return i;
+		
+	}
+	public int getYTile(int number,int gameid) {
+		int i = 0;
+		try {
+			Statement stmt = conn.createStatement();
+			String query = "SELECT y FROM Tegel WHERE idspel = " + gameid + " AND idgetalfiche =" + number;
+			ResultSet rs = stmt.executeQuery(query);
+			rs.next();
+			i = rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return i;
+		
+	}
+
+	public int getBuildingplayer(int x, int y, Integer idspeler) {
+		int i = 0;
+		try {
+			Statement stmt = conn.createStatement();
+			String query = "SELECT idspeler FROM tegel WHERE x_van = " + x + " AND y_van =" + y+" AND idspeler = " + idspeler;
+			ResultSet rs = stmt.executeQuery(query);
+			rs.next();
+			i = rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return i;
+		
+	}
+
 
 }

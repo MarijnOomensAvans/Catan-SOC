@@ -1,6 +1,10 @@
 package Controller;
 
+import java.util.ArrayList;
+
+import DAL.PersonDAL;
 import Model.Die;
+import Model.MaterialCard;
 
 public class DieController 
 {	
@@ -9,9 +13,16 @@ public class DieController
 	private Die d2;
 	private RobberController rb;
 	private IngameController inGameController;
+	private BoardController bc;
+	private BankController bct;
+	private PersonDAL pd;
 	
-	public DieController(int gameID, RobberController rb, IngameController inGameController)
+	public DieController(int gameID, RobberController rb, IngameController inGameController, BoardController bc,
+			BankController bct, PersonDAL pd)
 	{
+		this.pd = pd;
+		this.bct = bct;
+		this.bc = bc;
 		this.inGameController = inGameController;
 		this.gameID = gameID;
 		this.rb = rb;
@@ -33,8 +44,44 @@ public class DieController
 	
 	
 	public void lookAtResult(int diceResult) {
+		ArrayList<Integer> ids = new ArrayList<Integer>();
+		ids = inGameController.getPlayerIds(gameID);
 		if(diceResult == 7) {
 			rb.robberThrown(diceResult,gameID);
+		}else {
+			if(diceResult == 2) {
+				int x =bc.getXTile(1, gameID);
+				int y =bc.getYTile(1, gameID);
+				char resource =bc.getTileResource(gameID, x, y);
+				String source =Character.toString(resource);
+						for(int i =0; i< ids.size(); i++) {
+							if(bc.getBuildingplayer(x,y,ids.get(i)) != 0) {
+								MaterialCard card =bct.getMaterialCard(source, ids.get(i));
+								String cardid =card.getIdCard();
+								pd.addMaterialCard(gameID, cardid, ids.get(i));
+						}
+					}
+			}else if(diceResult == 3) {
+				int x =bc.getXTile(2, gameID);
+				int y =bc.getYTile(2, gameID);
+				int x2 = bc.getXTile(3, gameID);
+				int y2 = bc.getXTile(3, gameID);
+				char resource =bc.getTileResource(gameID, x, y);
+				char resource2 = bc.getTileResource(gameID, x2, y2);
+				String source =Character.toString(resource);
+				String source2 =Character.toString(resource2);
+						for(int i =0; i< ids.size(); i++) {
+							if(bc.getBuildingplayer(x,y,ids.get(i)) != 0) {
+								MaterialCard card =bct.getMaterialCard(source, ids.get(i));
+								String cardid =card.getIdCard();
+								pd.addMaterialCard(gameID, cardid, ids.get(i));
+						}	else if(bc.getBuildingplayer(x2,y2,ids.get(i)) != 0) {
+							MaterialCard card =bct.getMaterialCard(source2, ids.get(i));
+							String cardid =card.getIdCard();
+							pd.addMaterialCard(gameID, cardid, ids.get(i));
+					}
+					}
+			}
 		}
 	}
 
