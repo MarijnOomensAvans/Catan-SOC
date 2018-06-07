@@ -477,4 +477,22 @@ public class PersonDAL {
 		return ids;
 	}
 
+	public String hasVillage(int playerID, int x, int y) {
+		String result = "";
+		Statement stmt = null;
+		String query = "SELECT idstuk FROM spelerstuk WHERE idspeler =" + playerID + " AND x_van = '"
+				+ x + "' AND y_van = '" + y + "'";
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			rs.next();
+			result = rs.getString(1);
+			stmt.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
+		
+	}
+
 }

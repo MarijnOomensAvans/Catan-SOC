@@ -866,5 +866,16 @@ public class Board {
 		int i =bdal.getBuildingplayer(x,y,idspeler);
 		return i;
 	}
+
+	public boolean isVillage(int playerid) {
+		boolean b =bdal.isVillage(playerid);
+		return b;
+		
+	}
+
+	public boolean isCity(int playerid) {
+		boolean b = bdal.isCity(playerid);
+		return b;
+	}
 	
 }

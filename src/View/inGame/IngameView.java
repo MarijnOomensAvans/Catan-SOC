@@ -135,7 +135,7 @@ public class IngameView extends JPanel implements Observer {
 		});
 
 		playerStats = inGameController.getPlayerStats(gameID);
-		
+
 		throwDiceButton = new JButton("Gooi Dobbelstenen");
 		if (!inGameController.getFirstTurn() && inGameController.getTurn(gameID).equals(LoginController.getUsername())
 				&& inGameController.hasRolledDice(gameID)) {
@@ -194,7 +194,8 @@ public class IngameView extends JPanel implements Observer {
 		buildCostPanel.setBorder(border);
 		dieContentPane.setBorder(border);
 		diceButtonPanel.setBorder(border);
-
+		
+		// Get the amount of all types of resources from db
 		playerStoneCount = inGameController.getPc().getAmountStone(playerID);
 		playerOreCount = inGameController.getPc().getAmountOre(playerID);
 		playerWoodCount = inGameController.getPc().getAmountWood(playerID);
@@ -374,7 +375,7 @@ public class IngameView extends JPanel implements Observer {
 		this.add(bottomPanel, BorderLayout.PAGE_END);
 
 		uiUpdate();
-		
+
 		firstTurnCheck();
 	}
 
@@ -460,11 +461,27 @@ public class IngameView extends JPanel implements Observer {
 		return turnPlayer;
 	}
 
+	public String reversedPlayerTurn(int id) {
+		String turnPlayer = "";
+		if (playerStats.get(0).getUsername().equals(ingameController.getTurn(id))) {
+			System.out.println("WE ZIJN BIJ VOLGNR 1");
+		} else if (playerStats.get(1).getUsername().equals(ingameController.getTurn(id))) {
+			turnPlayer = playerStats.get(0).getUsername();
+		} else if (playerStats.get(2).getUsername().equals(ingameController.getTurn(id))) {
+			turnPlayer = playerStats.get(1).getUsername();
+		} else if (playerStats.get(3).getUsername().equals(ingameController.getTurn(id))) {
+			turnPlayer = playerStats.get(2).getUsername();
+		}
+
+		return turnPlayer;
+	}
+
 	/* UPDATE */
 	public void uiUpdate() {
 		dieContentPane.update();
 		playerTurnUpdate();
 		throwDiceButtonUpdate();
+		nextTurnButtonUpdate();
 		this.revalidate();
 		this.repaint();
 	}
@@ -472,19 +489,36 @@ public class IngameView extends JPanel implements Observer {
 	public void playerTurnUpdate() {
 		playerTurnStringLabel.setText(ingameController.getTurn(gameID));
 	}
-	
+
 	public void LongestRouteUpdate() {
 		nameLongestRoutelabel.setText(ingameController.getLongestRoute(gameID));
 	}
-	
+
 	public void BiggestArmyUpdate() {
 		biggestArmyLabel.setText(ingameController.getBiggestArmy(gameID));
 	}
-	
 
 	public void nextTurnButtonUpdate() {
-		if (ingameController.hasRolledDice(gameID) && allowedToEnd(gameID)) {
-			endTurnButton.setEnabled(true);
+		if (allowedToEnd(gameID)) {
+			if (!ingameController.getFirstTurn()) {
+				if (ingameController.hasRolledDice(gameID)) {
+					endTurnButton.setEnabled(true);
+				}
+			} else {
+				if ((ingameController.getBuildingCount(4) >= 2) && ingameController.getBuildingCount() == 4) {
+					System.out.println("1");
+					endTurnButton.setEnabled(true);
+				} else if((ingameController.getBuildingCount(4) == 2) && ingameController.getBuildingCount() == 2){
+					if(ingameController.getTurn(gameID).equals(playerStats.get(3).getUsername())) {
+						if(ingameController.getBuildingCount(4) == 4) {
+							endTurnButton.setEnabled(true);
+						}
+					} else {
+						System.out.println("2");
+						endTurnButton.setEnabled(true);
+					}
+				}
+			}
 		}
 	}
 
@@ -497,6 +531,7 @@ public class IngameView extends JPanel implements Observer {
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		uiUpdate();
+		firstTurnCheck();
 	}
 
 }

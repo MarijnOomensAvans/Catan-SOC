@@ -14,6 +14,7 @@ public class SpelModel extends Observable {
 	private GameManagerDAL gameManagerDal;
 	private int gameid;
 	private IngameController ingameController;
+	private boolean secondRound = false;
 
 	public SpelModel(int gameid, IngameController ingameController) {
 		this.ingameController = ingameController;
@@ -67,9 +68,17 @@ public class SpelModel extends Observable {
 		return gameManagerDal.getFirstTurn(gameid);
 	}
 	
+	public int getBuildingCount() {
+		return spelDal.hasBuilt(gameid);
+	}
+	
+	public int getBuildingCount(int volgnr) {
+		return spelDal.getBuildingCount(gameid, volgnr);
+	}
+	
 	public void firstTurnCheck() {
 		
-		if(getFirstTurn()) {
+		if(getFirstTurn() && getTurn(gameid).equals(LoginController.getUsername())) {
 			int builtCount = spelDal.hasBuilt(gameid);
 			switch(builtCount) {
 				case(0):
@@ -92,4 +101,11 @@ public class SpelModel extends Observable {
 		}
 	}
 
+	public boolean isSecondRound() {
+		return secondRound;
+	}
+
+	public void setSecondRound(boolean secondRound) {
+		this.secondRound = secondRound;
+	}
 }

@@ -41,7 +41,9 @@ public class PlayerController {
 		DevelopmentCard devcard = bc.getDevelopmentCard(iddevcard, gameid);
 		return devcard;
 	}
-
+//	public void giveDevCardPlayer(int playerid, int gameid) {
+//		db.addDevelopmentCard(gameid, bd, playerid, false);
+//	}
 	// ------------------------------------------------------------------------------------------------------------------------
 	// Getamount for development cards
 	public int getAmountRidder(int playerid) {
@@ -318,18 +320,10 @@ public class PlayerController {
 		}
 	}
 
-	public int countBuildings() {
-		int count = 0;
-		playerIDs = db.getPlayerId(gameID).split(",");
-		for (int i = 0; i < 4; i++) {
-			count = count + db.countBuildings(Integer.parseInt(playerIDs[i]));
-		}
-		return count;
-
-	}
 
 	public String getAllBuildings() {
 		String buildings = "";
+		playerIDs = db.getPlayerId(gameID).split(",");
 		for (int i = 0; i < 4; i++) {
 			buildings = buildings + db.getAllBuildings(Integer.parseInt(playerIDs[i]));
 		}
@@ -350,6 +344,19 @@ public class PlayerController {
 	public int getCoordY(String x) {
 		return db.getCoordX(this.playerID, x);
 		
+	}
+
+	public boolean checkVillage(String test, String hlPoint) {
+		String[] split = test.split(",");
+		String point1 = db.hasVillage(playerID, Integer.parseInt(split[0]),Integer.parseInt(split[1]));
+		split = hlPoint.split(",");
+		String point2 = db.hasVillage(playerID, Integer.parseInt(split[0]),Integer.parseInt(split[1]));
+		if(point1 != "" || point2 != "") {
+			return true;
+		}
+		else {
+		return false;
+		}
 	}
 	
 }
