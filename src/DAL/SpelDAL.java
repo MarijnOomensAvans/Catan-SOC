@@ -65,14 +65,14 @@ public class SpelDAL {
 
 		return username;
 	}
-	
+
 	public void setLongestRoute(int gameid, String username) {
 		int playerid = getPlayerId(gameid, username);
 		try {
 			Statement stmt = conn.createStatement();
 			stmt.executeUpdate("UPDATE spel SET langste_hr_idspeler = " + playerid + " WHERE idspel = " + gameid);
 			stmt.close();
-		} catch(SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
@@ -88,9 +88,11 @@ public class SpelDAL {
 		/* GET CARDS */
 		try {
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT o.naam, so.gespeeld FROM speler s JOIN spelerontwikkelingskaart so "
-					+ "ON s.idspeler = so.idspeler JOIN ontwikkelingskaart o "
-					+ "ON o.idontwikkelingskaart = so.idontwikkelingskaart " + "WHERE s.idspeler = " + playerid);
+			ResultSet rs = stmt
+					.executeQuery("SELECT o.naam, so.gespeeld FROM speler s JOIN spelerontwikkelingskaart so "
+							+ "ON s.idspeler = so.idspeler JOIN ontwikkelingskaart o "
+							+ "ON o.idontwikkelingskaart = so.idontwikkelingskaart " + "WHERE s.idspeler = "
+							+ playerid);
 			while (rs.next()) {
 				developmentCards++;
 
@@ -226,7 +228,8 @@ public class SpelDAL {
 					.executeQuery("SELECT COUNT(*) FROM spelerontwikkelingskaart so JOIN ontwikkelingskaart o "
 							+ " ON so.idontwikkelingskaart = o.idontwikkelingskaart "
 							+ " WHERE (o.naam LIKE ('kathedraal') OR o.naam LIKE ('bibliotheek') OR o.naam LIKE ('markt') OR o.naam LIKE ('universiteit') "
-							+ " OR o.naam LIKE ('parlement')) AND so.idspeler LIKE " + playerid + " AND so.gespeeld = 1");
+							+ " OR o.naam LIKE ('parlement')) AND so.idspeler LIKE " + playerid
+							+ " AND so.gespeeld = 1");
 			while (rs.next()) {
 				devPoints = rs.getInt(1);
 			}
@@ -237,100 +240,118 @@ public class SpelDAL {
 
 		return devPoints;
 	}
-	
+
 	public void setPlayerTurn(int gameid, String username) {
 		try {
 			Statement stmt = conn.createStatement();
-			stmt.executeUpdate("UPDATE spel SET beurt_idspeler = " + this.getPlayerId(gameid, username) + " WHERE idspel = " + gameid);
+			stmt.executeUpdate("UPDATE spel SET beurt_idspeler = " + this.getPlayerId(gameid, username)
+					+ " WHERE idspel = " + gameid);
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		try {
 			Statement stmt = conn.createStatement();
-			stmt.executeUpdate("UPDATE spel SET gedobbeld = " + 0 + " WHERE idspel = " + gameid );
+			stmt.executeUpdate("UPDATE spel SET gedobbeld = " + 0 + " WHERE idspel = " + gameid);
 			stmt.close();
-		} catch(SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public boolean hasRolledDice(int gameid) {
 		try {
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT gedobbeld FROM spel WHERE idspel = " + gameid);
-			while(rs.next()) {
-				if(rs.getInt(1) == 0) {
+			while (rs.next()) {
+				if (rs.getInt(1) == 0) {
 					return false;
 				} else {
 					return true;
 				}
 			}
 			stmt.close();
-		} catch(SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return false;
 	}
-	
+
 	public void shouldRefresh(int gameid) {
 		try {
 			Statement stmt = conn.createStatement();
 			stmt.executeUpdate("UPDATE speler SET shouldrefresh = 1 WHERE idspel = " + gameid);
 			stmt.close();
-		} catch(SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
-	
-	public void removeShouldRefresh(int gameid, String username) {try {
-		Statement stmt = conn.createStatement();
-		stmt.executeUpdate("UPDATE speler SET shouldrefresh = 0 WHERE idspel = " + gameid + " AND username LIKE '" + username + "'");
-		stmt.close();
-	} catch(SQLException e) {
-		e.printStackTrace();
-	}
-	}
-	
-	public boolean hasShouldRefresh(int gameid, String username) {
-		boolean value = false;
-		
+
+	public void removeShouldRefresh(int gameid, String username) {
 		try {
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT shouldrefresh FROM speler WHERE idspeler = " + getPlayerId(gameid, username));
-			while(rs.next()) {
-				if(rs.getInt(1) == 0) {
+			stmt.executeUpdate("UPDATE speler SET shouldrefresh = 0 WHERE idspel = " + gameid + " AND username LIKE '"
+					+ username + "'");
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public boolean hasShouldRefresh(int gameid, String username) {
+		boolean value = false;
+
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt
+					.executeQuery("SELECT shouldrefresh FROM speler WHERE idspeler = " + getPlayerId(gameid, username));
+			while (rs.next()) {
+				if (rs.getInt(1) == 0) {
 					return false;
 				} else {
 					return true;
 				}
 			}
 			stmt.close();
-		} catch(SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return value;
 	}
-	
+
 	public int hasBuilt(int gameid) {
 		try {
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt
-					.executeQuery("SELECT count(*)  FROM spelerstuk ss JOIN speler s "
-							+ "ON ss.idspeler = s.idspeler JOIN stuk st "
-							+ "ON st.idstuk = ss.idstuk WHERE s.username LIKE '" + LoginController.getUsername() + "' AND s.idspel = " + gameid);
-			while(rs.next()) {
+			ResultSet rs = stmt.executeQuery("SELECT count(*)  FROM spelerstuk ss JOIN speler s "
+					+ "ON ss.idspeler = s.idspeler JOIN stuk st " + "ON st.idstuk = ss.idstuk WHERE s.username LIKE '"
+					+ LoginController.getUsername() + "' AND s.idspel = " + gameid);
+			while (rs.next()) {
 				return rs.getInt(1);
 			}
-		} catch(SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return 0;
 	}
 
+	public int getBuildingCount(int gameid, int volgnr) {
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT count(*)  FROM spelerstuk ss JOIN speler s "
+					+ "ON ss.idspeler = s.idspeler JOIN stuk st " + "ON st.idstuk = ss.idstuk WHERE s.volgnr = '"
+					+ volgnr + "' AND s.idspel = " + gameid );
+			while (rs.next()) {
+				return rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return 0;
+	}
 
 }
