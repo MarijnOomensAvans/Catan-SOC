@@ -253,6 +253,27 @@ public class PersonDAL {
 		}
 		return amount;
 	}
+	
+	public int amountResourceCards(int idplayer, String cardtype) {
+		int amount = 0;
+		Statement stmt = null;
+		String query = "SELECT COUNT(idgrondstofkaart) FROM spelergrondstofkaart WHERE idspeler = '"+ idplayer +"' AND idgrondstofkaart LIKE '"+ cardtype+"'";
+		try
+		{
+			stmt = conn.createStatement();
+			ResultSet i = stmt.executeQuery(query);
+			while (i.next())
+			{
+				amount = i.getInt(1);
+			}
+		
+			stmt.close();
+		} catch (SQLException e)
+		{
+			System.out.println(e.getMessage());
+		}
+		return amount;
+	}
 
 	public String getMaterialCards(int playerid, int i) {
 		ArrayList<String> results = new ArrayList<String>();

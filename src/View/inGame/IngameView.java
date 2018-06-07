@@ -83,6 +83,12 @@ public class IngameView extends JPanel {
 	private JLabel woodCount;
 	private JLabel woolCount;
 	private JLabel wheatCount;
+	
+	private int playerStoneCount;
+	private int playerOreCount;
+	private int playerWoodCount;
+	private int playerWoolCount;
+	private int playerWheatCount;
 
 	private JPanel leftPanel;
 	private JPanel centerPanel;
@@ -115,6 +121,7 @@ public class IngameView extends JPanel {
 	private JLabel ownPointLabel;
 	
 	
+	
 
 	public IngameView(BoardController bc, int gameID, DrawingPanel inGameBoard, int playerID,
 			IngameController inGameController, PlayerController pc, ChatController chatController, DieController dieController) {
@@ -136,6 +143,8 @@ public class IngameView extends JPanel {
 
 		dieContentPane = new DieContentPane(dieController, throwDiceButton);
 
+		
+		
 		chatOutput = chatController.getCog();
 		ChatContentPane chatPanel = new ChatContentPane(chatController, chatOutput, playerID);
 		JPanel leftPanel = new JPanel();
@@ -181,6 +190,13 @@ public class IngameView extends JPanel {
 		buildCostPanel.setBorder(border);
 		dieContentPane.setBorder(border);
 		diceButtonPanel.setBorder(border);
+		
+		//Get the amount of all types of resources from db
+		playerStoneCount = inGameController.getPc().getAmountStone(playerID);
+		playerOreCount = inGameController.getPc().getAmountOre(playerID);
+		playerWoodCount = inGameController.getPc().getAmountWood(playerID);
+		playerWoolCount = inGameController.getPc().getAmountWool(playerID);
+		playerWheatCount = inGameController.getPc().getAmountWheat(playerID);
 
 		 boardPanel = new JPanel();
 
@@ -287,11 +303,11 @@ public class IngameView extends JPanel {
 		resourceCardsPanel.add(woolLabel);
 		resourceCardsPanel.add(wheatLabel);
 		
-		stoneCount = new JLabel("2");
-		oreCount = new JLabel("4");
-		woodCount = new JLabel("1");
-		woolCount = new JLabel("1");
-		wheatCount = new JLabel("1");
+		stoneCount = new JLabel(playerStoneCount + "");
+		oreCount = new JLabel(playerOreCount + "");
+		woodCount = new JLabel(playerWoodCount + "");
+		woolCount = new JLabel(playerWoolCount + "");
+		wheatCount = new JLabel(playerWheatCount + "");
 		
 		Border paddingBorder = BorderFactory.createEmptyBorder(30,30,30,30);
 		stoneCount.setBorder(paddingBorder);
