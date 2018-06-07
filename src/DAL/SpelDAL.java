@@ -258,7 +258,7 @@ public class SpelDAL {
 	public boolean hasRolledDice(int gameid) {
 		try {
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT gedobbeld FROM spel WHERE idspel " + gameid);
+			ResultSet rs = stmt.executeQuery("SELECT gedobbeld FROM spel WHERE idspel = " + gameid);
 			while(rs.next()) {
 				if(rs.getInt(1) == 0) {
 					return false;
