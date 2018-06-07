@@ -7,11 +7,12 @@ public class DieController
 	private int gameID;
 	private Die d1;
 	private Die d2;
+	private RobberController rb;
 	
-	public DieController(int gameID)
+	public DieController(int gameID, RobberController rb)
 	{
 		this.gameID = gameID;
-		
+		this.rb = rb;
 		d1 = new Die(1, gameID);
 		d2 = new Die(2, gameID);
 		
@@ -33,7 +34,7 @@ public class DieController
 	
 	public void lookAtResult(int diceResult) {
 		if(diceResult == 7) {
-			
+			rb.robberThrown(diceResult,gameID);
 		}
 	}
 }
