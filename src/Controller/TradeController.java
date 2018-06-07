@@ -16,7 +16,7 @@ import View.trade.TradeGui;
 import View.trade.TradeOfferPane;
 import View.trade.TradeResultPane;
 
-public class TradeController extends Observable implements Runnable {
+public class TradeController extends Observable {
 
 	private TradeDAL td;
 	private PersonDAL pd;
@@ -27,14 +27,12 @@ public class TradeController extends Observable implements Runnable {
 	private Player player;
 	private TradeAcceptPane tap;
 	private TradeResultPane trp;
-	private Thread t1;
 	private PlayerController pc;
 	private BankController bc;
 
 	private ArrayList<Integer> otherIds;
-	private boolean runthread;
 	
-	public TradeController(int playerid, int gameid, PersonDAL pd, Player player, PlayerController pc, BankController bc) {
+	public TradeController(int playerid, int gameid, PersonDAL pd, Player player, PlayerController pc, BankController bc, TradeGui gui) {
 		this.pd = pd;
 		this.td = new TradeDAL();
 		this.bc = bc;
@@ -43,14 +41,9 @@ public class TradeController extends Observable implements Runnable {
 		this.gameid = gameid;
 		this.pc = pc;
 		otherIds = pd.getOtherid(gameid, playerid);
-		tap = new TradeAcceptPane(this, playerid);
-		t1 = new Thread(this);
-		t1.start();
-		otherPlayers = new TradeOtherPlayers(pd, td);
-		TradeOfferPane top = new TradeOfferPane(this, playerid, true);
-		tap = new TradeAcceptPane(this, playerid);
-		gui = new TradeGui(this, playerid, top,tap,gameid);
-		this.addObserver(tap);
+		otherPlayers = new TradeOtherPlayers(pd);
+		this.gui = gui;
+
 	}
 
 	public void createOffer(int idPlayer, int givesStone, int givesWool, int givesOre, int givesWheat, int givesWood,
@@ -129,21 +122,9 @@ public class TradeController extends Observable implements Runnable {
 		return has;
 	}
 
-	@Override
-	public void run() {
-		while (runthread) {
-			try {			
-				for(int i = 0; i<otherIds.size(); i++)
-				{
-					getLatestTradeOffer(otherIds.get(i));
-				}
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-			}
-		}
-	}
 
-	private void getLatestTradeOffer(int playerid) {
+
+	public void getLatestTradeOffer(int playerid) {
 		ArrayList<Integer> offer = td.getTradeResponses(playerid);
 		if (offer.size() != 0 && trp != null) {
 			if(playerid == otherIds.get(0))
@@ -177,9 +158,6 @@ public class TradeController extends Observable implements Runnable {
 		
 	}
 
-	public void setRunthread(boolean runthread) {
-		this.runthread = runthread;
-	}
 
 	public void close() {
 		gui.dispose();
@@ -225,4 +203,6 @@ public class TradeController extends Observable implements Runnable {
 		};
 		return false;
 	}
+
+	
 }

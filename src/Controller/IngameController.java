@@ -3,14 +3,19 @@ package Controller;
 import java.util.ArrayList;
 
 import DAL.PersonDAL;
-import Model.SpelModel;
+
+import Model.TradeOtherPlayers;
+
 import Model.ingame.PlayerStats;
+import Model.ingame.SpelModel;
 import View.developmentCards.DevelopmentContentPane;
 import View.developmentCards.DevelopmentGui;
 import View.inGame.InGameFrame;
 import View.setupGame.DrawingPanel;
+import View.trade.TradeGui;
+import View.trade.TradeOfferPane;
 
-public class IngameController {
+public class IngameController implements Runnable {
 
 	private SpelModel spelModel;
 	private BankController bct;
@@ -25,14 +30,19 @@ public class IngameController {
 	private DieController dieController;
 	private RobberController rb;
 	private InGameFrame gameFrame;
+	private TradeController tc;
+	private Thread tradeThread;
 
 	public IngameController(int gameid, int playerID, BoardController bc) {
+		tradeThread = new Thread(this);
 		this.gameid = gameid;
 		this.playerID = playerID;
 		this.bc = bc;
 		this.rb = new RobberController();
 		this.dieController = new DieController(gameid, rb, this);
-		spelModel = new SpelModel();
+		spelModel = new SpelModel(gameid);
+		Thread thread = new Thread(new GameUpdateController(spelModel));
+		thread.start();
 		bct = new BankController(gameid);
 		pd = new PersonDAL();
 		chatController = new ChatController(gameid, playerID);
@@ -58,9 +68,7 @@ public class IngameController {
 
 	public void openTrade() {
 
-		new TradeController(playerID, gameid, pd, pc.getPlayer(), pc, bct);
-
-		// TODO Auto-generated method stub
+		tc =new TradeController(playerID, gameid, pd, pc.getPlayer(), pc, bct, new TradeGui(tc, playerID, new TradeOfferPane(tc, playerID, true), gameid));
 
 	}
 
@@ -73,12 +81,8 @@ public class IngameController {
 		spelModel.setPlayerTurn(gameid, username);
 	}
 
-/*	public void shouldRefresh(int gameID) {
-		spelModel.shouldRefresh(gameID);
-	}*/
-
-	public void update() {
-		gameFrame.update();
+	public void shouldRefresh() {
+		spelModel.shouldRefresh();
 	}
 	
 	public PlayerController getPc() {
@@ -89,7 +93,30 @@ public class IngameController {
 		
 	}
 
+	@Override
+	public void run() {
+		while (true) {
+			try {
+				ArrayList<Integer> otherIds = getOtherid(gameid,playerID);
+				for(int i = 0; i<otherIds.size(); i++)
+				{
+					tc.getLatestTradeOffer(otherIds.get(i));
+				}
+				Thread.sleep(1000);
+			} catch (InterruptedException e) {
+			}
+		}
+	}
+	public ArrayList<Integer> getOtherid(int gameid, int playerid) {
+		TradeOtherPlayers otherplayers = new TradeOtherPlayers(pd);
+		ArrayList<Integer> id = otherplayers.getOtherid(gameid, playerid);
+		return id;
+	}
+
+
 	public void thrownDice() {
 		gameFrame.nextTurnButtonUpdate();
+		shouldRefresh();
 	}
+
 }

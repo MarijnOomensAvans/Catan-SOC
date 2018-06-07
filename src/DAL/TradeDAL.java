@@ -139,92 +139,12 @@ public class TradeDAL {
 		return results;
 	}
 
-	public ArrayList<Integer> getLatestTradeOfferold(ArrayList<Integer> otherIds){
-		ArrayList<Integer> results = new ArrayList<>();
-
-		Statement stmt = null;
-		int counter =0;
-		String sizequery = "SELECT COUNT(*) FROM ruilaanbod";
-
-		try
-		{
-			stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(sizequery);
-			rs.next();
-			counter = rs.getInt(1);
-			
-			if(counter > 0)
-			{
-				String query = "SELECT idspeler FROM ruilaanbod";
-				
-				rs = stmt.executeQuery(query);
-				
-				while (rs.next())
-				{
-					if(otherIds.contains(rs.getInt(1)))
-					{
-						results.add(rs.getInt(1));
-						results.addAll(getTradeResponses(rs.getInt(1)));
-						return results;
-					}
-				}
-			
-			}
-		}catch (SQLException e)
-		{
-			System.out.println(e.getMessage());
-		}
-		return null;
-	}
 	
 	public ArrayList<Integer> getLatestTradeOffer(int playerid){
 		ArrayList<Integer> results = new ArrayList<>();
 		results = getTradeResponses(playerid);
 		return results;
 
-		//Statement stmt = null;
-//		int size = 0;
-//		String sizequery = "SELECT COUNT(*) FROM ruilaanbod";
-
-//		try
-//		{
-//			stmt = conn.createStatement();
-//			ResultSet rs = stmt.executeQuery(sizequery);
-//			rs.next();
-//			size = rs.getInt(1);
-			
-//			if(checkFirstTime == false)
-//			{
-//				counter = size;
-//				checkFirstTime = true;
-//				return null;
-//			}
-			
-//			if(size > counter)
-//			{
-//				int difference = size - counter;
-//				String query = "SELECT idspeler FROM ruilaanbod WHERE LIMIT 1";
-//				
-//				ResultSet rs = stmt.executeQuery(query);
-//				rs.next();
-//				results = getTradeResponses(rs.getInt(1));
-//				return results;
-//				while (rs.next())
-//				{
-//				
-//					if(otherIds.contains(rs.getInt(1)))
-//					{
-//						results = getTradeResponses(rs.getInt(1));
-//						return results;
-//					}
-//				}
-			
-			
-//		}catch (SQLException e)
-//		{
-//			System.out.println(e.getMessage());
-//		}
-	//	return null;
 	}
 
 	public void deleteOffers(int playerid, int otherplayerid1, int otherplayerid2, int otherplayerid3) {

@@ -7,6 +7,8 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
@@ -15,8 +17,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
-
-import com.sun.javafx.PlatformUtil;
 
 import Controller.BoardController;
 import Controller.ChatController;
@@ -32,11 +32,9 @@ import View.chat.ChatContentPane;
 import View.chat.Chatoutputgui;
 import View.dice.DieContentPane;
 import View.setupGame.DrawingPanel;
-import View.developmentCards.DevelopmentGui;
-import View.developmentCards.DevelopmentContentPane;
 
 @SuppressWarnings("serial")
-public class IngameView extends JPanel {
+public class IngameView extends JPanel implements Observer {
 
 	GameManagerDAL gameManagerDAL = new GameManagerDAL();
 
@@ -82,7 +80,7 @@ public class IngameView extends JPanel {
 	private JLabel woodCount;
 	private JLabel woolCount;
 	private JLabel wheatCount;
-	
+
 	private int playerStoneCount;
 	private int playerOreCount;
 	private int playerWoodCount;
@@ -118,7 +116,6 @@ public class IngameView extends JPanel {
 	private JLabel longestRouteLabel;
 	private JLabel ownPointLabel;
 
-
 	public IngameView(BoardController bc, int gameID, DrawingPanel inGameBoard, int playerID,
 			IngameController inGameController, PlayerController pc, ChatController chatController,
 			DieController dieController) {
@@ -132,17 +129,13 @@ public class IngameView extends JPanel {
 			inGameController.setPlayerTurn(gameID, nextPlayerTurn(gameID));
 			endTurnButton.setEnabled(false);
 			playerTurnUpdate();
+			inGameController.shouldRefresh();
 
 		});
 
 		playerStats = inGameController.getPlayerStats(gameID);
 		throwDiceButton = new JButton("Gooi Dobbelstenen");
-		if (inGameController.hasRolledDice(gameID)) {
-			endTurnButton.setEnabled(true);
-		} else {
-			endTurnButton.setEnabled(false);
-		}
-		if (gameManagerDAL.getFirstTurn(gameID) && gameManagerDAL.getPlayerIDTurn(gameID) == playerID
+		if (!gameManagerDAL.getFirstTurn(gameID) && gameManagerDAL.getPlayerIDTurn(gameID) == playerID
 				&& gameManagerDAL.getHasThrown(gameID) == false) {
 			throwDiceButton.setEnabled(true);
 		} else {
@@ -154,8 +147,6 @@ public class IngameView extends JPanel {
 
 		dieContentPane = new DieContentPane(dieController, throwDiceButton);
 
-		
-		
 		chatOutput = chatController.getCog();
 		ChatContentPane chatPanel = new ChatContentPane(chatController, chatOutput, playerID);
 		JPanel leftPanel = new JPanel();
@@ -201,8 +192,8 @@ public class IngameView extends JPanel {
 		buildCostPanel.setBorder(border);
 		dieContentPane.setBorder(border);
 		diceButtonPanel.setBorder(border);
-		
-		//Get the amount of all types of resources from db
+
+		// Get the amount of all types of resources from db
 		playerStoneCount = inGameController.getPc().getAmountStone(playerID);
 		playerOreCount = inGameController.getPc().getAmountOre(playerID);
 		playerWoodCount = inGameController.getPc().getAmountWood(playerID);
@@ -306,7 +297,7 @@ public class IngameView extends JPanel {
 		resourceCardsPanel.add(woodLabel);
 		resourceCardsPanel.add(woolLabel);
 		resourceCardsPanel.add(wheatLabel);
-		
+
 		stoneCount = new JLabel(playerStoneCount + "");
 		oreCount = new JLabel(playerOreCount + "");
 		woodCount = new JLabel(playerWoodCount + "");
@@ -381,7 +372,7 @@ public class IngameView extends JPanel {
 		this.add(rightPanel, BorderLayout.LINE_END);
 		this.add(bottomPanel, BorderLayout.PAGE_END);
 
-		update();
+		uiUpdate();
 	}
 
 	public void getCards() {
@@ -463,20 +454,26 @@ public class IngameView extends JPanel {
 	}
 
 	/* UPDATE */
-	public void update() {
+	public void uiUpdate() {
 		dieContentPane.update();
 		playerTurnUpdate();
+		this.validate();
+		this.repaint();
 	}
 
 	public void playerTurnUpdate() {
 		playerTurnStringLabel.setText(ingameController.getTurn(gameID));
 	}
-	
+
 	public void nextTurnButtonUpdate() {
-		System.out.println(ingameController.hasRolledDice(gameID));
-		if(ingameController.hasRolledDice(gameID)) {
+		if (ingameController.hasRolledDice(gameID) && allowedToEnd(gameID)) {
 			endTurnButton.setEnabled(true);
 		}
+	}
+
+	@Override
+	public void update(Observable arg0, Object arg1) {
+		uiUpdate();
 	}
 
 }
