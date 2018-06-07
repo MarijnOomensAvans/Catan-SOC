@@ -35,7 +35,9 @@ public class DrawingPanel extends JPanel {
 	private Robber robber;
 	private boolean mayBuild = false;
 	private boolean mayMoveRobber = false;
+	private boolean devCardBuild = false;
 	private String buildingType;
+
 
 	// making 19 rooms for hexagons
 	private Hexagon hexagon1;
@@ -64,7 +66,6 @@ public class DrawingPanel extends JPanel {
 	// making room for an arraylist
 	private ArrayList<Hexagon> hexagons;
 	private PlayerController pc;
-	private Graphics2D g2d;
 
 	public DrawingPanel(BoardController bc, int idspel) {
 		robber = new Robber();
@@ -134,14 +135,11 @@ public class DrawingPanel extends JPanel {
 					String test = convertXYfromScreenToKey(e.getX(), e.getY());
 					if (test != null) {
 						if (hlPoint == test && !buildingType.equals("Street")) {
-							if(pc.emptySpace(buildingType, hlPoint)) {
 							pc.buildObject(buildingType, hlPoint);
-							paintBuildings();
 							// Log here
 							mayBuild = false;
 							hlPoint = null;
 							repaint();
-							}
 						} else if(hlPoint == null || !buildingType.equals("Street")){
 							hlPoint = test;
 							repaint();
@@ -154,14 +152,14 @@ public class DrawingPanel extends JPanel {
 								int y1 = Integer.parseInt(hlarray[1]);
 								int x2 = Integer.parseInt(clarray[0]);
 								int y2 = Integer.parseInt(clarray[1]);
-								if (x1 == (x2 + 1) && y1 == (y2 + 1) || x1 == (x2 - 1) && y1 == y2|| x1 == x2 && y1 == (y2 - 1)) {
-									if(pc.emptySpace(buildingType, hlPoint)) {	
+								if (x1 == (x2 + 1) && y1 == (y2 + 1) || x1 == (x2 + 1) && y1 == y2|| x1 == x2 && y1 == (y2 - 1)) {
 									pc.buildStreet(x1,x2,y1,y2);
-									paintBuildings();
 									// Log here 
 									mayBuild = false;
 									hlPoint = null;
 									repaint();
+<<<<<<< HEAD
+=======
 									}
 									else {
 										// Log here
@@ -175,6 +173,7 @@ public class DrawingPanel extends JPanel {
 									mayBuild = false;
 									hlPoint = null;
 									repaint();
+>>>>>>> d2fccaf758ff0ec6b95a3d0e48dad0585b20a8cb
 								}
 							}
 						}
@@ -208,7 +207,6 @@ public class DrawingPanel extends JPanel {
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D) g;
-		this.g2d = g2d;
 		g2d.setColor(Color.BLACK);
 		for (int i = 0; i < hexagons.size(); i++) {
 			g2d.drawPolygon(hexagons.get(i).getHexagon());
@@ -326,14 +324,11 @@ public class DrawingPanel extends JPanel {
 	public void setMayMoveRobber(boolean b) {
 		mayMoveRobber = b;
 	}
-	
-	public void paintBuildings() {
-		for(int i = 0; i < pc.countBuildings(); i++) {
-			String[] buildings = pc.getAllBuildings().split(",");
-			for(int x = 0; x < buildings.length; x++) {
-				g2d.setColor(Color.PINK);
-				repaint();
-			}
-		}
+
+	public void setBuildDev(boolean b, String string) {
+		this.mayBuild = b;
+		this.buildingType = string;
+		this.devCardBuild = true;
 	}
+
 }
