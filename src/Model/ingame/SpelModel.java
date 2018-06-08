@@ -116,4 +116,8 @@ public class SpelModel extends Observable {
 	public void setAllPlayersCanceld(int gameid) {
 		spelDal.setPlayersCanceld(gameid);
 	}
+
+	public void setFirstTurn(boolean b) {
+		spelDal.setFirstTurn(gameid, b);
+	}
 }

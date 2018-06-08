@@ -134,12 +134,15 @@ public class IngameController {
 		spelModel.setAllPlayersCanceld(gameid);
 	}  
 
-
 	public void setSecondRound(boolean b) {
 		spelModel.setSecondRound(b);
 	}
 	
 	public boolean isSecondRound() {
 		return spelModel.isSecondRound();
+	}
+
+	public void setFirstTurn(boolean b) {
+		spelModel.setFirstTurn(b);
 	}
 }
