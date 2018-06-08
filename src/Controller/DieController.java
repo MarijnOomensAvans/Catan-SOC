@@ -35,7 +35,7 @@ public class DieController {
 
 		int diceResult[] = { d1.getStoredDie(), d2.getStoredDie() };
 		int diceRes = d1.getStoredDie() + d2.getStoredDie();
-		lookAtResult(diceRes);
+		//lookAtResult(diceRes);
 		return diceResult;
 	}
 
@@ -59,7 +59,6 @@ public class DieController {
 		} else if (diceResult == 8) {
 			getCards1(10);
 			getCards1(11);
-			;
 		} else if (diceResult == 9) {
 			getCards1(12);
 			getCards1(13);

@@ -1,21 +1,21 @@
 package View.dice;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
+
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.print.DocFlavor.URL;
+
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import Controller.DieController;
 
+@SuppressWarnings("serial")
 public class DieContentPane extends JPanel implements ActionListener {
 	private DieController con;
 	private JButton throwDiceButton;
@@ -151,8 +151,8 @@ public class DieContentPane extends JPanel implements ActionListener {
 		}
 	}
 	
-	public void enableButton() {
-		throwDiceButton.setEnabled(true);
+	public void enableButton(boolean value) {
+		throwDiceButton.setEnabled(value);
 		throwDiceButton.revalidate();
 	}
 }

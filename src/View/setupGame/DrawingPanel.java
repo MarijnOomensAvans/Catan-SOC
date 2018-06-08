@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import Controller.BoardController;
 import Controller.IngameController;
 import Controller.PlayerController;
+import Controller.RobberController;
 import Model.board.ClickPoints;
 import Model.board.Location;
 import Model.board.Tile;
@@ -91,11 +92,11 @@ public class DrawingPanel extends JPanel {
 
 	boolean paint = true;
 
-	public DrawingPanel(BoardController bc, int idspel) {
+	public DrawingPanel(BoardController bc, int gameID, RobberController rb) {
 		robber = new Robber();
 		this.setLayout(null);
 		robber = new Robber();
-		this.idspel = idspel;
+		this.idspel = gameID;
 		this.bc = bc;
 		// initialize arraylist
 		hexagons = new ArrayList<>();
@@ -143,7 +144,7 @@ public class DrawingPanel extends JPanel {
 		hexagons.add(hexagon17);
 		hexagons.add(hexagon18);
 		hexagons.add(hexagon19);
-		robber.setBounds(bc.getRobberXPosition(idspel) - 45, bc.getRobberYPosition(idspel) - 30, 25, 60);
+		robber.setBounds(bc.getRobberXPosition(gameID) - 45, bc.getRobberYPosition(gameID) - 30, 25, 60);
 		;
 		this.add(robber);
 
@@ -157,7 +158,7 @@ public class DrawingPanel extends JPanel {
 			public void mouseClicked(MouseEvent e) {
 
 				if (ingameController != null) {
-					ingameController.shouldRefresh(idspel);
+					ingameController.shouldRefresh(gameID);
 				}
 
 				if (mayBuild == true) {
@@ -165,7 +166,9 @@ public class DrawingPanel extends JPanel {
 					if (test != null) {
 						if (hlPoint == test && !buildingType.equals("Street")) {
 							if (pc.emptySpace(buildingType, hlPoint)) {
-								pc.buildObject(buildingType, hlPoint);
+								if(pc.buildObject(buildingType, hlPoint)) {
+								removeMaterialCards(buildingType);
+								}
 								// Log here
 								mayBuild = false;
 								hlPoint = null;
@@ -175,7 +178,7 @@ public class DrawingPanel extends JPanel {
 							hlPoint = test;
 							repaint();
 						}
-						if (test != null && hlPoint != null && buildingType.equals("Street")) {
+						if (test != hlPoint  && buildingType.equals("Street")) {
 							if (pc.emptySpace(buildingType, hlPoint)) {
 								String[] hlarray = hlPoint.split(",");
 								String[] clarray = test.split(",");
@@ -185,16 +188,24 @@ public class DrawingPanel extends JPanel {
 								int y2 = Integer.parseInt(clarray[1]);
 								if (x1 == (x2 + 1) && y1 == (y2 + 1) || x1 == (x2 + 1) && y1 == y2
 										|| x1 == x2 && y1 == (y2 - 1) || x1 == (x2 - 1) && y1 == y2
-										|| x1 == x2 && y1 == (y2 + 1) || x1 == (x2 - 1) && y1 == (y2 = 1)) {
+										|| x1 == x2 && y1 == (y2 + 1) || x1 == (x2 - 1) && y1 == (y2 - 1)) {
 									if (pc.checkVillage(test, hlPoint)) {
-										pc.buildStreet(x1, x2, y1, y2);
+										if(pc.buildStreet(x1, x2, y1, y2)) {
 										paintBuildings();
+										removeMaterialCards(buildingType);
+										}
 										// Log here
 										if (devCardBuild == false) {
 											mayBuild = false;
 										} else {
 											devCardBuild = false;
 										}
+										hlPoint = null;
+										repaint();
+									}
+									else {
+										// Log here
+										mayBuild = false;
 										hlPoint = null;
 										repaint();
 									}
@@ -205,12 +216,13 @@ public class DrawingPanel extends JPanel {
 									repaint();
 								}
 							}
-						} else {
-							// Change to log later - System.out.println("Building aborted");
-							mayBuild = false;
-							hlPoint = null;
-							repaint();
-						}
+						}	
+					}
+					else {
+						// Log here
+						mayBuild = false;
+						hlPoint = null;
+						repaint();
 					}
 				}
 				if (mayMoveRobber == true) {
@@ -220,9 +232,10 @@ public class DrawingPanel extends JPanel {
 						String positions[] = returnString.split(",");
 						int x = Integer.parseInt(positions[0]);
 						int y = Integer.parseInt(positions[1]);
-						bc.setRobberTile(idspel, x, y);
-						robber.setBounds(bc.getRobberXPosition(idspel) - 45, bc.getRobberYPosition(idspel) - 30, 25,
+						bc.setRobberTile(gameID, x, y);
+						robber.setBounds(bc.getRobberXPosition(gameID) - 45, bc.getRobberYPosition(gameID) - 30, 25,
 								60);
+						rb.choose(gameID);
 						mayMoveRobber = false;
 					}
 				}
@@ -378,7 +391,7 @@ public class DrawingPanel extends JPanel {
 		String[] buildings = pc.getAllBuildings().split(",");
 		for (int x = 0; x < buildings.length; x++) {
 			village_Blue.paintIcon(this, g, buildingConvertXfromKeyToScreenX(pc.getCoordX(buildings[x])),
-					buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[x]), pc.getCoordY(buildings[x])));
+					buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[x]), pc.getCoordY(buildings[x]))); 
 
 		}
 		repaint();
@@ -408,6 +421,35 @@ public class DrawingPanel extends JPanel {
 
 	public void setIngameController(IngameController ingameController) {
 		this.ingameController = ingameController;
+	}
+	
+	public void removeMaterialCards(String buildingType) {
+		if(pc.getRound()) {
+		switch(buildingType) {
+		case "Village":
+            pc.getPlayer().removeMatCard("H");
+            pc.getPlayer().removeMatCard("W");
+            pc.getPlayer().removeMatCard("B");
+            pc.getPlayer().removeMatCard("G");
+			break;
+		case "City":
+            pc.getPlayer().removeMatCard("E");
+            pc.getPlayer().removeMatCard("E");
+            pc.getPlayer().removeMatCard("E");
+            pc.getPlayer().removeMatCard("G");
+            pc.getPlayer().removeMatCard("G");
+            break;
+		case "Street":
+            pc.getPlayer().removeMatCard("H");
+            pc.getPlayer().removeMatCard("B");
+			break;
+		case "DevCard":
+	       	 pc.getPlayer().removeMatCard("E");
+	       	 pc.getPlayer().removeMatCard("W");
+	       	 pc.getPlayer().removeMatCard("G");
+			break;
+            }
+		}
 	}
 
 }

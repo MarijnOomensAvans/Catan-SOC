@@ -27,7 +27,7 @@ public class PersonDAL {
 			}
 			stmt.close();
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 		return result;
 	}
@@ -45,7 +45,7 @@ public class PersonDAL {
 			}
 			stmt.close();
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 		return result;
 	}
@@ -62,7 +62,7 @@ public class PersonDAL {
 			}
 			stmt.close();
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 		return result;
 	}
@@ -80,7 +80,7 @@ public class PersonDAL {
 			stmt.close();
 
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 	}
 
@@ -505,14 +505,35 @@ public class PersonDAL {
 		try {
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
-			rs.next();
+
+			if (rs.next()) {
 			result = rs.getString(1);
+			}
 			stmt.close();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
 		return result;
 		
+	}
+
+	public boolean getRound(int gameID) {
+		String i = null;
+		try {
+			Statement stmt = conn.createStatement();
+			String query = "SELECT eersteronde FROM spel WHERE idspel = "+ gameID + "";
+			ResultSet rs = stmt.executeQuery(query);
+			rs.next();
+			i = rs.getString(1);
+		} catch (SQLException e) {
+		
+		}
+		if(i.equals("1")) {
+			return false;
+		}
+		else {
+		return true;
+		}
 	}
 
 }

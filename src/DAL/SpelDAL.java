@@ -299,6 +299,16 @@ public class SpelDAL {
 			e.printStackTrace();
 		}
 	}
+	
+	public void setPlayersCanceld(int gameid) {
+		try {
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate("UPDATE speler SET speelstatus = 'afgebroken' WHERE idspel =" + gameid+")");
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public boolean hasShouldRefresh(int gameid, String username) {
 		boolean value = false;
@@ -352,6 +362,20 @@ public class SpelDAL {
 		}
 
 		return 0;
+	}
+
+	public void setFirstTurn(int gameid, boolean b) {
+		int value = 0;
+		if(b) {
+			value = 1;
+		}
+		try {
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate("UPDATE spel SET eersteronde = " + value + " WHERE idspel = " + gameid);
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

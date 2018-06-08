@@ -119,4 +119,41 @@ public class RobberDAL {
 
 	}
 
+	public ArrayList<Integer> getOtherPlayerid(int gameid, int playerid) {
+		ArrayList<Integer> result = new ArrayList<Integer>();
+		Statement stmt = null;
+		String query = "SELECT idspeler FROM speler WHERE idspel =" + gameid + " AND idspeler NOT IN(" + playerid + ")";
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while (rs.next()) {
+				result.add(rs.getInt(1));
+
+			}
+			stmt.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
+
+	public String getOtherPlayerName(int playerid) {
+		String result = "";
+		Statement stmt = null;
+		String query = "SELECT username FROM speler WHERE idspeler =" + playerid;
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while (rs.next()) {
+				result = rs.getString(1);
+
+			}
+			stmt.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
+
+	}
+
 }
