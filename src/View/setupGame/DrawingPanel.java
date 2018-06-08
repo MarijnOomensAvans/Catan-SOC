@@ -391,7 +391,7 @@ public class DrawingPanel extends JPanel {
 		String[] buildings = pc.getAllBuildings().split(",");
 		for (int x = 0; x < buildings.length; x++) {
 			village_Blue.paintIcon(this, g, buildingConvertXfromKeyToScreenX(pc.getCoordX(buildings[x])),
-					buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[x]), pc.getCoordY(buildings[x])));
+					buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[x]), pc.getCoordY(buildings[x]))); 
 
 		}
 		repaint();
