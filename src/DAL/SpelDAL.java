@@ -304,7 +304,7 @@ public class SpelDAL {
 	public void setPlayersCanceld(int gameid) {
 		try {
 			Statement stmt = conn.createStatement();
-			stmt.executeUpdate("UPDATE speler SET speelstatus = 'afgebroken' WHERE idspel =" + gameid+")");
+			stmt.executeUpdate("UPDATE speler SET speelstatus = 'uitgespeeld' WHERE idspel =" + gameid+")");
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
