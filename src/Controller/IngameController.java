@@ -132,7 +132,7 @@ public class IngameController {
 
 	public void setAllPlayersCanceled(int gameid) {
 		spelModel.setAllPlayersCanceld(gameid);
-	}
+	}  
 
 	public void setSecondRound(boolean b) {
 		spelModel.setSecondRound(b);

@@ -119,6 +119,7 @@ public class IngameView extends JPanel implements Observer {
 	private JLabel largestArmyLabel;
 	private JLabel longestRouteLabel;
 	private JLabel ownPointLabel;
+	private ArrayList<JLabel> points;
 
 	public IngameView(BoardController bc, int gameID, DrawingPanel inGameBoard, int playerID,
 			IngameController inGameController, PlayerController pc, ChatController chatController,
@@ -127,10 +128,12 @@ public class IngameView extends JPanel implements Observer {
 		this.gameID = gameID;
 		this.ingameController = inGameController;
 		this.dieController = dieController;
+		points = new ArrayList<>();
 		endTurnButton = new JButton("Beurt beëindigen");
 		endTurnButton.setEnabled(false);
 		endTurnButton.addActionListener(e -> {
 			if (ingameController.isSecondRound()) {
+				ingameController.setPlayerTurn(gameID, reversedPlayerTurn(gameID));
 				if (ingameController.getTurn(gameID).equals(LoginController.getUsername())) {
 					ingameController.setSecondRound(false);
 					if(playerStats.get(0).getUsername().equals(LoginController.getUsername())) {
@@ -403,10 +406,11 @@ public class IngameView extends JPanel implements Observer {
 			int developmentCards = playerStats.get(i).getDevelopmentCards();
 			int knightCards = playerStats.get(i).getKnightCards();
 			int publicPoints = playerStats.get(i).getPublicPoints();
-			JLabel cardsLabel = new JLabel(name + " GK:" + resourceCards + " OK:" + developmentCards + " GR:"
-					+ knightCards + " OV:" + publicPoints);
+			JLabel cardsLabel = new JLabel(name + " GK:" + resourceCards + " OK:" + developmentCards + " GR:" + knightCards
+					+ " OV:" + publicPoints);
 
 			cardsLabel.setHorizontalAlignment(SwingConstants.CENTER);
+			points.add(cardsLabel);
 			playerCardsPanel.add(cardsLabel);
 		}
 	}
@@ -508,6 +512,7 @@ public class IngameView extends JPanel implements Observer {
 	/* UPDATE */
 	public void uiUpdate() {
 		dieContentPane.update();
+		puntenLabelUpdate();  
 		playerTurnUpdate();
 		throwDiceButtonUpdate();
 		nextTurnButtonUpdate();
@@ -525,6 +530,20 @@ public class IngameView extends JPanel implements Observer {
 
 	public void BiggestArmyUpdate() {
 		biggestArmyLabel.setText(ingameController.getBiggestArmy(gameID));
+	}
+
+    	public void puntenLabelUpdate() {
+		for (int i = 0; i < playerStats.size(); i++) {
+			String name = playerStats.get(i).getUsername();
+			int resourceCards = playerStats.get(i).getResourceCards();
+			int developmentCards = playerStats.get(i).getDevelopmentCards();
+			int knightCards = playerStats.get(i).getKnightCards();
+			int publicPoints = playerStats.get(i).getPublicPoints();
+			points.get(i).setText(name + " GK:" + resourceCards + " OK:" + developmentCards + " GR:" + knightCards + " OV:"
+					+ publicPoints);
+			System.out.println(publicPoints  );
+			
+		}
 	}
 
 	public void nextTurnButtonUpdate() {
@@ -571,6 +590,7 @@ public class IngameView extends JPanel implements Observer {
 
 	@Override
 	public void update(Observable arg0, Object arg1) {
+		playerStats = ingameController.getPlayerStats(gameID);
 		uiUpdate();
 		firstTurnCheck();
 	}
