@@ -328,6 +328,27 @@ public class PersonDAL {
 		return result;
 	}
 	
+	public String getAllPlayers(int gameID) {
+		String result = "";
+		Statement stmt = null;
+		String query = "SELECT idstuk FROM spelerstuk WHERE idspeler =" + gameID + "";
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while (rs.next()) {
+				if (result.equals("")) {
+					result = rs.getString(1);
+				} else {
+					result = result + "," + rs.getString(1);
+				}
+			}
+			stmt.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
+	
 	public String getCoords(int spelerID, String pieceID, String coord) {
 		String result = "";
 		Statement stmt = null;
