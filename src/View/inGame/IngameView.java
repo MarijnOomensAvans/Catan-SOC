@@ -133,7 +133,8 @@ public class IngameView extends JPanel implements Observer {
 		endTurnButton = new JButton("Beurt beëindigen");
 		endTurnButton.setEnabled(false);
 		endTurnButton.addActionListener(e -> {
-			if (ingameController.isSecondRound()) {
+			System.out.println(ingameController.isSecondRound());
+			if (ingameController.isSecondRound() && ingameController.getFirstTurn()) {
 				ingameController.setPlayerTurn(gameID, reversedPlayerTurn(gameID));
 				if (ingameController.getTurn(gameID).equals(LoginController.getUsername())) {
 					ingameController.setSecondRound(false);
@@ -536,6 +537,7 @@ public class IngameView extends JPanel implements Observer {
 
     	public void puntenLabelUpdate() {
 		for (int i = 0; i < playerStats.size(); i++) {
+			
 			String name = playerStats.get(i).getUsername();
 			int resourceCards = playerStats.get(i).getResourceCards();
 			int developmentCards = playerStats.get(i).getDevelopmentCards();
@@ -543,7 +545,6 @@ public class IngameView extends JPanel implements Observer {
 			int publicPoints = playerStats.get(i).getPublicPoints();
 			points.get(i).setText(name + " GK:" + resourceCards + " OK:" + developmentCards + " GR:" + knightCards + " OV:"
 					+ publicPoints);
-			System.out.println(publicPoints  );
 			
 		}
 	}
@@ -559,7 +560,7 @@ public class IngameView extends JPanel implements Observer {
 					endTurnButton.setEnabled(true);
 				}
 			} else {
-				if ((ingameController.getBuildingCount(4) >= 2) && ingameController.getBuildingCount() == 4) {
+				if (((ingameController.getBuildingCount(4) >= 2) && ingameController.getBuildingCount() == 4) && ingameController.getFirstTurn()) {
 					ingameController.setSecondRound(true);
 					endTurnButton.setEnabled(true);
 				} else if ((ingameController.getBuildingCount(4) == 2) && ingameController.getBuildingCount() == 2) {

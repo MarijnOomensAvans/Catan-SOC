@@ -118,7 +118,7 @@ public class LobbyDAL {
 	public void acceptInvite(int gameID) {
 		try {
 			Statement stmt = conn.createStatement();
-			stmt.executeUpdate("UPDATE `bdjong1_db2`.`speler` SET `speelstatus`='geaccepteerd' " + "WHERE `idspel`= "
+			stmt.executeUpdate("UPDATE speler SET speelstatus = 'geaccepteerd' " + "WHERE idspel = "
 					+ gameID + " " + "AND username LIKE '" + LoginController.getUsername() + "'");
 			stmt.close();
 		} catch (SQLException e) {
@@ -129,7 +129,7 @@ public class LobbyDAL {
 	public void rejectInvite(int gameID) {
 		try {
 			Statement stmt = conn.createStatement();
-			stmt.executeUpdate("UPDATE `bdjong1_db2`.`speler` SET `speelstatus`='geweigerd' " + "WHERE `idspel`= "
+			stmt.executeUpdate("UPDATE speler SET speelstatus = 'geweigerd' " + "WHERE `idspel`= "
 					+ gameID + " " + "AND username LIKE '" + LoginController.getUsername() + "'");
 			stmt.close();
 		} catch (SQLException e) {

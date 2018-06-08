@@ -265,7 +265,7 @@ public class DrawingPanel extends JPanel {
 			drawPoints(g);
 			updateHighlight(g);
 			if (paint) {
-				paintBuildings(g);
+				//paintBuildings(g);
 				paint = false;
 			}
 		}
