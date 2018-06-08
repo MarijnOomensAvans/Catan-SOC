@@ -24,7 +24,7 @@ public class InGameFrame extends JFrame {
 			IngameController inGameController, PlayerController pc, ChatController chatController,
 			DieController dieController) {
 		// initialize contentpane
-		pane = new IngameView(bc, gameID, inGameBoard, playerID, inGameController, pc, chatController, dieController);
+		pane = new IngameView(bc, gameID, inGameBoard, playerID, inGameController, pc, chatController, dieController, this);
 		this.bc = bc;
 		// create the frame
 		setTitle("Catan");
