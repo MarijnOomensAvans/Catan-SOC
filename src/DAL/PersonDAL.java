@@ -27,7 +27,7 @@ public class PersonDAL {
 			}
 			stmt.close();
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 		return result;
 	}
@@ -45,7 +45,7 @@ public class PersonDAL {
 			}
 			stmt.close();
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 		return result;
 	}
@@ -62,7 +62,7 @@ public class PersonDAL {
 			}
 			stmt.close();
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 		return result;
 	}
@@ -80,7 +80,7 @@ public class PersonDAL {
 			stmt.close();
 
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 	}
 

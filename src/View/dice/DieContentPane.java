@@ -151,8 +151,8 @@ public class DieContentPane extends JPanel implements ActionListener {
 		}
 	}
 	
-	public void enableButton() {
-		throwDiceButton.setEnabled(true);
+	public void enableButton(boolean value) {
+		throwDiceButton.setEnabled(value);
 		throwDiceButton.revalidate();
 	}
 }
