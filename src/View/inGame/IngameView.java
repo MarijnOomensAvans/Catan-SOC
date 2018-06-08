@@ -130,8 +130,15 @@ public class IngameView extends JPanel implements Observer {
 		endTurnButton = new JButton("Beurt beëindigen");
 		endTurnButton.setEnabled(false);
 		endTurnButton.addActionListener(e -> {
-			if(ingameController.isSecondRound()) {
-				ingameController.setPlayerTurn(gameID, reversedPlayerTurn(gameID));
+			if (ingameController.isSecondRound()) {
+				if (ingameController.getTurn(gameID).equals(LoginController.getUsername())) {
+					ingameController.setSecondRound(false);
+					if(playerStats.get(0).getUsername().equals(LoginController.getUsername())) {
+						ingameController.setFirstTurn(false);
+					}else {
+						ingameController.setPlayerTurn(gameID, reversedPlayerTurn(gameID));
+					}
+				}
 			} else {
 				ingameController.setPlayerTurn(gameID, nextPlayerTurn(gameID));
 			}
@@ -201,7 +208,7 @@ public class IngameView extends JPanel implements Observer {
 		buildCostPanel.setBorder(border);
 		dieContentPane.setBorder(border);
 		diceButtonPanel.setBorder(border);
-		
+
 		// Get the amount of all types of resources from db
 		playerStoneCount = inGameController.getPc().getAmountStone(playerID);
 		playerOreCount = inGameController.getPc().getAmountOre(playerID);
@@ -440,23 +447,23 @@ public class IngameView extends JPanel implements Observer {
 		}
 		return ownPoint;
 	}
-	
+
 	public void winnerBox() {
-		JOptionPane.showMessageDialog(null, weGotAWinner() + " heeft gewonnen", "Game beëindigd", JOptionPane.INFORMATION_MESSAGE);
-		ingameController.setAllPlayersCanceled(gameID);   
+		JOptionPane.showMessageDialog(null, weGotAWinner() + " heeft gewonnen", "Game beëindigd",
+				JOptionPane.INFORMATION_MESSAGE);
+		ingameController.setAllPlayersCanceled(gameID);
 	}
-	
+
 	public String weGotAWinner() {
 		int tenPoints = 10;
 		String winner = "";
-		for(int i = 0; i < playerStats.size(); i++) {
-			if(playerStats.get(i).getPrivatePoints() == tenPoints) {
+		for (int i = 0; i < playerStats.size(); i++) {
+			if (playerStats.get(i).getPrivatePoints() == tenPoints) {
 				winner = playerStats.get(i).getUsername();
 			}
 		}
 		return winner;
 	}
-	
 
 	public boolean allowedToEnd(int id) {
 		boolean allowed = false;
@@ -467,7 +474,6 @@ public class IngameView extends JPanel implements Observer {
 		}
 		return allowed;
 	}
-	
 
 	public String nextPlayerTurn(int id) {
 		String turnPlayer = "";
@@ -522,11 +528,10 @@ public class IngameView extends JPanel implements Observer {
 	}
 
 	public void nextTurnButtonUpdate() {
-		
+
 		int buildingCount = ingameController.getBuildingCount();
 		int lastPlayerBuildingCount = ingameController.getBuildingCount(4);
-		
-		
+
 		if (allowedToEnd(gameID)) {
 			if (!ingameController.getFirstTurn()) {
 				if (ingameController.hasRolledDice(gameID)) {
@@ -536,9 +541,9 @@ public class IngameView extends JPanel implements Observer {
 				if ((ingameController.getBuildingCount(4) >= 2) && ingameController.getBuildingCount() == 4) {
 					ingameController.setSecondRound(true);
 					endTurnButton.setEnabled(true);
-				} else if((ingameController.getBuildingCount(4) == 2) && ingameController.getBuildingCount() == 2){
-					if(ingameController.getTurn(gameID).equals(playerStats.get(3).getUsername())) {
-						if(ingameController.getBuildingCount(4) == 4) {
+				} else if ((ingameController.getBuildingCount(4) == 2) && ingameController.getBuildingCount() == 2) {
+					if (ingameController.getTurn(gameID).equals(playerStats.get(3).getUsername())) {
+						if (ingameController.getBuildingCount(4) == 4) {
 							endTurnButton.setEnabled(true);
 						}
 					} else {
@@ -547,7 +552,7 @@ public class IngameView extends JPanel implements Observer {
 					ingameController.setSecondRound(true);
 				} else if (buildingCount == 2 && lastPlayerBuildingCount < 2) {
 					endTurnButton.setEnabled(true);
-				} else if (buildingCount < 4 && lastPlayerBuildingCount == 4){
+				} else if (buildingCount < 4 && lastPlayerBuildingCount == 4) {
 					ingameController.setSecondRound(true);
 				}
 			}

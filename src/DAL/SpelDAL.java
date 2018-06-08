@@ -364,4 +364,18 @@ public class SpelDAL {
 		return 0;
 	}
 
+	public void setFirstTurn(int gameid, boolean b) {
+		int value = 0;
+		if(b) {
+			value = 1;
+		}
+		try {
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate("UPDATE spel SET eersteronde = " + value + " WHERE idspel = " + gameid);
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 }
