@@ -540,6 +540,7 @@ public class TradeOfferPane extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				counterOffer.setEnabled(false);
 				tc.createOffer(playerid, stoneOfferCounter, woolOfferCounter, oreOfferCounter, wheatOfferCounter, woodOfferCounter, stoneDemandCounter, woolDemandCounter, oreDemandCounter, wheatDemandCounter, woodDemandCounter,true);
 			}
 			

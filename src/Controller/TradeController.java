@@ -22,8 +22,10 @@ public class TradeController extends Observable implements Runnable {
 	private TradeOtherPlayers otherPlayers;
 	private int playerid;
 	private int gameid;
+	private int noOffers;
 	private TradeGui gui;
 	private Player player;
+	private TradeOfferPane top;
 	private TradeAcceptPane tap;
 	private TradeResultPane trp;
 	private Thread t1;
@@ -43,17 +45,34 @@ public class TradeController extends Observable implements Runnable {
 		this.gameid = gameid;
 		this.pc = pc;
 		otherIds = pd.getOtherid(gameid, playerid);
-		tap = new TradeAcceptPane(this, playerid);
+		// tap = new TradeAcceptPane(this, playerid);
 		t1 = new Thread(this);
 		t1.start();
 		otherPlayers = new TradeOtherPlayers(pd);
-		TradeOfferPane top = new TradeOfferPane(this, playerid, true);
-		tap = new TradeAcceptPane(this, playerid);
-		gui = new TradeGui(this, playerid, top, tap, gameid);
-		this.addObserver(tap);
-		///pc.updateHand();
+		// TradeOfferPane top = new TradeOfferPane(this, playerid, true);
+		// tap = new TradeAcceptPane(this, playerid);
+		// gui = new TradeGui(this, playerid, top, tap, gameid);
 
 	}
+
+	public void createGUI(String pane) {
+		if (pane == "top") {
+			top = new TradeOfferPane(this, playerid, true);
+			gui = new TradeGui(this, playerid, top, gameid);
+		} else if (pane == "tap") {
+			tap = new TradeAcceptPane(this, playerid);
+			gui = new TradeGui(this, playerid, tap, gameid);
+		}
+	}
+
+	public void removeTRP() {
+		this.trp = null;
+	}
+
+	// public void removeTAP()
+	// {
+	// this.tap = null;
+	// }
 
 	public void createOffer(int idPlayer, int givesStone, int givesWool, int givesOre, int givesWheat, int givesWood,
 			int asksStone, int asksWool, int asksOre, int asksWheat, int asksWood, boolean accepted) {
@@ -146,21 +165,35 @@ public class TradeController extends Observable implements Runnable {
 
 	private void getLatestTradeOffer(int playerid) {
 		ArrayList<Integer> offer = td.getTradeResponses(playerid);
-		if (offer.size() != 0 && trp != null) {
-			if (playerid == otherIds.get(0)) {
-				trp.setResponse1();
+		if (trp != null) {
+			if (offer.size() != 0) {
+				if (playerid == otherIds.get(0)) {
+					trp.setResponse1();
+				} else if (playerid == otherIds.get(1)) {
+					trp.setResponse2();
+				} else if (playerid == otherIds.get(2)) {
+					trp.setResponse3();
+				}
 			}
-
-			else if (playerid == otherIds.get(1)) {
-				trp.setResponse2();
+		} else if (tap == null) {
+			if (offer.size() != 0) {
+				createGUI("tap");
+				this.addObserver(tap);
+				this.setChanged();
+				this.notifyObservers(offer);
 			}
-
-			else if (playerid == otherIds.get(2)) {
-				trp.setResponse3();
+		} else if (tap != null) {
+			if (offer.size() == 0) {
+				noOffers++;
+				if (noOffers == 3) {
+					this.close();
+					this.deleteObserver(tap);
+				}
+			}
+			else {
+				noOffers = 0;
 			}
 		}
-		this.setChanged();
-		this.notifyObservers(offer);
 	}
 
 	public String getUsername(int playerid) {
@@ -181,7 +214,8 @@ public class TradeController extends Observable implements Runnable {
 
 	public void close() {
 		gui.dispose();
-
+		this.tap = null;
+		this.trp = null;
 	}
 
 	public TradeResultPane getTrp() {

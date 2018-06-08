@@ -21,6 +21,7 @@ public class IngameController {
 	private BoardController bc;
 	private ChatController chatController;
 	private DieController dieController;
+	private TradeController tc;
 	private RobberController rb;
 	private InGameFrame gameFrame;
 	private DrawingPanel dp;
@@ -44,6 +45,7 @@ public class IngameController {
 		rb.setDrawingPanel(dp);
 		gameFrame = new InGameFrame(bc, gameid, dp, playerID, this, pc, chatController, dieController);
 		spelModel.addObserver(gameFrame.getPane());
+		tc = new TradeController(playerID, gameid, pd, pc.getPlayer(), pc, bct);
 	}
 
 	public PlayerController getPc() {
@@ -64,8 +66,8 @@ public class IngameController {
 	}
 
 	public void openTrade() {
-
-		new TradeController(playerID, gameid, pd, pc.getPlayer(), pc, bct);
+		tc.createGUI("top");
+		//new TradeController(playerID, gameid, pd, pc.getPlayer(), pc, bct);
 	}
 
 	public void openDevcard() {

@@ -185,8 +185,9 @@ public class TradeAcceptPane extends JPanel implements Observer {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				disableButtons();
 				tc.createOffer(playerid, stoneDemandCounter, woolDemandCounter, oreDemandCounter, wheatDemandCounter, woodDemandCounter, stoneOfferCounter, woolOfferCounter, oreOfferCounter, wheatOfferCounter, woodOfferCounter, true);
-				tc.close();
+				//tc.close();
 			}
 
 		});
@@ -194,8 +195,9 @@ public class TradeAcceptPane extends JPanel implements Observer {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				disableButtons();
 				tc.createOffer(playerid, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, false);
-				tc.close();
+				//tc.close();
 			}
 
 		});
@@ -211,6 +213,10 @@ public class TradeAcceptPane extends JPanel implements Observer {
 		acceptButton.setBounds(250, 475, 100, 80);
 		counterOffer.setBounds(350, 475, 100, 80);
 		rejectButton.setBounds(450, 475, 100, 80);
+		if(tc.getTradeResponses(playerid).size() != 0)
+		{
+			disableButtons();
+		}
 		add(acceptButton);
 		add(rejectButton);
 		add(counterOffer);
@@ -288,6 +294,13 @@ public class TradeAcceptPane extends JPanel implements Observer {
 		this.repaint();
 		
 
+	}
+	
+	public void disableButtons()
+	{
+		acceptButton.setEnabled(false);
+		rejectButton.setEnabled(false);
+		counterOffer.setEnabled(false);	
 	}
 
 }

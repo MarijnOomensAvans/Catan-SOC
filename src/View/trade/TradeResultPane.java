@@ -90,6 +90,7 @@ public class TradeResultPane extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 					tc.tradeCards(otherplayerid1);
+					tc.deleteOffers(playerid, otherplayerid1,otherplayerid2,otherplayerid3);
 					tc.close();
 			}
 			
@@ -99,6 +100,7 @@ public class TradeResultPane extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				tc.tradeCards(otherplayerid2);
+				tc.deleteOffers(playerid, otherplayerid1,otherplayerid2,otherplayerid3);
 				tc.close();
 				
 			}
@@ -109,6 +111,7 @@ public class TradeResultPane extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				tc.tradeCards(otherplayerid3);
+				tc.deleteOffers(playerid, otherplayerid1,otherplayerid2,otherplayerid3);
 				tc.close();
 				
 			}
