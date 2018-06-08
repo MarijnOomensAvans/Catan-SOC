@@ -1,6 +1,5 @@
 package DAL;
 
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -8,21 +7,17 @@ import java.sql.SQLException;
 public class MainDAL {
 	private static Connection conn;
 
-	public MainDAL()
-	{
+	public MainDAL() {
 		conn = null;
 		loadDataBaseDriver("com.mysql.jdbc.Driver");
 		makeConnection();
 	}
 
-	public boolean loadDataBaseDriver(String driverName)
-	{
-		try
-		{
+	public boolean loadDataBaseDriver(String driverName) {
+		try {
 			// Load the JDBC driver
 			Class.forName(driverName);
-		} catch (ClassNotFoundException e)
-		{
+		} catch (ClassNotFoundException e) {
 			// Could not find the database driver
 			System.out.println("ClassNotFoundException : " + e.getMessage());
 			return false;
@@ -30,15 +25,12 @@ public class MainDAL {
 		return true;
 	}
 
-	public boolean makeConnection()
-	{
-		try
-		{
-			conn = DriverManager
-					.getConnection("jdbc:mysql://databases.aii.avans.nl/1_soprj4_catan?user=42IN04SOc&password=cheeseburger");
-		
-		} catch (SQLException ex)
-		{
+	public boolean makeConnection() {
+		try {
+			conn = DriverManager.getConnection(
+					"jdbc:mysql://databases.aii.avans.nl/1_soprj4_catan?user=42IN04SOc&password=cheeseburger");
+
+		} catch (SQLException ex) {
 			// handle any errors
 			System.out.println("SQLException: " + ex.getMessage());
 			System.out.println("SQLState: " + ex.getSQLState());
@@ -47,7 +39,7 @@ public class MainDAL {
 		}
 		return true;
 	}
-	
+
 	public static Connection getConnection() {
 		return conn;
 	}

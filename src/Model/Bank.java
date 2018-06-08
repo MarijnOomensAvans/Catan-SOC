@@ -25,21 +25,19 @@ public class Bank {
 
 	private void makeMaterialCards(int gameid) {
 		MaterialCard mc;
-					for (int a = 1; a < 96; a++) {
-				matbank.add(mc = new MaterialCard(bd, gameid));
-				mc.setId(a);
-				mc.setKindOfMaterial(a);
-				
-			}
-		}
+		for (int a = 1; a < 96; a++) {
+			matbank.add(mc = new MaterialCard(bd, gameid));
+			mc.setId(a);
+			mc.setKindOfMaterial(a);
 
-	
+		}
+	}
 
 	public MaterialCard getMaterialCard(String kind) {
 		MaterialCard returncard = null;
 		for (int i = 0; i < matbank.size(); i++) {
 			if (matbank.get(i).getKindOfMaterial().equals(kind)) {
-				if (matbank.get(i).getPlayerid(matbank.get(i).getIdCard())== null) {
+				if (matbank.get(i).getPlayerid(matbank.get(i).getIdCard()) == null) {
 					returncard = matbank.get(i);
 					break;
 				}

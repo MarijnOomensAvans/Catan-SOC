@@ -118,7 +118,8 @@ public class SpelDAL {
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(
 					"SELECT s.stuksoort, COUNT(s.stuksoort) FROM spelerstuk st JOIN stuk s ON st.idstuk = s.idstuk"
-							+ " WHERE s.stuksoort NOT LIKE 'straat' AND st.idspeler = " + playerid
+							+ " WHERE s.stuksoort NOT LIKE 'straat' AND st.idspeler = " + playerid  
+							+ " AND st.x_van IS NOT null AND st.y_van IS NOT NULL "
 							+ " GROUP BY s.stuksoort");
 			while (rs.next()) {
 				if (rs.getString(1).equals("dorp")) {
