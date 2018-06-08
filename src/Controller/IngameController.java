@@ -39,13 +39,13 @@ public class IngameController {
 		this.dieController = new DieController(gameid, rb, this, bc, bct, pd);
 		chatController = new ChatController(gameid, playerID);
 		this.pc = new PlayerController(playerID, gameid, bct, pd);
-		dp = new DrawingPanel(bc, gameid,rb);
+		dp = new DrawingPanel(bc, gameid, rb);
 		dp.setIngameController(this);
 		dp.setPlayerController(pc);
 		rb.setDrawingPanel(dp);
 		gameFrame = new InGameFrame(bc, gameid, dp, playerID, this, pc, chatController, dieController);
 		spelModel.addObserver(gameFrame.getPane());
-		tc = new TradeController(playerID, gameid, pd, pc.getPlayer(), pc, bct);
+		tc = new TradeController(playerID, gameid, pd, pc.getPlayer(), pc, bct, this);
 	}
 
 	public PlayerController getPc() {
@@ -67,11 +67,11 @@ public class IngameController {
 
 	public void openTrade() {
 		tc.createGUI("top");
-		//new TradeController(playerID, gameid, pd, pc.getPlayer(), pc, bct);
+		// new TradeController(playerID, gameid, pd, pc.getPlayer(), pc, bct);
 	}
 
 	public void openDevcard() {
-//		DevelopmentContentPane dcp = new DevelopmentContentPane(pc, playerID, dp);
+		// DevelopmentContentPane dcp = new DevelopmentContentPane(pc, playerID, dp);
 		new DevelopmentGui(pc, gameid, playerID, dp);
 	}
 
@@ -82,29 +82,28 @@ public class IngameController {
 	public void shouldRefresh(int gameID) {
 		spelModel.shouldRefresh(gameID);
 	}
-	
+
 	public void thrownDice() {
 		gameFrame.nextTurnButtonUpdate();
 		shouldRefresh(gameid);
 	}
 
-	
 	public boolean hasRolledDice(int gameid) {
 		return spelModel.hasRolledDice(gameid);
-		
+
 	}
-	
+
 	public String getLongestRoute(int gameID) {
 		return spelModel.getLongestRoute(gameid);
 	}
-	
+
 	public String getBiggestArmy(int gameid) {
 		return spelModel.getBiggestArmy(gameid);
 	}
-	
+
 	public ArrayList<Integer> getPlayerIds(int gameID2) {
 		ArrayList<Integer> ids = new ArrayList<Integer>();
-		ids =pd.getIds(gameID2);
+		ids = pd.getIds(gameID2);
 		return ids;
 	}
 
@@ -115,36 +114,40 @@ public class IngameController {
 	public void firstTurnCheck() {
 		spelModel.firstTurnCheck();
 	}
-	
+
 	public void buildVillage() {
 		dp.setBuild(true, "Village");
 	}
-	
+
 	public void buildStreet() {
 		dp.setBuild(true, "Street");
 	}
-	
+
 	public int getBuildingCount() {
 		return spelModel.getBuildingCount();
 	}
-	
+
 	public int getBuildingCount(int volgnr) {
 		return spelModel.getBuildingCount(volgnr);
 	}
 
 	public void setAllPlayersCanceled(int gameid) {
 		spelModel.setAllPlayersCanceld(gameid);
-	}  
+	}
 
 	public void setSecondRound(boolean b) {
 		spelModel.setSecondRound(b);
 	}
-	
+
 	public boolean isSecondRound() {
 		return spelModel.isSecondRound();
 	}
 
 	public void setFirstTurn(boolean b) {
 		spelModel.setFirstTurn(b);
+	}
+
+	public void setTradeButton(boolean enable) {
+		gameFrame.setTradeButton(enable);
 	}
 }

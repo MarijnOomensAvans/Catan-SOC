@@ -92,6 +92,7 @@ public class TradeResultPane extends JPanel {
 					tc.tradeCards(otherplayerid1);
 					tc.deleteOffers(playerid, otherplayerid1,otherplayerid2,otherplayerid3);
 					tc.close();
+					tc.setTradeButton(true);
 			}
 			
 		});
@@ -102,7 +103,7 @@ public class TradeResultPane extends JPanel {
 				tc.tradeCards(otherplayerid2);
 				tc.deleteOffers(playerid, otherplayerid1,otherplayerid2,otherplayerid3);
 				tc.close();
-				
+				tc.setTradeButton(true);
 			}
 			
 		});
@@ -113,7 +114,7 @@ public class TradeResultPane extends JPanel {
 				tc.tradeCards(otherplayerid3);
 				tc.deleteOffers(playerid, otherplayerid1,otherplayerid2,otherplayerid3);
 				tc.close();
-				
+				tc.setTradeButton(true);
 			}
 			
 		});
@@ -123,7 +124,7 @@ public class TradeResultPane extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 				tc.deleteOffers(playerid, otherplayerid1,otherplayerid2,otherplayerid3);
 				tc.close();
-				
+				tc.setTradeButton(true);
 			}
 			
 		});

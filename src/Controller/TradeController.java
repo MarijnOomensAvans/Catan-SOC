@@ -28,15 +28,17 @@ public class TradeController extends Observable implements Runnable {
 	private TradeOfferPane top;
 	private TradeAcceptPane tap;
 	private TradeResultPane trp;
+	private BankPane bp;
 	private Thread t1;
 	private PlayerController pc;
 	private BankController bc;
+	private IngameController igc;
 
 	private ArrayList<Integer> otherIds;
 	private boolean runthread = true;
 
 	public TradeController(int playerid, int gameid, PersonDAL pd, Player player, PlayerController pc,
-			BankController bc) {
+			BankController bc, IngameController igc) {
 		this.pd = pd;
 		this.td = new TradeDAL();
 		this.bc = bc;
@@ -52,6 +54,7 @@ public class TradeController extends Observable implements Runnable {
 		// TradeOfferPane top = new TradeOfferPane(this, playerid, true);
 		// tap = new TradeAcceptPane(this, playerid);
 		// gui = new TradeGui(this, playerid, top, tap, gameid);
+		this.igc = igc;
 
 	}
 
@@ -189,8 +192,7 @@ public class TradeController extends Observable implements Runnable {
 					this.close();
 					this.deleteObserver(tap);
 				}
-			}
-			else {
+			} else {
 				noOffers = 0;
 			}
 		}
@@ -202,10 +204,10 @@ public class TradeController extends Observable implements Runnable {
 	}
 
 	public void switchBankPane() {
-		gui.setContentPane(new BankPane(this, playerid));
+		bp = new BankPane(this, playerid);
+		gui.setContentPane(bp);
 		gui.validate();
 		gui.repaint();
-
 	}
 
 	public void setRunthread(boolean runthread) {
@@ -218,8 +220,16 @@ public class TradeController extends Observable implements Runnable {
 		this.trp = null;
 	}
 
-	public TradeResultPane getTrp() {
+	public TradeResultPane getTRP() {
 		return trp;
+	}
+
+	public TradeOfferPane getTOP() {
+		return top;
+	}
+
+	public BankPane getBP() {
+		return bp;
 	}
 
 	public void tradeCards(int otherplayerid) {
@@ -241,6 +251,10 @@ public class TradeController extends Observable implements Runnable {
 	public void deleteCards(ArrayList<String> cardkindsOffer) {
 		bc.deleteCards(cardkindsOffer);
 
+	}
+
+	public void setTradeButton(boolean enable) {
+		igc.setTradeButton(enable);
 	}
 
 	public boolean hasCards(ArrayList<Integer> playercounterbid) {

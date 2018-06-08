@@ -290,6 +290,9 @@ public class TradeAcceptPane extends JPanel implements Observer {
 				woodDemandCounter =((ArrayList<Integer>) arg).get(i);
 				woodDemand.setText(""+woodDemandCounter);
 			}
+			if(tc.hasCards((ArrayList<Integer>) arg) == false) {
+				acceptButton.setEnabled(false);
+			}
 		}
 		this.repaint();
 		

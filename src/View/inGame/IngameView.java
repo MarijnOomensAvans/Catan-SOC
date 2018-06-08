@@ -62,6 +62,7 @@ public class IngameView extends JPanel implements Observer {
 
 	private JButton throwDiceButton;
 	private JButton endTurnButton;
+	private JButton tradeButton;
 	private Border border;
 
 	private ImageIcon stone;
@@ -231,11 +232,12 @@ public class IngameView extends JPanel implements Observer {
 			}
 
 		});
-		JButton tradeButton = new JButton("Handelen");
+		tradeButton = new JButton("Handelen");
 		JButton devcardButton = new JButton("Ontwikkelingskaarten");
 
 		tradeButton.addActionListener(e -> {
 			inGameController.openTrade();
+			tradeButton.setEnabled(false);
 		});
 
 		devcardButton.addActionListener(e -> {
@@ -586,6 +588,11 @@ public class IngameView extends JPanel implements Observer {
 		} else {
 			dieContentPane.enableButton(false);
 		}
+	}
+	
+	public void setTradeButton(boolean enable)
+	{
+		tradeButton.setEnabled(enable);
 	}
 
 	@Override
