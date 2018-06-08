@@ -191,7 +191,7 @@ public class DrawingPanel extends JPanel {
 										|| x1 == x2 && y1 == (y2 + 1) || x1 == (x2 - 1) && y1 == (y2 - 1)) {
 									if (pc.checkVillage(test, hlPoint)) {
 										if(pc.buildStreet(x1, x2, y1, y2)) {
-										paintBuildings();
+										paintBuildings(g);
 										removeMaterialCards(buildingType);
 										}
 										// Log here
@@ -265,7 +265,7 @@ public class DrawingPanel extends JPanel {
 			drawPoints(g);
 			updateHighlight(g);
 			if (paint) {
-				// paintBuildings(g);
+				paintBuildings(g);
 				paint = false;
 			}
 		}
@@ -372,30 +372,26 @@ public class DrawingPanel extends JPanel {
 		mayMoveRobber = b;
 	}
 
-	// public void paintBuildings(Graphics g) {
-	// String[] buildings = pc.getAllBuildings().split(",");
-	// for(int x = 0; x < buildings.length; x++) {
-	// int playerID = pc
-	// switch(playerID) {
-	//
-	// }
-	//
-	// village_Blue.paintIcon(this, g,
-	// buildingConvertXfromKeyToScreenX(pc.getCoordX(buildings[x])) +
-	// 30,buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[x]),pc.getCoordY(buildings[x]))
-	// - 50);
-	// }
-	// }
-
-	public void paintBuildings() {
-		String[] buildings = pc.getAllBuildings().split(",");
-		for (int x = 0; x < buildings.length; x++) {
-			village_Blue.paintIcon(this, g, buildingConvertXfromKeyToScreenX(pc.getCoordX(buildings[x])),
-					buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[x]), pc.getCoordY(buildings[x]))); 
-
-		}
-		repaint();
-	}
+	 public void paintBuildings(Graphics g) {
+	 String[] buildings = pc.getAllBuildings().split(",");
+	 for(int x = 0; x < buildings.length; x++) {
+//	 int minPlayerID = pc.getPlayerTrackNumber(pc.getGameid());
+//	 int resnumber = 1;
+//	 
+//	 for(int i = 0;i<5;i++) {
+//		 for(int y = 0;y<pc.countPlayerPiece(minPlayerID);y++); {
+//			 System.out.println(pc.getPlayerPiece(minPlayerID, resnumber));
+//			 resnumber++;
+//		 }
+//		 minPlayerID++;
+//	 }
+	
+	 village_Blue.paintIcon(this, g,
+	 buildingConvertXfromKeyToScreenX(pc.getCoordX(buildings[x])) +
+	 30,buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[x]),pc.getCoordY(buildings[x]))
+	 - 50);
+	 }
+	 }
 
 	private int buildingConvertXfromKeyToScreenX(int x)
 

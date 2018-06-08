@@ -477,13 +477,12 @@ public class PersonDAL {
 		return ids;
 	}
 	
-	public int getPlayerTrackNumber(int gameid,String buildingType) {
+	public int getPlayerTrackNumber(int gameid) {
 		int tracknumber = 0;
 
 		try {
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT idspeler FROM speler " + "WHERE (idspel = " + gameid
-					+ ")");
+			ResultSet rs = stmt.executeQuery("SELECT MIN(idspeler) FROM speler WHERE idspel = '" + gameid +"';");
 			while (rs.next()) {
 
 				tracknumber = rs.getInt(1);
@@ -495,6 +494,44 @@ public class PersonDAL {
 		}
 
 		return tracknumber;
+	}
+	
+	public int countPlayerPiece(int playerid) {
+		int piececount = 0;
+
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT COUNT(idstuk) FROM spelerstuk WHERE idspeler = '" + playerid +"';");
+			while (rs.next()) {
+
+				piececount = rs.getInt(1);
+
+			}
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return piececount;
+	}
+	
+	public String getPlayerPiece(int playerid,int resultnumber) {
+		String piececount = "";
+
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT idstuk FROM spelerstuk WHERE idspeler = '" + playerid +"';");
+			while (rs.next()) {
+
+				piececount = rs.getString(resultnumber);
+
+			}
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return piececount;
 	}
 
 	public String hasVillage(int playerID, int x, int y) {

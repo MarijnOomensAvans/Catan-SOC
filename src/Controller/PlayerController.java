@@ -344,6 +344,18 @@ public class PlayerController {
 	public void updateHand() {
 		player.updateHand();
 	}
+	
+	public int getPlayerTrackNumber(int gameid) {
+		return db.getPlayerTrackNumber(gameid);
+	}
+	
+	public int countPlayerPiece(int playerid) {
+		return db.countPlayerPiece(playerid);
+	}
+	
+	public String getPlayerPiece(int playerid, int resultnumber) {
+		return db.getPlayerPiece(playerid, resultnumber);
+	}
 
 
 	
