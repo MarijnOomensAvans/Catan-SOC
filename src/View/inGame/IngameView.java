@@ -134,7 +134,7 @@ public class IngameView extends JPanel implements Observer {
 		endTurnButton.setEnabled(false);
 		endTurnButton.addActionListener(e -> {
 			System.out.println(ingameController.isSecondRound());
-			if (ingameController.isSecondRound()) {
+			if (ingameController.isSecondRound() && ingameController.getFirstTurn()) {
 				ingameController.setPlayerTurn(gameID, reversedPlayerTurn(gameID));
 				if (ingameController.getTurn(gameID).equals(LoginController.getUsername())) {
 					ingameController.setSecondRound(false);
