@@ -527,8 +527,21 @@ public class IngameView extends JPanel implements Observer {
 		playerTurnUpdate();
 		throwDiceButtonUpdate();
 		nextTurnButtonUpdate();
+		resourceLabelsUpdate();
 		this.revalidate();
 		this.repaint();
+	}
+
+	private void resourceLabelsUpdate() {
+		for (int i = 0; i < playerStats.size(); i++) {
+			if(playerStats.get(i).getUsername() == LoginController.getUsername()) {
+				oreCount.setText(playerStats.get(i).getOre() + "");
+				woodCount.setText(playerStats.get(i).getWood() + "");
+				woolCount.setText(playerStats.get(i).getWool() + "");
+				wheatCount.setText(playerStats.get(i).getWheat() + "");
+				stoneCount.setText(playerStats.get(i).getStone() + "");
+			}
+		}
 	}
 
 	public void playerTurnUpdate() {
