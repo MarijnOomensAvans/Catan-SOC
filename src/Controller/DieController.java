@@ -41,7 +41,7 @@ public class DieController {
 
 	public void lookAtResult(int diceResult) {
 		if (diceResult == 7) {
-			rb.robberThrown(diceResult, gameID);
+			rb.robberThrown(gameID);
 		} else if (diceResult == 2) {
 			getCards1(1);
 		} else if (diceResult == 3) {

@@ -72,7 +72,7 @@ public class IngameController {
 
 	public void openDevcard() {
 		// DevelopmentContentPane dcp = new DevelopmentContentPane(pc, playerID, dp);
-		new DevelopmentGui(pc, gameid, playerID, dp);
+		new DevelopmentGui(pc, gameid, playerID, dp,rb);
 	}
 
 	public void setPlayerTurn(int gameid, String username) {
