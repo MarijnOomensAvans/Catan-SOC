@@ -217,9 +217,14 @@ public class PlayerController {
 
 	public boolean buildObject(String buildingType, String hlPoint) {
 		String pieceID;
+		String allBuildings = "";
 		if (buildingType.equals("Village")) {
 			pieceID = "d0";
-			String[] keys = db.getBuilding(playerID, pieceID).split(",");
+			for(int i = 0; i < 4; i++) {
+				 allBuildings = allBuildings + db.getBuilding(Integer.parseInt(playerIDs[i]), pieceID);
+			}
+			System.out.println(allBuildings);
+			String[] keys = allBuildings.split(",");
 			String[] coords = hlPoint.split(",");
 			if (keys.length != 5) {
 				switch (keys.length) {
@@ -335,12 +340,16 @@ public class PlayerController {
 	public String getAllBuildings() {
 		String buildings = "";
 		playerIDs = db.getPlayerId(gameID).split(",");
-		//for (int i = 0; i < 4; i++) {
-			buildings = buildings + db.getAllBuildings(Integer.parseInt(playerIDs[0]));
-		//}
+		for (int i = 0; i < 4; i++) {
+			if(buildings == "") {
+				buildings = db.getAllBuildings(Integer.parseInt(playerIDs[i]));
+			} else {
+				buildings = buildings + "," + db.getAllBuildings(Integer.parseInt(playerIDs[i]));
+			}
+		}
 			if(buildings != null) {
 				if(buildings.length() > 0) {
-		return buildings.substring(0, buildings.length() - 1);
+		return buildings.substring(0, buildings.length());
 				}
 			}
 			return buildings;

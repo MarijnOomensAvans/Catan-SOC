@@ -275,7 +275,9 @@ public class DrawingPanel extends JPanel {
 			}
 		}
 		if(!setup) {
-		paintBuildings();
+				paintBuildings();
+				setup = true;
+
 		}
 	}
 
