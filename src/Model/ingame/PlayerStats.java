@@ -8,7 +8,48 @@ public class PlayerStats {
 	private int developmentBuildingPoints;
 	private boolean hasBiggestArmy;
 	private boolean hasTradeRoute;
+	private int wool = 0, wood = 0, ore = 0, stone = 0, wheat = 0;
 	
+	public int getWool() {
+		return wool;
+	}
+
+	public void setWool(int wool) {
+		this.wool = wool;
+	}
+
+	public int getWood() {
+		return wood;
+	}
+
+	public void setWood(int wood) {
+		this.wood = wood;
+	}
+
+	public int getOre() {
+		return ore;
+	}
+
+	public void setOre(int ore) {
+		this.ore = ore;
+	}
+
+	public int getStone() {
+		return stone;
+	}
+
+	public void setStone(int stone) {
+		this.stone = stone;
+	}
+
+	public int getWheat() {
+		return wheat;
+	}
+
+	public void setWheat(int wheat) {
+		this.wheat = wheat;
+	}
+
 	public PlayerStats(int rc, int dc, int kc, int vp, int cp, int dp) {
 		hasBiggestArmy = false;
 		hasTradeRoute = false;

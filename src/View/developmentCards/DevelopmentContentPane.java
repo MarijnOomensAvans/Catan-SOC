@@ -16,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Controller.PlayerController;
+import Controller.RobberController;
 import View.setupGame.DrawingPanel;
 
 @SuppressWarnings("serial")
@@ -64,7 +65,7 @@ private BufferedImage myBufferedImage7;
 private BufferedImage myBufferedImage8;
 private BufferedImage myBufferedImage9;
 		
-		public DevelopmentContentPane(PlayerController pc, int playerid, DrawingPanel dp, DevelopmentGui dgui){
+		public DevelopmentContentPane(PlayerController pc, int playerid, DrawingPanel dp, DevelopmentGui dgui,RobberController rb){
 			
 			this.setLayout(null);
 			bibliotheek = "bibliotheek.jpg";
@@ -216,6 +217,7 @@ private BufferedImage myBufferedImage9;
 			public void actionPerformed(ActionEvent e) {
 				if(pc.getAmountRidder(playerid)>= 1) {
 				pc.useRidder(playerid);
+				rb.robberThrown(pc.getGameid());
 				dgui.dispose();
 
 				
