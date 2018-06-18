@@ -39,6 +39,12 @@ public class DrawingPanel extends JPanel {
 	private boolean mayMoveRobber = false;
 	private boolean devCardBuild = false;
 	private String buildingType;
+	
+	private boolean setup = true;
+
+	public void setSetup(boolean setup) {
+		this.setup = setup;
+	}
 
 	// making 19 rooms for hexagons
 	private Hexagon hexagon1;
@@ -191,7 +197,6 @@ public class DrawingPanel extends JPanel {
 										|| x1 == x2 && y1 == (y2 + 1) || x1 == (x2 - 1) && y1 == (y2 - 1)) {
 									if (pc.checkVillage(test, hlPoint)) {
 										if(pc.buildStreet(x1, x2, y1, y2)) {
-										paintBuildings(g);
 										removeMaterialCards(buildingType);
 										}
 										// Log here
@@ -268,6 +273,9 @@ public class DrawingPanel extends JPanel {
 				//paintBuildings(g);
 				paint = false;
 			}
+		}
+		if(!setup) {
+		paintBuildings();
 		}
 	}
 
@@ -372,7 +380,8 @@ public class DrawingPanel extends JPanel {
 		mayMoveRobber = b;
 	}
 
-	 public void paintBuildings(Graphics g) {
+	 public void paintBuildings() {
+		 if(pc.getAllBuildings() != null) {
 	 String[] buildings = pc.getAllBuildings().split(",");
 	 for(int x = 0; x < buildings.length; x++) {
 //	 int minPlayerID = pc.getPlayerTrackNumber(pc.getGameid());
@@ -386,10 +395,15 @@ public class DrawingPanel extends JPanel {
 //		 minPlayerID++;
 //	 }
 	
-	 village_Blue.paintIcon(this, g,
+		 
+	if(!buildings[x].equals("")) {
+	 village_Blue.paintIcon(this,
+			 g,
 	 buildingConvertXfromKeyToScreenX(pc.getCoordX(buildings[x])) +
 	 30,buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[x]),pc.getCoordY(buildings[x]))
 	 - 50);
+	 }
+		 }
 	 }
 	 }
 

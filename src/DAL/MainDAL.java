@@ -28,7 +28,7 @@ public class MainDAL {
 	public boolean makeConnection() {
 		try {
 			conn = DriverManager.getConnection(
-					"jdbc:mysql://databases.aii.avans.nl/1_soprj4_catan?user=42IN04SOc&password=cheeseburger");
+					"jdbc:mysql://databases.aii.avans.nl/bdjong1_db2?user=bdjong1&password=Ab12345");
 
 		} catch (SQLException ex) {
 			// handle any errors

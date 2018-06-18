@@ -335,10 +335,15 @@ public class PlayerController {
 	public String getAllBuildings() {
 		String buildings = "";
 		playerIDs = db.getPlayerId(gameID).split(",");
-		for (int i = 0; i < 4; i++) {
-			buildings = buildings + db.getAllBuildings(Integer.parseInt(playerIDs[i]));
-		}
-		return buildings;
+		//for (int i = 0; i < 4; i++) {
+			buildings = buildings + db.getAllBuildings(Integer.parseInt(playerIDs[0]));
+		//}
+			if(buildings != null) {
+				if(buildings.length() > 0) {
+		return buildings.substring(0, buildings.length() - 1);
+				}
+			}
+			return buildings;
 	}
 
 	public void updateHand() {
