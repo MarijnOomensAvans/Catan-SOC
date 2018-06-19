@@ -13,7 +13,7 @@ public class LoginDAL {
 	public boolean hasUsername(String username) {
 		try {
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT username FROM account WHERE username LIKE '" + username + "'");
+			ResultSet rs = stmt.executeQuery("SELECT username FROM account WHERE username LIKE binary '" + username + "'");
 			rs.next();
 			if(rs.getRow() == 0) {
 				return false;
@@ -41,7 +41,7 @@ public class LoginDAL {
 		Statement stmt = null;
 		try {
 			 stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT * FROM account WHERE username LIKE '" + username + "' && wachtwoord LIKE '" + password + "'");
+			ResultSet rs = stmt.executeQuery("SELECT * FROM account WHERE username LIKE binary '" + username + "' && wachtwoord LIKE binary '" + password + "'");
 			rs.next();
 			if(rs.getRow() == 0) {
 				return false;

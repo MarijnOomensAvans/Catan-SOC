@@ -220,7 +220,11 @@ public class PlayerController {
 		String allBuildings = "";
 		if (buildingType.equals("Village")) {
 			pieceID = "d0";
-		    allBuildings = allBuildings + "," + db.getBuilding(playerID, pieceID);
+			if(allBuildings.equals("")) {
+				allBuildings = db.getBuilding(playerID, pieceID);
+			}else {
+				allBuildings = allBuildings + "," + db.getBuilding(playerID, pieceID);
+			}
 			String[] keys = allBuildings.split(",");
 			String[] coords = hlPoint.split(",");
 			if (keys.length != 5) {
