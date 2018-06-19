@@ -9,8 +9,9 @@ public class PlayerStats {
 	private boolean hasBiggestArmy;
 	private boolean hasTradeRoute;
 	private int wool = 0, wood = 0, ore = 0, stone = 0, wheat = 0;
+	private int playerId;
 
-	public PlayerStats(int rc, int dc, int kc, int vp, int cp, int dp) {
+	public PlayerStats(int rc, int dc, int kc, int vp, int cp, int dp, int playerId) {
 		hasBiggestArmy = false;
 		hasTradeRoute = false;
 		resourceCards = rc;
@@ -19,6 +20,7 @@ public class PlayerStats {
 		villagePoints = vp;
 		cityPoints = cp;
 		developmentBuildingPoints = dp;
+		this.playerId = playerId;
 	}
 
 	public int getWool() {
@@ -113,6 +115,10 @@ public class PlayerStats {
 
 	public void setDevelopmentPoints(int developmentPoints) {
 		this.developmentBuildingPoints = developmentPoints;
+	}
+
+	public int getPlayerId() {
+		return playerId;
 	}
 
 }

@@ -13,7 +13,6 @@ import java.util.Observer;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -534,7 +533,7 @@ public class IngameView extends JPanel implements Observer {
 
 	private void resourceLabelsUpdate() {
 		for (int i = 0; i < playerStats.size(); i++) {
-			if (playerStats.get(i).getUsername() == LoginController.getUsername()) {
+			if (playerStats.get(i).getUsername().equals(LoginController.getUsername())) {
 				oreCount.setText(playerStats.get(i).getOre() + "");
 				woodCount.setText(playerStats.get(i).getWood() + "");
 				woolCount.setText(playerStats.get(i).getWool() + "");
@@ -557,8 +556,6 @@ public class IngameView extends JPanel implements Observer {
 	}
 
 	public void puntenLabelUpdate() {
-
-		int ownPoints = 0;
 
 		for (int i = 0; i < playerStats.size(); i++) {
 

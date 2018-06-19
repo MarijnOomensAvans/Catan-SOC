@@ -54,15 +54,19 @@ public class IngameController {
 
 	public ArrayList<PlayerStats> getPlayerStats(int gameId) {
 		ArrayList<PlayerStats> playerStats = spelModel.getPlayerStats(gameId);
-		
-		for(int i = 0; i < playerStats.size(); i++) {
-			playerStats.get(i).setOre(pc.getAmountOre(gameId));
-			playerStats.get(i).setStone(pc.getAmountStone(gameId));
-			playerStats.get(i).setWool(pc.getAmountWool(gameId));
-			playerStats.get(i).setWheat(pc.getAmountWheat(gameId));
-			playerStats.get(i).setWood(pc.getAmountWood(gameId));
+
+		for (int i = 0; i < playerStats.size(); i++) {
+			if (playerStats.get(i).getUsername().equals(LoginController.getUsername())) {
+				playerStats.get(i).setOre(pc.getAmountOre(playerStats.get(i).getPlayerId()));
+				playerStats.get(i).setStone(pc.getAmountStone(playerStats.get(i).getPlayerId()));
+				playerStats.get(i).setWool(pc.getAmountWool(playerStats.get(i).getPlayerId()));
+				playerStats.get(i).setWheat(pc.getAmountWheat(playerStats.get(i).getPlayerId()));
+				playerStats.get(i).setWood(pc.getAmountWood(playerStats.get(i).getPlayerId()));
+				System.out.println("updated!");
+				System.out.println(pc.getAmountStone(playerStats.get(i).getPlayerId()));
+			}
 		}
-		
+
 		return playerStats;
 	}
 
@@ -81,7 +85,7 @@ public class IngameController {
 
 	public void openDevcard() {
 		// DevelopmentContentPane dcp = new DevelopmentContentPane(pc, playerID, dp);
-		new DevelopmentGui(pc, gameid, playerID, dp,rb);
+		new DevelopmentGui(pc, gameid, playerID, dp, rb);
 	}
 
 	public void setPlayerTurn(int gameid, String username) {

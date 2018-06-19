@@ -135,7 +135,7 @@ public class GameDAL {
 		}
 
 		stats = new PlayerStats(resourceCards, developmentCards, knightCards, villageCount, cityCount,
-				developmentCards);
+				developmentCards, playerid);
 		return stats;
 	}
 
