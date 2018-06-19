@@ -62,8 +62,6 @@ public class IngameController {
 				playerStats.get(i).setWool(pc.getAmountWool(playerStats.get(i).getPlayerId()));
 				playerStats.get(i).setWheat(pc.getAmountWheat(playerStats.get(i).getPlayerId()));
 				playerStats.get(i).setWood(pc.getAmountWood(playerStats.get(i).getPlayerId()));
-				System.out.println("updated!");
-				System.out.println(pc.getAmountStone(playerStats.get(i).getPlayerId()));
 			}
 		}
 
