@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class ChatDAL  {
 	
 	Connection conn;
-	private int size;
+	private int counter = 0;
 	private int difference;
 	private boolean firstMessage = false;
 	private boolean checkFirstTime =false;
@@ -50,47 +50,47 @@ public class ChatDAL  {
 		ArrayList<String> results = new ArrayList<>();
 		String result = "";
 		Statement stmt = null;
-		int counter =0;
+		int size = 0;
 		String sizequery = "SELECT COUNT(*) FROM CHATREGEL as c "
 				+ "LEFT JOIN speler AS s ON s.idspeler = c.idspeler "
 				+ "WHERE s.idspel ="+ gameid;
 		try
 		{
 			stmt = conn.createStatement();
-			ResultSet rs1 = stmt.executeQuery(sizequery);
-			rs1.next();
-			counter = rs1.getInt(1);
+			ResultSet rs = stmt.executeQuery(sizequery);
+			rs.next();
+			size = rs.getInt(1);
 			
-			if(checkFirstTime == false)
-			{
-				size = counter;
-				checkFirstTime = true;
-				return null;
-			}
+//			if(checkFirstTime == false)
+//			{
+//				size = counter;
+//				checkFirstTime = true;
+//				return null;
+//			}
 			
-			if( counter > size) 
+			if( size > counter) 
 			{
-				difference = counter - size;
+				difference = size - counter;
 				
 				String query = "SELECT * FROM "
 						+ "(SELECT c.tijdstip, s.username, c.bericht FROM chatregel AS c "
 						+ "LEFT JOIN speler AS s ON s.idspeler = c.idspeler "
-						+ "Where s.idspel ="+gameid+" "
+						+ "WHERE s.idspel ="+gameid+" "
 						+ "ORDER BY tijdstip "
 						+ "DESC LIMIT " +difference+ ") sub "
 						+ "ORDER BY tijdstip ASC"; 
 
-				rs1 = stmt.executeQuery(query);
-				while(rs1.next())
+				rs = stmt.executeQuery(query);
+				while(rs.next())
 				{
-					result = rs1.getString(1);
+					result = rs.getString(1);
 					result = result.substring(11, result.length()-2);			//remove the date
-					result += " " + rs1.getString(2) + rs1.getString(3);
+					result += " " + rs.getString(2) + rs.getString(3);
 					results.add(result);
 				}
 				stmt.close();
 				
-				size = counter;
+				counter = size;
 				return results;
 			}
 			
