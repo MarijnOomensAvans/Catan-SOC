@@ -223,7 +223,6 @@ public class PlayerController {
 			for(int i = 0; i < 4; i++) {
 				 allBuildings = allBuildings + db.getBuilding(Integer.parseInt(playerIDs[i]), pieceID);
 			}
-			System.out.println(allBuildings);
 			String[] keys = allBuildings.split(",");
 			String[] coords = hlPoint.split(",");
 			if (keys.length != 5) {

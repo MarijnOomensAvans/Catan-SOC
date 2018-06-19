@@ -274,11 +274,8 @@ public class DrawingPanel extends JPanel {
 				paint = false;
 			}
 		}
-		if(!setup) {
 				paintBuildings();
-				setup = true;
 
-		}
 	}
 
 	private void createKlikpunten()
