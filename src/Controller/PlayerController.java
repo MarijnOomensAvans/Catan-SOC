@@ -360,9 +360,6 @@ public class PlayerController {
 		player.updateHand();
 	}
 	
-	public int getPlayerTrackNumber(int gameid) {
-		return db.getPlayerTrackNumber(gameid);
-	}
 	
 	public int countPlayerPiece(int playerid) {
 		return db.countPlayerPiece(playerid);
@@ -375,12 +372,12 @@ public class PlayerController {
 
 	
 	public int getCoordX(String pieceID) {
-		return db.getCoordX(Integer.parseInt(db.getBuildID(pieceID, gameID)), pieceID);
+		return db.getCoordX(this.playerID, pieceID);
 		
 	}
 	
 	public int getCoordY(String x) {
-		return db.getCoordX(Integer.parseInt(db.getBuildID(x, gameID)), x);
+		return db.getCoordX(this.playerID, x);
 		
 	}
 
