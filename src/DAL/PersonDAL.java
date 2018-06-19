@@ -498,24 +498,6 @@ public class PersonDAL {
 		return ids;
 	}
 	
-	public int getPlayerTrackNumber(int gameid) {
-		int tracknumber = 0;
-
-		try {
-			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT MIN(idspeler) FROM speler WHERE idspel = '" + gameid +"';");
-			while (rs.next()) {
-
-				tracknumber = rs.getInt(1);
-
-			}
-			stmt.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		return tracknumber;
-	}
 	
 	public int countPlayerPiece(int playerid) {
 		int piececount = 0;
@@ -593,5 +575,24 @@ public class PersonDAL {
 		return true;
 		}
 	}
+	
+	public String getBuildID(String pieceID, int gameID) {
+		String result = "";
+		Statement stmt = null;
+		String query = "SELECT spelerstuk.idspeler FROM spelerstuk LEFT JOIN speler ON spelerstuk.idspeler = speler.idspeler WHERE idspel = " + gameID + " AND idstuk LIKE '" + pieceID + "'";
+			try {
+				stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery(query);
+
+				if (rs.next()) {
+				result = rs.getString(1);
+				}
+				stmt.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			return result;
+		}
+	
 
 }

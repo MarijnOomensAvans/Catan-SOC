@@ -220,8 +220,10 @@ public class PlayerController {
 		String allBuildings = "";
 		if (buildingType.equals("Village")) {
 			pieceID = "d0";
-			for(int i = 0; i < 4; i++) {
-				 allBuildings = allBuildings + db.getBuilding(Integer.parseInt(playerIDs[i]), pieceID);
+			if(allBuildings.equals("")) {
+				allBuildings = db.getBuilding(playerID, pieceID);
+			}else {
+				allBuildings = allBuildings + "," + db.getBuilding(playerID, pieceID);
 			}
 			String[] keys = allBuildings.split(",");
 			String[] coords = hlPoint.split(",");
@@ -357,11 +359,7 @@ public class PlayerController {
 	public void updateHand() {
 		player.updateHand();
 	}
-	
-	public int getPlayerTrackNumber(int gameid) {
-		return db.getPlayerTrackNumber(gameid);
-	}
-	
+
 	public int countPlayerPiece(int playerid) {
 		return db.countPlayerPiece(playerid);
 	}
@@ -373,12 +371,12 @@ public class PlayerController {
 
 	
 	public int getCoordX(String pieceID) {
-		return db.getCoordX(this.playerID, pieceID);
+		return db.getCoordX(Integer.parseInt(db.getBuildID(pieceID, gameID)), pieceID);
 		
 	}
 	
 	public int getCoordY(String x) {
-		return db.getCoordX(this.playerID, x);
+		return db.getCoordX(Integer.parseInt(db.getBuildID(x, gameID)), x);
 		
 	}
 
