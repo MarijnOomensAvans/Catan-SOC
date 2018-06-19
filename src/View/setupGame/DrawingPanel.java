@@ -390,11 +390,7 @@ public class DrawingPanel extends JPanel {
 	
 		 
 	if(!buildings[x].equals("")) {
-	 village_Blue.paintIcon(this,
-			 g,
-	 buildingConvertXfromKeyToScreenX(pc.getCoordX(buildings[x])) +
-	 30,buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[x]),pc.getCoordY(buildings[x]))
-	 - 50);
+	 village_Blue.paintIcon(this, g, buildingConvertXfromKeyToScreenX(pc.getCoordX(buildings[x])) - 17,buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[x]),pc.getCoordY(buildings[x]) ) - 20);
 	 }
 		 }
 	 }

@@ -593,5 +593,24 @@ public class PersonDAL {
 		return true;
 		}
 	}
+	
+	public String getBuildID(String pieceID, int gameID) {
+		String result = "";
+		Statement stmt = null;
+		String query = "SELECT spelerstuk.idspeler FROM spelerstuk LEFT JOIN speler ON spelerstuk.idspeler = speler.idspeler WHERE idspel = " + gameID + " AND idstuk LIKE '" + pieceID + "'";
+			try {
+				stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery(query);
+
+				if (rs.next()) {
+				result = rs.getString(1);
+				}
+				stmt.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			return result;
+		}
+	
 
 }
