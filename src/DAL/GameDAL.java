@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import Controller.LoginController;
 import Model.ingame.PlayerStats;
 
-public class SpelDAL {
+public class GameDAL {
 
 	Connection conn = MainDAL.getConnection();
 

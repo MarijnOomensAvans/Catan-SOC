@@ -6,11 +6,11 @@ import java.util.Observable;
 import Controller.IngameController;
 import Controller.LoginController;
 import DAL.GameManagerDAL;
-import DAL.SpelDAL;
+import DAL.GameDAL;
 
 public class SpelModel extends Observable {
 
-	private SpelDAL spelDal;
+	private GameDAL spelDal;
 	private GameManagerDAL gameManagerDal;
 	private int gameid;
 	private IngameController ingameController;
@@ -19,7 +19,7 @@ public class SpelModel extends Observable {
 	public SpelModel(int gameid, IngameController ingameController) {
 		this.ingameController = ingameController;
 		this.gameid = gameid;
-		spelDal = new SpelDAL();
+		spelDal = new GameDAL();
 		gameManagerDal = new GameManagerDAL();
 	}
 
