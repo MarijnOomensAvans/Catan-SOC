@@ -534,7 +534,7 @@ public class IngameView extends JPanel implements Observer {
 
 	private void resourceLabelsUpdate() {
 		for (int i = 0; i < playerStats.size(); i++) {
-			if(playerStats.get(i).getUsername() == LoginController.getUsername()) {
+			if (playerStats.get(i).getUsername() == LoginController.getUsername()) {
 				oreCount.setText(playerStats.get(i).getOre() + "");
 				woodCount.setText(playerStats.get(i).getWood() + "");
 				woolCount.setText(playerStats.get(i).getWool() + "");

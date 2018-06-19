@@ -3,9 +3,8 @@ package Controller;
 import java.util.ArrayList;
 
 import DAL.PersonDAL;
-import Model.ingame.SpelModel;
 import Model.ingame.PlayerStats;
-import View.developmentCards.DevelopmentContentPane;
+import Model.ingame.SpelModel;
 import View.developmentCards.DevelopmentGui;
 import View.inGame.InGameFrame;
 import View.setupGame.DrawingPanel;
