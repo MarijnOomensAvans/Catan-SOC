@@ -360,10 +360,6 @@ public class PlayerController {
 		player.updateHand();
 	}
 	
-	public int getPlayerTrackNumber(int gameid) {
-		return db.getPlayerTrackNumber(gameid);
-	}
-	
 	public int countPlayerPiece(int playerid) {
 		return db.countPlayerPiece(playerid);
 	}
