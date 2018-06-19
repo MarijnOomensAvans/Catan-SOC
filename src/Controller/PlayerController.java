@@ -359,7 +359,7 @@ public class PlayerController {
 	public void updateHand() {
 		player.updateHand();
 	}
-	
+
 	public int countPlayerPiece(int playerid) {
 		return db.countPlayerPiece(playerid);
 	}

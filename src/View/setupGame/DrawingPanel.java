@@ -375,16 +375,6 @@ public class DrawingPanel extends JPanel {
 		if (pc.getAllBuildings() != null) {
 			String[] buildings = pc.getAllBuildings().split(",");
 			for (int x = 0; x < buildings.length; x++) {
-				// int minPlayerID = pc.getPlayerTrackNumber(pc.getGameid());
-				// int resnumber = 1;
-				//
-				// for(int i = 0;i<5;i++) {
-				// for(int y = 0;y<pc.countPlayerPiece(minPlayerID);y++); {
-				// System.out.println(pc.getPlayerPiece(minPlayerID, resnumber));
-				// resnumber++;
-				// }
-				// minPlayerID++;
-				// }
 
 				if (!buildings[x].equals("")) {
 					village_Blue.paintIcon(this, g, buildingConvertXfromKeyToScreenX(pc.getCoordX(buildings[x])) - 17,
