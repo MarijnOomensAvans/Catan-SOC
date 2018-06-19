@@ -39,6 +39,7 @@ public class DrawingPanel extends JPanel {
 	private boolean mayMoveRobber = false;
 	private boolean devCardBuild = false;
 	private String buildingType;
+	private int buildCounter;
 
 	// making 19 rooms for hexagons
 	private Hexagon hexagon1;
@@ -71,6 +72,8 @@ public class DrawingPanel extends JPanel {
 	private Graphics2D g2d;
 	private Graphics g;
 
+	private boolean setup;
+
 	// All images of player pieces
 	// Cities
 	ImageIcon city_Blue = new ImageIcon(ClassLoader.getSystemResource("city_Blue.png"));
@@ -93,6 +96,7 @@ public class DrawingPanel extends JPanel {
 	boolean paint = true;
 
 	public DrawingPanel(BoardController bc, int gameID, RobberController rb) {
+		this.setup = false;
 		robber = new Robber();
 		this.setLayout(null);
 		robber = new Robber();
@@ -266,7 +270,9 @@ public class DrawingPanel extends JPanel {
 				paint = false;
 			}
 		}
-		paintBuildings();
+		if (setup == true) {
+			paintBuildings();
+		}
 
 	}
 
@@ -372,14 +378,18 @@ public class DrawingPanel extends JPanel {
 	}
 
 	public void paintBuildings() {
+		buildCounter = 0;
 		if (pc.getAllBuildings() != null) {
 			String[] buildings = pc.getAllBuildings().split(",");
-			for (int x = 0; x < buildings.length; x++) {
-
-				if (!buildings[x].equals("")) {
-					village_Blue.paintIcon(this, g, buildingConvertXfromKeyToScreenX(pc.getCoordX(buildings[x])) - 17,
-							buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[x]), pc.getCoordY(buildings[x]))
-									- 20);
+			for (int x = 0; x < 4; x++) {
+				for (int y = 0; y < pc.getBuildCount(x); y++) {
+					if (!buildings[buildCounter].equals("")) {
+						village_Blue.paintIcon(this, g,
+								buildingConvertXfromKeyToScreenX(pc.getCoordX(buildings[buildCounter], x)) - 17,
+								buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[buildCounter], x), pc.getCoordY(buildings[y], x))
+										- 20);
+						buildCounter++;
+					}
 				}
 			}
 		}
@@ -438,6 +448,11 @@ public class DrawingPanel extends JPanel {
 				break;
 			}
 		}
+	}
+
+	public void setSetUp(boolean b) {
+		setup = b;
+
 	}
 
 }
