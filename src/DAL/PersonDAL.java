@@ -498,24 +498,6 @@ public class PersonDAL {
 		return ids;
 	}
 	
-	public int getPlayerTrackNumber(int gameid) {
-		int tracknumber = 0;
-
-		try {
-			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT MIN(idspeler) FROM speler WHERE idspel = '" + gameid +"';");
-			while (rs.next()) {
-
-				tracknumber = rs.getInt(1);
-
-			}
-			stmt.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		return tracknumber;
-	}
 	
 	public int countPlayerPiece(int playerid) {
 		int piececount = 0;
