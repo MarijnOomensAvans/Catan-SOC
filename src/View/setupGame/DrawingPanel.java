@@ -39,12 +39,6 @@ public class DrawingPanel extends JPanel {
 	private boolean mayMoveRobber = false;
 	private boolean devCardBuild = false;
 	private String buildingType;
-	
-	private boolean setup = true;
-
-	public void setSetup(boolean setup) {
-		this.setup = setup;
-	}
 
 	// making 19 rooms for hexagons
 	private Hexagon hexagon1;
