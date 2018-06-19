@@ -372,12 +372,12 @@ public class PlayerController {
 
 	
 	public int getCoordX(String pieceID) {
-		return db.getCoordX(this.playerID, pieceID);
+		return db.getCoordX(Integer.parseInt(db.getBuildID(pieceID, gameID)), pieceID);
 		
 	}
 	
 	public int getCoordY(String x) {
-		return db.getCoordX(this.playerID, x);
+		return db.getCoordX(Integer.parseInt(db.getBuildID(x, gameID)), x);
 		
 	}
 
