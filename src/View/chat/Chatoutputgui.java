@@ -42,6 +42,7 @@ public class Chatoutputgui extends JPanel implements Observer {
 	public void update(Observable o, Object arg) {
 		if(arg != null) {
 			for(int i = 0; i < ((ArrayList<String>) arg).size(); i++) {
+				
 				output.append(((ArrayList<String>) arg).get(i));
 			}
 		}
