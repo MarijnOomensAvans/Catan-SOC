@@ -156,4 +156,40 @@ public class RobberDAL {
 
 	}
 
+	public boolean robberHasPosition(int x, int y, int gameID) {
+		boolean result = false;
+		int tileID = 0;
+		Statement stmt = null;
+		String query = "SELECT struikrover_idtegel FROM spel WHERE idspel = " + gameID + ";";
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			tileID = rs.getInt(1);
+			stmt.close();
+			if(tileID == coordinatesTileID(x,y,gameID)) {
+				result = true;
+			}
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		System.out.println("TileID robber: " + tileID);
+		System.out.println("TileID cklicked" + coordinatesTileID(x, y, gameID));
+		return result;
+	}
+	
+	private int coordinatesTileID(int x, int y, int gameID) {
+		int result = 0;
+		Statement stmt = null;
+		String query = "SELECT idtegel FROM tegel WHERE x = " + x + " AND y = " + y + " AND idspel = " + gameID + ";";
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+				result = rs.getInt(1);
+			stmt.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
+
 }

@@ -6,7 +6,10 @@ import java.awt.GridBagLayout;
 //import java.awt.image.BufferedImage;
 //import java.io.File;
 //import java.io.IOException;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 //import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -23,6 +26,7 @@ public class LoginContentPane extends JPanel {
 	private JButton registerButton, loginButton;
 	private JButton registerCompleetButton, cancelButton;
 	private ImageIcon background = new ImageIcon(ClassLoader.getSystemResource("background.jpg"));
+	private BufferedImage logo;
 
 	public LoginContentPane(LoginFrame GUI, LoginController controller) {
 		this.GUI = GUI;
@@ -30,6 +34,11 @@ public class LoginContentPane extends JPanel {
 		loginButton = new JButton("Inloggen");
 		registerCompleetButton = new JButton("Registreer");
 		cancelButton = new JButton("Annuleer");
+		try {
+			logo = ImageIO.read(ClassLoader.getSystemResource("logoCatan.png"));
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
 		
 		this.setPreferredSize(new Dimension(1280, 720));
 
@@ -100,6 +109,7 @@ public class LoginContentPane extends JPanel {
 		super.paintComponent(g);
 		//g.drawImage(background,  0, 0, null);
 		background.paintIcon(this, g, 0, 0);
+		g.drawImage(logo, 300, 10, null);
 	}
 
 }

@@ -69,6 +69,7 @@ public class DrawingPanel extends JPanel {
 	private ArrayList<Hexagon> hexagons;
 	private PlayerController pc;
 	private IngameController ingameController;
+	@SuppressWarnings("unused")
 	private Graphics2D g2d;
 	private Graphics g;
 
@@ -149,7 +150,6 @@ public class DrawingPanel extends JPanel {
 		hexagons.add(hexagon18);
 		hexagons.add(hexagon19);
 		robber.setBounds(bc.getRobberXPosition(gameID) - 45, bc.getRobberYPosition(gameID) - 30, 25, 60);
-		;
 		this.add(robber);
 
 		setPreferredSize(new Dimension(600, 600));
@@ -232,11 +232,16 @@ public class DrawingPanel extends JPanel {
 						String positions[] = returnString.split(",");
 						int x = Integer.parseInt(positions[0]);
 						int y = Integer.parseInt(positions[1]);
+						if(!ingameController.robberHasPosition(gameID,x,y)) {
 						bc.setRobberTile(gameID, x, y);
 						robber.setBounds(bc.getRobberXPosition(gameID) - 45, bc.getRobberYPosition(gameID) - 30, 25,
 								60);
 						rb.choose(gameID);
 						mayMoveRobber = false;
+					}
+						else {
+							System.out.println("Gy zult geenen struykrover op een landt plaatschen waar hy reeds staet!");
+						}
 					}
 				}
 			}
