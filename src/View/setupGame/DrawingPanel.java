@@ -383,11 +383,23 @@ public class DrawingPanel extends JPanel {
 			for (int x = 0; x < 4; x++) {
 				for (int y = 0; y < pc.getBuildCount(x); y++) {
 					if (!buildings[buildCounter].equals("")) {
+						String[] splitLetter = buildings[buildCounter].split("");
+						if(splitLetter[0].equals("d")) {
 						village_Blue.paintIcon(this, g,
 								buildingConvertXfromKeyToScreenX(pc.getCoordX(buildings[buildCounter], x)) - 17,
-								buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[buildCounter], x), pc.getCoordY(buildings[y], x))
+								buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[buildCounter], x), pc.getCoordY(buildings[buildCounter], x))
 										- 20);
 						buildCounter++;
+						} else if(splitLetter[0].equals("r")){
+							street_Blue.paintIcon(this, g,
+									buildingConvertXfromKeyToScreenX(pc.getCoordX(buildings[buildCounter], x)) - 17,
+									buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[buildCounter], x), pc.getCoordY(buildings[buildCounter], x))
+											- 20);
+							buildCounter++;
+						} else {
+							System.out.println("O O :(");
+							buildCounter++;
+						}
 					}
 				}
 			}
