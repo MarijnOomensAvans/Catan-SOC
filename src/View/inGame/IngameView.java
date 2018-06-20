@@ -151,6 +151,7 @@ public class IngameView extends JPanel implements Observer {
 			endTurnButton.setEnabled(false);
 			playerTurnUpdate();
 			ingameController.shouldRefresh(gameID);
+			setTradeButton(false);
 
 		});
 
