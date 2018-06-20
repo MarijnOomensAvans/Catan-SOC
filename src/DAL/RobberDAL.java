@@ -164,7 +164,9 @@ public class RobberDAL {
 		try {
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
+			while(rs.next()) {
 			tileID = rs.getInt(1);
+			}
 			stmt.close();
 			if(tileID == coordinatesTileID(x,y,gameID)) {
 				result = true;
@@ -184,7 +186,9 @@ public class RobberDAL {
 		try {
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
-				result = rs.getInt(1);
+			while(rs.next()) {
+			result = rs.getInt(1);
+			}
 			stmt.close();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
