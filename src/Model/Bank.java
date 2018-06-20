@@ -40,7 +40,7 @@ public class Bank {
 		MaterialCard returncard = null;
 		for (int i = 0; i < matbank.size(); i++) {
 			if (matbank.get(i).getKindOfMaterial().equals(kind)) {
-				if (matbank.get(i).getPlayerid(matbank.get(i).getIdCard()) != 0) {
+				if (matbank.get(i).getPlayerid(matbank.get(i).getIdCard()) == 0) {
 					returncard = matbank.get(i);
 					break;
 				}
