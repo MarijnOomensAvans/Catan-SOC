@@ -272,6 +272,7 @@ public class DrawingPanel extends JPanel {
 		if (setup == true) {
 			paintBuildings();
 		}
+		robber.setBounds(bc.getRobberXPosition(idspel) - 45, bc.getRobberYPosition(idspel) - 30, 25, 60);
 
 	}
 
