@@ -32,7 +32,7 @@ public class MaterialCard {
 	}
 	
 	public void setPlayerid(String cardid) {
-		playerid = Integer.parseInt(bd.getPlayerid(cardid,gameid));
+		playerid = bd.getPlayerid(cardid,gameid);
 		
 	}
 
