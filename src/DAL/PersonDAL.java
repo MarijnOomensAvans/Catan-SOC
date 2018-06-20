@@ -576,10 +576,10 @@ public class PersonDAL {
 		}
 	}
 	
-	public String getBuildID(String pieceID, int gameID) {
+	public String getBuildCount(int playerID) {
 		String result = "";
 		Statement stmt = null;
-		String query = "SELECT spelerstuk.idspeler FROM spelerstuk LEFT JOIN speler ON spelerstuk.idspeler = speler.idspeler WHERE idspel = " + gameID + " AND idstuk LIKE '" + pieceID + "'";
+		String query = "SELECT count(idstuk) FROM bdjong1_db2.spelerstuk WHERE idspeler = " + playerID + "";
 			try {
 				stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(query);

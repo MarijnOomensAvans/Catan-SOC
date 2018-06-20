@@ -40,6 +40,7 @@ public class IngameController {
 		this.pc = new PlayerController(playerID, gameid, bct, pd);
 		dp = new DrawingPanel(bc, gameid, rb);
 		dp.setIngameController(this);
+		dp.setSetUp(true);
 		dp.setPlayerController(pc);
 		rb.setDrawingPanel(dp);
 		gameFrame = new InGameFrame(bc, gameid, dp, playerID, this, pc, chatController, dieController);
