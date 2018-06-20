@@ -119,7 +119,6 @@ public class BankDAL {
 
 	public void addCardstoDB(int gameid, String idCard) {
 		Statement stmt = null;
-		System.out.println("Adding card");
 		String query = "INSERT spelergrondstofkaart(idspel,idgrondstofkaart) VALUES (" + gameid + " ,'" + idCard + "')";
 		try {
 			stmt = conn.createStatement();
@@ -167,16 +166,17 @@ public class BankDAL {
 
 	}
 
-	public String getPlayerid(String cardid,int gameid) {
-		String result = "";
+	public int getPlayerid(String cardid,int gameid) {
+		int result = 0;
 		Statement stmt = null;
 		String query = "SELECT idspeler FROM spelergrondstofkaart WHERE idgrondstofkaart = '" + cardid + "'"+" AND idspel ="+ gameid;
 
 		try {
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
-			rs.next(); 
-			result = rs.getString(1);
+			while(rs.next()) {
+				result = rs.getInt(1);
+			}
 			stmt.close();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
