@@ -26,10 +26,14 @@ public class BankController {
 
 	}
 
-	public void makeCards() {
+	public void getCards() {
 		bank.getCards();
 	}
 
+	public void makeCards() {
+		bank.addToDB();
+	}
+	
 	public MaterialCard getMaterialCard(String kind, int playerid) {
 		MaterialCard card = bank.getMaterialCard(kind);
 		return card;

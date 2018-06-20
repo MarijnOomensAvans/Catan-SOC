@@ -65,8 +65,9 @@ public class BoardController {
 	}
 
 	public void makeCards(int gameid) {
+		System.out.println("hoi");
 		BankController bc = new BankController(gameid);
-		bc.makeCards();
+		bc.getCards();
 	}
 
 	public ArrayList<Tile> getLocationTileKeys() {
