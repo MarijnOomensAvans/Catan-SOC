@@ -28,7 +28,7 @@ import View.board.Robber;
 public class DrawingPanel extends JPanel {
 
 	private ClickPoints clickpoints;
-
+	private int buildCounter;
 	private String hlPoint;
 
 	private ArrayList<Location> keys;
@@ -378,18 +378,23 @@ public class DrawingPanel extends JPanel {
 	}
 
 	public void paintBuildings() {
+		buildCounter = 0;
 		if (pc.getAllBuildings() != null) {
 			String[] buildings = pc.getAllBuildings().split(",");
-			for (int x = 0; x < buildings.length; x++) {
-
-				if (!buildings[x].equals("")) {
-					village_Blue.paintIcon(this, g, buildingConvertXfromKeyToScreenX(pc.getCoordX(buildings[x])) - 17,
-							buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[x]), pc.getCoordY(buildings[x]))
-									- 20);
+			for (int x = 0; x < 4; x++) {
+				for (int y = 0; y < pc.getBuildCount(x); y++) {
+					if (!buildings[buildCounter].equals("")) {
+						village_Blue.paintIcon(this, g,
+								buildingConvertXfromKeyToScreenX(pc.getCoordX(buildings[buildCounter], x)) - 17,
+								buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[buildCounter], x), pc.getCoordY(buildings[y], x))
+										- 20);
+						buildCounter++;
+					}
 				}
 			}
 		}
 	}
+
 
 	private int buildingConvertXfromKeyToScreenX(int x)
 
