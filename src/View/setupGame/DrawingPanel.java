@@ -429,7 +429,6 @@ public class DrawingPanel extends JPanel {
 								int xCoord = (((buildingConvertXfromKeyToScreenX(pc.getCoordX(buildings[buildCounter], x))) + (buildingConvertXfromKeyToScreenX(pc.getCoordXStreet(buildings[buildCounter], x)))) / 2);
 								int yCoord = ((buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[buildCounter], x), (pc.getCoordY(buildings[buildCounter], x))) + (buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[buildCounter], x), (pc.getCoordYStreet(buildings[buildCounter], x))))) /2);
 								street_Red.paintIcon(this, g,xCoord - 17,yCoord - 20);
-								System.out.println("Street: " + buildings[buildCounter] + " - xCoord: " + xCoord + " - yCoord: " + yCoord);
 								buildCounter++;
 								break;
 							case 1:
