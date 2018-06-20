@@ -40,4 +40,8 @@ public class RobberController {
 		
 	}
 
+	public boolean robberHasPosition(int x, int y, int gameID) {
+		return rd.robberHasPosition(x,y,gameID);
+	}
+
 }

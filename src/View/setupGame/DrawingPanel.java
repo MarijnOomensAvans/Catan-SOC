@@ -69,6 +69,7 @@ public class DrawingPanel extends JPanel {
 	private ArrayList<Hexagon> hexagons;
 	private PlayerController pc;
 	private IngameController ingameController;
+	@SuppressWarnings("unused")
 	private Graphics2D g2d;
 	private Graphics g;
 
@@ -149,7 +150,6 @@ public class DrawingPanel extends JPanel {
 		hexagons.add(hexagon18);
 		hexagons.add(hexagon19);
 		robber.setBounds(bc.getRobberXPosition(gameID) - 45, bc.getRobberYPosition(gameID) - 30, 25, 60);
-		;
 		this.add(robber);
 
 		setPreferredSize(new Dimension(600, 600));
@@ -232,11 +232,16 @@ public class DrawingPanel extends JPanel {
 						String positions[] = returnString.split(",");
 						int x = Integer.parseInt(positions[0]);
 						int y = Integer.parseInt(positions[1]);
+						if(!ingameController.robberHasPosition(gameID,x,y)) {
 						bc.setRobberTile(gameID, x, y);
 						robber.setBounds(bc.getRobberXPosition(gameID) - 45, bc.getRobberYPosition(gameID) - 30, 25,
 								60);
 						rb.choose(gameID);
 						mayMoveRobber = false;
+					}
+						else {
+							System.out.println("Gy zult geenen struykrover op een landt plaatschen waar hy reeds staet!");
+						}
 					}
 				}
 			}
@@ -272,6 +277,7 @@ public class DrawingPanel extends JPanel {
 		if (setup == true) {
 			paintBuildings();
 		}
+		robber.setBounds(bc.getRobberXPosition(idspel) - 45, bc.getRobberYPosition(idspel) - 30, 25, 60);
 
 	}
 
@@ -383,11 +389,101 @@ public class DrawingPanel extends JPanel {
 			for (int x = 0; x < 4; x++) {
 				for (int y = 0; y < pc.getBuildCount(x); y++) {
 					if (!buildings[buildCounter].equals("")) {
-						village_Blue.paintIcon(this, g,
-								buildingConvertXfromKeyToScreenX(pc.getCoordX(buildings[buildCounter], x)) - 17,
-								buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[buildCounter], x), pc.getCoordY(buildings[y], x))
-										- 20);
-						buildCounter++;
+						String[] buildSplit = buildings[buildCounter].split("");
+						switch (buildSplit[0]) {
+						case "d":
+							switch(x) {
+							case 0:
+								village_Red.paintIcon(this, g,
+										buildingConvertXfromKeyToScreenX(pc.getCoordX(buildings[buildCounter], x)) - 17,
+										buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[buildCounter], x), pc.getCoordY(buildings[buildCounter], x))
+												- 20);
+								buildCounter++;
+								break;
+							case 1:
+								village_White.paintIcon(this, g,
+										buildingConvertXfromKeyToScreenX(pc.getCoordX(buildings[buildCounter], x)) - 17,
+										buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[buildCounter], x), pc.getCoordY(buildings[buildCounter], x))
+												- 20);
+								buildCounter++;
+								break;
+							case 2:
+								village_Blue.paintIcon(this, g,
+										buildingConvertXfromKeyToScreenX(pc.getCoordX(buildings[buildCounter], x)) - 17,
+										buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[buildCounter], x), pc.getCoordY(buildings[buildCounter], x))
+												- 20);
+								buildCounter++;
+								break;
+							case 3:
+								village_Orange.paintIcon(this, g,
+										buildingConvertXfromKeyToScreenX(pc.getCoordX(buildings[buildCounter], x)) - 17,
+										buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[buildCounter], x), pc.getCoordY(buildings[buildCounter], x))
+												- 20);
+								buildCounter++;
+								break;
+							}
+							break;
+						case "r":
+							switch(x) {
+							case 0:
+								int xCoord = (((buildingConvertXfromKeyToScreenX(pc.getCoordX(buildings[buildCounter], x))) + (buildingConvertXfromKeyToScreenX(pc.getCoordXStreet(buildings[buildCounter], x)))) / 2);
+								int yCoord = ((buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[buildCounter], x), (pc.getCoordY(buildings[buildCounter], x))) + (buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[buildCounter], x), (pc.getCoordYStreet(buildings[buildCounter], x))))) /2);
+								street_Red.paintIcon(this, g,xCoord - 17,yCoord - 20);
+								buildCounter++;
+								break;
+							case 1:
+								 xCoord = (((buildingConvertXfromKeyToScreenX(pc.getCoordX(buildings[buildCounter], x))) + (buildingConvertXfromKeyToScreenX(pc.getCoordXStreet(buildings[buildCounter], x)) )) / 2);
+								 yCoord = ((buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[buildCounter], x), (pc.getCoordY(buildings[buildCounter], x))) + (buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[buildCounter], x), (pc.getCoordYStreet(buildings[buildCounter], x))))) /2);
+									street_White.paintIcon(this, g,xCoord - 17,yCoord - 20);
+								buildCounter++;
+								break;
+							case 2:
+								 xCoord = (((buildingConvertXfromKeyToScreenX(pc.getCoordX(buildings[buildCounter], x))) + (buildingConvertXfromKeyToScreenX(pc.getCoordXStreet(buildings[buildCounter], x)))) / 2);
+								 yCoord = ((buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[buildCounter], x), (pc.getCoordY(buildings[buildCounter], x))) + (buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[buildCounter], x), (pc.getCoordYStreet(buildings[buildCounter], x))))) /2);
+									street_Blue.paintIcon(this, g,xCoord - 17,yCoord- 20);
+								buildCounter++;
+								break;
+							case 3:
+								 xCoord = (((buildingConvertXfromKeyToScreenX(pc.getCoordX(buildings[buildCounter], x))) + (buildingConvertXfromKeyToScreenX(pc.getCoordXStreet(buildings[buildCounter], x)))) / 2);
+								 yCoord = ((buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[buildCounter], x), (pc.getCoordY(buildings[buildCounter], x))) + (buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[buildCounter], x), (pc.getCoordYStreet(buildings[buildCounter], x))))) /2);
+									street_Orange.paintIcon(this, g,xCoord - 17,yCoord- 20);
+								buildCounter++;
+								break;
+							}
+							break;
+						case "c":
+							switch(x) {
+							case 0:
+								city_Red.paintIcon(this, g,
+										buildingConvertXfromKeyToScreenX(pc.getCoordX(buildings[buildCounter], x)) - 17,
+										buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[buildCounter], x), pc.getCoordY(buildings[buildCounter], x))
+												- 20);
+								buildCounter++;
+								break;
+							case 1:
+								city_White.paintIcon(this, g,
+										buildingConvertXfromKeyToScreenX(pc.getCoordX(buildings[buildCounter], x)) - 17,
+										buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[buildCounter], x), pc.getCoordY(buildings[buildCounter], x))
+												- 20);
+								buildCounter++;
+								break;
+							case 2:
+								city_Blue.paintIcon(this, g,
+										buildingConvertXfromKeyToScreenX(pc.getCoordX(buildings[buildCounter], x)) - 17,
+										buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[buildCounter], x), pc.getCoordY(buildings[buildCounter], x))
+												- 20);
+								buildCounter++;
+								break;
+							case 3:
+								city_Orange.paintIcon(this, g,
+										buildingConvertXfromKeyToScreenX(pc.getCoordX(buildings[buildCounter], x)) - 17,
+										buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[buildCounter], x), pc.getCoordY(buildings[buildCounter], x))
+												- 20);
+								buildCounter++;
+								break;
+							}
+							break;
+						}
 					}
 				}
 			}
@@ -457,7 +553,7 @@ public class DrawingPanel extends JPanel {
 
 	public void setSetup(boolean b) {
 		this.setup = b;
-		
+
 	}
 
 }
