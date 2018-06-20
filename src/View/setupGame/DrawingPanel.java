@@ -28,7 +28,7 @@ import View.board.Robber;
 public class DrawingPanel extends JPanel {
 
 	private ClickPoints clickpoints;
-	private int buildCounter;
+
 	private String hlPoint;
 
 	private ArrayList<Location> keys;
