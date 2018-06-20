@@ -17,7 +17,7 @@ public class BankDAL {
 		String result = "";
 		Statement stmt = null;
 		String query = "";
-		if (id == 0) {
+		if (id == 1) {
 			query = "SELECT idgrondstofkaart FROM grondstofkaart LIMIT 1";
 		} else {
 			int limit = id - 1;
@@ -36,8 +36,8 @@ public class BankDAL {
 		return result;
 	}
 
-	public String getKindOfMaterial(int id) {/// give the character from the database so that the card knows what type
-												/// it is
+	public String getKindOfMaterial(int id) {// give the character from the database so that the card knows what type
+												// it is
 		String result = "";
 		Statement stmt = null;
 		int limit = id - 1;

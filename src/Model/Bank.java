@@ -29,6 +29,13 @@ public class Bank {
 			matbank.add(mc = new MaterialCard(bd, gameid));
 			mc.setId(a);
 			mc.setKindOfMaterial(a);
+			mc.setPlayerid(mc.getIdCard());
+		}
+	}
+	
+	private void addMaterialCardsToDB(int gameid) {
+		for (int x = 1; x < 96; x++) {
+			bd.addCardstoDB(gameid, bd.getId(x));
 
 		}
 	}
@@ -73,7 +80,7 @@ public class Bank {
 		for (int i = 0; i < matbank.size(); i++) {
 			if (matbank.get(i).getKindOfMaterial().equals(kind)) {
 				String id = matbank.get(i).getIdCard();
-				if (matbank.get(i).getPlayerid(id) == null) {
+				if (matbank.get(i).getPlayerid(id) == 0) {
 					return id;
 				}
 			}
@@ -85,7 +92,7 @@ public class Bank {
 		for (int i = 0; i < matbank.size(); i++) {
 			if (matbank.get(i).getKindOfMaterial().equals(kind)) {
 				String id = matbank.get(i).getIdCard();
-				if (matbank.get(i).getPlayerid(id) != null) {
+				if (matbank.get(i).getPlayerid(id) != 0) {
 					return id;
 				}
 			}
