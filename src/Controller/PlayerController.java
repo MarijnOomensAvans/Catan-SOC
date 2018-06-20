@@ -372,13 +372,13 @@ public class PlayerController {
 
 
 	
-	public int getCoordX(String pieceID) {
-		return db.getCoordX(Integer.parseInt(db.getBuildID(pieceID, gameID)), pieceID);
+	public int getCoordX(String pieceID, int playerid) {
+		return db.getCoordX(Integer.parseInt(playerIDs[playerid]), pieceID);
 		
 	}
 	
-	public int getCoordY(String x) {
-		return db.getCoordX(Integer.parseInt(db.getBuildID(x, gameID)), x);
+	public int getCoordY(String x, int playerid) {
+		return db.getCoordY(Integer.parseInt(playerIDs[playerid]), x);
 		
 	}
 
@@ -397,6 +397,10 @@ public class PlayerController {
 
 	public boolean getRound() {
 		return db.getRound(gameID);
+	}
+
+	public int getBuildCount(int x) {
+		return Integer.parseInt(db.getBuildCount(Integer.parseInt(playerIDs[x])));
 	}
 	
 }
