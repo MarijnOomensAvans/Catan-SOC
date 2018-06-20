@@ -172,6 +172,8 @@ public class RobberDAL {
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
+		System.out.println("TileID robber: " + tileID);
+		System.out.println("TileID cklicked" + coordinatesTileID(x, y, gameID));
 		return result;
 	}
 	
