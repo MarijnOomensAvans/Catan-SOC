@@ -384,7 +384,6 @@ public class DrawingPanel extends JPanel {
 			for (int x = 0; x < 4; x++) {
 				for (int y = 0; y < pc.getBuildCount(x); y++) {
 					if (!buildings[buildCounter].equals("")) {
-						System.out.println(buildings);
 						village_Blue.paintIcon(this, g,
 								buildingConvertXfromKeyToScreenX(pc.getCoordX(buildings[buildCounter], x)) - 17,
 								buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[buildCounter], x), pc.getCoordY(buildings[y], x))
