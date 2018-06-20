@@ -48,6 +48,7 @@ public class InGameFrame extends JFrame {
 		lobbyMenu.add(logOut);
 
 		logOut.addActionListener(e -> {
+			pane.closeTradeWindows();
 			dispose();
 			bc.openLobby();
 		});

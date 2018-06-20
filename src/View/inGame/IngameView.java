@@ -236,6 +236,7 @@ public class IngameView extends JPanel implements Observer {
 		});
 		tradeButton = new JButton("Handelen");
 		JButton devcardButton = new JButton("Ontwikkelingskaarten");
+		tradeButton.setEnabled(false);
 
 		tradeButton.addActionListener(e -> {
 			inGameController.openTrade();
@@ -618,6 +619,11 @@ public class IngameView extends JPanel implements Observer {
 	public void setTradeButton(boolean enable) {
 		tradeButton.setEnabled(enable);
 		this.revalidate();
+	}
+	
+	public void closeTradeWindows()
+	{
+		ingameController.closeTradeWindows();
 	}
 
 	@Override

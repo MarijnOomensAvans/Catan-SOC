@@ -80,6 +80,12 @@ public class IngameController {
 		tc.createGUI("top");
 		// new TradeController(playerID, gameid, pd, pc.getPlayer(), pc, bct);
 	}
+	
+	public void closeTradeWindows()
+	{
+		tc.setRunthread(false);
+		tc.close();
+	}
 
 	public void openDevcard() {
 		// DevelopmentContentPane dcp = new DevelopmentContentPane(pc, playerID, dp);

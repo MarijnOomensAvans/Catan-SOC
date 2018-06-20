@@ -215,9 +215,12 @@ public class TradeController extends Observable implements Runnable {
 	}
 
 	public void close() {
-		gui.dispose();
+		if (this.trp != null) {
+			trp = null;
+			this.deleteOffers(playerid, otherIds.get(0), otherIds.get(1), otherIds.get(2));
+		}
 		this.tap = null;
-		this.trp = null;
+		gui.dispose();
 	}
 
 	public TradeResultPane getTRP() {
