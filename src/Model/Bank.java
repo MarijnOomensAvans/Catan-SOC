@@ -15,10 +15,10 @@ public class Bank {
 	public Bank(BankDAL bd, int gameID) {
 		this.bd = bd;
 		this.gameID = gameID;
-		makeCards();
+		getCards();
 	}
 
-	public void makeCards() {
+	public void getCards() {
 		makeMaterialCards(gameID);
 		makeDevCards(gameID);
 	}
@@ -29,7 +29,10 @@ public class Bank {
 			matbank.add(mc = new MaterialCard(bd, gameid));
 			mc.setId(a);
 			mc.setKindOfMaterial(a);
-
+			if(matbank.get(a - 1).getPlayerid(mc.getIdCard()) != 0) {
+				mc.setPlayerid(mc.getIdCard());
+			}
+			
 		}
 	}
 
@@ -132,5 +135,11 @@ public class Bank {
 			}
 		}
 		return false;
+	}
+	
+	public void addToDB() {
+		for(int i = 0; i < matbank.size(); i++) {
+			matbank.get(i).addToDB();
+		}
 	}
 }

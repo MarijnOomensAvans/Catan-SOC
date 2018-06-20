@@ -66,6 +66,7 @@ public class BoardController {
 
 	public void makeCards(int gameid) {
 		BankController bc = new BankController(gameid);
+		bc.makeCards();
 	}
 
 	public ArrayList<Tile> getLocationTileKeys() {

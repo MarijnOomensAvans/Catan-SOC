@@ -27,7 +27,7 @@ public class BankController {
 	}
 
 	public void makeCards() {
-		bank.makeCards();
+		bank.getCards();
 	}
 
 	public MaterialCard getMaterialCard(String kind, int playerid) {
