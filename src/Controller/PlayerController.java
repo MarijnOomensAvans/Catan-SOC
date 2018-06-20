@@ -375,8 +375,18 @@ public class PlayerController {
 		
 	}
 	
+	public int getCoordXStreet(String pieceID, int playerid) {
+		return db.getCoordXStreet(Integer.parseInt(playerIDs[playerid]), pieceID);
+		
+	}
+	
 	public int getCoordY(String x, int playerid) {
 		return db.getCoordY(Integer.parseInt(playerIDs[playerid]), x);
+		
+	}
+	
+	public int getCoordYStreet(String x, int playerid) {
+		return db.getCoordYStreet(Integer.parseInt(playerIDs[playerid]), x);
 		
 	}
 
