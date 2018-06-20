@@ -135,7 +135,6 @@ public class IngameView extends JPanel implements Observer {
 		endTurnButton = new JButton("Beurt beëindigen");
 		endTurnButton.setEnabled(false);
 		endTurnButton.addActionListener(e -> {
-			System.out.println(ingameController.isSecondRound());
 			if (ingameController.isSecondRound() && ingameController.getFirstTurn()) {
 				ingameController.setPlayerTurn(gameID, reversedPlayerTurn(gameID));
 				if (ingameController.getTurn(gameID).equals(LoginController.getUsername())) {
@@ -507,7 +506,6 @@ public class IngameView extends JPanel implements Observer {
 	public String reversedPlayerTurn(int id) {
 		String turnPlayer = "";
 		if (playerStats.get(0).getUsername().equals(ingameController.getTurn(id))) {
-			System.out.println("WE ZIJN BIJ VOLGNR 1");
 		} else if (playerStats.get(1).getUsername().equals(ingameController.getTurn(id))) {
 			turnPlayer = playerStats.get(0).getUsername();
 		} else if (playerStats.get(2).getUsername().equals(ingameController.getTurn(id))) {
@@ -635,7 +633,6 @@ public class IngameView extends JPanel implements Observer {
 
 		if (ingameController.getFirstTurn()) {
 			frame.setTradeButton(false);
-			System.out.println("here");
 		} else {
 			if (ingameController.getTurn(gameID).equals(LoginController.getUsername())) {
 				frame.setTradeButton(true);

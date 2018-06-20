@@ -228,7 +228,6 @@ public class DrawingPanel extends JPanel {
 				}
 				if (mayMoveRobber == true) {
 					String returnString = tileConvertXYfromScreenToKey(e.getX(), e.getY());
-					// System.out.println(returnString);
 					if (returnString != null) {
 						String positions[] = returnString.split(",");
 						int x = Integer.parseInt(positions[0]);
