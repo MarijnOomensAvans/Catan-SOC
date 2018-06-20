@@ -37,7 +37,7 @@ public class Bank {
 		MaterialCard returncard = null;
 		for (int i = 0; i < matbank.size(); i++) {
 			if (matbank.get(i).getKindOfMaterial().equals(kind)) {
-				if (matbank.get(i).getPlayerid(matbank.get(i).getIdCard()) == null) {
+				if (matbank.get(i).getPlayerid(matbank.get(i).getIdCard()) != 0) {
 					returncard = matbank.get(i);
 					break;
 				}
@@ -73,7 +73,7 @@ public class Bank {
 		for (int i = 0; i < matbank.size(); i++) {
 			if (matbank.get(i).getKindOfMaterial().equals(kind)) {
 				String id = matbank.get(i).getIdCard();
-				if (matbank.get(i).getPlayerid(id) == null) {
+				if (matbank.get(i).getPlayerid(id) != 0) {
 					return id;
 				}
 			}
@@ -85,7 +85,7 @@ public class Bank {
 		for (int i = 0; i < matbank.size(); i++) {
 			if (matbank.get(i).getKindOfMaterial().equals(kind)) {
 				String id = matbank.get(i).getIdCard();
-				if (matbank.get(i).getPlayerid(id) != null) {
+				if (matbank.get(i).getPlayerid(id) != 0) {
 					return id;
 				}
 			}
@@ -126,7 +126,7 @@ public class Bank {
 	public boolean hasPlayerid(String cardid) {
 		for (int i = 0; i < matbank.size(); i++) {
 			if (matbank.get(i).getIdCard().equals(cardid)) {
-				if (matbank.get(i).getPlayerid(cardid) != null) {
+				if (matbank.get(i).getPlayerid(cardid) != 0) {
 					return true;
 				}
 			}
