@@ -456,4 +456,9 @@ public class DrawingPanel extends JPanel {
 
 	}
 
+	public void setSetup(boolean b) {
+		this.setup = b;
+		
+	}
+
 }
