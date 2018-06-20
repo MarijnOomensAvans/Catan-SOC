@@ -40,9 +40,9 @@ public class IngameController {
 		this.pc = new PlayerController(playerID, gameid, bct, pd);
 		dp = new DrawingPanel(bc, gameid, rb);
 		dp.setIngameController(this);
-		dp.setSetUp(true);
 		dp.setPlayerController(pc);
 		rb.setDrawingPanel(dp);
+		dp.setSetup(false);
 		gameFrame = new InGameFrame(bc, gameid, dp, playerID, this, pc, chatController, dieController);
 		spelModel.addObserver(gameFrame.getPane());
 		tc = new TradeController(playerID, gameid, pd, pc.getPlayer(), pc, bct, this);
