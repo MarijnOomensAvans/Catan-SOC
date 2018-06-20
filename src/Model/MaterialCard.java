@@ -16,7 +16,7 @@ public class MaterialCard {
 		
 	}
 	
-	public void addToDB(int gameid) {
+	public void addToDB() {
 		bd.addCardstoDB(gameid, idCard);
 		
 	}
@@ -31,8 +31,8 @@ public class MaterialCard {
 		return playerid;
 	}
 	
-	private void setPlayerid(String cardid) {
-		playerid =bd.getPlayerid(cardid,gameid);
+	public void setPlayerid(String cardid) {
+		playerid = Integer.parseInt(bd.getPlayerid(cardid,gameid));
 		
 	}
 
