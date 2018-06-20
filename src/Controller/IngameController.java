@@ -161,4 +161,8 @@ public class IngameController {
 	public void setTradeButton(boolean enable) {
 		gameFrame.setTradeButton(enable);
 	}
+
+	public boolean robberHasPosition(int x, int y, int gameID) {
+		return rb.robberHasPosition(x,y,gameID);
+	}
 }
