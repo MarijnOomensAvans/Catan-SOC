@@ -172,12 +172,11 @@ public class IngameController {
 	public boolean robberHasPosition(int x, int y, int gameID) {
 		return rb.robberHasPosition(x,y,gameID);
 	}
-<<<<<<< HEAD
+
 
 	public void getResource() {
 		dieController.getResource(playerID);
-		
-=======
+	}
 	
 	public void setHasMovedRobber(boolean set) {
 		this.hasMovedRobber = set;
@@ -185,6 +184,6 @@ public class IngameController {
 
 	public boolean hasMovedRobber() {
 		return this.hasMovedRobber;
->>>>>>> 7abe1f8cc1378bc5a25b1ac0c588046dc310702b
+
 	}
 }
