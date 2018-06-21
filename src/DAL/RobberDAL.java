@@ -175,7 +175,7 @@ public class RobberDAL {
 			System.out.println(e.getMessage());
 		}
 		System.out.println("TileID robber: " + tileID);
-		System.out.println("TileID cklicked: " + coordinatesTileID(x, y, gameID));
+		System.out.println("TileID clicked: " + coordinatesTileID(x, y, gameID));
 		return result;
 	}
 	
