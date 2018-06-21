@@ -14,10 +14,12 @@ public class PlayerController {
 	private int playerID;
 	private int gameID;
 	private String[] playerIDs;
+	private DieController dc;
 
-	public PlayerController(int playerID, int gameID, BankController bc, PersonDAL pd) {
+	public PlayerController(int playerID, int gameID, BankController bc, PersonDAL pd, DieController dieController) {
 		this.bc = bc;
 		this.db = pd;
+		this.dc = dieController;
 		this.gameID = gameID;
 		this.playerID = playerID;
 		player = new Player(this, db, playerID, gameID);
@@ -252,6 +254,7 @@ public class PlayerController {
 						db.setBuilding("d01", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
 					} else {
 						db.setBuilding("d02", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
+						dc.getResource(playerID);
 					}
 					return true;
 				case 2:
@@ -424,5 +427,7 @@ public class PlayerController {
 	public int getBuildCount(int x) {
 		return Integer.parseInt(db.getBuildCount(Integer.parseInt(playerIDs[x])));
 	}
+	
+	
 
 }

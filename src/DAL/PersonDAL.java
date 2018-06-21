@@ -642,11 +642,12 @@ public class PersonDAL {
 	public boolean isTile(int x, int y) {
 		int idtegel =0;
 		Statement stmt = null;
-		String query = "SELECT idtegel FROM tegel WHERE x =" + x + " AND y '"+ y;
+		String query = "SELECT idtegel FROM tegel WHERE x =" + x + " AND y ="+ y;
 		try {
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next()) {
+				idtegel = rs.getInt(1);
 				if (idtegel != 0) {
 					return true;
 				} else {

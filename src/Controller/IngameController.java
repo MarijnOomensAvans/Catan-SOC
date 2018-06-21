@@ -41,7 +41,7 @@ public class IngameController {
 		pd = new PersonDAL();
 		this.dieController = new DieController(gameid, rb, this, bc, bct, pd);
 		chatController = new ChatController(gameid, playerID);
-		this.pc = new PlayerController(playerID, gameid, bct, pd);
+		this.pc = new PlayerController(playerID, gameid, bct, pd,dieController);
 		dp = new DrawingPanel(bc, gameid, rb);
 		dp.setIngameController(this);
 		dp.setPlayerController(pc);
@@ -191,9 +191,6 @@ public class IngameController {
 		return rb.robberHasPosition(x, y, gameID);
 	}
 
-	public void getResource() {
-		dieController.getResource(playerID);
-	}
 
 	public void setHasMovedRobber(boolean set) {
 		this.hasMovedRobber = set;

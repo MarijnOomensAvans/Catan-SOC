@@ -93,7 +93,6 @@ public class GameModel extends Observable {
 				if (isSecondRound()) {
 					System.out.println("2e dorp bouwen");
 					ingameController.buildVillage();
-					ingameController.getResource();
 					break;
 				}
 			case (3):
