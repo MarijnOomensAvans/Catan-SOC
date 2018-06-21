@@ -50,6 +50,11 @@ public class IngameController {
 		gameModel.addObserver(gameFrame.getPane());
 		tc = new TradeController(playerID, gameid, pd, pc.getPlayer(), pc, bct, this);
 	}
+	
+	public void closeEndTurnButton() {
+		gameFrame.closeEndTurnButton();
+	}
+			
 
 	public PlayerController getPc() {
 		return pc;

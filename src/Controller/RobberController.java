@@ -21,6 +21,8 @@ public class RobberController {
 	public void robberThrown( int gameID) {
 		rd.removeHalf(gameID);
 		if(igc.getTurn(gameID).equals(igc.getPlayer(gameID))) {
+		igc.setHasMovedRobber(false);
+		igc.closeEndTurnButton();
 		dp.setMayMoveRobber(true);
 		}
 	}
