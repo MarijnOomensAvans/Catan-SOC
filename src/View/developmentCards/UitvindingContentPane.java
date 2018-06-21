@@ -7,6 +7,7 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import Controller.PlayerController;
@@ -25,16 +26,30 @@ public class UitvindingContentPane extends JPanel {
 	private String wheat;
 	private String wool;
 	
+	private JButton choosestone;
+	private JButton chooseore;
+	private JButton choosewood;
+	private JButton choosewheat;
+	private JButton choosewool;
+	
 	
 	
 
 	public UitvindingContentPane(PlayerController playerController, DrawingPanel dp,
 			UitvindingFrame uitvindingFrame) {
+	
+		this.setLayout(null);
 		stone = "baksteen.jpg";
 		wool = "schaap.jpg";
 		ore = "erts.jpg";
 		wheat = "graan.jpg";
 		wood = "hout.jpg";
+		
+		choosestone = new JButton("+1 baksteen");
+		chooseore = new JButton("+1 erts");
+		choosewood = new JButton("+1 hout");
+		choosewheat = new JButton("+1 graan");
+		choosewool = new JButton("+1 schaap");
 		
 		try {
 			myBufferedImage1 = ImageIO.read(ClassLoader.getSystemResourceAsStream(stone));
@@ -48,6 +63,15 @@ public class UitvindingContentPane extends JPanel {
 		
 		this.repaint();
 		
+		add(choosestone);
+		choosestone.setBounds(100,280, 110, 30);
+		
+		add(choosewool);
+		choosewool.setBounds(310, 280, 110, 30);
+		
+		add(chooseore);
+		chooseore.setBounds(x, y, width, height);
+		
 		
 		
 		setPreferredSize(new Dimension(1100,600));
@@ -55,11 +79,11 @@ public class UitvindingContentPane extends JPanel {
 	}
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		g.drawImage(myBufferedImage1, 50, 100, 100, 100, null);
-		g.drawImage(myBufferedImage2, 195, 100, 100, 100, null);
-		g.drawImage(myBufferedImage3, 340, 100, 100, 100, null);
-		g.drawImage(myBufferedImage4, 485, 100, 100, 100, null);
-		g.drawImage(myBufferedImage5, 630, 100, 100, 100, null);
+		g.drawImage(myBufferedImage1, 45, 20, 205, 280, null);
+		g.drawImage(myBufferedImage2, 255, 20, 205, 280, null);
+		g.drawImage(myBufferedImage3, 465, 20, 205, 280, null);
+		g.drawImage(myBufferedImage4, 675, 20, 205, 280, null);
+		g.drawImage(myBufferedImage5, 885, 20, 205, 280, null);
 	}
 
 }
