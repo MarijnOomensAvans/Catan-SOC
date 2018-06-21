@@ -26,6 +26,7 @@ public class IngameController {
 	private InGameFrame gameFrame;
 	private DrawingPanel dp;
 	private boolean hasMovedRobber;
+	private DevelopmentGui devGUI;
 
 	public IngameController(int gameid, int playerID, BoardController bc) {
 		this.hasMovedRobber = true;
@@ -83,16 +84,22 @@ public class IngameController {
 		tc.createGUI("top");
 		// new TradeController(playerID, gameid, pd, pc.getPlayer(), pc, bct);
 	}
-	
-	public void closeTradeWindows()
-	{
+
+	public void closeTradeWindows() {
 		tc.setRunthread(false);
 		tc.close();
 	}
 
+	public void closeDevCardWindow() {
+		if (devGUI != null) {
+			devGUI.closeFrame();
+			devGUI = null;
+		}
+	}
+
 	public void openDevcard() {
 		// DevelopmentContentPane dcp = new DevelopmentContentPane(pc, playerID, dp);
-		new DevelopmentGui(pc, gameid, playerID, dp, rb);
+		devGUI = new DevelopmentGui(pc, gameid, playerID, dp, rb);
 	}
 
 	public void setPlayerTurn(int gameid, String username) {
@@ -172,14 +179,13 @@ public class IngameController {
 	}
 
 	public boolean robberHasPosition(int x, int y, int gameID) {
-		return rb.robberHasPosition(x,y,gameID);
+		return rb.robberHasPosition(x, y, gameID);
 	}
-
 
 	public void getResource() {
 		dieController.getResource(playerID);
 	}
-	
+
 	public void setHasMovedRobber(boolean set) {
 		this.hasMovedRobber = set;
 	}

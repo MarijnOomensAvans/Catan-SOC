@@ -21,4 +21,8 @@ public class DevelopmentGui extends JFrame {
 		setLocationRelativeTo(null);
 	}
 	
+	public void closeFrame() {
+		this.dispose();
+	}
+	
 }

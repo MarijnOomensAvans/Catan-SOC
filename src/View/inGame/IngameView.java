@@ -122,6 +122,7 @@ public class IngameView extends JPanel implements Observer {
 	private JLabel ownPointLabel;
 	private JLabel ownPointsValueLabel;
 	private InGameFrame frame;
+	private BuildFrame buildFrame;
 	private ArrayList<JLabel> points;
 
 	public IngameView(BoardController bc, int gameID, DrawingPanel inGameBoard, int playerID,
@@ -158,8 +159,9 @@ public class IngameView extends JPanel implements Observer {
 			playerTurnUpdate();
 			inGameController.setHasMovedRobber(true);
 			ingameController.shouldRefresh(gameID);
-			//setTradeButton(false);
+			this.closeBuildWindow();
 			this.closeTradeWindows();
+			this.closeDevCardWindow();
 		});
 
 		playerStats = inGameController.getPlayerStats(gameID);
@@ -238,21 +240,22 @@ public class IngameView extends JPanel implements Observer {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new BuildFrame(pc, inGameBoard);
-
+				buildButton.setEnabled(false);
+				buildFrame = new BuildFrame(pc, inGameBoard);
 			}
 
 		});
 		tradeButton = new JButton("Handelen");
 		tradeButton.setEnabled(false);
-		devcardButton = new JButton("Ontwikkelingskaarten");
-		devcardButton.setEnabled(false);
 		tradeButton.addActionListener(e -> {
 			inGameController.openTrade();
 			tradeButton.setEnabled(false);
 		});
 
+		devcardButton = new JButton("Ontwikkelingskaarten");
+		devcardButton.setEnabled(false);
 		devcardButton.addActionListener(e -> {
+			devcardButton.setEnabled(false);
 			inGameController.openDevcard();
 		});
 		if (allowedToEnd(gameID) && inGameController.hasRolledDice(gameID)) {
@@ -630,13 +633,24 @@ public class IngameView extends JPanel implements Observer {
 		tradeButton.setEnabled(enable);
 		this.revalidate();
 	}
-	
+
 	public void setBuildButton(boolean enable) {
 		buildButton.setEnabled(enable);
 	}
 
+	public void closeBuildWindow() {
+		if (buildFrame != null) {
+			buildFrame.closeFrame();
+			buildFrame = null;
+		}
+	}
+
 	public void closeTradeWindows() {
 		ingameController.closeTradeWindows();
+	}
+
+	public void closeDevCardWindow() {
+		ingameController.closeDevCardWindow();
 	}
 
 	@Override
