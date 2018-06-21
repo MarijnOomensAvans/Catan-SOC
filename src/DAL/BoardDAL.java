@@ -291,11 +291,11 @@ public class BoardDAL {
 		
 	}
 
-	public boolean isVillage(int idplayer) {
+	public boolean isVillage(int idplayer, int x, int y) {
 		String i = null;
 		try {
 			Statement stmt = conn.createStatement();
-			String query = "SELECT idstuk FROM spelerstuk WHERE idspeler = "+idplayer+ " AND idstuk LIKE 'd%'";
+			String query = "SELECT idstuk FROM spelerstuk WHERE idspeler = "+ idplayer+ " AND idstuk LIKE 'd%' AND x_van ="+x+" AND y_van ="+y;
 			ResultSet rs = stmt.executeQuery(query);
 			rs.next();
 			i = rs.getString(1);
@@ -309,11 +309,11 @@ public class BoardDAL {
 		}
 	}
 
-	public boolean isCity(int playerid) {
+	public boolean isCity(int playerid, int x, int y) {
 		String i = null;
 		try {
 			Statement stmt = conn.createStatement();
-			String query = "SELECT idstuk FROM spelerstuk WHERE idspeler = "+playerid+ " AND idstuk LIKE 'c%'";
+			String query = "SELECT idstuk FROM spelerstuk WHERE idspeler = "+playerid+ " AND idstuk LIKE 'c%' AND x_van ="+x+" AND y_van ="+y;
 			ResultSet rs = stmt.executeQuery(query);
 			rs.next();
 			i = rs.getString(1);

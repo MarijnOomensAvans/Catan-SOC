@@ -90,13 +90,13 @@ public class BoardController {
 		return i;
 	}
 
-	public boolean isVillage(int gameid) {
-		boolean b =board.isVillage(gameid);
+	public boolean isVillage(int gameid, int x, int y) {
+		boolean b =board.isVillage(gameid,x,y);
 		return b;
 	}
 
-	public boolean isCity(int playerid) {
-		boolean b= board.isCity(playerid);
+	public boolean isCity(int playerid, int x, int y) {
+		boolean b= board.isCity(playerid,x,y);
 		return b;
 	}
 

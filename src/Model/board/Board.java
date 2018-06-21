@@ -867,14 +867,14 @@ public class Board {
 		return i;
 	}
 
-	public boolean isVillage(int playerid) {
-		boolean b =bdal.isVillage(playerid);
+	public boolean isVillage(int playerid, int x, int y) {
+		boolean b =bdal.isVillage(playerid,x,y);
 		return b;
 		
 	}
 
-	public boolean isCity(int playerid) {
-		boolean b = bdal.isCity(playerid);
+	public boolean isCity(int playerid, int x, int y) {
+		boolean b = bdal.isCity(playerid,x,y);
 		return b;
 	}
 	
