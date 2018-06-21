@@ -67,6 +67,7 @@ private BufferedImage myBufferedImage9;
 		
 		public DevelopmentContentPane(PlayerController pc, int playerid, DrawingPanel dp, DevelopmentGui dgui,RobberController rb){
 			
+			
 			this.setLayout(null);
 			bibliotheek = "bibliotheek.jpg";
 			kathedraal = "cathedraal.jpg";
@@ -102,7 +103,7 @@ private BufferedImage myBufferedImage9;
 
 			}
 			useuit = new JButton("Gebruik");
-			if(pc.getAmountUniversiteit(playerid)== 0) {
+			if(pc.getAmountUitvinding(playerid)== 0) {
 				useuit.setBackground(Color.GRAY);
 				useuit.setBorderPainted(false);
 				useuit.setEnabled(false);
@@ -228,10 +229,13 @@ private BufferedImage myBufferedImage9;
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(pc.getAmountUitvinding(playerid)>= 1) {
-				pc.useUitvinding(playerid);
+	
+//				pc.useUitvinding(playerid, pc.getGameid(), "");
 				dgui.dispose();
+				new UitvindingFrame(pc, playerid, dp);
 				}
 			}
+				
 		});
 	
 		bibliotheekamount.setEditable(false);

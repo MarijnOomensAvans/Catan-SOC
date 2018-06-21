@@ -68,7 +68,7 @@ public class DrawingPanel extends JPanel {
 	// making room for an arraylist
 	private ArrayList<Hexagon> hexagons;
 	private PlayerController pc;
-	private IngameController ingameController;
+	private IngameController inGameController;
 	@SuppressWarnings("unused")
 	private Graphics2D g2d;
 	private Graphics g;
@@ -161,8 +161,8 @@ public class DrawingPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				if (ingameController != null) {
-					ingameController.shouldRefresh(gameID);
+				if (inGameController != null) {
+					inGameController.shouldRefresh(gameID);
 				}
 
 				if (mayBuild == true) {
@@ -234,12 +234,13 @@ public class DrawingPanel extends JPanel {
 						String positions[] = returnString.split(",");
 						int x = Integer.parseInt(positions[0]);
 						int y = Integer.parseInt(positions[1]);
-						if(!ingameController.robberHasPosition(x,y,gameID)) {
+						if(!inGameController.robberHasPosition(x,y,gameID)) {
 						bc.setRobberTile(gameID, x, y);
 						robber.setBounds(bc.getRobberXPosition(gameID) - 45, bc.getRobberYPosition(gameID) - 30, 25,
 								60);
 						rb.choose(gameID);
 						mayMoveRobber = false;
+						inGameController.setHasMovedRobber(true);
 					}
 					}
 				}
@@ -511,7 +512,7 @@ public class DrawingPanel extends JPanel {
 	}
 
 	public void setIngameController(IngameController ingameController) {
-		this.ingameController = ingameController;
+		this.inGameController = ingameController;
 	}
 
 	public void removeMaterialCards(String buildingType) {

@@ -250,7 +250,7 @@ public class IngameView extends JPanel implements Observer {
 		devcardButton.addActionListener(e -> {
 			inGameController.openDevcard();
 		});
-		if (allowedToEnd(gameID) && inGameController.hasRolledDice(gameID)) {
+		if (allowedToEnd(gameID) && inGameController.hasRolledDice(gameID) && inGameController.hasMovedRobber()) {
 			endTurnButton.setEnabled(true);
 		}
 
