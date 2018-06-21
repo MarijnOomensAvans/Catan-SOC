@@ -522,7 +522,7 @@ public class IngameView extends JPanel implements Observer {
 	/* UPDATE */
 	public void uiUpdate() {
 		dieContentPane.update();
-		puntenLabelUpdate();
+		pointsLabelUpdate();
 		playerTurnUpdate();
 		throwDiceButtonUpdate();
 		nextTurnButtonUpdate();
@@ -555,7 +555,7 @@ public class IngameView extends JPanel implements Observer {
 		biggestArmyLabel.setText(ingameController.getBiggestArmy(gameID));
 	}
 
-	public void puntenLabelUpdate() {
+	public void pointsLabelUpdate() {
 
 		for (int i = 0; i < playerStats.size(); i++) {
 
