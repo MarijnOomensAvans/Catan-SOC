@@ -27,6 +27,7 @@ public class IngameController {
 	private boolean hasMovedRobber;
 
 	public IngameController(int gameid, int playerID, BoardController bc) {
+		this.hasMovedRobber = true;
 		this.gameid = gameid;
 		this.playerID = playerID;
 		this.bc = bc;
