@@ -32,7 +32,7 @@ public class IngameController {
 		this.gameid = gameid;
 		this.playerID = playerID;
 		this.bc = bc;
-		this.rb = new RobberController(playerID);
+		this.rb = new RobberController(playerID,this);
 		gameModel = new GameModel(gameid, this);
 		Thread thread = new Thread(new GameUpdateController(gameModel));
 		thread.start();
@@ -69,6 +69,10 @@ public class IngameController {
 		}
 
 		return playerStats;
+	}
+	
+	public String getPlayer(int gameid) {
+		return gameModel.getPlayer(gameid);
 	}
 
 	public String getTurn(int id) {
