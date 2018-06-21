@@ -305,6 +305,7 @@ public class PersonDAL {
 		}
 		return result;
 	}
+	
 
 	
 	public String getAllBuildings(int spelerID) {
@@ -637,6 +638,27 @@ public class PersonDAL {
 			}
 			return result;
 		}
+
+	public boolean isTile(int x, int y) {
+		int idtegel =0;
+		Statement stmt = null;
+		String query = "SELECT idtegel FROM tegel WHERE x =" + x + " AND y '"+ y;
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while (rs.next()) {
+				if (idtegel != 0) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+			stmt.close();
+		} catch (SQLException e) { 
+			System.out.println(e.getMessage());
+		}
+		return false;
+	}
 	
 
 }
