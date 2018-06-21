@@ -24,6 +24,7 @@ public class IngameController {
 	private RobberController rb;
 	private InGameFrame gameFrame;
 	private DrawingPanel dp;
+	private boolean hasMovedRobber;
 
 	public IngameController(int gameid, int playerID, BoardController bc) {
 		this.gameid = gameid;
@@ -171,9 +172,19 @@ public class IngameController {
 	public boolean robberHasPosition(int x, int y, int gameID) {
 		return rb.robberHasPosition(x,y,gameID);
 	}
+<<<<<<< HEAD
 
 	public void getResource() {
 		dieController.getResource(playerID);
 		
+=======
+	
+	public void setHasMovedRobber(boolean set) {
+		this.hasMovedRobber = set;
+	}
+
+	public boolean hasMovedRobber() {
+		return this.hasMovedRobber;
+>>>>>>> 7abe1f8cc1378bc5a25b1ac0c588046dc310702b
 	}
 }

@@ -152,7 +152,7 @@ public class IngameView extends JPanel implements Observer {
 			playerTurnUpdate();
 			ingameController.shouldRefresh(gameID);
 			setTradeButton(false);
-
+			this.closeTradeWindows();
 		});
 
 		playerStats = inGameController.getPlayerStats(gameID);
@@ -247,7 +247,7 @@ public class IngameView extends JPanel implements Observer {
 		devcardButton.addActionListener(e -> {
 			inGameController.openDevcard();
 		});
-		if (allowedToEnd(gameID) && inGameController.hasRolledDice(gameID)) {
+		if (allowedToEnd(gameID) && inGameController.hasRolledDice(gameID) && inGameController.hasMovedRobber()) {
 			endTurnButton.setEnabled(true);
 		}
 
@@ -620,9 +620,8 @@ public class IngameView extends JPanel implements Observer {
 		tradeButton.setEnabled(enable);
 		this.revalidate();
 	}
-	
-	public void closeTradeWindows()
-	{
+
+	public void closeTradeWindows() {
 		ingameController.closeTradeWindows();
 	}
 
@@ -640,7 +639,8 @@ public class IngameView extends JPanel implements Observer {
 		if (ingameController.getFirstTurn()) {
 			frame.setTradeButton(false);
 		} else {
-			if (ingameController.getTurn(gameID).equals(LoginController.getUsername())) {
+			if (ingameController.getTurn(gameID).equals(LoginController.getUsername())
+					&& ingameController.hasRolledDice(gameID)) {
 				frame.setTradeButton(true);
 			} else {
 				frame.setTradeButton(false);
