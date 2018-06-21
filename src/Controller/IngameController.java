@@ -17,6 +17,7 @@ public class IngameController {
 	private PersonDAL pd;
 	private PlayerController pc;
 	private int playerID;
+	@SuppressWarnings("unused")
 	private BoardController bc;
 	private ChatController chatController;
 	private DieController dieController;
