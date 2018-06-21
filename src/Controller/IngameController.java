@@ -171,4 +171,8 @@ public class IngameController {
 	public boolean robberHasPosition(int x, int y, int gameID) {
 		return rb.robberHasPosition(x,y,gameID);
 	}
+
+	public boolean hasMovedRobber() {
+		return this.hasMovedRobber();
+	}
 }
