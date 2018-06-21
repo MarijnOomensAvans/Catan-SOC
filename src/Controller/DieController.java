@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import DAL.PersonDAL;
 import Model.Die;
 import Model.MaterialCard;
-
 public class DieController {
 	private int gameID;
 	private Die d1;

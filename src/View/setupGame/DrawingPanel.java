@@ -500,7 +500,7 @@ public class DrawingPanel extends JPanel {
 
 	private int buildingConvertYfromKeyToScreenY(int x, int y)
 
-	{
+	{	
 		
 		return 10 + (((2 * (12 - y)) - (10 - x)) * 30);
 

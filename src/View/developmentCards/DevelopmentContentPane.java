@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import Controller.BankController;
 import Controller.PlayerController;
 import Controller.RobberController;
 import View.setupGame.DrawingPanel;
@@ -65,7 +66,7 @@ private BufferedImage myBufferedImage7;
 private BufferedImage myBufferedImage8;
 private BufferedImage myBufferedImage9;
 		
-		public DevelopmentContentPane(PlayerController pc, int playerid, DrawingPanel dp, DevelopmentGui dgui,RobberController rb){
+		public DevelopmentContentPane(BankController bc, PlayerController pc, int playerid, DrawingPanel dp, DevelopmentGui dgui,RobberController rb){
 			
 			
 			this.setLayout(null);
@@ -230,9 +231,9 @@ private BufferedImage myBufferedImage9;
 			public void actionPerformed(ActionEvent e) {
 				if(pc.getAmountUitvinding(playerid)>= 1) {
 	
-//				pc.useUitvinding(playerid, pc.getGameid(), "");
+//				pc.useUitvinding(playerid);
 				dgui.dispose();
-				new UitvindingFrame(pc, playerid, dp);
+				new UitvindingFrame(bc, pc, playerid, dp);
 				}
 			}
 				

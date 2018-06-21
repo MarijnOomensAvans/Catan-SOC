@@ -1,6 +1,7 @@
 package View.developmentCards;
 import javax.swing.JFrame;
 
+import Controller.BankController;
 import Controller.PlayerController;
 import Controller.RobberController;
 import View.setupGame.DrawingPanel;
@@ -9,8 +10,8 @@ import View.setupGame.DrawingPanel;
 public class DevelopmentGui extends JFrame {
 	
 	
-	public DevelopmentGui(PlayerController playerController,int playerid, int gameid, DrawingPanel dp,RobberController rc){
-		DevelopmentContentPane dcp = new DevelopmentContentPane(playerController, gameid, dp, this,rc);
+	public DevelopmentGui(BankController bc,PlayerController playerController,int playerid, int gameid, DrawingPanel dp,RobberController rc){
+		DevelopmentContentPane dcp = new DevelopmentContentPane(bc, playerController, gameid, dp, this,rc);
 
 		
 		setContentPane(dcp);
