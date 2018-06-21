@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 
 import Controller.RobberController;
 import DAL.RobberDAL;
+import View.inGame.InGameFrame;
 
 @SuppressWarnings("serial")
 public class RobberPane extends JPanel {
@@ -47,6 +48,7 @@ public class RobberPane extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				rd.pickRandomCard(playerID, otherPlayerid1);
 				robberController.setIngameControllerHasMovedRobber(true);
+				System.out.println("HasMovedRobber set to " + robberController.getInGameController().hasMovedRobber());
 				robberController.close();
 			}
 			
@@ -57,6 +59,7 @@ public class RobberPane extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				rd.pickRandomCard(playerID, otherPlayerid2);
 				robberController.setIngameControllerHasMovedRobber(true);
+				System.out.println("HasMovedRobber set to " + robberController.getInGameController().hasMovedRobber());
 				robberController.close();
 			}
 			
@@ -67,6 +70,7 @@ public class RobberPane extends JPanel {
 			public void actionPerformed(ActionEvent arg0) {
 				rd.pickRandomCard(playerID, otherPlayerid3);
 				robberController.setIngameControllerHasMovedRobber(true);
+				System.out.println("HasMovedRobber set to " + robberController.getInGameController().hasMovedRobber());
 				robberController.close();
 			}
 			
