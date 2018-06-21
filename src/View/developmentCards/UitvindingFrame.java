@@ -2,15 +2,15 @@
 package View.developmentCards;
 import javax.swing.JFrame;
 
+import Controller.BankController;
 import Controller.PlayerController;
-import Controller.RobberController;
 import View.setupGame.DrawingPanel;
 
 @SuppressWarnings("serial")
 
 public class UitvindingFrame extends JFrame {
-	public UitvindingFrame(PlayerController playerController,int playerid, DrawingPanel dp){
-		UitvindingContentPane ucp = new UitvindingContentPane(playerController,dp, this);
+	public UitvindingFrame(BankController bc, PlayerController playerController,int playerid, DrawingPanel dp){
+		UitvindingContentPane ucp = new UitvindingContentPane(bc, playerController,dp, playerid, this);
 
 		
 		setContentPane(ucp);
