@@ -159,7 +159,7 @@ public class IngameView extends JPanel implements Observer {
 
 		throwDiceButton = new JButton("Gooi Dobbelstenen");
 		if (!inGameController.getFirstTurn() && inGameController.getTurn(gameID).equals(LoginController.getUsername())
-				&& inGameController.hasRolledDice(gameID)) {
+				&& !inGameController.hasRolledDice(gameID)) {
 			throwDiceButton.setEnabled(true);
 		} else {
 			throwDiceButton.setEnabled(false);
@@ -256,8 +256,7 @@ public class IngameView extends JPanel implements Observer {
 		cityLabel = new JLabel("Stad: 2G-3E");
 		devCardLabel = new JLabel("Ontwikkelingskaart: 1W-1G-1E");
 
-		turnLabel = new JLabel("Speler aan de beurt: "); // HIER MOET DE SPELER DIE AAN DE BEURT IS TOEGEVOEGD
-															// WORDEN
+		turnLabel = new JLabel("Speler aan de beurt: ");
 		playerTurnStringLabel = new JLabel(inGameController.getTurn(gameID));
 		playersAndCardsLabel = new JLabel("Spelers en kaarten: ");
 		gameTurnLabel = new JLabel("Ronde: ");
@@ -522,7 +521,7 @@ public class IngameView extends JPanel implements Observer {
 	/* UPDATE */
 	public void uiUpdate() {
 		dieContentPane.update();
-		puntenLabelUpdate();
+		pointsLabelUpdate();
 		playerTurnUpdate();
 		throwDiceButtonUpdate();
 		nextTurnButtonUpdate();
@@ -555,7 +554,7 @@ public class IngameView extends JPanel implements Observer {
 		biggestArmyLabel.setText(ingameController.getBiggestArmy(gameID));
 	}
 
-	public void puntenLabelUpdate() {
+	public void pointsLabelUpdate() {
 
 		for (int i = 0; i < playerStats.size(); i++) {
 

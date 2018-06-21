@@ -174,13 +174,10 @@ public class RobberDAL {
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
-		System.out.println("TileID robber: " + tileID);
-		System.out.println("TileID cklicked: " + coordinatesTileID(x, y, gameID));
 		return result;
 	}
 	
 	private int coordinatesTileID(int x, int y, int gameID) {
-		System.out.println(x + "," + y + " in game " + gameID);
 		int result = 0;
 		Statement stmt = null;
 		String query = "SELECT idtegel FROM tegel WHERE x = " + x + " AND y = " + y + " AND idspel = " + gameID + ";";

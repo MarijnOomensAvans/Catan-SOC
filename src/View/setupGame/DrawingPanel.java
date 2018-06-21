@@ -234,16 +234,13 @@ public class DrawingPanel extends JPanel {
 						String positions[] = returnString.split(",");
 						int x = Integer.parseInt(positions[0]);
 						int y = Integer.parseInt(positions[1]);
-						if(!ingameController.robberHasPosition(gameID,x,y)) {
+						if(!ingameController.robberHasPosition(x,y,gameID)) {
 						bc.setRobberTile(gameID, x, y);
 						robber.setBounds(bc.getRobberXPosition(gameID) - 45, bc.getRobberYPosition(gameID) - 30, 25,
 								60);
 						rb.choose(gameID);
 						mayMoveRobber = false;
 					}
-						else {
-							System.out.println("Gy zult geenen struykrover op een landt plaatschen waar hy reeds staet!");
-						}
 					}
 				}
 			}
