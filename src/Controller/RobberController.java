@@ -40,8 +40,12 @@ public class RobberController {
 	}
 
 	public void choose(int gameID) {
-		gui =new RobberGui(gameID,rd, playerID,this);
+		gui = new RobberGui(gameID,rd, playerID,this);
 		
+	}
+	
+	public void setIngameControllerHasMovedRobber(boolean set) {
+		igc.setHasMovedRobber(set);
 	}
 
 	public boolean robberHasPosition(int x, int y, int gameID) {

@@ -590,10 +590,7 @@ public class IngameView extends JPanel implements Observer {
 
 		if (allowedToEnd(gameID)) {
 			if (!ingameController.getFirstTurn()) {
-				System.out.println("HasRolledDice: " + ingameController.hasRolledDice(gameID));
-				System.out.println("HasMovedRobber : " + ingameController.hasMovedRobber());
 				if (ingameController.hasRolledDice(gameID) && ingameController.hasMovedRobber()) {
-					System.out.println("HasMovedRobber in endturnbutton check: " + ingameController.hasMovedRobber());
 					endTurnButton.setEnabled(true);
 				}
 			} else {

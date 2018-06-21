@@ -46,6 +46,7 @@ public class RobberPane extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				rd.pickRandomCard(playerID, otherPlayerid1);
+				robberController.setIngameControllerHasMovedRobber(true);
 				robberController.close();
 			}
 			
@@ -55,6 +56,7 @@ public class RobberPane extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				rd.pickRandomCard(playerID, otherPlayerid2);
+				robberController.setIngameControllerHasMovedRobber(true);
 				robberController.close();
 			}
 			
@@ -64,6 +66,7 @@ public class RobberPane extends JPanel {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				rd.pickRandomCard(playerID, otherPlayerid3);
+				robberController.setIngameControllerHasMovedRobber(true);
 				robberController.close();
 			}
 			
