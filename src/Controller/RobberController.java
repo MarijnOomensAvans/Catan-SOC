@@ -27,6 +27,10 @@ public class RobberController {
 		}
 	}
 	
+	public IngameController getInGameController( ) {
+		return this.igc;
+	}
+	
 	public void setDrawingPanel(DrawingPanel dp) {
 		this.dp = dp;
 	}
