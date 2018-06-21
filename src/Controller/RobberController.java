@@ -18,6 +18,7 @@ public class RobberController {
 	
 	public void robberThrown( int gameID) {
 		rd.removeHalf(gameID);
+		
 		dp.setMayMoveRobber(true);
 
 		

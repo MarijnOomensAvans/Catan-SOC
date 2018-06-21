@@ -229,6 +229,7 @@ public class DrawingPanel extends JPanel {
 					}
 				}
 				if (mayMoveRobber == true) {
+					inGameController.setHasMovedRobber(false);
 					String returnString = tileConvertXYfromScreenToKey(e.getX(), e.getY());
 					if (returnString != null) {
 						String positions[] = returnString.split(",");

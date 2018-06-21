@@ -17,6 +17,7 @@ public class IngameController {
 	private PersonDAL pd;
 	private PlayerController pc;
 	private int playerID;
+	@SuppressWarnings("unused")
 	private BoardController bc;
 	private ChatController chatController;
 	private DieController dieController;
@@ -27,6 +28,7 @@ public class IngameController {
 	private boolean hasMovedRobber;
 
 	public IngameController(int gameid, int playerID, BoardController bc) {
+		this.hasMovedRobber = true;
 		this.gameid = gameid;
 		this.playerID = playerID;
 		this.bc = bc;
