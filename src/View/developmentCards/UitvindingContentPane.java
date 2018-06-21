@@ -2,6 +2,7 @@ package View.developmentCards;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -9,8 +10,11 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import DAL.PersonDAL;
 
+import Controller.BankController;
 import Controller.PlayerController;
+import Model.MaterialCard;
 import View.setupGame.DrawingPanel;
 
 public class UitvindingContentPane extends JPanel {
@@ -19,6 +23,8 @@ public class UitvindingContentPane extends JPanel {
 	private BufferedImage myBufferedImage3;
 	private BufferedImage myBufferedImage4;
 	private BufferedImage myBufferedImage5;
+	private PersonDAL pd;
+	private BankController bct;
 
 	private String stone;
 	private String ore;
@@ -35,7 +41,7 @@ public class UitvindingContentPane extends JPanel {
 	
 	
 
-	public UitvindingContentPane(PlayerController playerController, DrawingPanel dp,
+	public UitvindingContentPane(BankController bc, PlayerController pc, DrawingPanel dp, int playerid,
 			UitvindingFrame uitvindingFrame) {
 	
 		this.setLayout(null);
@@ -69,10 +75,24 @@ public class UitvindingContentPane extends JPanel {
 		add(choosewool);
 		choosewool.setBounds(310, 280, 110, 30);
 		
-//		add(chooseore);
-//		chooseore.setBounds(x, y, width, height);
+		add(chooseore);
+		chooseore.setBounds(520, 280, 110, 30);
 		
+		add(choosewheat);
+		choosewheat.setBounds(730, 280, 110, 30);
 		
+		add(choosewood);
+		choosewood.setBounds(940, 280, 110, 30);
+		
+//		choosestone.addActionListener(new ActionListener() {
+
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//			MaterialCard card = bct.getMaterialCard("baksteen", playerid);
+//			String cardid = card.getIdCard();
+//			pd.addMaterialCard(10, cardid, 24);
+//			}
+//		});
 		
 		setPreferredSize(new Dimension(1100,600));
 		setVisible(true);

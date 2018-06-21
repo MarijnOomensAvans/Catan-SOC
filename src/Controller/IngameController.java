@@ -33,7 +33,7 @@ public class IngameController {
 		this.gameid = gameid;
 		this.playerID = playerID;
 		this.bc = bc;
-		this.rb = new RobberController(playerID);
+		this.rb = new RobberController(playerID,this);
 		gameModel = new GameModel(gameid, this);
 		Thread thread = new Thread(new GameUpdateController(gameModel));
 		thread.start();
@@ -51,6 +51,11 @@ public class IngameController {
 		gameModel.addObserver(gameFrame.getPane());
 		tc = new TradeController(playerID, gameid, pd, pc.getPlayer(), pc, bct, this);
 	}
+	
+	public void closeEndTurnButton() {
+		gameFrame.closeEndTurnButton();
+	}
+			
 
 	public PlayerController getPc() {
 		return pc;
@@ -70,6 +75,10 @@ public class IngameController {
 		}
 
 		return playerStats;
+	}
+	
+	public String getPlayer(int gameid) {
+		return gameModel.getPlayer(gameid);
 	}
 
 	public String getTurn(int id) {
@@ -99,7 +108,7 @@ public class IngameController {
 
 	public void openDevcard() {
 		// DevelopmentContentPane dcp = new DevelopmentContentPane(pc, playerID, dp);
-		devGUI = new DevelopmentGui(pc, gameid, playerID, dp, rb);
+		devGUI = new DevelopmentGui(bct, pc, gameid, playerID, dp, rb);
 	}
 
 	public void setPlayerTurn(int gameid, String username) {

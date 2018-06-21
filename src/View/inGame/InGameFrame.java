@@ -69,4 +69,9 @@ public class InGameFrame extends JFrame {
 	public Observer getPane() {
 		return pane;
 	}
+
+	public void closeEndTurnButton() {
+		pane.closeEndTurnButton();
+		
+	}
 }
