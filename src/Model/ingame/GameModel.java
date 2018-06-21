@@ -8,7 +8,7 @@ import Controller.LoginController;
 import DAL.GameManagerDAL;
 import DAL.GameDAL;
 
-public class SpelModel extends Observable {
+public class GameModel extends Observable {
 
 	private GameDAL spelDal;
 	private GameManagerDAL gameManagerDal;
@@ -16,7 +16,7 @@ public class SpelModel extends Observable {
 	private IngameController ingameController;
 	private boolean secondRound = false;
 
-	public SpelModel(int gameid, IngameController ingameController) {
+	public GameModel(int gameid, IngameController ingameController) {
 		this.ingameController = ingameController;
 		this.gameid = gameid;
 		spelDal = new GameDAL();
@@ -93,6 +93,7 @@ public class SpelModel extends Observable {
 				if (isSecondRound()) {
 					System.out.println("2e dorp bouwen");
 					ingameController.buildVillage();
+					ingameController.getResource();
 					break;
 				}
 			case (3):

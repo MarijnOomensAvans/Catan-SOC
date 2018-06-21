@@ -61,6 +61,8 @@ public class IngameView extends JPanel implements Observer {
 	private JButton throwDiceButton;
 	private JButton endTurnButton;
 	private JButton tradeButton;
+	private JButton buildButton;
+	private JButton devcardButton;
 	private Border border;
 
 	private ImageIcon stone;
@@ -151,7 +153,7 @@ public class IngameView extends JPanel implements Observer {
 			endTurnButton.setEnabled(false);
 			playerTurnUpdate();
 			ingameController.shouldRefresh(gameID);
-			setTradeButton(false);
+			//setTradeButton(false);
 			this.closeTradeWindows();
 		});
 
@@ -225,7 +227,8 @@ public class IngameView extends JPanel implements Observer {
 
 		boardPanel = new JPanel();
 
-		JButton buildButton = new JButton("Bouwen");
+		buildButton = new JButton("Bouwen");
+		buildButton.setEnabled(false);
 		buildButton.addActionListener(new ActionListener() {
 
 			@Override
@@ -236,9 +239,9 @@ public class IngameView extends JPanel implements Observer {
 
 		});
 		tradeButton = new JButton("Handelen");
-		JButton devcardButton = new JButton("Ontwikkelingskaarten");
 		tradeButton.setEnabled(false);
-
+		devcardButton = new JButton("Ontwikkelingskaarten");
+		devcardButton.setEnabled(false);
 		tradeButton.addActionListener(e -> {
 			inGameController.openTrade();
 			tradeButton.setEnabled(false);
@@ -247,7 +250,7 @@ public class IngameView extends JPanel implements Observer {
 		devcardButton.addActionListener(e -> {
 			inGameController.openDevcard();
 		});
-		if (allowedToEnd(gameID) && inGameController.hasRolledDice(gameID)) {
+		if (allowedToEnd(gameID) && inGameController.hasRolledDice(gameID) && inGameController.hasMovedRobber()) {
 			endTurnButton.setEnabled(true);
 		}
 
@@ -620,6 +623,10 @@ public class IngameView extends JPanel implements Observer {
 		tradeButton.setEnabled(enable);
 		this.revalidate();
 	}
+	
+	public void setBuildButton(boolean enable) {
+		buildButton.setEnabled(enable);
+	}
 
 	public void closeTradeWindows() {
 		ingameController.closeTradeWindows();
@@ -637,13 +644,19 @@ public class IngameView extends JPanel implements Observer {
 		}
 
 		if (ingameController.getFirstTurn()) {
-			frame.setTradeButton(false);
+			//this.setBuildButton(false);
+			tradeButton.setEnabled(false);
+			devcardButton.setEnabled(false);
 		} else {
 			if (ingameController.getTurn(gameID).equals(LoginController.getUsername())
 					&& ingameController.hasRolledDice(gameID)) {
-				frame.setTradeButton(true);
+				buildButton.setEnabled(true);
+				tradeButton.setEnabled(true);
+				devcardButton.setEnabled(true);
 			} else {
-				frame.setTradeButton(false);
+				buildButton.setEnabled(false);
+				tradeButton.setEnabled(false);
+				devcardButton.setEnabled(false);
 			}
 		}
 	}
