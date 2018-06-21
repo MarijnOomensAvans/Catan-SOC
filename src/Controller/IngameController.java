@@ -24,6 +24,7 @@ public class IngameController {
 	private RobberController rb;
 	private InGameFrame gameFrame;
 	private DrawingPanel dp;
+	private boolean hasMovedRobber;
 
 	public IngameController(int gameid, int playerID, BoardController bc) {
 		this.gameid = gameid;
@@ -171,8 +172,12 @@ public class IngameController {
 	public boolean robberHasPosition(int x, int y, int gameID) {
 		return rb.robberHasPosition(x,y,gameID);
 	}
+	
+	public void setHasMovedRobber(boolean set) {
+		this.hasMovedRobber = set;
+	}
 
 	public boolean hasMovedRobber() {
-		return this.hasMovedRobber();
+		return this.hasMovedRobber;
 	}
 }
