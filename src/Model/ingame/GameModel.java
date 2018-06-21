@@ -121,4 +121,8 @@ public class GameModel extends Observable {
 	public void setFirstTurn(boolean b) {
 		spelDal.setFirstTurn(gameid, b);
 	}
+
+	public String getPlayer(int gameid) {
+		return spelDal.getPlayerTurn(gameid);
+	}
 }

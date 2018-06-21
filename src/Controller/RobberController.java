@@ -10,18 +10,19 @@ public class RobberController {
 	private DrawingPanel dp;
 	private int playerID;
 	private RobberGui gui;
+	private IngameController igc;
 	
-	public RobberController(int playerID){
+	public RobberController(int playerID, IngameController ingameController){
+		this.igc = ingameController;
 		this.playerID = playerID;
 		rd = new RobberDAL();
 	}
 	
 	public void robberThrown( int gameID) {
 		rd.removeHalf(gameID);
-		
+		if(igc.getTurn(gameID).equals(igc.getPlayer(gameID))) {
 		dp.setMayMoveRobber(true);
-
-		
+		}
 	}
 	
 	public void setDrawingPanel(DrawingPanel dp) {

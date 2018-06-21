@@ -150,8 +150,10 @@ public class IngameView extends JPanel implements Observer {
 			} else {
 				ingameController.setPlayerTurn(gameID, nextPlayerTurn(gameID));
 			}
+			buildButton.setEnabled(false);
+			tradeButton.setEnabled(false);
+			devcardButton.setEnabled(false);
 			endTurnButton.setEnabled(false);
-			ingameController.setHasMovedRobber(false);
 			playerTurnUpdate();
 			inGameController.setHasMovedRobber(true);
 			ingameController.shouldRefresh(gameID);
@@ -640,7 +642,7 @@ public class IngameView extends JPanel implements Observer {
 	public void update(Observable arg0, Object arg1) {
 		playerStats = ingameController.getPlayerStats(gameID);
 		uiUpdate(); // Update the ui
-		firstTurnCheck(); // Rulset for first turn
+		firstTurnCheck(); // Ruleset for first turn
 		for (int i = 0; i < playerStats.size(); i++) {
 			if (playerStats.get(i).getPrivatePoints() >= 10) {
 				winnerBox();
@@ -648,7 +650,6 @@ public class IngameView extends JPanel implements Observer {
 		}
 
 		if (ingameController.getFirstTurn()) {
-			//this.setBuildButton(false);
 			tradeButton.setEnabled(false);
 			devcardButton.setEnabled(false);
 		} else {

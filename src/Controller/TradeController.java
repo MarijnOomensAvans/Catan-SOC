@@ -220,8 +220,16 @@ public class TradeController extends Observable implements Runnable {
 			this.deleteOffers(playerid, otherIds.get(0), otherIds.get(1), otherIds.get(2));
 			gui.dispose();
 		}
-		if (this.tap != null) {
+		else if (this.tap != null) {
 			this.tap = null;
+			gui.dispose();
+		}
+		else if (this.bp != null) {
+			this.bp = null;
+			gui.dispose();
+		}
+		else if (this.top != null) {
+			this.top = null;
 			gui.dispose();
 		}
 	}
@@ -275,7 +283,6 @@ public class TradeController extends Observable implements Runnable {
 				}
 			}
 		}
-		;
 		return false;
 	}
 }
