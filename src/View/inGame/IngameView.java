@@ -151,6 +151,7 @@ public class IngameView extends JPanel implements Observer {
 				ingameController.setPlayerTurn(gameID, nextPlayerTurn(gameID));
 			}
 			endTurnButton.setEnabled(false);
+			ingameController.setHasMovedRobber(false);
 			playerTurnUpdate();
 			ingameController.shouldRefresh(gameID);
 			//setTradeButton(false);
@@ -583,7 +584,7 @@ public class IngameView extends JPanel implements Observer {
 
 		if (allowedToEnd(gameID)) {
 			if (!ingameController.getFirstTurn()) {
-				if (ingameController.hasRolledDice(gameID)) {
+				if (ingameController.hasRolledDice(gameID) && ingameController.hasMovedRobber()) {
 					endTurnButton.setEnabled(true);
 				}
 			} else {
