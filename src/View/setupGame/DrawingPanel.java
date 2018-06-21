@@ -241,9 +241,6 @@ public class DrawingPanel extends JPanel {
 						rb.choose(gameID);
 						mayMoveRobber = false;
 					}
-						else {
-							System.out.println("Gy zult geenen struykrover op een landt plaatschen waar hy reeds staet!");
-						}
 					}
 				}
 			}
