@@ -69,8 +69,8 @@ public class UitvindingContentPane extends JPanel {
 		add(choosewool);
 		choosewool.setBounds(310, 280, 110, 30);
 		
-		add(chooseore);
-		chooseore.setBounds(x, y, width, height);
+//		add(chooseore);
+//		chooseore.setBounds(x, y, width, height);
 		
 		
 		
