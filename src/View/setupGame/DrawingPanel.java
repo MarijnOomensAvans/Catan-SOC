@@ -174,11 +174,13 @@ public class DrawingPanel extends JPanel {
 									removeMaterialCards(buildingType);
 								}
 								// Log here
+								System.out.println("Build 1");
 								mayBuild = false;
 								hlPoint = null;
 								repaint();
 							}
 						} else if (hlPoint == null || !buildingType.equals("Street")) {
+							// Log here
 							hlPoint = test;
 							repaint();
 						}
@@ -432,19 +434,19 @@ public class DrawingPanel extends JPanel {
 						case "r":
 							switch(x) {
 							case 0:
-								street_Red.paintIcon(this, g,xCoord - 17,yCoord);
+								street_Red.paintIcon(this, g,xCoord - 17,yCoord - 5);
 								buildCounter++;
 								break;
 							case 1:
-									street_White.paintIcon(this, g,xCoord - 17,yCoord);
+									street_White.paintIcon(this, g,xCoord - 17,yCoord - 5);
 								buildCounter++;
 								break;
 							case 2:
-									street_Blue.paintIcon(this, g,xCoord - 17,yCoord);
+									street_Blue.paintIcon(this, g,xCoord - 17,yCoord - 5);
 								buildCounter++;
 								break;
 							case 3:
-									street_Orange.paintIcon(this, g,xCoord - 17,yCoord);
+									street_Orange.paintIcon(this, g,xCoord - 17,yCoord - 5);
 								buildCounter++;
 								break;
 							}

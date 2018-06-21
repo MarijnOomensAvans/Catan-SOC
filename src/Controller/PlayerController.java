@@ -176,6 +176,7 @@ public class PlayerController {
 
 	public boolean emptySpace(String buildingType, String hlPoint) {
 		String pieceID;
+		String buildings = "";
 		int x;
 		int y;
 		int x2;
@@ -188,7 +189,14 @@ public class PlayerController {
 		} else {
 			pieceID = "r";
 		}
-		String[] allBuild = db.getBuilding(playerID, pieceID).split(",");
+		for(int i = 0; i < 4; i++) {
+			if(buildings.equals("")) {
+			buildings = db.getBuilding(Integer.parseInt(playerIDs[i]), pieceID);
+			} else {
+				buildings = buildings + "," + db.getBuilding(Integer.parseInt(playerIDs[i]), pieceID);
+			}
+		}
+		String[] allBuild = buildings.split(",");
 		String[] coords = hlPoint.split(",");
 		x = Integer.parseInt(coords[0]);
 		y = Integer.parseInt(coords[1]);
