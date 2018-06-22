@@ -683,4 +683,9 @@ public class IngameView extends JPanel implements Observer {
 		
 	}
 
+	public void activateEndTurnButton() {
+		endTurnButton.setEnabled(true);
+		
+	}
+
 }

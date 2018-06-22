@@ -200,4 +200,9 @@ public class IngameController {
 		return this.hasMovedRobber;
 
 	}
+
+	public void activateEndTurnButton() {
+		gameFrame.activateEndTurnButton();
+		
+	}
 }

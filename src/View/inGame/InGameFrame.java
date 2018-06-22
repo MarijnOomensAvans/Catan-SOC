@@ -74,4 +74,9 @@ public class InGameFrame extends JFrame {
 		pane.closeEndTurnButton();
 		
 	}
+
+	public void activateEndTurnButton() {
+		pane.activateEndTurnButton();
+		
+	}
 }
