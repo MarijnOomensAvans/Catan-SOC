@@ -18,6 +18,7 @@ import javax.swing.JTextField;
 import Controller.BankController;
 import Controller.PlayerController;
 import Controller.RobberController;
+import DAL.PersonDAL;
 import View.setupGame.DrawingPanel;
 
 @SuppressWarnings("serial")
@@ -66,7 +67,7 @@ private BufferedImage myBufferedImage7;
 private BufferedImage myBufferedImage8;
 private BufferedImage myBufferedImage9;
 		
-		public DevelopmentContentPane(BankController bc, PlayerController pc, int playerid, DrawingPanel dp, DevelopmentGui dgui,RobberController rb){
+		public DevelopmentContentPane(PersonDAL pd, BankController bc, PlayerController pc, int playerid, DrawingPanel dp, DevelopmentGui dgui,RobberController rb){
 			
 			
 			this.setLayout(null);
@@ -233,7 +234,7 @@ private BufferedImage myBufferedImage9;
 	
 //				pc.useUitvinding(playerid);
 				dgui.dispose();
-				new UitvindingFrame(bc, pc, playerid, dp);
+				new UitvindingFrame(pd, bc, pc, playerid, dp);
 				}
 			}
 				

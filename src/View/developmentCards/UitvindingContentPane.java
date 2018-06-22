@@ -23,14 +23,14 @@ public class UitvindingContentPane extends JPanel {
 	private BufferedImage myBufferedImage3;
 	private BufferedImage myBufferedImage4;
 	private BufferedImage myBufferedImage5;
-	private PersonDAL pd;
-	private BankController bct;
 
 	private String stone;
 	private String ore;
 	private String wood;
 	private String wheat;
 	private String wool;
+	
+	private int cardspicked;
 	
 	private JButton choosestone;
 	private JButton chooseore;
@@ -41,7 +41,7 @@ public class UitvindingContentPane extends JPanel {
 	
 	
 
-	public UitvindingContentPane(BankController bc, PlayerController pc, DrawingPanel dp, int playerid,
+	public UitvindingContentPane(PersonDAL pd, BankController bc, PlayerController pc, DrawingPanel dp, int playerid,
 			UitvindingFrame uitvindingFrame) {
 	
 		this.setLayout(null);
@@ -50,6 +50,8 @@ public class UitvindingContentPane extends JPanel {
 		ore = "erts.jpg";
 		wheat = "graan.jpg";
 		wood = "hout.jpg";
+		
+		cardspicked = 0;
 		
 		choosestone = new JButton("+1 baksteen");
 		chooseore = new JButton("+1 erts");
@@ -84,15 +86,54 @@ public class UitvindingContentPane extends JPanel {
 		add(choosewood);
 		choosewood.setBounds(940, 280, 110, 30);
 		
-//		choosestone.addActionListener(new ActionListener() {
+		
+		choosestone.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			MaterialCard card = bc.getMaterialCard("B", playerid);
+			String cardid = card.getIdCard();
+			pd.addMaterialCard(pc.getGameid(), cardid, playerid);
+			cardspicked++;
+			}
+			
+		});
+		
+		choosewool.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			MaterialCard card = bc.getMaterialCard("W", playerid);
+			String cardid = card.getIdCard();
+			pd.addMaterialCard(pc.getGameid(), cardid, playerid);
+			}
+		});
+		chooseore.addActionListener(new ActionListener() {
 
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//			MaterialCard card = bct.getMaterialCard("baksteen", playerid);
-//			String cardid = card.getIdCard();
-//			pd.addMaterialCard(10, cardid, 24);
-//			}
-//		});
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			MaterialCard card = bc.getMaterialCard("E", playerid);
+			String cardid = card.getIdCard();
+			pd.addMaterialCard(pc.getGameid(), cardid, playerid);
+			}
+		});
+		choosewheat.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			MaterialCard card = bc.getMaterialCard("G", playerid);
+			String cardid = card.getIdCard();
+			pd.addMaterialCard(pc.getGameid(), cardid, playerid);
+			}
+		});
+		choosewood.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+			MaterialCard card = bc.getMaterialCard("H", playerid);
+			String cardid = card.getIdCard();
+			pd.addMaterialCard(pc.getGameid(), cardid, playerid);
+			}
+		});
+		
 		
 		setPreferredSize(new Dimension(1100,600));
 		setVisible(true);
