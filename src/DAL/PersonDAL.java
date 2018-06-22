@@ -83,6 +83,22 @@ public class PersonDAL {
 			e.printStackTrace();
 		}
 	}
+	public void stealAllPlayerCards(String cardtype, int idgame, int idplayer) {
+		Statement stmt = null;
+		String query = "UPDATE spelergrondstofkaart SET idspeler =" + idplayer + " WHERE idspel =" + idgame
+				+ " AND idspeler is not null AND idgrondstofkaart LIKE '" + cardtype + "'";
+		try {
+			stmt = conn.createStatement();
+
+			@SuppressWarnings("unused")
+			int i = stmt.executeUpdate(query);
+
+			stmt.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public String getOtherPlayerName(int playerid) {
 		String result = "";
