@@ -153,7 +153,7 @@ public class IngameView extends JPanel implements Observer {
 			}
 			buildButton.setEnabled(false);
 			tradeButton.setEnabled(false);
-			devcardButton.setEnabled(false);
+			devcardButton.setEnabled(true);
 			endTurnButton.setEnabled(false);
 			playerTurnUpdate();
 			inGameController.setHasMovedRobber(true);
@@ -252,7 +252,7 @@ public class IngameView extends JPanel implements Observer {
 		});
 
 		devcardButton = new JButton("Ontwikkelingskaarten");
-		devcardButton.setEnabled(false);
+		devcardButton.setEnabled(true);
 		devcardButton.addActionListener(e -> {
 			devcardButton.setEnabled(false);
 			inGameController.openDevcard();
@@ -663,7 +663,7 @@ public class IngameView extends JPanel implements Observer {
 
 		if (ingameController.getFirstTurn()) {
 			tradeButton.setEnabled(false);
-			devcardButton.setEnabled(false);
+			devcardButton.setEnabled(true);
 		} else {
 			if (ingameController.getTurn(gameID).equals(LoginController.getUsername())
 					&& ingameController.hasRolledDice(gameID)) {
@@ -673,7 +673,7 @@ public class IngameView extends JPanel implements Observer {
 			} else {
 				buildButton.setEnabled(false);
 				tradeButton.setEnabled(false);
-				devcardButton.setEnabled(false);
+				devcardButton.setEnabled(true);
 			}
 		}
 	}

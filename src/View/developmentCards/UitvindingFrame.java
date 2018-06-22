@@ -4,13 +4,14 @@ import javax.swing.JFrame;
 
 import Controller.BankController;
 import Controller.PlayerController;
+import DAL.PersonDAL;
 import View.setupGame.DrawingPanel;
 
 @SuppressWarnings("serial")
 
 public class UitvindingFrame extends JFrame {
-	public UitvindingFrame(BankController bc, PlayerController playerController,int playerid, DrawingPanel dp){
-		UitvindingContentPane ucp = new UitvindingContentPane(bc, playerController,dp, playerid, this);
+	public UitvindingFrame(PersonDAL pd, BankController bc, PlayerController playerController,int playerid, DrawingPanel dp){
+		UitvindingContentPane ucp = new UitvindingContentPane(pd, bc, playerController,dp, playerid, this);
 
 		
 		setContentPane(ucp);
