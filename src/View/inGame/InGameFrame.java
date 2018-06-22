@@ -49,7 +49,7 @@ public class InGameFrame extends JFrame {
 
 		logOut.addActionListener(e -> {
 			pane.closeBuildWindow();
-			pane.closeTradeWindows();
+			pane.closeTradeWindows(false);
 			pane.closeDevCardWindow();
 			dispose();
 			bc.openLobby();
@@ -62,8 +62,16 @@ public class InGameFrame extends JFrame {
 		pane.nextTurnButtonUpdate();
 	}
 
+	public void setBuildButton(boolean enable) {
+		pane.setBuildButton(enable);
+	}
+	
 	public void setTradeButton(boolean enable) {
 		pane.setTradeButton(enable);
+	}
+	
+	public void setDevCardButton(boolean enable) {
+		pane.setDevCardButton(enable);
 	}
 
 	public Observer getPane() {

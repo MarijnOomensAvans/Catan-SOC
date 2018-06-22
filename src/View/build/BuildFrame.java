@@ -2,6 +2,7 @@ package View.build;
 
 import javax.swing.JFrame;
 
+import Controller.IngameController;
 import Controller.PlayerController;
 import Model.Player;
 import View.setupGame.DrawingPanel;
@@ -10,7 +11,7 @@ import View.setupGame.DrawingPanel;
 public class BuildFrame extends JFrame{
 	private BuildContentPane buildcontentpane;
 	
-	public BuildFrame(PlayerController pc, DrawingPanel inGameBoard) {
+	public BuildFrame(PlayerController pc, DrawingPanel inGameBoard, IngameController igc) {
 		buildcontentpane = new BuildContentPane(this, pc, inGameBoard);
 		this.setTitle("Bouw");
 		setResizable(false);
@@ -18,6 +19,18 @@ public class BuildFrame extends JFrame{
 		pack();
 		setLocationRelativeTo(null);
 		setVisible(true);
+		
+		this.addWindowListener(new java.awt.event.WindowAdapter() {
+			@Override
+			public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+				try {
+					igc.setBuildButton(true);
+				} catch (ClassCastException exc) {
+
+				}
+			}
+		});
+		
 	}
 	
 	public void closeFrame() {
