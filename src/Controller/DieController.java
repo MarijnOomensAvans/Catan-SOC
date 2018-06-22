@@ -39,6 +39,7 @@ public class DieController {
 	}
 
 	public void lookAtResult(int diceResult) {
+		diceResult = 7;
 		if (diceResult == 7) {
 			rb.robberThrown(gameID);
 		} else if (diceResult == 2) {
@@ -79,6 +80,7 @@ public class DieController {
 		int y = bc.getYTile(number, gameID);
 		char resource = bc.getTileResource(gameID, x, y);
 		String source = Character.toString(resource);
+		
 		for (int i = 0; i < ids.size(); i++) {
 			if (bc.getBuildingplayer(x + 1, y, ids.get(i)) != 0) {
 				if (bc.isVillage(ids.get(i), x + 1, y)) {
@@ -119,20 +121,7 @@ public class DieController {
 					String cardid2 = card2.getIdCard();
 					pd.addMaterialCard(gameID, cardid2, ids.get(i));
 				}
-			} if (bc.getBuildingplayer(x, y, ids.get(i)) != 0) {
-				if (bc.isVillage(ids.get(i), x, y)) {
-					MaterialCard card = bct.getMaterialCard(source, ids.get(i));
-					String cardid = card.getIdCard();
-					pd.addMaterialCard(gameID, cardid, ids.get(i));
-				} else if (bc.isCity(ids.get(i), x, y)) {
-					MaterialCard card1 = bct.getMaterialCard(source, ids.get(i));
-					String cardid1 = card1.getIdCard();
-					pd.addMaterialCard(gameID, cardid1, ids.get(i));
-					MaterialCard card2 = bct.getMaterialCard(source, ids.get(i));
-					String cardid2 = card2.getIdCard();
-					pd.addMaterialCard(gameID, cardid2, ids.get(i));
-				}
-			}  if (bc.getBuildingplayer(x - 1, y, ids.get(i)) != 0) {
+			} if (bc.getBuildingplayer(x - 1, y, ids.get(i)) != 0) {
 				if (bc.isVillage(ids.get(i), x - 1, y)) {
 					MaterialCard card = bct.getMaterialCard(source, ids.get(i));
 					String cardid = card.getIdCard();

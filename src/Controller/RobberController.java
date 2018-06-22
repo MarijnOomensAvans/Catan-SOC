@@ -11,10 +11,12 @@ public class RobberController {
 	private int playerID;
 	private RobberGui gui;
 	private IngameController igc;
+	private BoardController bc;
 	
-	public RobberController(int playerID, IngameController ingameController){
+	public RobberController(int playerID, IngameController ingameController, BoardController bc){
 		this.igc = ingameController;
 		this.playerID = playerID;
+		this.bc = bc;
 		rd = new RobberDAL();
 	}
 	
@@ -43,8 +45,8 @@ public class RobberController {
 		return rd;
 	}
 
-	public void choose(int gameID) {
-		gui = new RobberGui(gameID,rd, playerID,this);
+	public void choose(int gameID, int x, int y) {
+		gui = new RobberGui(gameID,rd, playerID,this,x,y,bc);
 		
 	}
 	
