@@ -79,4 +79,8 @@ public class InGameFrame extends JFrame {
 		pane.activateEndTurnButton();
 		
 	}
+
+	public void updateGui() {
+		pane.resourceLabelsUpdateDevCards();
+	}
 }

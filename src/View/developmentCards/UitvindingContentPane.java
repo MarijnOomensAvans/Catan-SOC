@@ -15,6 +15,7 @@ import DAL.PersonDAL;
 import Controller.BankController;
 import Controller.PlayerController;
 import Model.MaterialCard;
+import View.inGame.InGameFrame;
 import View.setupGame.DrawingPanel;
 
 public class UitvindingContentPane extends JPanel {
@@ -42,7 +43,7 @@ public class UitvindingContentPane extends JPanel {
 	
 
 	public UitvindingContentPane(PersonDAL pd, BankController bc, PlayerController pc, DrawingPanel dp, int playerid,
-			UitvindingFrame uitvindingFrame) {
+			UitvindingFrame uitvindingFrame, InGameFrame gameFrame) {
 	
 		this.setLayout(null);
 		stone = "baksteen.jpg";
@@ -94,6 +95,8 @@ public class UitvindingContentPane extends JPanel {
 			String cardid = card.getIdCard();
 			pd.addMaterialCard(pc.getGameid(), cardid, playerid);
 			cardspicked++;
+			gameFrame.updateGui();
+			pc.updateHand();
 			if(cardspicked == 2) {
 				uitvindingFrame.dispose();
 				
@@ -109,6 +112,8 @@ public class UitvindingContentPane extends JPanel {
 			String cardid = card.getIdCard();
 			pd.addMaterialCard(pc.getGameid(), cardid, playerid);
 			cardspicked++;
+			gameFrame.updateGui();
+			pc.updateHand();
 			if(cardspicked == 2) {
 				uitvindingFrame.dispose();
 				
@@ -124,6 +129,7 @@ public class UitvindingContentPane extends JPanel {
 			String cardid = card.getIdCard();
 			pd.addMaterialCard(pc.getGameid(), cardid, playerid);
 			cardspicked++;
+			gameFrame.updateGui();
 			if(cardspicked == 2) {
 				uitvindingFrame.dispose();
 				
@@ -139,6 +145,7 @@ public class UitvindingContentPane extends JPanel {
 			String cardid = card.getIdCard();
 			pd.addMaterialCard(pc.getGameid(), cardid, playerid);
 			cardspicked++;
+			gameFrame.updateGui();
 			if(cardspicked == 2) {
 				uitvindingFrame.dispose();
 				
@@ -154,6 +161,7 @@ public class UitvindingContentPane extends JPanel {
 			String cardid = card.getIdCard();
 			pd.addMaterialCard(pc.getGameid(), cardid, playerid);
 			cardspicked++;
+			gameFrame.updateGui();
 			if(cardspicked == 2) {
 				uitvindingFrame.dispose();
 				
