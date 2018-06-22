@@ -94,6 +94,10 @@ public class UitvindingContentPane extends JPanel {
 			String cardid = card.getIdCard();
 			pd.addMaterialCard(pc.getGameid(), cardid, playerid);
 			cardspicked++;
+			if(cardspicked == 2) {
+				uitvindingFrame.dispose();
+				
+			}
 			}
 			
 		});
@@ -104,6 +108,12 @@ public class UitvindingContentPane extends JPanel {
 			MaterialCard card = bc.getMaterialCard("W", playerid);
 			String cardid = card.getIdCard();
 			pd.addMaterialCard(pc.getGameid(), cardid, playerid);
+			cardspicked++;
+			if(cardspicked == 2) {
+				uitvindingFrame.dispose();
+				
+			}
+			
 			}
 		});
 		chooseore.addActionListener(new ActionListener() {
@@ -113,7 +123,13 @@ public class UitvindingContentPane extends JPanel {
 			MaterialCard card = bc.getMaterialCard("E", playerid);
 			String cardid = card.getIdCard();
 			pd.addMaterialCard(pc.getGameid(), cardid, playerid);
+			cardspicked++;
+			if(cardspicked == 2) {
+				uitvindingFrame.dispose();
+				
 			}
+			}
+			
 		});
 		choosewheat.addActionListener(new ActionListener() {
 
@@ -122,7 +138,13 @@ public class UitvindingContentPane extends JPanel {
 			MaterialCard card = bc.getMaterialCard("G", playerid);
 			String cardid = card.getIdCard();
 			pd.addMaterialCard(pc.getGameid(), cardid, playerid);
+			cardspicked++;
+			if(cardspicked == 2) {
+				uitvindingFrame.dispose();
+				
 			}
+			}
+			
 		});
 		choosewood.addActionListener(new ActionListener() {
 
@@ -131,8 +153,14 @@ public class UitvindingContentPane extends JPanel {
 			MaterialCard card = bc.getMaterialCard("H", playerid);
 			String cardid = card.getIdCard();
 			pd.addMaterialCard(pc.getGameid(), cardid, playerid);
+			cardspicked++;
+			if(cardspicked == 2) {
+				uitvindingFrame.dispose();
+				
+			}
 			}
 		});
+	
 		
 		
 		setPreferredSize(new Dimension(1100,600));
@@ -146,5 +174,8 @@ public class UitvindingContentPane extends JPanel {
 		g.drawImage(myBufferedImage4, 675, 20, 205, 280, null);
 		g.drawImage(myBufferedImage5, 885, 20, 205, 280, null);
 	}
+		
+	
+	
 
 }
