@@ -239,8 +239,7 @@ public class DrawingPanel extends JPanel {
 						bc.setRobberTile(gameID, x, y);
 						robber.setBounds(bc.getRobberXPosition(gameID) - 45, bc.getRobberYPosition(gameID) - 30, 25,
 								60);
-						rb.choose(gameID);
-						//inGameController.setHasMovedRobber(true);
+						rb.choose(gameID,x,y);
 						mayMoveRobber = false;
 					}
 					}

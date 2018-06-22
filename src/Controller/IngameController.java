@@ -33,7 +33,7 @@ public class IngameController {
 		this.gameid = gameid;
 		this.playerID = playerID;
 		this.bc = bc;
-		this.rb = new RobberController(playerID,this);
+		this.rb = new RobberController(playerID,this,bc);
 		gameModel = new GameModel(gameid, this);
 		Thread thread = new Thread(new GameUpdateController(gameModel));
 		thread.start();
