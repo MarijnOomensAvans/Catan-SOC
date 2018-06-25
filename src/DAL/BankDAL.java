@@ -184,10 +184,10 @@ public class BankDAL {
 		return result;
 	}
 
-	public String getDevPlayerid(String cardid) {
+	public String getDevPlayerid(String cardid, int gameid) {
 		String result = "";
 		Statement stmt = null;
-		String query = "SELECT idspeler FROM spelerontwikkelingskaart WHERE idontwikkelingskaart = '" + cardid + "'";
+		String query = "SELECT idspeler FROM spelerontwikkelingskaart WHERE idontwikkelingskaart = '" + cardid + "' AND idspel = '" + gameid + "'";
 
 		try {
 			stmt = conn.createStatement();
@@ -199,6 +199,25 @@ public class BankDAL {
 			System.out.println(e.getMessage());
 		}
 		return result;
+	}
+	
+	public String getavailableDevCard(String cardid, int gameid) {
+		String result = "";
+		Statement stmt = null;
+		String query = "SELECT idspeler FROM spelerontwikkelingskaart WHERE idontwikkelingskaart = '" + cardid + "' AND idspel = '" + gameid + "' AND idspeler is null";
+
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			rs.next();
+			result = rs.getString(1);
+			stmt.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
+	
+		
 	}
 	// public boolean checkDevCards(int gameid) {
 	// boolean result;

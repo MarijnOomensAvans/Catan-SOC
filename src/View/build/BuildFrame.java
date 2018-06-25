@@ -12,8 +12,8 @@ import View.setupGame.DrawingPanel;
 public class BuildFrame extends JFrame{
 	private BuildContentPane buildcontentpane;
 	
-	public BuildFrame(PlayerController pc, DrawingPanel inGameBoard, IngameController igc, BankController bc) {
-		buildcontentpane = new BuildContentPane(this, pc, inGameBoard, bc);
+	public BuildFrame(PlayerController pc, DrawingPanel inGameBoard, IngameController igc, BankController bc, int playerid) {
+		buildcontentpane = new BuildContentPane(this, pc, inGameBoard, bc, playerid);
 		this.setTitle("Bouw");
 		setResizable(false);
 		this.setContentPane(buildcontentpane);

@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
+import Controller.BankController;
 import Controller.BoardController;
 import Controller.ChatController;
 import Controller.DieController;
@@ -128,7 +129,7 @@ public class IngameView extends JPanel implements Observer {
 
 	public IngameView(BoardController bc, int gameID, DrawingPanel inGameBoard, int playerID,
 			IngameController inGameController, PlayerController pc, ChatController chatController,
-			DieController dieController, InGameFrame frame) {
+			DieController dieController, InGameFrame frame, BankController bct) {
 		this.playerID = playerID;
 		this.chatController = chatController;
 		this.gameID = gameID;
@@ -242,7 +243,7 @@ public class IngameView extends JPanel implements Observer {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				buildButton.setEnabled(false);
-				buildFrame = new BuildFrame(pc, inGameBoard, inGameController);
+				buildFrame = new BuildFrame(pc, inGameBoard, inGameController, bct, playerID);
 			}
 
 		});

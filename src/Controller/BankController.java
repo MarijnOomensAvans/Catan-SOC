@@ -43,8 +43,8 @@ public class BankController {
 
 	}
 
-	public DevelopmentCard getDevelopmentCard(int playerid) {
-		DevelopmentCard devcard = bank.getDevelopmentCard();
+	public DevelopmentCard getDevelopmentCard(int gameid) {
+		DevelopmentCard devcard = bank.getDevelopmentCard(gameid);
 		return devcard;
 	}
 
