@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import Controller.BankController;
 import Controller.BuildController;
 import Controller.PlayerController;
 import Model.Player;
@@ -30,7 +31,7 @@ public class BuildContentPane extends JPanel{
 	private String buildingType;
 	
 	
-	public BuildContentPane(BuildFrame frame,PlayerController pc, DrawingPanel inGameBoard) {
+	public BuildContentPane(BuildFrame frame,PlayerController pc, DrawingPanel inGameBoard, BankController bc) {
 		buildcontroller = new BuildController();
 		this.pc = pc;
 		this.setLayout(gridLayout);
@@ -103,6 +104,8 @@ public class BuildContentPane extends JPanel{
 		devCardBuild.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	
+    
             	frame.closeFrame();
             }
         });

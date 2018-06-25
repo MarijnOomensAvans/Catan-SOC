@@ -93,49 +93,42 @@ public class MonopolieContentPane extends JPanel {
 		choosewool.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			MaterialCard card = bc.getMaterialCard("W", playerid);
-			String cardid = card.getIdCard();
-			pd.addMaterialCard(pc.getGameid(), cardid, playerid);
-			gameFrame.updateGui();
-			pc.updateHand();
+				pd.stealAllPlayerCards("W%", pc.getGameid(), playerid);
+				gameFrame.updateGui();
+				pc.updateHand();
+				mp.dispose();
+				}
 			
-			}
 		});
 		chooseore.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			MaterialCard card = bc.getMaterialCard("E", playerid);
-			String cardid = card.getIdCard();
-			pd.addMaterialCard(pc.getGameid(), cardid, playerid);
-			gameFrame.updateGui();
-			
-			}
-			
+				pd.stealAllPlayerCards("E%", pc.getGameid(), playerid);
+				gameFrame.updateGui();
+				pc.updateHand();
+				mp.dispose();
+				}
 		});
 		choosewheat.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			MaterialCard card = bc.getMaterialCard("G", playerid);
-			String cardid = card.getIdCard();
-			pd.addMaterialCard(pc.getGameid(), cardid, playerid);
-			gameFrame.updateGui();
-			
-			}
-			
+				pd.stealAllPlayerCards("G%", pc.getGameid(), playerid);
+				gameFrame.updateGui();
+				pc.updateHand();
+				mp.dispose();
+				}			
 		});
 		choosewood.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-			MaterialCard card = bc.getMaterialCard("H", playerid);
-			String cardid = card.getIdCard();
-			pd.addMaterialCard(pc.getGameid(), cardid, playerid);
-			gameFrame.updateGui();
-				
-			}
-			
+				pd.stealAllPlayerCards("H%", pc.getGameid(), playerid);
+				gameFrame.updateGui();
+				pc.updateHand();
+				mp.dispose();
+				}			
 		});
 
 

@@ -2,6 +2,7 @@ package View.build;
 
 import javax.swing.JFrame;
 
+import Controller.BankController;
 import Controller.IngameController;
 import Controller.PlayerController;
 import Model.Player;
@@ -11,8 +12,8 @@ import View.setupGame.DrawingPanel;
 public class BuildFrame extends JFrame{
 	private BuildContentPane buildcontentpane;
 	
-	public BuildFrame(PlayerController pc, DrawingPanel inGameBoard, IngameController igc) {
-		buildcontentpane = new BuildContentPane(this, pc, inGameBoard);
+	public BuildFrame(PlayerController pc, DrawingPanel inGameBoard, IngameController igc, BankController bc) {
+		buildcontentpane = new BuildContentPane(this, pc, inGameBoard, bc);
 		this.setTitle("Bouw");
 		setResizable(false);
 		this.setContentPane(buildcontentpane);
