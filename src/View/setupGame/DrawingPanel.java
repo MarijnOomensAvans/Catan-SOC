@@ -164,8 +164,8 @@ public class DrawingPanel extends JPanel {
 				if (inGameController != null) {
 					inGameController.shouldRefresh(gameID);
 				}
-
-				if (mayBuild == true) {
+				
+				if (mayBuild == true && !buildingType.equals("DevCard")) {
 					String test = convertXYfromScreenToKey(e.getX(), e.getY());
 					if (test != null) {
 						if (hlPoint == test && !buildingType.equals("Street")) {
@@ -227,6 +227,10 @@ public class DrawingPanel extends JPanel {
 						hlPoint = null;
 						repaint();
 					}
+				}
+				else if (mayBuild == true && buildingType.equals("DevCard")) {
+					removeMaterialCards(buildingType);
+					mayBuild = false;
 				}
 				if (mayMoveRobber == true) {
 					inGameController.setHasMovedRobber(false);
