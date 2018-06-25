@@ -110,8 +110,8 @@ public class BuildContentPane extends JPanel{
             	bc.isOutofcards(pc.getGameid());
             	String iddev = (bc.getDevelopmentCard(pc.getGameid()).getIdDevCard());
             	pc.giveDevCardPlayer(playerid, iddev, pc.getGameid());
-//            	buildingType = "DevCard";
-//                inGameBoard.setBuild(true, buildingType);
+            	buildingType = "DevCard";
+                inGameBoard.setBuild(true, buildingType);
             	frame.closeFrame();
             }
         });
