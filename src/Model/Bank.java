@@ -103,11 +103,14 @@ public class Bank {
 		String cardid = devbank.get(i).getIdDevCard();
 		while (bd.getDevPlayerid(cardid, gameid) != null) {
 			
+			devbank.remove(i);
 			i = random.nextInt(devbank.size());
 			cardid = devbank.get(i).getIdDevCard();
-			devbank.remove(i);
+			
+			
 		}
 		returncard = devbank.get(i);
+		System.out.println(returncard.getIdDevCard());
 		return returncard;
 	}
 

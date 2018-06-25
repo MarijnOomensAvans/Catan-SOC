@@ -219,6 +219,28 @@ public class BankDAL {
 	
 		
 	}
+
+	public boolean getidDevcards(int gameid) {
+		boolean result = true;
+		Statement stmt = null;
+		String query = "SELECT idontwikkelingskaart, idspel FROM spelerontwikkelingskaart where idspel = '" + gameid + "' AND idspeler is null";
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			if (!rs.next() ) {
+				result = true;
+			}
+			else {
+				result = false;
+			}
+			
+			stmt.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
+	
 	// public boolean checkDevCards(int gameid) {
 	// boolean result;
 	// Statement stmt = null;

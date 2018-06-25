@@ -29,7 +29,7 @@ public class BuildContentPane extends JPanel{
 	@SuppressWarnings("unused")
 	private PlayerController pc;
 	private String buildingType;
-	
+		
 	
 	public BuildContentPane(BuildFrame frame,PlayerController pc, DrawingPanel inGameBoard, BankController bc, int playerid) {
 		buildcontroller = new BuildController();
@@ -101,11 +101,17 @@ public class BuildContentPane extends JPanel{
 		JLabel devCardResources = new JLabel("G:1 - S:1 - E:1");
 		this.add(devCardResources);
 		JButton devCardBuild = new JButton("Build");
+		if (bc.isOutofcards(pc.getGameid())) {
+			devCardBuild.setEnabled(false);
+		}
 		devCardBuild.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            	bc.isOutofcards(pc.getGameid());
             	String iddev = (bc.getDevelopmentCard(pc.getGameid()).getIdDevCard());
             	pc.giveDevCardPlayer(playerid, iddev, pc.getGameid());
+//            	buildingType = "DevCard";
+//                inGameBoard.setBuild(true, buildingType);
             	frame.closeFrame();
             }
         });
