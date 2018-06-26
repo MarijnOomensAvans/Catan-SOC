@@ -170,7 +170,6 @@ public class DrawingPanel extends JPanel {
 					if (test != null) {
 						if (hlPoint == test && !buildingType.equals("Street")) {
 							if (pc.emptySpace(buildingType, hlPoint)) {
-								if (pc.noBuildingNext(hlPoint)) {
 									if (pc.buildObject(buildingType, hlPoint)) {
 										removeMaterialCards(buildingType);
 									}
@@ -178,7 +177,6 @@ public class DrawingPanel extends JPanel {
 									mayBuild = false;
 									hlPoint = null;
 									repaint();
-								}
 							}
 						} else if (hlPoint == null || !buildingType.equals("Street")) {
 							// Log here

@@ -227,7 +227,16 @@ public class PlayerController {
 					if (x == (x2 + 1) && y == (y2 + 1) || x == (x2 + 1) && y == y2 || x == x2 && y == (y2 - 1)
 							|| x == (x2 - 1) && y == y2 || x == x2 && y == (y2 + 1) || x == (x2 - 1) && y == (y2 - 1)
 							|| x == (x2 + 1) && y == (y2 - 1) || x == (x2 - 1) && y == (y2 + 1)) {
-						return true;
+						if (db.getRound(gameID)) {
+							if (!db.hasVillage(playerID, x2, y2).equals("")) {
+								if (!db.hasStreet(playerID, x2, y2).equals(""))
+									return true;
+							} else {
+								return false;
+							}
+						} else {
+							return true;
+						}
 					} else {
 						return false;
 					}
@@ -238,13 +247,6 @@ public class PlayerController {
 		}
 		return canBuild;
 
-	}
-
-	public boolean noBuildingNext(String hlPoint) {
-		String[] xy = hlPoint.split(",");
-		int x = Integer.parseInt(xy[0]);
-		int y = Integer.parseInt(xy[1]);
-		return false;
 	}
 
 	public boolean buildObject(String buildingType, String hlPoint) {
