@@ -49,8 +49,9 @@ public class PlayerController {
 	}
 
 	public void giveDevCardPlayer(int playerid, String devcardid, int gameid) {
-	db.addDevelopmentCard(gameid, devcardid, playerid, false);
+		db.addDevelopmentCard(gameid, devcardid, playerid, false);
 	}
+
 	// ------------------------------------------------------------------------------------------------------------------------
 	// Getamount for development cards
 	public int getAmountRidder(int playerid) {
@@ -222,17 +223,30 @@ public class PlayerController {
 				}
 				if (x == x2 && y == y2) {
 					return false;
+				} else if (!buildingType.equals("Street")) {
+					if (x == (x2 + 1) && y == (y2 + 1) || x == (x2 + 1) && y == y2 || x == x2 && y == (y2 - 1)
+							|| x == (x2 - 1) && y == y2 || x == x2 && y == (y2 + 1) || x == (x2 - 1) && y == (y2 - 1)
+							|| x == (x2 + 1) && y == (y2 - 1) || x == (x2 - 1) && y == (y2 + 1)) {
+						if (db.getRound(gameID)) {
+							if (!db.hasVillage(playerID, x2, y2).equals("")) {
+								if (!db.hasStreet(playerID, x2, y2).equals(""))
+									return true;
+							} else {
+								return false;
+							}
+						} else {
+							return true;
+						}
+					} else {
+						return false;
+					}
 				} else {
-					canBuild = true;
+					return true;
 				}
 			}
 		}
 		return canBuild;
 
-	}
-	
-	public boolean noBuildingNext() {
-		return false;
 	}
 
 	public boolean buildObject(String buildingType, String hlPoint) {
@@ -409,14 +423,20 @@ public class PlayerController {
 	}
 
 	public boolean checkVillage(String test, String hlPoint) {
-		String[] split = test.split(",");
-		String point1 = db.hasVillage(playerID, Integer.parseInt(split[0]), Integer.parseInt(split[1]));
-		split = hlPoint.split(",");
-		String point2 = db.hasVillage(playerID, Integer.parseInt(split[0]), Integer.parseInt(split[1]));
-		if (point1 != "" || point2 != "") {
+		String[] splitTest = test.split(",");
+		String[] splithlPoint = hlPoint.split(",");
+		String point1 = db.hasVillage(playerID, Integer.parseInt(splitTest[0]), Integer.parseInt(splitTest[1]));
+		String point2 = db.hasVillage(playerID, Integer.parseInt(splithlPoint[0]), Integer.parseInt(splithlPoint[1]));
+		if (!point1.equals("") || !point2.equals("")) {
 			return true;
 		} else {
-			return false;
+			point1 = db.hasStreet(playerID, Integer.parseInt(splitTest[0]), Integer.parseInt(splitTest[1]));
+			point2 = db.hasStreet(playerID, Integer.parseInt(splithlPoint[0]), Integer.parseInt(splithlPoint[1]));
+			if (!point1.equals("") || !point2.equals("")) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 	}
 
@@ -427,7 +447,5 @@ public class PlayerController {
 	public int getBuildCount(int x) {
 		return Integer.parseInt(db.getBuildCount(Integer.parseInt(playerIDs[x])));
 	}
-	
-	
 
 }

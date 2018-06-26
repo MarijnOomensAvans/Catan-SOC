@@ -55,6 +55,11 @@ public class ChatController implements Runnable {
 		}
 		}
 	}
+
+	public void logToChat(String log) {
+		cog.logToChat(log);
+		
+	}
 	
 	
 }
