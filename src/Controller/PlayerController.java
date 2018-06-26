@@ -224,12 +224,16 @@ public class PlayerController {
 				if (x == x2 && y == y2) {
 					return false;
 				} else if (!buildingType.equals("Street")) {
-					if (x == (x2 + 1) && y == (y2 + 1) || x == (x2 + 1) && y == y2 || x == x2 && y == (y2 - 1)
-							|| x == (x2 - 1) && y == y2 || x == x2 && y == (y2 + 1) || x == (x2 - 1) && y == (y2 - 1)
-							|| x == (x2 + 1) && y == (y2 - 1) || x == (x2 - 1) && y == (y2 + 1)) {
+					if (x != (x2 + 1) && y != (y2 + 1) && x != (x2 + 1) && y != y2 && x != x2 && y != (y2 - 1)
+							&& x != (x2 - 1) && y != y2 && x != x2 && y != (y2 + 1) && x != (x2 - 1) && y != (y2 - 1)
+									&& x != (x2 + 1) && y != (y2 - 1) && x != (x2 - 1) && y != (y2 + 1)) {
+						System.out.println("Surroundcheck");
 						if (db.getRound(gameID)) {
-							if (!db.hasVillage(playerID, x2, y2).equals("")) {
-								if (!db.hasStreet(playerID, x2, y2).equals(""))
+							System.out.println("ROUNDCHECK");
+							if (!db.hasVillage(playerID, (x + 1), (y + 1)).equals("") && !db.hasVillage(playerID, x, (y + 1)).equals("") &&!db.hasVillage(playerID, (x + 1), y).equals("") &&!db.hasVillage(playerID, (x - 1), (y - 1)).equals("") && !db.hasVillage(playerID, (x - 1), y).equals("") && !db.hasVillage(playerID, x, (y - 1)).equals("")) {
+								System.out.println("VILLAGECHECK");
+								if (!db.hasStreet(playerID, (x + 1), (y + 1)).equals("") && !db.hasStreet(playerID, x, (y + 1)).equals("") &&!db.hasStreet(playerID, (x + 1), y).equals("") &&!db.hasStreet(playerID, (x - 1), (y - 1)).equals("") && !db.hasVillage(playerID, (x - 1), y).equals("") && !db.hasStreet(playerID, x, (y - 1)).equals(""))
+									System.out.println("STREETCHECK");
 									return true;
 							} else {
 								return false;
@@ -238,6 +242,7 @@ public class PlayerController {
 							return true;
 						}
 					} else {
+						System.out.println("SURROUNDFAILED");
 						return false;
 					}
 				} else {

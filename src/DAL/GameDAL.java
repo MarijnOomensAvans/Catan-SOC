@@ -247,7 +247,7 @@ public class GameDAL {
 			Statement stmt = conn.createStatement();
 			stmt.executeUpdate("UPDATE spel SET beurt_idspeler = " + this.getPlayerId(gameid, username)
 					+ " WHERE idspel = " + gameid);
-			stmt.close();
+			stmt.close(); 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
