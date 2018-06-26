@@ -188,7 +188,7 @@ public class PlayerController {
 		int y;
 		int x2;
 		int y2;
-		boolean canBuild = false;
+		boolean canBuild = true;
 		if (buildingType.equals("Village")) {
 			pieceID = "d0";
 		} else if (buildingType.equals("City")) {
@@ -224,30 +224,23 @@ public class PlayerController {
 				if (x == x2 && y == y2) {
 					return false;
 				} else if (!buildingType.equals("Street")) {
-					if (x != (x2 + 1) && y != (y2 + 1) && x != (x2 + 1) && y != y2 && x != x2 && y != (y2 - 1)
-							&& x != (x2 - 1) && y != y2 && x != x2 && y != (y2 + 1) && x != (x2 - 1) && y != (y2 - 1)
-									&& x != (x2 + 1) && y != (y2 - 1) && x != (x2 - 1) && y != (y2 + 1)) {
-						System.out.println("Surroundcheck");
+					if (x != (x2 + 1) && y != (y2 + 1) || x != (x2 + 1) && y != y2 || x != x2 && y != (y2 - 1)
+							|| x != (x2 - 1) && y != y2 || x != x2 && y != (y2 + 1) || x != (x2 - 1) && y != (y2 - 1)
+									|| x != (x2 + 1) && y != (y2 - 1) || x != (x2 - 1) && y != (y2 + 1)) {
 						if (db.getRound(gameID)) {
-							System.out.println("ROUNDCHECK");
 							if (!db.hasVillage(playerID, (x + 1), (y + 1)).equals("") && !db.hasVillage(playerID, x, (y + 1)).equals("") &&!db.hasVillage(playerID, (x + 1), y).equals("") &&!db.hasVillage(playerID, (x - 1), (y - 1)).equals("") && !db.hasVillage(playerID, (x - 1), y).equals("") && !db.hasVillage(playerID, x, (y - 1)).equals("")) {
-								System.out.println("VILLAGECHECK");
-								if (!db.hasStreet(playerID, (x + 1), (y + 1)).equals("") && !db.hasStreet(playerID, x, (y + 1)).equals("") &&!db.hasStreet(playerID, (x + 1), y).equals("") &&!db.hasStreet(playerID, (x - 1), (y - 1)).equals("") && !db.hasVillage(playerID, (x - 1), y).equals("") && !db.hasStreet(playerID, x, (y - 1)).equals(""))
-									System.out.println("STREETCHECK");
-									return true;
+								if (!db.hasStreet(playerID, (x + 1), (y + 1)).equals("") && !db.hasStreet(playerID, x, (y + 1)).equals("") &&!db.hasStreet(playerID, (x + 1), y).equals("") &&!db.hasStreet(playerID, (x - 1), (y - 1)).equals("") && !db.hasVillage(playerID, (x - 1), y).equals("") && !db.hasStreet(playerID, x, (y - 1)).equals("")) {
+								} else {
+									canBuild = false;
+								}
 							} else {
-								return false;
+								canBuild = false;
 							}
-						} else {
-							return true;
-						}
+						} 
 					} else {
-						System.out.println("SURROUNDFAILED");
-						return false;
+						canBuild = false;
 					}
-				} else {
-					return true;
-				}
+				} 
 			}
 		}
 		return canBuild;
