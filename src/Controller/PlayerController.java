@@ -222,16 +222,27 @@ public class PlayerController {
 				}
 				if (x == x2 && y == y2) {
 					return false;
+				} else if (!buildingType.equals("Street")) {
+					if (x == (x2 + 1) && y == (y2 + 1) || x == (x2 + 1) && y == y2 || x == x2 && y == (y2 - 1)
+							|| x == (x2 - 1) && y == y2 || x == x2 && y == (y2 + 1) || x == (x2 - 1) && y == (y2 - 1)
+							|| x == (x2 + 1) && y == (y2 - 1) || x == (x2 - 1) && y == (y2 + 1)) {
+						return true;
+					} else {
+						return false;
+					}
 				} else {
-					canBuild = true;
+					return true;
 				}
 			}
 		}
 		return canBuild;
 
 	}
-	
-	public boolean noBuildingNext() {
+
+	public boolean noBuildingNext(String hlPoint) {
+		String[] xy = hlPoint.split(",");
+		int x = Integer.parseInt(xy[0]);
+		int y = Integer.parseInt(xy[1]);
 		return false;
 	}
 
@@ -414,7 +425,15 @@ public class PlayerController {
 		split = hlPoint.split(",");
 		String point2 = db.hasVillage(playerID, Integer.parseInt(split[0]), Integer.parseInt(split[1]));
 		if (point1 != "" || point2 != "") {
+			split = test.split(",");
+			point1 = db.hasStreet(playerID, Integer.parseInt(split[0]), Integer.parseInt(split[1]));
+			split = hlPoint.split(",");
+			point2 = db.hasStreet(playerID, Integer.parseInt(split[0]), Integer.parseInt(split[1]));
+			if (point1 != "" || point2 != "") {
 			return true;
+			} else {
+				return false;
+			}
 		} else {
 			return false;
 		}
@@ -427,7 +446,5 @@ public class PlayerController {
 	public int getBuildCount(int x) {
 		return Integer.parseInt(db.getBuildCount(Integer.parseInt(playerIDs[x])));
 	}
-	
-	
 
 }
