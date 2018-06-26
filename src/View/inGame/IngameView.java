@@ -472,6 +472,7 @@ public class IngameView extends JPanel implements Observer {
 	}
 
 	public void winnerBox() {
+		inGameController.logToChat(weGotAWinner() + " heeft gewonnen game beëindigd.");
 		JOptionPane.showMessageDialog(null, weGotAWinner() + " heeft gewonnen", "Game beëindigd",
 				JOptionPane.INFORMATION_MESSAGE);
 		inGameController.setAllPlayersCanceled(gameID);

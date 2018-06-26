@@ -21,7 +21,7 @@ import Controller.ChatController;
 public class Chatoutputgui extends JPanel implements Observer {
 
 	private JTextArea output;
-	JScrollPane scroll;
+	private JScrollPane scroll;
 
 	public Chatoutputgui(ChatController control, int playerid) {
 		output = new JTextArea(21, 37);
@@ -37,6 +37,11 @@ public class Chatoutputgui extends JPanel implements Observer {
 		add(scroll);
 		this.setBackground(Color.BLACK);
 	}
+	
+	public void logToChat(String log) {
+		output.append(log);
+		
+	}
 
 	@Override
 	public void update(Observable o, Object arg) {
@@ -47,5 +52,7 @@ public class Chatoutputgui extends JPanel implements Observer {
 			}
 		}
 	}
+
+
 
 }

@@ -23,6 +23,7 @@ public class RobberController {
 	public void robberThrown( int gameID) {
 		rd.removeHalf(gameID);
 		if(igc.getTurn(gameID).equals(igc.getPlayer(gameID))) {
+		igc.logToChat(igc.getTurn(gameID) + " heeft een 7 gegooid! Hij/zij mag nu de struikrover verplaatsen.");
 		igc.setHasMovedRobber(false);
 		igc.closeEndTurnButton();
 		dp.setMayMoveRobber(true);

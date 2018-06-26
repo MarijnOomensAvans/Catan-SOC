@@ -55,6 +55,10 @@ public class IngameController {
 	public void closeEndTurnButton() {
 		gameFrame.closeEndTurnButton();
 	}
+	
+	public int getGameId() {
+		return gameid;
+	}
 			
 
 	public PlayerController getPc() {
@@ -215,5 +219,9 @@ public class IngameController {
 	public void activateEndTurnButton() {
 		gameFrame.activateEndTurnButton();
 		
+	}
+	
+	public void logToChat(String log) {
+		chatController.logToChat(log);
 	}
 }
