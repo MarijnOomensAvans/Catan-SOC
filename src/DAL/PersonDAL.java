@@ -640,7 +640,7 @@ public class PersonDAL {
 	public String getBuildCount(int playerID) {
 		String result = "";
 		Statement stmt = null;
-		String query = "SELECT count(idstuk) FROM bdjong1_db2.spelerstuk WHERE idspeler = " + playerID + "";
+		String query = "SELECT count(idstuk) FROM spelerstuk WHERE idspeler = " + playerID + "";
 			try {
 				stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(query);
