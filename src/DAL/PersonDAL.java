@@ -621,12 +621,11 @@ public class PersonDAL {
 	public String hasStreet(int playerID, int x, int y) {
 		String result = "";
 		Statement stmt = null;
-		String query = "SELECT idstuk FROM spelerstuk WHERE idspeler =" + playerID + " AND x_naar = '"
-				+ x + "' AND y_naar = '" + y + "'";
+		String query = "SELECT idstuk FROM spelerstuk WHERE idspeler =" + playerID + " AND x_naar = "
+				+ x + " AND y_naar = " + y + "";
 		try {
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
-
 			if (rs.next()) {
 			result = rs.getString(1);
 			}
