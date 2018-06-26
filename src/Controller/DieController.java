@@ -189,42 +189,60 @@ public class DieController {
 	public void getResource(int playerID) {
 		int x = pd.getCoordX(playerID, "d02");
 		int y = pd.getCoordY(playerID, "d02");
-		MaterialCard card = null;
 
 		if (pd.isTile(x + 1, y)) {
 			char resource = bc.getTileResource(gameID, x + 1, y);
 			String source = Character.toString(resource);
-			card = bct.getMaterialCard(source, playerID);
+			MaterialCard card = bct.getMaterialCard(source, playerID);
+			if (card != null) {
+				String cardid = card.getIdCard();
+				pd.addMaterialCard(gameID, cardid, playerID);
+			}
 		}
 		if (pd.isTile(x, y + 1)) {
 			char resource = bc.getTileResource(gameID, x, y + 1);
 			String source = Character.toString(resource);
-			card = bct.getMaterialCard(source, playerID);
+			MaterialCard card = bct.getMaterialCard(source, playerID);
+			if (card != null) {
+				String cardid = card.getIdCard();
+				pd.addMaterialCard(gameID, cardid, playerID);
+			}
 		}
 		if (pd.isTile(x + 1, y + 1)) {
 			char resource = bc.getTileResource(gameID, x + 1, y + 1);
 			String source = Character.toString(resource);
-			card = bct.getMaterialCard(source, playerID);
+			MaterialCard card = bct.getMaterialCard(source, playerID);
+			if (card != null) {
+				String cardid = card.getIdCard();
+				pd.addMaterialCard(gameID, cardid, playerID);
+			}
 		}
 		if (pd.isTile(x - 1, y)) {
 			char resource = bc.getTileResource(gameID, x - 1, y);
 			String source = Character.toString(resource);
-			card = bct.getMaterialCard(source, playerID);
+			MaterialCard card = bct.getMaterialCard(source, playerID);
+			if (card != null) {
+				String cardid = card.getIdCard();
+				pd.addMaterialCard(gameID, cardid, playerID);
+			}
 		}
 		if (pd.isTile(x, y - 1)) {
 			char resource = bc.getTileResource(gameID, x, y - 1);
 			String source = Character.toString(resource);
-			card = bct.getMaterialCard(source, playerID);
+			MaterialCard card = bct.getMaterialCard(source, playerID);
+			if (card != null) {
+				String cardid = card.getIdCard();
+				pd.addMaterialCard(gameID, cardid, playerID);
+			}
 		}
 		if (pd.isTile(x - 1, y - 1)) {
 			char resource = bc.getTileResource(gameID, x - 1, y - 1);
 			String source = Character.toString(resource);
-			card = bct.getMaterialCard(source, playerID);
-		}
-
-		if (card != null) {
-			String cardid = card.getIdCard();
-			pd.addMaterialCard(gameID, cardid, playerID);
+			MaterialCard card = bct.getMaterialCard(source, playerID);
+			if (card != null) {
+				String cardid = card.getIdCard();
+				pd.addMaterialCard(gameID, cardid, playerID);
+			}
 		}
 	}
 
