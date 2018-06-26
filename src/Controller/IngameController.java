@@ -133,7 +133,10 @@ public class IngameController {
 
 	public boolean hasRolledDice(int gameid) {
 		return gameModel.hasRolledDice(gameid);
-
+	}
+	
+	public void updateLongestRoute() {
+		gameModel.updateLongestRoute();
 	}
 
 	public String getLongestRoute(int gameID) {

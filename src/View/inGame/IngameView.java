@@ -284,6 +284,7 @@ public class IngameView extends JPanel implements Observer {
 		gameTurnLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		largestArmyLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		longestRouteLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		nameLongestRoutelabel.setHorizontalAlignment(SwingConstants.CENTER);
 		ownPointLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
 		buildButton.setPreferredSize(new Dimension(BUTTONWIDTH, BUTTONHEIGHT));
@@ -390,6 +391,7 @@ public class IngameView extends JPanel implements Observer {
 		extraPointsPanel.add(largestArmyLabel);
 		extraPointsPanel.add(hasBiggestArmy());
 		extraPointsPanel.add(longestRouteLabel);
+		extraPointsPanel.add(nameLongestRoutelabel);
 		ownPointsPanel.add(ownPointLabel);
 		ownPointsPanel.add(ownPointsValueLabel);
 
@@ -540,6 +542,8 @@ public class IngameView extends JPanel implements Observer {
 		throwDiceButtonUpdate();
 		nextTurnButtonUpdate();
 		resourceLabelsUpdate();
+		biggestArmyUpdate();
+		longestRouteUpdate();
 		this.revalidate();
 		this.repaint();
 	}
@@ -575,11 +579,12 @@ public class IngameView extends JPanel implements Observer {
 		playerTurnStringLabel.setText(inGameController.getTurn(gameID));
 	}
 
-	public void LongestRouteUpdate() {
+	public void longestRouteUpdate() {
+		inGameController.updateLongestRoute();
 		nameLongestRoutelabel.setText(inGameController.getLongestRoute(gameID));
 	}
 
-	public void BiggestArmyUpdate() {
+	public void biggestArmyUpdate() {
 		biggestArmyLabel.setText(inGameController.getBiggestArmy(gameID));
 	}
 
