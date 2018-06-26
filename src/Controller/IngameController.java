@@ -47,7 +47,7 @@ public class IngameController {
 		dp.setPlayerController(pc);
 		rb.setDrawingPanel(dp);
 		dp.setSetUp(true);
-		gameFrame = new InGameFrame(bc, gameid, dp, playerID, this, pc, chatController, dieController);
+		gameFrame = new InGameFrame(bc, gameid, dp, playerID, this, pc, chatController, dieController, bct);
 		gameModel.addObserver(gameFrame.getPane());
 		tc = new TradeController(playerID, gameid, pd, pc.getPlayer(), pc, bct, this);
 	}
@@ -94,8 +94,11 @@ public class IngameController {
 		// new TradeController(playerID, gameid, pd, pc.getPlayer(), pc, bct);
 	}
 
-	public void closeTradeWindows() {
-		tc.setRunthread(false);
+	public void closeTradeWindows(boolean thread) {
+		if(!thread)
+		{
+			tc.setRunthread(thread);
+		}
 		tc.close();
 	}
 
@@ -108,7 +111,7 @@ public class IngameController {
 
 	public void openDevcard() {
 		// DevelopmentContentPane dcp = new DevelopmentContentPane(pc, playerID, dp);
-		devGUI = new DevelopmentGui(pd, bct, pc, gameid, playerID, dp, rb,gameFrame);
+		devGUI = new DevelopmentGui(pd, bct, pc, gameid, playerID, dp, rb, gameFrame, this);
 	}
 
 	public void setPlayerTurn(int gameid, String username) {
@@ -183,10 +186,18 @@ public class IngameController {
 		gameModel.setFirstTurn(b);
 	}
 
+	public void setBuildButton(boolean enable) {
+		gameFrame.setBuildButton(enable);
+	}
+	
 	public void setTradeButton(boolean enable) {
 		gameFrame.setTradeButton(enable);
 	}
 
+	public void setDevCardButton(boolean enable) {
+		gameFrame.setDevCardButton(enable);
+	}
+	
 	public boolean robberHasPosition(int x, int y, int gameID) {
 		return rb.robberHasPosition(x, y, gameID);
 	}

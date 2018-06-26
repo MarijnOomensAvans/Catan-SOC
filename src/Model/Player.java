@@ -2,6 +2,7 @@ package Model;
 
 import java.util.ArrayList;
 
+import Controller.BankController;
 import Controller.PlayerController;
 import DAL.PersonDAL;
 
@@ -13,6 +14,7 @@ public class Player {
 	private String color;
 	private int order_number;
 
+	private BankController bct;
 	private PlayerController conn;
 	private PersonDAL pd;
 

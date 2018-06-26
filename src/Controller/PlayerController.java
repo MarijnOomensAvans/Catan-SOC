@@ -48,9 +48,9 @@ public class PlayerController {
 		return devcard;
 	}
 
-	// public void giveDevCardPlayer(int playerid, int gameid) {
-	// db.addDevelopmentCard(gameid, bd, playerid, false);
-	// }
+	public void giveDevCardPlayer(int playerid, String devcardid, int gameid) {
+	db.addDevelopmentCard(gameid, devcardid, playerid, false);
+	}
 	// ------------------------------------------------------------------------------------------------------------------------
 	// Getamount for development cards
 	public int getAmountRidder(int playerid) {

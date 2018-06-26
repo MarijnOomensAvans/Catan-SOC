@@ -211,7 +211,7 @@ private BufferedImage myBufferedImage9;
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if(pc.getAmountMonopolie(playerid)>= 1) {
-//				pc.useMonopolie(playerid);
+				pc.useMonopolie(playerid);
 				dgui.dispose();
 				new MonopolieFrame(pd, bc, pc, playerid, dp,gameFrame);
 				}
@@ -234,7 +234,7 @@ private BufferedImage myBufferedImage9;
 			public void actionPerformed(ActionEvent e) {
 				if(pc.getAmountUitvinding(playerid)>= 1) {
 	
-//				pc.useUitvinding(playerid);
+				pc.useUitvinding(playerid);
 				dgui.dispose();
 				new UitvindingFrame(pd, bc, pc, playerid, dp,gameFrame);
 				}

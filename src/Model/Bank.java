@@ -96,18 +96,21 @@ public class Bank {
 		return null;
 	}
 
-	public DevelopmentCard getDevelopmentCard() {
+	public DevelopmentCard getDevelopmentCard(int gameid) {
 		DevelopmentCard returncard = null;
 		Random random = new Random();
 		int i = random.nextInt(devbank.size());
 		String cardid = devbank.get(i).getIdDevCard();
-		while (bd.getDevPlayerid(cardid) != null) {
+		while (bd.getDevPlayerid(cardid, gameid) != null) {
+			
+			devbank.remove(i);
 			i = random.nextInt(devbank.size());
 			cardid = devbank.get(i).getIdDevCard();
-			System.out.println(cardid);
-			devbank.remove(i);
+			
+			
 		}
 		returncard = devbank.get(i);
+		System.out.println(returncard.getIdDevCard());
 		return returncard;
 	}
 

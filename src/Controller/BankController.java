@@ -16,6 +16,7 @@ public class BankController {
 	@SuppressWarnings("unused")
 	private Player player;
 	private int gameid;
+	private boolean outofcards;
 
 	public BankController(int gameid) {
 		bd = new BankDAL();
@@ -43,8 +44,8 @@ public class BankController {
 
 	}
 
-	public DevelopmentCard getDevelopmentCard(int playerid) {
-		DevelopmentCard devcard = bank.getDevelopmentCard();
+	public DevelopmentCard getDevelopmentCard(int gameid) {
+		DevelopmentCard devcard = bank.getDevelopmentCard(gameid);
 		return devcard;
 	}
 
@@ -64,5 +65,19 @@ public class BankController {
 
 	public MaterialCard checkMaterialCard(String ID) {
 		return bank.checkMaterialCard(ID, gameid);
+	}
+
+	public boolean isOutofcards(int gameid) {
+		if (bd.getidDevcards(gameid)) {
+			outofcards = true;
+		}
+		else {
+			outofcards = false;
+		}
+		return outofcards;
+	}
+
+	public void setOutofcards(boolean outofcards) {
+		this.outofcards = outofcards;
 	}
 }

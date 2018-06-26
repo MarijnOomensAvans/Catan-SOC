@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
+import Controller.BankController;
 import Controller.BoardController;
 import Controller.ChatController;
 import Controller.DieController;
@@ -128,7 +129,7 @@ public class IngameView extends JPanel implements Observer {
 
 	public IngameView(BoardController bc, int gameID, DrawingPanel inGameBoard, int playerID,
 			IngameController inGameController, PlayerController pc, ChatController chatController,
-			DieController dieController, InGameFrame frame) {
+			DieController dieController, InGameFrame frame, BankController bct) {
 		this.playerID = playerID;
 		this.chatController = chatController;
 		this.gameID = gameID;
@@ -155,13 +156,13 @@ public class IngameView extends JPanel implements Observer {
 			}
 			buildButton.setEnabled(false);
 			tradeButton.setEnabled(false);
-			devcardButton.setEnabled(true);
+			devcardButton.setEnabled(false);
 			endTurnButton.setEnabled(false);
 			playerTurnUpdate();
 			inGameController.setHasMovedRobber(true);
 			inGameController.shouldRefresh(gameID);
 			this.closeBuildWindow();
-			this.closeTradeWindows();
+			this.closeTradeWindows(true);
 			this.closeDevCardWindow();
 		});
 
@@ -242,7 +243,7 @@ public class IngameView extends JPanel implements Observer {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				buildButton.setEnabled(false);
-				buildFrame = new BuildFrame(pc, inGameBoard);
+				buildFrame = new BuildFrame(pc, inGameBoard, inGameController, bct, playerID);
 			}
 
 		});
@@ -254,7 +255,7 @@ public class IngameView extends JPanel implements Observer {
 		});
 
 		devcardButton = new JButton("Ontwikkelingskaarten");
-		devcardButton.setEnabled(true);
+		devcardButton.setEnabled(false);
 		devcardButton.addActionListener(e -> {
 			devcardButton.setEnabled(false);
 			inGameController.openDevcard();
@@ -643,13 +644,17 @@ public class IngameView extends JPanel implements Observer {
 		}
 	}
 
+	public void setBuildButton(boolean enable) {
+		buildButton.setEnabled(enable);
+	}
+	
 	public void setTradeButton(boolean enable) {
 		tradeButton.setEnabled(enable);
 		this.revalidate();
 	}
 
-	public void setBuildButton(boolean enable) {
-		buildButton.setEnabled(enable);
+	public void setDevCardButton(boolean enable) {
+		devcardButton.setEnabled(enable);
 	}
 
 	public void closeBuildWindow() {
@@ -659,8 +664,8 @@ public class IngameView extends JPanel implements Observer {
 		}
 	}
 
-	public void closeTradeWindows() {
-		inGameController.closeTradeWindows();
+	public void closeTradeWindows(boolean thread) {
+		inGameController.closeTradeWindows(thread);
 	}
 
 	public void closeDevCardWindow() {
@@ -680,7 +685,7 @@ public class IngameView extends JPanel implements Observer {
 
 		if (inGameController.getFirstTurn()) {
 			tradeButton.setEnabled(false);
-			devcardButton.setEnabled(true);
+			devcardButton.setEnabled(false);
 		} else {
 			if (inGameController.getTurn(gameID).equals(LoginController.getUsername())
 					&& inGameController.hasRolledDice(gameID)) {
@@ -690,7 +695,7 @@ public class IngameView extends JPanel implements Observer {
 			} else {
 				buildButton.setEnabled(false);
 				tradeButton.setEnabled(false);
-				devcardButton.setEnabled(true);
+				devcardButton.setEnabled(false);
 			}
 		}
 	}
