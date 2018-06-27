@@ -276,7 +276,7 @@ public class BoardDAL {
 		
 	}
 	
-	public int getHoutHavenplayer() {
+	public int getStoneHarbourplayer() {
 		int i = 0;
 		try {
 			Statement stmt = conn.createStatement();
