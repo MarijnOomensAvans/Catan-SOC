@@ -54,7 +54,7 @@ public class BankController {
 
 	public void deleteCards(ArrayList<String> cardkindsOffer, int playerid) {
 		for (int i = 0; i < cardkindsOffer.size(); i++) {
-			String cardid = bank.getMaterialCardIdTrade(cardkindsOffer.get(i));
+			String cardid = bank.getBankPlayerTrade(cardkindsOffer.get(i), playerid);
 			boolean hasPlayerid = bank.hasPlayerid(cardid);
 			if (hasPlayerid == true) {
 				bd.deleteCards(cardid, gameid, playerid);
