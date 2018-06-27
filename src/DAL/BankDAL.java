@@ -166,8 +166,7 @@ public class BankDAL {
 
 	public void deleteCards(String cardid, int gameid, int playerid) {
 		Statement stmt = null;
-		String query = "UPDATE spelergrondstofkaart SET idspeler = null WHERE idgrondstofkaart = '" + cardid + "'"
-				 + " AND idspeler is " + playerid + " AND idspel = " + gameid;
+		String query = "UPDATE spelergrondstofkaart SET idspeler = null WHERE idgrondstofkaart = '" + cardid + "' AND idspeler = '" + playerid + "' AND idspel = '" + gameid + "'";
 
 
 		try {
