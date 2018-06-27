@@ -224,7 +224,7 @@ public class PlayerController {
 				if (x == x2 && y == y2) {
 					return false;
 				} else if (!buildingType.equals("Street")) {
-					if (!db.hasVillage(playerID, (x + 1), (y + 1)).equals("")
+					if (db.hasVillage(playerID, (x + 1), (y + 1)).equals("")
 							&& db.hasVillage(playerID, x, (y + 1)).equals("")
 							&& db.hasVillage(playerID, (x + 1), y).equals("")
 							&& db.hasVillage(playerID, (x - 1), (y - 1)).equals("")
@@ -249,9 +249,9 @@ public class PlayerController {
 							} else {
 								canBuild = false;
 							}
-						} else {
-							canBuild = false;
 						}
+					} else {
+						canBuild = false;
 					}
 				} else {
 					canBuild = false;
