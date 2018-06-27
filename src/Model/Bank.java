@@ -15,10 +15,10 @@ public class Bank {
 	public Bank(BankDAL bd, int gameID) {
 		this.bd = bd;
 		this.gameID = gameID;
-		makeCards();
+		getCards();
 	}
 
-	public void makeCards() {
+	public void getCards() {
 		makeMaterialCards(gameID);
 		makeDevCards(gameID);
 	}
@@ -29,7 +29,10 @@ public class Bank {
 			matbank.add(mc = new MaterialCard(bd, gameid));
 			mc.setId(a);
 			mc.setKindOfMaterial(a);
-
+			if(matbank.get(a - 1).getPlayerid(mc.getIdCard()) != 0) {
+				mc.setPlayerid(mc.getIdCard());
+			}
+			
 		}
 	}
 
@@ -37,7 +40,7 @@ public class Bank {
 		MaterialCard returncard = null;
 		for (int i = 0; i < matbank.size(); i++) {
 			if (matbank.get(i).getKindOfMaterial().equals(kind)) {
-				if (matbank.get(i).getPlayerid(matbank.get(i).getIdCard()) == null) {
+				if (matbank.get(i).getPlayerid(matbank.get(i).getIdCard()) == 0) {
 					returncard = matbank.get(i);
 					break;
 				}
@@ -73,7 +76,7 @@ public class Bank {
 		for (int i = 0; i < matbank.size(); i++) {
 			if (matbank.get(i).getKindOfMaterial().equals(kind)) {
 				String id = matbank.get(i).getIdCard();
-				if (matbank.get(i).getPlayerid(id) == null) {
+				if (matbank.get(i).getPlayerid(id) != 0) {
 					return id;
 				}
 			}
@@ -85,7 +88,7 @@ public class Bank {
 		for (int i = 0; i < matbank.size(); i++) {
 			if (matbank.get(i).getKindOfMaterial().equals(kind)) {
 				String id = matbank.get(i).getIdCard();
-				if (matbank.get(i).getPlayerid(id) != null) {
+				if (matbank.get(i).getPlayerid(id) != 0) {
 					return id;
 				}
 			}
@@ -93,18 +96,21 @@ public class Bank {
 		return null;
 	}
 
-	public DevelopmentCard getDevelopmentCard() {
+	public DevelopmentCard getDevelopmentCard(int gameid) {
 		DevelopmentCard returncard = null;
 		Random random = new Random();
 		int i = random.nextInt(devbank.size());
 		String cardid = devbank.get(i).getIdDevCard();
-		while (bd.getDevPlayerid(cardid) != null) {
+		while (bd.getDevPlayerid(cardid, gameid) != null) {
+			
+			devbank.remove(i);
 			i = random.nextInt(devbank.size());
 			cardid = devbank.get(i).getIdDevCard();
-			System.out.println(cardid);
-			devbank.remove(i);
+			
+			
 		}
 		returncard = devbank.get(i);
+		System.out.println(returncard.getIdDevCard());
 		return returncard;
 	}
 
@@ -126,11 +132,17 @@ public class Bank {
 	public boolean hasPlayerid(String cardid) {
 		for (int i = 0; i < matbank.size(); i++) {
 			if (matbank.get(i).getIdCard().equals(cardid)) {
-				if (matbank.get(i).getPlayerid(cardid) != null) {
+				if (matbank.get(i).getPlayerid(cardid) != 0) {
 					return true;
 				}
 			}
 		}
 		return false;
+	}
+	
+	public void addToDB() {
+		for(int i = 0; i < matbank.size(); i++) {
+			matbank.get(i).addToDB();
+		}
 	}
 }

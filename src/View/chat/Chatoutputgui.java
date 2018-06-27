@@ -2,9 +2,6 @@
 package View.chat;
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.Observable;
@@ -21,7 +18,7 @@ import Controller.ChatController;
 public class Chatoutputgui extends JPanel implements Observer {
 
 	private JTextArea output;
-	JScrollPane scroll;
+	private JScrollPane scroll;
 
 	public Chatoutputgui(ChatController control, int playerid) {
 		output = new JTextArea(21, 37);
@@ -37,14 +34,23 @@ public class Chatoutputgui extends JPanel implements Observer {
 		add(scroll);
 		this.setBackground(Color.BLACK);
 	}
+	
+	public void logToChat(String log) {
+		output.append(log);
+		
+	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void update(Observable o, Object arg) {
 		if(arg != null) {
 			for(int i = 0; i < ((ArrayList<String>) arg).size(); i++) {
+				
 				output.append(((ArrayList<String>) arg).get(i));
 			}
 		}
 	}
+
+
 
 }

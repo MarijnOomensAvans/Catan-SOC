@@ -83,6 +83,22 @@ public class PersonDAL {
 			e.printStackTrace();
 		}
 	}
+	public void stealAllPlayerCards(String cardtype, int idgame, int idplayer) {
+		Statement stmt = null;
+		String query = "UPDATE spelergrondstofkaart SET idspeler =" + idplayer + " WHERE idspel =" + idgame
+				+ " AND idspeler is not null AND idgrondstofkaart LIKE '" + cardtype + "'";
+		try {
+			stmt = conn.createStatement();
+
+			@SuppressWarnings("unused")
+			int i = stmt.executeUpdate(query);
+
+			stmt.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	public String getOtherPlayerName(int playerid) {
 		String result = "";
@@ -305,12 +321,34 @@ public class PersonDAL {
 		}
 		return result;
 	}
+	
 
 	
 	public String getAllBuildings(int spelerID) {
 		String result = "";
 		Statement stmt = null;
 		String query = "SELECT idstuk FROM spelerstuk WHERE idspeler =" + spelerID + "";
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while (rs.next()) {
+				if (result.equals("")) {
+					result = rs.getString(1);
+				} else {
+					result = result + "," + rs.getString(1);
+				}
+			}
+			stmt.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
+	
+	public String getAllPlayers(int gameID) {
+		String result = "";
+		Statement stmt = null;
+		String query = "SELECT idstuk FROM spelerstuk WHERE idspeler =" + gameID + "";
 		try {
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
@@ -376,6 +414,50 @@ public class PersonDAL {
 		int result = 0;
 		Statement stmt = null;
 		String query = "SELECT y_van FROM spelerstuk WHERE idspeler =" + spelerID + " AND idstuk LIKE '"
+				+ pieceID + "'";
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while (rs.next()) {
+				if (result == 0) {
+					result = rs.getInt(1);
+				} else {
+					return result;
+				}
+			}
+			stmt.close();
+		} catch (SQLException e) { 
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
+	
+	public int getCoordXStreet(int spelerID, String pieceID) {
+		int result = 0;
+		Statement stmt = null;
+		String query = "SELECT x_naar FROM spelerstuk WHERE idspeler =" + spelerID + " AND idstuk LIKE '"
+				+ pieceID + "'";
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while (rs.next()) {
+				if (result == 0) {
+					result = rs.getInt(1);
+				} else {
+					return result;
+				}
+			}
+			stmt.close();
+		} catch (SQLException e) { 
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
+	
+	public int getCoordYStreet(int spelerID, String pieceID) {
+		int result = 0;
+		Statement stmt = null;
+		String query = "SELECT y_naar FROM spelerstuk WHERE idspeler =" + spelerID + " AND idstuk LIKE '"
 				+ pieceID + "'";
 		try {
 			stmt = conn.createStatement();
@@ -477,24 +559,6 @@ public class PersonDAL {
 		return ids;
 	}
 	
-	public int getPlayerTrackNumber(int gameid) {
-		int tracknumber = 0;
-
-		try {
-			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT MIN(idspeler) FROM speler WHERE idspel = '" + gameid +"';");
-			while (rs.next()) {
-
-				tracknumber = rs.getInt(1);
-
-			}
-			stmt.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		return tracknumber;
-	}
 	
 	public int countPlayerPiece(int playerid) {
 		int piececount = 0;
@@ -553,7 +617,27 @@ public class PersonDAL {
 		return result;
 		
 	}
-
+	
+	public String hasStreet(int playerID, int x, int y) {
+		String result = "";
+		Statement stmt = null;
+		String query = "SELECT idstuk FROM spelerstuk WHERE idspeler =" + playerID + " AND x_naar = "
+				+ x + " AND y_naar = " + y + "";
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			if (rs.next()) {
+			result = rs.getString(1);
+			}
+			stmt.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
+		
+	}
+	
+	
 	public boolean getRound(int gameID) {
 		String i = null;
 		try {
@@ -572,5 +656,46 @@ public class PersonDAL {
 		return true;
 		}
 	}
+	
+	public String getBuildCount(int playerID) {
+		String result = "";
+		Statement stmt = null;
+		String query = "SELECT count(idstuk) FROM spelerstuk WHERE idspeler = " + playerID + "";
+			try {
+				stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery(query);
+
+				if (rs.next()) {
+				result = rs.getString(1);
+				}
+				stmt.close();
+			} catch (SQLException e) {
+				System.out.println(e.getMessage());
+			}
+			return result;
+		}
+
+	public boolean isTile(int x, int y) {
+		int idtegel =0;
+		Statement stmt = null;
+		String query = "SELECT idtegel FROM tegel WHERE x =" + x + " AND y ="+ y;
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while (rs.next()) {
+				idtegel = rs.getInt(1);
+				if (idtegel != 0) {
+					return true;
+				} else {
+					return false;
+				}
+			}
+			stmt.close();
+		} catch (SQLException e) { 
+			System.out.println(e.getMessage());
+		}
+		return false;
+	}
+	
 
 }

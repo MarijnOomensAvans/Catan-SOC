@@ -215,9 +215,23 @@ public class TradeController extends Observable implements Runnable {
 	}
 
 	public void close() {
-		gui.dispose();
-		this.tap = null;
-		this.trp = null;
+		if (this.trp != null) {
+			gui.dispose();
+			this.trp = null;
+			this.deleteOffers(playerid, otherIds.get(0), otherIds.get(1), otherIds.get(2));
+		}
+		else if (this.tap != null) {
+			gui.dispose();
+			this.tap = null;
+		}
+		else if (this.bp != null) {
+			gui.dispose();
+			this.bp = null;
+		}
+		else if (this.top != null) {
+			gui.dispose();
+			this.top = null;
+		}
 	}
 
 	public TradeResultPane getTRP() {
@@ -269,7 +283,6 @@ public class TradeController extends Observable implements Runnable {
 				}
 			}
 		}
-		;
 		return false;
 	}
 }

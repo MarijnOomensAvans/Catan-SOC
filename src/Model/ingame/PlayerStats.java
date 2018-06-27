@@ -1,5 +1,7 @@
 package Model.ingame;
 
+import java.util.ArrayList;
+
 public class PlayerStats {
 
 	private String username;
@@ -8,8 +10,11 @@ public class PlayerStats {
 	private int developmentBuildingPoints;
 	private boolean hasBiggestArmy;
 	private boolean hasTradeRoute;
-	
-	public PlayerStats(int rc, int dc, int kc, int vp, int cp, int dp) {
+	private int wool = 0, wood = 0, ore = 0, stone = 0, wheat = 0;
+	private int playerId;
+	private ArrayList<StreetModel> streets;
+
+	public PlayerStats(int rc, int dc, int kc, int vp, int cp, int dp, int playerId) {
 		hasBiggestArmy = false;
 		hasTradeRoute = false;
 		resourceCards = rc;
@@ -18,40 +23,85 @@ public class PlayerStats {
 		villagePoints = vp;
 		cityPoints = cp;
 		developmentBuildingPoints = dp;
+		this.playerId = playerId;
 	}
-	
+
+	public void setStreets(ArrayList<StreetModel> streets) {
+		this.streets = streets;
+	}
+
+	public int getWool() {
+		return wool;
+	}
+
+	public void setWool(int wool) {
+		this.wool = wool;
+	}
+
+	public int getWood() {
+		return wood;
+	}
+
+	public void setWood(int wood) {
+		this.wood = wood;
+	}
+
+	public int getOre() {
+		return ore;
+	}
+
+	public void setOre(int ore) {
+		this.ore = ore;
+	}
+
+	public int getStone() {
+		return stone;
+	}
+
+	public void setStone(int stone) {
+		this.stone = stone;
+	}
+
+	public int getWheat() {
+		return wheat;
+	}
+
+	public void setWheat(int wheat) {
+		this.wheat = wheat;
+	}
+
 	public int getResourceCards() {
 		return resourceCards;
 	}
-	
+
 	public int getDevelopmentCards() {
 		return developmentCards;
 	}
-	
+
 	public int getKnightCards() {
 		return knightCards;
 	}
-	
+
 	public String getUsername() {
 		return username;
 	}
-	
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
-	
+
 	public int getPublicPoints() {
 		int points = villagePoints + (cityPoints * 2);
-		if(hasBiggestArmy) {
+		if (hasBiggestArmy) {
 			points += 2;
-		} 
-		
-		if(hasTradeRoute) {
+		}
+
+		if (hasTradeRoute) {
 			points += 2;
 		}
 		return points;
 	}
-	
+
 	public int getPrivatePoints() {
 		int points = getPublicPoints();
 		points += getDevelopmentBuildingPoints();
@@ -65,7 +115,7 @@ public class PlayerStats {
 	public void setTradeRoute(boolean value) {
 		this.hasTradeRoute = value;
 	}
-	
+
 	public int getDevelopmentBuildingPoints() {
 		return developmentBuildingPoints;
 	}
@@ -73,5 +123,13 @@ public class PlayerStats {
 	public void setDevelopmentPoints(int developmentPoints) {
 		this.developmentBuildingPoints = developmentPoints;
 	}
-	
+
+	public int getPlayerId() {
+		return playerId;
+	}
+
+	public ArrayList<StreetModel> getStreets() {
+		return streets;
+	}
+
 }

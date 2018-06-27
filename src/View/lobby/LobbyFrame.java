@@ -1,7 +1,5 @@
 package View.lobby;
 
-import java.util.Observer;
-
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;

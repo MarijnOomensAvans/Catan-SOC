@@ -1,7 +1,6 @@
 package Model.lobby;
 
 import java.util.ArrayList;
-import java.util.Observable;
 
 import DAL.LobbyDAL;
 

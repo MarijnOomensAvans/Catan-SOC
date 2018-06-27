@@ -791,7 +791,7 @@ public class Board {
 			img = new ImageIcon(ClassLoader.getSystemResource("10.png"));
 			return img;
 		case 16:
-			img = new ImageIcon(ClassLoader.getSystemResource("10.png"));
+			img = new ImageIcon(ClassLoader.getSystemResource("11.png"));
 			return img;
 		case 17:
 			img = new ImageIcon(ClassLoader.getSystemResource("11.png"));
@@ -867,14 +867,14 @@ public class Board {
 		return i;
 	}
 
-	public boolean isVillage(int playerid) {
-		boolean b =bdal.isVillage(playerid);
+	public boolean isVillage(int playerid, int x, int y) {
+		boolean b =bdal.isVillage(playerid,x,y);
 		return b;
 		
 	}
 
-	public boolean isCity(int playerid) {
-		boolean b = bdal.isCity(playerid);
+	public boolean isCity(int playerid, int x, int y) {
+		boolean b = bdal.isCity(playerid,x,y);
 		return b;
 	}
 	

@@ -3,7 +3,6 @@ package View.lobby;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import Controller.BoardController;
@@ -11,13 +10,13 @@ import Controller.ChatController;
 import Controller.LobbyController;
 import Model.lobby.LobbyGameInfo;
 import Model.lobby.LobbyInvite;
-import View.chat.ChatContentPane;
 import View.chat.Chatoutputgui;
 import View.setupGame.InvitePanel;
 
 @SuppressWarnings("serial")
 public class LobbyContentPane extends JPanel {
 // creating intance variables
+	@SuppressWarnings("unused")
 	private BoardController bc;
 	private LobbyPanel lobby;
 	private LobbyController lc;

@@ -1,7 +1,6 @@
 package Model;
 
 import java.util.ArrayList;
-
 import Controller.PlayerController;
 import DAL.PersonDAL;
 
@@ -9,9 +8,6 @@ public class Player {
 
 	private int player_id;
 	private int game_id;
-	private String username;
-	private String color;
-	private int order_number;
 
 	private PlayerController conn;
 	private PersonDAL pd;
@@ -24,22 +20,7 @@ public class Player {
 		this.pd = pd;
 		this.player_id = playerid;
 		this.game_id = gameid;
-		setName();
-		setColor();
-		setOrder_number();
 		updateHand();
-	}
-
-	public void setName() {
-		username = pd.getName(player_id);
-	}
-
-	public void setColor() {
-		color = pd.getColor(player_id, game_id);
-	}
-
-	public void setOrder_number() {
-		order_number = Integer.parseInt(pd.getorder_number(player_id, game_id));
 	}
 
 	public void updateHand() {
@@ -94,11 +75,6 @@ public class Player {
 		}
 	}
 
-	/*
-	 * public void printallPlayerDevCards() { for(int i=0; i<handdev.size(); i++) {
-	 * System.out.println("Kaart " + i +" van het soort " +
-	 * handdev.get(i).getKindName()); }
-	 */
 
 	public boolean hasStoneCard(int amount) {
 		int counter = 0;

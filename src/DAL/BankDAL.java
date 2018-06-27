@@ -17,7 +17,7 @@ public class BankDAL {
 		String result = "";
 		Statement stmt = null;
 		String query = "";
-		if (id == 0) {
+		if (id == 1) {
 			query = "SELECT idgrondstofkaart FROM grondstofkaart LIMIT 1";
 		} else {
 			int limit = id - 1;
@@ -36,8 +36,8 @@ public class BankDAL {
 		return result;
 	}
 
-	public String getKindOfMaterial(int id) {/// give the character from the database so that the card knows what type
-												/// it is
+	public String getKindOfMaterial(int id) {// give the character from the database so that the card knows what type
+												// it is
 		String result = "";
 		Statement stmt = null;
 		int limit = id - 1;
@@ -119,7 +119,6 @@ public class BankDAL {
 
 	public void addCardstoDB(int gameid, String idCard) {
 		Statement stmt = null;
-		System.out.println("Adding card");
 		String query = "INSERT spelergrondstofkaart(idspel,idgrondstofkaart) VALUES (" + gameid + " ,'" + idCard + "')";
 		try {
 			stmt = conn.createStatement();
@@ -167,16 +166,17 @@ public class BankDAL {
 
 	}
 
-	public String getPlayerid(String cardid,int gameid) {
-		String result = "";
+	public int getPlayerid(String cardid,int gameid) {
+		int result = 0;
 		Statement stmt = null;
 		String query = "SELECT idspeler FROM spelergrondstofkaart WHERE idgrondstofkaart = '" + cardid + "'"+" AND idspel ="+ gameid;
 
 		try {
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
-			rs.next(); 
-			result = rs.getString(1);
+			while(rs.next()) {
+				result = rs.getInt(1);
+			}
 			stmt.close();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
@@ -184,10 +184,10 @@ public class BankDAL {
 		return result;
 	}
 
-	public String getDevPlayerid(String cardid) {
+	public String getDevPlayerid(String cardid, int gameid) {
 		String result = "";
 		Statement stmt = null;
-		String query = "SELECT idspeler FROM spelerontwikkelingskaart WHERE idontwikkelingskaart = '" + cardid + "'";
+		String query = "SELECT idspeler FROM spelerontwikkelingskaart WHERE idontwikkelingskaart = '" + cardid + "' AND idspel = '" + gameid + "'";
 
 		try {
 			stmt = conn.createStatement();
@@ -200,6 +200,47 @@ public class BankDAL {
 		}
 		return result;
 	}
+	
+	public String getavailableDevCard(String cardid, int gameid) {
+		String result = "";
+		Statement stmt = null;
+		String query = "SELECT idspeler FROM spelerontwikkelingskaart WHERE idontwikkelingskaart = '" + cardid + "' AND idspel = '" + gameid + "' AND idspeler is null";
+
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			rs.next();
+			result = rs.getString(1);
+			stmt.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
+	
+		
+	}
+
+	public boolean getidDevcards(int gameid) {
+		boolean result = true;
+		Statement stmt = null;
+		String query = "SELECT idontwikkelingskaart, idspel FROM spelerontwikkelingskaart where idspel = '" + gameid + "' AND idspeler is null";
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			if (!rs.next() ) {
+				result = true;
+			}
+			else {
+				result = false;
+			}
+			
+			stmt.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
+	}
+	
 	// public boolean checkDevCards(int gameid) {
 	// boolean result;
 	// Statement stmt = null;

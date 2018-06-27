@@ -3,9 +3,7 @@ package Controller;
 import java.util.ArrayList;
 
 import DAL.ChatDAL;
-import DAL.MainDAL;
 import Model.ChatModel;
-import View.chat.ChatGui;
 import View.chat.Chatoutputgui;
 
 
@@ -54,6 +52,11 @@ public class ChatController implements Runnable {
 			e.printStackTrace();
 		}
 		}
+	}
+
+	public void logToChat(String log) {
+		cog.logToChat(log);
+		
 	}
 	
 	

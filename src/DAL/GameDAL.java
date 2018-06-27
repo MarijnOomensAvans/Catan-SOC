@@ -8,14 +8,16 @@ import java.util.ArrayList;
 
 import Controller.LoginController;
 import Model.ingame.PlayerStats;
+import Model.ingame.StreetModel;
 
-public class SpelDAL {
+public class GameDAL {
 
 	Connection conn = MainDAL.getConnection();
 
 	public ArrayList<PlayerStats> getPlayerStats(int gameid) {
 		ArrayList<PlayerStats> stats = new ArrayList<PlayerStats>();
 		ArrayList<String> usernames = getUsernames(gameid);
+		ArrayList<StreetModel> allStreets = getStreetsInGame(gameid);
 		String biggestArmyUsername = getBiggestArmyUsername(gameid);
 		String longestRouteUsername = getLongestRouteUsername(gameid);
 
@@ -33,6 +35,8 @@ public class SpelDAL {
 		usernames = getUsernames(gameid);
 
 		for (int i = 0; i < 4; i++) {
+			ArrayList<StreetModel> playerStreets = new ArrayList<StreetModel>(); //The list of streets belonging to the player at the current index
+			
 			stats.get(i).setUsername(usernames.get(i));
 			stats.get(i).setDevelopmentPoints(getDevelopmentPoints(getPlayerId(gameid, stats.get(i).getUsername())));
 
@@ -43,6 +47,14 @@ public class SpelDAL {
 			if (stats.get(i).getUsername().equals(longestRouteUsername)) {
 				stats.get(i).setTradeRoute(true);
 			}
+			
+			for(int n = 0; n < allStreets.size(); n++) {
+				if(stats.get(i).getPlayerId() == allStreets.get(n).getPlayerId()) {
+					playerStreets.add(allStreets.get(n));
+				}
+			}
+			
+			stats.get(i).setStreets(playerStreets);
 		}
 
 		return stats;
@@ -134,7 +146,7 @@ public class SpelDAL {
 		}
 
 		stats = new PlayerStats(resourceCards, developmentCards, knightCards, villageCount, cityCount,
-				developmentCards);
+				developmentCards, playerid);
 		return stats;
 	}
 
@@ -246,7 +258,7 @@ public class SpelDAL {
 			Statement stmt = conn.createStatement();
 			stmt.executeUpdate("UPDATE spel SET beurt_idspeler = " + this.getPlayerId(gameid, username)
 					+ " WHERE idspel = " + gameid);
-			stmt.close();
+			stmt.close(); 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -303,7 +315,11 @@ public class SpelDAL {
 	public void setPlayersCanceld(int gameid) {
 		try {
 			Statement stmt = conn.createStatement();
+<<<<<<< HEAD:src/DAL/SpelDAL.java
 			stmt.executeUpdate("UPDATE speler SET speelstatus = 'uitgespeeldd1E' WHERE idspel =" + gameid + ")");
+=======
+			stmt.executeUpdate("UPDATE speler SET speelstatus = 'uitgespeeld' WHERE idspel = " + gameid);
+>>>>>>> e46ba8c075e623a3c11b7e39a471ec7e552986bf:src/DAL/GameDAL.java
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -376,6 +392,23 @@ public class SpelDAL {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private ArrayList<StreetModel> getStreetsInGame(int gameid) {
+		ArrayList<StreetModel> allStreets = new ArrayList<StreetModel>();
+		
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT st.idspeler, x_van, x_naar, y_van, y_naar FROM spelerstuk st\r\n" + 
+					"		JOIN speler s ON st.idspeler = s.idspeler WHERE s.idspel = 1 AND idstuk LIKE 'r%'");
+			while (rs.next()) {
+				allStreets.add(new StreetModel(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return allStreets;
 	}
 
 }

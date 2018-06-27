@@ -39,6 +39,7 @@ public class DrawingPanel extends JPanel {
 	private boolean mayMoveRobber = false;
 	private boolean devCardBuild = false;
 	private String buildingType;
+	private int buildCounter;
 
 	// making 19 rooms for hexagons
 	private Hexagon hexagon1;
@@ -67,9 +68,12 @@ public class DrawingPanel extends JPanel {
 	// making room for an arraylist
 	private ArrayList<Hexagon> hexagons;
 	private PlayerController pc;
-	private IngameController ingameController;
+	private IngameController inGameController;
+	@SuppressWarnings("unused")
 	private Graphics2D g2d;
 	private Graphics g;
+
+	private boolean setup;
 
 	// All images of player pieces
 	// Cities
@@ -93,6 +97,7 @@ public class DrawingPanel extends JPanel {
 	boolean paint = true;
 
 	public DrawingPanel(BoardController bc, int gameID, RobberController rb) {
+		this.setup = false;
 		robber = new Robber();
 		this.setLayout(null);
 		robber = new Robber();
@@ -145,7 +150,6 @@ public class DrawingPanel extends JPanel {
 		hexagons.add(hexagon18);
 		hexagons.add(hexagon19);
 		robber.setBounds(bc.getRobberXPosition(gameID) - 45, bc.getRobberYPosition(gameID) - 30, 25, 60);
-		;
 		this.add(robber);
 
 		setPreferredSize(new Dimension(600, 600));
@@ -157,28 +161,29 @@ public class DrawingPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				if (ingameController != null) {
-					ingameController.shouldRefresh(gameID);
-				}
-
-				if (mayBuild == true) {
+				/*if (inGameController != null) {
+					inGameController.shouldRefresh(gameID);
+				} DISABLED, NOW PLACED TO BOTTOM */
+				
+				if (mayBuild == true && !buildingType.equals("DevCard")) {
 					String test = convertXYfromScreenToKey(e.getX(), e.getY());
 					if (test != null) {
 						if (hlPoint == test && !buildingType.equals("Street")) {
 							if (pc.emptySpace(buildingType, hlPoint)) {
-								if(pc.buildObject(buildingType, hlPoint)) {
-								removeMaterialCards(buildingType);
-								}
-								// Log here
-								mayBuild = false;
-								hlPoint = null;
-								repaint();
+									if (pc.buildObject(buildingType, hlPoint)) {
+										removeMaterialCards(buildingType);
+									}
+									// Log here
+									mayBuild = false;
+									hlPoint = null;
+									repaint();
 							}
 						} else if (hlPoint == null || !buildingType.equals("Street")) {
+							// Log here
 							hlPoint = test;
 							repaint();
 						}
-						if (test != hlPoint  && buildingType.equals("Street")) {
+						if (test != hlPoint && buildingType.equals("Street")) {
 							if (pc.emptySpace(buildingType, hlPoint)) {
 								String[] hlarray = hlPoint.split(",");
 								String[] clarray = test.split(",");
@@ -188,11 +193,11 @@ public class DrawingPanel extends JPanel {
 								int y2 = Integer.parseInt(clarray[1]);
 								if (x1 == (x2 + 1) && y1 == (y2 + 1) || x1 == (x2 + 1) && y1 == y2
 										|| x1 == x2 && y1 == (y2 - 1) || x1 == (x2 - 1) && y1 == y2
-										|| x1 == x2 && y1 == (y2 + 1) || x1 == (x2 - 1) && y1 == (y2 - 1)) {
+										|| x1 == x2 && y1 == (y2 + 1) || x1 == (x2 - 1) && y1 == (y2 - 1)
+										|| x1 == (x2 + 1) && y1 == (y2 - 1) || x1 == (x2 - 1) && y1 == (y2 + 1)) {
 									if (pc.checkVillage(test, hlPoint)) {
-										if(pc.buildStreet(x1, x2, y1, y2)) {
-										paintBuildings(g);
-										removeMaterialCards(buildingType);
+										if (pc.buildStreet(x1, x2, y1, y2)) {
+											removeMaterialCards(buildingType);
 										}
 										// Log here
 										if (devCardBuild == false) {
@@ -202,8 +207,7 @@ public class DrawingPanel extends JPanel {
 										}
 										hlPoint = null;
 										repaint();
-									}
-									else {
+									} else {
 										// Log here
 										mayBuild = false;
 										hlPoint = null;
@@ -216,28 +220,37 @@ public class DrawingPanel extends JPanel {
 									repaint();
 								}
 							}
-						}	
-					}
-					else {
+						}
+					} else {
 						// Log here
 						mayBuild = false;
 						hlPoint = null;
 						repaint();
 					}
 				}
+				else if (mayBuild == true && buildingType.equals("DevCard")) {
+					removeMaterialCards(buildingType);
+					mayBuild = false;
+				}
 				if (mayMoveRobber == true) {
+					inGameController.setHasMovedRobber(false);
 					String returnString = tileConvertXYfromScreenToKey(e.getX(), e.getY());
-					// System.out.println(returnString);
 					if (returnString != null) {
 						String positions[] = returnString.split(",");
 						int x = Integer.parseInt(positions[0]);
 						int y = Integer.parseInt(positions[1]);
-						bc.setRobberTile(gameID, x, y);
-						robber.setBounds(bc.getRobberXPosition(gameID) - 45, bc.getRobberYPosition(gameID) - 30, 25,
-								60);
-						rb.choose(gameID);
-						mayMoveRobber = false;
+						if (!inGameController.robberHasPosition(x, y, gameID)) {
+							bc.setRobberTile(gameID, x, y);
+							robber.setBounds(bc.getRobberXPosition(gameID) - 45, bc.getRobberYPosition(gameID) - 30, 25,
+									60);
+							rb.choose(gameID, x, y);
+							mayMoveRobber = false;
+						}
 					}
+				}
+
+				if (inGameController != null) {
+					inGameController.shouldRefresh(gameID);
 				}
 			}
 		});
@@ -265,10 +278,15 @@ public class DrawingPanel extends JPanel {
 			drawPoints(g);
 			updateHighlight(g);
 			if (paint) {
-				//paintBuildings(g);
+				// paintBuildings(g);
 				paint = false;
 			}
 		}
+		if (setup == true) {
+			paintBuildings();
+		}
+		robber.setBounds(bc.getRobberXPosition(idspel) - 45, bc.getRobberYPosition(idspel) - 30, 25, 60);
+
 	}
 
 	private void createKlikpunten()
@@ -372,26 +390,97 @@ public class DrawingPanel extends JPanel {
 		mayMoveRobber = b;
 	}
 
-	 public void paintBuildings(Graphics g) {
-	 String[] buildings = pc.getAllBuildings().split(",");
-	 for(int x = 0; x < buildings.length; x++) {
-//	 int minPlayerID = pc.getPlayerTrackNumber(pc.getGameid());
-//	 int resnumber = 1;
-//	 
-//	 for(int i = 0;i<5;i++) {
-//		 for(int y = 0;y<pc.countPlayerPiece(minPlayerID);y++); {
-//			 System.out.println(pc.getPlayerPiece(minPlayerID, resnumber));
-//			 resnumber++;
-//		 }
-//		 minPlayerID++;
-//	 }
-	
-	 village_Blue.paintIcon(this, g,
-	 buildingConvertXfromKeyToScreenX(pc.getCoordX(buildings[x])) +
-	 30,buildingConvertYfromKeyToScreenY(pc.getCoordX(buildings[x]),pc.getCoordY(buildings[x]))
-	 - 50);
-	 }
-	 }
+	public void paintBuildings() {
+		buildCounter = 0;
+		if (pc.getAllBuildings() != null) {
+			String[] buildings = pc.getAllBuildings().split(",");
+			for (int x = 0; x < 4; x++) {
+				for (int y = 0; y < pc.getBuildCount(x); y++) {
+					if (!buildings[buildCounter].equals("")) {
+						String[] buildSplit = buildings[buildCounter].split("");
+						int xCoord1 = pc.getCoordX(buildings[buildCounter], x);
+						int xCoord2 = pc.getCoordXStreet(buildings[buildCounter], x);
+						int yCoord1 = pc.getCoordY(buildings[buildCounter], x);
+						int yCoord2 = pc.getCoordYStreet(buildings[buildCounter], x);
+						int xCoord = (((buildingConvertXfromKeyToScreenX(xCoord1))
+								+ (buildingConvertXfromKeyToScreenX(xCoord2))) / 2);
+						int yCoord = (buildingConvertYfromKeyToScreenY(((xCoord1 + xCoord2) / 2), yCoord1)
+								+ buildingConvertYfromKeyToScreenY(((xCoord1 + xCoord2) / 2), yCoord2)) / 2;
+						switch (buildSplit[0]) {
+						case "d":
+							switch (x) {
+							case 0:
+								village_Red.paintIcon(this, g, buildingConvertXfromKeyToScreenX(xCoord1) - 17,
+										buildingConvertYfromKeyToScreenY(xCoord1, yCoord1) - 20);
+								buildCounter++;
+								break;
+							case 1:
+								village_White.paintIcon(this, g, buildingConvertXfromKeyToScreenX(xCoord1) - 17,
+										buildingConvertYfromKeyToScreenY(xCoord1, yCoord1) - 20);
+								buildCounter++;
+								break;
+							case 2:
+								village_Blue.paintIcon(this, g, buildingConvertXfromKeyToScreenX(xCoord1) - 17,
+										buildingConvertYfromKeyToScreenY(xCoord1, yCoord1) - 20);
+								buildCounter++;
+								break;
+							case 3:
+								village_Orange.paintIcon(this, g, buildingConvertXfromKeyToScreenX(xCoord1) - 17,
+										buildingConvertYfromKeyToScreenY(xCoord1, yCoord1) - 20);
+								buildCounter++;
+								break;
+							}
+							break;
+						case "r":
+							switch (x) {
+							case 0:
+								street_Red.paintIcon(this, g, xCoord - 17, yCoord - 5);
+								buildCounter++;
+								break;
+							case 1:
+								street_White.paintIcon(this, g, xCoord - 17, yCoord - 5);
+								buildCounter++;
+								break;
+							case 2:
+								street_Blue.paintIcon(this, g, xCoord - 17, yCoord - 5);
+								buildCounter++;
+								break;
+							case 3:
+								street_Orange.paintIcon(this, g, xCoord - 17, yCoord - 5);
+								buildCounter++;
+								break;
+							}
+							break;
+						case "c":
+							switch (x) {
+							case 0:
+								city_Red.paintIcon(this, g, buildingConvertXfromKeyToScreenX(xCoord1) - 17,
+										buildingConvertYfromKeyToScreenY(xCoord1, yCoord1) - 20);
+								buildCounter++;
+								break;
+							case 1:
+								city_White.paintIcon(this, g, buildingConvertXfromKeyToScreenX(xCoord1) - 17,
+										buildingConvertYfromKeyToScreenY(xCoord1, yCoord1) - 20);
+								buildCounter++;
+								break;
+							case 2:
+								city_Blue.paintIcon(this, g, buildingConvertXfromKeyToScreenX(xCoord1) - 17,
+										buildingConvertYfromKeyToScreenY(xCoord1, yCoord1) - 20);
+								buildCounter++;
+								break;
+							case 3:
+								city_Orange.paintIcon(this, g, buildingConvertXfromKeyToScreenX(xCoord1) - 17,
+										buildingConvertYfromKeyToScreenY(xCoord1, yCoord1) - 20);
+								buildCounter++;
+								break;
+							}
+							break;
+						}
+					}
+				}
+			}
+		}
+	}
 
 	private int buildingConvertXfromKeyToScreenX(int x)
 
@@ -416,36 +505,46 @@ public class DrawingPanel extends JPanel {
 	}
 
 	public void setIngameController(IngameController ingameController) {
-		this.ingameController = ingameController;
+		this.inGameController = ingameController;
 	}
-	
+
 	public void removeMaterialCards(String buildingType) {
-		if(pc.getRound()) {
-		switch(buildingType) {
-		case "Village":
-            pc.getPlayer().removeMatCard("H");
-            pc.getPlayer().removeMatCard("W");
-            pc.getPlayer().removeMatCard("B");
-            pc.getPlayer().removeMatCard("G");
-			break;
-		case "City":
-            pc.getPlayer().removeMatCard("E");
-            pc.getPlayer().removeMatCard("E");
-            pc.getPlayer().removeMatCard("E");
-            pc.getPlayer().removeMatCard("G");
-            pc.getPlayer().removeMatCard("G");
-            break;
-		case "Street":
-            pc.getPlayer().removeMatCard("H");
-            pc.getPlayer().removeMatCard("B");
-			break;
-		case "DevCard":
-	       	 pc.getPlayer().removeMatCard("E");
-	       	 pc.getPlayer().removeMatCard("W");
-	       	 pc.getPlayer().removeMatCard("G");
-			break;
-            }
+		if (pc.getRound()) {
+			switch (buildingType) {
+			case "Village":
+				pc.getPlayer().removeMatCard("H");
+				pc.getPlayer().removeMatCard("W");
+				pc.getPlayer().removeMatCard("B");
+				pc.getPlayer().removeMatCard("G");
+				break;
+			case "City":
+				pc.getPlayer().removeMatCard("E");
+				pc.getPlayer().removeMatCard("E");
+				pc.getPlayer().removeMatCard("E");
+				pc.getPlayer().removeMatCard("G");
+				pc.getPlayer().removeMatCard("G");
+				break;
+			case "Street":
+				pc.getPlayer().removeMatCard("H");
+				pc.getPlayer().removeMatCard("B");
+				break;
+			case "DevCard":
+				pc.getPlayer().removeMatCard("E");
+				pc.getPlayer().removeMatCard("W");
+				pc.getPlayer().removeMatCard("G");
+				break;
+			}
 		}
+	}
+
+	public void setSetUp(boolean b) {
+		setup = b;
+
+	}
+
+	public void setSetup(boolean b) {
+		this.setup = b;
+
 	}
 
 }
