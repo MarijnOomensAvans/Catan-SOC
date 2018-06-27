@@ -135,6 +135,11 @@ public class RobberPane extends JPanel {
 			}
 			
 			}
+		if(otherPlayer0Count == 0 && otherPlayer1Count == 0 && otherPlayer2Count == 0) {
+			robberController.getInGameController().activateEndTurnButton();
+			robberController.close();
+		}
+		
 		if(otherPlayer0Count > 0) {
 		otherPlayer1.addActionListener(new ActionListener() {
 
