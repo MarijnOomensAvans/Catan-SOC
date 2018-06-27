@@ -102,6 +102,7 @@ public class BuildContentPane extends JPanel{
 		JButton devCardBuild = new JButton("Build");
 		if (bc.isOutofcards(pc.getGameid())) {
 			devCardBuild.setEnabled(false);
+			System.out.println("Geen kaarten");
 		}
 		devCardBuild.addActionListener(new ActionListener() {
             @Override

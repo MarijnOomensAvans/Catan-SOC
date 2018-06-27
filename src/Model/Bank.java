@@ -122,9 +122,9 @@ public class Bank {
 
 	public void trade(int playerid, ArrayList<String> cardkinds) {
 		for (int i = 0; i < cardkinds.size(); i++) {
-
+			
 			String cardid = getMaterialCardId(cardkinds.get(i));
-			bd.trade(playerid, cardid, gameID);
+			bd.tradeBank(playerid, cardid, gameID);
 		}
 
 	}
