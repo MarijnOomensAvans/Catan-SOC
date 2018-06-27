@@ -41,7 +41,7 @@ public class BuildContentPane extends JPanel{
 		this.add(villageImage);
 		JLabel villageResources = new JLabel("H: 1 - B:1 - G:1 - S:1");
 		this.add(villageResources);
-		JButton villageBuild = new JButton("Build");
+		JButton villageBuild = new JButton("Bouwen");
 		villageBuild.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -61,7 +61,7 @@ public class BuildContentPane extends JPanel{
 		this.add(cityImage);
 		JLabel cityResources = new JLabel("G:2 - E:3");
 		this.add(cityResources);
-		JButton cityBuild = new JButton("Build");
+		JButton cityBuild = new JButton("Bouwen");
 		cityBuild.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -80,7 +80,7 @@ public class BuildContentPane extends JPanel{
 		this.add(streetImage);
 		JLabel streetResources = new JLabel("B:1 - H:1");
 		this.add(streetResources);
-		JButton streetBuild = new JButton("Build");
+		JButton streetBuild = new JButton("Bouwen");
 		streetBuild.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -99,7 +99,7 @@ public class BuildContentPane extends JPanel{
 		this.add(devCardImage);
 		JLabel devCardResources = new JLabel("G:1 - S:1 - E:1");
 		this.add(devCardResources);
-		JButton devCardBuild = new JButton("Build");
+		JButton devCardBuild = new JButton("Bouwen");
 		if (bc.isOutofcards(pc.getGameid())) {
 			devCardBuild.setEnabled(false);
 			System.out.println("Geen kaarten");
