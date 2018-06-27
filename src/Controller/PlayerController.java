@@ -228,8 +228,8 @@ public class PlayerController {
 							|| x != (x2 - 1) && y != y2 || x != x2 && y != (y2 + 1) || x != (x2 - 1) && y != (y2 - 1)
 									|| x != (x2 + 1) && y != (y2 - 1) || x != (x2 - 1) && y != (y2 + 1)) {
 						if (db.getRound(gameID)) {
-							if (!db.hasVillage(playerID, (x + 1), (y + 1)).equals("") && !db.hasVillage(playerID, x, (y + 1)).equals("") &&!db.hasVillage(playerID, (x + 1), y).equals("") &&!db.hasVillage(playerID, (x - 1), (y - 1)).equals("") && !db.hasVillage(playerID, (x - 1), y).equals("") && !db.hasVillage(playerID, x, (y - 1)).equals("")) {
-								if (!db.hasStreet(playerID, (x + 1), (y + 1)).equals("") && !db.hasStreet(playerID, x, (y + 1)).equals("") &&!db.hasStreet(playerID, (x + 1), y).equals("") &&!db.hasStreet(playerID, (x - 1), (y - 1)).equals("") && !db.hasVillage(playerID, (x - 1), y).equals("") && !db.hasStreet(playerID, x, (y - 1)).equals("")) {
+							if (!db.hasVillage(playerID, (x + 1), (y + 1)).equals("") || !db.hasVillage(playerID, x, (y + 1)).equals("") || !db.hasVillage(playerID, (x + 1), y).equals("") || !db.hasVillage(playerID, (x - 1), (y - 1)).equals("") || !db.hasVillage(playerID, (x - 1), y).equals("") || !db.hasVillage(playerID, x, (y - 1)).equals("")) {
+								if (!db.hasStreet(playerID, (x + 1), (y + 1)).equals("") || !db.hasStreet(playerID, x, (y + 1)).equals("") || !db.hasStreet(playerID, (x + 1), y).equals("") || !db.hasStreet(playerID, (x - 1), (y - 1)).equals("") || !db.hasVillage(playerID, (x - 1), y).equals("") || !db.hasStreet(playerID, x, (y - 1)).equals("")) {
 								} else {
 									canBuild = false;
 								}

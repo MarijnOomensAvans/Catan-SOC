@@ -228,7 +228,6 @@ public class PersonDAL {
 				+ " AND idspeler = '" + idplayer + "' AND idontwikkelingskaart LIKE '" + cardtype + "'";
 		try {
 			stmt = conn.createStatement();
-			@SuppressWarnings("unused")
 			ResultSet i = stmt.executeQuery(query);
 			while (i.next()) {
 				amount = i.getInt(1);

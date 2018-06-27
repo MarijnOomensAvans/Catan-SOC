@@ -25,8 +25,11 @@ public class LobbyController {
 	private ChatController cc;
 	private Chatoutputgui cog;
 	private LobbyDAL lobbyDAL;
+	@SuppressWarnings("unused")
 	private GameStateController gsc;
+	@SuppressWarnings("unused")
 	private PlayerController pc;
+	@SuppressWarnings("unused")
 	private IngameController inGameController;
 
 	public LobbyController() {

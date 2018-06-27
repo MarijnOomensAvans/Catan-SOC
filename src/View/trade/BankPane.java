@@ -7,7 +7,6 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -63,7 +62,6 @@ public class BankPane extends JPanel {
 	private int woodDemandCounter = 0;
 	private int wheatDemandCounter = 0;
 	private int woolDemandCounter = 0;
-	private int allDemandCounted;
 
 	private JTextField stoneDemand;
 	private JTextField oreDemand;

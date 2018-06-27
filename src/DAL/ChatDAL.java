@@ -16,7 +16,6 @@ public class ChatDAL  {
 	private int counter = 0;
 	private int difference;
 	private boolean firstMessage = false;
-	private boolean checkFirstTime =false;
 	
 	public ChatDAL() {
 		conn = MainDAL.getConnection();
@@ -42,7 +41,6 @@ public class ChatDAL  {
 		}
 		if(firstMessage == false) {
 			firstMessage = true;
-			checkFirstTime = true;
 		}
 	}
 
@@ -60,13 +58,6 @@ public class ChatDAL  {
 			ResultSet rs = stmt.executeQuery(sizequery);
 			rs.next();
 			size = rs.getInt(1);
-			
-//			if(checkFirstTime == false)
-//			{
-//				size = counter;
-//				checkFirstTime = true;
-//				return null;
-//			}
 			
 			if( size > counter) 
 			{

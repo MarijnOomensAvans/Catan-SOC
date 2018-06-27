@@ -791,7 +791,7 @@ public class Board {
 			img = new ImageIcon(ClassLoader.getSystemResource("10.png"));
 			return img;
 		case 16:
-			img = new ImageIcon(ClassLoader.getSystemResource("10.png"));
+			img = new ImageIcon(ClassLoader.getSystemResource("11.png"));
 			return img;
 		case 17:
 			img = new ImageIcon(ClassLoader.getSystemResource("11.png"));

@@ -15,6 +15,7 @@ public class GameModel extends Observable {
 	private int gameid;
 	private IngameController ingameController;
 	private boolean secondRound = false;
+	@SuppressWarnings("unused")
 	private String longestRoutePlayer;
 	private ArrayList<StreetModel> visited;
 	private ArrayList<PlayerStats> playerStats;

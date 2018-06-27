@@ -34,7 +34,7 @@ import View.chat.Chatoutputgui;
 import View.dice.DieContentPane;
 import View.setupGame.DrawingPanel;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({"serial","unused"})
 public class IngameView extends JPanel implements Observer {
 
 	private final int WIDTH = 1500;

@@ -14,9 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-import javax.swing.text.PasswordView;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({"serial","unused"})
 public class LoginPanel extends JPanel {
 
 	private JTextField usernameTextField;
@@ -27,9 +26,7 @@ public class LoginPanel extends JPanel {
 	private JLabel passwordLabel;
 	private JLabel warningLabel;
 
-	@SuppressWarnings("unused")
 	private JButton loginButton;
-	@SuppressWarnings("unused")
 	private JButton registerButton;
 	
 	private Font font;

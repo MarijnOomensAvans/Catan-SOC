@@ -36,7 +36,7 @@ public class DieController {
 		int diceResult[] = { d1.getStoredDie(), d2.getStoredDie() };
 		int diceRes = d1.getStoredDie() + d2.getStoredDie();
 		lookAtResult(diceRes);
-		inGameController.logToChat(inGameController.getTurn(inGameController.getGameId()) + " heeft een " + diceResult + " gegooid.");
+		inGameController.logToChat(inGameController.getTurn(inGameController.getGameId()) + " heeft een " + diceRes + " gegooid.");
 		return diceResult;
 	}
 

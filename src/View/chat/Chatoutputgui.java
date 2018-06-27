@@ -2,9 +2,6 @@
 package View.chat;
 
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.GridBagConstraints;
 import java.awt.GridLayout;
 import java.util.ArrayList;
 import java.util.Observable;
@@ -43,6 +40,7 @@ public class Chatoutputgui extends JPanel implements Observer {
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void update(Observable o, Object arg) {
 		if(arg != null) {

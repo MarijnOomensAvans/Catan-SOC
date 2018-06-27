@@ -22,6 +22,7 @@ public class LoginContentPane extends JPanel {
 
 	private LoginPanel loginPanel;
 	private RegisterPanel registerPanel;
+	@SuppressWarnings("unused")
 	private LoginFrame GUI;
 	private JButton registerButton, loginButton;
 	private JButton registerCompleetButton, cancelButton;
