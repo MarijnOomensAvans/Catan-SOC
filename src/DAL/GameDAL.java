@@ -241,8 +241,7 @@ public class GameDAL {
 					.executeQuery("SELECT COUNT(*) FROM spelerontwikkelingskaart so JOIN ontwikkelingskaart o "
 							+ " ON so.idontwikkelingskaart = o.idontwikkelingskaart "
 							+ " WHERE (o.naam LIKE ('kathedraal') OR o.naam LIKE ('bibliotheek') OR o.naam LIKE ('markt') OR o.naam LIKE ('universiteit') "
-							+ " OR o.naam LIKE ('parlement')) AND so.idspeler LIKE " + playerid
-							+ " AND so.gespeeld = 1");
+							+ " OR o.naam LIKE ('parlement')) AND so.idspeler = " + playerid);
 			while (rs.next()) {
 				devPoints = rs.getInt(1);
 			}
