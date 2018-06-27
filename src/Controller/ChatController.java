@@ -3,9 +3,7 @@ package Controller;
 import java.util.ArrayList;
 
 import DAL.ChatDAL;
-import DAL.MainDAL;
 import Model.ChatModel;
-import View.chat.ChatGui;
 import View.chat.Chatoutputgui;
 
 

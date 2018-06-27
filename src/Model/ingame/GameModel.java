@@ -15,16 +15,22 @@ public class GameModel extends Observable {
 	private int gameid;
 	private IngameController ingameController;
 	private boolean secondRound = false;
+	@SuppressWarnings("unused")
+	private String longestRoutePlayer;
+	private ArrayList<StreetModel> visited;
+	private ArrayList<PlayerStats> playerStats;
 
 	public GameModel(int gameid, IngameController ingameController) {
 		this.ingameController = ingameController;
 		this.gameid = gameid;
 		spelDal = new GameDAL();
 		gameManagerDal = new GameManagerDAL();
+		longestRoutePlayer = spelDal.getLongestRouteUsername(gameid);
 	}
 
 	public ArrayList<PlayerStats> getPlayerStats(int id) {
-		return spelDal.getPlayerStats(id);
+		this.playerStats = spelDal.getPlayerStats(id);
+		return playerStats;
 
 	}
 
@@ -49,10 +55,28 @@ public class GameModel extends Observable {
 	}
 
 	public void update() {
+
 		if (spelDal.hasShouldRefresh(gameid, LoginController.getUsername())) {
 			this.setChanged();
 			this.notifyObservers();
 			spelDal.removeShouldRefresh(gameid, LoginController.getUsername());
+		}
+	}
+
+	public void updateLongestRoute() {
+		String longestRoutePlayer = spelDal.getLongestRouteUsername(gameid);
+		String newLongestRoutePlayer = longestRoutePlayer;
+		int previousLength = 0;
+		for(int i = 0; i < playerStats.size(); i++) {
+			int thisLength = getTradeRouteLength(i);
+			if(thisLength > previousLength) {
+				previousLength = thisLength;
+				newLongestRoutePlayer = playerStats.get(i).getUsername();
+			}
+		}
+		
+		if(!newLongestRoutePlayer.equals(longestRoutePlayer)) {
+			spelDal.setLongestRoute(gameid, newLongestRoutePlayer);
 		}
 	}
 
@@ -112,7 +136,7 @@ public class GameModel extends Observable {
 	public void setSecondRound(boolean secondRound) {
 		this.secondRound = secondRound;
 	}
-	
+
 	public void setAllPlayersCanceld(int gameid) {
 		spelDal.setPlayersCanceld(gameid);
 	}
@@ -123,5 +147,52 @@ public class GameModel extends Observable {
 
 	public String getPlayer(int gameid) {
 		return spelDal.getPlayerTurn(gameid);
+	}
+
+	public int getTradeRouteLength(int playerIndex)
+	{
+		int count = 0;
+		for (StreetModel street : playerStats.get(playerIndex).getStreets())
+		{
+			visited = new ArrayList<StreetModel>();
+			visited.add(street);
+			int count_from = getTradeRouteLength(street.getKeyX_from(), street.getKeyY_from(), playerIndex);
+			int count_to = getTradeRouteLength(street.getKeyX_to(), street.getKeyY_to(), playerIndex);
+			count = Math.max(count, 1 + count_from + count_to);
+		}
+		visited.clear();
+		return count;
+	}
+
+	public int getTradeRouteLength(int x, int y, int playerIndex)
+	{
+		ArrayList<StreetModel> queue = new ArrayList<StreetModel>();
+		for (StreetModel street : playerStats.get(playerIndex).getStreets())
+		{
+			if (!visited.contains(street) && isConnected(x, y, street))
+			{
+				visited.add(street);
+				queue.add(street);
+			}
+		}
+		int count = 0;
+		for (int i = 0; i < queue.size(); i++)
+		{
+			StreetModel street = queue.get(i);
+			int count_from = getTradeRouteLength(street.getKeyX_from(), street.getKeyY_from(), playerIndex);
+			int count_to = getTradeRouteLength(street.getKeyX_to(), street.getKeyY_to(), playerIndex);
+			count = Math.max(count, 1 + count_from + count_to);
+		}
+		return count;
+	}
+
+	private boolean isConnected(int x, int y, StreetModel stuk)
+	{
+		boolean connected = false;
+		connected |= x == stuk.getKeyX_from() && y == stuk.getKeyY_from();
+		connected |= x == stuk.getKeyX_to() && y == stuk.getKeyY_to();
+
+		return connected;
+
 	}
 }

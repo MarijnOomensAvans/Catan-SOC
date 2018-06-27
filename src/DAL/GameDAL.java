@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import Controller.LoginController;
 import Model.ingame.PlayerStats;
+import Model.ingame.StreetModel;
 
 public class GameDAL {
 
@@ -16,6 +17,7 @@ public class GameDAL {
 	public ArrayList<PlayerStats> getPlayerStats(int gameid) {
 		ArrayList<PlayerStats> stats = new ArrayList<PlayerStats>();
 		ArrayList<String> usernames = getUsernames(gameid);
+		ArrayList<StreetModel> allStreets = getStreetsInGame(gameid);
 		String biggestArmyUsername = getBiggestArmyUsername(gameid);
 		String longestRouteUsername = getLongestRouteUsername(gameid);
 
@@ -33,6 +35,8 @@ public class GameDAL {
 		usernames = getUsernames(gameid);
 
 		for (int i = 0; i < 4; i++) {
+			ArrayList<StreetModel> playerStreets = new ArrayList<StreetModel>(); //The list of streets belonging to the player at the current index
+			
 			stats.get(i).setUsername(usernames.get(i));
 			stats.get(i).setDevelopmentPoints(getDevelopmentPoints(getPlayerId(gameid, stats.get(i).getUsername())));
 
@@ -43,6 +47,14 @@ public class GameDAL {
 			if (stats.get(i).getUsername().equals(longestRouteUsername)) {
 				stats.get(i).setTradeRoute(true);
 			}
+			
+			for(int n = 0; n < allStreets.size(); n++) {
+				if(stats.get(i).getPlayerId() == allStreets.get(n).getPlayerId()) {
+					playerStreets.add(allStreets.get(n));
+				}
+			}
+			
+			stats.get(i).setStreets(playerStreets);
 		}
 
 		return stats;
@@ -377,6 +389,23 @@ public class GameDAL {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	private ArrayList<StreetModel> getStreetsInGame(int gameid) {
+		ArrayList<StreetModel> allStreets = new ArrayList<StreetModel>();
+		
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT st.idspeler, x_van, x_naar, y_van, y_naar FROM spelerstuk st\r\n" + 
+					"		JOIN speler s ON st.idspeler = s.idspeler WHERE s.idspel = 1 AND idstuk LIKE 'r%'");
+			while (rs.next()) {
+				allStreets.add(new StreetModel(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return allStreets;
 	}
 
 }

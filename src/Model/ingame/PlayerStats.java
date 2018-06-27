@@ -1,5 +1,7 @@
 package Model.ingame;
 
+import java.util.ArrayList;
+
 public class PlayerStats {
 
 	private String username;
@@ -10,6 +12,7 @@ public class PlayerStats {
 	private boolean hasTradeRoute;
 	private int wool = 0, wood = 0, ore = 0, stone = 0, wheat = 0;
 	private int playerId;
+	private ArrayList<StreetModel> streets;
 
 	public PlayerStats(int rc, int dc, int kc, int vp, int cp, int dp, int playerId) {
 		hasBiggestArmy = false;
@@ -21,6 +24,10 @@ public class PlayerStats {
 		cityPoints = cp;
 		developmentBuildingPoints = dp;
 		this.playerId = playerId;
+	}
+
+	public void setStreets(ArrayList<StreetModel> streets) {
+		this.streets = streets;
 	}
 
 	public int getWool() {
@@ -119,6 +126,10 @@ public class PlayerStats {
 
 	public int getPlayerId() {
 		return playerId;
+	}
+
+	public ArrayList<StreetModel> getStreets() {
+		return streets;
 	}
 
 }

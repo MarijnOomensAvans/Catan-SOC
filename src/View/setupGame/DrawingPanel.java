@@ -161,9 +161,9 @@ public class DrawingPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				if (inGameController != null) {
+				/*if (inGameController != null) {
 					inGameController.shouldRefresh(gameID);
-				}
+				} DISABLED, NOW PLACED TO BOTTOM */
 				
 				if (mayBuild == true && !buildingType.equals("DevCard")) {
 					String test = convertXYfromScreenToKey(e.getX(), e.getY());
@@ -247,6 +247,10 @@ public class DrawingPanel extends JPanel {
 							mayMoveRobber = false;
 						}
 					}
+				}
+
+				if (inGameController != null) {
+					inGameController.shouldRefresh(gameID);
 				}
 			}
 		});

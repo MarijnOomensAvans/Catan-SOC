@@ -2,6 +2,7 @@ package Model;
 
 import DAL.TradeDAL;
 
+@SuppressWarnings("unused")
 public class TradeOffer {
 	
 	private TradeDAL td;
@@ -26,19 +27,6 @@ public class TradeOffer {
 		this.td = td;
 		td.setTradeOffer(idPlayer, givesStone, givesWool, givesOre, givesWheat, givesWood, 
 				asksStone, asksWool, asksOre, asksWheat, asksWood, accepted);
-		
-//		this.idPlayer = idPlayer;
-//		this.givesStone = givesStone;
-//		this.givesWool = givesWool;
-//		this.givesOre = givesOre;
-//		this.givesWheat = givesWheat;
-//		this.givesWood = givesWood;
-//		this.asksStone = asksStone;
-//		this.asksWool = asksWool;
-//		this.asksOre = asksOre;
-//		this.asksWheat = asksWheat;
-//		this.asksWood = asksWood;
-//		this.accepted = accepted;
 	}
 	
 	public TradeOffer(TradeDAL td, int idPlayer, int givesStone, int givesWool, int givesOre, int givesWheat,

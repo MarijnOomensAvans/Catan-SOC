@@ -11,9 +11,6 @@ public class TradeDAL {
 	
 	Connection conn;
 
-	private int counter;
-	private boolean checkFirstTime = false;
-
 	@SuppressWarnings("unused")
 	private int size;
 	

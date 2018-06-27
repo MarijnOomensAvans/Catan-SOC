@@ -19,7 +19,7 @@ import javax.swing.SwingConstants;
 import Controller.LobbyController;
 import Controller.LoginController;
 
-@SuppressWarnings("serial")
+@SuppressWarnings({"serial","rawtypes"})
 public class InvitePanel extends JPanel {
 	// creating intance variables
 	private final int WIDTH = 1000;
@@ -35,12 +35,11 @@ public class InvitePanel extends JPanel {
 
 	private String[] boxValues;
 
-	private String name1;
-
 	private Font buttonFont;
 
 	private ArrayList<String> names;
 
+	@SuppressWarnings("unchecked")
 	public InvitePanel(LobbyController lc, SetupGameFrame frame) {
 		// initialize everything
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));

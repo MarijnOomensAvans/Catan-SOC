@@ -14,10 +14,10 @@ import DAL.PersonDAL;
 
 import Controller.BankController;
 import Controller.PlayerController;
-import Model.MaterialCard;
 import View.inGame.InGameFrame;
 import View.setupGame.DrawingPanel;
 
+@SuppressWarnings("serial")
 public class MonopolieContentPane extends JPanel {
 	private BufferedImage myBufferedImage1;
 	private BufferedImage myBufferedImage2;

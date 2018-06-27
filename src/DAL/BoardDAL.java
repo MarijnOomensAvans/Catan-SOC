@@ -275,6 +275,20 @@ public class BoardDAL {
 		return i;
 		
 	}
+	
+	public int getHoutHavenplayer() {
+		int i = 0;
+		try {
+			Statement stmt = conn.createStatement();
+			String query = "SELECT idspeler FROM spelerstuk WHERE x_van = 2 AND y_van = 2 AND idspeler is not null";
+			ResultSet rs = stmt.executeQuery(query);
+			rs.next();
+			i = rs.getInt(1);
+		} catch (SQLException e) {
+		
+		}
+		return i;
+	}
 
 	public int getBuildingplayer(int x, int y, Integer idspeler) {
 		int i = 0;

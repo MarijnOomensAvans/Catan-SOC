@@ -1,11 +1,9 @@
 package Model;
 
-import java.util.HashMap;
 
 public class GameManagerModel {
 	private int idgame;
 	private int playerTurn;
-	private HashMap<Integer,String> trackPlayers = new HashMap<Integer,String>();
 	
 
 	public GameManagerModel(int idgame) {

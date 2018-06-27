@@ -1,7 +1,5 @@
 package View.developmentCards;
 
-import java.util.ArrayList;
-
 import javax.swing.JFrame;
 
 import Controller.BankController;
@@ -11,7 +9,6 @@ import Controller.RobberController;
 import DAL.PersonDAL;
 import View.inGame.InGameFrame;
 import View.setupGame.DrawingPanel;
-import View.trade.TradeResultPane;
 
 @SuppressWarnings("serial")
 public class DevelopmentGui extends JFrame {

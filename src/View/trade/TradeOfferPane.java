@@ -18,11 +18,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import Controller.TradeController;
-import DAL.TradeDAL;
 
 @SuppressWarnings("serial")
 public class TradeOfferPane extends JPanel {
 	
+	@SuppressWarnings("unused")
 	private TradeController tc;
 
 	private int stoneOfferCounter =0;

@@ -95,7 +95,6 @@ public class IngameController {
 
 	public void openTrade() {
 		tc.createGUI("top");
-		// new TradeController(playerID, gameid, pd, pc.getPlayer(), pc, bct);
 	}
 
 	public void closeTradeWindows(boolean thread) {
@@ -114,7 +113,6 @@ public class IngameController {
 	}
 
 	public void openDevcard() {
-		// DevelopmentContentPane dcp = new DevelopmentContentPane(pc, playerID, dp);
 		devGUI = new DevelopmentGui(pd, bct, pc, gameid, playerID, dp, rb, gameFrame, this);
 	}
 
@@ -133,7 +131,10 @@ public class IngameController {
 
 	public boolean hasRolledDice(int gameid) {
 		return gameModel.hasRolledDice(gameid);
-
+	}
+	
+	public void updateLongestRoute() {
+		gameModel.updateLongestRoute();
 	}
 
 	public String getLongestRoute(int gameID) {

@@ -7,7 +7,6 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
@@ -37,16 +36,10 @@ private String stratenbouw;
 private String uitvinding;
 private String universiteit;
 
-private JButton usebib;
-private JButton usekat;
-private JButton usemarkt;
 private JButton usemono;
-private JButton usepar;
 private JButton useridder;
 private JButton usestrat;
 private JButton useuit;
-private JButton useuni;
-
 
 private JTextField bibliotheekamount;
 private JTextField kathedraalamount;
@@ -82,16 +75,12 @@ private BufferedImage myBufferedImage9;
 			uitvinding = "uitvinding.jpg";
 			universiteit = "universiteit.jpg";
 
-//			usebib = new JButton("Gebruik");
-//			usekat = new JButton("Gebruik");
-//			usemarkt = new JButton("Gebruik");
 			usemono = new JButton("Gebruik");
 			if(pc.getAmountMonopolie(playerid)== 0) {
 				usemono.setBackground(Color.GRAY);
 				usemono.setBorderPainted(false);
 				usemono.setEnabled(false);
 			}
-//			usepar = new JButton("Gebruik");
 			useridder = new JButton("Gebruik");
 			if(pc.getAmountRidder(playerid)== 0) {
 				useridder.setBackground(Color.GRAY);
@@ -111,7 +100,6 @@ private BufferedImage myBufferedImage9;
 				useuit.setBorderPainted(false);
 				useuit.setEnabled(false);
 			}
-//			useuni = new JButton("Gebruik");
 			
 			
 			bibliotheekamount = new JTextField("" + pc.getAmountBibliotheek(playerid));
@@ -140,23 +128,12 @@ private BufferedImage myBufferedImage9;
 			}
 		this.repaint();
 		
-//		add(usebib);
-//		usebib.setBounds(100,280, 100, 30);
-		
 		add(bibliotheekamount);
 		bibliotheekamount.setBounds(130,280, 30, 30);
 		
 		
-//		add(usekat);
-//		usekat.setBounds(310,280, 100, 30);
-		
 		add(kathedraalamount);
 		kathedraalamount.setBounds(340,280, 30, 30);
-		
-		
-//		add(usemarkt);
-//		usemarkt.setBounds(520,280, 100, 30);
-//		
 		add(marktamount);
 		marktamount.setBounds(550,280,30,30);
 		
@@ -165,10 +142,7 @@ private BufferedImage myBufferedImage9;
 		
 		add(monopolieamount);
 		monopolieamount.setBounds(700,280,30,30);
-		
-//		add(usepar);
-//		usepar.setBounds(940,280, 100, 30);
-		
+
 		add(parlementamount);
 		parlementamount.setBounds(970,280,30,30);
 	
@@ -190,9 +164,6 @@ private BufferedImage myBufferedImage9;
 		add(uitvindingamount);
 		uitvindingamount.setBounds(490,560,30,30);
 		
-//		add(useuni);
-//		useuni.setBounds(730,560, 100, 30);
-		
 		add(universiteitamount);
 		universiteitamount.setBounds(760,560, 30,30);
 		
@@ -206,7 +177,6 @@ private BufferedImage myBufferedImage9;
 				}
 			}
 		});
-		
 		usemono.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
