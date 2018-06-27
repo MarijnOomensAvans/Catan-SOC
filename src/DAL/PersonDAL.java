@@ -748,5 +748,41 @@ public class PersonDAL {
 		}
 	}
 	
+	public int countPlayerPiecePoint(int playerid, int x, int y) {
+		int piececount = 0;
 
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT COUNT(idstuk) FROM spelerstuk WHERE idspeler = '" + playerid +"' AND x_naar = " + x + " AND y_naar = " + y + "");
+			while (rs.next()) {
+
+				piececount = rs.getInt(1);
+
+			}
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return piececount;
+	}
+
+	public int countPlayerPiecePointFrom(int playerid, int x, int y ) {
+		int piececount = 0;
+
+		try {
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT COUNT(idstuk) FROM spelerstuk WHERE idspeler = '" + playerid +"' AND x_van = " + x + " AND y_van = " + y + "");
+			while (rs.next()) {
+
+				piececount = rs.getInt(1);
+
+			}
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return piececount;
+	}
 }
