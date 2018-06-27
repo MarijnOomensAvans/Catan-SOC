@@ -2,6 +2,8 @@ package Controller;
 
 import java.util.ArrayList;
 
+import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
+
 import DAL.PersonDAL;
 import Model.DevelopmentCard;
 import Model.MaterialCard;
@@ -230,6 +232,7 @@ public class PlayerController {
 							&& db.hasVillage(playerID, (x - 1), (y - 1)).equals("")
 							&& db.hasVillage(playerID, (x - 1), y).equals("")
 							&& db.hasVillage(playerID, x, (y - 1)).equals("")) {
+						System.out.println("OwnVIllageCheck");
 						for (int o = 1; o < 4; o++) {
 							if (db.hasVillage(playerID, (x + 1), (y + 1)).equals("")
 									&& db.hasVillage(Integer.parseInt(playerIDs[o]), x, (y + 1)).equals("")
@@ -237,6 +240,7 @@ public class PlayerController {
 									&& db.hasVillage(Integer.parseInt(playerIDs[o]), (x - 1), (y - 1)).equals("")
 									&& db.hasVillage(Integer.parseInt(playerIDs[o]), (x - 1), y).equals("")
 									&& db.hasVillage(Integer.parseInt(playerIDs[o]), x, (y - 1)).equals("")) {
+
 								if (db.getRound(gameID)) {
 									if (!db.hasStreetFrom(playerID, (x + 1), (y + 1)).equals("")
 											|| !db.hasStreetFrom(playerID, x, (y + 1)).equals("")
@@ -251,17 +255,21 @@ public class PlayerController {
 												|| !db.hasStreet(playerID, (x - 2), y).equals("")
 												|| !db.hasStreet(playerID, x, (y - 2)).equals("")) {
 										} else {
+											System.out.println("Street2Check");
 											canBuild = false;
 										}
 									} else {
+										System.out.println("Street1Check");
 										canBuild = false;
 									}
 								}
 							} else {
+								System.out.println("OtherVillageCheck");
 								canBuild = false;
 							}
 						}
 					} else {
+						System.out.println("OwnVillageCheck");
 						canBuild = false;
 					}
 				} 
