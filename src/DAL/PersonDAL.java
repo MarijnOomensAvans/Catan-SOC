@@ -698,7 +698,7 @@ public class PersonDAL {
 
 	public void removeVillage(int x, int y, int idspeler) {
 		Statement stmt = null;
-		String query = "UPDATE spelerstuk SET idspeler = null, x_van = null, y_van = null  WHERE x_van = " +  x
+		String query = "UPDATE spelerstuk SET x_van = null, y_van = null  WHERE x_van = " +  x
 				+ " AND y_van = " + y + " AND idspeler = " + idspeler + " AND idstuk LIKE 'd0%'";
 		try {
 			stmt = conn.createStatement();

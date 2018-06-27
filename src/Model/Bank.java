@@ -83,6 +83,17 @@ public class Bank {
 		}
 		return null;
 	}
+	public String getMaterialCardId2(String kind) {
+		for (int i = 0; i < matbank.size(); i++) {
+			if (matbank.get(i).getKindOfMaterial().equals(kind)) {
+				String id = matbank.get(i).getIdCard();
+				if (matbank.get(i).getPlayerid(id) == 0) {
+					return id;
+				}
+			}
+		}
+		return null;
+	}
 
 	public String getMaterialCardIdTrade(String kind) {
 		for (int i = 0; i < matbank.size(); i++) {
@@ -91,7 +102,7 @@ public class Bank {
 				if (matbank.get(i).getPlayerid(id) != 0) {
 					return id;
 				}
-			}
+			}	
 		}
 		return null;
 	}
@@ -123,8 +134,9 @@ public class Bank {
 	public void trade(int playerid, ArrayList<String> cardkinds) {
 		for (int i = 0; i < cardkinds.size(); i++) {
 			
-			String cardid = getMaterialCardId(cardkinds.get(i));
+			String cardid = getMaterialCardId2(cardkinds.get(i));
 			bd.tradeBank(playerid, cardid, gameID);
+			
 		}
 
 	}
