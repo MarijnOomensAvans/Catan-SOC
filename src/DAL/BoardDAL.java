@@ -341,4 +341,34 @@ public class BoardDAL {
 	}
 
 	}
+
+	public boolean hasRobber(int number,int gameID) {
+		boolean hasRobber = false;
+		try {
+			Statement stmt = conn.createStatement();
+			String query = "SELECT struikrover_idtegel FROM spel WHERE idspel = " + gameID;
+			ResultSet rs = stmt.executeQuery(query);
+			rs.next();
+			if(rs.getInt(1) == getIDTileFromChit(number, gameID)) {
+				hasRobber = true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return hasRobber;
+	}
+	
+	private int getIDTileFromChit(int chitnumber,int gameID) {
+		int i = 0;
+		try {
+			Statement stmt = conn.createStatement();
+			String query = "SELECT idtegel FROM tegel WHERE idgetalfiche = " + chitnumber + " AND idspel = " + gameID;
+			ResultSet rs = stmt.executeQuery(query);
+			rs.next();
+			i = rs.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return i;
+	}
 }
