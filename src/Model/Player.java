@@ -84,7 +84,6 @@ public class Player {
 				if (hand.get(i).getKindOfMaterial().equals("B")) {
 					counter++;
 				}
-				;
 			}
 		}
 		if (counter >= amount) {
@@ -102,7 +101,6 @@ public class Player {
 				if (hand.get(i).getKindOfMaterial().equals("G")) {
 					counter++;
 				}
-				;
 			}
 		}
 		if (counter >= amount) {
@@ -120,7 +118,6 @@ public class Player {
 				if (hand.get(i).getKindOfMaterial().equals("H")) {
 					counter++;
 				}
-				;
 			}
 		}
 		if (counter >= amount) {
