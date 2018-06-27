@@ -227,6 +227,6 @@ public class IngameController {
 	}
 	
 	public void logToChat(String log) {
-		chatController.logToChat(log);
+		chatController.SendLog(playerID, log);
 	}
 }
