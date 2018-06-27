@@ -103,7 +103,6 @@ public class IngameView extends JPanel implements Observer {
 	private JPanel diceButtonPanel;
 	private JPanel costAndDicePanel;
 	private JPanel playerTurnPanel;
-	private JPanel gameTurnPanel;
 	private JPanel extraPointsPanel;
 	private JPanel ownPointsPanel;
 	private JPanel boardPanel;
@@ -117,7 +116,6 @@ public class IngameView extends JPanel implements Observer {
 	private JLabel turnLabel;
 	private JLabel playerTurnStringLabel;
 	private JLabel playersAndCardsLabel;
-	private JLabel gameTurnLabel;
 	private JLabel largestArmyLabel;
 	private JLabel longestRouteLabel;
 	private JLabel ownPointLabel;
@@ -211,15 +209,13 @@ public class IngameView extends JPanel implements Observer {
 
 		playerTurnPanel = new JPanel();
 		playerCardsPanel = new JPanel();
-		gameTurnPanel = new JPanel();
 		extraPointsPanel = new JPanel();
 		ownPointsPanel = new JPanel();
 
 		playerTurnPanel.setPreferredSize(new Dimension(300, 50));
 		playerCardsPanel.setPreferredSize(new Dimension(300, 250));
-		gameTurnPanel.setPreferredSize(new Dimension(300, 50));
 		extraPointsPanel.setPreferredSize(new Dimension(300, 200));
-		ownPointsPanel.setPreferredSize(new Dimension(300, 122));
+		ownPointsPanel.setPreferredSize(new Dimension(300, 200));
 		buttonPanel.setBorder(border);
 		resourceCardsPanel.setBorder(border);
 		buildCostPanel.setBorder(border);
@@ -271,7 +267,6 @@ public class IngameView extends JPanel implements Observer {
 		turnLabel = new JLabel("Speler aan de beurt: ");
 		playerTurnStringLabel = new JLabel(inGameController.getTurn(gameID));
 		playersAndCardsLabel = new JLabel("Spelers en kaarten: ");
-		gameTurnLabel = new JLabel("Ronde: ");
 		largestArmyLabel = new JLabel("Grootste riddermacht: ");
 		nameBiggestArmyLabel = new JLabel(inGameController.getBiggestArmy(gameID));
 		longestRouteLabel = new JLabel("Langste handelsroute: ");
@@ -281,7 +276,6 @@ public class IngameView extends JPanel implements Observer {
 
 		turnLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		playersAndCardsLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		gameTurnLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		largestArmyLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		nameBiggestArmyLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		longestRouteLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -387,8 +381,6 @@ public class IngameView extends JPanel implements Observer {
 		playerTurnPanel.add(playerTurnStringLabel);
 		playerCardsPanel.add(playersAndCardsLabel);
 		getCards();
-		gameTurnPanel.add(gameTurnLabel);
-		gameTurnPanel.add(nextTurn(gameID));
 		extraPointsPanel.add(largestArmyLabel);
 		extraPointsPanel.add(nameBiggestArmyLabel);
 		extraPointsPanel.add(longestRouteLabel);
@@ -398,7 +390,6 @@ public class IngameView extends JPanel implements Observer {
 
 		rightPanel.add(playerTurnPanel);
 		rightPanel.add(playerCardsPanel);
-		rightPanel.add(gameTurnPanel);
 		rightPanel.add(extraPointsPanel);
 		rightPanel.add(ownPointsPanel);
 
