@@ -81,6 +81,8 @@ public class DieController {
 		int y = bc.getYTile(number, gameID);
 		char resource = bc.getTileResource(gameID, x, y);
 		String source = Character.toString(resource);
+		
+		if(!bc.hasRobber(number,inGameController.getGameId())) {
 
 		for (int i = 0; i < ids.size(); i++) {
 			if (bc.getBuildingplayer(x + 1, y, ids.get(i)) != 0) {
@@ -169,6 +171,7 @@ public class DieController {
 					pd.addMaterialCard(gameID, cardid2, ids.get(i));
 				}
 			}
+		}
 		}
 
 	}

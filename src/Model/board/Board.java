@@ -866,9 +866,6 @@ public class Board {
 		int i =bdal.getBuildingplayer(x,y,idspeler);
 		return i;
 	}
-//	public int getStoneHarbourplayer () {
-//		int i = bdal.getStoneHarbourplayer()
-//	}
 
 	public boolean isVillage(int playerid, int x, int y) {
 		boolean b =bdal.isVillage(playerid,x,y);
@@ -879,6 +876,10 @@ public class Board {
 	public boolean isCity(int playerid, int x, int y) {
 		boolean b = bdal.isCity(playerid,x,y);
 		return b;
+	}
+
+	public boolean hasRobber(int number,int gameID) {
+		return bdal.hasRobber(number,gameID);
 	}
 	
 }

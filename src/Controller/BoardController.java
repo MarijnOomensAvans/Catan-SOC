@@ -89,9 +89,6 @@ public class BoardController {
 		int i =board.getBuildingplayer(x,y,idspeler);
 		return i;
 	}
-//	public int getStoneHarbourPlayer() {
-//		int
-//	}
 
 	public boolean isVillage(int gameid, int x, int y) {
 		boolean b =board.isVillage(gameid,x,y);
@@ -101,6 +98,10 @@ public class BoardController {
 	public boolean isCity(int playerid, int x, int y) {
 		boolean b= board.isCity(playerid,x,y);
 		return b;
+	}
+
+	public boolean hasRobber(int number,int gameID) {
+		return board.hasRobber(number,gameID);
 	}
 
 }
