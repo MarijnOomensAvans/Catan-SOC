@@ -261,10 +261,10 @@ public class PlayerController {
 								canBuild = false;
 							}
 						}
+					} else {
+						canBuild = false;
 					}
-				} else {
-					canBuild = false;
-				}
+				} 
 			}
 		}
 		return canBuild;

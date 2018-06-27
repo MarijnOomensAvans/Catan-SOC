@@ -601,7 +601,7 @@ public class PersonDAL {
 		String result = "";
 		Statement stmt = null;
 		String query = "SELECT idstuk FROM spelerstuk WHERE idspeler =" + playerID + " AND x_van = '"
-				+ x + "' AND y_van = '" + y + "'";
+				+ x + "' AND y_van = '" + y + "' AND idstuk LIKE 'd0%'";
 		try {
 			stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
