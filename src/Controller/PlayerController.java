@@ -264,36 +264,85 @@ public class PlayerController {
 					if (db.getRound(gameID)) {
 						if (!db.hasStreetFrom(playerID, (x + 1), (y + 1)).equals("")) {
 							if (db.hasStreet(playerID, (x + 1), (y + 1)).equals("")) {
-								canBuild = false;
+								if (db.hasStreetFrom(playerID, (x + 1), (y + 1)).equals("")) {
+									System.out.println("3");
+									canBuild = false;
+								}
 							}
 						} else if (!db.hasStreetFrom(playerID, x, (y + 1)).equals("")) {
-							if (db.hasStreet(playerID, x, (y + 1)).equals("")) {
-								canBuild = false;
+							if (db.hasStreet(playerID, (x + 1), (y + 1)).equals("")) {
+								if (db.hasStreetFrom(playerID, (x + 1), (y + 1)).equals("")) {
+									canBuild = false;
+								}
 							}
 						} else if (!db.hasStreetFrom(playerID, (x + 1), y).equals("")) {
-							if (db.hasStreet(playerID, (x + 1), y).equals("")) {
-								canBuild = false;
+							if (db.hasStreet(playerID, (x + 1), (y + 1)).equals("")) {
+								if (db.hasStreetFrom(playerID, (x + 1), (y + 1)).equals("")) {
+									canBuild = false;
+								}
 							}
 						} else if (!db.hasStreetFrom(playerID, (x - 1), (y - 1)).equals("")) {
-							if (db.hasStreet(playerID, (x - 1), (y - +1)).equals("")) {
-								canBuild = false;
+							if (db.hasStreet(playerID, (x + 1), (y + 1)).equals("")) {
+								if (db.hasStreetFrom(playerID, (x + 1), (y + 1)).equals("")) {
+									canBuild = false;
+								}
 							}
 						} else if (!db.hasStreetFrom(playerID, (x - 1), y).equals("")) {
-							if (db.hasStreet(playerID, (x - 1), y).equals("")) {
-								canBuild = false;
+							if (db.hasStreet(playerID, (x + 1), (y + 1)).equals("")) {
+								if (db.hasStreetFrom(playerID, (x + 1), (y + 1)).equals("")) {
+									canBuild = false;
+								}
 							}
 						} else if (!db.hasStreetFrom(playerID, x, (y - 1)).equals("")) {
-							if (db.hasStreet(playerID, x, (y - 1)).equals("")) {
-								canBuild = false;
+							if (db.hasStreet(playerID, (x + 1), (y + 1)).equals("")) {
+								if (db.hasStreetFrom(playerID, (x + 1), (y + 1)).equals("")) {
+									canBuild = false;
+								}
 							}
-						} else {
-							canBuild = false;
+						}
+						if (!db.hasStreet(playerID, (x + 1), (y + 1)).equals("")) {
+							if (db.hasStreet(playerID, (x + 1), (y + 1)).equals("")) {
+								if (db.hasStreetFrom(playerID, (x + 1), (y + 1)).equals("")) {
+									canBuild = false;
+								}
+							}
+						} else if (!db.hasStreet(playerID, x, (y + 1)).equals("")) {
+							if (db.hasStreet(playerID, (x + 1), (y + 1)).equals("")) {
+								if (db.hasStreetFrom(playerID, (x + 1), (y + 1)).equals("")) {
+									canBuild = false;
+								}
+							}
+						} else if (!db.hasStreet(playerID, (x + 1), y).equals("")) {
+							if (db.hasStreet(playerID, (x + 1), (y + 1)).equals("")) {
+								if (db.hasStreetFrom(playerID, (x + 1), (y + 1)).equals("")) {
+									canBuild = false;
+								}
+							}
+						} else if (!db.hasStreet(playerID, (x - 1), (y - 1)).equals("")) {
+							if (db.hasStreet(playerID, (x + 1), (y + 1)).equals("")) {
+								if (db.hasStreetFrom(playerID, (x + 1), (y + 1)).equals("")) {
+									canBuild = false;
+								}
+							}
+						} else if (!db.hasStreet(playerID, (x - 1), y).equals("")) {
+							if (db.hasStreet(playerID, (x + 1), (y + 1)).equals("")) {
+								if (db.hasStreetFrom(playerID, (x + 1), (y + 1)).equals("")) {
+									canBuild = false;
+								}
+							}
+						} else if (!db.hasStreet(playerID, x, (y - 1)).equals("")) {
+							if (db.hasStreet(playerID, (x + 1), (y + 1)).equals("")) {
+								if (db.hasStreetFrom(playerID, (x + 1), (y + 1)).equals("")) {
+									canBuild = false;
+								}
+							}
 						}
 					}
 				} else {
 					canBuild = false;
 				}
 			}
+
 		}
 		return canBuild;
 	}
@@ -313,7 +362,7 @@ public class PlayerController {
 			if (keys.length != 5) {
 				switch (keys.length) {
 				case 1:
-					if (keys[0].equals("")) {
+					if (keys[0].equals("") || !keys[0].equals("d01")) {
 						db.setBuilding("d01", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
 					} else {
 						db.setBuilding("d02", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
@@ -321,19 +370,27 @@ public class PlayerController {
 					}
 					return true;
 				case 2:
-					db.setBuilding("d03", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
-					return true;
+					if (!keys[2].equals("d03")) {
+						db.setBuilding("d03", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
+						return true;
+					}
 				case 3:
-					db.setBuilding("d04", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
-					return true;
+					if (!keys[3].equals("d03")) {
+						db.setBuilding("d04", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
+						return true;
+					}
 				case 4:
-					db.setBuilding("d05", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
-					return true;
+					if (!keys[4].equals("d03")) {
+						db.setBuilding("d05", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
+						return true;
+					}
 				case 5:
 					return false;
 				}
 			}
-		} else if (buildingType.equals("City")) {
+		} else if (buildingType.equals("City"))
+
+		{
 			pieceID = "c0";
 			String[] keys = db.getBuilding(playerID, pieceID).split(",");
 			String[] coords = hlPoint.split(",");
