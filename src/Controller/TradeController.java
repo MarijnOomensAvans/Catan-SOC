@@ -257,8 +257,8 @@ public class TradeController extends Observable implements Runnable {
 
 	}
 
-	public void tradeBank(int playerid2, ArrayList<String> cardkinds) {
-		bc.trade(playerid2, cardkinds);
+	public void tradeBank(int playerid, ArrayList<String> cardkinds) {
+		bc.trade(playerid, cardkinds);
 
 	}
 
