@@ -89,6 +89,9 @@ public class BoardController {
 		int i =board.getBuildingplayer(x,y,idspeler);
 		return i;
 	}
+//	public int getStoneHarbourPlayer() {
+//		int
+//	}
 
 	public boolean isVillage(int gameid, int x, int y) {
 		boolean b =board.isVillage(gameid,x,y);
