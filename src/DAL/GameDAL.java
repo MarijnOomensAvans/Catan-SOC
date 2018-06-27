@@ -130,8 +130,9 @@ public class GameDAL {
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(
 					"SELECT s.stuksoort, COUNT(s.stuksoort) FROM spelerstuk st JOIN stuk s ON st.idstuk = s.idstuk"
-							+ " WHERE s.stuksoort NOT LIKE 'straat' AND st.idspeler = " + playerid
-							+ " AND st.x_van IS NOT null AND st.y_van IS NOT NULL " + " GROUP BY s.stuksoort");
+							+ " WHERE s.stuksoort NOT LIKE 'straat' AND st.idspeler = " + playerid  
+							+ " AND st.x_van IS NOT null AND st.y_van IS NOT NULL "
+							+ " GROUP BY s.stuksoort");
 			while (rs.next()) {
 				if (rs.getString(1).equals("dorp")) {
 					villageCount = rs.getInt(2);
@@ -311,15 +312,19 @@ public class GameDAL {
 			e.printStackTrace();
 		}
 	}
-
+	
 	public void setPlayersCanceld(int gameid) {
 		try {
 			Statement stmt = conn.createStatement();
+<<<<<<< HEAD:src/DAL/GameDAL.java
 <<<<<<< HEAD:src/DAL/SpelDAL.java
 			stmt.executeUpdate("UPDATE speler SET speelstatus = 'uitgespeeldd1E' WHERE idspel =" + gameid + ")");
 =======
 			stmt.executeUpdate("UPDATE speler SET speelstatus = 'uitgespeeld' WHERE idspel = " + gameid);
 >>>>>>> e46ba8c075e623a3c11b7e39a471ec7e552986bf:src/DAL/GameDAL.java
+=======
+			stmt.executeUpdate("UPDATE speler SET speelstatus = 'uitgespeeld' WHERE idspel =" + gameid+")");
+>>>>>>> parent of 41d7c68... lk:src/DAL/SpelDAL.java
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -367,9 +372,9 @@ public class GameDAL {
 	public int getBuildingCount(int gameid, int volgnr) {
 		try {
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(
-					"SELECT count(*)  FROM spelerstuk ss JOIN speler s " + "ON ss.idspeler = s.idspeler JOIN stuk st "
-							+ "ON st.idstuk = ss.idstuk WHERE s.volgnr = '" + volgnr + "' AND s.idspel = " + gameid);
+			ResultSet rs = stmt.executeQuery("SELECT count(*)  FROM spelerstuk ss JOIN speler s "
+					+ "ON ss.idspeler = s.idspeler JOIN stuk st " + "ON st.idstuk = ss.idstuk WHERE s.volgnr = '"
+					+ volgnr + "' AND s.idspel = " + gameid );
 			while (rs.next()) {
 				return rs.getInt(1);
 			}
@@ -382,7 +387,7 @@ public class GameDAL {
 
 	public void setFirstTurn(int gameid, boolean b) {
 		int value = 0;
-		if (b) {
+		if(b) {
 			value = 1;
 		}
 		try {
