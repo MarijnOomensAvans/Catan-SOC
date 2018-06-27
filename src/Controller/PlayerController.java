@@ -262,6 +262,7 @@ public class PlayerController {
 							if(db.hasStreet(playerID, x, (y - 1)).equals("")){
 								canBuild = false;
 							}
+						}
 						else {
 							canBuild = false;
 						}
