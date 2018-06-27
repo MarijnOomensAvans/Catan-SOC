@@ -38,8 +38,8 @@ public class BankController {
 		return card;
 	}
 
-	public void giveMaterialCardBack(MaterialCard materialCard) {
-		bank.giveMaterialCardBack(materialCard);
+	public void giveMaterialCardBack(MaterialCard materialCard, int playerid) {
+		bank.giveMaterialCardBack(materialCard, playerid);
 
 	}
 
@@ -52,12 +52,12 @@ public class BankController {
 		bank.trade(playerid, cardkinds);
 	}
 
-	public void deleteCards(ArrayList<String> cardkindsOffer) {
+	public void deleteCards(ArrayList<String> cardkindsOffer, int playerid) {
 		for (int i = 0; i < cardkindsOffer.size(); i++) {
 			String cardid = bank.getMaterialCardIdTrade(cardkindsOffer.get(i));
 			boolean hasPlayerid = bank.hasPlayerid(cardid);
 			if (hasPlayerid == true) {
-				bd.deleteCards(cardid, gameid);
+				bd.deleteCards(cardid, gameid, playerid);
 			}
 		}
 	}

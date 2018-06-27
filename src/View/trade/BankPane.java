@@ -555,7 +555,7 @@ public class BankPane extends JPanel {
 					}
 				}
 				tc.tradeBank(playerid, cardkindsDemand);
-				tc.deleteCards(cardkindsOffer);
+				tc.deleteCards(cardkindsOffer, playerid);
 				tc.close();
 				tc.setTradeButton(true);
 			}

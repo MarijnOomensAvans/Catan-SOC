@@ -262,8 +262,8 @@ public class TradeController extends Observable implements Runnable {
 
 	}
 
-	public void deleteCards(ArrayList<String> cardkindsOffer) {
-		bc.deleteCards(cardkindsOffer);
+	public void deleteCards(ArrayList<String> cardkindsOffer, int playerid) {
+		bc.deleteCards(cardkindsOffer, playerid);
 
 	}
 

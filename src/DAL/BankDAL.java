@@ -147,11 +147,27 @@ public class BankDAL {
 		}
 
 	}
+	public void tradeBank(int playerid, String cardId, int gameid) {
+		Statement stmt = null;
+		String query = "UPDATE spelergrondstofkaart SET idspeler = " + playerid + " WHERE idgrondstofkaart = '" + cardId
+				+ "' AND idspeler is null AND idspel = " +gameid;
 
-	public void deleteCards(String cardid, int gameid) {
+		try {
+			stmt = conn.createStatement();
+			stmt.executeUpdate(query);
+
+			stmt.close();
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+
+	}
+
+	public void deleteCards(String cardid, int gameid, int playerid) {
 		Statement stmt = null;
 		String query = "UPDATE spelergrondstofkaart SET idspeler = null WHERE idgrondstofkaart = '" + cardid + "'"
-				 + " AND idspel = " + gameid;
+				 + " AND idspeler is " + playerid + " AND idspel = " + gameid;
 
 
 		try {

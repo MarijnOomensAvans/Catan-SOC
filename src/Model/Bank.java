@@ -58,9 +58,9 @@ public class Bank {
 		return returncard;
 	}
 
-	public void giveMaterialCardBack(MaterialCard card) {
+	public void giveMaterialCardBack(MaterialCard card, int playerid) {
 		matbank.add(card);
-		bd.deleteCards(card.getIdCard(), gameID);
+		bd.deleteCards(card.getIdCard(), gameID, playerid);
 
 	}
 
@@ -122,9 +122,9 @@ public class Bank {
 
 	public void trade(int playerid, ArrayList<String> cardkinds) {
 		for (int i = 0; i < cardkinds.size(); i++) {
-
+			
 			String cardid = getMaterialCardId(cardkinds.get(i));
-			bd.trade(playerid, cardid, gameID);
+			bd.tradeBank(playerid, cardid, gameID);
 		}
 
 	}
