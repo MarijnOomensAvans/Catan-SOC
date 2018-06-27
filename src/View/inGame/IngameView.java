@@ -441,6 +441,8 @@ public class IngameView extends JPanel implements Observer {
 			if (!nameBiggest.equals(nameBiggestArmyLabel.getText())) {
 				inGameController.setbiggestArmy(gameID, nameBiggest);
 			}
+		} else {
+			nameBiggest = "Niemand";
 		}
 		return nameBiggest;
 
