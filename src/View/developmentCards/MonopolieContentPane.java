@@ -14,7 +14,6 @@ import DAL.PersonDAL;
 
 import Controller.BankController;
 import Controller.PlayerController;
-import Model.MaterialCard;
 import View.inGame.InGameFrame;
 import View.setupGame.DrawingPanel;
 
