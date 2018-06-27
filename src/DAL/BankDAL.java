@@ -149,8 +149,8 @@ public class BankDAL {
 	}
 	public void tradeBank(int playerid, String cardId, int gameid) {
 		Statement stmt = null;
-		String query = "UPDATE spelergrondstofkaart SET idspeler = " + playerid + " WHERE idgrondstofkaart = '" + cardId
-				+ "' AND idspeler is null AND idspel = " +gameid;
+		String query = "UPDATE spelergrondstofkaart SET idspeler = '" + playerid + "' WHERE idgrondstofkaart = '" + cardId
+				+ "' AND idspeler is null AND idspel = '" + gameid + "'";
 
 		try {
 			stmt = conn.createStatement();
