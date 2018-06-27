@@ -106,6 +106,18 @@ public class Bank {
 		}
 		return null;
 	}
+	//for trading with bank
+	public String getBankPlayerTrade(String kind, int playerid) {
+		for (int i = 0; i < matbank.size(); i++) {
+			if (matbank.get(i).getKindOfMaterial().equals(kind)) {
+				String id = matbank.get(i).getIdCard();
+				if (matbank.get(i).getPlayerid(id) == playerid) {
+					return id;
+				}
+			}	
+		}
+		return null;
+	}
 
 	public DevelopmentCard getDevelopmentCard(int gameid) {
 		DevelopmentCard returncard = null;
