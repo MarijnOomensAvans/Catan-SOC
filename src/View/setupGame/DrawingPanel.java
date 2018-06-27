@@ -207,8 +207,7 @@ public class DrawingPanel extends JPanel {
 								int y2 = Integer.parseInt(clarray[1]);
 								if (x1 == (x2 + 1) && y1 == (y2 + 1) || x1 == (x2 + 1) && y1 == y2
 										|| x1 == x2 && y1 == (y2 - 1) || x1 == (x2 - 1) && y1 == y2
-										|| x1 == x2 && y1 == (y2 + 1) || x1 == (x2 - 1) && y1 == (y2 - 1)
-										|| x1 == (x2 + 1) && y1 == (y2 - 1) || x1 == (x2 - 1) && y1 == (y2 + 1)) {
+										|| x1 == x2 && y1 == (y2 + 1) || x1 == (x2 - 1) && y1 == (y2 - 1)) {
 									if (pc.checkVillage(test, hlPoint)) {
 										if (pc.buildStreet(x1, x2, y1, y2)) {
 											removeMaterialCards(buildingType);
