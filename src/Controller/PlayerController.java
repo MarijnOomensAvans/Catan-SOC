@@ -234,36 +234,30 @@ public class PlayerController {
 						&& db.hasVillage(Integer.parseInt(playerIDs[o]), x, (y - 1)).equals("")) {
 					if (db.getRound(gameID)) {
 						if (!db.hasStreetFrom(playerID, (x + 1), (y + 1)).equals("")) {
-							if(db.hasStreet(playerID, (x + 1), (y + 1)).equals("")){
+							if (db.hasStreet(playerID, (x + 1), (y + 1)).equals("")) {
 								canBuild = false;
 							}
-						}
-						else if (!db.hasStreetFrom(playerID, x, (y + 1)).equals("")) {
-							if(db.hasStreet(playerID, x, (y + 1)).equals("")){
+						} else if (!db.hasStreetFrom(playerID, x, (y + 1)).equals("")) {
+							if (db.hasStreet(playerID, x, (y + 1)).equals("")) {
 								canBuild = false;
 							}
-						}
-						else if (!db.hasStreetFrom(playerID, (x + 1), y).equals("")) {
-							if(db.hasStreet(playerID, (x + 1), y).equals("")){
+						} else if (!db.hasStreetFrom(playerID, (x + 1), y).equals("")) {
+							if (db.hasStreet(playerID, (x + 1), y).equals("")) {
 								canBuild = false;
 							}
-						}
-						else if (!db.hasStreetFrom(playerID, (x - 1), (y - 1)).equals("")) {
-							if(db.hasStreet(playerID, (x - 1), (y-+ 1)).equals("")){
+						} else if (!db.hasStreetFrom(playerID, (x - 1), (y - 1)).equals("")) {
+							if (db.hasStreet(playerID, (x - 1), (y - +1)).equals("")) {
 								canBuild = false;
 							}
-						}
-						else if (!db.hasStreetFrom(playerID, (x - 1), y).equals("")) {
-							if(db.hasStreet(playerID, (x - 1), y).equals("")){
+						} else if (!db.hasStreetFrom(playerID, (x - 1), y).equals("")) {
+							if (db.hasStreet(playerID, (x - 1), y).equals("")) {
 								canBuild = false;
 							}
-						}
-						else if (!db.hasStreetFrom(playerID, x, (y - 1)).equals("")) {
-							if(db.hasStreet(playerID, x, (y - 1)).equals("")){
+						} else if (!db.hasStreetFrom(playerID, x, (y - 1)).equals("")) {
+							if (db.hasStreet(playerID, x, (y - 1)).equals("")) {
 								canBuild = false;
 							}
-						}
-						else {
+						} else {
 							canBuild = false;
 						}
 					}
@@ -465,7 +459,14 @@ public class PlayerController {
 			if (!point1.equals("") || !point2.equals("")) {
 				return true;
 			} else {
-				return false;
+				point1 = db.hasStreetFrom(playerID, Integer.parseInt(splitTest[0]), Integer.parseInt(splitTest[1]));
+				point2 = db.hasStreetFrom(playerID, Integer.parseInt(splithlPoint[0]),
+						Integer.parseInt(splithlPoint[1]));
+				if (!point1.equals("") || !point2.equals("")) {
+					return true;
+				} else {
+					return false;
+				}
 			}
 		}
 	}
