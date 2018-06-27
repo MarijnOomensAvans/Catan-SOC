@@ -107,7 +107,6 @@ public class DieContentPane extends JPanel implements ActionListener {
 	public void update() {
 		
 		int[] values = con.getCurrentValues();
-		String[] fileName = new String[2];
 		switch (values[0]) {
 		case (1):
 			setDie(one, 1);

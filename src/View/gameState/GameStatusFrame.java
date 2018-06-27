@@ -4,6 +4,7 @@ import javax.swing.JFrame;
 
 import Controller.LobbyController;
 
+@SuppressWarnings("serial")
 public class GameStatusFrame extends JFrame{
 
 	private GameStatePane pane;

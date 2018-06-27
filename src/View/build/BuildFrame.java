@@ -5,7 +5,6 @@ import javax.swing.JFrame;
 import Controller.BankController;
 import Controller.IngameController;
 import Controller.PlayerController;
-import Model.Player;
 import View.setupGame.DrawingPanel;
 
 @SuppressWarnings("serial")

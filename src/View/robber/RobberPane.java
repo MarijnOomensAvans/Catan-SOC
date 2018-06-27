@@ -11,11 +11,11 @@ import javax.swing.JPanel;
 import Controller.BoardController;
 import Controller.RobberController;
 import DAL.RobberDAL;
-import View.inGame.InGameFrame;
 
 @SuppressWarnings("serial")
 public class RobberPane extends JPanel {
 	
+	@SuppressWarnings("unused")
 	private RobberDAL rd;
 	
 	private JButton otherPlayer1;

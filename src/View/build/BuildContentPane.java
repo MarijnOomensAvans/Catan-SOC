@@ -13,7 +13,6 @@ import javax.swing.JPanel;
 import Controller.BankController;
 import Controller.BuildController;
 import Controller.PlayerController;
-import Model.Player;
 import View.setupGame.DrawingPanel;
 
 @SuppressWarnings("serial")
