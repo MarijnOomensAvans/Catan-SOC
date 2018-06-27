@@ -118,9 +118,8 @@ public class SpelDAL {
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(
 					"SELECT s.stuksoort, COUNT(s.stuksoort) FROM spelerstuk st JOIN stuk s ON st.idstuk = s.idstuk"
-							+ " WHERE s.stuksoort NOT LIKE 'straat' AND st.idspeler = " + playerid  
-							+ " AND st.x_van IS NOT null AND st.y_van IS NOT NULL "
-							+ " GROUP BY s.stuksoort");
+							+ " WHERE s.stuksoort NOT LIKE 'straat' AND st.idspeler = " + playerid
+							+ " AND st.x_van IS NOT null AND st.y_van IS NOT NULL " + " GROUP BY s.stuksoort");
 			while (rs.next()) {
 				if (rs.getString(1).equals("dorp")) {
 					villageCount = rs.getInt(2);
@@ -300,11 +299,11 @@ public class SpelDAL {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void setPlayersCanceld(int gameid) {
 		try {
 			Statement stmt = conn.createStatement();
-			stmt.executeUpdate("UPDATE speler SET speelstatus = 'uitgespeeld' WHERE idspel =" + gameid+")");
+			stmt.executeUpdate("UPDATE speler SET speelstatus = 'uitgespeeldd1E' WHERE idspel =" + gameid + ")");
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -352,9 +351,9 @@ public class SpelDAL {
 	public int getBuildingCount(int gameid, int volgnr) {
 		try {
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT count(*)  FROM spelerstuk ss JOIN speler s "
-					+ "ON ss.idspeler = s.idspeler JOIN stuk st " + "ON st.idstuk = ss.idstuk WHERE s.volgnr = '"
-					+ volgnr + "' AND s.idspel = " + gameid );
+			ResultSet rs = stmt.executeQuery(
+					"SELECT count(*)  FROM spelerstuk ss JOIN speler s " + "ON ss.idspeler = s.idspeler JOIN stuk st "
+							+ "ON st.idstuk = ss.idstuk WHERE s.volgnr = '" + volgnr + "' AND s.idspel = " + gameid);
 			while (rs.next()) {
 				return rs.getInt(1);
 			}
@@ -367,7 +366,7 @@ public class SpelDAL {
 
 	public void setFirstTurn(int gameid, boolean b) {
 		int value = 0;
-		if(b) {
+		if (b) {
 			value = 1;
 		}
 		try {
