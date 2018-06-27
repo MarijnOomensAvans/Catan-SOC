@@ -791,7 +791,7 @@ public class Board {
 			img = new ImageIcon(ClassLoader.getSystemResource("10.png"));
 			return img;
 		case 16:
-			img = new ImageIcon(ClassLoader.getSystemResource("11.png"));
+			img = new ImageIcon(ClassLoader.getSystemResource("10.png"));
 			return img;
 		case 17:
 			img = new ImageIcon(ClassLoader.getSystemResource("11.png"));
@@ -866,6 +866,9 @@ public class Board {
 		int i =bdal.getBuildingplayer(x,y,idspeler);
 		return i;
 	}
+//	public int getStoneHarbourplayer () {
+//		int i = bdal.getStoneHarbourplayer()
+//	}
 
 	public boolean isVillage(int playerid, int x, int y) {
 		boolean b =bdal.isVillage(playerid,x,y);
