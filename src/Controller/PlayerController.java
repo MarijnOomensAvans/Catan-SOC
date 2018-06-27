@@ -232,11 +232,11 @@ public class PlayerController {
 							&& db.hasVillage(playerID, x, (y - 1)).equals("")) {
 						if (db.getRound(gameID)) {
 							if (!db.hasStreet(playerID, (x + 1), (y + 1)).equals("")
-									|| !db.hasStreet(playerID, x, (y + 1)).equals("")
-									|| !db.hasStreet(playerID, (x + 1), y).equals("")
-									|| !db.hasStreet(playerID, (x - 1), (y - 1)).equals("")
-									|| !db.hasStreet(playerID, (x - 1), y).equals("")
-									|| !db.hasStreet(playerID, x, (y - 1)).equals("")) {
+									|| !db.hasVillage(playerID, x, (y + 1)).equals("")
+									|| !db.hasVillage(playerID, (x + 1), y).equals("")
+									|| !db.hasVillage(playerID, (x - 1), (y - 1)).equals("")
+									|| !db.hasVillage(playerID, (x - 1), y).equals("")
+									|| !db.hasVillage(playerID, x, (y - 1)).equals("")) {
 								if (!db.hasStreet(playerID, (x + 2), (y + 2)).equals("")
 										|| !db.hasStreet(playerID, x, (y + 2)).equals("")
 										|| !db.hasStreet(playerID, (x + 2), y).equals("")
