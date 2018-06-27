@@ -161,15 +161,17 @@ public class DrawingPanel extends JPanel {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 
-				/*if (inGameController != null) {
-					inGameController.shouldRefresh(gameID);
-				} DISABLED, NOW PLACED TO BOTTOM */
-				
+				/*
+				 * if (inGameController != null) { inGameController.shouldRefresh(gameID); }
+				 * DISABLED, NOW PLACED TO BOTTOM
+				 */
+
 				if (mayBuild == true && !buildingType.equals("DevCard")) {
 					String test = convertXYfromScreenToKey(e.getX(), e.getY());
 					if (test != null) {
 						if (hlPoint == test && !buildingType.equals("Street")) {
-							if (pc.emptySpace(buildingType, hlPoint)) {
+							if (buildingType.equals("Village")) {
+								if (pc.emptySpace(buildingType, hlPoint)) {
 									if (pc.buildObject(buildingType, hlPoint)) {
 										removeMaterialCards(buildingType);
 									}
@@ -177,6 +179,18 @@ public class DrawingPanel extends JPanel {
 									mayBuild = false;
 									hlPoint = null;
 									repaint();
+								}
+							} else {
+								// If building type is City it will go here
+								if (pc.emptySpaceCity(buildingType, hlPoint)) {
+									if (pc.buildObject(buildingType, hlPoint)) {
+										removeMaterialCards(buildingType);
+									}
+									// Log here
+									mayBuild = false;
+									hlPoint = null;
+									repaint();
+								}
 							}
 						} else if (hlPoint == null || !buildingType.equals("Street")) {
 							// Log here
@@ -227,8 +241,7 @@ public class DrawingPanel extends JPanel {
 						hlPoint = null;
 						repaint();
 					}
-				}
-				else if (mayBuild == true && buildingType.equals("DevCard")) {
+				} else if (mayBuild == true && buildingType.equals("DevCard")) {
 					removeMaterialCards(buildingType);
 					mayBuild = false;
 				}

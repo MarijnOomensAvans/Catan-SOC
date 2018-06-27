@@ -303,15 +303,19 @@ public class PlayerController {
 				case 1:
 					if (keys[0].equals("")) {
 						db.setBuilding("c01", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
+						db.removeVillage(Integer.parseInt(coords[0]), Integer.parseInt(coords[1]), playerID);
 					} else {
 						db.setBuilding("c02", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
+						db.removeVillage(Integer.parseInt(coords[0]), Integer.parseInt(coords[1]), playerID);
 					}
 					return true;
 				case 2:
 					db.setBuilding("c03", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
+					db.removeVillage(Integer.parseInt(coords[0]), Integer.parseInt(coords[1]), playerID);
 					return true;
 				case 3:
 					db.setBuilding("c04", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
+					db.removeVillage(Integer.parseInt(coords[0]), Integer.parseInt(coords[1]), playerID);
 					return true;
 				case 4:
 					return false;
@@ -456,6 +460,15 @@ public class PlayerController {
 
 	public int getBuildCount(int x) {
 		return Integer.parseInt(db.getBuildCount(Integer.parseInt(playerIDs[x])));
+	}
+
+	public boolean emptySpaceCity(String buildingType, String hlPoint) {
+		String[] coords = hlPoint.split(",");
+		if(!db.hasVillage(playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1])).equals("")) {
+			return true;
+		} else {
+		return false;
+		}
 	}
 
 }
