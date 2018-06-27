@@ -316,15 +316,7 @@ public class GameDAL {
 	public void setPlayersCanceld(int gameid) {
 		try {
 			Statement stmt = conn.createStatement();
-<<<<<<< HEAD:src/DAL/GameDAL.java
-<<<<<<< HEAD:src/DAL/SpelDAL.java
-			stmt.executeUpdate("UPDATE speler SET speelstatus = 'uitgespeeldd1E' WHERE idspel =" + gameid + ")");
-=======
 			stmt.executeUpdate("UPDATE speler SET speelstatus = 'uitgespeeld' WHERE idspel = " + gameid);
->>>>>>> e46ba8c075e623a3c11b7e39a471ec7e552986bf:src/DAL/GameDAL.java
-=======
-			stmt.executeUpdate("UPDATE speler SET speelstatus = 'uitgespeeld' WHERE idspel =" + gameid+")");
->>>>>>> parent of 41d7c68... lk:src/DAL/SpelDAL.java
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
