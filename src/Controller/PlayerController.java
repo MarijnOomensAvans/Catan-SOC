@@ -253,13 +253,10 @@ public class PlayerController {
 					} else {
 						canBuild = false;
 					}
-				} else {
-					canBuild = false;
-				}
+				} 
 			}
 		}
 		return canBuild;
-
 	}
 
 	public boolean buildObject(String buildingType, String hlPoint) {
