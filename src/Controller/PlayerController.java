@@ -182,13 +182,23 @@ public class PlayerController {
 	public boolean emptySpace(String buildingType, String hlPoint) {
 		String pieceID;
 		String buildings = "";
-		String buildings2 = "";
-		String buildings3 = "";
+		String buildingsxfrom = "";
+		String buildingsyfrom = "";
+		String buildingsxto = "";
+		String buildingsyto = "";
+		String[] firstCoords = hlPoint.split(",");
 		String[] coords = hlPoint.split(",");
+		String[] xcoordsto = null;
+		String[] ycoordsto = null;
+
 		int x = Integer.parseInt(coords[0]);
 		int y = Integer.parseInt(coords[1]);
 		int x2;
 		int y2;
+		int x3 = Integer.parseInt(firstCoords[0]);
+		int y3 = Integer.parseInt(firstCoords[1]);
+		int xto = 0;
+		int yto = 0;
 		boolean canBuild = true;
 		if (buildingType.equals("Village")) {
 			pieceID = "d0";
@@ -208,19 +218,38 @@ public class PlayerController {
 			for (int i = 0; i < (allBuild.length); i++) {
 				String xs = "x_van";
 				String ys = "y_van";
-				buildings2 = db.getCoords(Integer.parseInt(playerIDs[z]), allBuild[(i)], xs);
-				buildings3 = db.getCoords(Integer.parseInt(playerIDs[z]), allBuild[(i)], ys);
-				String[] xcoords = buildings2.split(",");
-				String[] ycoords = buildings3.split(",");
+				String xt = "x_naar";
+				String yt = "y_naar";
+				buildingsxfrom = db.getCoords(Integer.parseInt(playerIDs[z]), allBuild[(i)], xs);
+				buildingsyfrom = db.getCoords(Integer.parseInt(playerIDs[z]), allBuild[(i)], ys);
+				if (db.getType(Integer.parseInt(playerIDs[z]), x, y).equals("Street")) {
+					buildingsxto = db.getCoords(Integer.parseInt(playerIDs[z]), allBuild[(i)], xt);
+					buildingsyto = db.getCoords(Integer.parseInt(playerIDs[z]), allBuild[(i)], yt);
+					xcoordsto = buildingsxto.split(",");
+					ycoordsto = buildingsyto.split(",");
+				}
+				String[] xcoords = buildingsxfrom.split(",");
+				String[] ycoords = buildingsyfrom.split(",");
 				if (!xcoords[0].equals("")) {
 					x2 = Integer.parseInt(xcoords[0]);
 					y2 = Integer.parseInt(ycoords[0]);
+					if (xcoordsto != null) {
+						xto = Integer.parseInt(xcoordsto[0]);
+						yto = Integer.parseInt(ycoordsto[0]);
+					} else {
+						xto = 0;
+						yto = 0;
+					}
 				} else {
 					x2 = 0;
 					y2 = 0;
 				}
-				if (x == x2 && y == y2) {
+				if (!buildingType.equals("Street") && x == x2 && y == y2) {
 					canBuild = false;
+				} else {
+					if (x == x2 && y == y2 && x3 == xto && y3 == yto || x == xto && y == yto && x3 == x2 && y3 == y2) {
+						canBuild = false;
+					}
 				}
 			}
 		}
@@ -462,7 +491,9 @@ public class PlayerController {
 				point1 = db.hasStreetFrom(playerID, Integer.parseInt(splitTest[0]), Integer.parseInt(splitTest[1]));
 				point2 = db.hasStreetFrom(playerID, Integer.parseInt(splithlPoint[0]),
 						Integer.parseInt(splithlPoint[1]));
+				System.out.println(point1 + point2);
 				if (!point1.equals("") || !point2.equals("")) {
+					System.out.println("YEYA!");
 					return true;
 				} else {
 					return false;

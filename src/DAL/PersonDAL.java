@@ -617,6 +617,26 @@ public class PersonDAL {
 		
 	}
 	
+	public String getType(int playerID, int x, int y) {
+		String result = "";
+		Statement stmt = null;
+		String query = "SELECT idstuk FROM spelerstuk WHERE idspeler =" + playerID + " AND x_van = '"
+				+ x + "' AND y_van = '" + y + "'";
+		try {
+			stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+
+			if (rs.next()) {
+			result = rs.getString(1);
+			}
+			stmt.close();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
+		
+	}
+	
 	public String hasStreetFrom(int playerID, int x, int y) {
 		String result = "";
 		Statement stmt = null;
@@ -717,7 +737,7 @@ public class PersonDAL {
 
 	public void removeVillage(int x, int y, int idspeler) {
 		Statement stmt = null;
-		String query = "DELETE FROM spelerstuk WHERE x_van = " + x + " AND y_van = " + y + " AND idspeler= " + idspeler + "";
+		String query = "DELETE FROM spelerstuk WHERE x_van = " + x + " AND y_van = " + y + " AND idspeler= " + idspeler + " AND idstuk LIKE 'd0%'";
 		try {
 			stmt = conn.createStatement();
 			@SuppressWarnings("unused")
