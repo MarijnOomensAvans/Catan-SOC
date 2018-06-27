@@ -151,10 +151,10 @@ public class GameModel extends Observable {
 
 	public int getTradeRouteLength(int playerIndex)
 	{
+		visited = new ArrayList<StreetModel>();
 		int count = 0;
 		for (StreetModel street : playerStats.get(playerIndex).getStreets())
 		{
-			visited = new ArrayList<StreetModel>();
 			visited.add(street);
 			int count_from = getTradeRouteLength(street.getKeyX_from(), street.getKeyY_from(), playerIndex);
 			int count_to = getTradeRouteLength(street.getKeyX_to(), street.getKeyY_to(), playerIndex);
