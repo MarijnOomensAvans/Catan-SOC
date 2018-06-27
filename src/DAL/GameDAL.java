@@ -397,7 +397,7 @@ public class GameDAL {
 		try {
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery("SELECT st.idspeler, x_van, x_naar, y_van, y_naar FROM spelerstuk st\r\n" + 
-					"		JOIN speler s ON st.idspeler = s.idspeler WHERE s.idspel = 1 AND idstuk LIKE 'r%'");
+					"		JOIN speler s ON st.idspeler = s.idspeler WHERE s.idspel = " + gameid + " AND idstuk LIKE 'r%'");
 			while (rs.next()) {
 				allStreets.add(new StreetModel(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5)));
 			}

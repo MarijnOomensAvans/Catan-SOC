@@ -34,7 +34,7 @@ import View.chat.Chatoutputgui;
 import View.dice.DieContentPane;
 import View.setupGame.DrawingPanel;
 
-@SuppressWarnings({"serial","unused"})
+@SuppressWarnings({ "serial", "unused" })
 public class IngameView extends JPanel implements Observer {
 
 	private final int WIDTH = 1500;
@@ -84,7 +84,6 @@ public class IngameView extends JPanel implements Observer {
 	private JLabel woodCount;
 	private JLabel woolCount;
 	private JLabel wheatCount;
-	private JLabel biggestArmyLabel;
 
 	private int playerStoneCount;
 	private int playerOreCount;
@@ -274,6 +273,7 @@ public class IngameView extends JPanel implements Observer {
 		playersAndCardsLabel = new JLabel("Spelers en kaarten: ");
 		gameTurnLabel = new JLabel("Ronde: ");
 		largestArmyLabel = new JLabel("Grootste riddermacht: ");
+		nameBiggestArmyLabel = new JLabel(inGameController.getBiggestArmy(gameID));
 		longestRouteLabel = new JLabel("Langste handelsroute: ");
 		nameLongestRoutelabel = new JLabel(inGameController.getLongestRoute(gameID));
 		ownPointLabel = new JLabel("Eigen punten: ");
@@ -283,6 +283,7 @@ public class IngameView extends JPanel implements Observer {
 		playersAndCardsLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		gameTurnLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		largestArmyLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		nameBiggestArmyLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		longestRouteLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		nameLongestRoutelabel.setHorizontalAlignment(SwingConstants.CENTER);
 		ownPointLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -389,7 +390,7 @@ public class IngameView extends JPanel implements Observer {
 		gameTurnPanel.add(gameTurnLabel);
 		gameTurnPanel.add(nextTurn(gameID));
 		extraPointsPanel.add(largestArmyLabel);
-		extraPointsPanel.add(hasBiggestArmy());
+		extraPointsPanel.add(nameBiggestArmyLabel);
 		extraPointsPanel.add(longestRouteLabel);
 		extraPointsPanel.add(nameLongestRoutelabel);
 		ownPointsPanel.add(ownPointLabel);
@@ -436,19 +437,21 @@ public class IngameView extends JPanel implements Observer {
 		}
 	}
 
-	public JLabel hasBiggestArmy() {
+	public String biggestArmyPlayer() {
 		int biggest = 0;
 		String nameBiggest = "";
 		for (int i = 0; i < playerStats.size(); i++) {
 			if (playerStats.get(i).getKnightCards() > biggest) {
 				biggest = playerStats.get(i).getKnightCards();
 				nameBiggest = playerStats.get(i).getUsername();
+			}
+		}
+		if (biggest >= 3) {
+			if (!nameBiggest.equals(nameBiggestArmyLabel.getText())) {
 				inGameController.setbiggestArmy(gameID, nameBiggest);
 			}
 		}
-		biggestArmyLabel = new JLabel(nameBiggest);
-		biggestArmyLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		return biggestArmyLabel;
+		return nameBiggest;
 
 	}
 
@@ -559,7 +562,7 @@ public class IngameView extends JPanel implements Observer {
 			}
 		}
 	}
-	
+
 	public void resourceLabelsUpdateDevCards() {
 		playerStoneCount = inGameController.getPc().getAmountStone(playerID);
 		playerOreCount = inGameController.getPc().getAmountOre(playerID);
@@ -567,11 +570,11 @@ public class IngameView extends JPanel implements Observer {
 		playerWoolCount = inGameController.getPc().getAmountWool(playerID);
 		playerWheatCount = inGameController.getPc().getAmountWheat(playerID);
 
-				oreCount.setText(playerOreCount + "");
-				woodCount.setText(playerWoodCount + "");
-				woolCount.setText(playerWoolCount + "");
-				wheatCount.setText(playerWheatCount + "");
-				stoneCount.setText(playerStoneCount + "");
+		oreCount.setText(playerOreCount + "");
+		woodCount.setText(playerWoodCount + "");
+		woolCount.setText(playerWoolCount + "");
+		wheatCount.setText(playerWheatCount + "");
+		stoneCount.setText(playerStoneCount + "");
 
 	}
 
@@ -585,7 +588,7 @@ public class IngameView extends JPanel implements Observer {
 	}
 
 	public void biggestArmyUpdate() {
-		biggestArmyLabel.setText(inGameController.getBiggestArmy(gameID));
+		nameBiggestArmyLabel.setText(biggestArmyPlayer());
 	}
 
 	public void pointsLabelUpdate() {
@@ -653,7 +656,7 @@ public class IngameView extends JPanel implements Observer {
 	public void setBuildButton(boolean enable) {
 		buildButton.setEnabled(enable);
 	}
-	
+
 	public void setTradeButton(boolean enable) {
 		tradeButton.setEnabled(enable);
 		this.revalidate();
@@ -708,12 +711,12 @@ public class IngameView extends JPanel implements Observer {
 
 	public void closeEndTurnButton() {
 		endTurnButton.setEnabled(false);
-		
+
 	}
 
 	public void activateEndTurnButton() {
 		endTurnButton.setEnabled(true);
-		
+
 	}
 
 }

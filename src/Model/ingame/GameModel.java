@@ -66,17 +66,21 @@ public class GameModel extends Observable {
 	public void updateLongestRoute() {
 		String longestRoutePlayer = spelDal.getLongestRouteUsername(gameid);
 		String newLongestRoutePlayer = longestRoutePlayer;
+		int longestLength = 0;
 		int previousLength = 0;
-		for(int i = 0; i < playerStats.size(); i++) {
+		for (int i = 0; i < playerStats.size(); i++) {
 			int thisLength = getTradeRouteLength(i);
-			if(thisLength > previousLength) {
+			if (thisLength > previousLength) {
 				previousLength = thisLength;
+				longestLength = thisLength;
 				newLongestRoutePlayer = playerStats.get(i).getUsername();
 			}
 		}
-		
-		if(!newLongestRoutePlayer.equals(longestRoutePlayer)) {
-			spelDal.setLongestRoute(gameid, newLongestRoutePlayer);
+
+		if (longestLength >= 5) {
+			if (!newLongestRoutePlayer.equals(longestRoutePlayer)) {
+				spelDal.setLongestRoute(gameid, newLongestRoutePlayer);
+			}
 		}
 	}
 
@@ -149,35 +153,31 @@ public class GameModel extends Observable {
 		return spelDal.getPlayerTurn(gameid);
 	}
 
-	public int getTradeRouteLength(int playerIndex)
-	{
-		visited = new ArrayList<StreetModel>();
+	public int getTradeRouteLength(int playerIndex) {
 		int count = 0;
-		for (StreetModel street : playerStats.get(playerIndex).getStreets())
-		{
+		for (StreetModel street : playerStats.get(playerIndex).getStreets()) {
+			visited = new ArrayList<StreetModel>();
 			visited.add(street);
 			int count_from = getTradeRouteLength(street.getKeyX_from(), street.getKeyY_from(), playerIndex);
 			int count_to = getTradeRouteLength(street.getKeyX_to(), street.getKeyY_to(), playerIndex);
 			count = Math.max(count, 1 + count_from + count_to);
 		}
-		visited.clear();
+		if(visited != null) {
+			visited.clear();
+		}
 		return count;
 	}
 
-	public int getTradeRouteLength(int x, int y, int playerIndex)
-	{
+	public int getTradeRouteLength(int x, int y, int playerIndex) {
 		ArrayList<StreetModel> queue = new ArrayList<StreetModel>();
-		for (StreetModel street : playerStats.get(playerIndex).getStreets())
-		{
-			if (!visited.contains(street) && isConnected(x, y, street))
-			{
+		for (StreetModel street : playerStats.get(playerIndex).getStreets()) {
+			if (!visited.contains(street) && isConnected(x, y, street)) {
 				visited.add(street);
 				queue.add(street);
 			}
 		}
 		int count = 0;
-		for (int i = 0; i < queue.size(); i++)
-		{
+		for (int i = 0; i < queue.size(); i++) {
 			StreetModel street = queue.get(i);
 			int count_from = getTradeRouteLength(street.getKeyX_from(), street.getKeyY_from(), playerIndex);
 			int count_to = getTradeRouteLength(street.getKeyX_to(), street.getKeyY_to(), playerIndex);
@@ -186,12 +186,10 @@ public class GameModel extends Observable {
 		return count;
 	}
 
-	private boolean isConnected(int x, int y, StreetModel stuk)
-	{
+	private boolean isConnected(int x, int y, StreetModel stuk) {
 		boolean connected = false;
 		connected |= x == stuk.getKeyX_from() && y == stuk.getKeyY_from();
 		connected |= x == stuk.getKeyX_to() && y == stuk.getKeyY_to();
-
 		return connected;
 
 	}
