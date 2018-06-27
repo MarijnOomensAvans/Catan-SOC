@@ -160,7 +160,7 @@ public class GameModel extends Observable {
 			int count_to = getTradeRouteLength(street.getKeyX_to(), street.getKeyY_to(), playerIndex);
 			count = Math.max(count, 1 + count_from + count_to);
 		}
-		visited.clear();
+		//visited.clear();
 		return count;
 	}
 

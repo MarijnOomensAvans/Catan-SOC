@@ -1,2 +1,3 @@
 /bin/
 src/DAL/MainDAL.java
+src/Model/ingame/GameModel.java
