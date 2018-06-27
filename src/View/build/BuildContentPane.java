@@ -30,7 +30,7 @@ public class BuildContentPane extends JPanel{
 	private String buildingType;
 		
 	
-	public BuildContentPane(BuildFrame frame,PlayerController pc, DrawingPanel inGameBoard, BankController bc, int playerid) {
+	public BuildContentPane(BuildFrame frame, PlayerController pc, DrawingPanel inGameBoard, BankController bc, int playerid) {
 		buildcontroller = new BuildController();
 		this.pc = pc;
 		this.setLayout(gridLayout);
