@@ -40,7 +40,10 @@ private JButton usemono;
 private JButton useridder;
 private JButton usestrat;
 private JButton useuit;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9d2289ac87e2ab6fa1a8c2da33f8f417aea1aa5b
 
 private JTextField bibliotheekamount;
 private JTextField kathedraalamount;
@@ -76,12 +79,20 @@ private BufferedImage myBufferedImage9;
 			uitvinding = "uitvinding.jpg";
 			universiteit = "universiteit.jpg";
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9d2289ac87e2ab6fa1a8c2da33f8f417aea1aa5b
 			usemono = new JButton("Gebruik");
 			if(pc.getAmountMonopolie(playerid)== 0) {
 				usemono.setBackground(Color.GRAY);
 				usemono.setBorderPainted(false);
 				usemono.setEnabled(false);
 			}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9d2289ac87e2ab6fa1a8c2da33f8f417aea1aa5b
 			useridder = new JButton("Gebruik");
 			if(pc.getAmountRidder(playerid)== 0) {
 				useridder.setBackground(Color.GRAY);
@@ -129,7 +140,10 @@ private BufferedImage myBufferedImage9;
 			}
 		this.repaint();
 		
+<<<<<<< HEAD
 		
+=======
+>>>>>>> 9d2289ac87e2ab6fa1a8c2da33f8f417aea1aa5b
 		add(bibliotheekamount);
 		bibliotheekamount.setBounds(130,280, 30, 30);
 		
@@ -137,7 +151,10 @@ private BufferedImage myBufferedImage9;
 		add(kathedraalamount);
 		kathedraalamount.setBounds(340,280, 30, 30);
 		
+<<<<<<< HEAD
 	
+=======
+>>>>>>> 9d2289ac87e2ab6fa1a8c2da33f8f417aea1aa5b
 		add(marktamount);
 		marktamount.setBounds(550,280,30,30);
 		
@@ -147,6 +164,10 @@ private BufferedImage myBufferedImage9;
 		add(monopolieamount);
 		monopolieamount.setBounds(700,280,30,30);
 		
+<<<<<<< HEAD
+=======
+		
+>>>>>>> 9d2289ac87e2ab6fa1a8c2da33f8f417aea1aa5b
 		add(parlementamount);
 		parlementamount.setBounds(970,280,30,30);
 	
@@ -168,6 +189,10 @@ private BufferedImage myBufferedImage9;
 		add(uitvindingamount);
 		uitvindingamount.setBounds(490,560,30,30);
 		
+<<<<<<< HEAD
+=======
+		
+>>>>>>> 9d2289ac87e2ab6fa1a8c2da33f8f417aea1aa5b
 		add(universiteitamount);
 		universiteitamount.setBounds(760,560, 30,30);
 		
@@ -181,7 +206,6 @@ private BufferedImage myBufferedImage9;
 				}
 			}
 		});
-		
 		usemono.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
