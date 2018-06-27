@@ -222,6 +222,10 @@ public class IngameController {
 		
 	}
 	
+	public void update() {
+		pc.updateHand();
+	}
+	
 	public void logToChat(String log) {
 		chatController.logToChat(log);
 	}
