@@ -34,11 +34,6 @@ public class Chatoutputgui extends JPanel implements Observer {
 		add(scroll);
 		this.setBackground(Color.BLACK);
 	}
-	
-	public void logToChat(String log) {
-		output.append(log);
-		
-	}
 
 	@SuppressWarnings("unchecked")
 	@Override

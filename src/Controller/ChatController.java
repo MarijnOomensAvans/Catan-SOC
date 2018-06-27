@@ -24,17 +24,20 @@ public class ChatController implements Runnable {
 		cog = new Chatoutputgui(this, playerid);
 		t1.start();
 		chatmodel.addObserver(cog);
-		
 	}
 	
 	public Chatoutputgui getCog() {
 		return cog;
 	}
 
-	public void SendMessage(int playerid , String message) {
+	public void SendMessage(int playerid, String message) {
 		chatmodel.SendMessage(playerid, message);
-
 	}
+	
+	public void SendLog(int playerid, String message) {
+		chatmodel.SendMessage(playerid, "--LOG-- " + message + "\n");
+	}
+	
 	public ArrayList<String> getLatestMessage(int gameid) {
 		ArrayList<String> message = chatmodel.getLatestMessage(gameid);
 		return message;
@@ -53,13 +56,6 @@ public class ChatController implements Runnable {
 		}
 		}
 	}
-
-	public void logToChat(String log) {
-		cog.logToChat(log);
-		
-	}
-	
-	
 }
 
 
