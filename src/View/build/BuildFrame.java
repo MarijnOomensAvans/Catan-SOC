@@ -10,8 +10,10 @@ import View.setupGame.DrawingPanel;
 @SuppressWarnings("serial")
 public class BuildFrame extends JFrame{
 	private BuildContentPane buildcontentpane;
+	private IngameController igc;
 	
 	public BuildFrame(PlayerController pc, DrawingPanel inGameBoard, IngameController igc, BankController bc, int playerid) {
+		this.igc = igc;
 		buildcontentpane = new BuildContentPane(this, pc, inGameBoard, bc, playerid);
 		this.setTitle("Bouw");
 		setResizable(false);
@@ -34,6 +36,7 @@ public class BuildFrame extends JFrame{
 	}
 	
 	public void closeFrame() {
+		igc.setBuildButton(true);
 		this.dispose();
 	}
 	
