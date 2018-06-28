@@ -408,7 +408,7 @@ public class DrawingPanel extends JPanel {
 			String[] buildings = pc.getAllBuildings().split(",");
 			for (int x = 0; x < 4; x++) {
 				for (int y = 0; y < pc.getBuildCount(x); y++) {
-					if (buildings.length >= buildCounter) {
+					if (buildings.length > buildCounter) {
 						if (!buildings[buildCounter].equals("") || buildings[buildCounter] != null) {
 							String[] buildSplit = buildings[buildCounter].split("");
 							int xCoord1 = pc.getCoordX(buildings[buildCounter], x);
