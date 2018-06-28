@@ -230,4 +230,8 @@ public class IngameController {
 	public void logToChat(String log) {
 		chatController.SendLog(playerID, log);
 	}
+
+	public void shouldRefresh(int gameID, int playerID) {
+		gameModel.shouldRefresh(gameID, playerID);
+	}
 }

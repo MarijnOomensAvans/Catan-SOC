@@ -65,6 +65,7 @@ public class IngameView extends JPanel implements Observer {
 	private JButton tradeButton;
 	private JButton buildButton;
 	private JButton devcardButton;
+	private JButton refreshButton;
 	private Border border;
 
 	private ImageIcon stone;
@@ -255,6 +256,12 @@ public class IngameView extends JPanel implements Observer {
 			devcardButton.setEnabled(false);
 			inGameController.openDevcard();
 		});
+		
+		refreshButton = new JButton("Stuck? Refresh!");
+		refreshButton.setPreferredSize(new Dimension(300, 100));
+		refreshButton.addActionListener(e -> {
+			inGameController.shouldRefresh(gameID, playerID);
+		});
 		if (allowedToEnd(gameID) && inGameController.hasRolledDice(gameID)) {
 			endTurnButton.setEnabled(true);
 		}
@@ -387,6 +394,7 @@ public class IngameView extends JPanel implements Observer {
 		extraPointsPanel.add(nameLongestRoutelabel);
 		ownPointsPanel.add(ownPointLabel);
 		ownPointsPanel.add(ownPointsValueLabel);
+		ownPointsPanel.add(refreshButton);
 
 		rightPanel.add(playerTurnPanel);
 		rightPanel.add(playerCardsPanel);
