@@ -272,26 +272,22 @@ public class Player {
 			else if (i == 9) {
 				if (offer.get(i) > 0) {
 					for (int e = 0; e < offer.get(i); e++) {
-					//	if (hand.get(e).getKindOfMaterial().equals("G")) {
 							String cardId = pd.getOtherPlayerCard(this.player_id, "G");
-							; // get first card of this kind from opponent
+							 // get first card of this kind from opponent
 							pd.updateCard(cardId, otherplayerid, this.game_id); // give this card to the player that initiated the
 																	// trade
 
-					//	}
 					}
 				}
 			}
 			else if (i == 10) {
 				if (offer.get(i) > 0) {
 					for (int e = 0; e < offer.get(i); e++) {
-					//	if (hand.get(e).getKindOfMaterial().equals("H")) {
 							String cardId = pd.getOtherPlayerCard(this.player_id, "H");
 							; // get first card of this kind from opponent
 							pd.updateCard(cardId, otherplayerid, this.game_id); // give this card to the player that initiated the
 																	// trade
 
-					//	}
 					}
 				}
 			}

@@ -20,8 +20,6 @@ public class Chatinputgui extends JPanel {
 
 	public Chatinputgui(ChatController control, int playerid) {
 
-		// this.setPreferredSize(new Dimension(500,35));
-		// chatinput.setColumns(50);
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints gc = new GridBagConstraints();
 

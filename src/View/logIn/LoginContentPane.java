@@ -69,12 +69,6 @@ public class LoginContentPane extends JPanel {
 				switchScreenLogin();
 			}
 		});
-
-		//try {
-			//background = ImageIO.read(bgFile);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
 		
 		this.setLayout(new GridBagLayout());
 		
@@ -108,7 +102,6 @@ public class LoginContentPane extends JPanel {
 	@Override
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		//g.drawImage(background,  0, 0, null);
 		background.paintIcon(this, g, 0, 0);
 		g.drawImage(logo, 300, 10, null);
 	}
