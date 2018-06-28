@@ -372,7 +372,7 @@ public class PlayerController {
 			if (keys.length != 5) {
 				switch (keys.length) {
 				case 1:
-					if (keys[0].equals("") || !keys[0].equals("d01")) {
+					if (db.getCoordX(playerID, "d01") == 0) {
 						db.setBuilding("d01", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
 					} else {
 						db.setBuilding("d02", playerID, Integer.parseInt(coords[0]), Integer.parseInt(coords[1]));
@@ -433,7 +433,7 @@ public class PlayerController {
 		if (keys.length != 15) {
 			switch (keys.length) {
 			case 1:
-				if (keys[0].equals("")) {
+				if (db.getCoordX(playerID, "r01") == 0) {
 					db.setStreet("r01", playerID, x1, y1, x2, y2);
 				} else {
 					db.setStreet("r02", playerID, x1, y1, x2, y2);

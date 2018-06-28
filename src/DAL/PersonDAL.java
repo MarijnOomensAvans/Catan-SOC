@@ -477,8 +477,7 @@ public class PersonDAL {
 
 	public void setBuilding(String idstuk, int spelerID, int x, int y) {
 		Statement stmt = null;
-		String query = "INSERT INTO spelerstuk(idstuk,idspeler,x_van,y_van) VALUES('" + idstuk + "', '" + spelerID
-				+ "' , '" + x + "' , '" + y + "')";
+		String query = "UPDATE spelerstuk SET x_van = '" + x + "', y_van = '" + y + "' WHERE idstuk = '" + idstuk + "' AND idspeler = '" + spelerID + "'";
 		try {
 			stmt = conn.createStatement();
 			stmt.executeUpdate(query);
@@ -490,8 +489,7 @@ public class PersonDAL {
 
 	public void setStreet(String idstuk, int spelerID, int x, int y, int x2, int y2) {
 		Statement stmt = null;
-		String query = "INSERT INTO spelerstuk VALUES('" + idstuk + "', '" + spelerID + "' , '" + x + "' , '" + y
-				+ "' , '" + x2 + "' , '" + y2 + "')";
+		String query = "UPDATE spelerstuk SET x_van = '" + x + "', y_van = '" + y + "', x_naar = '" + x2 + "', y_naar = '" + y2 + "' WHERE idstuk = '" + idstuk + "' AND idspeler = '" + spelerID + "'";
 		try {
 			stmt = conn.createStatement();
 			stmt.executeUpdate(query);
