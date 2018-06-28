@@ -92,7 +92,6 @@ private BufferedImage myBufferedImage9;
 				usestrat.setBackground(Color.GRAY);
 				usestrat.setBorderPainted(false);
 				usestrat.setEnabled(false);
-
 			}
 			useuit = new JButton("Gebruik");
 			if(pc.getAmountUitvinding(playerid)== 0) {
@@ -174,6 +173,7 @@ private BufferedImage myBufferedImage9;
 				pc.useStratenbouw(playerid);
 				dp.setBuildDev(true, "Street");
 				dgui.dispose();
+				gameFrame.disableDevButton();
 				}
 			}
 		});
@@ -184,6 +184,7 @@ private BufferedImage myBufferedImage9;
 				pc.useMonopolie(playerid);
 				dgui.dispose();
 				new MonopolieFrame(pd, bc, pc, playerid, dp,gameFrame);
+				gameFrame.disableDevButton();
 				}
 			}
 		});
@@ -194,7 +195,7 @@ private BufferedImage myBufferedImage9;
 				pc.useRidder(playerid);
 				rb.robberThrown(pc.getGameid());
 				dgui.dispose();
-
+				gameFrame.disableDevButton();
 				
 				}
 			}
@@ -207,6 +208,7 @@ private BufferedImage myBufferedImage9;
 				pc.useUitvinding(playerid);
 				dgui.dispose();
 				new UitvindingFrame(pd, bc, pc, playerid, dp,gameFrame);
+				gameFrame.disableDevButton();
 				}
 			}
 				

@@ -731,4 +731,9 @@ public class IngameView extends JPanel implements Observer {
 		
 	}
 
+	public void disableDevButton() {
+		devcardButton.setEnabled(false);
+		
+	}
+
 }
