@@ -255,27 +255,7 @@ public class BankDAL {
 		}
 		return result;
 	}
-	
-	// public boolean checkDevCards(int gameid) {
-	// boolean result;
-	// Statement stmt = null;
-	// String query = "SELECT idontwikkelingskaart FROM spelerontwikkelingskaart
-	// WHERE idspel = "+gameid+"";
-	// try
-	// {
-	// stmt = conn.createStatement();
-	// ResultSet rs = stmt.executeQuery(query);
-	// if (!rs.isBeforeFirst() ) {
-	// System.out.println("No data");
-	// boolean result = tre
-	// }
-	// stmt.close();
-	// } catch (SQLException e)
-	// {
-	// System.out.println(e.getMessage());
-	// }
-	// return result;
-	// }
+
 
 	public boolean hasMatCards(int gameid) {
 	
