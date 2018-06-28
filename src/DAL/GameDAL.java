@@ -35,8 +35,9 @@ public class GameDAL {
 		usernames = getUsernames(gameid);
 
 		for (int i = 0; i < 4; i++) {
-			ArrayList<StreetModel> playerStreets = new ArrayList<StreetModel>(); //The list of streets belonging to the player at the current index
-			
+			ArrayList<StreetModel> playerStreets = new ArrayList<StreetModel>(); // The list of streets belonging to the
+																					// player at the current index
+
 			stats.get(i).setUsername(usernames.get(i));
 			stats.get(i).setDevelopmentPoints(getDevelopmentPoints(getPlayerId(gameid, stats.get(i).getUsername())));
 
@@ -47,13 +48,13 @@ public class GameDAL {
 			if (stats.get(i).getUsername().equals(longestRouteUsername)) {
 				stats.get(i).setTradeRoute(true);
 			}
-			
-			for(int n = 0; n < allStreets.size(); n++) {
-				if(stats.get(i).getPlayerId() == allStreets.get(n).getPlayerId()) {
+
+			for (int n = 0; n < allStreets.size(); n++) {
+				if (stats.get(i).getPlayerId() == allStreets.get(n).getPlayerId()) {
 					playerStreets.add(allStreets.get(n));
 				}
 			}
-			
+
 			stats.get(i).setStreets(playerStreets);
 		}
 
@@ -130,9 +131,8 @@ public class GameDAL {
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(
 					"SELECT s.stuksoort, COUNT(s.stuksoort) FROM spelerstuk st JOIN stuk s ON st.idstuk = s.idstuk"
-							+ " WHERE s.stuksoort NOT LIKE 'straat' AND st.idspeler = " + playerid  
-							+ " AND st.x_van IS NOT null AND st.y_van IS NOT NULL "
-							+ " GROUP BY s.stuksoort");
+							+ " WHERE s.stuksoort NOT LIKE 'straat' AND st.idspeler = " + playerid
+							+ " AND st.x_van IS NOT null AND st.y_van IS NOT NULL " + " GROUP BY s.stuksoort");
 			while (rs.next()) {
 				if (rs.getString(1).equals("dorp")) {
 					villageCount = rs.getInt(2);
@@ -146,8 +146,8 @@ public class GameDAL {
 			e.printStackTrace();
 		}
 
-		stats = new PlayerStats(resourceCards, developmentCards, knightCards, villageCount, cityCount,
-				developmentCards, playerid);
+		stats = new PlayerStats(resourceCards, developmentCards, knightCards, villageCount, cityCount, developmentCards,
+				playerid);
 		return stats;
 	}
 
@@ -254,13 +254,15 @@ public class GameDAL {
 	}
 
 	public void setPlayerTurn(int gameid, String username) {
-		try {
-			Statement stmt = conn.createStatement();
-			stmt.executeUpdate("UPDATE spel SET beurt_idspeler = " + this.getPlayerId(gameid, username)
-					+ " WHERE idspel = " + gameid);
-			stmt.close(); 
-		} catch (SQLException e) {
-			e.printStackTrace();
+		if (!username.equals("") && username != null) {
+			try {
+				Statement stmt = conn.createStatement();
+				stmt.executeUpdate("UPDATE spel SET beurt_idspeler = " + this.getPlayerId(gameid, username)
+						+ " WHERE idspel = " + gameid);
+				stmt.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		}
 
 		try {
@@ -311,7 +313,7 @@ public class GameDAL {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void setPlayersCanceld(int gameid) {
 		try {
 			Statement stmt = conn.createStatement();
@@ -363,9 +365,9 @@ public class GameDAL {
 	public int getBuildingCount(int gameid, int volgnr) {
 		try {
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT count(*)  FROM spelerstuk ss JOIN speler s "
-					+ "ON ss.idspeler = s.idspeler JOIN stuk st " + "ON st.idstuk = ss.idstuk WHERE s.volgnr = '"
-					+ volgnr + "' AND s.idspel = " + gameid );
+			ResultSet rs = stmt.executeQuery(
+					"SELECT count(*)  FROM spelerstuk ss JOIN speler s " + "ON ss.idspeler = s.idspeler JOIN stuk st "
+							+ "ON st.idstuk = ss.idstuk WHERE s.volgnr = '" + volgnr + "' AND s.idspel = " + gameid);
 			while (rs.next()) {
 				return rs.getInt(1);
 			}
@@ -378,7 +380,7 @@ public class GameDAL {
 
 	public void setFirstTurn(int gameid, boolean b) {
 		int value = 0;
-		if(b) {
+		if (b) {
 			value = 1;
 		}
 		try {
@@ -389,21 +391,22 @@ public class GameDAL {
 			e.printStackTrace();
 		}
 	}
-	
+
 	private ArrayList<StreetModel> getStreetsInGame(int gameid) {
 		ArrayList<StreetModel> allStreets = new ArrayList<StreetModel>();
-		
+
 		try {
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT st.idspeler, x_van, x_naar, y_van, y_naar FROM spelerstuk st\r\n" + 
-					"		JOIN speler s ON st.idspeler = s.idspeler WHERE s.idspel = " + gameid + " AND idstuk LIKE 'r%'");
+			ResultSet rs = stmt.executeQuery("SELECT st.idspeler, x_van, x_naar, y_van, y_naar FROM spelerstuk st\r\n"
+					+ "		JOIN speler s ON st.idspeler = s.idspeler WHERE s.idspel = " + gameid
+					+ " AND idstuk LIKE 'r%'");
 			while (rs.next()) {
 				allStreets.add(new StreetModel(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getInt(5)));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return allStreets;
 	}
 

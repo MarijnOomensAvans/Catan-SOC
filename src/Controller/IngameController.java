@@ -117,6 +117,7 @@ public class IngameController {
 	}
 
 	public void setPlayerTurn(int gameid, String username) {
+		System.out.println("LOG IngameController.java | username: " + username);
 		gameModel.setPlayerTurn(gameid, username);
 	}
 

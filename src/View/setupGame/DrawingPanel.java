@@ -408,85 +408,87 @@ public class DrawingPanel extends JPanel {
 			String[] buildings = pc.getAllBuildings().split(",");
 			for (int x = 0; x < 4; x++) {
 				for (int y = 0; y < pc.getBuildCount(x); y++) {
-					if (!buildings[buildCounter].equals("") || buildings[buildCounter] != null) {
-						String[] buildSplit = buildings[buildCounter].split("");
-						int xCoord1 = pc.getCoordX(buildings[buildCounter], x);
-						int xCoord2 = pc.getCoordXStreet(buildings[buildCounter], x);
-						int yCoord1 = pc.getCoordY(buildings[buildCounter], x);
-						int yCoord2 = pc.getCoordYStreet(buildings[buildCounter], x);
-						int xCoord = (((buildingConvertXfromKeyToScreenX(xCoord1))
-								+ (buildingConvertXfromKeyToScreenX(xCoord2))) / 2);
-						int yCoord = (buildingConvertYfromKeyToScreenY(((xCoord1 + xCoord2) / 2), yCoord1)
-								+ buildingConvertYfromKeyToScreenY(((xCoord1 + xCoord2) / 2), yCoord2)) / 2;
-						switch (buildSplit[0]) {
-						case "d":
-							switch (x) {
-							case 0:
-								village_Red.paintIcon(this, g, buildingConvertXfromKeyToScreenX(xCoord1) - 17,
-										buildingConvertYfromKeyToScreenY(xCoord1, yCoord1) - 20);
-								buildCounter++;
+					if (buildings.length >= buildCounter) {
+						if (!buildings[buildCounter].equals("") || buildings[buildCounter] != null) {
+							String[] buildSplit = buildings[buildCounter].split("");
+							int xCoord1 = pc.getCoordX(buildings[buildCounter], x);
+							int xCoord2 = pc.getCoordXStreet(buildings[buildCounter], x);
+							int yCoord1 = pc.getCoordY(buildings[buildCounter], x);
+							int yCoord2 = pc.getCoordYStreet(buildings[buildCounter], x);
+							int xCoord = (((buildingConvertXfromKeyToScreenX(xCoord1))
+									+ (buildingConvertXfromKeyToScreenX(xCoord2))) / 2);
+							int yCoord = (buildingConvertYfromKeyToScreenY(((xCoord1 + xCoord2) / 2), yCoord1)
+									+ buildingConvertYfromKeyToScreenY(((xCoord1 + xCoord2) / 2), yCoord2)) / 2;
+							switch (buildSplit[0]) {
+							case "d":
+								switch (x) {
+								case 0:
+									village_Red.paintIcon(this, g, buildingConvertXfromKeyToScreenX(xCoord1) - 17,
+											buildingConvertYfromKeyToScreenY(xCoord1, yCoord1) - 20);
+									buildCounter++;
+									break;
+								case 1:
+									village_White.paintIcon(this, g, buildingConvertXfromKeyToScreenX(xCoord1) - 17,
+											buildingConvertYfromKeyToScreenY(xCoord1, yCoord1) - 20);
+									buildCounter++;
+									break;
+								case 2:
+									village_Blue.paintIcon(this, g, buildingConvertXfromKeyToScreenX(xCoord1) - 17,
+											buildingConvertYfromKeyToScreenY(xCoord1, yCoord1) - 20);
+									buildCounter++;
+									break;
+								case 3:
+									village_Orange.paintIcon(this, g, buildingConvertXfromKeyToScreenX(xCoord1) - 17,
+											buildingConvertYfromKeyToScreenY(xCoord1, yCoord1) - 20);
+									buildCounter++;
+									break;
+								}
 								break;
-							case 1:
-								village_White.paintIcon(this, g, buildingConvertXfromKeyToScreenX(xCoord1) - 17,
-										buildingConvertYfromKeyToScreenY(xCoord1, yCoord1) - 20);
-								buildCounter++;
+							case "r":
+								switch (x) {
+								case 0:
+									street_Red.paintIcon(this, g, xCoord - 17, yCoord - 5);
+									buildCounter++;
+									break;
+								case 1:
+									street_White.paintIcon(this, g, xCoord - 17, yCoord - 5);
+									buildCounter++;
+									break;
+								case 2:
+									street_Blue.paintIcon(this, g, xCoord - 17, yCoord - 5);
+									buildCounter++;
+									break;
+								case 3:
+									street_Orange.paintIcon(this, g, xCoord - 17, yCoord - 5);
+									buildCounter++;
+									break;
+								}
 								break;
-							case 2:
-								village_Blue.paintIcon(this, g, buildingConvertXfromKeyToScreenX(xCoord1) - 17,
-										buildingConvertYfromKeyToScreenY(xCoord1, yCoord1) - 20);
-								buildCounter++;
-								break;
-							case 3:
-								village_Orange.paintIcon(this, g, buildingConvertXfromKeyToScreenX(xCoord1) - 17,
-										buildingConvertYfromKeyToScreenY(xCoord1, yCoord1) - 20);
-								buildCounter++;
+							case "c":
+								switch (x) {
+								case 0:
+									city_Red.paintIcon(this, g, buildingConvertXfromKeyToScreenX(xCoord1) - 17,
+											buildingConvertYfromKeyToScreenY(xCoord1, yCoord1) - 20);
+									buildCounter++;
+									break;
+								case 1:
+									city_White.paintIcon(this, g, buildingConvertXfromKeyToScreenX(xCoord1) - 17,
+											buildingConvertYfromKeyToScreenY(xCoord1, yCoord1) - 20);
+									buildCounter++;
+									break;
+								case 2:
+									city_Blue.paintIcon(this, g, buildingConvertXfromKeyToScreenX(xCoord1) - 17,
+											buildingConvertYfromKeyToScreenY(xCoord1, yCoord1) - 20);
+									buildCounter++;
+									break;
+								case 3:
+									city_Orange.paintIcon(this, g, buildingConvertXfromKeyToScreenX(xCoord1) - 17,
+											buildingConvertYfromKeyToScreenY(xCoord1, yCoord1) - 20);
+									buildCounter++;
+									break;
+								}
 								break;
 							}
-							break;
-						case "r":
-							switch (x) {
-							case 0:
-								street_Red.paintIcon(this, g, xCoord - 17, yCoord - 5);
-								buildCounter++;
-								break;
-							case 1:
-								street_White.paintIcon(this, g, xCoord - 17, yCoord - 5);
-								buildCounter++;
-								break;
-							case 2:
-								street_Blue.paintIcon(this, g, xCoord - 17, yCoord - 5);
-								buildCounter++;
-								break;
-							case 3:
-								street_Orange.paintIcon(this, g, xCoord - 17, yCoord - 5);
-								buildCounter++;
-								break;
-							}
-							break;
-						case "c":
-							switch (x) {
-							case 0:
-								city_Red.paintIcon(this, g, buildingConvertXfromKeyToScreenX(xCoord1) - 17,
-										buildingConvertYfromKeyToScreenY(xCoord1, yCoord1) - 20);
-								buildCounter++;
-								break;
-							case 1:
-								city_White.paintIcon(this, g, buildingConvertXfromKeyToScreenX(xCoord1) - 17,
-										buildingConvertYfromKeyToScreenY(xCoord1, yCoord1) - 20);
-								buildCounter++;
-								break;
-							case 2:
-								city_Blue.paintIcon(this, g, buildingConvertXfromKeyToScreenX(xCoord1) - 17,
-										buildingConvertYfromKeyToScreenY(xCoord1, yCoord1) - 20);
-								buildCounter++;
-								break;
-							case 3:
-								city_Orange.paintIcon(this, g, buildingConvertXfromKeyToScreenX(xCoord1) - 17,
-										buildingConvertYfromKeyToScreenY(xCoord1, yCoord1) - 20);
-								buildCounter++;
-								break;
-							}
-							break;
 						}
 					}
 				}

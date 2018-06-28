@@ -526,7 +526,7 @@ public class IngameView extends JPanel implements Observer {
 		} else if (playerStats.get(3).getUsername().equals(inGameController.getTurn(id))) {
 			turnPlayer = playerStats.get(2).getUsername();
 		}
-
+		System.out.println("LOG: IngameView.java | turnplayer: " + turnPlayer);
 		return turnPlayer;
 	}
 
