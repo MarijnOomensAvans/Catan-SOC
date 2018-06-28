@@ -118,8 +118,8 @@ public class LobbyDAL {
 	public void acceptInvite(int gameID) {
 		try {
 			Statement stmt = conn.createStatement();
-			stmt.executeUpdate("UPDATE speler SET speelstatus = 'geaccepteerd' " + "WHERE idspel = "
-					+ gameID + " " + "AND username LIKE '" + LoginController.getUsername() + "'");
+			stmt.executeUpdate("UPDATE speler SET speelstatus = 'geaccepteerd' " + "WHERE idspel = " + gameID + " "
+					+ "AND username LIKE '" + LoginController.getUsername() + "'");
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -129,8 +129,8 @@ public class LobbyDAL {
 	public void rejectInvite(int gameID) {
 		try {
 			Statement stmt = conn.createStatement();
-			stmt.executeUpdate("UPDATE speler SET speelstatus = 'geweigerd' " + "WHERE `idspel`= "
-					+ gameID + " " + "AND username LIKE '" + LoginController.getUsername() + "'");
+			stmt.executeUpdate("UPDATE speler SET speelstatus = 'geweigerd' " + "WHERE `idspel`= " + gameID + " "
+					+ "AND username LIKE '" + LoginController.getUsername() + "'");
 			stmt.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -261,13 +261,48 @@ public class LobbyDAL {
 			e.printStackTrace();
 		}
 
+		insertPieces(playerid);
 		return playerid;
+	}
+	
+	public void insertPieces(int playerID) {
+		char pieceType = 'd';
+		for(int i = 1; i < 6; i++) {
+			System.out.println(pieceType + "0" + i);
+			insertPiece(pieceType + "0" + i, playerID);
+		}
+		pieceType = 'c';
+		for(int i = 1; i < 5; i++) {
+			System.out.println(pieceType + "0" + i);
+			insertPiece(pieceType + "0" + i, playerID);
+		}
+		pieceType = 'r';
+		for(int i = 1; i < 10; i++) {
+			System.out.println(pieceType + "0" + i);
+			insertPiece(pieceType + "0" + i, playerID);
+		}
+		for(int i = 0; i < 6; i++) {
+			System.out.println(pieceType + "1" + i);
+			insertPiece(pieceType + "1" + i, playerID);
+		}
+	}
+
+	public void insertPiece(String idstuk, int spelerID) {
+		Statement stmt = null;
+		String query = "INSERT INTO spelerstuk(idstuk,idspeler) VALUES('" + idstuk + "', '" + spelerID + "')";
+		try {
+			stmt = conn.createStatement();
+			stmt.executeUpdate(query);
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void updateInvitation(String username, int gameid, int volgnr) {
 		System.out.println("UPDATING INVITATION");
 		System.out.println("Username: " + username + ", GameID: " + gameid + " Volgnr: " + volgnr);
-		
+
 		try {
 
 			Statement stmt = conn.createStatement();
