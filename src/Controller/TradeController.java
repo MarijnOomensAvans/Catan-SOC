@@ -24,6 +24,7 @@ public class TradeController extends Observable implements Runnable {
 	private int gameid;
 	private int noOffers;
 	private TradeGui gui;
+	@SuppressWarnings("unused")
 	private Player player;
 	private TradeOfferPane top;
 	private TradeAcceptPane tap;
@@ -47,13 +48,9 @@ public class TradeController extends Observable implements Runnable {
 		this.gameid = gameid;
 		this.pc = pc;
 		otherIds = pd.getOtherid(gameid, playerid);
-		// tap = new TradeAcceptPane(this, playerid);
 		t1 = new Thread(this);
 		t1.start();
 		otherPlayers = new TradeOtherPlayers(pd);
-		// TradeOfferPane top = new TradeOfferPane(this, playerid, true);
-		// tap = new TradeAcceptPane(this, playerid);
-		// gui = new TradeGui(this, playerid, top, tap, gameid);
 		this.igc = igc;
 
 	}

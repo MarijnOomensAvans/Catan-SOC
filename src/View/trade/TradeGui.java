@@ -66,15 +66,6 @@ public class TradeGui extends JFrame {
 				} catch (ClassCastException exc) {
 
 				}
-//				try {
-//					if ((TradeResultPane) getContentPane() == tradeController.getTRP()) {
-//						tradeController.removeTRP();
-//						ArrayList<Integer> ids = tradeController.getOtherid(gameid, playerid);
-//						tradeController.deleteOffers(playerid, ids.get(0), ids.get(1), ids.get(2));
-//					}
-//				} catch (ClassCastException exc) {
-//
-//				}
 			}
 		});
 	}

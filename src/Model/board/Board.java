@@ -22,18 +22,18 @@ public class Board {
 	private int boardType;
 	private int counter = 0;
 
-	public void setBoardType(int idspel, int boardType) {
+	public void setBoardType(int idgame, int boardType) {
 		this.boardType = boardType;
-		bdal.setBoardType(idspel, boardType);
+		bdal.setBoardType(idgame, boardType);
 	}
 
-	public void finishBoard(int idspel) {
+	public void finishBoard(int idgame) {
 		switch (this.boardType) {
 		case 1:
-			setStandardBoard(idspel);
+			setStandardBoard(idgame);
 			break;
 		case 2:
-			setRandomBoard(idspel);
+			setRandomBoard(idgame);
 			break;
 		}
 	}

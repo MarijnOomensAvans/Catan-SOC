@@ -12,11 +12,11 @@ public class BoardDAL {
 
 	// ------------------------------------------------------------------------------------------------------------------------
 	// This will put the tiles into the database.
-	public void setTile(int idspel, int idtegel, int x, int y, char idgrondstofsoort, int idgetalfiche) {
+	public void setTile(int idgame, int idtile, int x, int y, char idresourcekind, int idchit) {
 		Statement stmt = null;
-		if (idgrondstofsoort != 'X') {
-			String query = "INSERT INTO tegel VALUES('" + idspel + "', '" + idtegel + "' , '" + x + "' , '" + y
-					+ "' , '" + idgrondstofsoort + "' ,  '" + idgetalfiche + "')";
+		if (idresourcekind != 'X') {
+			String query = "INSERT INTO tegel VALUES('" + idgame + "', '" + idtile + "' , '" + x + "' , '" + y
+					+ "' , '" + idresourcekind + "' ,  '" + idchit + "')";
 			try {
 				stmt = conn.createStatement();
 				stmt.executeUpdate(query);
@@ -25,13 +25,13 @@ public class BoardDAL {
 				System.out.println(e.getMessage());
 			}
 		} else { // if tile is desert
-			String query = "INSERT INTO tegel(idspel,idtegel,x,y,idgrondstofsoort) VALUES('" + idspel + "', '" + idtegel
-					+ "' , '" + x + "' , '" + y + "' , '" + idgrondstofsoort + "')";
+			String query = "INSERT INTO tegel(idspel,idtegel,x,y,idgrondstofsoort) VALUES('" + idgame + "', '" + idtile
+					+ "' , '" + x + "' , '" + y + "' , '" + idresourcekind + "')";
 			try {
 				stmt = conn.createStatement();
 				stmt.executeUpdate(query);
 				stmt.close();
-				this.setRobberTile(idspel, idtegel);
+				this.setRobberTile(idgame, idtile);
 			} catch (SQLException e) {
 				System.out.println(e.getMessage());
 			}
@@ -40,15 +40,14 @@ public class BoardDAL {
 
 	// ------------------------------------------------------------------------------------------------------------------------
 	// This will update the tiles if a different boardtype is chosen.
-	public void updateTile(int idspel, int idtegel, int x, int y, char idgrondstofsoort, int idgetalfiche) {
+	public void updateTile(int idgame, int idtile, int x, int y, char idresourcekind, int idchit) {
 		Statement stmt = null;
-		if (idgetalfiche != 0) {
+		if (idchit != 0) {
 			try {
 				stmt = conn.createStatement();
-				// Add + "', `idgetalfiche`='" + idgetalfiche + "' " + " later.
-				stmt.executeUpdate("UPDATE `tegel` SET `idgrondstofsoort`='" + idgrondstofsoort + "', `idgetalfiche`='"
-						+ idgetalfiche + "' " + " WHERE `idspel`= " + idspel + " AND `x` = " + x + " AND `y` = " + y
-						+ " AND `idtegel` = " + idtegel);
+				stmt.executeUpdate("UPDATE `tegel` SET `idgrondstofsoort`='" + idresourcekind + "', `idgetalfiche`='"
+						+ idchit + "' " + " WHERE `idspel`= " + idgame + " AND `x` = " + x + " AND `y` = " + y
+						+ " AND `idtegel` = " + idtile);
 				stmt.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -58,8 +57,8 @@ public class BoardDAL {
 				stmt = conn.createStatement();
 				// Add + "', `idgetalfiche`='" + idgetalfiche + "' " + " later.
 				stmt.executeUpdate(
-						"UPDATE `tegel` SET `idgrondstofsoort`='" + idgrondstofsoort + "'" + " WHERE `idspel`= "
-								+ idspel + " AND `x` = " + x + " AND `y` = " + y + " AND `idtegel` = " + idtegel);
+						"UPDATE `tegel` SET `idgrondstofsoort`='" + idresourcekind + "'" + " WHERE `idspel`= "
+								+ idgame + " AND `x` = " + x + " AND `y` = " + y + " AND `idtegel` = " + idtile);
 				stmt.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -69,11 +68,11 @@ public class BoardDAL {
 
 	// ------------------------------------------------------------------------------------------------------------------------
 	// This removes the chits when a new board type is chosen.
-	public void removeChits(int idspel, int x, int y) {
+	public void removeChits(int idgame, int x, int y) {
 		Statement stmt = null;
 		try {
 			stmt = conn.createStatement();
-			stmt.executeUpdate("UPDATE `tegel` SET `idgetalfiche`=NULL " + "WHERE `idspel`= " + idspel + " AND `x` = "
+			stmt.executeUpdate("UPDATE `tegel` SET `idgetalfiche`=NULL " + "WHERE `idspel`= " + idgame + " AND `x` = "
 					+ x + " AND `y` = " + y);
 			stmt.close();
 		} catch (SQLException e) {
@@ -125,11 +124,11 @@ public class BoardDAL {
 
 	// ------------------------------------------------------------------------------------------------------------------------
 	// Check for resource of tile.
-	public char getResourceTile(int idspel, int x, int y) {
+	public char getResourceTile(int idgame, int x, int y) {
 		String s = "idgrondstofsoort";
 		try {
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT idgrondstofsoort FROM tegel WHERE idspel = '" + idspel
+			ResultSet rs = stmt.executeQuery("SELECT idgrondstofsoort FROM tegel WHERE idspel = '" + idgame
 					+ "' && x = '" + x + "' && y = '" + y + "'");
 
 			if (rs.next()) {
@@ -144,11 +143,11 @@ public class BoardDAL {
 
 	// ------------------------------------------------------------------------------------------------------------------------
 	// Check for chit of tile
-	public int getChit(int idspel, int x, int y) {
+	public int getChit(int idgame, int x, int y) {
 		String s = "idgetalfiche";
 		try {
 			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery("SELECT idgetalfiche FROM tegel WHERE idspel = '" + idspel + "' && x = '"
+			ResultSet rs = stmt.executeQuery("SELECT idgetalfiche FROM tegel WHERE idspel = '" + idgame + "' && x = '"
 					+ x + "' && y = '" + y + "'");
 
 			if (rs.next()) {
@@ -163,9 +162,9 @@ public class BoardDAL {
 
 	// ------------------------------------------------------------------------------------------------------------------------
 	// Check for boardtype of game.
-	public void setBoardType(int idspel, int boardType) {
+	public void setBoardType(int idgame, int boardType) {
 		Statement stmt = null;
-		String query = "UPDATE spel SET israndomboard = '" + (boardType - 1) + "' WHERE idspel = '" + idspel + "' ";
+		String query = "UPDATE spel SET israndomboard = '" + (boardType - 1) + "' WHERE idspel = '" + idgame + "' ";
 		try {
 			stmt = conn.createStatement();
 			stmt.executeUpdate(query);
@@ -177,9 +176,9 @@ public class BoardDAL {
 
 	// ------------------------------------------------------------------------------------------------------------------------
 	// Set robber position
-	public void setRobberTile(int gameid, int tile) {
+	public void setRobberTile(int idgame, int tile) {
 		Statement stmt = null;
-		String query = "UPDATE spel SET struikrover_idtegel = '" + tile + "' WHERE idspel = '" + gameid + "' ";
+		String query = "UPDATE spel SET struikrover_idtegel = '" + tile + "' WHERE idspel = '" + idgame + "' ";
 		try {
 			stmt = conn.createStatement();
 			stmt.executeUpdate(query);
@@ -290,11 +289,11 @@ public class BoardDAL {
 		return i;
 	}
 
-	public int getBuildingplayer(int x, int y, Integer idspeler) {
+	public int getBuildingplayer(int x, int y, Integer idplayer) {
 		int i = 0;
 		try {
 			Statement stmt = conn.createStatement();
-			String query = "SELECT idspeler FROM spelerstuk WHERE x_van = " + x + " AND y_van =" + y+" AND idspeler = " + idspeler;
+			String query = "SELECT idspeler FROM spelerstuk WHERE x_van = " + x + " AND y_van =" + y+" AND idspeler = " + idplayer;
 			ResultSet rs = stmt.executeQuery(query);
 			rs.next();
 			i = rs.getInt(1);
