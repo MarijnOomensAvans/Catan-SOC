@@ -193,4 +193,8 @@ public class GameModel extends Observable {
 		return connected;
 
 	}
+
+	public void shouldRefresh(int gameID, int playerID) {
+		spelDal.shouldRefresh(gameID, playerID);
+	}
 }

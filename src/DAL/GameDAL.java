@@ -410,4 +410,14 @@ public class GameDAL {
 		return allStreets;
 	}
 
+	public void shouldRefresh(int gameID, int playerID) {
+		try {
+			Statement stmt = conn.createStatement();
+			stmt.executeUpdate("UPDATE speler SET shouldrefresh = 1 WHERE idspel = " + gameID + " AND idspeler = " + playerID);
+			stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 }
