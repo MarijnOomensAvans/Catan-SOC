@@ -257,7 +257,7 @@ public class IngameView extends JPanel implements Observer {
 			inGameController.openDevcard();
 		});
 		
-		refreshButton = new JButton("Stuck? Refresh!");
+		refreshButton = new JButton("Vast? Ververs!");
 		refreshButton.setPreferredSize(new Dimension(300, 100));
 		refreshButton.addActionListener(e -> {
 			inGameController.shouldRefresh(gameID, playerID);
