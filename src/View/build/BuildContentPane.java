@@ -51,7 +51,7 @@ public class BuildContentPane extends JPanel{
 
             }
         });
-		if(!(pc.hasStoneCards(1) && pc.hasWheatCards(1) && pc.hasWoodCards(1) && pc.hasWoolCards(1))) {
+		if(pc.getAmountWood(playerid) < 1 || pc.getAmountStone(playerid) < 1 || pc.getAmountWheat(playerid) < 1 || pc.getAmountWool(playerid) < 1) {
 			villageBuild.setEnabled(false);
 		}
 		villageBuild.setPreferredSize(buttonsize);
