@@ -234,4 +234,9 @@ public class IngameController {
 	public void shouldRefresh(int gameID, int playerID) {
 		gameModel.shouldRefresh(gameID, playerID);
 	}
+
+	public void disableBuildButton(boolean disable) {
+		gameFrame.disableBuildButton(disable);
+		
+	}
 }

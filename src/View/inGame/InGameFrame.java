@@ -92,4 +92,9 @@ public class InGameFrame extends JFrame {
 	public void updateGui() {
 		pane.resourceLabelsUpdateDevCards();
 	}
+
+	public void disableBuildButton(boolean disable) {
+		pane.disableBuildButton(disable);
+		
+	}
 }

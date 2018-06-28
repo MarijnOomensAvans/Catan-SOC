@@ -720,4 +720,9 @@ public class IngameView extends JPanel implements Observer {
 
 	}
 
+	public void disableBuildButton(boolean disable) {
+		buildButton.setEnabled(disable);
+		
+	}
+
 }

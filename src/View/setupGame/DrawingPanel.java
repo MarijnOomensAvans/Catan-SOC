@@ -245,6 +245,7 @@ public class DrawingPanel extends JPanel {
 					mayBuild = false;
 				}
 				if (mayMoveRobber == true) {
+					inGameController.disableBuildButton(false);
 					inGameController.setHasMovedRobber(false);
 					String returnString = tileConvertXYfromScreenToKey(e.getX(), e.getY());
 					if (returnString != null) {
@@ -256,6 +257,7 @@ public class DrawingPanel extends JPanel {
 							robber.setBounds(bc.getRobberXPosition(gameID) - 45, bc.getRobberYPosition(gameID) - 30, 25,
 									60);
 							rb.choose(gameID, x, y);
+							inGameController.disableBuildButton(true);
 							mayMoveRobber = false;
 						}
 					}
