@@ -149,7 +149,7 @@ public class PlayerController {
 		player.updateCards(otherplayerid, offer);
 
 	}
-
+	//set developmentcard as used in database
 	public void useRidder(int playerid) {
 		db.useDevelopmentCard("___r", playerid);
 	}

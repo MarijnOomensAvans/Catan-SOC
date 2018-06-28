@@ -70,7 +70,7 @@ public class BuildContentPane extends JPanel{
             	frame.closeFrame();
             }
         });
-		if(!(pc.hasOreCards(3) && pc.hasWheatCards(2))) {
+		if((pc.getAmountOre(playerid) < 3 || pc.getAmountWheat(playerid) < 2)) {
 			cityBuild.setEnabled(false);
 		}
 		cityBuild.setPreferredSize(buttonsize);
@@ -89,7 +89,7 @@ public class BuildContentPane extends JPanel{
             	frame.closeFrame();
             }
         });
-		if(!(pc.hasStoneCards(1) && pc.hasWoodCards(1))) {
+		if((pc.getAmountStone(playerid) < 1 || pc.getAmountWood(playerid) < 1)) {
 			streetBuild.setEnabled(false);
 		}
 		streetBuild.setPreferredSize(buttonsize);
@@ -115,7 +115,8 @@ public class BuildContentPane extends JPanel{
             	frame.closeFrame();
             }
         });
-		if(!(pc.hasWoodCards(1) && pc.hasWheatCards(1) && pc.hasOreCards(1))) {
+		if((pc.getAmountOre(playerid) < 1 || pc.getAmountWheat(playerid) < 1 || pc.getAmountWool(playerid) < 1)) {
+			cityBuild.setEnabled(false);
 			devCardBuild.setEnabled(false);
 		}
 		devCardBuild.setPreferredSize(buttonsize);
