@@ -129,28 +129,45 @@ public class TradeController extends Observable implements Runnable {
 	}
 
 	public boolean hasStoneCard(int amount) {
-		boolean has = player.hasStoneCard(amount);
-		return has;
+		if(pc.getAmountStone(playerid) >= amount) {
+			return true;
+		} else {
+			return false;
+		}
+		/*boolean has = player.hasStoneCard(amount);
+		return has;*/
 	}
 
 	public boolean hasOreCard(int amount) {
-		boolean has = player.hasOreCard(amount);
-		return has;
+		if(pc.getAmountOre(playerid) >= amount) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public boolean hasWoodCard(int amount) {
-		boolean has = player.hasWoodCard(amount);
-		return has;
+		if(pc.getAmountWood(playerid) >= amount) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public boolean hasWheatCard(int amount) {
-		boolean has = player.hasWheatCard(amount);
-		return has;
+		if(pc.getAmountWheat(playerid) >= amount) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public boolean hasWoolCard(int amount) {
-		boolean has = player.hasWoolCard(amount);
-		return has;
+		if(pc.getAmountWool(playerid) >= amount) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	@Override
