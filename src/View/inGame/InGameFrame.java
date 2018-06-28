@@ -97,4 +97,9 @@ public class InGameFrame extends JFrame {
 		pane.disableBuildButton(disable);
 		
 	}
+
+	public void disableDevButton() {
+		pane.disableDevButton();
+		
+	}
 }
