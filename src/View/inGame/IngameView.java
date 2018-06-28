@@ -474,6 +474,12 @@ public class IngameView extends JPanel implements Observer {
 				ownPoint = new JLabel(playerStats.get(i).getPrivatePoints() + "");
 			}
 		}
+		if(ownPoint != null) {
+		return ownPoint;
+		}
+		else if(ownPoint == null) {
+			return new JLabel("0");
+		}
 		return ownPoint;
 	}
 
