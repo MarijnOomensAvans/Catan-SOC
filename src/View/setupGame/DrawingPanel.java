@@ -424,32 +424,23 @@ public class DrawingPanel extends JPanel {
 							case "d":
 								switch (x) {
 								case 0:
-									if (xCoord1 != 0 && yCoord1 != 0) {
-										village_Red.paintIcon(this, g, buildingConvertXfromKeyToScreenX(xCoord1) - 17,
-												buildingConvertYfromKeyToScreenY(xCoord1, yCoord1) - 20);
-									}
+									village_Red.paintIcon(this, g, buildingConvertXfromKeyToScreenX(xCoord1) - 17,
+											buildingConvertYfromKeyToScreenY(xCoord1, yCoord1) - 20);
 									buildCounter++;
 									break;
 								case 1:
-									if (xCoord1 != 0 && yCoord1 != 0) {
-										village_White.paintIcon(this, g, buildingConvertXfromKeyToScreenX(xCoord1) - 17,
-												buildingConvertYfromKeyToScreenY(xCoord1, yCoord1) - 20);
-									}
+									village_White.paintIcon(this, g, buildingConvertXfromKeyToScreenX(xCoord1) - 17,
+											buildingConvertYfromKeyToScreenY(xCoord1, yCoord1) - 20);
 									buildCounter++;
 									break;
 								case 2:
-									if (xCoord1 != 0 && yCoord1 != 0) {
-										village_Blue.paintIcon(this, g, buildingConvertXfromKeyToScreenX(xCoord1) - 17,
-												buildingConvertYfromKeyToScreenY(xCoord1, yCoord1) - 20);
-									}
+									village_Blue.paintIcon(this, g, buildingConvertXfromKeyToScreenX(xCoord1) - 17,
+											buildingConvertYfromKeyToScreenY(xCoord1, yCoord1) - 20);
 									buildCounter++;
 									break;
 								case 3:
-									if (xCoord1 != 0 && yCoord1 != 0) {
-										village_Orange.paintIcon(this, g,
-												buildingConvertXfromKeyToScreenX(xCoord1) - 17,
-												buildingConvertYfromKeyToScreenY(xCoord1, yCoord1) - 20);
-									}
+									village_Orange.paintIcon(this, g, buildingConvertXfromKeyToScreenX(xCoord1) - 17,
+											buildingConvertYfromKeyToScreenY(xCoord1, yCoord1) - 20);
 									buildCounter++;
 									break;
 								}
@@ -457,27 +448,19 @@ public class DrawingPanel extends JPanel {
 							case "r":
 								switch (x) {
 								case 0:
-									if (xCoord1 != 0 && yCoord1 != 0) {
-										street_Red.paintIcon(this, g, xCoord - 17, yCoord - 5);
-									}
+									street_Red.paintIcon(this, g, xCoord - 17, yCoord - 5);
 									buildCounter++;
 									break;
 								case 1:
-									if (xCoord1 != 0 && yCoord1 != 0) {
-										street_White.paintIcon(this, g, xCoord - 17, yCoord - 5);
-									}
+									street_White.paintIcon(this, g, xCoord - 17, yCoord - 5);
 									buildCounter++;
 									break;
 								case 2:
-									if (xCoord1 != 0 && yCoord1 != 0) {
-										street_Blue.paintIcon(this, g, xCoord - 17, yCoord - 5);
-									}
+									street_Blue.paintIcon(this, g, xCoord - 17, yCoord - 5);
 									buildCounter++;
 									break;
 								case 3:
-									if (xCoord1 != 0 && yCoord1 != 0) {
-										street_Orange.paintIcon(this, g, xCoord - 17, yCoord - 5);
-									}
+									street_Orange.paintIcon(this, g, xCoord - 17, yCoord - 5);
 									buildCounter++;
 									break;
 								}
@@ -485,31 +468,23 @@ public class DrawingPanel extends JPanel {
 							case "c":
 								switch (x) {
 								case 0:
-									if (xCoord1 != 0 && yCoord1 != 0) {
-										city_Red.paintIcon(this, g, buildingConvertXfromKeyToScreenX(xCoord1) - 17,
-												buildingConvertYfromKeyToScreenY(xCoord1, yCoord1) - 20);
-									}
+									city_Red.paintIcon(this, g, buildingConvertXfromKeyToScreenX(xCoord1) - 17,
+											buildingConvertYfromKeyToScreenY(xCoord1, yCoord1) - 20);
 									buildCounter++;
 									break;
 								case 1:
-									if (xCoord1 != 0 && yCoord1 != 0) {
-										city_White.paintIcon(this, g, buildingConvertXfromKeyToScreenX(xCoord1) - 17,
-												buildingConvertYfromKeyToScreenY(xCoord1, yCoord1) - 20);
-									}
+									city_White.paintIcon(this, g, buildingConvertXfromKeyToScreenX(xCoord1) - 17,
+											buildingConvertYfromKeyToScreenY(xCoord1, yCoord1) - 20);
 									buildCounter++;
 									break;
 								case 2:
-									if (xCoord1 != 0 && yCoord1 != 0) {
-										city_Blue.paintIcon(this, g, buildingConvertXfromKeyToScreenX(xCoord1) - 17,
-												buildingConvertYfromKeyToScreenY(xCoord1, yCoord1) - 20);
-									}
+									city_Blue.paintIcon(this, g, buildingConvertXfromKeyToScreenX(xCoord1) - 17,
+											buildingConvertYfromKeyToScreenY(xCoord1, yCoord1) - 20);
 									buildCounter++;
 									break;
 								case 3:
-									if (xCoord1 != 0 && yCoord1 != 0) {
-										city_Orange.paintIcon(this, g, buildingConvertXfromKeyToScreenX(xCoord1) - 17,
-												buildingConvertYfromKeyToScreenY(xCoord1, yCoord1) - 20);
-									}
+									city_Orange.paintIcon(this, g, buildingConvertXfromKeyToScreenX(xCoord1) - 17,
+											buildingConvertYfromKeyToScreenY(xCoord1, yCoord1) - 20);
 									buildCounter++;
 									break;
 								}
