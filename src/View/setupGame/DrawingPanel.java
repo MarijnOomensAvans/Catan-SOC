@@ -262,7 +262,6 @@ public class DrawingPanel extends JPanel {
 						}
 					}
 				}
-
 				if (inGameController != null) {
 					inGameController.shouldRefresh(gameID);
 				}
