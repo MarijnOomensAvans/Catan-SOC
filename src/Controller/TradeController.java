@@ -289,11 +289,11 @@ public class TradeController extends Observable implements Runnable {
 	}
 
 	public boolean hasCards(ArrayList<Integer> playercounterbid) {
-		if (player.hasStoneCard(playercounterbid.get(6)) == true) {
-			if (player.hasOreCard(playercounterbid.get(8)) == true) {
-				if (player.hasWheatCard(playercounterbid.get(9)) == true) {
-					if (player.hasWoolCard(playercounterbid.get(7)) == true) {
-						if (player.hasWoodCard(playercounterbid.get(10)) == true) {
+		if (pc.getAmountStone(playerid) >= playercounterbid.get(6)) {
+			if (pc.getAmountOre(playerid) >= playercounterbid.get(8)) {
+				if (pc.getAmountWheat(playerid) >= playercounterbid.get(9)) {
+					if (pc.getAmountWool(playerid) >= playercounterbid.get(7)) {
+						if (pc.getAmountWood(playerid) >=playercounterbid.get(10)) {
 							return true;
 						}
 					}
