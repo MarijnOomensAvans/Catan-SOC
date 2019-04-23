@@ -5,7 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class MainDAL {
-	private Connection conn;
+	
+	private static Connection conn;
 
 	public MainDAL()
 	{
@@ -33,7 +34,6 @@ public class MainDAL {
 		{
 			conn = DriverManager
 					.getConnection("jdbc:mysql://databases.aii.avans.nl/bdjong1_db2?user=bdjong1&password=Ab12345");
-			System.out.println("So far, so good...");
 		} catch (SQLException ex)
 		{
 			// handle any errors
@@ -46,7 +46,7 @@ public class MainDAL {
 		return true;
 	}
 	
-	public Connection getConnection() {
+	public static Connection getConnection() {
 		return conn;
 	}
 }
