@@ -1,11 +1,10 @@
 package Controller;
 
 import Model.LoginModel;
-import View.LoginFrame;
+import View.logIn.LoginFrame;
 
 public class LoginController {
 
-	@SuppressWarnings("unused")
 	private LoginFrame frame;
 	private LoginModel loginModel;
 	private static String username;
@@ -19,16 +18,17 @@ public class LoginController {
 
 	}
 
-	public void buttonPressedRegisterCompleet(String username, String password, String passwordVer) {
+	public boolean buttonPressedRegisterCompleet(String username, String password, String passwordVer) {
 		if (loginModel.verifyRegisterInput(username, password, passwordVer)) {
 			loginModel.addAccount(username, password);
+			return true;
+		} else {
+			return false;
 		}
 	}
 
-	public void buttonPressedCancel() {
 
-	}
-
+	@SuppressWarnings("static-access")
 	public void buttonPressedLogin(String username, String password) {
 		if(loginModel.login(username, password)) {
 			this.username = username;

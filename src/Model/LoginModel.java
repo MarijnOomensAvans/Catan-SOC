@@ -10,15 +10,14 @@ public class LoginModel {
 	private LoginDAL loginDal;
 	private LoginController inlogController;
 
-	public LoginModel(LoginController inlogController) {
+	public LoginModel(LoginController loginController) {
 		loginDal = new LoginDAL();
-		this.inlogController = inlogController;
+		this.inlogController = loginController;
 	}
 
 	public boolean login(String username, String password) {
 		if (loginDal.hasUsername(username)) {
 			if (loginDal.userHasPassword(username, password)) {
-				System.out.println("Logged in!");
 				return true;
 			} else {
 				System.err.println("Wachtwoord klopt niet");
